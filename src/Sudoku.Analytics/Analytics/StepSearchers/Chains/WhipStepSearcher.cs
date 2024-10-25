@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Whip</item>
 /// </list>
 /// </summary>
-[StepSearcher("StepSearcherName_WhipStepSearcher", Technique.Whip)]
+[StepSearcher("StepSearcherName_WhipStepSearcher", Technique.Whip, RuntimeFlags = StepSearcherRuntimeFlags.SpaceComplexity)]
 public sealed partial class WhipStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
@@ -34,22 +34,19 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 				// Create a pending queue to record all interim cases, and a collection recording visited nodes.
 				var pendingNodes = new LinkedList<WhipNode>();
-				pendingNodes.AddLast(new WhipNode(startCandidate, in grid));
+				pendingNodes.AddLast(new WhipNode(startCandidate));
 
 				// Iterate the pending queue and never stops, until all nodes are tried.
 				while (pendingNodes.Count != 0)
 				{
 					// Deconstruct the object and apply digit into playground.
 					var currentNode = pendingNodes.RemoveFirstNode();
-					var currentCandidate = currentNode.Assignment.Candidate;
-					ref var playground = ref currentNode.Grid;
-					playground.Apply(new(Assignment, currentCandidate));
 
 					// Here we should check for 2 kinds of contradictions:
 					//   1) No candidates in one empty cell
 					//   2) No possible positions of a digit in one house
 					// If we can find out such contradiction, we can conclude that the start assertion is failed.
-					if (ExistsContradiction(in playground, out var failedSpace))
+					if (ExistsContradiction(grid, currentNode, out var failedSpace))
 					{
 						// Contradiction is found. Now we can construct a step instance and return.
 						var step = CreateStep(in context, currentNode, startCandidate, in grid, failedSpace);
@@ -64,9 +61,9 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 					// If here, we will know that such conclusions are based on the previous conclusion applied.
 					// Now we should append a parent relation. Here, I'll use a chain node to connect them.
-					foreach (var assignment in GetNextAssignments(in playground))
+					foreach (var assignment in GetNextAssignments(grid, currentNode))
 					{
-						pendingNodes.AddLast(new WhipNode(assignment, in playground) >> currentNode);
+						pendingNodes.AddLast(new WhipNode(assignment) >> currentNode);
 					}
 				}
 			}
@@ -78,13 +75,30 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 
 	/// <summary>
+	/// Try to assign the grid with all conclusions produced by the specified whip chain.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="currentNode">The node.</param>
+	private static void UpdateGrid(ref Grid grid, WhipNode currentNode)
+	{
+		for (var node = currentNode; node is not null; node = node.Parent)
+		{
+			grid.Apply(new(Assignment, node.Assignment.Candidate));
+		}
+	}
+
+	/// <summary>
 	/// Determine whether the specified grid state contains any contradiction.
 	/// </summary>
 	/// <param name="playground">The grid.</param>
+	/// <param name="currentNode">Indicates the current node.</param>
 	/// <param name="failedSpace">The failed space.</param>
 	/// <returns>A <see cref="bool"/> result whether any contradiction is found.</returns>
-	private static bool ExistsContradiction(ref readonly Grid playground, out Space failedSpace)
+	private static bool ExistsContradiction(Grid playground, WhipNode currentNode, out Space failedSpace)
 	{
+		// Temporarily update the grid in order not to cache the full grid.
+		UpdateGrid(ref playground, currentNode);
+
 		// Check for cell.
 		foreach (var cell in playground.EmptyCells)
 		{
@@ -122,12 +136,16 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	/// <summary>
 	/// Try to find all possible conclusions inside the grid.
 	/// </summary>
-	/// <param name="grid">The grid.</param>
+	/// <param name="playground">The grid.</param>
+	/// <param name="currentNode">Indicates the current node.</param>
 	/// <returns>All conclusions and reason why the assignment raised.</returns>
-	private static ReadOnlySpan<WhipAssignment> GetNextAssignments(ref readonly Grid grid)
+	private static ReadOnlySpan<WhipAssignment> GetNextAssignments(Grid playground, WhipNode currentNode)
 	{
-		var emptyCells = grid.EmptyCells;
-		var candidatesMap = grid.CandidatesMap;
+		// Temporarily update the grid in order not to cache the full grid.
+		UpdateGrid(ref playground, currentNode);
+
+		var emptyCells = playground.EmptyCells;
+		var candidatesMap = playground.CandidatesMap;
 
 		var result = new List<WhipAssignment>();
 		var concludedCells = CellMap.Empty;
@@ -142,7 +160,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 				{
 					if (!emptyCells.Contains(cell))
 					{
-						appearedDigitsMask |= (Mask)(1 << grid.GetDigit(cell));
+						appearedDigitsMask |= (Mask)(1 << playground.GetDigit(cell));
 					}
 				}
 
@@ -180,7 +198,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		// Check naked singles.
 		foreach (var nakedSingleCell in emptyCells)
 		{
-			var digitsMask = grid.GetCandidates(nakedSingleCell);
+			var digitsMask = playground.GetCandidates(nakedSingleCell);
 			if (Mask.IsPow2(digitsMask))
 			{
 				var digit = Mask.Log2(digitsMask);

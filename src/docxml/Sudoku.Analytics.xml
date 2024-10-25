@@ -4418,39 +4418,30 @@
             Represents a whip node.
             </summary>
             <param name="assignment">Indicates the assignment conclusion.</param>
-            <param name="grid">The currently grid state.</param>
             <param name="parent">Indicates the parent node.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment,Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.WhipNode)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment,Sudoku.Analytics.Construction.Components.WhipNode)">
             <summary>
             Represents a whip node.
             </summary>
             <param name="assignment">Indicates the assignment conclusion.</param>
-            <param name="grid">The currently grid state.</param>
             <param name="parent">Indicates the parent node.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(System.Int32,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(System.Int32)">
             <summary>
             Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> instance via the candidate set and its corresponding grid.
             </summary>
             <param name="candidate">The assignment.</param>
-            <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment)">
             <summary>
             Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> instance via the candidate set and its corresponding grid.
             </summary>
             <param name="assignment">The assignment.</param>
-            <param name="grid">The grid.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Root">
             <summary>
             Indicates the root node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Grid">
-            <summary>
-            Indicates the current grid.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.ToString(System.IFormatProvider)">
@@ -4472,11 +4463,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.System#Numerics#IShiftOperators{Sudoku#Analytics#Construction#Components#WhipNode,Sudoku#Analytics#Construction#Components#WhipNode,Sudoku#Analytics#Construction#Components#WhipNode}#op_UnsignedRightShift(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.WhipNode._grid">
-            <summary>
-            The generated field declaration for parameter <c>grid</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Assignment">
             <summary>
@@ -7805,19 +7791,28 @@
         <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.ExistsContradiction(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.Space@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.UpdateGrid(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.WhipNode)">
+            <summary>
+            Try to assign the grid with all conclusions produced by the specified whip chain.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="currentNode">The node.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.ExistsContradiction(Sudoku.Concepts.Grid,Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Concepts.Supersymmetry.Space@)">
             <summary>
             Determine whether the specified grid state contains any contradiction.
             </summary>
             <param name="playground">The grid.</param>
+            <param name="currentNode">Indicates the current node.</param>
             <param name="failedSpace">The failed space.</param>
             <returns>A <see cref="T:System.Boolean"/> result whether any contradiction is found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.GetNextAssignments(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.GetNextAssignments(Sudoku.Concepts.Grid,Sudoku.Analytics.Construction.Components.WhipNode)">
             <summary>
             Try to find all possible conclusions inside the grid.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="playground">The grid.</param>
+            <param name="currentNode">Indicates the current node.</param>
             <returns>All conclusions and reason why the assignment raised.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.CreateStep(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Components.WhipNode,System.Int32,Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.Space)">

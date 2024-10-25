@@ -4,15 +4,10 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Represents a whip node.
 /// </summary>
 /// <param name="assignment">Indicates the assignment conclusion.</param>
-/// <param name="grid">The currently grid state.</param>
 /// <param name="parent">Indicates the parent node.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
-public sealed partial class WhipNode(
-	[Property, HashCodeMember] WhipAssignment assignment,
-	[Field, HashCodeMember] ref readonly Grid grid,
-	[Property] WhipNode? parent
-) :
+public sealed partial class WhipNode([Property, HashCodeMember] WhipAssignment assignment, [Property] WhipNode? parent) :
 	IEquatable<WhipNode>,
 	IFormattable,
 	IEqualityOperators<WhipNode, WhipNode, bool>,
@@ -22,8 +17,7 @@ public sealed partial class WhipNode(
 	/// Initializes a <see cref="WhipNode"/> instance via the candidate set and its corresponding grid.
 	/// </summary>
 	/// <param name="candidate">The assignment.</param>
-	/// <param name="grid">The grid.</param>
-	public WhipNode(Candidate candidate, ref readonly Grid grid) : this(new(candidate, Technique.None), in grid, null)
+	public WhipNode(Candidate candidate) : this(new(candidate, Technique.None), null)
 	{
 	}
 
@@ -31,8 +25,7 @@ public sealed partial class WhipNode(
 	/// Initializes a <see cref="WhipNode"/> instance via the candidate set and its corresponding grid.
 	/// </summary>
 	/// <param name="assignment">The assignment.</param>
-	/// <param name="grid">The grid.</param>
-	public WhipNode(WhipAssignment assignment, ref readonly Grid grid) : this(assignment, in grid, null)
+	public WhipNode(WhipAssignment assignment) : this(assignment, null)
 	{
 	}
 
@@ -52,12 +45,6 @@ public sealed partial class WhipNode(
 			return result;
 		}
 	}
-
-	/// <summary>
-	/// Indicates the current grid.
-	/// </summary>
-	[EquatableMember]
-	public ref Grid Grid => ref _grid;
 
 	[EquatableMember]
 	private WhipAssignment AssignmentEntry => Assignment;
@@ -88,7 +75,7 @@ public sealed partial class WhipNode(
 	/// <param name="parent">The parent node.</param>
 	/// <returns>The new node created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static WhipNode operator >>(WhipNode current, WhipNode? parent) => new(current.Assignment, in current.Grid, parent);
+	public static WhipNode operator >>(WhipNode current, WhipNode? parent) => new(current.Assignment, parent);
 
 	/// <inheritdoc/>
 	static WhipNode IShiftOperators<WhipNode, WhipNode, WhipNode>.operator >>>(WhipNode value, WhipNode shiftAmount)
