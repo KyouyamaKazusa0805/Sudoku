@@ -52,6 +52,20 @@ public ref partial struct Generator() : IGenerator<Grid>
 
 
 	/// <summary>
+	/// Initializes a <see cref="Generator"/> instance via the specified template.
+	/// </summary>
+	/// <param name="template">The template.</param>
+	public Generator(ref readonly Grid template) : this()
+	{
+		// 2024/10/25: Add this constructor as template initialization.
+
+		ArgumentOutOfRangeException.ThrowIfNotEqual(template.IsSolved, true);
+
+		_newFullSudoku = template;
+	}
+
+
+	/// <summary>
 	/// Try to generate a puzzle randomly, or return <see cref="Grid.Undefined"/> if a user cancelled the operation.
 	/// </summary>
 	/// <param name="cluesCount">
@@ -78,7 +92,12 @@ public ref partial struct Generator() : IGenerator<Grid>
 
 		try
 		{
-			while (!GenerateForFullGrid()) ;
+			// 2024/10/25: Add this if block to skip initialization for templates.
+			if (_newFullSudoku.IsUndefined)
+			{
+				while (!GenerateForFullGrid()) ;
+			}
+
 			GenerateInitPos(cluesCount, symmetricType, cancellationToken);
 			return _newValidSudoku.FixedGrid;
 		}

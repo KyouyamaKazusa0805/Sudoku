@@ -7964,6 +7964,15 @@
             The final grid to be used.
             </summary>
         </member>
+        <member name="M:Sudoku.Generating.Generator.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.Generator"/> instance via the specified template.
+            </summary>
+            <param name="template">The template.</param>
+            <!--
+            2024/10/25: Add this constructor as template initialization.
+            -->
+        </member>
         <member name="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             Try to generate a puzzle randomly, or return <see cref="F:Sudoku.Concepts.Grid.Undefined"/> if a user cancelled the operation.
