@@ -61,7 +61,7 @@ public ref partial struct Generator() : IGenerator<Grid>
 
 		ArgumentOutOfRangeException.ThrowIfNotEqual(template.IsSolved, true);
 
-		_newFullSudoku = template;
+		_newFullSudoku = template.UnfixedGrid;
 	}
 
 
