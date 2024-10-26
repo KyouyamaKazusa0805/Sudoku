@@ -168,7 +168,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 #if HOUSE_CONTRADICTION_CHECK
 		// Check for house.
 		// Different with cell contradiction, a house contradiction is to find a house contains at least 2 cells
-		// contains only one same digit.
+		// containing only one same digit.
 		var candidatesMap = playground.CandidatesMap;
 		var emptyCells = playground.EmptyCells;
 		for (var house = 0; house < 27; house++)
