@@ -4450,26 +4450,22 @@
             Represents a whip node.
             </summary>
             <param name="assignment">Indicates the assignment conclusion.</param>
+            <param name="availableAssignments">Indicates the available assignments.</param>
             <param name="parent">Indicates the parent node.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment,Sudoku.Analytics.Construction.Components.WhipNode)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment,System.ReadOnlyMemory{Sudoku.Analytics.Construction.Components.WhipAssignment},Sudoku.Analytics.Construction.Components.WhipNode)">
             <summary>
             Represents a whip node.
             </summary>
             <param name="assignment">Indicates the assignment conclusion.</param>
+            <param name="availableAssignments">Indicates the available assignments.</param>
             <param name="parent">Indicates the parent node.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> instance via the candidate set and its corresponding grid.
-            </summary>
-            <param name="candidate">The assignment.</param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> instance via the candidate set and its corresponding grid.
+            Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> with no next assignments.
             </summary>
-            <param name="assignment">The assignment.</param>
+            <param name="assignment">Indicates assignments.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Root">
             <inheritdoc/>
@@ -4488,6 +4484,11 @@
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Assignment">
             <summary>
             The generated property declaration for parameter <c>assignment</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.AvailableAssignments">
+            <summary>
+            The generated property declaration for parameter <c>availableAssignments</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Parent">
@@ -7807,11 +7808,6 @@
             <list type="bullet">
             <item>Whip</item>
             </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.WhipStepSearcher.MaxLength">
-            <summary>
-            Indicates the maximum length of whip chains.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">

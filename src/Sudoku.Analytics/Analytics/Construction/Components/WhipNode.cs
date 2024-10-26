@@ -4,24 +4,21 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Represents a whip node.
 /// </summary>
 /// <param name="assignment">Indicates the assignment conclusion.</param>
+/// <param name="availableAssignments">Indicates the available assignments.</param>
 /// <param name="parent">Indicates the parent node.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
-public sealed partial class WhipNode([Property, HashCodeMember] WhipAssignment assignment, [Property] WhipNode? parent) : IParentLinkedNode<WhipNode>
+public sealed partial class WhipNode(
+	[Property, HashCodeMember] WhipAssignment assignment,
+	[Property] ReadOnlyMemory<WhipAssignment> availableAssignments,
+	[Property] WhipNode? parent = null
+) : IParentLinkedNode<WhipNode>
 {
 	/// <summary>
-	/// Initializes a <see cref="WhipNode"/> instance via the candidate set and its corresponding grid.
+	/// Initializes a <see cref="WhipNode"/> with no next assignments.
 	/// </summary>
-	/// <param name="candidate">The assignment.</param>
-	public WhipNode(Candidate candidate) : this(new(candidate, Technique.None), null)
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="WhipNode"/> instance via the candidate set and its corresponding grid.
-	/// </summary>
-	/// <param name="assignment">The assignment.</param>
-	public WhipNode(WhipAssignment assignment) : this(assignment, null)
+	/// <param name="assignment">Indicates assignments.</param>
+	public WhipNode(WhipAssignment assignment) : this(assignment, ReadOnlyMemory<WhipAssignment>.Empty)
 	{
 	}
 
@@ -62,5 +59,6 @@ public sealed partial class WhipNode([Property, HashCodeMember] WhipAssignment a
 	/// <param name="parent">The parent node.</param>
 	/// <returns>The new node created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static WhipNode operator >>(WhipNode current, WhipNode? parent) => new(current.Assignment, parent);
+	public static WhipNode operator >>(WhipNode current, WhipNode? parent)
+		=> new(current.Assignment, current.AvailableAssignments, parent);
 }

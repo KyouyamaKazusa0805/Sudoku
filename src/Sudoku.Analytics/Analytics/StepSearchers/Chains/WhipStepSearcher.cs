@@ -10,15 +10,18 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher("StepSearcherName_WhipStepSearcher", Technique.Whip, RuntimeFlags = StepSearcherRuntimeFlags.SpaceComplexity)]
 public sealed partial class WhipStepSearcher : StepSearcher
 {
-	/// <summary>
-	/// Indicates the maximum length of whip chains.
-	/// </summary>
-	public int MaxLength { get; set; } = 10;
-
-
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
+		// Test examples:
+		// .3..6.8..6..2...3.4.5..1+6.9..+64....3..9.5..6..4+31.+65...+62.....1.1.9.7..+63..6+1..8.:111 516 722 727 748 948 251 751 768 571 871 885 487 497
+		// 9+1..685...+83+1.5....2.3.+9..+8..168.9..8...+92..6.9..1.+8.71..+8.+6..5.....1+68..6+89..3.+1:414 228 431 438 561 463 563 475 775 483 583 783 584 485 495 795
+		// ..3.8..7.1.....2...8...5..6..18....7.9.7..4..6..+54..92.1...6.3...94.........5...4:116 625 431 773
+		// ..3..+895..1..4...88..3...2.3..78..4..6......2.+856..1..1....6.7....8....9.7..3.2..:215 546 557 966 377 199
+		// .2.7..+1.94...+2+15....1.9..2..5...2..4..6.7.+2.82..1...3..8...46..6..2....1.....7.9.:315 815 624 634 737 748 963 769 573 773 482 787 588
+		// .1..6+7.....72...+656..45..7..9...3..8......9..74.1..+63+2.+7......6..3.7.5..1....2.8.:311 543 851 873 975 177 986
+		// .1..7..5+25..2..3....2...+1.4..6....2.+27.49...11....+28.......3+2.63..12..9..2..5.7..:914 656 368 668 582 583
+
 		ref readonly var grid = ref context.Grid;
 
 		// Iterate on each candidate that can be asserted as false in solution.
@@ -40,7 +43,9 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 				// Create a pending queue to record all interim cases, and a collection recording visited nodes.
 				var pendingNodes = new LinkedList<WhipNode>();
-				pendingNodes.AddLast(new WhipNode(startCandidate));
+				var startNode = new WhipNode(new(startCandidate, Technique.None));
+				startNode = new(startNode.Assignment, GetNextAssignments(grid, startNode));
+				pendingNodes.AddLast(startNode);
 
 				// Iterate the pending queue and never stops, until all nodes are tried.
 				while (pendingNodes.Count != 0)
@@ -65,16 +70,28 @@ public sealed partial class WhipStepSearcher : StepSearcher
 						break;
 					}
 
-					// If here, we will know that such conclusions are based on the previous conclusion applied.
-					// Now we should append a parent relation. Here, I'll use a chain node to connect them.
-					if (((IParentLinkedNode<WhipNode>)currentNode).AncestorsLength > MaxLength)
+					// Add all found conclusion into the pending queue.
+					foreach (var assignment in currentNode.AvailableAssignments)
 					{
-						continue;
-					}
+						// Check whether the current found assignment indeed exists in ancestor nodes.
+						// If so, such conclusion should not be used as children nodes of the current node.
+						var isParentNodeContainsSuchAssignment = false;
+						for (var parentNode = currentNode.Parent; parentNode is not null; parentNode = parentNode.Parent)
+						{
+							if (parentNode.AvailableAssignments.Span.Contains(assignment))
+							{
+								isParentNodeContainsSuchAssignment = true;
+								break;
+							}
+						}
+						if (isParentNodeContainsSuchAssignment)
+						{
+							continue;
+						}
 
-					foreach (var assignment in GetNextAssignments(grid, currentNode))
-					{
-						pendingNodes.AddLast(new WhipNode(assignment) >> currentNode);
+						var nextNode = new WhipNode(assignment) >> currentNode;
+						nextNode = new WhipNode(assignment, GetNextAssignments(grid, nextNode), nextNode.Parent);
+						pendingNodes.AddLast(nextNode);
 					}
 				}
 			}
@@ -150,7 +167,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	/// <param name="playground">The grid.</param>
 	/// <param name="currentNode">Indicates the current node.</param>
 	/// <returns>All conclusions and reason why the assignment raised.</returns>
-	private static ReadOnlySpan<WhipAssignment> GetNextAssignments(Grid playground, WhipNode currentNode)
+	private static ReadOnlyMemory<WhipAssignment> GetNextAssignments(Grid playground, WhipNode currentNode)
 	{
 		// Temporarily update the grid in order not to cache the full grid.
 		UpdateGrid(ref playground, currentNode);
@@ -220,7 +237,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 				}
 			}
 		}
-		return result.AsSpan();
+		return result.AsMemory();
 	}
 
 	/// <summary>
