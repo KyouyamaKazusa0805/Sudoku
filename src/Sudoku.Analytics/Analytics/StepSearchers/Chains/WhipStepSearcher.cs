@@ -164,10 +164,10 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					}
 				}
 
-				var targetCell = fullHouseCell * 9 + Mask.Log2((Mask)(Grid.MaxCandidatesMask & ~appearedDigitsMask));
+				var targetCandidate = fullHouseCell * 9 + Mask.Log2((Mask)(Grid.MaxCandidatesMask & ~appearedDigitsMask));
 				if (concludedCells.Add(fullHouseCell))
 				{
-					result.Add(new(targetCell, Technique.FullHouse));
+					result.Add(new(targetCandidate, Technique.FullHouse));
 				}
 			}
 
@@ -176,12 +176,12 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			{
 				if ((candidatesMap[digit] & HousesMap[house]) is [var hiddenSingleCell])
 				{
-					var targetCell = hiddenSingleCell * 9 + digit;
+					var targetCandidate = hiddenSingleCell * 9 + digit;
 					if (concludedCells.Add(hiddenSingleCell))
 					{
 						result.Add(
 							new(
-								targetCell,
+								targetCandidate,
 								house switch
 								{
 									< 9 => Technique.CrosshatchingBlock,
@@ -202,10 +202,10 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			if (Mask.IsPow2(digitsMask))
 			{
 				var digit = Mask.Log2(digitsMask);
-				var targetCell = nakedSingleCell * 9 + digit;
+				var targetCandidate = nakedSingleCell * 9 + digit;
 				if (concludedCells.Add(nakedSingleCell))
 				{
-					result.Add(new(targetCell, Technique.NakedSingle));
+					result.Add(new(targetCandidate, Technique.NakedSingle));
 				}
 			}
 		}
