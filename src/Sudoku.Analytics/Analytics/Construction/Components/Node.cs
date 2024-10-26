@@ -45,22 +45,6 @@ public sealed partial class Node(
 	public bool IsGroupedNode => _map.Count >= 2;
 
 	/// <summary>
-	/// Indicates the length of ancestors.
-	/// </summary>
-	public int AncestorsLength
-	{
-		get
-		{
-			var result = 0;
-			for (var node = this; node is not null; node = node.Parent)
-			{
-				result++;
-			}
-			return result;
-		}
-	}
-
-	/// <summary>
 	/// Indicates the map of candidates the node uses.
 	/// </summary>
 	public ref readonly CandidateMap Map => ref _map;

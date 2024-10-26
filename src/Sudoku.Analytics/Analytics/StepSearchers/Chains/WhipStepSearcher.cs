@@ -10,6 +10,12 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher("StepSearcherName_WhipStepSearcher", Technique.Whip, RuntimeFlags = StepSearcherRuntimeFlags.SpaceComplexity)]
 public sealed partial class WhipStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// Indicates the maximum length of whip chains.
+	/// </summary>
+	public int MaxLength { get; set; } = 10;
+
+
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
@@ -61,6 +67,11 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 					// If here, we will know that such conclusions are based on the previous conclusion applied.
 					// Now we should append a parent relation. Here, I'll use a chain node to connect them.
+					if (((ILinkedNode<WhipNode>)currentNode).AncestorsLength > MaxLength)
+					{
+						continue;
+					}
+
 					foreach (var assignment in GetNextAssignments(grid, currentNode))
 					{
 						pendingNodes.AddLast(new WhipNode(assignment) >> currentNode);

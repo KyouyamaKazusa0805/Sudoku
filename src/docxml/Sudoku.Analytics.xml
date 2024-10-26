@@ -3962,11 +3962,6 @@
             Indicates whether the node is a grouped node.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Node.AncestorsLength">
-            <summary>
-            Indicates the length of ancestors.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Node.Map">
             <summary>
             Indicates the map of candidates the node uses.
@@ -7812,6 +7807,11 @@
             <list type="bullet">
             <item>Whip</item>
             </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.WhipStepSearcher.MaxLength">
+            <summary>
+            Indicates the maximum length of whip chains.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">

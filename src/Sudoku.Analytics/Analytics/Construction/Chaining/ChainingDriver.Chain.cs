@@ -127,7 +127,7 @@ internal partial class ChainingDriver
 						////////////////////////////////////////////
 						// Continuous Nice Loop 3) Weak -> Strong //
 						////////////////////////////////////////////
-						if (nodeSupposedOff == startNode && nextNode.AncestorsLength >= 4)
+						if (nodeSupposedOff == startNode && ((ILinkedNode<Node>)nextNode).AncestorsLength >= 4)
 						{
 							var loop = new ContinuousNiceLoop(nextNode);
 							if (!loop.GetConclusions(in grid).IsWorthFor(in grid))

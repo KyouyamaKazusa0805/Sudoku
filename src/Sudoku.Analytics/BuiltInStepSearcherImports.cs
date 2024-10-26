@@ -48,7 +48,7 @@
 [assembly: AssemblyStepSearcher<GroupedFinnedChainStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<MultipleForcingChainsStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<DeathBlossomStepSearcher>(2)]
-[assembly: AssemblyStepSearcher<WhipStepSearcher>(3, Areas = StepSearcherRunningArea.Searching)]
+[assembly: AssemblyStepSearcher<WhipStepSearcher>(3)]
 [assembly: AssemblyStepSearcher<BowmanBingoStepSearcher>(3, Areas = StepSearcherRunningArea.None)]
 [assembly: AssemblyStepSearcher<TemplateStepSearcher>(3, Areas = StepSearcherRunningArea.None)]
 [assembly: AssemblyStepSearcher<PatternOverlayStepSearcher>(3, Areas = StepSearcherRunningArea.Collecting)]
