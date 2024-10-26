@@ -75,6 +75,23 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					{
 						// Check whether the current found assignment indeed exists in ancestor nodes.
 						// If so, such conclusion should not be used as children nodes of the current node.
+						//
+						// But... why we should check for this?
+						// For example, if node A can make 3 new conclusions B, C and D, then we know
+						// that the parent of nodes B, C and D is A.
+						// However, due to branching rules, if C or D cannot be appeared in the branch A -> B
+						// because C or D is a children of A, not B. We should ignore C and D if checking for branch A -> B.
+						//
+						//           A
+						//           |
+						//      /----|----\
+						//     B     C     D
+						//    / \
+						//   E   F
+						//
+						// In the diagram, the grid state at conclusion E and F can also produce new conclusions C, D and F.
+						// We should ignore all the other conclusions that don't exist in the branch A -> B -> E.
+
 						var isParentNodeContainsSuchAssignment = false;
 						for (var parentNode = currentNode.Parent; parentNode is not null; parentNode = parentNode.Parent)
 						{
