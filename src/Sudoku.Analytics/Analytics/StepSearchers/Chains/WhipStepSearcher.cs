@@ -77,8 +77,8 @@ public sealed partial class WhipStepSearcher : StepSearcher
 						// If so, such conclusion should not be used as children nodes of the current node.
 						//
 						// But... why we should check for this?
-						// For example, if node A can make 3 new conclusions B, C and D, then we know
-						// that the parent of nodes B, C and D is A.
+						// For example, if node A can make 3 new conclusions B, C and D,
+						// we'll know that the parent of nodes B, C and D is A.
 						// However, due to branching rules, if C or D cannot be appeared in the branch A -> B
 						// because C or D is a children of A, not B. We should ignore C and D if checking for branch A -> B.
 						//
