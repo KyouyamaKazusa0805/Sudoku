@@ -4,12 +4,12 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Represents a node that supports parent linking.
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
-public interface ILinkedNode<TSelf> :
+public interface IParentLinkedNode<TSelf> :
 	IEquatable<TSelf>,
 	IFormattable,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IShiftOperators<TSelf, TSelf, TSelf>
-	where TSelf : ILinkedNode<TSelf>
+	where TSelf : IParentLinkedNode<TSelf>
 {
 	/// <summary>
 	/// Indicates the length of ancestors.

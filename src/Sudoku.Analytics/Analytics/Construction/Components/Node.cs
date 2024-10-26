@@ -26,7 +26,7 @@ public sealed partial class Node(
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,
 	ICloneable,
-	ILinkedNode<Node>
+	IParentLinkedNode<Node>
 {
 	/// <summary>
 	/// Indicates the map format string.

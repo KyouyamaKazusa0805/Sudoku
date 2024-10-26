@@ -67,7 +67,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 					// If here, we will know that such conclusions are based on the previous conclusion applied.
 					// Now we should append a parent relation. Here, I'll use a chain node to connect them.
-					if (((ILinkedNode<WhipNode>)currentNode).AncestorsLength > MaxLength)
+					if (((IParentLinkedNode<WhipNode>)currentNode).AncestorsLength > MaxLength)
 					{
 						continue;
 					}

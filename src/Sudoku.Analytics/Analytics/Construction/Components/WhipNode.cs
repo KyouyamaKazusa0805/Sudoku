@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="parent">Indicates the parent node.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
-public sealed partial class WhipNode([Property, HashCodeMember] WhipAssignment assignment, [Property] WhipNode? parent) : ILinkedNode<WhipNode>
+public sealed partial class WhipNode([Property, HashCodeMember] WhipAssignment assignment, [Property] WhipNode? parent) : IParentLinkedNode<WhipNode>
 {
 	/// <summary>
 	/// Initializes a <see cref="WhipNode"/> instance via the candidate set and its corresponding grid.

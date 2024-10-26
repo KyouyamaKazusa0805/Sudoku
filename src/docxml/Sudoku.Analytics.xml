@@ -3271,7 +3271,7 @@
             A list of cells as the other pair of target cells.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.ILinkedNode`1">
+        <member name="T:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1">
             <summary>
             Represents a node that supports parent linking.
             </summary>
@@ -3286,28 +3286,28 @@
 		</para>
 	</self-type-constraint></typeparam>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ILinkedNode`1.AncestorsLength">
+        <member name="P:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.AncestorsLength">
             <summary>
             Indicates the length of ancestors.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ILinkedNode`1.Parent">
+        <member name="P:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.Parent">
             <summary>
             Indicates the parent node.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ILinkedNode`1.Root">
+        <member name="P:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.Root">
             <summary>
             Indicates the root node.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ILinkedNode`1.ToString(System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ILinkedNode`1.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ILinkedNode`1.op_RightShift(`0,`0)">
+        <member name="M:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.op_RightShift(`0,`0)">
             <summary>
             Creates a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> instance with parent node.
             </summary>
@@ -3315,10 +3315,10 @@
             <param name="parent">The parent node.</param>
             <returns>The new node created.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ILinkedNode`1.System#Numerics#IShiftOperators{TSelf,TSelf,TSelf}#op_LeftShift(`0,`0)">
+        <member name="M:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.System#Numerics#IShiftOperators{TSelf,TSelf,TSelf}#op_LeftShift(`0,`0)">
             <inheritdoc cref="M:System.Numerics.IShiftOperators`3.op_LeftShift(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ILinkedNode`1.System#Numerics#IShiftOperators{TSelf,TSelf,TSelf}#op_UnsignedRightShift(`0,`0)">
+        <member name="M:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.System#Numerics#IShiftOperators{TSelf,TSelf,TSelf}#op_UnsignedRightShift(`0,`0)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.Link">
