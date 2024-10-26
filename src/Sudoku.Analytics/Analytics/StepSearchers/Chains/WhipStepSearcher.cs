@@ -1,3 +1,10 @@
+#undef NAKED_SINGLE_FIRST
+#define CELL_CONTRADICTION_CHECK
+#define HOUSE_CONTRADICTION_CHECK
+#if !CELL_CONTRADICTION_CHECK && !HOUSE_CONTRADICTION_CHECK
+#error You should configure at least one symbol of 'CELL_CONTRADICTION_CHECK' and 'HOUSE_CONTRADICTION_CHECK'.
+#endif
+
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
@@ -145,7 +152,9 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		// Temporarily update the grid in order not to cache the full grid.
 		UpdateGrid(ref playground, currentNode);
 
+#if CELL_CONTRADICTION_CHECK
 		// Check for cell.
+		// The basic contradiction is to find a "null" cell - a cell has no possibilities available.
 		foreach (var cell in playground.EmptyCells)
 		{
 			if (playground.GetCandidates(cell) == 0)
@@ -154,14 +163,27 @@ public sealed partial class WhipStepSearcher : StepSearcher
 				return true;
 			}
 		}
+#endif
 
+#if HOUSE_CONTRADICTION_CHECK
 		// Check for house.
+		// Different with cell contradiction, a house contradiction is to find a house contains at least 2 cells
+		// contains only one same digit.
 		var candidatesMap = playground.CandidatesMap;
+		var emptyCells = playground.EmptyCells;
 		for (var house = 0; house < 27; house++)
 		{
-			foreach (var digit in playground[HousesMap[house], false])
+			var digitsMask = playground[HousesMap[house], false];
+			foreach (var digit in digitsMask)
 			{
-				if (!(candidatesMap[digit] & HousesMap[house]))
+				var otherDigitsMask = (Mask)(digitsMask & ~(1 << digit));
+				var map = CellMap.Empty;
+				foreach (var d in otherDigitsMask)
+				{
+					map |= candidatesMap[d];
+				}
+
+				if ((HousesMap[house] & emptyCells & ~map).Count >= 2)
 				{
 					failedSpace = house switch
 					{
@@ -173,6 +195,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 				}
 			}
 		}
+#endif
 
 		// No conclusions found.
 		failedSpace = default;
@@ -195,6 +218,24 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 		var result = new List<WhipAssignment>();
 		var concludedCells = CellMap.Empty;
+
+#if NAKED_SINGLE_FIRST
+		// Check naked singles.
+		foreach (var nakedSingleCell in emptyCells)
+		{
+			var digitsMask = playground.GetCandidates(nakedSingleCell);
+			if (Mask.IsPow2(digitsMask))
+			{
+				var digit = Mask.Log2(digitsMask);
+				var targetCandidate = nakedSingleCell * 9 + digit;
+				if (concludedCells.Add(nakedSingleCell))
+				{
+					result.Add(new(targetCandidate, Technique.NakedSingle));
+				}
+			}
+		}
+#endif
+
 		for (var house = 0; house < 27; house++)
 		{
 			// Check for full houses.
@@ -241,6 +282,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			}
 		}
 
+#if !NAKED_SINGLE_FIRST
 		// Check naked singles.
 		foreach (var nakedSingleCell in emptyCells)
 		{
@@ -255,6 +297,8 @@ public sealed partial class WhipStepSearcher : StepSearcher
 				}
 			}
 		}
+#endif
+
 		return result.AsMemory();
 	}
 
