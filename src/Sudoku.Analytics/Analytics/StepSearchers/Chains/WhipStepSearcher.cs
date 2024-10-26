@@ -89,7 +89,8 @@ public sealed partial class WhipStepSearcher : StepSearcher
 						//    / \
 						//   E   F
 						//
-						// In the diagram, the grid state at conclusion E and F can also produce new conclusions C, D and F.
+						// In the diagram, the grid state at conclusion E can also produce new conclusions C, D and F,
+						// and F grid state can also produce steps C, D and E.
 						// We should ignore all the other conclusions that don't exist in the branch A -> B -> E.
 
 						var isParentNodeContainsSuchAssignment = false;
