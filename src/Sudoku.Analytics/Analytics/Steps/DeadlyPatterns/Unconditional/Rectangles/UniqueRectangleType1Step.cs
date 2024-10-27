@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="isAvoidable"><inheritdoc/></param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
-public sealed partial class UniqueRectangleType1Step(
+public sealed class UniqueRectangleType1Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,

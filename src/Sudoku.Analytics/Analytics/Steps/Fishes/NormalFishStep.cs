@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="fins">Indicates the fins.</param>
 /// <param name="isSashimi"><inheritdoc/></param>
 /// <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
-public sealed partial class NormalFishStep(
+public sealed class NormalFishStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,

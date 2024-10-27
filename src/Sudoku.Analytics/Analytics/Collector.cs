@@ -5,7 +5,7 @@ using CollectorBase = ICollector<Collector, CollectorContext, ReadOnlySpan<Step>
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one state.
 /// </summary>
-public sealed partial class Collector : CollectorBase
+public sealed class Collector : CollectorBase
 {
 	/// <inheritdoc/>
 	[WithProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]

@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit"><inheritdoc cref="SingleStep.Digit" path="/summary"/></param>
 /// <param name="house"><inheritdoc cref="HiddenSingleStep.House" path="/summary"/></param>
 /// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary"/></param>
-public sealed partial class LastDigitStep(
+public sealed class LastDigitStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,

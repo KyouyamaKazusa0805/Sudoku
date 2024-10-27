@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="digitsMask"><inheritdoc/></param>
-public sealed partial class FireworkQuadrupleStep(
+public sealed class FireworkQuadrupleStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,

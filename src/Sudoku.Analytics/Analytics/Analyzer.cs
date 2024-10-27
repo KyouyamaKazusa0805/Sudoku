@@ -10,7 +10,7 @@ using AnalyzerBase = IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>;
 /// </summary>
 /// <seealso cref="AnalysisResult"/>
 /// <seealso cref="Analyzer"/>
-public sealed partial class Analyzer : AnalyzerBase
+public sealed class Analyzer : AnalyzerBase
 {
 	/// <summary>
 	/// Indicates the default steps capacity.
