@@ -684,9 +684,8 @@ public partial struct Grid : GridBase
 	public void SetState(Cell cell, CellState state)
 	{
 		ref var mask = ref this[cell];
-		var copied = mask;
 		mask = (Mask)(GetHeaderBits(cell) | (Mask)((int)state << 9) | mask & MaxCandidatesMask);
-		OnValueChanged(ref this, cell, copied, mask, -1);
+		OnValueChanged(ref this, cell, -1);
 	}
 
 	/// <inheritdoc/>
@@ -699,9 +698,8 @@ public partial struct Grid : GridBase
 	public void SetMask(Cell cell, Mask mask)
 	{
 		ref var newMask = ref this[cell];
-		var originalMask = newMask;
 		newMask = mask;
-		OnValueChanged(ref this, cell, originalMask, newMask, -1);
+		OnValueChanged(ref this, cell, -1);
 	}
 
 	/// <summary>
@@ -737,13 +735,12 @@ public partial struct Grid : GridBase
 			case >= 0 and < 9:
 			{
 				ref var result = ref this[cell];
-				var copied = result;
 
 				// Set cell state to 'CellState.Modifiable'.
 				result = (Mask)(GetHeaderBits(cell) | ModifiableMask | 1 << digit);
 
 				// To trigger the event, which is used for eliminate all same candidates in peer cells.
-				OnValueChanged(ref this, cell, copied, result, digit);
+				OnValueChanged(ref this, cell, digit);
 				break;
 			}
 		}
@@ -755,7 +752,6 @@ public partial struct Grid : GridBase
 	{
 		if (cell is >= 0 and < 81 && digit is >= 0 and < 9)
 		{
-			var copied = this[cell];
 			if (isOn)
 			{
 				this[cell] |= (Mask)(1 << digit);
@@ -766,9 +762,39 @@ public partial struct Grid : GridBase
 			}
 
 			// To trigger the event.
-			OnValueChanged(ref this, cell, copied, this[cell], -1);
+			OnValueChanged(ref this, cell, -1);
 		}
 	}
+
+	/// <summary>
+	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+	/// and the argument <paramref name="cell"/> is 0.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>, left-shifted.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal readonly Mask GetHeaderBits(Cell cell) => (Mask)(this[cell] & ~((1 << GridBase.HeaderShift) - 1));
+
+	/// <summary>
+	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+	/// and the argument <paramref name="cell"/> is 0.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal readonly Mask GetHeaderBitsUnshifted(Cell cell) => (Mask)(this[cell] >> GridBase.HeaderShift);
+
+	/// <summary>
+	/// Appends for Sukaku puzzle header.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal void AddSukakuHeader() => this[0] |= GridBase.SukakuHeader;
+
+	/// <summary>
+	/// Removes for Sukaku puzzle header.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal void RemoveSukakuHeader() => this[0] &= (1 << GridBase.HeaderShift) - 1;
 
 	/// <inheritdoc/>
 	readonly IEnumerable<Candidate> IWhereMethod<Grid, Candidate>.Where(Func<Candidate, bool> predicate)
@@ -801,37 +827,7 @@ public partial struct Grid : GridBase
 		return result;
 	}
 
-	/// <summary>
-	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
-	/// and the argument <paramref name="cell"/> is 0.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>, left-shifted.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private readonly Mask GetHeaderBits(Cell cell) => (Mask)(this[cell] & ~((1 << GridBase.HeaderShift) - 1));
-
-	/// <summary>
-	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
-	/// and the argument <paramref name="cell"/> is 0.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private readonly Mask GetHeaderBitsUnshifted(Cell cell) => (Mask)(this[cell] >> GridBase.HeaderShift);
-
-	/// <summary>
-	/// Appends for Sukaku puzzle header.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void AddSukakuHeader() => this[0] |= GridBase.SukakuHeader;
-
-	/// <summary>
-	/// Removes for Sukaku puzzle header.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void RemoveSukakuHeader() => this[0] &= (1 << GridBase.HeaderShift) - 1;
-
-
+	
 	/// <inheritdoc/>
 	public static bool TryParse(string? s, out Grid result)
 	{
@@ -1061,8 +1057,7 @@ public partial struct Grid : GridBase
 		=> EqualityComparer<Grid>.Create((a, b) => a.Equals(in b, comparison), obj => obj.GetHashCode(comparison));
 
 	/// <inheritdoc/>
-	static void GridBase.OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
-		=> OnValueChanged(ref @this, cell, oldMask, newMask, setValue);
+	static void GridBase.OnValueChanged(ref Grid @this, Cell cell,  Digit setValue) => OnValueChanged(ref @this, cell, setValue);
 
 	/// <inheritdoc/>
 	static void GridBase.OnRefreshingCandidates(ref Grid @this) => OnRefreshingCandidates(ref @this);
@@ -1113,8 +1108,8 @@ public partial struct Grid : GridBase
 		}
 	}
 
-	/// <inheritdoc cref="IGrid{TSelf}.OnValueChanged(ref TSelf, Cell, Mask, Mask, Digit)"/>
-	private static void OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
+	/// <inheritdoc cref="IGrid{TSelf}.OnValueChanged(ref TSelf, Cell, Digit)"/>
+	private static void OnValueChanged(ref Grid @this, Cell cell, Digit setValue)
 	{
 		if (setValue == -1)
 		{

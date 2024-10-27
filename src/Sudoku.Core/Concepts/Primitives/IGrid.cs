@@ -626,13 +626,11 @@ public interface IGrid<TSelf> :
 	/// </summary>
 	/// <param name="this">The grid itself.</param>
 	/// <param name="cell">Indicates the cell changed.</param>
-	/// <param name="oldMask">Indicates the original mask representing the original digits in that cell.</param>
-	/// <param name="newMask">Indicates the mask representing the digits updated.</param>
 	/// <param name="setValue">
 	/// Indicates the set value. If to clear the cell, the value will be -1.
 	/// In fact, if the value is -1, this method will do nothing.
 	/// </param>
-	protected static abstract void OnValueChanged(ref TSelf @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue);
+	protected static abstract void OnValueChanged(ref TSelf @this, Cell cell, Digit setValue);
 
 	/// <summary>
 	/// Event handler on refreshing candidates.

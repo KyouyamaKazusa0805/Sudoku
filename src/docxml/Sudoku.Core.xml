@@ -4146,22 +4146,6 @@
         <member name="M:Sudoku.Concepts.Grid.SetExistence(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#IWhereMethod{Sudoku#Concepts#Grid,System#Int32}#Where(System.Func{System.Int32,System.Boolean})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#Grid,System#Int32}#Select``1(System.Func{System.Int32,``0})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Preserve(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.
-            </summary>
-            <param name="pattern">The pattern.</param>
-            <returns>The result grid.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.GetHeaderBits(System.Int32)">
             <summary>
             Gets the header 4 bits. The value can be <see cref="F:Sudoku.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
@@ -4187,6 +4171,22 @@
             <summary>
             Removes for Sukaku puzzle header.
             </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#IWhereMethod{Sudoku#Concepts#Grid,System#Int32}#Where(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#Grid,System#Int32}#Select``1(System.Func{System.Int32,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Preserve(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.
+            </summary>
+            <param name="pattern">The pattern.</param>
+            <returns>The result grid.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
@@ -4241,7 +4241,7 @@
             <param name="comparison">Indicates the comparison rule.</param>
             <returns>An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitives#IGrid{Sudoku#Concepts#Grid}#OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitives#IGrid{Sudoku#Concepts#Grid}#OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitives#IGrid{Sudoku#Concepts#Grid}#OnRefreshingCandidates(Sudoku.Concepts.Grid@)">
@@ -4267,8 +4267,8 @@
             This creation ignores header bits. Please don't use this method in the puzzle creation.
             </i></b></remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.Primitives.IGrid`1.OnValueChanged(`0@,System.Int32,System.Int16,System.Int16,System.Int32)"/>
+        <member name="M:Sudoku.Concepts.Grid.OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.Primitives.IGrid`1.OnValueChanged(`0@,System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.OnRefreshingCandidates(Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Concepts.Primitives.IGrid`1.OnRefreshingCandidates(`0@)"/>
@@ -5927,14 +5927,12 @@
         <member name="M:Sudoku.Concepts.Primitives.IGrid`1.Parse(System.ReadOnlySpan{System.Char})">
             <inheritdoc cref="M:System.ISpanParsable`1.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Primitives.IGrid`1.OnValueChanged(`0@,System.Int32,System.Int16,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Concepts.Primitives.IGrid`1.OnValueChanged(`0@,System.Int32,System.Int32)">
             <summary>
             Event handler on value changed.
             </summary>
             <param name="this">The grid itself.</param>
             <param name="cell">Indicates the cell changed.</param>
-            <param name="oldMask">Indicates the original mask representing the original digits in that cell.</param>
-            <param name="newMask">Indicates the mask representing the digits updated.</param>
             <param name="setValue">
             Indicates the set value. If to clear the cell, the value will be -1.
             In fact, if the value is -1, this method will do nothing.
