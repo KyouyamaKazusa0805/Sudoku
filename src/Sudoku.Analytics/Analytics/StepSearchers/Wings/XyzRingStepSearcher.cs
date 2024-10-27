@@ -105,8 +105,6 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 			var theOtherDigit2 = theOtherTwoDigitsMask.GetNextSet(theOtherDigit1);
 			var coveringHouseForDigit1 = (digitsMask1 >> theOtherDigit1 & 1) != 0 ? house1 : house2;
 			var coveringHouseForDigit2 = house1 == coveringHouseForDigit1 ? house2 : house1;
-			var leafCellContainingDigit1 = (digitsMask1 >> theOtherDigit1 & 1) != 0 ? leafCell1 : leafCell2;
-			var leafCellContainingDigit2 = (digitsMask2 >> theOtherDigit2 & 1) != 0 ? leafCell2 : leafCell1;
 
 			// Iterate on all houses, determining whether two leaf cells can make the house
 			// out of filling with intersected digit.
@@ -155,7 +153,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 								&& (HousesMap[linkCellHouse] & HousesMap[leafCellHouse]) is var i)
 							{
 								// Elimination zone 3: Intersected cell for the leaf and one grouped node of cells
-								// in (grouped) strong link that they shares in a same mini-line -> eliminate intersected digit.
+								// in (grouped) strong link that they share in a same mini-line -> eliminate intersected digit.
 								foreach (var cell in i & CandidatesMap[zDigit] & ~patternCells & ~cellsShouldBeCovered)
 								{
 									conclusions.Add(new(Elimination, cell, zDigit));

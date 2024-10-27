@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using unsafe AnitGurthSymmetricalPlacementModuleSearcherFuncPtr = delegate*<ref readonly Grid, ref StepAnalysisContext, AntiGurthSymmetricalPlacementStep?>;
+using unsafe AntiGurthSymmetricalPlacementModuleSearcherFuncPtr = delegate*<ref readonly Grid, ref StepAnalysisContext, AntiGurthSymmetricalPlacementStep?>;
 
 /// <summary>
 /// Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
@@ -17,9 +17,9 @@ using unsafe AnitGurthSymmetricalPlacementModuleSearcherFuncPtr = delegate*<ref 
 public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates the functions that are searchers for sub-types.
+	/// Indicates the functions that are searchers for subtypes.
 	/// </summary>
-	private static readonly unsafe AnitGurthSymmetricalPlacementModuleSearcherFuncPtr[] AntiTypeCheckers = [
+	private static readonly unsafe AntiGurthSymmetricalPlacementModuleSearcherFuncPtr[] AntiTypeCheckers = [
 		&CheckDiagonal_Anti,
 		&CheckAntiDiagonal_Anti,
 		&CheckXAxis_Anti,
