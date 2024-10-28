@@ -272,7 +272,7 @@ public sealed class Analyzer : AnalyzerBase
 
 				if (SymmetryInferrer.GetStep(in playground, Options) is { } step)
 				{
-					if (verifyConclusionValidity(in solution, step))
+					if (verifyConclusionValidity(null, in solution, step))
 					{
 						if (onCollectingSteps(
 							collectedSteps, step, in context, ref playground, timestampOriginal,
@@ -380,7 +380,7 @@ public sealed class Analyzer : AnalyzerBase
 						{
 							foreach (var step in chosenSteps)
 							{
-								if (!verifyConclusionValidity(in solution, step))
+								if (!verifyConclusionValidity(searcher, in solution, step))
 								{
 									throw new WrongStepException(in playground, step);
 								}
@@ -396,7 +396,7 @@ public sealed class Analyzer : AnalyzerBase
 						else
 						{
 							var chosenStep = RandomizedChoosing ? chosenSteps[_random.Next(0, chosenSteps.Count)] : chosenSteps[0];
-							if (!verifyConclusionValidity(in solution, chosenStep))
+							if (!verifyConclusionValidity(searcher, in solution, chosenStep))
 							{
 								throw new WrongStepException(in playground, chosenStep);
 							}
@@ -423,7 +423,7 @@ public sealed class Analyzer : AnalyzerBase
 
 						// Here will fetch a correct step to be applied.
 						var chosenStep = accumulator[_random.Next(0, accumulator.Count)];
-						if (!verifyConclusionValidity(in solution, chosenStep))
+						if (!verifyConclusionValidity(searcher, in solution, chosenStep))
 						{
 							throw new WrongStepException(in playground, chosenStep);
 						}
@@ -469,7 +469,7 @@ public sealed class Analyzer : AnalyzerBase
 
 						// Here will fetch a correct step to be applied.
 						var chosenStep = temp[_random.Next(0, temp.Count)];
-						if (!verifyConclusionValidity(in solution, chosenStep))
+						if (!verifyConclusionValidity(searcher, in solution, chosenStep))
 						{
 							throw new WrongStepException(in playground, chosenStep);
 						}
@@ -497,7 +497,7 @@ public sealed class Analyzer : AnalyzerBase
 						{
 							// Here will fetch a correct step to be applied.
 							var chosenStep = accumulator[_random.Next(0, accumulator.Count)];
-							if (!verifyConclusionValidity(in solution, chosenStep))
+							if (!verifyConclusionValidity(searcher, in solution, chosenStep))
 							{
 								throw new WrongStepException(in playground, chosenStep);
 							}
@@ -513,7 +513,7 @@ public sealed class Analyzer : AnalyzerBase
 						{
 							foreach (var foundStep in accumulator)
 							{
-								if (!verifyConclusionValidity(in solution, foundStep))
+								if (!verifyConclusionValidity(searcher, in solution, foundStep))
 								{
 									throw new WrongStepException(in playground, foundStep);
 								}
@@ -541,7 +541,7 @@ public sealed class Analyzer : AnalyzerBase
 							}
 							case var foundStep:
 							{
-								if (verifyConclusionValidity(in solution, foundStep))
+								if (verifyConclusionValidity(searcher, in solution, foundStep))
 								{
 									if (onCollectingSteps(
 										collectedSteps, foundStep, in context, ref playground, timestampOriginal, stepGrids,
@@ -582,8 +582,14 @@ public sealed class Analyzer : AnalyzerBase
 			goto FindNextStep;
 
 
-			static bool verifyConclusionValidity(ref readonly Grid solution, Step step)
+			static bool verifyConclusionValidity(StepSearcher? searcher, ref readonly Grid solution, Step step)
 			{
+				if (searcher?.Metadata.SkipVerificationOnConclusions ?? false)
+				{
+					// Skip steps that is always correct.
+					return true;
+				}
+
 				if (solution.IsUndefined)
 				{
 					// This will be triggered when the puzzle has multiple solutions.

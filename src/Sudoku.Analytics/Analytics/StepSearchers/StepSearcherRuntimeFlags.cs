@@ -38,5 +38,11 @@ public enum StepSearcherRuntimeFlags
 	/// Indicates the <see cref="StepSearcher"/> will only produce indirect techniques,
 	/// which won't be used in direct views, i.e. all candidates aren't shown.
 	/// </summary>
-	IndirectTechniquesOnly = 1 << 3
+	IndirectTechniquesOnly = 1 << 3,
+
+	/// <summary>
+	/// Indicates conclusions produced by the current <see cref="StepSearcher"/> can be skipped to be verified,
+	/// because they can be guaranteed as correct ones.
+	/// </summary>
+	SkipVerification = 1 << 4
 }

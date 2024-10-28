@@ -13,7 +13,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Whip</item>
 /// </list>
 /// </summary>
-[StepSearcher("StepSearcherName_WhipStepSearcher", Technique.Whip, RuntimeFlags = StepSearcherRuntimeFlags.SpaceComplexity)]
+[StepSearcher(
+	"StepSearcherName_WhipStepSearcher",
+	Technique.Whip,
+	RuntimeFlags = StepSearcherRuntimeFlags.SpaceComplexity | StepSearcherRuntimeFlags.SkipVerification)]
 public sealed partial class WhipStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

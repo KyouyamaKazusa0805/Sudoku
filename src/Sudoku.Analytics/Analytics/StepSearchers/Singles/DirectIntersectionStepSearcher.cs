@@ -35,7 +35,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	IsCachingSafe = true,
 	IsAvailabilityReadOnly = true,
 	IsOrderingFixed = true,
-	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly)]
+	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly | StepSearcherRuntimeFlags.SkipVerification)]
 public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 {
 	/// <summary>

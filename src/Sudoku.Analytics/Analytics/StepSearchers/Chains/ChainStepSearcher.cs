@@ -24,7 +24,8 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.SelfConstraint,
 
 	// Loops
-	Technique.ContinuousNiceLoop, Technique.XyCycle, Technique.FishyCycle)]
+	Technique.ContinuousNiceLoop, Technique.XyCycle, Technique.FishyCycle,
+	RuntimeFlags = StepSearcherRuntimeFlags.SkipVerification)]
 public sealed partial class ChainStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

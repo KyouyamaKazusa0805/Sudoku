@@ -34,7 +34,8 @@ using unsafe SingleModuleSearcherFuncPtr = delegate*<SingleStepSearcher, ref Ste
 	Technique.FullHouse, Technique.HiddenSingleBlock, Technique.HiddenSingleRow, Technique.HiddenSingleColumn, Technique.NakedSingle,
 	IsCachingSafe = true,
 	IsOrderingFixed = true,
-	IsAvailabilityReadOnly = true)]
+	IsAvailabilityReadOnly = true,
+	RuntimeFlags = StepSearcherRuntimeFlags.SkipVerification)]
 public sealed partial class SingleStepSearcher : StepSearcher
 {
 	/// <summary>

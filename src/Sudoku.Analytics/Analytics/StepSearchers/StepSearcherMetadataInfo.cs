@@ -47,6 +47,12 @@ public sealed partial class StepSearcherMetadataInfo([Field] StepSearcher stepSe
 		=> _backAttribute.RuntimeFlags is { } cases && cases.HasFlag(StepSearcherRuntimeFlags.DirectTechniquesOnly);
 
 	/// <summary>
+	/// Indicates whether the searcher skips verification for conclusions.
+	/// </summary>
+	public bool SkipVerificationOnConclusions
+		=> _backAttribute.RuntimeFlags is { } cases && cases.HasFlag(StepSearcherRuntimeFlags.SkipVerification);
+
+	/// <summary>
 	/// Determines whether the current step searcher is only run for indirect view.
 	/// </summary>
 	public bool IsOnlyRunForIndirectViews

@@ -15,7 +15,9 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.ComplexCrosshatchingColumn, Technique.ComplexNakedSingle,
 	IsAvailabilityReadOnly = true,
 	IsOrderingFixed = true,
-	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly | StepSearcherRuntimeFlags.TimeComplexity)]
+	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly
+		| StepSearcherRuntimeFlags.TimeComplexity
+		| StepSearcherRuntimeFlags.SkipVerification)]
 public sealed partial class ComplexSingleStepSearcher : StepSearcher
 {
 	/// <summary>

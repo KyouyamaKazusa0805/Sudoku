@@ -11401,6 +11401,11 @@
             Determines whether the current step searcher is only run for direct view.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherMetadataInfo.SkipVerificationOnConclusions">
+            <summary>
+            Indicates whether the searcher skips verification for conclusions.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherMetadataInfo.IsOnlyRunForIndirectViews">
             <summary>
             Determines whether the current step searcher is only run for indirect view.
@@ -11503,6 +11508,12 @@
             <summary>
             Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will only produce indirect techniques,
             which won't be used in direct views, i.e. all candidates aren't shown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.StepSearcherRuntimeFlags.SkipVerification">
+            <summary>
+            Indicates conclusions produced by the current <see cref="T:Sudoku.Analytics.StepSearcher"/> can be skipped to be verified,
+            because they can be guaranteed as correct ones.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher">
