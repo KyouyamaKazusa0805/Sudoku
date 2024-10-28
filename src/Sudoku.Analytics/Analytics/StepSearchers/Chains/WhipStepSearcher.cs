@@ -30,11 +30,11 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 		ref readonly var grid = ref context.Grid;
 
-		// Iterate on the case that means whether the searcher supports for grouped whip (g-whip).
-		foreach (var groupedWhip in (false, true))
+		// Iterate on each candidate that can be asserted as false in solution.
+		foreach (var cell in EmptyCells)
 		{
-			// Iterate on each candidate that can be asserted as false in solution.
-			foreach (var cell in EmptyCells)
+			// Iterate on the case that means whether the searcher supports for grouped whip (g-whip).
+			foreach (var groupedWhip in (false, true))
 			{
 				var trueDigit = Solution.IsUndefined ? -1 : Solution.GetDigit(cell);
 				foreach (var digit in grid.GetCandidates(cell))
@@ -77,7 +77,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 							}
 
 							context.Accumulator.Add(step);
-							break;
+							goto NextCandidate;
 						}
 
 						// Add all found conclusion into the pending queue.
@@ -125,6 +125,8 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					}
 				}
 			}
+
+		NextCandidate:;
 		}
 
 		// No conclusions found, or just find for all possible steps. Return null.
