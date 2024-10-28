@@ -1531,7 +1531,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="BowmanBingo" xml:space="preserve">
-    <value>Bowman 试数</value>
+    <value>Bowman's Bingo</value>
     <comment>Technique Name</comment>
   </data>
   <data name="BruteForce" xml:space="preserve">
@@ -1818,7 +1818,7 @@
     <comment>Step Searcher Name</comment>
   </data>
   <data name="StepSearcherName_BowmanBingoStepSearcher" xml:space="preserve">
-    <value>Bowman 试数</value>
+    <value>Bowman's Bingo</value>
     <comment>Step Searcher Name</comment>
   </data>
   <data name="StepSearcherName_BruteForceStepSearcher" xml:space="preserve">
@@ -2148,7 +2148,7 @@
     <value>探长致命结构</value>
   </data>
   <data name="TechniqueGroup_BowmanBingo" xml:space="preserve">
-    <value>试数</value>
+    <value>Bowman's Bingo</value>
   </data>
   <data name="TechniqueGroup_BrokenWing" xml:space="preserve">
     <value>守护者</value>
@@ -3039,7 +3039,7 @@
     <value>探长致命结构里的数组规格</value>
   </data>
   <data name="Factor_BowmanBingoLengthFactor" xml:space="preserve">
-    <value>试数的长度</value>
+    <value>Bowman's Bingo 的长度</value>
   </data>
   <data name="Factor_DirectSubsetIsLockedFactor" xml:space="preserve">
     <value>直观数组是否为死锁</value>
@@ -3540,14 +3540,14 @@
     <comment>Technique Name</comment>
   </data>
   <data name="Whip" xml:space="preserve">
-    <value>试数</value>
+    <value>线性动态链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueGroup_WhipAndBraid" xml:space="preserve">
-    <value>动态链</value>
+    <value>线性动态链</value>
   </data>
   <data name="Factor_WhipComplexityFactor" xml:space="preserve">
-    <value>试数的复杂度</value>
+    <value>线性动态链的复杂度</value>
   </data>
   <data name="TechniqueFormat_WhipStep" xml:space="preserve">
     <value>强区域：{0}，弱区域：{1}</value>
@@ -3557,7 +3557,7 @@
     <comment>Step Searcher Name</comment>
   </data>
   <data name="GroupedWhip" xml:space="preserve">
-    <value>区块试数</value>
+    <value>线性动态区块链</value>
     <comment>Technique Name</comment>
   </data>
 </root>
