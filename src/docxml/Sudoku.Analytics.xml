@@ -7859,6 +7859,13 @@
             <param name="grid">The grid.</param>
             <param name="currentNode">The node.</param>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.IsGroupedWhip(Sudoku.Analytics.Construction.Components.WhipNode)">
+            <summary>
+            Determine whether the whip chain is grouped whip.
+            </summary>
+            <param name="lastNode">The last node.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.ExistsContradiction(Sudoku.Concepts.Grid,Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Concepts.Supersymmetry.Space@)">
             <summary>
             Determine whether the specified grid state contains any contradiction.
@@ -7877,7 +7884,7 @@
             <param name="groupedWhip">Indicates whether the searcher allows for searching grouped whip nodes.</param>
             <returns>All conclusions and reason why the assignment raised.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.CreateStep(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Components.WhipNode,System.Int32,Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.Space)">
+        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.CreateStep(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Components.WhipNode,System.Int32,Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.Space,System.Boolean)">
             <summary>
             Create a <see cref="T:Sudoku.Analytics.Steps.WhipStep"/> instance via the current confliction rule.
             </summary>
@@ -7886,6 +7893,7 @@
             <param name="startCandidate">Indicates the start candidate.</param>
             <param name="initialGrid">Indicates the initial grid.</param>
             <param name="failedSpace">Indicates the space indicating where such contradiction is raised.</param>
+            <param name="isGrouped">Indicates whether the pattern is grouped.</param>
             <returns>The final <see cref="T:Sudoku.Analytics.Steps.WhipStep"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher">
@@ -12720,8 +12728,9 @@
             <param name="options"><inheritdoc/></param>
             <param name="truths">Indicates all truths.</param>
             <param name="links">Indicates all links.</param>
+            <param name="isGrouped">Indicates whether the whip pattern is grouped.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WhipStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.ReadOnlyMemory{Sudoku.Concepts.Supersymmetry.Space},System.ReadOnlyMemory{Sudoku.Concepts.Supersymmetry.Space})">
+        <member name="M:Sudoku.Analytics.Steps.WhipStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.ReadOnlyMemory{Sudoku.Concepts.Supersymmetry.Space},System.ReadOnlyMemory{Sudoku.Concepts.Supersymmetry.Space},System.Boolean)">
             <summary>
             Provides with a step that is a <b>Whip</b> technique.
             </summary>
@@ -12730,6 +12739,7 @@
             <param name="options"><inheritdoc/></param>
             <param name="truths">Indicates all truths.</param>
             <param name="links">Indicates all links.</param>
+            <param name="isGrouped">Indicates whether the whip pattern is grouped.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WhipStep.IsMultiple">
             <inheritdoc/>
@@ -12769,6 +12779,11 @@
         <member name="P:Sudoku.Analytics.Steps.WhipStep.Links">
             <summary>
             The generated property declaration for parameter <c>links</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.IsGrouped">
+            <summary>
+            The generated property declaration for parameter <c>isGrouped</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ConditionalDeadlyPatternStep">
@@ -23797,6 +23812,11 @@
             Indicates whip.
             </summary>
         </member>
+        <member name="F:Sudoku.Categorization.Technique.GroupedWhip">
+            <summary>
+            Indicates grouped whip.
+            </summary>
+        </member>
         <member name="F:Sudoku.Categorization.Technique.AlignedPairExclusion">
             <summary>
             Indicates aligned pair exclusion.
@@ -29091,6 +29111,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.GroupedTwoStringKite">
             <summary>
               Looks up a localized string similar to Grouped Two-String Kite.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.GroupedWhip">
+            <summary>
+              Looks up a localized string similar to Grouped Whip.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.GroupedWWing">

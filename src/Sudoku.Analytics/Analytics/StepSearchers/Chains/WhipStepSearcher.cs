@@ -1,4 +1,3 @@
-#undef NAKED_SINGLE_FIRST
 #define CELL_CONTRADICTION_CHECK
 #define HOUSE_CONTRADICTION_CHECK
 #if !CELL_CONTRADICTION_CHECK && !HOUSE_CONTRADICTION_CHECK
@@ -67,10 +66,11 @@ public sealed partial class WhipStepSearcher : StepSearcher
 						//   1) No candidates in one empty cell
 						//   2) No possible positions of a digit in one house
 						// If we can find out such contradiction, we can conclude that the start assertion is failed.
-						if (ExistsContradiction(grid, currentNode, out var failedSpace))
+						if (ExistsContradiction(grid, currentNode, out var failedSpace)
+							&& IsGroupedWhip(currentNode) is var isGroupedWhip && !(groupedWhip ^ isGroupedWhip))
 						{
 							// Contradiction is found. Now we can construct a step instance and return.
-							var step = CreateStep(in context, currentNode, startCandidate, in grid, failedSpace);
+							var step = CreateStep(in context, currentNode, startCandidate, in grid, failedSpace, isGroupedWhip);
 							if (context.OnlyFindOne)
 							{
 								return step;
@@ -148,8 +148,33 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					grid.Apply(new(Assignment, candidate));
 					break;
 				}
+				case GroupedWhipAssignment { Digit: var digit, Cells: var cells }:
+				{
+					foreach (var cell in grid.CandidatesMap[digit] & cells.PeerIntersection)
+					{
+						grid.Apply(new(Elimination, cell, digit));
+					}
+					break;
+				}
 			}
 		}
+	}
+
+	/// <summary>
+	/// Determine whether the whip chain is grouped whip.
+	/// </summary>
+	/// <param name="lastNode">The last node.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	private static bool IsGroupedWhip(WhipNode lastNode)
+	{
+		for (var node = lastNode; node is not null; node = node.Parent)
+		{
+			if (node.Assignment is GroupedWhipAssignment)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/// <summary>
@@ -231,24 +256,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 		var result = new List<WhipAssignment>();
 		var concludedCells = CellMap.Empty;
-
-#if NAKED_SINGLE_FIRST
-		// Check naked singles.
-		foreach (var nakedSingleCell in emptyCells)
-		{
-			var digitsMask = playground.GetCandidates(nakedSingleCell);
-			if (Mask.IsPow2(digitsMask))
-			{
-				var digit = Mask.Log2(digitsMask);
-				var targetCandidate = nakedSingleCell * 9 + digit;
-				if (concludedCells.Add(nakedSingleCell))
-				{
-					result.Add(new NormalWhipAssignment(targetCandidate, Technique.NakedSingle));
-				}
-			}
-		}
-#endif
-
+		var concludedLockedCandidates = new HashSet<CellMap>();
 		for (var house = 0; house < 27; house++)
 		{
 			// Check for full houses.
@@ -274,28 +282,31 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			// Check hidden singles.
 			for (var digit = 0; digit < 9; digit++)
 			{
-				if ((candidatesMap[digit] & HousesMap[house]) is [var hiddenSingleCell])
+				var hiddenSingleCells = candidatesMap[digit] & HousesMap[house];
+				var houseType = house switch
 				{
-					var targetCandidate = hiddenSingleCell * 9 + digit;
-					if (concludedCells.Add(hiddenSingleCell))
+					< 9 => Technique.CrosshatchingBlock,
+					< 18 => Technique.CrosshatchingRow,
+					_ => Technique.CrosshatchingColumn
+				};
+				switch (hiddenSingleCells)
+				{
+					case [var hiddenSingleCell]
+					when hiddenSingleCell * 9 + digit is var targetCandidate && concludedCells.Add(hiddenSingleCell):
 					{
-						result.Add(
-							new NormalWhipAssignment(
-								targetCandidate,
-								house switch
-								{
-									< 9 => Technique.CrosshatchingBlock,
-									< 18 => Technique.CrosshatchingRow,
-									_ => Technique.CrosshatchingColumn
-								}
-							)
-						);
+						result.Add(new NormalWhipAssignment(targetCandidate, houseType));
+						break;
+					}
+					case { Count: 2 or 3 }
+					when hiddenSingleCells.IsInIntersection && groupedWhip && concludedLockedCandidates.Add(hiddenSingleCells):
+					{
+						result.Add(new GroupedWhipAssignment(digit, in hiddenSingleCells, houseType));
+						break;
 					}
 				}
 			}
 		}
 
-#if !NAKED_SINGLE_FIRST
 		// Check naked singles.
 		foreach (var nakedSingleCell in emptyCells)
 		{
@@ -310,7 +321,6 @@ public sealed partial class WhipStepSearcher : StepSearcher
 				}
 			}
 		}
-#endif
 
 		return result.AsMemory();
 	}
@@ -323,13 +333,15 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	/// <param name="startCandidate">Indicates the start candidate.</param>
 	/// <param name="initialGrid">Indicates the initial grid.</param>
 	/// <param name="failedSpace">Indicates the space indicating where such contradiction is raised.</param>
+	/// <param name="isGrouped">Indicates whether the pattern is grouped.</param>
 	/// <returns>The final <see cref="WhipStep"/> instance.</returns>
 	private static WhipStep CreateStep(
 		ref readonly StepAnalysisContext context,
 		WhipNode contradictionNode,
 		Candidate startCandidate,
 		ref readonly Grid initialGrid,
-		Space failedSpace
+		Space failedSpace,
+		bool isGrouped
 	)
 	{
 		return new(
@@ -337,7 +349,8 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			getViews(in initialGrid, out var burredCandidates, out var truths, out var links),
 			context.Options,
 			truths,
-			links
+			links,
+			isGrouped
 		);
 
 

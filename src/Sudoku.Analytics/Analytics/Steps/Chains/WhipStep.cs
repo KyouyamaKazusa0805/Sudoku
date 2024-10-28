@@ -8,12 +8,14 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="truths">Indicates all truths.</param>
 /// <param name="links">Indicates all links.</param>
+/// <param name="isGrouped">Indicates whether the whip pattern is grouped.</param>
 public sealed partial class WhipStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ReadOnlyMemory<Space> truths,
-	[Property] ReadOnlyMemory<Space> links
+	[Property] ReadOnlyMemory<Space> links,
+	[Property] bool isGrouped
 ) : ChainStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
@@ -26,10 +28,10 @@ public sealed partial class WhipStep(
 	public override int Complexity => Views![0].OfType<CandidateViewNode>().Length; // A tricky way to check number of nodes used.
 
 	/// <inheritdoc/>
-	public override int BaseDifficulty => 80;
+	public override int BaseDifficulty => IsGrouped ? 82 : 80;
 
 	/// <inheritdoc/>
-	public override Technique Code => Technique.Whip;
+	public override Technique Code => IsGrouped ? Technique.GroupedWhip : Technique.Whip;
 
 	/// <inheritdoc/>
 	public override Mask DigitsUsed

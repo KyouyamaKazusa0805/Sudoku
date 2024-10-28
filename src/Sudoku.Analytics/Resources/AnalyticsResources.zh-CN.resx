@@ -3556,4 +3556,8 @@
     <value>线性动态链</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="GroupedWhip" xml:space="preserve">
+    <value>区块试数</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

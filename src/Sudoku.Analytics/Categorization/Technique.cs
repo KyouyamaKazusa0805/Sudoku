@@ -5367,6 +5367,16 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.WhipAndBraid,
 		Links = ["http://forum.enjoysudoku.com/fully-supersymmetric-chains-t5591-195.html"])]
 	Whip,
+
+	/// <summary>
+	/// Indicates grouped whip.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 82,
+		DifficultyLevel = DifficultyLevel.Nightmare,
+		ContainingGroup = TechniqueGroup.WhipAndBraid,
+		Links = ["http://forum.enjoysudoku.com/fully-supersymmetric-chains-t5591-195.html"])]
+	GroupedWhip,
 	#endregion
 
 	//

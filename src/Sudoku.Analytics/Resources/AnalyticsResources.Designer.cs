@@ -3238,6 +3238,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grouped Whip.
+        /// </summary>
+        public static string GroupedWhip {
+            get {
+                return ResourceManager.GetString("GroupedWhip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grouped W-Wing.
         /// </summary>
         public static string GroupedWWing {
