@@ -7932,6 +7932,11 @@
             Indicates the auto clues count.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.Generator._useCustomizedSolution">
+            <summary>
+            Indicates whether the solution grid can be configured by user.
+            </summary>
+        </member>
         <member name="F:Sudoku.Generating.Generator._generateIndices">
             <summary>
             The order in which cells are set when generating a full grid.

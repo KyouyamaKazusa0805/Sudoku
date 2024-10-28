@@ -26,6 +26,11 @@ public ref partial struct Generator() : IGenerator<Grid>
 
 
 	/// <summary>
+	/// Indicates whether the solution grid can be configured by user.
+	/// </summary>
+	private readonly bool _useCustomizedSolution; // 2024/10/28: Add this field.
+
+	/// <summary>
 	/// The order in which cells are set when generating a full grid.
 	/// </summary>
 	private readonly int[] _generateIndices = new int[81];
@@ -58,10 +63,12 @@ public ref partial struct Generator() : IGenerator<Grid>
 	public Generator(ref readonly Grid template) : this()
 	{
 		// 2024/10/25: Add this constructor as template initialization.
+		// 2024/10/28: Add '_useCustomizedSolution = true;'.
 
 		ArgumentOutOfRangeException.ThrowIfNotEqual(template.IsSolved, true);
 
 		_newFullSudoku = template.UnfixedGrid;
+		_useCustomizedSolution = true;
 	}
 
 
@@ -93,7 +100,8 @@ public ref partial struct Generator() : IGenerator<Grid>
 		try
 		{
 			// 2024/10/25: Add this if block to skip initialization for templates.
-			if (_newFullSudoku.IsUndefined)
+			// 2024/10/28: Change if statement from 'if (_newFullSudoku.IsUndefined)' to 'if (!_useCustomizedSolution)'.
+			if (!_useCustomizedSolution)
 			{
 				while (!GenerateForFullGrid()) ;
 			}
