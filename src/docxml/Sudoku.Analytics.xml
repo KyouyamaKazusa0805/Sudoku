@@ -4169,6 +4169,26 @@
         <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection,Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.NormalWhipAssignment">
+            <summary>
+            Represents a type that is used by whip chaining, describing the target candidate, and why it can become available.
+            </summary>
+            <param name="Candidate">Indicates the target candidate.</param>
+            <param name="Reason"><inheritdoc cref="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Reason" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NormalWhipAssignment.#ctor(System.Int32,Sudoku.Categorization.Technique)">
+            <summary>
+            Represents a type that is used by whip chaining, describing the target candidate, and why it can become available.
+            </summary>
+            <param name="Candidate">Indicates the target candidate.</param>
+            <param name="Reason"><inheritdoc cref="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Reason" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.NormalWhipAssignment.Candidate">
+            <summary>Indicates the target candidate.</summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NormalWhipAssignment.PrintMembers(System.Text.StringBuilder)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection">
             <summary>
             Represents for a n-times ALS blossom branch collection.
@@ -4388,20 +4408,20 @@
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.WhipAssignment">
             <summary>
-            Represents a type that is used by whip chaining, describing the target candidate, and why it can become available.
+            Represents a whip assignment.
             </summary>
-            <param name="Candidate">Indicates the target candidate.</param>
+            <param name="Map">Indicates all candidates used.</param>
             <param name="Reason">Indicates the reason why the target candidate becomes available.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipAssignment.#ctor(System.Int32,Sudoku.Categorization.Technique)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipAssignment.#ctor(Sudoku.Concepts.CandidateMap@,Sudoku.Categorization.Technique)">
             <summary>
-            Represents a type that is used by whip chaining, describing the target candidate, and why it can become available.
+            Represents a whip assignment.
             </summary>
-            <param name="Candidate">Indicates the target candidate.</param>
+            <param name="Map">Indicates all candidates used.</param>
             <param name="Reason">Indicates the reason why the target candidate becomes available.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Candidate">
-            <summary>Indicates the target candidate.</summary>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Map">
+            <summary>Indicates all candidates used.</summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Reason">
             <summary>Indicates the reason why the target candidate becomes available.</summary>
@@ -4453,7 +4473,7 @@
             <param name="availableAssignments">Indicates the available assignments.</param>
             <param name="parent">Indicates the parent node.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment,System.ReadOnlyMemory{Sudoku.Analytics.Construction.Components.WhipAssignment},Sudoku.Analytics.Construction.Components.WhipNode)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.NormalWhipAssignment,System.ReadOnlyMemory{Sudoku.Analytics.Construction.Components.NormalWhipAssignment},Sudoku.Analytics.Construction.Components.WhipNode)">
             <summary>
             Represents a whip node.
             </summary>
@@ -4461,7 +4481,7 @@
             <param name="availableAssignments">Indicates the available assignments.</param>
             <param name="parent">Indicates the parent node.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.NormalWhipAssignment)">
             <summary>
             Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> with no next assignments.
             </summary>

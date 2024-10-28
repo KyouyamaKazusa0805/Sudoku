@@ -209,7 +209,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	/// <param name="playground">The grid.</param>
 	/// <param name="currentNode">Indicates the current node.</param>
 	/// <returns>All conclusions and reason why the assignment raised.</returns>
-	private static ReadOnlyMemory<WhipAssignment> GetNextAssignments(Grid playground, WhipNode currentNode)
+	private static ReadOnlyMemory<NormalWhipAssignment> GetNextAssignments(Grid playground, WhipNode currentNode)
 	{
 		// Temporarily update the grid in order not to cache the full grid.
 		UpdateGrid(ref playground, currentNode);
@@ -217,7 +217,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		var emptyCells = playground.EmptyCells;
 		var candidatesMap = playground.CandidatesMap;
 
-		var result = new List<WhipAssignment>();
+		var result = new List<NormalWhipAssignment>();
 		var concludedCells = CellMap.Empty;
 
 #if NAKED_SINGLE_FIRST

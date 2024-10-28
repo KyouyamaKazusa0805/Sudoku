@@ -9,8 +9,8 @@ namespace Sudoku.Analytics.Construction.Components;
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
 public sealed partial class WhipNode(
-	[Property, HashCodeMember] WhipAssignment assignment,
-	[Property] ReadOnlyMemory<WhipAssignment> availableAssignments,
+	[Property, HashCodeMember] NormalWhipAssignment assignment,
+	[Property] ReadOnlyMemory<NormalWhipAssignment> availableAssignments,
 	[Property] WhipNode? parent = null
 ) : IParentLinkedNode<WhipNode>
 {
@@ -18,7 +18,7 @@ public sealed partial class WhipNode(
 	/// Initializes a <see cref="WhipNode"/> with no next assignments.
 	/// </summary>
 	/// <param name="assignment">Indicates assignments.</param>
-	public WhipNode(WhipAssignment assignment) : this(assignment, ReadOnlyMemory<WhipAssignment>.Empty)
+	public WhipNode(NormalWhipAssignment assignment) : this(assignment, ReadOnlyMemory<NormalWhipAssignment>.Empty)
 	{
 	}
 
@@ -38,7 +38,7 @@ public sealed partial class WhipNode(
 	}
 
 	[EquatableMember]
-	private WhipAssignment AssignmentEntry => Assignment;
+	private NormalWhipAssignment AssignmentEntry => Assignment;
 
 
 	/// <inheritdoc/>
