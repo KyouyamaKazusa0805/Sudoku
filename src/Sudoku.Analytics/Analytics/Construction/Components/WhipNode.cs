@@ -9,8 +9,8 @@ namespace Sudoku.Analytics.Construction.Components;
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
 public sealed partial class WhipNode(
-	[Property, HashCodeMember] NormalWhipAssignment assignment,
-	[Property] ReadOnlyMemory<NormalWhipAssignment> availableAssignments,
+	[Property, HashCodeMember] WhipAssignment assignment,
+	[Property] ReadOnlyMemory<WhipAssignment> availableAssignments,
 	[Property] WhipNode? parent = null
 ) : IParentLinkedNode<WhipNode>
 {
@@ -18,7 +18,7 @@ public sealed partial class WhipNode(
 	/// Initializes a <see cref="WhipNode"/> with no next assignments.
 	/// </summary>
 	/// <param name="assignment">Indicates assignments.</param>
-	public WhipNode(NormalWhipAssignment assignment) : this(assignment, ReadOnlyMemory<NormalWhipAssignment>.Empty)
+	public WhipNode(WhipAssignment assignment) : this(assignment, ReadOnlyMemory<WhipAssignment>.Empty)
 	{
 	}
 
@@ -38,16 +38,14 @@ public sealed partial class WhipNode(
 	}
 
 	[EquatableMember]
-	private NormalWhipAssignment AssignmentEntry => Assignment;
+	private WhipAssignment AssignmentEntry => Assignment;
 
 
 	/// <inheritdoc/>
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
-		var parentString = Parent is { Assignment.Candidate: var candidate }
-			? converter.CandidateConverter(candidate.AsCandidateMap())
-			: "<null>";
+		var parentString = Parent is { Assignment: var assignment } ? converter.CandidateConverter(assignment.Map) : "<null>";
 		return $$"""{{nameof(WhipNode)}} { {{nameof(Assignment)}} = {{Assignment}}, {{nameof(Parent)}} = {{parentString}} }""";
 	}
 

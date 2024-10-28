@@ -31,93 +31,97 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 		ref readonly var grid = ref context.Grid;
 
-		// Iterate on each candidate that can be asserted as false in solution.
-		foreach (var cell in EmptyCells)
+		// Iterate on the case that means whether the searcher supports for grouped whip (g-whip).
+		foreach (var groupedWhip in (false, true))
 		{
-			var trueDigit = Solution.IsUndefined ? -1 : Solution.GetDigit(cell);
-			foreach (var digit in grid.GetCandidates(cell))
+			// Iterate on each candidate that can be asserted as false in solution.
+			foreach (var cell in EmptyCells)
 			{
-				if (trueDigit == digit)
+				var trueDigit = Solution.IsUndefined ? -1 : Solution.GetDigit(cell);
+				foreach (var digit in grid.GetCandidates(cell))
 				{
-					// Skip for the true digits.
-					continue;
-				}
-
-				// If the digit is not correct in solution, we can try to suppose it can be eliminated, and find any contradictions.
-				// The basic algorithm is simply find try & error - just suppose it is true,
-				// and then find the next true digit, and continue.
-				var startCandidate = cell * 9 + digit;
-
-				// Create a pending queue to record all interim cases, and a collection recording visited nodes.
-				var pendingNodes = new LinkedList<WhipNode>();
-				var startNode = new WhipNode(new(startCandidate, Technique.None));
-				startNode = new(startNode.Assignment, GetNextAssignments(grid, startNode));
-				pendingNodes.AddLast(startNode);
-
-				// Iterate the pending queue and never stops, until all nodes are tried.
-				while (pendingNodes.Count != 0)
-				{
-					// Deconstruct the object and apply digit into playground.
-					var currentNode = pendingNodes.RemoveFirstNode();
-
-					// Here we should check for 2 kinds of contradictions:
-					//   1) No candidates in one empty cell
-					//   2) No possible positions of a digit in one house
-					// If we can find out such contradiction, we can conclude that the start assertion is failed.
-					if (ExistsContradiction(grid, currentNode, out var failedSpace))
+					if (trueDigit == digit)
 					{
-						// Contradiction is found. Now we can construct a step instance and return.
-						var step = CreateStep(in context, currentNode, startCandidate, in grid, failedSpace);
-						if (context.OnlyFindOne)
-						{
-							return step;
-						}
-
-						context.Accumulator.Add(step);
-						break;
+						// Skip for the true digits.
+						continue;
 					}
 
-					// Add all found conclusion into the pending queue.
-					foreach (var assignment in currentNode.AvailableAssignments)
+					// If the digit is not correct in solution, we can try to suppose it can be eliminated, and find any contradictions.
+					// The basic algorithm is simply find try & error - just suppose it is true,
+					// and then find the next true digit, and continue.
+					var startCandidate = cell * 9 + digit;
+
+					// Create a pending queue to record all interim cases, and a collection recording visited nodes.
+					var pendingNodes = new LinkedList<WhipNode>();
+					var startNode = new WhipNode(new NormalWhipAssignment(startCandidate, Technique.None));
+					startNode = new(startNode.Assignment, GetNextAssignments(grid, startNode, groupedWhip));
+					pendingNodes.AddLast(startNode);
+
+					// Iterate the pending queue and never stops, until all nodes are tried.
+					while (pendingNodes.Count != 0)
 					{
-						// Check whether the current found assignment indeed exists in ancestor nodes.
-						// If so, such conclusion should not be used as children nodes of the current node.
-						//
-						// But... why we should check for this?
-						// For example, if node A can make 3 new conclusions B, C and D,
-						// we'll know that the parent of nodes B, C and D is A.
-						// However, due to branching rules, if C or D cannot be appeared in the branch A -> B
-						// because C or D is a children of A, not B. We should ignore C and D if checking for branch A -> B.
-						//
-						//           A
-						//           |
-						//      /----|----\
-						//     B     C     D
-						//    / \
-						//   E   F
-						//
-						// In the diagram, the grid state at conclusion E can also produce new conclusions C, D and F,
-						// and F grid state can also produce steps C, D and E.
-						// We should ignore all the other conclusions that don't exist in the branch A -> B -> E
-						// (conclusions C, D and F) and A -> B -> F (conclusions C, D and E).
+						// Deconstruct the object and apply digit into playground.
+						var currentNode = pendingNodes.RemoveFirstNode();
 
-						var isParentNodeContainsSuchAssignment = false;
-						for (var parentNode = currentNode.Parent; parentNode is not null; parentNode = parentNode.Parent)
+						// Here we should check for 2 kinds of contradictions:
+						//   1) No candidates in one empty cell
+						//   2) No possible positions of a digit in one house
+						// If we can find out such contradiction, we can conclude that the start assertion is failed.
+						if (ExistsContradiction(grid, currentNode, out var failedSpace))
 						{
-							if (parentNode.AvailableAssignments.Span.Contains(assignment))
+							// Contradiction is found. Now we can construct a step instance and return.
+							var step = CreateStep(in context, currentNode, startCandidate, in grid, failedSpace);
+							if (context.OnlyFindOne)
 							{
-								isParentNodeContainsSuchAssignment = true;
-								break;
+								return step;
 							}
-						}
-						if (isParentNodeContainsSuchAssignment)
-						{
-							continue;
+
+							context.Accumulator.Add(step);
+							break;
 						}
 
-						var nextNode = new WhipNode(assignment) >> currentNode;
-						nextNode = new WhipNode(assignment, GetNextAssignments(grid, nextNode), nextNode.Parent);
-						pendingNodes.AddLast(nextNode);
+						// Add all found conclusion into the pending queue.
+						foreach (var assignment in currentNode.AvailableAssignments)
+						{
+							// Check whether the current found assignment indeed exists in ancestor nodes.
+							// If so, such conclusion should not be used as children nodes of the current node.
+							//
+							// But... why we should check for this?
+							// For example, if node A can make 3 new conclusions B, C and D,
+							// we'll know that the parent of nodes B, C and D is A.
+							// However, due to branching rules, if C or D cannot be appeared in the branch A -> B
+							// because C or D is a children of A, not B. We should ignore C and D if checking for branch A -> B.
+							//
+							//           A
+							//           |
+							//      /----|----\
+							//     B     C     D
+							//    / \
+							//   E   F
+							//
+							// In the diagram, the grid state at conclusion E can also produce new conclusions C, D and F,
+							// and F grid state can also produce steps C, D and E.
+							// We should ignore all the other conclusions that don't exist in the branch A -> B -> E
+							// (conclusions C, D and F) and A -> B -> F (conclusions C, D and E).
+
+							var isParentNodeContainsSuchAssignment = false;
+							for (var parentNode = currentNode.Parent; parentNode is not null; parentNode = parentNode.Parent)
+							{
+								if (parentNode.AvailableAssignments.Span.Contains(assignment))
+								{
+									isParentNodeContainsSuchAssignment = true;
+									break;
+								}
+							}
+							if (isParentNodeContainsSuchAssignment)
+							{
+								continue;
+							}
+
+							var nextNode = new WhipNode(assignment) >> currentNode;
+							nextNode = new WhipNode(assignment, GetNextAssignments(grid, nextNode, groupedWhip), nextNode.Parent);
+							pendingNodes.AddLast(nextNode);
+						}
 					}
 				}
 			}
@@ -137,7 +141,14 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	{
 		for (var node = currentNode; node is not null; node = node.Parent)
 		{
-			grid.Apply(new(Assignment, node.Assignment.Candidate));
+			switch (node.Assignment)
+			{
+				case NormalWhipAssignment { Candidate: var candidate }:
+				{
+					grid.Apply(new(Assignment, candidate));
+					break;
+				}
+			}
 		}
 	}
 
@@ -208,8 +219,9 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="playground">The grid.</param>
 	/// <param name="currentNode">Indicates the current node.</param>
+	/// <param name="groupedWhip">Indicates whether the searcher allows for searching grouped whip nodes.</param>
 	/// <returns>All conclusions and reason why the assignment raised.</returns>
-	private static ReadOnlyMemory<NormalWhipAssignment> GetNextAssignments(Grid playground, WhipNode currentNode)
+	private static ReadOnlyMemory<WhipAssignment> GetNextAssignments(Grid playground, WhipNode currentNode, bool groupedWhip)
 	{
 		// Temporarily update the grid in order not to cache the full grid.
 		UpdateGrid(ref playground, currentNode);
@@ -217,7 +229,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		var emptyCells = playground.EmptyCells;
 		var candidatesMap = playground.CandidatesMap;
 
-		var result = new List<NormalWhipAssignment>();
+		var result = new List<WhipAssignment>();
 		var concludedCells = CellMap.Empty;
 
 #if NAKED_SINGLE_FIRST
@@ -231,7 +243,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 				var targetCandidate = nakedSingleCell * 9 + digit;
 				if (concludedCells.Add(nakedSingleCell))
 				{
-					result.Add(new(targetCandidate, Technique.NakedSingle));
+					result.Add(new NormalWhipAssignment(targetCandidate, Technique.NakedSingle));
 				}
 			}
 		}
@@ -255,7 +267,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 				var targetCandidate = fullHouseCell * 9 + Mask.Log2((Mask)(Grid.MaxCandidatesMask & ~appearedDigitsMask));
 				if (concludedCells.Add(fullHouseCell))
 				{
-					result.Add(new(targetCandidate, Technique.FullHouse));
+					result.Add(new NormalWhipAssignment(targetCandidate, Technique.FullHouse));
 				}
 			}
 
@@ -268,7 +280,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					if (concludedCells.Add(hiddenSingleCell))
 					{
 						result.Add(
-							new(
+							new NormalWhipAssignment(
 								targetCandidate,
 								house switch
 								{
@@ -294,7 +306,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 				var targetCandidate = nakedSingleCell * 9 + digit;
 				if (concludedCells.Add(nakedSingleCell))
 				{
-					result.Add(new(targetCandidate, Technique.NakedSingle));
+					result.Add(new NormalWhipAssignment(targetCandidate, Technique.NakedSingle));
 				}
 			}
 		}
@@ -340,49 +352,35 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			var linkOffsets = new List<ChainLinkViewNode>();
 			for (var node = contradictionNode; node is not null; node = node.Parent)
 			{
-				var currentCandidate = node.Assignment.Candidate;
+				var currentCandidates = node.Assignment.Map;
 				var reason = node.Assignment.Reason;
-				candidateOffsets.Add(new(ColorIdentifier.Normal, node.Assignment.Candidate));
+				currentCandidates.ForEach(c => candidateOffsets.Add(new(ColorIdentifier.Normal, c)));
 
 				// Due to design of this algorithm, we should append extra strong and weak links between two assignments.
 				// Please note that the links are reversed, we should make a reversion
 				// in order to keep the chain and node states correct.
-				if (node.Parent is { Assignment.Candidate: var parentCandidate } && reason != Technique.None)
+				if (node.Parent is { Assignment.Map: [var f, ..] parentCandidates } && reason != Technique.None)
 				{
 					switch (reason)
 					{
 						case Technique.FullHouse or Technique.NakedSingle:
 						{
-							var interimCandidate = currentCandidate / 9 * 9 + parentCandidate % 9;
-							candidateOffsets.Add(new(ColorIdentifier.Normal, parentCandidate));
-							candidateOffsets.Add(new(ColorIdentifier.Normal, currentCandidate));
+							var interimCandidate = currentCandidates[0] / 9 * 9 + f % 9;
+							parentCandidates.ForEach(p => candidateOffsets.Add(new(ColorIdentifier.Normal, p)));
+							currentCandidates.ForEach(c => candidateOffsets.Add(new(ColorIdentifier.Normal, c)));
 							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, interimCandidate));
 
-							linkOffsets.Add(
-								new(
-									ColorIdentifier.Normal,
-									parentCandidate.AsCandidateMap(),
-									interimCandidate.AsCandidateMap(),
-									false
-								)
-							);
-							linkOffsets.Add(
-								new(
-									ColorIdentifier.Normal,
-									interimCandidate.AsCandidateMap(),
-									currentCandidate.AsCandidateMap(),
-									true
-								)
-							);
+							linkOffsets.Add(new(ColorIdentifier.Normal, parentCandidates, interimCandidate.AsCandidateMap(), false));
+							linkOffsets.Add(new(ColorIdentifier.Normal, interimCandidate.AsCandidateMap(), currentCandidates, true));
 							break;
 						}
-						case var type and (Technique.CrosshatchingBlock or Technique.CrosshatchingRow or Technique.CrosshatchingColumn):
+						case var type and >= Technique.CrosshatchingBlock and <= Technique.CrosshatchingColumn:
 						{
-							candidateOffsets.Add(new(ColorIdentifier.Normal, parentCandidate));
-							candidateOffsets.Add(new(ColorIdentifier.Normal, currentCandidate));
+							parentCandidates.ForEach(p => candidateOffsets.Add(new(ColorIdentifier.Normal, p)));
+							currentCandidates.ForEach(c => candidateOffsets.Add(new(ColorIdentifier.Normal, c)));
 
-							var currentCell = currentCandidate / 9;
-							var currentDigit = currentCandidate % 9;
+							var currentCells = currentCandidates.Cells;
+							var currentDigit = Mask.Log2(currentCandidates.Digits);
 							var houseType = type switch
 							{
 								Technique.CrosshatchingBlock => HouseType.Block,
@@ -390,10 +388,10 @@ public sealed partial class WhipStepSearcher : StepSearcher
 								_ => HouseType.Column
 							};
 
-							if (!PeersMap[parentCandidate / 9].Contains(currentCell))
+							if ((parentCandidates.Cells.PeerIntersection & currentCells) != currentCells)
 							{
-								var groupedCells = ((parentCandidate / 9).AsCellMap() + currentCell).PeerIntersection
-									& HousesMap[currentCell.ToHouse(houseType)]
+								var groupedCells = (parentCandidates.Cells | currentCells).PeerIntersection
+									& HousesMap[currentCells[0].ToHouse(houseType)]
 									& CandidatesMap[currentDigit];
 								foreach (var cell in groupedCells)
 								{
@@ -401,29 +399,15 @@ public sealed partial class WhipStepSearcher : StepSearcher
 								}
 
 								var interimMap = (from cell in groupedCells select cell * 9 + currentDigit).AsCandidateMap();
-								linkOffsets.Add(new(ColorIdentifier.Normal, parentCandidate.AsCandidateMap(), interimMap, false));
-								linkOffsets.Add(new(ColorIdentifier.Normal, interimMap, currentCandidate.AsCandidateMap(), true));
+								linkOffsets.Add(new(ColorIdentifier.Normal, parentCandidates, interimMap, false));
+								linkOffsets.Add(new(ColorIdentifier.Normal, interimMap, currentCandidates, true));
 							}
 							else
 							{
-								var interimCandidate = parentCandidate / 9 * 9 + currentDigit;
+								var interimCandidate = f / 9 * 9 + currentDigit;
 								candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, interimCandidate));
-								linkOffsets.Add(
-									new(
-										ColorIdentifier.Normal,
-										parentCandidate.AsCandidateMap(),
-										interimCandidate.AsCandidateMap(),
-										false
-									)
-								);
-								linkOffsets.Add(
-									new(
-										ColorIdentifier.Normal,
-										interimCandidate.AsCandidateMap(),
-										currentCandidate.AsCandidateMap(),
-										true
-									)
-								);
+								linkOffsets.Add(new(ColorIdentifier.Normal, parentCandidates, interimCandidate.AsCandidateMap(), false));
+								linkOffsets.Add(new(ColorIdentifier.Normal, interimCandidate.AsCandidateMap(), currentCandidates, true));
 							}
 							break;
 						}
@@ -434,26 +418,22 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			// Remove the node that is start.
 			candidateOffsets.RemoveWhere(node => node.Candidate == startCandidate);
 
-			var tryAndErrorCandidateOffsets = new List<CandidateViewNode>();
-			var tryAndErrorLinkOffsets = new List<ChainLinkViewNode>();
+			var (tryAndErrorCandidateOffsets, tryAndErrorLinkOffsets) = (new List<CandidateViewNode>(), new List<ChainLinkViewNode>());
 			for (var node = contradictionNode; node is not null; node = node.Parent)
 			{
-				if (node.Assignment.Candidate != startCandidate)
+				var currentCandidates = node.Assignment.Map;
+				if (node.Assignment.Map is [var s, ..] && s != startCandidate)
 				{
-					// Skip for the start candidate on purpose.
-					tryAndErrorCandidateOffsets.Add(new(ColorIdentifier.Normal, node.Assignment.Candidate));
+					// Skip for the start candidate if the start node is a single candidate that is the real start candidate.
+					foreach (var candidate in currentCandidates)
+					{
+						tryAndErrorCandidateOffsets.Add(new(ColorIdentifier.Normal, candidate));
+					}
 				}
 
-				if (node.Parent is { Assignment.Candidate: var parentCandidate })
+				if (node.Parent is { Assignment.Map: var parentCandidates })
 				{
-					tryAndErrorLinkOffsets.Add(
-						new(
-							ColorIdentifier.Normal,
-							parentCandidate.AsCandidateMap(),
-							node.Assignment.Candidate.AsCandidateMap(),
-							false
-						)
-					);
+					tryAndErrorLinkOffsets.Add(new(ColorIdentifier.Normal, parentCandidates, currentCandidates, false));
 				}
 			}
 
@@ -516,7 +496,8 @@ public sealed partial class WhipStepSearcher : StepSearcher
 							< 9 => Space.BlockNumber(house, digit),
 							< 18 => Space.RowNumber(house - 9, digit),
 							_ => Space.ColumnNumber(house - 18, digit)
-						}
+						},
+					_ => throw new NotImplementedException()
 				};
 				(link.IsStrongLink ? truthsList : linksList).Add(space);
 

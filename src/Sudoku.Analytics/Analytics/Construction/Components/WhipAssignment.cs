@@ -11,5 +11,20 @@ public abstract record WhipAssignment(ref readonly CandidateMap Map, Technique R
 	/// <include
 	///     file="../../global-doc-comments.xml"
 	///     path="/g/csharp9/feature[@name='records']/target[@name='method' and @cref='PrintMembers']"/>
-	protected abstract bool PrintMembers(StringBuilder builder);
+	protected virtual bool PrintMembers(StringBuilder builder)
+	{
+		var converter = CoordinateConverter.InvariantCultureInstance;
+		if (Reason == Technique.None)
+		{
+			builder.Append(converter.CandidateConverter(Map));
+		}
+		else
+		{
+			builder.Append($"{nameof(Candidate)} = ");
+			builder.Append(converter.CandidateConverter(Map));
+			builder.Append($", {nameof(Reason)} = ");
+			builder.Append(Reason == Technique.None ? "<none>" : Reason.GetName(null));
+		}
+		return true;
+	}
 }

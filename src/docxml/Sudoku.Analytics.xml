@@ -3190,6 +3190,28 @@
             <param name="spannedHousesList">The spanned houses.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.GroupedWhipAssignment">
+            <summary>
+            Represents a type that is used by whip chaining, grouped nodes.
+            </summary>
+            <param name="Digit">Indicates the target digit.</param>
+            <param name="Cells">Indicates the target cells.</param>
+            <param name="Reason"><inheritdoc cref="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Reason" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.GroupedWhipAssignment.#ctor(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Categorization.Technique)">
+            <summary>
+            Represents a type that is used by whip chaining, grouped nodes.
+            </summary>
+            <param name="Digit">Indicates the target digit.</param>
+            <param name="Cells">Indicates the target cells.</param>
+            <param name="Reason"><inheritdoc cref="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Reason" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.GroupedWhipAssignment.Digit">
+            <summary>Indicates the target digit.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.GroupedWhipAssignment.Cells">
+            <summary>Indicates the target cells.</summary>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection">
             <summary>
             Represents for a house blossom branch collection.
@@ -4186,9 +4208,6 @@
         <member name="P:Sudoku.Analytics.Construction.Components.NormalWhipAssignment.Candidate">
             <summary>Indicates the target candidate.</summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.NormalWhipAssignment.PrintMembers(System.Text.StringBuilder)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection">
             <summary>
             Represents for a n-times ALS blossom branch collection.
@@ -4473,7 +4492,7 @@
             <param name="availableAssignments">Indicates the available assignments.</param>
             <param name="parent">Indicates the parent node.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.NormalWhipAssignment,System.ReadOnlyMemory{Sudoku.Analytics.Construction.Components.NormalWhipAssignment},Sudoku.Analytics.Construction.Components.WhipNode)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment,System.ReadOnlyMemory{Sudoku.Analytics.Construction.Components.WhipAssignment},Sudoku.Analytics.Construction.Components.WhipNode)">
             <summary>
             Represents a whip node.
             </summary>
@@ -4481,7 +4500,7 @@
             <param name="availableAssignments">Indicates the available assignments.</param>
             <param name="parent">Indicates the parent node.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.NormalWhipAssignment)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment)">
             <summary>
             Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> with no next assignments.
             </summary>
@@ -7849,12 +7868,13 @@
             <param name="failedSpace">The failed space.</param>
             <returns>A <see cref="T:System.Boolean"/> result whether any contradiction is found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.GetNextAssignments(Sudoku.Concepts.Grid,Sudoku.Analytics.Construction.Components.WhipNode)">
+        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.GetNextAssignments(Sudoku.Concepts.Grid,Sudoku.Analytics.Construction.Components.WhipNode,System.Boolean)">
             <summary>
             Try to find all possible conclusions inside the grid.
             </summary>
             <param name="playground">The grid.</param>
             <param name="currentNode">Indicates the current node.</param>
+            <param name="groupedWhip">Indicates whether the searcher allows for searching grouped whip nodes.</param>
             <returns>All conclusions and reason why the assignment raised.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.CreateStep(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Components.WhipNode,System.Int32,Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.Space)">
