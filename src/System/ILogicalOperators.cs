@@ -4,7 +4,7 @@ namespace System;
 /// Defines a mechanism for computing the logical relation between two instances of type <typeparamref name="TSelf"/>.
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
-public interface ILogicalOperators<TSelf> where TSelf : ILogicalOperators<TSelf>?, allows ref struct
+public interface ILogicalOperators<TSelf> : IBitwiseOperators<TSelf, TSelf, TSelf> where TSelf : ILogicalOperators<TSelf>?
 {
 	/// <summary>
 	/// Determine whether the specified object is determined <see langword="true"/>.
@@ -26,28 +26,4 @@ public interface ILogicalOperators<TSelf> where TSelf : ILogicalOperators<TSelf>
 	/// <param name="value">The value.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	public static abstract bool operator !(TSelf value);
-
-	/// <summary>
-	/// Equivalent to <c><![CDATA[false(left) ? left : false(left & right)]]></c>.
-	/// </summary>
-	/// <param name="left">The left-side value.</param>
-	/// <param name="right">The right-side value.</param>
-	/// <returns>A instance of type <typeparamref name="TSelf"/>, as the result value.</returns>
-	public static abstract TSelf operator &(TSelf left, TSelf right);
-
-	/// <summary>
-	/// Equivalent to <c><![CDATA[true(left) ? left : true(left | right)]]></c>.
-	/// </summary>
-	/// <param name="left">The left-side value.</param>
-	/// <param name="right">The right-side value.</param>
-	/// <returns><inheritdoc cref="op_BitwiseAnd(TSelf, TSelf)" path="/returns"/></returns>
-	public static abstract TSelf operator |(TSelf left, TSelf right);
-
-	/// <summary>
-	/// Equivalent to <c><![CDATA[left & ~right | ~left & right]]></c>.
-	/// </summary>
-	/// <param name="left">The left-side value.</param>
-	/// <param name="right">The right-side value.</param>
-	/// <returns><inheritdoc cref="op_BitwiseAnd(TSelf, TSelf)" path="/returns"/></returns>
-	public static abstract TSelf operator ^(TSelf left, TSelf right);
 }

@@ -625,13 +625,4 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 
 	/// <inheritdoc/>
 	static TSelf IBitwiseOperators<TSelf, TSelf, TSelf>.operator ^(TSelf left, TSelf right) => left ^ right;
-
-	/// <inheritdoc/>
-	static TSelf ILogicalOperators<TSelf>.operator &(TSelf left, TSelf right) => left & right;
-
-	/// <inheritdoc/>
-	static TSelf ILogicalOperators<TSelf>.operator |(TSelf left, TSelf right) => left | right;
-
-	/// <inheritdoc/>
-	static TSelf ILogicalOperators<TSelf>.operator ^(TSelf left, TSelf right) => left ^ right;
 }

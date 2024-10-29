@@ -1764,30 +1764,6 @@
             <param name="value">The value.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)">
-            <summary>
-            Equivalent to <c><![CDATA[false(left) ? left : false(left & right)]]></c>.
-            </summary>
-            <param name="left">The left-side value.</param>
-            <param name="right">The right-side value.</param>
-            <returns>A instance of type <typeparamref name="TSelf"/>, as the result value.</returns>
-        </member>
-        <member name="M:System.ILogicalOperators`1.op_BitwiseOr(`0,`0)">
-            <summary>
-            Equivalent to <c><![CDATA[true(left) ? left : true(left | right)]]></c>.
-            </summary>
-            <param name="left">The left-side value.</param>
-            <param name="right">The right-side value.</param>
-            <returns><inheritdoc cref="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)" path="/returns"/></returns>
-        </member>
-        <member name="M:System.ILogicalOperators`1.op_ExclusiveOr(`0,`0)">
-            <summary>
-            Equivalent to <c><![CDATA[left & ~right | ~left & right]]></c>.
-            </summary>
-            <param name="left">The left-side value.</param>
-            <param name="right">The right-side value.</param>
-            <returns><inheritdoc cref="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)" path="/returns"/></returns>
-        </member>
         <member name="T:System.IndexExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Index"/> instances.

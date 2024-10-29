@@ -5335,15 +5335,6 @@
         <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_ExclusiveOr(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#ILogicalOperators{TSelf}#op_BitwiseAnd(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#ILogicalOperators{TSelf}#op_BitwiseOr(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#ILogicalOperators{TSelf}#op_ExclusiveOr(`0,`0)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Concepts.Primitives.IGrid`1">
             <summary>
             Represents a type that supports all basic functions that operates with a sudoku puzzle.

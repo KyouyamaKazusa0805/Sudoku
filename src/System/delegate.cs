@@ -42,7 +42,7 @@ public static class @delegate
 	/// ]]></code>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool True<T>(ref readonly T value) where T : ILogicalOperators<T>, allows ref struct => !!value;
+	public static bool True<T>(ref readonly T value) where T : ILogicalOperators<T> => !!value;
 
 	/// <summary>
 	/// Makes the variable <paramref name="value"/> be an equivalent <see cref="bool"/> value, and negate it.
@@ -54,7 +54,7 @@ public static class @delegate
 	/// <inheritdoc cref="True" path="/remarks"/>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool False<T>(ref readonly T value) where T : ILogicalOperators<T>, allows ref struct => !value;
+	public static bool False<T>(ref readonly T value) where T : ILogicalOperators<T> => !value;
 
 	/// <summary>
 	/// Returns an empty string equivalent to <see cref="string.Empty"/> no matter what the argument is.
