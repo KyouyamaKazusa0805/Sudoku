@@ -16,7 +16,11 @@ namespace Sudoku.Analytics;
 	OtherModifiersOnGetHashCode = "sealed",
 	OtherModifiersOnToString = "sealed",
 	OtherModifiersOnEquatableEquals = "virtual")]
-public abstract partial class Step([Property] StepConclusions conclusions, [Property] View[]? views, [Property] StepGathererOptions options) :
+public abstract partial class Step(
+	[Property] StepConclusions conclusions,
+	[Property] View[]? views,
+	[Property] StepGathererOptions options
+) :
 	IComparable<Step>,
 	IComparisonOperators<Step, Step, bool>,
 	IDrawable,
