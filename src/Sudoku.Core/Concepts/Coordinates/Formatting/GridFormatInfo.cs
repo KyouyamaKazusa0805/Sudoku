@@ -133,7 +133,7 @@ public abstract class GridFormatInfo : FormatInfo<Grid>
 	public char Placeholder { get; init; } = '.';
 
 	/// <summary>
-	/// Indicates the separator used. By default it's comma <c>", "</c>.
+	/// Indicates the separator used. By default, it's comma <c>", "</c>.
 	/// </summary>
 	public string Separator { get; set; } = ", ";
 

@@ -3,7 +3,7 @@ namespace Sudoku.Concepts.Coordinates.Formatting;
 /// <summary>
 /// Represents a <see cref="CandidateMapFormatInfo"/> type that supports bitmap formatting.
 /// </summary>
-public sealed partial class BitmapCandidateMapFormatInfo : CandidateMapFormatInfo
+public sealed class BitmapCandidateMapFormatInfo : CandidateMapFormatInfo
 {
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]

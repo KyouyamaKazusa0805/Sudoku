@@ -3,7 +3,7 @@ namespace Sudoku.Concepts.Coordinates.Formatting;
 /// <summary>
 /// Represents a base type for formatting information on a type.
 /// </summary>
-/// <typeparam name="T">The type of an object to be formatted.</typeparam>
+/// <typeparam name="T">The type of object to be formatted.</typeparam>
 public abstract class FormatInfo<T> : IFormatProvider where T : allows ref struct
 {
 	/// <inheritdoc cref="IFormatProvider.GetFormat(Type?)"/>

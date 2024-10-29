@@ -95,7 +95,7 @@ public sealed record ExcelCoordinateConverter(
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] when (t == Assignment ? AssignmentToken : EliminationToken) is var token
+				[var (t, c, d)] when (t == Assignment ? AssignmentToken : EliminationToken) is var token
 					=> $"{CellConverter(in c.AsCellMap())}{token}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};

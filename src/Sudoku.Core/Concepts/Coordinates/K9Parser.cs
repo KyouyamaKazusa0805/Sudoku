@@ -138,7 +138,6 @@ public sealed partial record K9Parser : CoordinateParser
 				continue;
 			}
 
-			var cellsInConclusion = CellParser(cells);
 			var conclusionType = equalityOperator is "=" or "==" ? Assignment : Elimination;
 			foreach (var cell in cells)
 			{

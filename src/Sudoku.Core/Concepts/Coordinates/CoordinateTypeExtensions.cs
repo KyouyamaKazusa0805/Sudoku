@@ -34,12 +34,4 @@ public static class CoordinateTypeExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CoordinateParser? GetParser(this CoordinateType @this)
 		=> @this switch { CoordinateType.RxCy => new RxCyParser(), CoordinateType.K9 => new K9Parser(), _ => null };
-
-	/// <summary>
-	/// Gets the <see cref="FieldInfo"/> instance for the specified field.
-	/// </summary>
-	/// <param name="this">The type of the coordinate type.</param>
-	/// <returns>The final <see cref="FieldInfo"/> instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static FieldInfo? GetField(this CoordinateType @this) => typeof(CoordinateType).GetField(@this.ToString());
 }

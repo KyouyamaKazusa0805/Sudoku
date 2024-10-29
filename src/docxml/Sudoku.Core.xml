@@ -2466,13 +2466,6 @@
             A valid <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance. You can use cast operators to get the instance of desired type.
             </returns>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.CoordinateTypeExtensions.GetField(Sudoku.Concepts.Coordinates.CoordinateType)">
-            <summary>
-            Gets the <see cref="T:System.Reflection.FieldInfo"/> instance for the specified field.
-            </summary>
-            <param name="this">The type of the coordinate type.</param>
-            <returns>The final <see cref="T:System.Reflection.FieldInfo"/> instance.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter">
             <summary>
             Represents for Excel coordinate-based converter.
@@ -2603,7 +2596,7 @@
             <summary>
             Represents a base type for formatting information on a type.
             </summary>
-            <typeparam name="T">The type of an object to be formatted.</typeparam>
+            <typeparam name="T">The type of object to be formatted.</typeparam>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.GetFormat(System.Type)">
             <inheritdoc cref="M:System.IFormatProvider.GetFormat(System.Type)"/>
@@ -2729,7 +2722,7 @@
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.Separator">
             <summary>
-            Indicates the separator used. By default it's comma <c>", "</c>.
+            Indicates the separator used. By default, it's comma <c>", "</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.InvariantCulture">
@@ -3259,7 +3252,7 @@
             <para>The value is <see langword="false"/> by default.</para>
             </param>
             <param name="AlwaysOutputBracket">
-            <para>Indicates whether brackets will be always included in output text.</para>
+            <para>Indicates whether brackets will always be included in output text.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </param>
             <param name="FinalRowLetter">
@@ -3294,7 +3287,7 @@
             <para>The value is <see langword="false"/> by default.</para>
             </param>
             <param name="AlwaysOutputBracket">
-            <para>Indicates whether brackets will be always included in output text.</para>
+            <para>Indicates whether brackets will always be included in output text.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </param>
             <param name="FinalRowLetter">
@@ -3330,7 +3323,7 @@
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.K9Converter.AlwaysOutputBracket">
             <summary>
-            <para>Indicates whether brackets will be always included in output text.</para>
+            <para>Indicates whether brackets will always be included in output text.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </summary>
         </member>

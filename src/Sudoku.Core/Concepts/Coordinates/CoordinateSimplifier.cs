@@ -79,7 +79,7 @@ public static class CoordinateSimplifier
 				from kvp in finalDic.ToArray()
 				let keySet = kvp.Key
 				let valueSet = kvp.Value
-				select (keySet.Count > 1 ? (keySet, valueSet) : ((object)keySet.Min, valueSet));
+				select keySet.Count > 1 ? (keySet, valueSet) : ((object)keySet.Min, valueSet);
 		}
 	}
 }

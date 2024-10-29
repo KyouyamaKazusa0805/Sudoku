@@ -104,7 +104,7 @@ public sealed record LiteralCoordinateConverter(
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] when (t == Assignment ? AssignmentToken : EliminationToken) is var token
+				[var (t, c, d)] when (t == Assignment ? AssignmentToken : EliminationToken) is var token
 					=> $"{CellConverter(in c.AsCellMap())}{token}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
@@ -189,7 +189,7 @@ public sealed record LiteralCoordinateConverter(
 		=> chutes =>
 		{
 			var snippets = new List<string>(6);
-			foreach (var (index, isRow, _) in chutes)
+			foreach (var (index, _, _) in chutes)
 			{
 				snippets.Add(string.Format(SR.Get("MegaRowLabel", TargetCurrentCulture), index % 3 + 1));
 			}

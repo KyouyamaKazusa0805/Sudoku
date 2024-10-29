@@ -12,7 +12,7 @@ namespace Sudoku.Concepts.Coordinates;
 /// <para>The value is <see langword="false"/> by default.</para>
 /// </param>
 /// <param name="AlwaysOutputBracket">
-/// <para>Indicates whether brackets will be always included in output text.</para>
+/// <para>Indicates whether brackets will always be included in output text.</para>
 /// <para>The value is <see langword="false"/> by default.</para>
 /// </param>
 /// <param name="FinalRowLetter">
@@ -217,7 +217,7 @@ public sealed record K9Converter(
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] when (t == Assignment ? AssignmentToken : EliminationToken) is var token
+				[var (t, c, d)] when (t == Assignment ? AssignmentToken : EliminationToken) is var token
 					=> $"{CellConverter(in c.AsCellMap())}{token}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
