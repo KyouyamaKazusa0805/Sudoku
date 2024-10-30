@@ -155,7 +155,7 @@ public partial struct CellMap : CellMapBase
 
 	/// <inheritdoc/>
 	[JsonInclude]
-	public readonly string[] StringChunks => this ? ToString().SplitBy(',', ' ').ToArray() : [];
+	public readonly ReadOnlySpan<string> StringChunks => this ? ToString().SplitBy(',', ' ').ToArray() : [];
 
 	/// <summary>
 	/// Indicates the mask of block that all cells in this collection spanned.

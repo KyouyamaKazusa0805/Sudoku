@@ -97,7 +97,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 	/// <inheritdoc/>
 	[JsonInclude]
-	public readonly string[] StringChunks => this ? ToString().SplitBy(',', ' ').ToArray() : [];
+	public readonly ReadOnlySpan<string> StringChunks => this ? ToString().SplitBy(',', ' ').ToArray() : [];
 
 	/// <summary>
 	/// Indicates the digits used in this pattern.
