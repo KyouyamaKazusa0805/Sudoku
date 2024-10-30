@@ -1627,9 +1627,6 @@
             <summary>
             Provides a driver that can generate normal chains and forcing chains.
             </summary>
-            <remarks>
-            This file is a hub. Please check separated files to get chaining algorithm.
-            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
             <summary>
