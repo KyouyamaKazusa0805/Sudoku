@@ -186,8 +186,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 	/// Indicates the difficulty level of the puzzle.
 	/// If the puzzle has not solved or solved by other solvers, this value will be <see cref="DifficultyLevel.Unknown"/>.
 	/// </summary>
-	public DifficultyLevel DifficultyLevel
-		=> (DifficultyLevel)StepsSpan.Max(static (ref readonly Step step) => (int)step.DifficultyLevel);
+	public DifficultyLevel DifficultyLevel => (DifficultyLevel)StepsSpan.Max(static step => (int)step.DifficultyLevel);
 
 	/// <inheritdoc/>
 	public Grid Solution { get; init; }

@@ -84,6 +84,22 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="MinBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
+	public static TKey Min<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
+		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+	{
+		var resultKey = TKey.MaxValue;
+		foreach (var element in @this)
+		{
+			var key = keySelector(element);
+			if (key <= resultKey)
+			{
+				resultKey = key;
+			}
+		}
+		return resultKey;
+	}
+
+	/// <inheritdoc cref="MinBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
 	public static TKey Min<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
 		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
 	{
@@ -153,6 +169,22 @@ public static class SpanEnumerable
 			}
 		}
 		return result;
+	}
+
+	/// <inheritdoc cref="MaxBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
+	public static TKey? Max<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
+		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+	{
+		var resultKey = TKey.MinValue;
+		foreach (var element in @this)
+		{
+			var key = keySelector(element);
+			if (key >= resultKey)
+			{
+				resultKey = key;
+			}
+		}
+		return resultKey;
 	}
 
 	/// <inheritdoc cref="MaxBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>

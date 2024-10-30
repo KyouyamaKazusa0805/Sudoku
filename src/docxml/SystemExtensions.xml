@@ -4031,6 +4031,9 @@
             <param name="this">The collection to be used and checked.</param>
             <returns>The minimal value.</returns>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.Min``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>
+        </member>
         <member name="M:System.Linq.SpanEnumerable.Min``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>
         </member>
@@ -4054,6 +4057,9 @@
             <typeparam name="TNumber">The type of each element.</typeparam>
             <param name="this">The collection to be used and checked.</param>
             <returns>The minimal value.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.Max``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Max``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>
