@@ -4464,19 +4464,6 @@
             Indicates the inference is weak inference.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.LinkedListExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.Generic.LinkedList`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.LinkedList`1"/>
-        </member>
-        <member name="M:Sudoku.Concepts.LinkedListExtensions.AsCellMap(System.Collections.Generic.LinkedList{System.Int32})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance via a linked list.
-            </summary>
-            <param name="this">A linked list to be used.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance created.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.MaskAggregator">
             <summary>
             Represents an aggregator of mask merging.

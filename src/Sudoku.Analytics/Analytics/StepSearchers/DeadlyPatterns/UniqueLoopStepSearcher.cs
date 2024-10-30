@@ -165,3 +165,15 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	private static partial UniqueLoopStep? CheckType4(SortedSet<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
 	private static partial UniqueLoopStep? CheckStrongLinkType(SortedSet<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
 }
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Creates a <see cref="CellMap"/> instance via a linked list.
+	/// </summary>
+	/// <param name="this">A linked list to be used.</param>
+	/// <returns>A <see cref="CellMap"/> instance created.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap AsCellMap(this LinkedList<Cell> @this) => [.. @this];
+}
