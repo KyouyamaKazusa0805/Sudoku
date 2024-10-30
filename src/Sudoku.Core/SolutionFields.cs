@@ -34,7 +34,7 @@ public static class SolutionFields
 	/// <summary>
 	/// <para>
 	/// The map of all cell offsets in its specified house.
-	/// The indices is between 0 and 26, where:
+	/// The indices are between 0 and 26, where:
 	/// <list type="table">
 	/// <item>
 	/// <term><c>0..9</c></term>
