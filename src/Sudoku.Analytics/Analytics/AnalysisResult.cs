@@ -343,8 +343,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 	/// <param name="formatProvider">The format provider instance.</param>
 	/// <returns>A string that represents the current object.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(FormattingOptions options, IFormatProvider? formatProvider)
-		=> ToString(options, formatProvider, null);
+	public string ToString(FormattingOptions options, IFormatProvider? formatProvider) => ToString(options, formatProvider, null);
 
 	/// <summary>
 	/// Returns a string that represents the current object, with the specified formatting options,
