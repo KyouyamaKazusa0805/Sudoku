@@ -1067,53 +1067,6 @@
             </summary>
             <returns>The conjugate pairs found, grouped by digit.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Caching.Modules.ChainModule">
-            <summary>
-            Represents a chain module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.ChainModule.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
-            <summary>
-            The collect method called by chain step searchers.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.ChainModule.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
-            <summary>
-            The collect method called by multiple forcing chains step searcher.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.ChainModule.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
-            <summary>
-            The collect method called by blossom loop step searchers.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.Modules.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.Extensions.IsAdvancedAllowed(Sudoku.Analytics.Steps.ChainStep,System.Boolean)">
-            <summary>
-            Determine whether a <see cref="T:Sudoku.Analytics.Steps.ChainStep"/> instance is allowed to contain advanced links.
-            </summary>
-            <param name="this">The chain to be checked.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the element has already been added.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Caching.Modules.SingleModule">
             <summary>
             Represents single module.
@@ -1748,6 +1701,33 @@
             <returns>The first found <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> pattern.</returns>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
+            <summary>
+            The collect method called by chain step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+            <summary>
+            The collect method called by multiple forcing chains step searcher.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
+            <summary>
+            The collect method called by blossom loop step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <returns>The first found step.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Collect all multiple forcing chains appeared in a grid.
@@ -1772,6 +1752,21 @@
             <seealso cref="T:System.Collections.Generic.HashSet`1"/>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Extensions.IsAdvancedAllowed(Sudoku.Analytics.Steps.ChainStep,System.Boolean)">
+            <summary>
+            Determine whether a <see cref="T:Sudoku.Analytics.Steps.ChainStep"/> instance is allowed to contain advanced links.
+            </summary>
+            <param name="this">The chain to be checked.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the element has already been added.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.ChainingRule">
             <summary>

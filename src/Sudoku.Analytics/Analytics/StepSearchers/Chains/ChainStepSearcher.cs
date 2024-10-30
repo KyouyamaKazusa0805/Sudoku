@@ -39,7 +39,7 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new SortedSet<NormalChainStep>();
-		if (ChainModule.CollectCore(ref context, accumulator, false) is { } step)
+		if (ChainingDriver.CollectCore(ref context, accumulator, false) is { } step)
 		{
 			return step;
 		}
