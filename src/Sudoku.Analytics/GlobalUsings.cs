@@ -55,6 +55,7 @@ global using Sudoku.Runtime.InteropServices;
 global using Sudoku.Runtime.InteropServices.Hodoku;
 global using Sudoku.Runtime.InteropServices.Npg;
 global using Sudoku.Runtime.InteropServices.SudokuExplainer;
+global using Sudoku.Runtime.Versioning;
 global using Sudoku.Shuffling.Transforming;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Backtracking;

@@ -102,6 +102,7 @@ public sealed class Analyzer : AnalyzerBase
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that has some extra configuration, suitable for a whole analysis lifecycle.
 	/// </summary>
+	[DeprecatedSince(3, 4, DescriptionLink = "https://github.com/KyouyamaKazusa0805/Sudoku/issues/735")]
 	public static Analyzer Balanced
 		=> Default
 			.WithIgnoreHighTimeComplexityStepSearchers(false)
@@ -111,10 +112,29 @@ public sealed class Analyzer : AnalyzerBase
 			.AddStepSearcherSetter<UniqueRectangleStepSearcher>(static s => { s.AllowIncompleteUniqueRectangles = true; s.SearchForExtendedUniqueRectangles = true; })
 			.AddStepSearcherSetter<BivalueUniversalGraveStepSearcher>(static s => s.SearchExtendedTypes = true)
 			.AddStepSearcherSetter<ReverseBivalueUniversalGraveStepSearcher>(static s => { s.MaxSearchingEmptyCellsCount = 2; s.AllowPartiallyUsedTypes = true; })
-#pragma warning disable CS0618
 			.AddStepSearcherSetter<AlmostLockedSetsXzStepSearcher>(static s => { s.AllowCollision = true; s.AllowLoopedPatterns = true; })
 			.AddStepSearcherSetter<AlmostLockedSetsXyWingStepSearcher>(static s => s.AllowCollision = true)
-#pragma warning restore CS0618
+			.AddStepSearcherSetter<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 5)
+			.AddStepSearcherSetter<TemplateStepSearcher>(static s => s.TemplateDeleteOnly = false)
+			.AddStepSearcherSetter<ComplexFishStepSearcher>(static s => { s.MaxSize = 5; s.AllowSiamese = false; })
+			.AddStepSearcherSetter<XyzRingStepSearcher>(static s => s.AllowSiamese = false)
+			.AddStepSearcherSetter<BowmanBingoStepSearcher>(static s => s.MaxLength = 64)
+			.AddStepSearcherSetter<AlmostLockedCandidatesStepSearcher>(static s => s.CheckAlmostLockedQuadruple = false)
+			.AddStepSearcherSetter<AlignedExclusionStepSearcher>(static s => s.MaxSearchingSize = 3);
+
+	/// <summary>
+	/// Indicates an <see cref="Analyzer"/> instance that has some extra configuration, suitable for a whole analysis lifecycle.
+	/// </summary>
+	[AddedSince(3, 4)]
+	public static Analyzer Standard
+		=> Default
+			.WithIgnoreHighTimeComplexityStepSearchers(false)
+			.WithIgnoreHighSpaceComplexityStepSearchers(true)
+			.AddStepSearcherSetter<SingleStepSearcher>(static s => { s.EnableFullHouse = true; s.EnableLastDigit = true; s.HiddenSinglesInBlockFirst = true; s.EnableOrderingStepsByLastingValue = false; })
+			.AddStepSearcherSetter<NormalFishStepSearcher>(static s => { s.DisableFinnedOrSashimiXWing = false; s.AllowSiamese = false; })
+			.AddStepSearcherSetter<UniqueRectangleStepSearcher>(static s => { s.AllowIncompleteUniqueRectangles = true; s.SearchForExtendedUniqueRectangles = true; })
+			.AddStepSearcherSetter<BivalueUniversalGraveStepSearcher>(static s => s.SearchExtendedTypes = true)
+			.AddStepSearcherSetter<ReverseBivalueUniversalGraveStepSearcher>(static s => { s.MaxSearchingEmptyCellsCount = 2; s.AllowPartiallyUsedTypes = true; })
 			.AddStepSearcherSetter<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 5)
 			.AddStepSearcherSetter<TemplateStepSearcher>(static s => s.TemplateDeleteOnly = false)
 			.AddStepSearcherSetter<ComplexFishStepSearcher>(static s => { s.MaxSize = 5; s.AllowSiamese = false; })
@@ -164,7 +184,8 @@ public sealed class Analyzer : AnalyzerBase
 				new UniqueLoopStepSearcher(),
 				new BivalueUniversalGraveStepSearcher { SearchExtendedTypes = false },
 				new AlignedExclusionStepSearcher { MaxSearchingSize = 3 },
-				new ChainStepSearcher()
+				new ChainStepSearcher(),
+				new MultipleForcingChainsStepSearcher()
 			)
 			.WithUserDefinedOptions(new() { IsDirectMode = true });
 

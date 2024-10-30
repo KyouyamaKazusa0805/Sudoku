@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="xDigitsMask">Indicates the mask that holds the digits for the X value.</param>
 /// <param name="yDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
 /// <param name="zDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
-[Obsolete(ObsoletionMessages.StepsAreHiddenOnPurpose, false, UrlFormat = "https://github.com/KyouyamaKazusa0805/Sudoku/issues/735")]
+[DeprecatedSince(3, 4, DescriptionLink = "https://github.com/KyouyamaKazusa0805/Sudoku/issues/735")]
 public sealed partial class AlmostLockedSetsXyWingStep(
 	StepConclusions conclusions,
 	View[]? views,

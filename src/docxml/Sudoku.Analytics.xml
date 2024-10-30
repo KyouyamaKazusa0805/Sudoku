@@ -669,6 +669,11 @@
             Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has some extra configuration, suitable for a whole analysis lifecycle.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Analyzer.Standard">
+            <summary>
+            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has some extra configuration, suitable for a whole analysis lifecycle.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Analyzer.SstsOnly">
             <summary>
             Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only contains SSTS techniques:
@@ -33109,21 +33114,6 @@
         </member>
         <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Resources.ObsoletionMessages">
-            <summary>
-            Represents obsoletion messages.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Resources.ObsoletionMessages.StepSearchersAreHiddenOnPurpose">
-            <summary>
-            Indicates message "The current step searcher is disabled by author on purpose".
-            </summary>
-        </member>
-        <member name="F:Sudoku.Resources.ObsoletionMessages.StepsAreHiddenOnPurpose">
-            <summary>
-            Indicates message "The current step is disabled by author on purpose".
-            </summary>
         </member>
         <member name="T:Sudoku.Resources.TechniqueNaming">
             <summary>
