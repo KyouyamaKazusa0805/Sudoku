@@ -13,13 +13,6 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	private static readonly SymmetricalPlacementCheckerFuncPtr[] Checkers = [&Diagonal, &AntiDiagonal, &Central];
 
 
-	/// <summary>
-	/// Hides the constructor of this type.
-	/// </summary>
-	[Obsolete("Don't instantiate this type.", true)]
-	private SymmetryInferrer() => throw new NotSupportedException();
-
-
 	/// <inheritdoc/>
 	public static bool TryInfer(ref readonly Grid grid, out SymmetryInferredResult result)
 	{

@@ -7,12 +7,6 @@ namespace Sudoku.Concepts.Coordinates;
 public abstract record CoordinateParser : ICoordinateProvider<CoordinateParser>
 {
 	/// <summary>
-	/// The not supported information for property implemented.
-	/// </summary>
-	protected const string DeprecatedInfo_NotSupported = "This property is not implemented due to the lack of K9 notation rules.";
-
-
-	/// <summary>
 	/// The parser method that can creates a <see cref="CellMap"/> via the specified text to be parsed.
 	/// </summary>
 	/// <seealso cref="CellMap"/>

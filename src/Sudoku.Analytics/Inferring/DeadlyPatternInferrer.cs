@@ -7,13 +7,6 @@ namespace Sudoku.Inferring;
 /// <seealso cref="Grid"/>
 public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredResult>
 {
-	/// <summary>
-	/// Hides the constructor of this type.
-	/// </summary>
-	[Obsolete("Don't instantiate this type.", true)]
-	private DeadlyPatternInferrer() => throw new NotSupportedException();
-
-
 	/// <inheritdoc/>
 	/// <exception cref="DeadlyPatternInferrerLimitReachedException">
 	/// Throws when the pattern contains more than 10000 solutions.

@@ -7,13 +7,6 @@ namespace Sudoku.Categorization;
 public static class SingleSubtypeExtensions
 {
 	/// <summary>
-	/// Represents message to be used by reporting deprecated information "Unncessary technique cannot be referenced".
-	/// </summary>
-	internal const string Message_UnnecessaryTechniqueCannotBeReferenced = "This field can only be used in reflection or other unreferenced environment.";
-
-
-#pragma warning disable CS0618
-	/// <summary>
 	/// Indicates whether the specified subtype is unnecessary in practice.
 	/// For example, a naked single with 8 digits in a block will form a full house, which is unnecessary.
 	/// </summary>
@@ -30,7 +23,6 @@ public static class SingleSubtypeExtensions
 		or SingleSubtype.NakedSingleBlock7 or SingleSubtype.NakedSingleRow7 or SingleSubtype.NakedSingleColumn7
 		or SingleSubtype.RowHiddenSingle200 or SingleSubtype.RowHiddenSingle201 or SingleSubtype.RowHiddenSingle202
 		or SingleSubtype.ColumnHiddenSingle200 or SingleSubtype.ColumnHiddenSingle210 or SingleSubtype.ColumnHiddenSingle220;
-#pragma warning restore CS0618
 
 	/// <summary>
 	/// Indicates whether the specified subtype is unnecessary in solving algorithm,

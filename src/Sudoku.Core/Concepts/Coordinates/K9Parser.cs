@@ -13,7 +13,6 @@ public sealed partial record K9Parser : CoordinateParser
 	public override Func<string, CandidateMap> CandidateParser => OnCandidateParsing;
 
 	/// <inheritdoc/>
-	[Obsolete(DeprecatedInfo_NotSupported, true)]
 	public override Func<string, HouseMask> HouseParser => throw new NotSupportedException();
 
 	/// <inheritdoc/>
@@ -23,14 +22,12 @@ public sealed partial record K9Parser : CoordinateParser
 	public override Func<string, Mask> DigitParser => new RxCyParser().DigitParser;
 
 	/// <inheritdoc/>
-	[Obsolete(DeprecatedInfo_NotSupported, true)]
 	public override Func<string, ReadOnlySpan<Chute>> ChuteParser => throw new NotSupportedException();
 
 	/// <inheritdoc/>
 	public override Func<string, ReadOnlySpan<Conjugate>> ConjugateParser => OnConjugateParsing;
 
 	/// <inheritdoc/>
-	[Obsolete(DeprecatedInfo_NotSupported, true)]
 	public override Func<string, ReadOnlySpan<Miniline>> IntersectionParser => throw new NotSupportedException();
 
 

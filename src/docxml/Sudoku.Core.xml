@@ -2321,11 +2321,6 @@
             converting into a valid instance that can be represented as a sudoku concept.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Coordinates.CoordinateParser.DeprecatedInfo_NotSupported">
-            <summary>
-            The not supported information for property implemented.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateParser.CellParser">
             <summary>
             The parser method that can creates a <see cref="T:Sudoku.Concepts.CellMap"/> via the specified text to be parsed.
