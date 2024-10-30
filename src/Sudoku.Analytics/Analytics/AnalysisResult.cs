@@ -10,8 +10,11 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 	IAnyAllMethod<AnalysisResult, Step>,
 	ICastMethod<AnalysisResult, Step>,
 	IEnumerable<Step>,
+	IEnumerable<KeyValuePair<Grid, Step>>,
 	IFormattable,
 	IOfTypeMethod<AnalysisResult, Step>,
+	IReadOnlyCollection<KeyValuePair<Grid, Step>>,
+	IReadOnlyDictionary<Grid, Step>,
 	ISelectMethod<AnalysisResult, Step>,
 	IWhereMethod<AnalysisResult, Step>
 {
@@ -298,6 +301,36 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 	/// <seealso cref="InterimGrids"/>
 	internal Step[]? InterimSteps { get; init; }
 
+	/// <inheritdoc/>
+	int IReadOnlyCollection<KeyValuePair<Grid, Step>>.Count => Span.Length;
+
+	/// <inheritdoc/>
+	IEnumerable<Grid> IReadOnlyDictionary<Grid, Step>.Keys => InterimGrids ?? [];
+
+	/// <inheritdoc/>
+	IEnumerable<Step> IReadOnlyDictionary<Grid, Step>.Values => InterimSteps ?? [];
+
+
+	/// <inheritdoc/>
+	Step IReadOnlyDictionary<Grid, Step>.this[Grid key] => this[key];
+
+
+	/// <summary>
+	/// Determine whether the analyzer result instance contains any step with the specified rating.
+	/// </summary>
+	/// <param name="rating">The rating value to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool HasRating(int rating)
+	{
+		foreach (var step in this)
+		{
+			if (step.Difficulty == rating)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/// <summary>
 	/// Determine whether the analyzer result instance contains any step with specified technique.
@@ -307,6 +340,23 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has not been solved.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool HasTechnique(Technique technique) => TechniquesUsed.Contains(technique);
+
+	/// <summary>
+	/// Determine whether the analyzer result instance contains the specified grid.
+	/// </summary>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public bool HasGrid(ref readonly Grid grid)
+	{
+		foreach (ref readonly var g in GridsSpan)
+		{
+			if (g == grid)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/// <inheritdoc/>
 	public override int GetHashCode() => Puzzle.GetHashCode();
@@ -758,10 +808,34 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 	bool IAnyAllMethod<AnalysisResult, Step>.All(Func<Step, bool> predicate) => this.All(predicate);
 
 	/// <inheritdoc/>
+	bool IReadOnlyDictionary<Grid, Step>.ContainsKey(Grid key) => HasGrid(in key);
+
+	/// <inheritdoc/>
+	bool IReadOnlyDictionary<Grid, Step>.TryGetValue(Grid key, [NotNullWhen(true)] out Step? value)
+	{
+		foreach (ref readonly var pair in Span)
+		{
+			ref readonly var grid = ref pair.KeyRef();
+			if (grid == key)
+			{
+				value = pair.Value;
+				return true;
+			}
+		}
+
+		value = null;
+		return false;
+	}
+
+	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => StepsSpan.ToArray().GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator<KeyValuePair<Grid, Step>> IEnumerable<KeyValuePair<Grid, Step>>.GetEnumerator()
+		=> Span.ToArray().AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => StepsSpan.ToArray().AsEnumerable().GetEnumerator();

@@ -265,6 +265,25 @@
             </summary>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimGrids"/>
         </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IReadOnlyCollection{System#Collections#Generic#KeyValuePair{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IReadOnlyDictionary{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Keys">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IReadOnlyDictionary{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Values">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IReadOnlyDictionary{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Item(Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.HasRating(System.Int32)">
+            <summary>
+            Determine whether the analyzer result instance contains any step with the specified rating.
+            </summary>
+            <param name="rating">The rating value to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.HasTechnique(Sudoku.Categorization.Technique)">
             <summary>
             Determine whether the analyzer result instance contains any step with specified technique.
@@ -272,6 +291,13 @@
             <param name="technique">The technique you want to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has not been solved.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.HasGrid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Determine whether the analyzer result instance contains the specified grid.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.GetHashCode">
             <inheritdoc/>
@@ -382,10 +408,19 @@
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#All(System.Func{Sudoku.Analytics.Step,System.Boolean})">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IReadOnlyDictionary{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#ContainsKey(Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IReadOnlyDictionary{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#TryGetValue(Sudoku.Concepts.Grid,Sudoku.Analytics.Step@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Step}#GetEnumerator">
