@@ -4122,6 +4122,9 @@
             <param name="match">The <see cref="T:System.FuncRefReadOnly`2"/> that defines the conditions of the elements to search for.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.AnyUnsafe``1(System.ReadOnlySpan{``0},)">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.Any``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})"/>
+        </member>
         <member name="M:System.Linq.SpanEnumerable.All``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.All``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})"/>
         </member>
@@ -4133,6 +4136,9 @@
             <param name="this">The collection to be used and checked.</param>
             <param name="match">The <see cref="T:System.FuncRefReadOnly`2"/> that defines the conditions of the elements to search for.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.AllUnsafe``1(System.ReadOnlySpan{``0},)">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.All``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.AllAre``2(System.ReadOnlySpan{``0})">
             <summary>

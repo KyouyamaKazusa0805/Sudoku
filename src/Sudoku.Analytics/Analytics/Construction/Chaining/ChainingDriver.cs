@@ -223,35 +223,19 @@ file static class Extensions
 	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the element has already been added.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsAdvancedAllowed(this ChainStep @this, bool allowsAdvancedLinks)
+	public static unsafe bool IsAdvancedAllowed(this ChainStep @this, bool allowsAdvancedLinks)
 	{
-		switch (@this)
+		return @this switch
 		{
-			case NormalChainStep { IsGrouped: var g, Pattern.Links: var l } when allowsAdvancedLinks ^ (g || l.Any(lp)):
-			{
-				goto default;
-			}
-			case MultipleForcingChainsStep { IsGrouped: var g, Pattern: var p }
-			when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.Any(lp))):
-			{
-				goto default;
-			}
-			case BlossomLoopStep { IsGrouped: var g, Pattern: var p }
-			when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.Any(lp))):
-			{
-				goto default;
-			}
-			case NormalChainStep:
-			case MultipleForcingChainsStep:
-			case BlossomLoopStep:
-			{
-				return true;
-			}
-			default:
-			{
-				return false;
-			}
-		}
+			NormalChainStep { IsGrouped: var g, Pattern.Links: var l }
+				when allowsAdvancedLinks ^ (g || l.AnyUnsafe(&lp)) => false,
+			MultipleForcingChainsStep { IsGrouped: var g, Pattern: var p }
+				when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.AnyUnsafe(&lp))) => false,
+			BlossomLoopStep { IsGrouped: var g, Pattern: var p }
+				when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.AnyUnsafe(&lp))) => false,
+			NormalChainStep or MultipleForcingChainsStep or BlossomLoopStep => true,
+			_ => false
+		};
 
 
 		static bool lp(Link link) => link.GroupedLinkPattern is not null;

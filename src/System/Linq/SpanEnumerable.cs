@@ -326,7 +326,7 @@ public static class SpanEnumerable
 	/// <inheritdoc cref="Any{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
 	public static bool Any<T>(this ReadOnlySpan<T> @this, Func<T, bool> match)
 	{
-		foreach (ref readonly var element in @this)
+		foreach (var element in @this)
 		{
 			if (match(element))
 			{
@@ -355,10 +355,23 @@ public static class SpanEnumerable
 		return false;
 	}
 
+	/// <inheritdoc cref="Any{T}(ReadOnlySpan{T}, Func{T, bool})"/>
+	public static unsafe bool AnyUnsafe<T>(this ReadOnlySpan<T> @this, delegate*<T, bool> match)
+	{
+		foreach (var element in @this)
+		{
+			if (match(element))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/// <inheritdoc cref="All{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
 	public static bool All<T>(this ReadOnlySpan<T> @this, Func<T, bool> match)
 	{
-		foreach (ref readonly var element in @this)
+		foreach (var element in @this)
 		{
 			if (!match(element))
 			{
@@ -380,6 +393,19 @@ public static class SpanEnumerable
 		foreach (ref readonly var element in @this)
 		{
 			if (!match(in element))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/// <inheritdoc cref="All{T}(ReadOnlySpan{T}, Func{T, bool})"/>
+	public static unsafe bool AllUnsafe<T>(this ReadOnlySpan<T> @this, delegate*<T, bool> match)
+	{
+		foreach (var element in @this)
+		{
+			if (!match(element))
 			{
 				return false;
 			}
