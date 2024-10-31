@@ -30,7 +30,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <seealso cref="WeakForcingChain"/>
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.AllEqualityComparisonOperators)]
-public sealed partial class MultipleForcingChains([Property(Setter = PropertySetters.InternalSet)] params Conclusion[] conclusions) :
+public partial class MultipleForcingChains([Property(Setter = PropertySetters.InternalSet)] params Conclusion[] conclusions) :
 	SortedDictionary<Candidate, UnnamedChain>,
 	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>,
 	IComparable<MultipleForcingChains>,
@@ -47,7 +47,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = PropertySet
 	/// the property <see cref="IsHouseMultiple"/> will always return <see langword="false"/> and vice versa.
 	/// </remarks>
 	/// <seealso cref="IsHouseMultiple"/>
-	public bool IsCellMultiple => Candidates.Cells.Count == 1;
+	public virtual bool IsCellMultiple => Candidates.Cells.Count == 1;
 
 	/// <summary>
 	/// Indicates whether the pattern is aimed to a house, producing multiple branches.
@@ -57,7 +57,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = PropertySet
 	/// the property <see cref="IsCellMultiple"/> will always return <see langword="false"/> and vice versa.
 	/// </remarks>
 	/// <seealso cref="IsCellMultiple"/>
-	public bool IsHouseMultiple => Mask.IsPow2(Candidates.Digits);
+	public virtual bool IsHouseMultiple => Mask.IsPow2(Candidates.Digits);
 
 	/// <summary>
 	/// Indicates whether at least one branch contains grouped links or nodes.
@@ -368,7 +368,6 @@ public sealed partial class MultipleForcingChains([Property(Setter = PropertySet
 			fins = f.Value;
 			return result;
 		}
-
 		throw new InvalidOperationException(SR.ExceptionMessage("CannotCastFinnedChain"));
 	}
 
@@ -381,7 +380,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = PropertySet
 	/// <returns>The views.</returns>
 	public View[] GetViews(ref readonly Grid grid, Conclusion[] newConclusions, ChainingRuleCollection supportedRules)
 	{
-		var viewNodes = v(in grid, supportedRules);
+		var viewNodes = GetViewsCore(in grid, supportedRules, newConclusions);
 		var result = new View[viewNodes.Length];
 		for (var i = 0; i < viewNodes.Length; i++)
 		{
@@ -406,53 +405,18 @@ public sealed partial class MultipleForcingChains([Property(Setter = PropertySet
 			cachedAlsIndex = context.CurrentAlmostLockedSetIndex;
 		}
 		return result;
-
-
-		ReadOnlySpan<ViewNode[]> v(ref readonly Grid grid, ChainingRuleCollection rules)
-		{
-			var result = new ViewNode[Count + 1][];
-			ViewNode houseOrCellNode = IsCellMultiple
-				? new CellViewNode(ColorIdentifier.Normal, this.First().Key / 9)
-				: new HouseViewNode(ColorIdentifier.Normal, HouseMask.TrailingZeroCount(Candidates.Cells.SharedHouses));
-
-			var i = 0;
-			var globalView = new List<ViewNode>();
-			foreach (var key in Keys)
-			{
-				var chain = this[key];
-				var subview = View.Empty;
-				var j = 0;
-				foreach (var node in chain)
-				{
-					var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
-					foreach (var candidate in node.Map)
-					{
-						var currentViewNode = new CandidateViewNode(id, candidate);
-						globalView.Add(currentViewNode);
-						subview.Add(currentViewNode);
-					}
-				}
-
-				j = 0;
-				foreach (var link in chain.Links)
-				{
-					// Skip the link if there are >= 2 conclusions.
-					if (newConclusions.Length >= 2 && j++ == 0)
-					{
-						continue;
-					}
-
-					var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
-					var currentViewNode = new ChainLinkViewNode(id, link.FirstNode.Map, link.SecondNode.Map, link.IsStrong);
-					globalView.Add(currentViewNode);
-					subview.Add(currentViewNode);
-				}
-				result[++i] = [houseOrCellNode, .. subview];
-			}
-			result[0] = [houseOrCellNode, .. globalView];
-			return result;
-		}
 	}
+
+	/// <summary>
+	/// Try to create a list of initial view nodes.
+	/// </summary>
+	/// <returns>A list of initial view nodes.</returns>
+	protected virtual ReadOnlySpan<ViewNode> GetInitialViewNodes()
+		=> (ViewNode[])[
+			IsCellMultiple
+				? new CellViewNode(ColorIdentifier.Normal, this.First().Key / 9)
+				: new HouseViewNode(ColorIdentifier.Normal, HouseMask.TrailingZeroCount(Candidates.Cells.SharedHouses))
+		];
 
 	/// <inheritdoc/>
 	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.Any() => Count != 0;
@@ -485,4 +449,53 @@ public sealed partial class MultipleForcingChains([Property(Setter = PropertySet
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
+
+	/// <summary>
+	/// Represents a method that creates a list of views.
+	/// </summary>
+	/// <param name="grid">The target grid.</param>
+	/// <param name="rules">The rules used.</param>
+	/// <param name="newConclusions">The conclusions used.</param>
+	/// <returns>A list of nodes.</returns>
+	private ReadOnlySpan<ViewNode[]> GetViewsCore(ref readonly Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions)
+	{
+		var result = new ViewNode[Count + 1][];
+		var initialViewNodes = GetInitialViewNodes();
+		var i = 0;
+		var globalView = new List<ViewNode>();
+		foreach (var key in Keys)
+		{
+			var chain = this[key];
+			var subview = View.Empty;
+			var j = 0;
+			foreach (var node in chain)
+			{
+				var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+				foreach (var candidate in node.Map)
+				{
+					var currentViewNode = new CandidateViewNode(id, candidate);
+					globalView.Add(currentViewNode);
+					subview.Add(currentViewNode);
+				}
+			}
+
+			j = 0;
+			foreach (var link in chain.Links)
+			{
+				// Skip the link if there are >= 2 conclusions.
+				if (newConclusions.Length >= 2 && j++ == 0)
+				{
+					continue;
+				}
+
+				var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+				var currentViewNode = new ChainLinkViewNode(id, link.FirstNode.Map, link.SecondNode.Map, link.IsStrong);
+				globalView.Add(currentViewNode);
+				subview.Add(currentViewNode);
+			}
+			result[++i] = [.. initialViewNodes, .. subview];
+		}
+		result[0] = [.. initialViewNodes, .. globalView];
+		return result;
+	}
 }

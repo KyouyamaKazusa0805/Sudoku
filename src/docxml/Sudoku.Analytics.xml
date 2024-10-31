@@ -3859,6 +3859,12 @@
             <param name="supportedRules">The supported rules.</param>
             <returns>The views.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetInitialViewNodes">
+            <summary>
+            Try to create a list of initial view nodes.
+            </summary>
+            <returns>A list of initial view nodes.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#UnnamedChain}}#Any">
             <inheritdoc/>
         </member>
@@ -3870,6 +3876,15 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetViewsCore(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Conclusion[])">
+            <summary>
+            Represents a method that creates a list of views.
+            </summary>
+            <param name="grid">The target grid.</param>
+            <param name="rules">The rules used.</param>
+            <param name="newConclusions">The conclusions used.</param>
+            <returns>A list of nodes.</returns>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Conclusions">
             <summary>
@@ -4287,6 +4302,27 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection,Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains">
+            <summary>
+            Represents a multiple forcing chains that is applied to a unique rectangle.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])" path="/param[@name='conclusions']"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])">
+            <summary>
+            Represents a multiple forcing chains that is applied to a unique rectangle.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])" path="/param[@name='conclusions']"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.IsCellMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.IsHouseMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.GetInitialViewNodes">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.StrongForcingChain">
             <summary>

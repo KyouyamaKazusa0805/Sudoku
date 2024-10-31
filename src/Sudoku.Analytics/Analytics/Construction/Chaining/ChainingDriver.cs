@@ -66,7 +66,7 @@ internal static partial class ChainingDriver
 	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
 	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectMultipleCore(
+	public static unsafe Step? CollectMultipleCore(
 		ref StepAnalysisContext context,
 		SortedSet<ChainStep> accumulator,
 		bool allowsAdvancedLinks,
@@ -82,58 +82,66 @@ internal static partial class ChainingDriver
 			out var supportedRules
 		);
 
-		foreach (var chain in CollectMultipleChains(in context.Grid, context.OnlyFindOne))
+		var methods = stackalloc delegate*<ref readonly Grid, bool, ReadOnlySpan<MultipleForcingChains>>[]
 		{
-			var cachedAlsIndex = 0;
-			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
+			&CollectMultipleChains,
+			&CollectRectangleMultipleChains
+		};
+		for (var i = 0; i < 2; i++)
+		{
+			foreach (var chain in methods[i](in context.Grid, context.OnlyFindOne))
 			{
-				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
-				var views = (View[])[
-					[
-						.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
-						.. finnedChain.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0]
-					]
-				];
-
-				// Change nodes into fin-like view nodes.
-				foreach (var node in (ViewNode[])[.. views[0]])
+				var cachedAlsIndex = 0;
+				if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
 				{
-					if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
+					ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
+					var views = (View[])[
+						[
+							.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
+							.. finnedChain.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0]
+						]
+					];
+
+					// Change nodes into fin-like view nodes.
+					foreach (var node in (ViewNode[])[.. views[0]])
 					{
-						views[0].Remove(node);
-						views[0].Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
+						if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
+						{
+							views[0].Remove(node);
+							views[0].Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
+						}
 					}
-				}
 
-				var finnedChainStep = new FinnedChainStep(chain.Conclusions, views, context.Options, finnedChain, in fins);
-				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
-				{
+					var finnedChainStep = new FinnedChainStep(chain.Conclusions, views, context.Options, finnedChain, in fins);
+					if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
+					{
+						continue;
+					}
+
+					if (context.OnlyFindOne)
+					{
+						return finnedChainStep;
+					}
+
+					accumulator.Add(finnedChainStep);
 					continue;
 				}
 
-				if (context.OnlyFindOne)
+				if (!onlyFindFinnedChain)
 				{
-					return finnedChainStep;
+					var mfcStep = new MultipleForcingChainsStep(
+						chain.Conclusions,
+						chain.GetViews(in grid, chain.Conclusions, supportedRules),
+						context.Options,
+						chain
+					);
+					if (context.OnlyFindOne)
+					{
+						return mfcStep;
+					}
+
+					accumulator.Add(mfcStep);
 				}
-
-				accumulator.Add(finnedChainStep);
-				continue;
-			}
-
-			if (!onlyFindFinnedChain)
-			{
-				var mfcStep = new MultipleForcingChainsStep(
-					chain.Conclusions,
-					chain.GetViews(in grid, chain.Conclusions, supportedRules),
-					context.Options,
-					chain
-				);
-				if (context.OnlyFindOne)
-				{
-					return mfcStep;
-				}
-
-				accumulator.Add(mfcStep);
 			}
 		}
 		return null;

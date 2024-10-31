@@ -10,112 +10,100 @@ internal partial class ChainingDriver
 	/// <returns>All possible multiple forcing chain instances.</returns>
 	public static ReadOnlySpan<MultipleForcingChains> CollectRectangleMultipleChains(ref readonly Grid grid, bool onlyFindOne)
 	{
-		var result = new SortedSet<MultipleForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
-		foreach (var cell in EmptyCells & ~BivalueCells)
+		var result = new SortedSet<RectangleMultipleForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
+		foreach (var urCells in UniqueRectanglePattern.AllPatterns)
 		{
-			var nodesSupposedOn_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
-			var nodesSupposedOff_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
-			var nodesSupposedOn_InCell = default(HashSet<Node>);
-			var nodesSupposedOff_InCell = default(HashSet<Node>);
-			var digitsMask = grid.GetCandidates(cell);
-			foreach (var digit in digitsMask)
+			var cells = urCells.AsCellMap();
+			if ((EmptyCells & cells) != cells)
 			{
-				var currentNode = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
-				var (nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
-
-				// Iterate on three house types, to collect with region forcing chains.
-				foreach (var houseType in HouseTypes)
-				{
-					var house = cell.ToHouse(houseType);
-					var cellsInHouse = HousesMap[house] & CandidatesMap[digit];
-					if (cellsInHouse.Count <= 2)
-					{
-						// There's no need iterating on such house because the chain only contains 2 branches,
-						// which means it can be combined into one normal chain.
-						continue;
-					}
-
-					var firstCellInHouse = cellsInHouse[0];
-					if (firstCellInHouse != cell)
-					{
-						// We should skip the other cells in the house, in order to avoid duplicate forcing chains.
-						continue;
-					}
-
-					var nodesSupposedOn_GroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
-					var nodesSupposedOff_GroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
-					var nodesSupposedOn_InHouse = new HashSet<Node>(ChainingComparers.NodeMapComparer);
-					var nodesSupposedOff_InHouse = new HashSet<Node>(ChainingComparers.NodeMapComparer);
-					foreach (var otherCell in cellsInHouse)
-					{
-						var otherCandidate = otherCell * 9 + digit;
-						if (otherCell == cell)
-						{
-							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, nodesSupposedOn);
-							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, nodesSupposedOff);
-							nodesSupposedOn_InHouse.UnionWith(nodesSupposedOn);
-							nodesSupposedOff_InHouse.UnionWith(nodesSupposedOff);
-						}
-						else
-						{
-							var other = new Node(otherCandidate.AsCandidateMap(), true, false);
-							var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindForcingChains(other);
-							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOn_InHouse);
-							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOff_InHouse);
-							nodesSupposedOn_InHouse.IntersectWith(otherNodesSupposedOn_InHouse);
-							nodesSupposedOff_InHouse.IntersectWith(otherNodesSupposedOff_InHouse);
-						}
-					}
-
-					////////////////////////////////////////
-					// Collect with region forcing chains //
-					////////////////////////////////////////
-					var _a = rfcOn(in grid, digit, in cellsInHouse, nodesSupposedOn_GroupedByHouse, nodesSupposedOn_InHouse);
-					if (!_a.IsEmpty)
-					{
-						return _a;
-					}
-
-					var _b = rfcOff(in grid, digit, in cellsInHouse, nodesSupposedOff_GroupedByHouse, nodesSupposedOff_InHouse);
-					if (!_b.IsEmpty)
-					{
-						return _b;
-					}
-				}
-
-				nodesSupposedOn_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOn);
-				nodesSupposedOff_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOff);
-				if (nodesSupposedOn_InCell is null)
-				{
-					nodesSupposedOn_InCell = new(ChainingComparers.NodeMapComparer);
-					nodesSupposedOff_InCell = new(ChainingComparers.NodeMapComparer);
-					nodesSupposedOn_InCell.UnionWith(nodesSupposedOn);
-					nodesSupposedOff_InCell.UnionWith(nodesSupposedOff);
-				}
-				else
-				{
-					Debug.Assert(nodesSupposedOff_InCell is not null);
-					nodesSupposedOn_InCell.IntersectWith(nodesSupposedOn);
-					nodesSupposedOff_InCell.IntersectWith(nodesSupposedOff);
-				}
+				// Not all 4 cells are empty cells.
+				continue;
 			}
 
-			//////////////////////////////////////
-			// Collect with cell forcing chains //
-			//////////////////////////////////////
-			var _c = cfcOn(in grid, cell, nodesSupposedOn_GroupedByDigit, nodesSupposedOn_InCell, digitsMask);
-			if (!_c.IsEmpty)
+			// Collect all digits of the rectangle, to determine which digits can be used as a rectangle.
+			var allDigitsMask = grid[cells].GetAllSets();
+			if (allDigitsMask.Length is 0 or 1)
 			{
-				return _c;
+				// No enough digits available.
+				continue;
 			}
 
-			var _d = cfcOff(in grid, cell, nodesSupposedOff_GroupedByDigit, nodesSupposedOff_InCell, digitsMask);
-			if (!_d.IsEmpty)
+			// Iterate on each combination of pair of digits, as ones used by rectangle.
+			foreach (var digitPair in allDigitsMask.GetSubsets(2))
 			{
-				return _d;
+				var (d1, d2) = (digitPair[0], digitPair[1]);
+
+				// Determine whether such digits can be filled in diagonal cells.
+				// If a rectangle is correct, we should guarantee both digits can be filled twice in rectangle pattern,
+				// in order to make a valid deadly pattern (i.e. guarantee having at least one possible unavoidable set).
+				var suchDigitsCanBeFilledInDiagonalCells = true;
+				foreach (var ((c1, c4), (c2, c3)) in (((urCells[0], urCells[3]), (urCells[1], urCells[2])), ((urCells[1], urCells[2]), (urCells[0], urCells[3]))))
+				{
+					if (((grid.GetCandidates(c1) & grid.GetCandidates(c4)) >> d1 & 1) == 0
+						|| ((grid.GetCandidates(c2) & grid.GetCandidates(c3)) >> d2 & 1) == 0)
+					{
+						suchDigitsCanBeFilledInDiagonalCells = false;
+						break;
+					}
+					break;
+				}
+				if (!suchDigitsCanBeFilledInDiagonalCells)
+				{
+					continue;
+				}
+
+				// If so, the UR pattern is valid. Now check for forcing chains.
+				var branchStartCandidates = CandidateMap.Empty;
+				foreach (var cell in urCells)
+				{
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(1 << d1 | 1 << d2)))
+					{
+						branchStartCandidates.Add(cell * 9 + digit);
+					}
+				}
+
+				// Collect branches for all possible candidates to be iterated,
+				// and determine whether at least one candidate can be considered as a conclusion from all different start candidates.
+				var nodesSupposedOn_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
+				var nodesSupposedOff_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
+				var nodesSupposedOn_InCell = default(HashSet<Node>);
+				var nodesSupposedOff_InCell = default(HashSet<Node>);
+				foreach (var candidate in branchStartCandidates)
+				{
+					var currentNode = new Node(candidate.AsCandidateMap(), true, false);
+					var (nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
+
+					nodesSupposedOn_GroupedByDigit.Add(candidate, nodesSupposedOn);
+					nodesSupposedOff_GroupedByDigit.Add(candidate, nodesSupposedOff);
+					if (nodesSupposedOn_InCell is null)
+					{
+						nodesSupposedOn_InCell = new(ChainingComparers.NodeMapComparer);
+						nodesSupposedOff_InCell = new(ChainingComparers.NodeMapComparer);
+						nodesSupposedOn_InCell.UnionWith(nodesSupposedOn);
+						nodesSupposedOff_InCell.UnionWith(nodesSupposedOff);
+					}
+					else
+					{
+						Debug.Assert(nodesSupposedOff_InCell is not null);
+						nodesSupposedOn_InCell.IntersectWith(nodesSupposedOn);
+						nodesSupposedOff_InCell.IntersectWith(nodesSupposedOff);
+					}
+				}
+
+				var _c = rfcOn(in grid, in branchStartCandidates, nodesSupposedOn_GroupedByDigit, nodesSupposedOn_InCell);
+				if (!_c.IsEmpty)
+				{
+					return ReadOnlySpan<MultipleForcingChains>.CastUp(_c);
+				}
+
+				var _d = rfcOff(in grid, in branchStartCandidates, nodesSupposedOff_GroupedByDigit, nodesSupposedOff_InCell);
+				if (!_d.IsEmpty)
+				{
+					return ReadOnlySpan<MultipleForcingChains>.CastUp(_d);
+				}
 			}
 		}
-		return result.ToArray();
+		return ReadOnlySpan<MultipleForcingChains>.CastUp<RectangleMultipleForcingChains>(result.ToArray());
 
 
 		static Conclusion[] getThoroughConclusions(ref readonly Grid grid, MultipleForcingChains mfc)
@@ -138,12 +126,11 @@ internal partial class ChainingDriver
 			return newConclusions.Count == 0 ? [] : [.. newConclusions];
 		}
 
-		ReadOnlySpan<MultipleForcingChains> cfcOn(
+		ReadOnlySpan<RectangleMultipleForcingChains> rfcOn(
 			ref readonly Grid grid,
-			Cell cell,
+			scoped ref readonly CandidateMap branchStartCandidates,
 			Dictionary<Candidate, HashSet<Node>> onNodes,
-			HashSet<Node>? resultOnNodes,
-			Mask digitsMask
+			HashSet<Node>? resultOnNodes
 		)
 		{
 			foreach (var node in resultOnNodes ?? [])
@@ -160,27 +147,26 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var cfc = new MultipleForcingChains(conclusion);
-				foreach (var d in digitsMask)
+				var rfc = new RectangleMultipleForcingChains(conclusion);
+				foreach (var candidate in branchStartCandidates)
 				{
-					var branchNode = onNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+					var branchNode = onNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					rfc.Add(candidate, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
 				if (onlyFindOne)
 				{
-					return (MultipleForcingChains[])[cfc];
+					return (RectangleMultipleForcingChains[])[rfc];
 				}
-				result.Add(cfc);
+				result.Add(rfc);
 			}
 			return [];
 		}
 
-		ReadOnlySpan<MultipleForcingChains> cfcOff(
+		ReadOnlySpan<RectangleMultipleForcingChains> rfcOff(
 			ref readonly Grid grid,
-			Cell cell,
+			scoped ref readonly CandidateMap branchStartCandidates,
 			Dictionary<Candidate, HashSet<Node>> offNodes,
-			HashSet<Node>? resultOffNodes,
-			Mask digitsMask
+			HashSet<Node>? resultOffNodes
 		)
 		{
 			foreach (var node in resultOffNodes ?? [])
@@ -197,97 +183,11 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var cfc = new MultipleForcingChains();
-				foreach (var d in digitsMask)
+				var rfc = new RectangleMultipleForcingChains();
+				foreach (var candidate in branchStartCandidates)
 				{
-					var branchNode = offNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
-				}
-				if (getThoroughConclusions(in grid, cfc) is not { Length: not 0 } conclusions)
-				{
-					continue;
-				}
-
-				cfc.Conclusions = conclusions;
-				if (onlyFindOne)
-				{
-					return (MultipleForcingChains[])[cfc];
-				}
-				result.Add(cfc);
-			}
-			return [];
-		}
-
-		ReadOnlySpan<MultipleForcingChains> rfcOn(
-			ref readonly Grid grid,
-			Digit digit,
-			scoped ref readonly CellMap cellsInHouse,
-			Dictionary<Candidate, HashSet<Node>> onNodes,
-			HashSet<Node> houseOnNodes
-		)
-		{
-			foreach (var node in houseOnNodes)
-			{
-				if (node.IsGroupedNode)
-				{
-					// Grouped nodes are not supported as target node.
-					continue;
-				}
-
-				var conclusion = new Conclusion(Assignment, node.Map[0]);
-				if (grid.Exists(conclusion.Candidate) is not true)
-				{
-					continue;
-				}
-
-				var rfc = new MultipleForcingChains(conclusion);
-				foreach (var c in cellsInHouse)
-				{
-					var branchNode = onNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					rfc.Add(
-						c * 9 + digit,
-						node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
-					);
-				}
-				if (onlyFindOne)
-				{
-					return (MultipleForcingChains[])[rfc];
-				}
-				result.Add(rfc);
-			}
-			return [];
-		}
-
-		ReadOnlySpan<MultipleForcingChains> rfcOff(
-			ref readonly Grid grid,
-			Digit digit,
-			scoped ref readonly CellMap cellsInHouse,
-			Dictionary<Candidate, HashSet<Node>> offNodes,
-			HashSet<Node> houseOffNodes
-		)
-		{
-			foreach (var node in houseOffNodes)
-			{
-				if (node.IsGroupedNode)
-				{
-					// Grouped nodes are not supported as target node.
-					continue;
-				}
-
-				var conclusion = new Conclusion(Elimination, node.Map[0]);
-				if (grid.Exists(conclusion.Candidate) is not true)
-				{
-					continue;
-				}
-
-				var rfc = new MultipleForcingChains();
-				foreach (var c in cellsInHouse)
-				{
-					var branchNode = offNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					rfc.Add(
-						c * 9 + digit,
-						node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
-					);
+					var branchNode = offNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					rfc.Add(candidate, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
 				if (getThoroughConclusions(in grid, rfc) is not { Length: not 0 } conclusions)
 				{
@@ -297,7 +197,7 @@ internal partial class ChainingDriver
 				rfc.Conclusions = conclusions;
 				if (onlyFindOne)
 				{
-					return (MultipleForcingChains[])[rfc];
+					return (RectangleMultipleForcingChains[])[rfc];
 				}
 				result.Add(rfc);
 			}
