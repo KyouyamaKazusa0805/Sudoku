@@ -12,6 +12,9 @@ public sealed class RectangleMultipleForcingChains(params Conclusion[] conclusio
 	/// <inheritdoc/>
 	public override bool IsHouseMultiple => false;
 
+	/// <inheritdoc/>
+	public override bool IsAdvancedMultiple => true;
+
 
 	/// <inheritdoc/>
 	protected override ReadOnlySpan<ViewNode> GetInitialViewNodes()

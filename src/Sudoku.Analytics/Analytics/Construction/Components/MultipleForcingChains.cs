@@ -29,7 +29,10 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <seealso cref="StrongForcingChain"/>
 /// <seealso cref="WeakForcingChain"/>
 /// <seealso cref="Node"/>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.AllEqualityComparisonOperators)]
+[TypeImpl(
+	TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.AllEqualityComparisonOperators,
+	OtherModifiersOnEquals = "sealed",
+	OtherModifiersOnToString = "sealed")]
 public partial class MultipleForcingChains([Property(Setter = PropertySetters.InternalSet)] params Conclusion[] conclusions) :
 	SortedDictionary<Candidate, UnnamedChain>,
 	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>,
@@ -58,6 +61,11 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	/// </remarks>
 	/// <seealso cref="IsCellMultiple"/>
 	public virtual bool IsHouseMultiple => Mask.IsPow2(Candidates.Digits);
+
+	/// <summary>
+	/// Indicates whether the pattern is advanced. In other words, the start candidates are not inside a cell or a house.
+	/// </summary>
+	public virtual bool IsAdvancedMultiple => false;
 
 	/// <summary>
 	/// Indicates whether at least one branch contains grouped links or nodes.
@@ -320,7 +328,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	}
 
 	/// <inheritdoc/>
-	public override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainComparison.Undirected);
+	public sealed override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainComparison.Undirected);
 
 	/// <summary>
 	/// Calculates a hash code value used for comparison.

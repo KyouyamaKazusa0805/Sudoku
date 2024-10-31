@@ -3755,6 +3755,11 @@
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsCellMultiple"/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsAdvancedMultiple">
+            <summary>
+            Indicates whether the pattern is advanced. In other words, the start candidates are not inside a cell or a house.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsGrouped">
             <summary>
             Indicates whether at least one branch contains grouped links or nodes.
@@ -4319,6 +4324,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.IsHouseMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.IsAdvancedMultiple">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.GetInitialViewNodes">

@@ -64,42 +64,42 @@ internal partial class ChainingDriver
 
 				// Collect branches for all possible candidates to be iterated,
 				// and determine whether at least one candidate can be considered as a conclusion from all different start candidates.
-				var nodesSupposedOn_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
-				var nodesSupposedOff_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
-				var nodesSupposedOn_InCell = default(HashSet<Node>);
-				var nodesSupposedOff_InCell = default(HashSet<Node>);
+				var nodesSupposedOnGrouped = new Dictionary<Candidate, HashSet<Node>>();
+				var nodesSupposedOffGrouped = new Dictionary<Candidate, HashSet<Node>>();
+				var resultNodesSupposedOn = default(HashSet<Node>);
+				var resultNodesSupposedOff = default(HashSet<Node>);
 				foreach (var candidate in branchStartCandidates)
 				{
 					var currentNode = new Node(candidate.AsCandidateMap(), true, false);
 					var (nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
 
-					nodesSupposedOn_GroupedByDigit.Add(candidate, nodesSupposedOn);
-					nodesSupposedOff_GroupedByDigit.Add(candidate, nodesSupposedOff);
-					if (nodesSupposedOn_InCell is null)
+					nodesSupposedOnGrouped.Add(candidate, nodesSupposedOn);
+					nodesSupposedOffGrouped.Add(candidate, nodesSupposedOff);
+					if (resultNodesSupposedOn is null)
 					{
-						nodesSupposedOn_InCell = new(ChainingComparers.NodeMapComparer);
-						nodesSupposedOff_InCell = new(ChainingComparers.NodeMapComparer);
-						nodesSupposedOn_InCell.UnionWith(nodesSupposedOn);
-						nodesSupposedOff_InCell.UnionWith(nodesSupposedOff);
+						resultNodesSupposedOn = new(ChainingComparers.NodeMapComparer);
+						resultNodesSupposedOff = new(ChainingComparers.NodeMapComparer);
+						resultNodesSupposedOn.UnionWith(nodesSupposedOn);
+						resultNodesSupposedOff.UnionWith(nodesSupposedOff);
 					}
 					else
 					{
-						Debug.Assert(nodesSupposedOff_InCell is not null);
-						nodesSupposedOn_InCell.IntersectWith(nodesSupposedOn);
-						nodesSupposedOff_InCell.IntersectWith(nodesSupposedOff);
+						Debug.Assert(resultNodesSupposedOff is not null);
+						resultNodesSupposedOn.IntersectWith(nodesSupposedOn);
+						resultNodesSupposedOff.IntersectWith(nodesSupposedOff);
 					}
 				}
 
-				var _c = rfcOn(in grid, in branchStartCandidates, nodesSupposedOn_GroupedByDigit, nodesSupposedOn_InCell);
-				if (!_c.IsEmpty)
+				var step1 = rfcOn(in grid, in branchStartCandidates, nodesSupposedOnGrouped, resultNodesSupposedOn);
+				if (!step1.IsEmpty)
 				{
-					return ReadOnlySpan<MultipleForcingChains>.CastUp(_c);
+					return ReadOnlySpan<MultipleForcingChains>.CastUp(step1);
 				}
 
-				var _d = rfcOff(in grid, in branchStartCandidates, nodesSupposedOff_GroupedByDigit, nodesSupposedOff_InCell);
-				if (!_d.IsEmpty)
+				var step2 = rfcOff(in grid, in branchStartCandidates, nodesSupposedOffGrouped, resultNodesSupposedOff);
+				if (!step2.IsEmpty)
 				{
-					return ReadOnlySpan<MultipleForcingChains>.CastUp(_d);
+					return ReadOnlySpan<MultipleForcingChains>.CastUp(step2);
 				}
 			}
 		}
