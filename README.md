@@ -57,7 +57,7 @@ This repository is created for the following users:
   * Incremental rendering in UI layer
 * Text
   * I/O handling on variant grid text types (Susser, HoDoKu library format, etc.)
-  * JSON serialization and deserialization on most of data structuress
+  * JSON serialization and deserialization on most of data structures
 * Compatibility with other programs
   * Integrated information on all HoDoKu techniques, and analysis supports
   * Integrated information on all Sudoku Explainer techniques, and analysis supports
