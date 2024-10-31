@@ -1628,15 +1628,6 @@
             Provides a driver that can generate normal chains and forcing chains.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
-            <summary>
-            Collect all blossom loops appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
-            <returns>All possible multiple forcing chain instances.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
             <summary>
             Collect all chains and loops appeared in a grid.
@@ -1698,6 +1689,15 @@
             <returns>The first found <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> pattern.</returns>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
+            <summary>
+            Collect all blossom loops appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
             <summary>
             The collect method called by chain step searchers.
@@ -1749,6 +1749,14 @@
             <seealso cref="T:System.Collections.Generic.HashSet`1"/>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectRectangleMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Collect all multiple forcing chains on applying to a unique rectangle, appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.Extensions">
             <target name="class" when="extension">
@@ -3851,13 +3859,13 @@
             <param name="supportedRules">The supported rules.</param>
             <returns>The views.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#Chain}}#Any">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#UnnamedChain}}#Any">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#Chain}}#Any(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Analytics.Construction.Components.Chain},System.Boolean})">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#UnnamedChain}}#Any(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Analytics.Construction.Components.UnnamedChain},System.Boolean})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#Chain}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Analytics.Construction.Components.Chain},System.Boolean})">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#UnnamedChain}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Analytics.Construction.Components.UnnamedChain},System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#IFormattable#ToString(System.String,System.IFormatProvider)">

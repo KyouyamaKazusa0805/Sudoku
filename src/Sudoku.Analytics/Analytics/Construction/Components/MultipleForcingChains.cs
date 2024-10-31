@@ -31,8 +31,8 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.AllEqualityComparisonOperators)]
 public sealed partial class MultipleForcingChains([Property(Setter = PropertySetters.InternalSet)] params Conclusion[] conclusions) :
-	SortedDictionary<Candidate, Chain>,
-	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, Chain>>,
+	SortedDictionary<Candidate, UnnamedChain>,
+	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>,
 	IComparable<MultipleForcingChains>,
 	IComparisonOperators<MultipleForcingChains, MultipleForcingChains, bool>,
 	IEquatable<MultipleForcingChains>,
@@ -455,10 +455,10 @@ public sealed partial class MultipleForcingChains([Property(Setter = PropertySet
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, Chain>>.Any() => Count != 0;
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.Any() => Count != 0;
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, Chain>>.Any(Func<KeyValuePair<int, Chain>, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.Any(Func<KeyValuePair<int, UnnamedChain>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
@@ -471,7 +471,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = PropertySet
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, Chain>>.All(Func<KeyValuePair<int, Chain>, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.All(Func<KeyValuePair<int, UnnamedChain>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
