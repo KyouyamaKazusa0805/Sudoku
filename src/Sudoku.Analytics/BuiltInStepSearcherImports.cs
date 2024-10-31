@@ -1,5 +1,3 @@
-#pragma warning disable CS0618
-
 [assembly: AssemblyStepSearcher<SingleStepSearcher>(0)]
 [assembly: AssemblyStepSearcher<LawOfLeftoverStepSearcher>(0)]
 [assembly: AssemblyStepSearcher<DirectIntersectionStepSearcher>(0)]
@@ -47,6 +45,7 @@
 [assembly: AssemblyStepSearcher<FinnedChainStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<GroupedFinnedChainStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<MultipleForcingChainsStepSearcher>(2)]
+[assembly: AssemblyStepSearcher<RectangleForcingChainsStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<DeathBlossomStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<WhipStepSearcher>(3)]
 [assembly: AssemblyStepSearcher<BowmanBingoStepSearcher>(3, Areas = StepSearcherRunningArea.None)]

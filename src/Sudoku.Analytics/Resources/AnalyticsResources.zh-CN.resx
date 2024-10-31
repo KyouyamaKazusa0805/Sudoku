@@ -3560,4 +3560,15 @@
     <value>线性动态区块链</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="RectangleForcingChains" xml:space="preserve">
+    <value>矩形强制链</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_RectangleForcingChainsStep" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="StepSearcherName_RectangleForcingChainsStepSearcher" xml:space="preserve">
+    <value>矩形强制链</value>
+    <comment>Step Searcher Name</comment>
+  </data>
 </root>

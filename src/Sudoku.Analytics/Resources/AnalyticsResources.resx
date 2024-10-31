@@ -3441,4 +3441,13 @@ Error grid: '{0:#}'</value>
   <data name="GroupedWhip" xml:space="preserve">
     <value>Grouped Whip</value>
   </data>
+  <data name="RectangleForcingChains" xml:space="preserve">
+    <value>Rectangle Forcing Chains</value>
+  </data>
+  <data name="TechniqueFormat_RectangleForcingChainsStep" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="StepSearcherName_RectangleForcingChainsStepSearcher" xml:space="preserve">
+    <value>Rectangle Forcing Chains</value>
+  </data>
 </root>

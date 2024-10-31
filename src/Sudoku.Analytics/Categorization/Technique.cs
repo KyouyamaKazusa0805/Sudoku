@@ -5258,7 +5258,7 @@ public enum Technique
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1301")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.MultipleForcingChain, RatingOriginal = [8.2, 8.6])]
 	[TechniqueMetadata(
-		Rating = 80,
+		Rating = 70,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains)]
 	RegionForcingChains,
@@ -5269,7 +5269,7 @@ public enum Technique
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1301")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.MultipleForcingChain, RatingOriginal = [8.2, 8.6])]
 	[TechniqueMetadata(
-		Rating = 80,
+		Rating = 70,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains)]
 	CellForcingChains,
@@ -5280,7 +5280,7 @@ public enum Technique
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1301")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.MultipleForcingChain, RatingOriginal = [8.2, 8.6])]
 	[TechniqueMetadata(
-		Rating = 80,
+		Rating = 70,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains)]
 	MergedRegionForcingChains,
@@ -5291,10 +5291,19 @@ public enum Technique
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1301")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.MultipleForcingChain, RatingOriginal = [8.2, 8.6])]
 	[TechniqueMetadata(
-		Rating = 80,
+		Rating = 70,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains)]
 	MergedCellForcingChains,
+
+	/// <summary>
+	/// Indicates rectangle forcing chains.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 70,
+		DifficultyLevel = DifficultyLevel.Nightmare,
+		ContainingGroup = TechniqueGroup.ForcingChains)]
+	RectangleForcingChains,
 
 	/// <summary>
 	/// Indicates dynamic region forcing chains (i.e. dynamic house forcing chains).

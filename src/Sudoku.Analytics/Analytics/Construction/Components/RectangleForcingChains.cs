@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Represents a multiple forcing chains that is applied to a unique rectangle.
 /// </summary>
 /// <param name="conclusions"><inheritdoc cref="MultipleForcingChains(Conclusion[])" path="/param[@name='conclusions']"/></param>
-public sealed class RectangleMultipleForcingChains(params Conclusion[] conclusions) : MultipleForcingChains(conclusions)
+public sealed class RectangleForcingChains(params Conclusion[] conclusions) : MultipleForcingChains(conclusions)
 {
 	/// <inheritdoc/>
 	public override bool IsCellMultiple => false;

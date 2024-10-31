@@ -116,6 +116,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Forcing Chains
     * Region Forcing Chains
     * Cell Forcing Chains
+    * Rectangle Forcing Chains
   * Sequential Dynamic Chains
     * Whip
     * Grouped Whip

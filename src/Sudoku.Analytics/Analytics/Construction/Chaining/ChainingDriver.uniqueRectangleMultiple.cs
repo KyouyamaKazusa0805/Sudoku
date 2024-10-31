@@ -8,9 +8,9 @@ internal partial class ChainingDriver
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
-	public static ReadOnlySpan<MultipleForcingChains> CollectRectangleMultipleChains(ref readonly Grid grid, bool onlyFindOne)
+	public static ReadOnlySpan<RectangleForcingChains> CollectRectangleMultipleChains(ref readonly Grid grid, bool onlyFindOne)
 	{
-		var result = new SortedSet<RectangleMultipleForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
+		var result = new SortedSet<RectangleForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
 		foreach (var urCells in UniqueRectanglePattern.AllPatterns)
 		{
 			var cells = urCells.AsCellMap();
@@ -93,17 +93,17 @@ internal partial class ChainingDriver
 				var step1 = rfcOn(in grid, in branchStartCandidates, nodesSupposedOnGrouped, resultNodesSupposedOn);
 				if (!step1.IsEmpty)
 				{
-					return ReadOnlySpan<MultipleForcingChains>.CastUp(step1);
+					return step1;
 				}
 
 				var step2 = rfcOff(in grid, in branchStartCandidates, nodesSupposedOffGrouped, resultNodesSupposedOff);
 				if (!step2.IsEmpty)
 				{
-					return ReadOnlySpan<MultipleForcingChains>.CastUp(step2);
+					return step2;
 				}
 			}
 		}
-		return ReadOnlySpan<MultipleForcingChains>.CastUp<RectangleMultipleForcingChains>(result.ToArray());
+		return result.ToArray();
 
 
 		static Conclusion[] getThoroughConclusions(ref readonly Grid grid, MultipleForcingChains mfc)
@@ -126,7 +126,7 @@ internal partial class ChainingDriver
 			return newConclusions.Count == 0 ? [] : [.. newConclusions];
 		}
 
-		ReadOnlySpan<RectangleMultipleForcingChains> rfcOn(
+		ReadOnlySpan<RectangleForcingChains> rfcOn(
 			ref readonly Grid grid,
 			scoped ref readonly CandidateMap branchStartCandidates,
 			Dictionary<Candidate, HashSet<Node>> onNodes,
@@ -147,7 +147,7 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var rfc = new RectangleMultipleForcingChains(conclusion);
+				var rfc = new RectangleForcingChains(conclusion);
 				foreach (var candidate in branchStartCandidates)
 				{
 					var branchNode = onNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
@@ -155,14 +155,14 @@ internal partial class ChainingDriver
 				}
 				if (onlyFindOne)
 				{
-					return (RectangleMultipleForcingChains[])[rfc];
+					return (RectangleForcingChains[])[rfc];
 				}
 				result.Add(rfc);
 			}
 			return [];
 		}
 
-		ReadOnlySpan<RectangleMultipleForcingChains> rfcOff(
+		ReadOnlySpan<RectangleForcingChains> rfcOff(
 			ref readonly Grid grid,
 			scoped ref readonly CandidateMap branchStartCandidates,
 			Dictionary<Candidate, HashSet<Node>> offNodes,
@@ -183,7 +183,7 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var rfc = new RectangleMultipleForcingChains();
+				var rfc = new RectangleForcingChains();
 				foreach (var candidate in branchStartCandidates)
 				{
 					var branchNode = offNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
@@ -197,7 +197,7 @@ internal partial class ChainingDriver
 				rfc.Conclusions = conclusions;
 				if (onlyFindOne)
 				{
-					return (RectangleMultipleForcingChains[])[rfc];
+					return (RectangleForcingChains[])[rfc];
 				}
 				result.Add(rfc);
 			}

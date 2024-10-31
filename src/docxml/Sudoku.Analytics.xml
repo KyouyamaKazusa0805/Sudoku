@@ -1717,6 +1717,16 @@
             <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
             <returns>The first found step.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectRectangleMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+            <summary>
+            The collect method called by rectangle forcing chains step searcher.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+            <returns>The first found step.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
             <summary>
             The collect method called by blossom loop step searchers.
@@ -4308,28 +4318,28 @@
         <member name="M:Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection,Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains">
+        <member name="T:Sudoku.Analytics.Construction.Components.RectangleForcingChains">
             <summary>
             Represents a multiple forcing chains that is applied to a unique rectangle.
             </summary>
             <param name="conclusions"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])" path="/param[@name='conclusions']"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])">
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])">
             <summary>
             Represents a multiple forcing chains that is applied to a unique rectangle.
             </summary>
             <param name="conclusions"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])" path="/param[@name='conclusions']"/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.IsCellMultiple">
+        <member name="P:Sudoku.Analytics.Construction.Components.RectangleForcingChains.IsCellMultiple">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.IsHouseMultiple">
+        <member name="P:Sudoku.Analytics.Construction.Components.RectangleForcingChains.IsHouseMultiple">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.IsAdvancedMultiple">
+        <member name="P:Sudoku.Analytics.Construction.Components.RectangleForcingChains.IsAdvancedMultiple">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.RectangleMultipleForcingChains.GetInitialViewNodes">
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleForcingChains.GetInitialViewNodes">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.StrongForcingChain">
@@ -7909,6 +7919,18 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.MultipleForcingChainsStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.RectangleForcingChainsStepSearcher">
+            <summary>
+            Provides with a <b>Rectangle Forcing Chains</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Rectangle Forcing Chains</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.RectangleForcingChainsStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.RemotePairStepSearcher">
@@ -12766,6 +12788,64 @@
             <param name="this">The pattern.</param>
             <param name="conclusions">Indicates conclusions to be used.</param>
             <returns>The pattern sort key.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.RectangleForcingChainsStep">
+            <summary>
+            Provides with a step that is a <b>Rectangle Forcing Chains</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">The pattern to be used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RectangleForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.RectangleForcingChains)">
+            <summary>
+            Provides with a step that is a <b>Rectangle Forcing Chains</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">The pattern to be used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.IsMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.IsDynamic">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.IsGrouped">
+            <summary>
+            Indicates whether the pattern uses grouped nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RectangleForcingChainsStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RectangleForcingChainsStep.CompareTo(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.Pattern">
+            <summary>
+            The generated property declaration for parameter <c>pattern</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.RemotePairStep">
             <summary>
@@ -23886,6 +23966,11 @@
             Indicates merged cell forcing chains.
             </summary>
         </member>
+        <member name="F:Sudoku.Categorization.Technique.RectangleForcingChains">
+            <summary>
+            Indicates rectangle forcing chains.
+            </summary>
+        </member>
         <member name="F:Sudoku.Categorization.Technique.DynamicRegionForcingChains">
             <summary>
             Indicates dynamic region forcing chains (i.e. dynamic house forcing chains).
@@ -30180,6 +30265,11 @@
               Looks up a localized string similar to Death Blossom (Rectangle Blooming).
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.RectangleForcingChains">
+            <summary>
+              Looks up a localized string similar to Rectangle Forcing Chains.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.RegionForcingChains">
             <summary>
               Looks up a localized string similar to Region Forcing Chains.
@@ -30813,6 +30903,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_QiuDeadlyPatternStepSearcher">
             <summary>
               Looks up a localized string similar to Qiu&apos;s Deadly Pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_RectangleForcingChainsStepSearcher">
+            <summary>
+              Looks up a localized string similar to Rectangle Forcing Chains.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_RegularWingStepSearcher">
@@ -32103,6 +32198,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_RectangleDeathBlossomStep">
             <summary>
               Looks up a localized string similar to Rectangle cells: {0}, Branches: {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_RectangleForcingChainsStep">
+            <summary>
+              Looks up a localized string similar to {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_RegionForcingChainsStep">

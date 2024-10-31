@@ -4996,6 +4996,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rectangle Forcing Chains.
+        /// </summary>
+        public static string RectangleForcingChains {
+            get {
+                return ResourceManager.GetString("RectangleForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Region Forcing Chains.
         /// </summary>
         public static string RegionForcingChains {
@@ -6135,6 +6144,15 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_QiuDeadlyPatternStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_QiuDeadlyPatternStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle Forcing Chains.
+        /// </summary>
+        public static string StepSearcherName_RectangleForcingChainsStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_RectangleForcingChainsStepSearcher", resourceCulture);
             }
         }
         
@@ -8457,6 +8475,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_RectangleDeathBlossomStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_RectangleDeathBlossomStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}.
+        /// </summary>
+        public static string TechniqueFormat_RectangleForcingChainsStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_RectangleForcingChainsStep", resourceCulture);
             }
         }
         

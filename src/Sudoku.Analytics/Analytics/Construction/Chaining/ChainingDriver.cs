@@ -66,7 +66,7 @@ internal static partial class ChainingDriver
 	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
 	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
 	/// <returns>The first found step.</returns>
-	public static unsafe Step? CollectMultipleCore(
+	public static Step? CollectMultipleCore(
 		ref StepAnalysisContext context,
 		SortedSet<ChainStep> accumulator,
 		bool allowsAdvancedLinks,
@@ -82,66 +82,103 @@ internal static partial class ChainingDriver
 			out var supportedRules
 		);
 
-		var methods = stackalloc delegate*<ref readonly Grid, bool, ReadOnlySpan<MultipleForcingChains>>[]
+		foreach (var chain in CollectMultipleChains(in context.Grid, context.OnlyFindOne))
 		{
-			&CollectMultipleChains,
-			&CollectRectangleMultipleChains
-		};
-		for (var i = 0; i < 2; i++)
-		{
-			foreach (var chain in methods[i](in context.Grid, context.OnlyFindOne))
+			var cachedAlsIndex = 0;
+			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
 			{
-				var cachedAlsIndex = 0;
-				if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
+				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
+				var views = (View[])[
+					[
+						.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
+						.. finnedChain.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0]
+					]
+				];
+
+				// Change nodes into fin-like view nodes.
+				foreach (var node in (ViewNode[])[.. views[0]])
 				{
-					ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
-					var views = (View[])[
-						[
-							.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
-							.. finnedChain.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0]
-						]
-					];
-
-					// Change nodes into fin-like view nodes.
-					foreach (var node in (ViewNode[])[.. views[0]])
+					if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
 					{
-						if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
-						{
-							views[0].Remove(node);
-							views[0].Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
-						}
+						views[0].Remove(node);
+						views[0].Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
 					}
+				}
 
-					var finnedChainStep = new FinnedChainStep(chain.Conclusions, views, context.Options, finnedChain, in fins);
-					if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
-					{
-						continue;
-					}
-
-					if (context.OnlyFindOne)
-					{
-						return finnedChainStep;
-					}
-
-					accumulator.Add(finnedChainStep);
+				var finnedChainStep = new FinnedChainStep(chain.Conclusions, views, context.Options, finnedChain, in fins);
+				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
+				{
 					continue;
 				}
 
-				if (!onlyFindFinnedChain)
+				if (context.OnlyFindOne)
 				{
-					var mfcStep = new MultipleForcingChainsStep(
-						chain.Conclusions,
-						chain.GetViews(in grid, chain.Conclusions, supportedRules),
-						context.Options,
-						chain
-					);
-					if (context.OnlyFindOne)
-					{
-						return mfcStep;
-					}
-
-					accumulator.Add(mfcStep);
+					return finnedChainStep;
 				}
+
+				accumulator.Add(finnedChainStep);
+				continue;
+			}
+
+			if (!onlyFindFinnedChain)
+			{
+				var mfcStep = new MultipleForcingChainsStep(
+					chain.Conclusions,
+					chain.GetViews(in grid, chain.Conclusions, supportedRules),
+					context.Options,
+					chain
+				);
+				if (context.OnlyFindOne)
+				{
+					return mfcStep;
+				}
+
+				accumulator.Add(mfcStep);
+			}
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// The collect method called by rectangle forcing chains step searcher.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+	/// <returns>The first found step.</returns>
+	public static unsafe Step? CollectRectangleMultipleCore(
+		ref StepAnalysisContext context,
+		SortedSet<ChainStep> accumulator,
+		bool allowsAdvancedLinks,
+		bool onlyFindFinnedChain
+	)
+	{
+		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
+		ref readonly var grid = ref context.Grid;
+		InitializeLinks(
+			in grid,
+			linkTypes.Aggregate(@delegate.EnumFlagMerger),
+			context.Options,
+			out var supportedRules
+		);
+
+		foreach (var chain in CollectRectangleMultipleChains(in context.Grid, context.OnlyFindOne))
+		{
+			if (!onlyFindFinnedChain)
+			{
+				var rfcStep = new RectangleForcingChainsStep(
+					chain.Conclusions,
+					chain.GetViews(in grid, chain.Conclusions, supportedRules),
+					context.Options,
+					chain
+				);
+				if (context.OnlyFindOne)
+				{
+					return rfcStep;
+				}
+
+				accumulator.Add(rfcStep);
 			}
 		}
 		return null;
