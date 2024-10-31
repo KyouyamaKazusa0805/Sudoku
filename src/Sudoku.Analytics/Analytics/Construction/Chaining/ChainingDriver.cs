@@ -105,7 +105,14 @@ internal static partial class ChainingDriver
 					}
 				}
 
-				var finnedChainStep = new FinnedChainStep(chain.Conclusions, views, context.Options, finnedChain, in fins);
+				var finnedChainStep = new FinnedChainStep(
+					chain.Conclusions,
+					views,
+					context.Options,
+					finnedChain,
+					in fins,
+					chain.IsCellMultiple ? MultipleChainBasedComponent.Cell : MultipleChainBasedComponent.House
+				);
 				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
 				{
 					continue;
@@ -165,6 +172,49 @@ internal static partial class ChainingDriver
 
 		foreach (var chain in CollectRectangleMultipleChains(in context.Grid, context.OnlyFindOne))
 		{
+			var cachedAlsIndex = 0;
+			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
+			{
+				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
+				var views = (View[])[
+					[
+						.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
+						.. finnedChain.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0]
+					]
+				];
+
+				// Change nodes into fin-like view nodes.
+				foreach (var node in (ViewNode[])[.. views[0]])
+				{
+					if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
+					{
+						views[0].Remove(node);
+						views[0].Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
+					}
+				}
+
+				var finnedChainStep = new FinnedChainStep(
+					chain.Conclusions,
+					views,
+					context.Options,
+					finnedChain,
+					in fins,
+					MultipleChainBasedComponent.Rectangle
+				);
+				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
+				{
+					continue;
+				}
+
+				if (context.OnlyFindOne)
+				{
+					return finnedChainStep;
+				}
+
+				accumulator.Add(finnedChainStep);
+				continue;
+			}
+
 			if (!onlyFindFinnedChain)
 			{
 				var rfcStep = new RectangleForcingChainsStep(

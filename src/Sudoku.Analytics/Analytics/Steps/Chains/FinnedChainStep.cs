@@ -8,12 +8,14 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="pattern"><inheritdoc/></param>
 /// <param name="fins">Indicates the extra fins.</param>
+/// <param name="basedComponent">Indicates the base component.</param>
 public sealed partial class FinnedChainStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	NamedChain pattern,
-	[Property] ref readonly CandidateMap fins
+	[Property] ref readonly CandidateMap fins,
+	[Property] MultipleChainBasedComponent basedComponent
 ) : NormalChainStep(conclusions, views, options, pattern)
 {
 	/// <inheritdoc/>

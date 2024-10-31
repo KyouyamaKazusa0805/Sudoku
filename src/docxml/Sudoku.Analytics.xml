@@ -3683,6 +3683,26 @@
         <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.op_Inequality(Sudoku.Analytics.Construction.Components.LockedMember,Sudoku.Analytics.Construction.Components.LockedMember)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.MultipleChainBasedComponent">
+            <summary>
+            Represents a base technique of multiple forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.MultipleChainBasedComponent.Cell">
+            <summary>
+            Indicates the multiple forcing chains starts with a cell.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.MultipleChainBasedComponent.House">
+            <summary>
+            Indicates the multiple forcing chains starts with a house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.MultipleChainBasedComponent.Rectangle">
+            <summary>
+            Indicates the multiple forcing chains starts with a unique rectangle.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.MultipleForcingChains">
             <summary>
             Represents an instance that describes for cell forcing chains or region forcing chains (i.e. house forcing chains).
@@ -12604,8 +12624,9 @@
             <param name="options"><inheritdoc/></param>
             <param name="pattern"><inheritdoc/></param>
             <param name="fins">Indicates the extra fins.</param>
+            <param name="basedComponent">Indicates the base component.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FinnedChainStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Analytics.Steps.FinnedChainStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.CandidateMap@,Sudoku.Analytics.Construction.Components.MultipleChainBasedComponent)">
             <summary>
             Provides with a step that is a <b>Finned (Grouped) Chain</b> or <b>Finned (Grouped) Loop</b> technique.
             </summary>
@@ -12614,6 +12635,7 @@
             <param name="options"><inheritdoc/></param>
             <param name="pattern"><inheritdoc/></param>
             <param name="fins">Indicates the extra fins.</param>
+            <param name="basedComponent">Indicates the base component.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FinnedChainStep.BaseDifficulty">
             <inheritdoc/>
@@ -12635,6 +12657,11 @@
         <member name="P:Sudoku.Analytics.Steps.FinnedChainStep.Fins">
             <summary>
             The generated property declaration for parameter <c>fins</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FinnedChainStep.BasedComponent">
+            <summary>
+            The generated property declaration for parameter <c>basedComponent</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.MultipleForcingChainsStep">
