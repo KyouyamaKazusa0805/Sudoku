@@ -118,10 +118,9 @@ internal static class PrimaryConstructorMemberHandler
 				continue;
 			}
 
-			var isReadOnly = n.TryGetValueOrDefault<bool>(IsReadOnlyByDefaultPropertyName, out var isReadOnlyLocal)
-				? isReadOnlyLocal
-				: typeKind == TypeKind.Struct && !isReadOnlyStruct || typeKind != TypeKind.Struct;
-			var readOnlyModifier = typeKind == TypeKind.Struct ? "readonly " : string.Empty;
+			var readOnlyModifier = n.TryGetValueOrDefault<bool>(IsReadOnlyByDefaultPropertyName, out var isReadOnlyLocal)
+				? isReadOnlyLocal ? "readonly " : string.Empty
+				: "readonly ";
 			var refKind = n.TryGetValueOrDefault<string?>(RefKindPropertyName, out var refKindLocal)
 				? refKindLocal is not null
 					? (refKindLocal.EndsWith(" ") ? refKindLocal : $"{refKindLocal} ").ToLower()

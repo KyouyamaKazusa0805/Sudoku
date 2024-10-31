@@ -5,7 +5,7 @@ namespace System.Buffers;
 /// </summary>
 /// <typeparam name="T">The type of the only element of array.</typeparam>
 /// <param name="value">Indicates the value.</param>
-public sealed partial class SingletonArray<T>([Field] T value) : MemoryManager<T>
+public sealed partial class SingletonArray<T>([Field(IsReadOnlyByDefault = false)] T value) : MemoryManager<T>
 {
 	/// <inheritdoc/>
 	public override void Unpin()
