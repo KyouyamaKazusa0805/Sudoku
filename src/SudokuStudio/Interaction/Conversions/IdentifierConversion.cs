@@ -31,6 +31,9 @@ internal static class IdentifierConversion
 				ColorIdentifierKind.AlmostLockedSet3 => uiPref.AlmostLockedSetsColors[2],
 				ColorIdentifierKind.AlmostLockedSet4 => uiPref.AlmostLockedSetsColors[3],
 				ColorIdentifierKind.AlmostLockedSet5 => uiPref.AlmostLockedSetsColors[4],
+				ColorIdentifierKind.Rectangle1 => uiPref.RectangleColors[0],
+				ColorIdentifierKind.Rectangle2 => uiPref.RectangleColors[1],
+				ColorIdentifierKind.Rectangle3 => uiPref.RectangleColors[2],
 				_ => throw new InvalidOperationException(SR.ExceptionMessage("SuchColorCannotBeFound"))
 			},
 			_ => throw new InvalidOperationException(SR.ExceptionMessage("SuchInstanceIsInvalid"))

@@ -2437,6 +2437,12 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.RectangleColors">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.RectangleColors"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.RectangleColors_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.RectangleColors"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidatesProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates"/>.
@@ -3078,6 +3084,18 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_Dark"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.RectangleColorsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.RectangleColors"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.RectangleColors"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.RectangleColors_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.RectangleColors_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.RectangleColors_Dark"/>
         </member>
         <member name="T:SudokuStudio.Configuration.UserDefinedDrawable">
             <summary>
@@ -13375,6 +13393,11 @@
             Indicates the colors applied to technique pattern Almost Locked Sets.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.RectangleColors">
+            <summary>
+            Indicates the colors applied to technique pattern Rectangles (URs and ARs).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ApproximateCellWidth">
             <summary>
             Indicates the approximately-measured width and height value of a cell.
@@ -13926,6 +13949,12 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.RectangleColorsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.RectangleColors"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.RectangleColors"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.Extensions">
             <target name="class" when="extension">

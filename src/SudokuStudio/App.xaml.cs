@@ -144,6 +144,7 @@ public partial class App : Application
 			pane.DifficultyLevelBackgrounds = uiPref.DifficultyLevelBackgrounds;
 			pane.UserDefinedColorPalette = uiPref.UserDefinedColorPalette;
 			pane.AlmostLockedSetsColors = uiPref.AlmostLockedSetsColors;
+			pane.RectangleColors = uiPref.RectangleColors;
 		}
 
 		void setSudokuPaneColors_Dark()
@@ -173,6 +174,7 @@ public partial class App : Application
 			pane.DifficultyLevelBackgrounds = uiPref.DifficultyLevelBackgrounds_Dark;
 			pane.UserDefinedColorPalette = uiPref.UserDefinedColorPalette_Dark;
 			pane.AlmostLockedSetsColors = uiPref.AlmostLockedSetsColors_Dark;
+			pane.RectangleColors = uiPref.RectangleColors_Dark;
 		}
 	}
 

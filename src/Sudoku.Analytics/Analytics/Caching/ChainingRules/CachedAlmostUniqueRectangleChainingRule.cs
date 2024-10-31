@@ -107,7 +107,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 						{
 							view.Remove(candidateViewNode);
 						}
-						var node = new CandidateViewNode(ColorIdentifier.Auxiliary3, candidate);
+						var node = new CandidateViewNode(ColorIdentifier.Rectangle1, candidate);
 						view.Add(node);
 						result.Add(node);
 					}
@@ -118,7 +118,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 					{
 						view.Remove(cellViewNode);
 					}
-					var node = new CellViewNode(ColorIdentifier.Auxiliary3, cell);
+					var node = new CellViewNode(ColorIdentifier.Rectangle1, cell);
 					view.Add(node);
 					result.Add(node);
 				}

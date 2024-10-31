@@ -281,6 +281,20 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		Color.FromArgb(255, 192, 192, 192)
 	];
 
+	[Default]
+	private static readonly ColorPalette RectangleColorsDefaultValue = [
+		Color.FromArgb(255, 216, 178, 255), // Purple
+		Color.FromArgb(255, 204, 150, 248), // Purple
+		Color.FromArgb(255, 114, 82, 170), // Dark purple
+	];
+
+	[Default]
+	private static readonly ColorPalette RectangleColors_DarkDefaultValue = [
+		Color.FromArgb(255, 58, 51, 108), // Dark purple
+		Color.FromArgb(255, 105, 97, 138), // Dark purple
+		Color.FromArgb(255, 230, 215, 249) // Light purple
+	];
+
 
 	/// <inheritdoc cref="SudokuPane.DisplayCandidates"/>
 	[DependencyProperty(DefaultValue = true)]
@@ -548,7 +562,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	/// </summary>
 	[DependencyProperty(
 		DefaultValue = StepTooltipDisplayItems.TechniqueName | StepTooltipDisplayItems.DifficultyRating
-		| StepTooltipDisplayItems.SimpleDescription | StepTooltipDisplayItems.ExtraDifficultyCases)]
+			| StepTooltipDisplayItems.SimpleDescription | StepTooltipDisplayItems.ExtraDifficultyCases)]
 	public partial StepTooltipDisplayItems StepDisplayItems { get; set; }
 
 	/// <summary>
@@ -874,6 +888,14 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	/// <inheritdoc cref="SudokuPane.AlmostLockedSetsColors"/>
 	[DependencyProperty]
 	public partial ColorPalette AlmostLockedSetsColors_Dark { get; set; }
+
+	/// <inheritdoc cref="SudokuPane.RectangleColors"/>
+	[DependencyProperty]
+	public partial ColorPalette RectangleColors { get; set; }
+
+	/// <inheritdoc cref="SudokuPane.RectangleColors"/>
+	[DependencyProperty]
+	public partial ColorPalette RectangleColors_Dark { get; set; }
 
 
 	[Callback]

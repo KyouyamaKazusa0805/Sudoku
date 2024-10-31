@@ -156,6 +156,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 247, 222, 143)
 	];
 
+	[Default]
+	private static readonly ColorPalette RectangleColorsDefaultValue = [
+		Color.FromArgb(255, 216, 178, 255), // Purple
+		Color.FromArgb(255, 204, 150, 248), // Purple
+		Color.FromArgb(255, 114, 82, 170), // Dark purple
+	];
+
 
 	/// <summary>
 	/// Indicates the temporary selected cell.
@@ -599,6 +606,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	[DependencyProperty]
 	public partial ColorPalette AlmostLockedSetsColors { get; set; }
+
+	/// <summary>
+	/// Indicates the colors applied to technique pattern Rectangles (URs and ARs).
+	/// </summary>
+	[DependencyProperty]
+	public partial ColorPalette RectangleColors { get; set; }
 
 	/// <summary>
 	/// Indicates the approximately-measured width and height value of a cell.

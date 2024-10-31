@@ -84,5 +84,20 @@ public enum WellKnownColorIdentifierKind
 	/// <summary>
 	/// Indicates the fifth ALS recorded.
 	/// </summary>
-	AlmostLockedSet5
+	AlmostLockedSet5,
+
+	/// <summary>
+	/// Indicates the first AUR or AAR recorded.
+	/// </summary>
+	Rectangle1,
+
+	/// <summary>
+	/// Indicates the second AUR or AAR recorded.
+	/// </summary>
+	Rectangle2,
+
+	/// <summary>
+	/// Indicates the third AUR or AAR recorded.
+	/// </summary>
+	Rectangle3
 }

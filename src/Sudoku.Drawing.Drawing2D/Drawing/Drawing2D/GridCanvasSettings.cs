@@ -204,6 +204,15 @@ public sealed class GridCanvasSettings
 	];
 
 	/// <summary>
+	/// Indicates the almost rectangle color set.
+	/// </summary>
+	public ColorPalette RectangleColorSet { get; set; } = [
+		Color.FromArgb(216, 178, 255), // Purple
+		Color.FromArgb(204, 150, 248), // Purple
+		Color.FromArgb(114, 82, 170), // Dark purple
+	];
+
+	/// <summary>
 	/// Indicates the user-defined color palette.
 	/// </summary>
 	public ColorPalette ColorPalette { get; set; } = [

@@ -6630,6 +6630,15 @@
         <member name="F:Sudoku.Drawing.ColorIdentifier.AlmostLockedSet5">
             <inheritdoc cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet5"/>
         </member>
+        <member name="F:Sudoku.Drawing.ColorIdentifier.Rectangle1">
+            <inheritdoc cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Rectangle1"/>
+        </member>
+        <member name="F:Sudoku.Drawing.ColorIdentifier.Rectangle2">
+            <inheritdoc cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Rectangle2"/>
+        </member>
+        <member name="F:Sudoku.Drawing.ColorIdentifier.Rectangle3">
+            <inheritdoc cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Rectangle3"/>
+        </member>
         <member name="M:Sudoku.Drawing.ColorIdentifier.Equals(Sudoku.Drawing.ColorIdentifier)">
             <inheritdoc/>
         </member>
@@ -7848,6 +7857,21 @@
         <member name="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet5">
             <summary>
             Indicates the fifth ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Rectangle1">
+            <summary>
+            Indicates the first AUR or AAR recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Rectangle2">
+            <summary>
+            Indicates the second AUR or AAR recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Rectangle3">
+            <summary>
+            Indicates the third AUR or AAR recorded.
             </summary>
         </member>
         <member name="T:Sudoku.Generating.FilteredGeneratorProgress">

@@ -165,6 +165,9 @@ public sealed partial class GridCanvas : IDisposable
 				WellKnownColorIdentifierKind.AlmostLockedSet3 => Settings.AlmostLockedSetColorSet[2],
 				WellKnownColorIdentifierKind.AlmostLockedSet4 => Settings.AlmostLockedSetColorSet[3],
 				WellKnownColorIdentifierKind.AlmostLockedSet5 => Settings.AlmostLockedSetColorSet[4],
+				WellKnownColorIdentifierKind.Rectangle1 => Settings.RectangleColorSet[0],
+				WellKnownColorIdentifierKind.Rectangle2 => Settings.RectangleColorSet[1],
+				WellKnownColorIdentifierKind.Rectangle3 => Settings.RectangleColorSet[2],
 				_ => unconditionalThrows(id)
 			},
 			_ => unconditionalThrows(id)

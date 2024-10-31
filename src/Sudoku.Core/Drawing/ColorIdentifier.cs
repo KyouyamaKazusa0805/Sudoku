@@ -62,6 +62,15 @@ public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEq
 	/// <inheritdoc cref="WellKnownColorIdentifierKind.AlmostLockedSet5"/>
 	public static readonly ColorIdentifier AlmostLockedSet5 = WellKnownColorIdentifierKind.AlmostLockedSet5;
 
+	/// <inheritdoc cref="WellKnownColorIdentifierKind.Rectangle1"/>
+	public static readonly ColorIdentifier Rectangle1 = WellKnownColorIdentifierKind.Rectangle1;
+
+	/// <inheritdoc cref="WellKnownColorIdentifierKind.Rectangle2"/>
+	public static readonly ColorIdentifier Rectangle2 = WellKnownColorIdentifierKind.Rectangle2;
+
+	/// <inheritdoc cref="WellKnownColorIdentifierKind.Rectangle3"/>
+	public static readonly ColorIdentifier Rectangle3 = WellKnownColorIdentifierKind.Rectangle3;
+
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] ColorIdentifier? other);

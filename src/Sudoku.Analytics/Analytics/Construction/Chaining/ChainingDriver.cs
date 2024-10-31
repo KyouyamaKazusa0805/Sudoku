@@ -198,7 +198,7 @@ internal static partial class ChainingDriver
 				{
 					foreach (var view in views)
 					{
-						view.Add(new CellViewNode(ColorIdentifier.Auxiliary3, cell));
+						view.Add(new CellViewNode(ColorIdentifier.Rectangle1, cell));
 					}
 				}
 
