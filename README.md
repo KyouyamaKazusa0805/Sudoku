@@ -18,9 +18,13 @@
 
 ## Introduction
 
-A sudoku handling SDK using brute forces and logical techniques. Now this solution supports generating puzzles, solving puzzles (with logical techniques & brute forces) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
+A sudoku handling SDK using brute forces and logical techniques.
 
-### Repository Positioning
+## Preface
+
+![](miscellaneous/pic/ui-en.png)
+
+## Repository Positioning
 
 This repository is created for the following users:
 
@@ -28,9 +32,35 @@ This repository is created for the following users:
 * **who wants to learn about C#-related features**: This repository uses some C# newer features, which can help you learn about it.
 * **myself**: The codes are very important for me to learn sudoku and related algorithm.
 
-## Prefaces
+## API Supports
 
-![](miscellaneous/pic/ui-en.png)
+* Puzzle generation
+  * Standard generator
+  * Pattern-based generator
+  * Hard-pattern-based generator
+  * Technique-based generator
+  * Generated puzzle filters
+* Puzzle solving
+  * Bitwise
+  * Dancing Links
+  * Backtracking
+  * LINQ-based solving algorithm
+  * Dictionary-based solving algorithm
+* Puzzle analysis
+  * Difficulty rating
+  * Step-by-step analysis
+  * Bottleneck analysis
+  * Direct technique specialized supports
+  * Partial implementation on extremely hard and studying-only techniques
+* Drawing
+  * GDI+ drawing functions (e.g. Adding/removing drawing nodes, sudoku grid canvas, background color, bottom text, etc.)
+  * Incremental rendering in UI layer
+* Text
+  * I/O handling on variant grid text types (Susser, HoDoKu library format, etc.)
+  * JSON serialization and deserialization on most of data structuress
+* Compatibility with other programs
+  * Integrated information on all HoDoKu techniques, and analysis supports
+  * Integrated information on all Sudoku Explainer techniques, and analysis supports
 
 ## Technique Supports
 
