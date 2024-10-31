@@ -2870,4 +2870,7 @@
   <data name="SettingsPage_EnableOrderingStepsByLastingValueDescription2" xml:space="preserve">
     <value>一般情况下，搜索模块会严格按技巧来排序。如唯一余数比排除难，排除比同数九缺一难，同数九缺一又会比同区九缺一难。</value>
   </data>
+  <data name="SettingsPage_RectangleColors" xml:space="preserve">
+    <value>矩形（唯一矩形、可规避矩形）配色</value>
+  </data>
 </root>

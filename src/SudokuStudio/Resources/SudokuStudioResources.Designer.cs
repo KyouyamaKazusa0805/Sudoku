@@ -7041,6 +7041,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rectangle colors.
+        /// </summary>
+        internal static string SettingsPage_RectangleColors {
+            get {
+                return ResourceManager.GetString("SettingsPage_RectangleColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum number of empty cells searching in Reverse BUG.
         /// </summary>
         internal static string SettingsPage_ReverseBugMaxSearchingEmptyCellsCount {

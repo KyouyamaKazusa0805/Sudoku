@@ -9780,6 +9780,11 @@
               Looks up a localized string similar to This option limits the case that user wants to input a digit into a cell, whose containing houses has already include the digit as given or modifiable values. If this option is set true, the program won&apos;t allow this case, and do nothing after you input a wrong digit..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_RectangleColors">
+            <summary>
+              Looks up a localized string similar to Rectangle colors.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_ReverseBugMaxSearchingEmptyCellsCount">
             <summary>
               Looks up a localized string similar to Maximum number of empty cells searching in Reverse BUG.
@@ -17025,6 +17030,11 @@
         <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.AlmostLockedSetsColors">
             <summary>
             The almost locked set colors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.RectangleColors">
+            <summary>
+            The rectangle colors.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.ChangeColor(SudokuStudio.Collection.ColorPalette,System.Int32,Windows.UI.Color)">

@@ -139,6 +139,40 @@
 					</w:SettingsCard>
 				</w:SettingsExpander.Items>
 			</w:SettingsExpander>
+			<w:SettingsExpander Header="{m:R Key=SettingsPage_RectangleColors}">
+				<w:SettingsExpander.Items>
+					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+						<RelativePanel Margin="40,10,0,0">
+							<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="RectangleColors1SelectorTitle" Text="#1:" />
+							<c:ColorSelector
+								RelativePanel.RightOf="RectangleColors1SelectorTitle"
+								RelativePanel.AlignVerticalCenterWith="RectangleColors1SelectorTitle" Margin="10,0,0,0"
+								SelectedColor="{x:Bind RectangleColors[0]}"
+								ColorChanged="RectangleColor1Selector_ColorChanged" />
+						</RelativePanel>
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+						<RelativePanel Margin="40,0,0,0">
+							<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="RectangleColors2SelectorTitle" Text="#2:" />
+							<c:ColorSelector
+								RelativePanel.RightOf="RectangleColors2SelectorTitle"
+								RelativePanel.AlignVerticalCenterWith="RectangleColors2SelectorTitle" Margin="10,0,0,0"
+								SelectedColor="{x:Bind RectangleColors[1]}"
+								ColorChanged="RectangleColor2Selector_ColorChanged" />
+						</RelativePanel>
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+						<RelativePanel Margin="40,0,0,0">
+							<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="RectangleColors3SelectorTitle" Text="#3:" />
+							<c:ColorSelector
+								RelativePanel.RightOf="RectangleColors3SelectorTitle"
+								RelativePanel.AlignVerticalCenterWith="RectangleColors3SelectorTitle" Margin="10,0,0,0"
+								SelectedColor="{x:Bind RectangleColors[2]}"
+								ColorChanged="RectangleColor3Selector_ColorChanged" />
+						</RelativePanel>
+					</w:SettingsCard>
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_ActiveCellColorPatternBasedGeneratorPage}">
 				<c:ColorSelector x:Name="ActiveCellColorSelector" SelectedColor="{x:Bind ActiveCellColor}" ColorChanged="ActiveCellColorSelector_ColorChanged" />
 			</w:SettingsCard>

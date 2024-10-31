@@ -2879,4 +2879,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="SettingsPage_EnableOrderingStepsByLastingValueDescription2" xml:space="preserve">
     <value>By default, searching module will strictly checks for technique used. For example, Naked Singles is harder than Hidden Single, and Hidden Single is harder than Last Digit, and Last Digit is harder than Full House.</value>
   </data>
+  <data name="SettingsPage_RectangleColors" xml:space="preserve">
+    <value>Rectangle colors</value>
+  </data>
 </root>

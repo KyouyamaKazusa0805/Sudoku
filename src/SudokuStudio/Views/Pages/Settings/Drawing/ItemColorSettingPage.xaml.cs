@@ -281,6 +281,24 @@ public sealed partial class ItemColorSettingPage : Page
 		};
 	}
 
+	/// <summary>
+	/// The rectangle colors.
+	/// </summary>
+	internal ColorPalette RectangleColors
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.RectangleColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.RectangleColors_Dark
+		};
+
+		set => _ = App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.RectangleColors = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.RectangleColors_Dark = value
+		};
+	}
+
 
 	/// <summary>
 	/// Try to set color to the specified <see cref="ColorPalette"/> instance.
@@ -370,6 +388,27 @@ public sealed partial class ItemColorSettingPage : Page
 			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors,
 			_ => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors_Dark
 		}, 4, e);
+
+	private void RectangleColor1Selector_ColorChanged(object sender, Color e)
+		=> ChangeColor(App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.RectangleColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.RectangleColors_Dark
+		}, 0, e);
+
+	private void RectangleColor2Selector_ColorChanged(object sender, Color e)
+		=> ChangeColor(App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.RectangleColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.RectangleColors_Dark
+		}, 1, e);
+
+	private void RectangleColor3Selector_ColorChanged(object sender, Color e)
+		=> ChangeColor(App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.RectangleColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.RectangleColors_Dark
+		}, 2, e);
 
 	private void ActiveCellColorSelector_ColorChanged(object sender, Color e) => ActiveCellColor = e;
 }
