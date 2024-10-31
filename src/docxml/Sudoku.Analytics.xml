@@ -3785,14 +3785,14 @@
             Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the start.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Exists(System.Func{Sudoku.Analytics.Construction.Components.Chain,System.Boolean})">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Exists(System.Func{Sudoku.Analytics.Construction.Components.UnnamedChain,System.Boolean})">
             <summary>
             Determines whether the collection contains at least one element satisfying the specified condition.
             </summary>
             <param name="predicate">The condition to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.TrueForAll(System.Func{Sudoku.Analytics.Construction.Components.Chain,System.Boolean})">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.TrueForAll(System.Func{Sudoku.Analytics.Construction.Components.UnnamedChain,System.Boolean})">
             <summary>
             Determines whether all elements in this collection satisfy the specified condition.
             </summary>

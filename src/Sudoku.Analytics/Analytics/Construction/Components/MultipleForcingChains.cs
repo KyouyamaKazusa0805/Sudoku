@@ -112,7 +112,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	/// </summary>
 	/// <param name="predicate">The condition to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Exists(Func<Chain, bool> predicate)
+	public bool Exists(Func<UnnamedChain, bool> predicate)
 	{
 		foreach (var element in Values)
 		{
@@ -129,7 +129,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	/// </summary>
 	/// <param name="predicate">The condition to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool TrueForAll(Func<Chain, bool> predicate)
+	public bool TrueForAll(Func<UnnamedChain, bool> predicate)
 	{
 		foreach (var element in Values)
 		{
@@ -266,7 +266,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 
 		// Iterate on each branch, to get whether they can directly points to conclusion.
 		var finsFound = CandidateMap.Empty;
-		var krakenBranches = new List<Chain>(2);
+		var krakenBranches = new List<UnnamedChain>(2);
 		foreach (var branch in branches)
 		{
 			if (branch is [.. { Length: 1 }, { Map: { PeerIntersection: var p } lastMap }] && p.Contains(elimination))
