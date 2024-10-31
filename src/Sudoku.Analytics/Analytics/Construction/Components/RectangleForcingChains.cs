@@ -20,5 +20,5 @@ public sealed partial class RectangleForcingChains([Property] Cell[] cells, para
 
 	/// <inheritdoc/>
 	protected override ReadOnlySpan<ViewNode> GetInitialViewNodes()
-		=> from cell in Candidates.Cells select (ViewNode)new CellViewNode(ColorIdentifier.Normal, cell);
+		=> from cell in Cells select (ViewNode)new CellViewNode(ColorIdentifier.Auxiliary3, cell);
 }
