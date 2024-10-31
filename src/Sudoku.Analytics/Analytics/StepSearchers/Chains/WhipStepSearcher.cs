@@ -91,6 +91,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 						// Add all found conclusion into the pending queue.
 						foreach (var assignment in currentNode.AvailableAssignments)
 						{
+							#region Description to optimization, and a problem that I want you to consider and solve it
 							// Check whether the current found assignment indeed exists in ancestor nodes.
 							// If so, such conclusion should not be used as children nodes of the current node.
 							//
@@ -111,6 +112,33 @@ public sealed partial class WhipStepSearcher : StepSearcher
 							// and F grid state can also produce steps C, D and E.
 							// We should ignore all the other conclusions that don't exist in the branch A -> B -> E
 							// (conclusions C, D and F) and A -> B -> F (conclusions C, D and E).
+							//
+							// In order to find minimal path, we may not iterate on all possible paths.
+							// There's a one way to reduce path length.
+							//
+							//           A
+							//           |
+							//      /----|----\
+							//     B     C     D
+							//    / \
+							//   E   F
+							//
+							// Also, in the diagram, we can know there're 4 possible paths:
+							//
+							//   * A-B-E
+							//   * A-B-F
+							//   * A-C
+							//   * A-D
+							//
+							// But, if we can find that both paths A-C and B-E in path A-B-E produces same interim candidates,
+							// we'll know that in fact A-C is a better choice than A-B-E,
+							// because A-C has a shorter path to reach same whip node.
+							// However, due to design of this algorithm, we'll return if any one possible path is found.
+							// This means, if A-B-E is encountered before A-C, there'll ignore such better paths like A-C.
+							// To fix this issue, we should check for all conclusions produced here instead,
+							// in order to choose a shorter one without ignoring the other paths A-C and A-D
+							// while searching A-B-E and A-B-F.
+							#endregion
 
 							var isParentNodeContainsSuchAssignment = false;
 							for (var parentNode = currentNode.Parent; parentNode is not null; parentNode = parentNode.Parent)
