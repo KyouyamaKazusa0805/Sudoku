@@ -90,13 +90,13 @@ internal partial class ChainingDriver
 					}
 				}
 
-				var step1 = rfcOn(in grid, in branchStartCandidates, nodesSupposedOnGrouped, resultNodesSupposedOn);
+				var step1 = rfcOn(urCells, in grid, in branchStartCandidates, nodesSupposedOnGrouped, resultNodesSupposedOn);
 				if (!step1.IsEmpty)
 				{
 					return step1;
 				}
 
-				var step2 = rfcOff(in grid, in branchStartCandidates, nodesSupposedOffGrouped, resultNodesSupposedOff);
+				var step2 = rfcOff(urCells, in grid, in branchStartCandidates, nodesSupposedOffGrouped, resultNodesSupposedOff);
 				if (!step2.IsEmpty)
 				{
 					return step2;
@@ -127,6 +127,7 @@ internal partial class ChainingDriver
 		}
 
 		ReadOnlySpan<RectangleForcingChains> rfcOn(
+			Cell[] urCells,
 			ref readonly Grid grid,
 			scoped ref readonly CandidateMap branchStartCandidates,
 			Dictionary<Candidate, HashSet<Node>> onNodes,
@@ -147,7 +148,7 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var rfc = new RectangleForcingChains(conclusion);
+				var rfc = new RectangleForcingChains(urCells, conclusion);
 				foreach (var candidate in branchStartCandidates)
 				{
 					var branchNode = onNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
@@ -163,6 +164,7 @@ internal partial class ChainingDriver
 		}
 
 		ReadOnlySpan<RectangleForcingChains> rfcOff(
+			Cell[] urCells,
 			ref readonly Grid grid,
 			scoped ref readonly CandidateMap branchStartCandidates,
 			Dictionary<Candidate, HashSet<Node>> offNodes,
@@ -183,7 +185,7 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var rfc = new RectangleForcingChains();
+				var rfc = new RectangleForcingChains(urCells);
 				foreach (var candidate in branchStartCandidates)
 				{
 					var branchNode = offNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));

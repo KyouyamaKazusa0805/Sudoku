@@ -4342,12 +4342,14 @@
             <summary>
             Represents a multiple forcing chains that is applied to a unique rectangle.
             </summary>
+            <param name="cells">Indicates the pattern cells.</param>
             <param name="conclusions"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])" path="/param[@name='conclusions']"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.RectangleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])">
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleForcingChains.#ctor(System.Int32[],Sudoku.Concepts.Conclusion[])">
             <summary>
             Represents a multiple forcing chains that is applied to a unique rectangle.
             </summary>
+            <param name="cells">Indicates the pattern cells.</param>
             <param name="conclusions"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])" path="/param[@name='conclusions']"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.RectangleForcingChains.IsCellMultiple">
@@ -4361,6 +4363,11 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.RectangleForcingChains.GetInitialViewNodes">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.RectangleForcingChains.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.StrongForcingChain">
             <summary>

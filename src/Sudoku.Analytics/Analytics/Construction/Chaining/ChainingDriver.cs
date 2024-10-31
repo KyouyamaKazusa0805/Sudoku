@@ -193,6 +193,15 @@ internal static partial class ChainingDriver
 					}
 				}
 
+				// Highlight UR nodes.
+				foreach (var cell in chain.Cells)
+				{
+					foreach (var view in views)
+					{
+						view.Add(new CellViewNode(ColorIdentifier.Auxiliary3, cell));
+					}
+				}
+
 				var finnedChainStep = new FinnedChainStep(
 					chain.Conclusions,
 					views,
