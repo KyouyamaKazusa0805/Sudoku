@@ -44,6 +44,7 @@
 [assembly: AssemblyStepSearcher<BlossomLoopStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<FinnedChainStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<GroupedFinnedChainStepSearcher>(2)]
+[assembly: AssemblyStepSearcher<FinnedRectangleChainStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<MultipleForcingChainsStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<RectangleForcingChainsStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<DeathBlossomStepSearcher>(2)]

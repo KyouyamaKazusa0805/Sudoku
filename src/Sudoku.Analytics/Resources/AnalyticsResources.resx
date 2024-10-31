@@ -3450,4 +3450,7 @@ Error grid: '{0:#}'</value>
   <data name="StepSearcherName_RectangleForcingChainsStepSearcher" xml:space="preserve">
     <value>Rectangle Forcing Chains</value>
   </data>
+  <data name="StepSearcherName_FinnedRectangleChainStepSearcher" xml:space="preserve">
+    <value>Finned Chain (+ Unique Rectangle)</value>
+  </data>
 </root>

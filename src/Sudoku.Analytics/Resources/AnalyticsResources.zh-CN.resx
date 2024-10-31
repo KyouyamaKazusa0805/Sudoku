@@ -3571,4 +3571,8 @@
     <value>矩形强制链</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="StepSearcherName_FinnedRectangleChainStepSearcher" xml:space="preserve">
+    <value>鳍链（+ 唯一矩形）</value>
+    <comment>Step Searcher Name</comment>
+  </data>
 </root>

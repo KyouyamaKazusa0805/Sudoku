@@ -27,7 +27,10 @@ public sealed partial class FinnedChainStep(
 	public Technique BasedOn => Pattern.GetTechnique(Conclusions.AsSet());
 
 	/// <inheritdoc/>
-	public override Technique Code => IsGrouped ? Technique.FinnedGroupedChain : Technique.FinnedChain;
+	public override Technique Code
+		=> IsGrouped || BasedComponent is not (MultipleChainBasedComponent.Cell or MultipleChainBasedComponent.House)
+			? Technique.FinnedGroupedChain
+			: Technique.FinnedChain;
 
 	/// <inheritdoc/>
 	public override Mask DigitsUsed => Pattern.DigitsMask;
