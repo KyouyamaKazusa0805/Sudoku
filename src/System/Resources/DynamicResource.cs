@@ -21,6 +21,7 @@ namespace System.Resources;
 /// </list>
 /// All valid invocations will return a <see cref="string"/> result indicating result.
 /// </remarks>
+[IntroducedSince(3, 4)]
 public sealed class DynamicResource : DynamicObject
 {
 	/// <summary>

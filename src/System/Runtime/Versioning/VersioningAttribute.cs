@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.Versioning;
+namespace System.Runtime.Versioning;
 
 /// <summary>
 /// Represents an attribute type that is used for describing supported version.

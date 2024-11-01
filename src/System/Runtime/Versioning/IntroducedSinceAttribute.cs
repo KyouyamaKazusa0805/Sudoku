@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.Versioning;
+namespace System.Runtime.Versioning;
 
 /// <summary>
 /// Represents an attribute type that describes the version that begins this API.
@@ -14,5 +14,5 @@ namespace Sudoku.Runtime.Versioning;
 		| AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field
 		| AttributeTargets.Event,
 	Inherited = false)]
-public sealed class AddedSinceAttribute(int major, int minor, int build = -1, int revision = -1) :
+public sealed class IntroducedSinceAttribute(int major, int minor, int build = -1, int revision = -1) :
 	VersioningAttribute(new(major, minor, build, revision));

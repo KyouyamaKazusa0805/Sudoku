@@ -10050,64 +10050,6 @@
             <inheritdoc/>
             <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
-        <member name="T:Sudoku.Runtime.Versioning.AddedSinceAttribute">
-            <summary>
-            Represents an attribute type that describes the version that begins this API.
-            </summary>
-            <param name="major"><inheritdoc cref="P:System.Version.Major" path="/summary"/></param>
-            <param name="minor"><inheritdoc cref="P:System.Version.Minor" path="/summary"/></param>
-            <param name="build"><inheritdoc cref="P:System.Version.Build" path="/summary"/></param>
-            <param name="revision"><inheritdoc cref="P:System.Version.Revision" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Runtime.Versioning.AddedSinceAttribute.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Represents an attribute type that describes the version that begins this API.
-            </summary>
-            <param name="major"><inheritdoc cref="P:System.Version.Major" path="/summary"/></param>
-            <param name="minor"><inheritdoc cref="P:System.Version.Minor" path="/summary"/></param>
-            <param name="build"><inheritdoc cref="P:System.Version.Build" path="/summary"/></param>
-            <param name="revision"><inheritdoc cref="P:System.Version.Revision" path="/summary"/></param>
-        </member>
-        <member name="T:Sudoku.Runtime.Versioning.DeprecatedSinceAttribute">
-            <summary>
-            Represents an attribute type that describes the beginning version that is deprecated this API.
-            </summary>
-            <param name="major"><inheritdoc cref="P:System.Version.Major" path="/summary"/></param>
-            <param name="minor"><inheritdoc cref="P:System.Version.Minor" path="/summary"/></param>
-            <param name="build"><inheritdoc cref="P:System.Version.Build" path="/summary"/></param>
-            <param name="revision"><inheritdoc cref="P:System.Version.Revision" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Runtime.Versioning.DeprecatedSinceAttribute.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Represents an attribute type that describes the beginning version that is deprecated this API.
-            </summary>
-            <param name="major"><inheritdoc cref="P:System.Version.Major" path="/summary"/></param>
-            <param name="minor"><inheritdoc cref="P:System.Version.Minor" path="/summary"/></param>
-            <param name="build"><inheritdoc cref="P:System.Version.Build" path="/summary"/></param>
-            <param name="revision"><inheritdoc cref="P:System.Version.Revision" path="/summary"/></param>
-        </member>
-        <member name="T:Sudoku.Runtime.Versioning.VersioningAttribute">
-            <summary>
-            Represents an attribute type that is used for describing supported version.
-            </summary>
-            <param name="version">Indicates the target version.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.Versioning.VersioningAttribute.#ctor(System.Version)">
-            <summary>
-            Represents an attribute type that is used for describing supported version.
-            </summary>
-            <param name="version">Indicates the target version.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.Versioning.VersioningAttribute.DescriptionLink">
-            <summary>
-            Indicates the description of this API about why it is created or deprecated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.Versioning.VersioningAttribute.Version">
-            <summary>
-            The generated property declaration for parameter <c>version</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Shuffling.Minlex.BestTripletPermutation">
             <summary>
             Represents the permutation information for best triplet.

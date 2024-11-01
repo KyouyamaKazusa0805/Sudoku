@@ -125,7 +125,7 @@ public sealed class Analyzer : AnalyzerBase
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that has some extra configuration, suitable for a whole analysis lifecycle.
 	/// </summary>
-	[AddedSince(3, 4)]
+	[IntroducedSince(3, 4)]
 	public static Analyzer Standard
 		=> Default
 			.WithIgnoreHighTimeComplexityStepSearchers(false)
