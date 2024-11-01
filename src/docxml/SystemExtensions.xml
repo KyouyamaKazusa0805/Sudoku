@@ -6039,6 +6039,45 @@
             <param name="type">The type.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:System.Resources.DynamicResource">
+            <summary>
+            Represents an object that can use lookup syntax <c>resource["Key"]</c> or property syntax <c>resource.Key</c> to fetch resources.
+            </summary>
+            <remarks>
+            Usages:
+            <list type="bullet">
+            <item>Indexer: <c>resource[ResourceKeyName]</c></item>
+            <item>Indexer: <c>resource[ResourceKeyName, <see cref="T:System.String"/>]</c></item>
+            <item>Indexer: <c>resource[ResourceKeyName, <see cref="T:System.String"/>, <see cref="T:System.Reflection.Assembly"/>]</c></item>
+            <item>Indexer: <c>resource[ResourceKeyName, <see cref="T:System.Reflection.Assembly"/>]</c></item>
+            <item>Indexer: <c>resource[ResourceKeyName, <see cref="T:System.Globalization.CultureInfo"/>]</c></item>
+            <item>Indexer: <c>resource[ResourceKeyName, <see cref="T:System.Globalization.CultureInfo"/>, <see cref="T:System.Reflection.Assembly"/>]</c></item>
+            <item>Property: <c>resource.ResourceKeyName</c></item>
+            <item>Method: <c>resource.ResourceKeyName()</c></item>
+            <item>Method: <c>resource.ResourceKeyName(<see cref="T:System.String"/>)</c></item>
+            <item>Method: <c>resource.ResourceKeyName(<see cref="T:System.String"/>, <see cref="T:System.Reflection.Assembly"/>)</c></item>
+            <item>Method: <c>resource.ResourceKeyName(<see cref="T:System.Globalization.CultureInfo"/>)</c></item>
+            <item>Method: <c>resource.ResourceKeyName(<see cref="T:System.Globalization.CultureInfo"/>, <see cref="T:System.Reflection.Assembly"/>)</c></item>
+            </list>
+            All valid invocations will return a <see cref="T:System.String"/> result indicating result.
+            </remarks>
+        </member>
+        <member name="F:System.Resources.DynamicResource.Instance">
+            <summary>
+            Represents the default instance.
+            </summary>
+        </member>
+        <member name="M:System.Resources.DynamicResource.#ctor">
+            <summary>
+            Indicates the singleton constructor.
+            </summary>
+        </member>
+        <member name="M:System.Resources.DynamicResource.TryGetIndex(System.Dynamic.GetIndexBinder,System.Object[],System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Resources.DynamicResource.TryInvokeMember(System.Dynamic.InvokeMemberBinder,System.Object[],System.Object@)">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Resources.MissingResourceManagerException">
             <summary>
             Represents an exception that will be thrown if resource manager is missing.
