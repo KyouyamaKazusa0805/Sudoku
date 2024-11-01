@@ -60,7 +60,7 @@ This repository is created for the following users:
   * JSON serialization and deserialization on most of data structures
 * Compatibility with other programs
   * Integrated information on all HoDoKu techniques, and analysis supports
-  * Integrated information on all Sudoku Explainer techniques, and analysis supports
+  * Integrated information on most of Sudoku Explainer techniques, and analysis supports
 
 ## Technique Supports
 
