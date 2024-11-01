@@ -7,8 +7,14 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="BaseCells">The base cells to be used.</param>
 /// <param name="EmptyCells">The empty cells in the final.</param>
 /// <param name="ExcludedCells">The excluded cells to be used.</param>
-public sealed record ExcluderInfo(ref readonly CellMap BaseCells, ref readonly CellMap EmptyCells, ref readonly CellMap ExcludedCells)
+public sealed record ExcluderInfo(ref readonly CellMap BaseCells, ref readonly CellMap EmptyCells, ref readonly CellMap ExcludedCells) :
+	IComponent,
+	IEqualityOperators<ExcluderInfo, ExcluderInfo, bool>
 {
+	/// <inheritdoc/>
+	ComponentType IComponent.Type => ComponentType.Excluder;
+
+
 	/// <summary>
 	/// Try to get a pair of <see cref="CellMap"/> instances indicating the crosshatching information for the specified house,
 	/// with the specified digit in the specified grid.

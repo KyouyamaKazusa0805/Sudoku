@@ -38,6 +38,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>,
 	IComparable<MultipleForcingChains>,
 	IComparisonOperators<MultipleForcingChains, MultipleForcingChains, bool>,
+	IComponent,
 	IEquatable<MultipleForcingChains>,
 	IEqualityOperators<MultipleForcingChains, MultipleForcingChains, bool>,
 	IFormattable
@@ -105,6 +106,9 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	/// Returns a <see cref="CandidateMap"/> indicating all candidates used in this pattern, as the start.
 	/// </summary>
 	public CandidateMap Candidates => [.. Keys];
+
+	/// <inheritdoc/>
+	ComponentType IComponent.Type => ComponentType.MultipleForcingChains;
 
 
 	/// <summary>

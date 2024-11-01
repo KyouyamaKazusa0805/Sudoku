@@ -9,6 +9,7 @@ public sealed partial class BlossomLoop([Property] params ConclusionSet conclusi
 	SortedDictionary<Candidate, StrongForcingChain>,
 	IComparable<BlossomLoop>,
 	IComparisonOperators<BlossomLoop, BlossomLoop, bool>,
+	IComponent,
 	IEquatable<BlossomLoop>,
 	IEqualityOperators<BlossomLoop, BlossomLoop, bool>,
 	IFormattable
@@ -61,6 +62,9 @@ public sealed partial class BlossomLoop([Property] params ConclusionSet conclusi
 	/// Indicates the complexity of each branch.
 	/// </summary>
 	public ReadOnlySpan<int> BranchedComplexity => (from chain in Values select chain.Length).ToArray();
+
+	/// <inheritdoc/>
+	ComponentType IComponent.Type => ComponentType.BlossomLoop;
 
 
 	/// <summary>

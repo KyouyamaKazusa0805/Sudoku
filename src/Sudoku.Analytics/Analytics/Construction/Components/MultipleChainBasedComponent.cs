@@ -18,5 +18,10 @@ public enum MultipleChainBasedComponent
 	/// <summary>
 	/// Indicates the multiple forcing chains starts with a unique rectangle.
 	/// </summary>
-	Rectangle
+	Rectangle,
+
+	/// <summary>
+	/// Indicates the multiple forcing chains starts with a bi-value universal grave.
+	/// </summary>
+	BivalueUniversalGrave
 }

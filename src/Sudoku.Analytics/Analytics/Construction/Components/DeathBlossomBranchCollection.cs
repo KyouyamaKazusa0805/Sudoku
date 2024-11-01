@@ -8,6 +8,7 @@ namespace Sudoku.Analytics.Construction.Components;
 [TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode, GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract)]
 public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> :
 	Dictionary<TKey, AlmostLockedSetPattern>,
+	IComponent,
 	IEquatable<TSelf>,
 	ISelectMethod<TSelf, KeyValuePair<TKey, AlmostLockedSetPattern>>
 	where TSelf : DeathBlossomBranchCollection<TSelf, TKey>, IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>, new()
@@ -28,6 +29,9 @@ public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> :
 			return result;
 		}
 	}
+
+	/// <inheritdoc/>
+	ComponentType IComponent.Type => ComponentType.DeathBlossomBranch;
 
 
 	/// <inheritdoc/>

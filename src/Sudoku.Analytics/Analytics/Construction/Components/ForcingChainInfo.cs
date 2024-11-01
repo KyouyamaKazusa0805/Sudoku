@@ -10,6 +10,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <seealso cref="Node.IsOn"/>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, HashSet<Node> OffNodes) :
+	IComponent,
 	IEnumerable<Node>,
 	IReadOnlyCollection<Node>
 {
@@ -20,6 +21,9 @@ public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, Ha
 	/// Indicates the start node.
 	/// </summary>
 	public Node StartNode => OnNodes.First().Root;
+
+	/// <inheritdoc/>
+	ComponentType IComponent.Type => ComponentType.ForcingChains;
 
 	[HashCodeMember]
 	private int StartNodeHashCode => StartNode.GetHashCode();

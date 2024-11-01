@@ -12,6 +12,7 @@ namespace Sudoku.Analytics.Construction.Components;
 public abstract partial class Chain :
 	IComparable<Chain>,
 	IComparisonOperators<Chain, Chain, bool>,
+	IComponent,
 	IEnumerable<Node>,
 	IEquatable<Chain>,
 	IEqualityOperators<Chain, Chain, bool>,
@@ -285,6 +286,9 @@ public abstract partial class Chain :
 
 	/// <inheritdoc/>
 	int IReadOnlyCollection<Node>.Count => Length;
+
+	/// <inheritdoc/>
+	ComponentType IComponent.Type => ComponentType.Chain;
 
 	/// <inheritdoc cref="Links"/>
 	[field: MaybeNull]

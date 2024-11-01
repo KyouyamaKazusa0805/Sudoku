@@ -7,7 +7,11 @@ namespace Sudoku.Analytics.Construction;
 	TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.EqualityOperators,
 	OtherModifiersOnEquals = "sealed",
 	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract)]
-public abstract partial class Pattern : ICloneable, IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern, bool>
+public abstract partial class Pattern :
+	ICloneable,
+	IConstructible<PatternType>,
+	IEquatable<Pattern>,
+	IEqualityOperators<Pattern, Pattern, bool>
 {
 	/// <summary>
 	/// Indicates whether the current pattern can be used as a node inside a chain pattern <see cref="Chain"/>,
@@ -17,9 +21,7 @@ public abstract partial class Pattern : ICloneable, IEquatable<Pattern>, IEquali
 	/// <seealso cref="Link.GroupedLinkPattern"/>
 	public abstract bool IsChainingCompatible { get; }
 
-	/// <summary>
-	/// Indicates the pattern type.
-	/// </summary>
+	/// <inheritdoc/>
 	public abstract PatternType Type { get; }
 
 

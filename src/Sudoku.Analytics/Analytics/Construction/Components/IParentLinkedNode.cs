@@ -5,6 +5,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface IParentLinkedNode<TSelf> :
+	IComponent,
 	IEquatable<TSelf>,
 	IFormattable,
 	IEqualityOperators<TSelf, TSelf, bool>,

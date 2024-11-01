@@ -37,6 +37,9 @@ public sealed partial class WhipNode(
 		}
 	}
 
+	/// <inheritdoc/>
+	ComponentType IComponent.Type => ComponentType.WhipNode;
+
 	[EquatableMember]
 	private WhipAssignment AssignmentEntry => Assignment;
 

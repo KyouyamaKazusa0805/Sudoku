@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Represents a list of <see cref="Node"/> relations on strong or weak links.
 /// </summary>
 /// <seealso cref="Node"/>
-public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
+public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>, IComponent
 {
 	/// <summary>
 	/// The backing pool storing link and patterns.
@@ -26,6 +26,9 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 	/// Indicates the pool of grouped links and its corresponding pattern.
 	/// </summary>
 	public FrozenDictionary<Link, Pattern> GroupedLinkPool => _groupedLinkPool.ToFrozenDictionary();
+
+	/// <inheritdoc/>
+	ComponentType IComponent.Type => ComponentType.ChainLinkDictionary;
 
 
 	/// <summary>

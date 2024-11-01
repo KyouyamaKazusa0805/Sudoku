@@ -63,6 +63,9 @@ public sealed partial class Node(
 		}
 	}
 
+	/// <inheritdoc/>
+	ComponentType IComponent.Type => ComponentType.ChainNode;
+
 	/// <summary>
 	/// The backing comparing value on <see cref="IsOn"/> property.
 	/// </summary>

@@ -9,8 +9,15 @@ namespace Sudoku.Analytics.Construction.Components;
 public sealed partial class LockedMember(
 	[Property, HashCodeMember] ref readonly CellMap lockedCells,
 	[Property, HashCodeMember] House lockedBlock
-) : IEquatable<LockedMember>, IEqualityOperators<LockedMember, LockedMember, bool>
+) :
+	IComponent,
+	IEquatable<LockedMember>,
+	IEqualityOperators<LockedMember, LockedMember, bool>
 {
+	/// <inheritdoc/>
+	ComponentType IComponent.Type => ComponentType.LockedMember;
+
+
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out CellMap lockedCells, out House lockedBlock)

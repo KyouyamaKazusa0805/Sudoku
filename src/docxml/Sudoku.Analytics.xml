@@ -2328,6 +2328,9 @@
             Indicates the complexity of each branch.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.Exists(System.Func{Sudoku.Analytics.Construction.Components.Chain,System.Boolean})">
             <summary>
             Determines whether at least one branch contains at least one element satisfying the specified condition.
@@ -2551,6 +2554,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.System#Collections#Generic#IReadOnlyCollection{Sudoku#Analytics#Construction#Components#Node}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.LinksCore">
@@ -2863,6 +2869,9 @@
             Indicates all digits used.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.Equals(`0)">
             <inheritdoc/>
         </member>
@@ -2958,6 +2967,9 @@
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.ExcluderInfo.ExcludedCells">
             <summary>The excluded cells to be used.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ExcluderInfo.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ExcluderInfo.TryCreate(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
@@ -3106,6 +3118,9 @@
             <summary>
             Indicates the start node.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Equals(Sudoku.Analytics.Construction.Components.ForcingChainInfo)">
             <inheritdoc/>
@@ -3346,6 +3361,9 @@
             The mask that holds a list of extra houses used.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IComplexSeniorExocet.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IDeathBlossomCollection`2">
             <summary>
             Represents the basic data for a death blossom.
@@ -3366,6 +3384,9 @@
             <summary>
             Indicates the branches used.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IDeathBlossomCollection`2.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IDoubleExocet">
             <summary>
@@ -3391,6 +3412,9 @@
             <summary>
             A list of cells as the other pair of target cells.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IDoubleExocet.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1">
             <summary>
@@ -3491,6 +3515,9 @@
             Indicates whether the link is inside a cell.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Link.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Link.Equals(Sudoku.Analytics.Construction.Components.Link)">
             <inheritdoc/>
         </member>
@@ -3580,6 +3607,9 @@
             <summary>
             Indicates the pool of grouped links and its corresponding pattern.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.LinkDictionary.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.LinkDictionary.Clear">
             <summary>
@@ -3699,6 +3729,9 @@
             <param name="lockedCells">Indicates the locked cells.</param>
             <param name="lockedBlock">Indicates the locked block.</param>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.LockedMember.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32@)">
             <target name="method">
 				<summary>
@@ -3750,6 +3783,11 @@
         <member name="F:Sudoku.Analytics.Construction.Components.MultipleChainBasedComponent.Rectangle">
             <summary>
             Indicates the multiple forcing chains starts with a unique rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.MultipleChainBasedComponent.BivalueUniversalGrave">
+            <summary>
+            Indicates the multiple forcing chains starts with a bi-value universal grave.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.MultipleForcingChains">
@@ -3863,6 +3901,9 @@
             <summary>
             Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the start.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Exists(System.Func{Sudoku.Analytics.Construction.Components.UnnamedChain,System.Boolean})">
             <summary>
@@ -4050,28 +4091,6 @@
             <param name="grid">The grid to be checked.</param>
             <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance. By default the method returns an empty conclusion set.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.NamedChainExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.NamedChainExtensions.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
-            </summary>
-            <param name="this">The pattern to be checked.</param>
-            <param name="grid">The grid to calculate on conclusions for the pattern.</param>
-            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.NamedChainExtensions.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.ConclusionSet)">
-            <summary>
-            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
-            </summary>
-            <param name="this">The pattern to be checked.</param>
-            <param name="conclusions">The conclusions.</param>
-            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.Node">
             <summary>
             Represents a chain node.
@@ -4129,6 +4148,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Node.Root">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Node.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Node.IsOnPropertyValue">
@@ -4615,6 +4637,9 @@
         <member name="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Reason">
             <summary>Indicates the reason why the target candidate becomes available.</summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipAssignment.PrintMembers(System.Text.StringBuilder)">
             <target name="method" cref="M:Sudoku.Analytics.Construction.Components.WhipAssignment.PrintMembers(System.Text.StringBuilder)">
 				<summary>
@@ -4679,6 +4704,9 @@
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Root">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
@@ -4723,6 +4751,103 @@
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.Equals(Sudoku.Analytics.Construction.Components.WhipNode)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.ComponentType">
+            <summary>
+            Represents a type of component.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.Excluder">
+            <summary>
+            Indicates the component is excluder.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.Chain">
+            <summary>
+            Indicates the component is chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.ChainNode">
+            <summary>
+            Indicates the component is chain node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.ChainLink">
+            <summary>
+            Indicates the component is chain link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.ChainLinkDictionary">
+            <summary>
+            Indicates the component is chain link dictionary.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.ForcingChains">
+            <summary>
+            Indicates the component is forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.DeathBlossomBranch">
+            <summary>
+            Indicates the component is death blossom branch.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.MultipleForcingChains">
+            <summary>
+            Indicates the component is multiple forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.BlossomLoop">
+            <summary>
+            Indicates the component is blossom loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.WhipAssignment">
+            <summary>
+            Indicates the component is whip assignment.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.WhipNode">
+            <summary>
+            Indicates the component is whip node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.LockedMember">
+            <summary>
+            Indicates the component is locked member.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.DoubleExocet">
+            <summary>
+            Indicates the component is double exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.ComplexSeniorExocet">
+            <summary>
+            Indicates the component is complex senior exocet.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.IComponent">
+            <summary>
+            Represents a component in analysis of patterns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.IComponent.Type">
+            <inheritdoc cref="P:Sudoku.Analytics.Construction.IConstructible`1.Type"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.IComponent.Sudoku#Analytics#Construction#IConstructible{Sudoku#Analytics#Construction#ComponentType}#Type">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.IConstructible`1">
+            <summary>
+            Represents an element that is constructible.
+            </summary>
+            <typeparam name="TEnum">The type of enumeration.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.IConstructible`1.Type">
+            <summary>
+            Indicates the type of the constructible element.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Pattern">
             <summary>
             Represents a pattern that describes a technique, describing cells and digits used in a puzzle.
@@ -4737,9 +4862,7 @@
             <seealso cref="P:Sudoku.Analytics.Construction.Components.Link.GroupedLinkPattern"/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Pattern.Type">
-            <summary>
-            Indicates the pattern type.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Pattern.Equals(Sudoku.Analytics.Construction.Pattern)">
             <inheritdoc/>
@@ -21474,6 +21597,27 @@
             <summary>
             Indicates all possible behaviors.
             </summary>
+        </member>
+        <member name="T:Sudoku.Categorization.ChainNaming">
+            <summary>
+            Represents a way to get real name of a chain.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Categorization.ChainNaming.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
+            </summary>
+            <param name="this">The pattern to be checked.</param>
+            <param name="grid">The grid to calculate on conclusions for the pattern.</param>
+            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
+        </member>
+        <member name="M:Sudoku.Categorization.ChainNaming.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
+            </summary>
+            <param name="this">The pattern to be checked.</param>
+            <param name="conclusions">The conclusions.</param>
+            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
         </member>
         <member name="T:Sudoku.Categorization.GridPartialMarkingExtensions">
             <summary>

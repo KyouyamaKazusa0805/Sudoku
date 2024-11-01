@@ -307,7 +307,7 @@ internal static partial class ChainingDriver
 					context.Options,
 					finnedChain,
 					in fins,
-					MultipleChainBasedComponent.Rectangle
+					MultipleChainBasedComponent.BivalueUniversalGrave
 				);
 				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
 				{

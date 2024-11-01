@@ -21,7 +21,10 @@ public sealed partial class Link(
 	[Property] Node secondNode,
 	[Property] bool isStrong,
 	[Property] Pattern? groupedLinkPattern = null
-) : IEquatable<Link>, IEqualityOperators<Link, Link, bool>
+) :
+	IComponent,
+	IEquatable<Link>,
+	IEqualityOperators<Link, Link, bool>
 {
 	/// <summary>
 	/// Indicates the strong link connector.
@@ -40,6 +43,9 @@ public sealed partial class Link(
 	public bool IsBivalueCellLink
 		=> this is { FirstNode.Map: { Cells: [var c1], Digits: var d1 }, SecondNode.Map: { Cells: [var c2], Digits: var d2 } }
 		&& c1 == c2 && d1 != d2 && Mask.IsPow2(d1) && Mask.IsPow2(d2);
+
+	/// <inheritdoc/>
+	ComponentType IComponent.Type => ComponentType.ChainLink;
 
 
 	/// <inheritdoc/>

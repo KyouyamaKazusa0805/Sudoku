@@ -5,4 +5,5 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <param name="Candidate">Indicates the target candidate.</param>
 /// <param name="Reason"><inheritdoc cref="WhipAssignment.Reason" path="/summary"/></param>
-public sealed record NormalWhipAssignment(Candidate Candidate, Technique Reason) : WhipAssignment(Candidate.AsCandidateMap(), Reason);
+public sealed record NormalWhipAssignment(Candidate Candidate, Technique Reason) :
+	WhipAssignment(Candidate.AsCandidateMap(), Reason);

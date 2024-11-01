@@ -1,10 +1,9 @@
-namespace Sudoku.Analytics.Construction.Components;
+namespace Sudoku.Categorization;
 
 /// <summary>
-/// Provides with extension methods on <see cref="NamedChain"/> instances.
+/// Represents a way to get real name of a chain.
 /// </summary>
-/// <seealso cref="NamedChain"/>
-public static class NamedChainExtensions
+public static class ChainNaming
 {
 	/// <summary>
 	/// Try to categorize the pattern and return an equivalent <see cref="Technique"/> field representing such patterns.
