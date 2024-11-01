@@ -28114,7 +28114,7 @@
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.BowmanBingo">
             <summary>
-              Looks up a localized string similar to Bowman Bingo.
+              Looks up a localized string similar to Bowman&apos;s Bingo.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.BrokenWing">

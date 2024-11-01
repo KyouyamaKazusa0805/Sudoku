@@ -826,7 +826,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bowman Bingo.
+        ///   Looks up a localized string similar to Bowman&apos;s Bingo.
         /// </summary>
         public static string BowmanBingo {
             get {
