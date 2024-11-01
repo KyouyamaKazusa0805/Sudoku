@@ -3,8 +3,6 @@ namespace Sudoku.Drawing.Drawing2D;
 /// <summary>
 /// Represents a canvas that allows drawing sudoku-related items onto it.
 /// </summary>
-[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-[SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
 [TypeImpl(TypeImplFlags.Disposable)]
 public sealed partial class GridCanvas : IDisposable
 {
@@ -20,9 +18,9 @@ public sealed partial class GridCanvas : IDisposable
 
 
 	/// <summary>
-	/// Indicates the footer text.
+	/// Indicates whether the footer text can be drawn in this canvas, making canvas reserve footer.
 	/// </summary>
-	private readonly string? _footerText;
+	private readonly bool _needFooterText;
 
 	/// <summary>
 	/// Indicates the backing point calculator to be used.
@@ -57,12 +55,13 @@ public sealed partial class GridCanvas : IDisposable
 	/// <param name="size">Indicates the picture size to be used.</param>
 	/// <param name="padding">Indicates the padding of the inner grid.</param>
 	/// <param name="settings">Indicates settings that can be used by drawing items.</param>
-	/// <param name="footerText">Indicates the footer text to be used.</param>
-	public GridCanvas(int size, int padding, GridCanvasSettings? settings = null, string? footerText = null)
+	/// <param name="needFooterText">Indicates whether footer text is enabled to be drawn.</param>
+	public GridCanvas(int size, int padding, GridCanvasSettings? settings = null, bool needFooterText = false)
 	{
 		Settings = settings ?? new();
 		_calculator = new(size, padding);
-		_g = CreateGraphics(_footerText = footerText, size, settings, out _backingBitmap);
+		_needFooterText = needFooterText;
+		_g = CreateGraphics(_needFooterText, size, settings, out _backingBitmap);
 		Clear();
 	}
 
@@ -203,7 +202,7 @@ public sealed partial class GridCanvas : IDisposable
 	/// <returns>The font.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static Font GetFooterTextFont(float size, GridCanvasSettings? settings)
-		=> new((settings ??= new()).FooterTextFontName!, size * (float)settings.FooterTextScale, settings.FooterTextFontStyle);
+		=> new((settings ??= new()).FooterTextFontName!, size / 9 * (float)settings.FooterTextScale, settings.FooterTextFontStyle);
 
 	/// <summary>
 	/// Get the font via the specified name, size and the scale.
@@ -221,15 +220,15 @@ public sealed partial class GridCanvas : IDisposable
 	/// <summary>
 	/// Creates a <see cref="Graphics"/> instance via values.
 	/// </summary>
-	/// <param name="footerText">Indicates the footer text.</param>
+	/// <param name="needFooterText">Indicates whether canvas can draw footer text.</param>
 	/// <param name="size">Indicates the size.</param>
 	/// <param name="settings">Indicates the settings.</param>
 	/// <param name="bitmap">Indicates the bitmap instance that returns after <see cref="Graphics"/> instance is created.</param>
 	/// <returns>A <see cref="Graphics"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Graphics CreateGraphics(string? footerText, int size, GridCanvasSettings? settings, out Bitmap bitmap)
+	private static Graphics CreateGraphics(bool needFooterText, int size, GridCanvasSettings? settings, out Bitmap bitmap)
 	{
-		var g = Graphics.FromImage(bitmap = new(size, (int)(footerText is null ? size : size + MeasureFooterTextExtraHeight(footerText, size, settings))));
+		var g = Graphics.FromImage(bitmap = new(size, (int)(needFooterText ? size + MeasureFooterTextExtraHeight("a", size, settings) : size)));
 		g.SmoothingMode = SmoothingMode.HighQuality;
 		g.TextRenderingHint = TextRenderingHint.AntiAlias;
 		g.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -241,7 +240,7 @@ public sealed partial class GridCanvas : IDisposable
 	public partial void Clear();
 	public partial void DrawBackground();
 	public partial void DrawBorderLines();
-	public partial void DrawFooterText();
+	public partial void DrawFooterText(string footerText);
 	public partial void DrawGrid(ref readonly Grid grid);
 	public partial void DrawCellViewNodes(ReadOnlySpan<CellViewNode> nodes);
 	public partial void DrawCandidateViewNodes(ReadOnlySpan<CandidateViewNode> nodes, ReadOnlySpan<Conclusion> conclusions);

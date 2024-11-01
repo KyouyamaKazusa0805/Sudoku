@@ -30,9 +30,9 @@
             Represents square root of 2. This field is used for rotate the chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._footerText">
+        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._needFooterText">
             <summary>
-            Indicates the footer text.
+            Indicates whether the footer text can be drawn in this canvas, making canvas reserve footer.
             </summary>
         </member>
         <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._calculator">
@@ -58,14 +58,14 @@
             Indicates the backing <see cref="T:System.Drawing.Graphics"/> instance to draw elements.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.#ctor(System.Int32,System.Int32,Sudoku.Drawing.Drawing2D.GridCanvasSettings,System.String)">
+        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.#ctor(System.Int32,System.Int32,Sudoku.Drawing.Drawing2D.GridCanvasSettings,System.Boolean)">
             <summary>
             Initializes a <see cref="T:Sudoku.Drawing.Drawing2D.GridCanvas"/> instance via some values.
             </summary>
             <param name="size">Indicates the picture size to be used.</param>
             <param name="padding">Indicates the padding of the inner grid.</param>
             <param name="settings">Indicates settings that can be used by drawing items.</param>
-            <param name="footerText">Indicates the footer text to be used.</param>
+            <param name="needFooterText">Indicates whether footer text is enabled to be drawn.</param>
         </member>
         <member name="P:Sudoku.Drawing.Drawing2D.GridCanvas.Settings">
             <summary>
@@ -125,11 +125,11 @@
             <returns>The font.</returns>
             <exception cref="T:System.ArgumentNullException">Throws when <paramref name="fontName"/> is <see langword="null"/>.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.CreateGraphics(System.String,System.Int32,Sudoku.Drawing.Drawing2D.GridCanvasSettings,System.Drawing.Bitmap@)">
+        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.CreateGraphics(System.Boolean,System.Int32,Sudoku.Drawing.Drawing2D.GridCanvasSettings,System.Drawing.Bitmap@)">
             <summary>
             Creates a <see cref="T:System.Drawing.Graphics"/> instance via values.
             </summary>
-            <param name="footerText">Indicates the footer text.</param>
+            <param name="needFooterText">Indicates whether canvas can draw footer text.</param>
             <param name="size">Indicates the size.</param>
             <param name="settings">Indicates the settings.</param>
             <param name="bitmap">Indicates the bitmap instance that returns after <see cref="T:System.Drawing.Graphics"/> instance is created.</param>
@@ -153,10 +153,12 @@
             Draw border lines onto the canvas.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawFooterText">
+        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawFooterText(System.String)">
             <summary>
             Draw footer text onto the canvas.
             </summary>
+            <param name="footerText">The footer text.</param>
+            <exception cref="T:System.InvalidOperationException">Throws when the canvas doesn't support drawing footer text.</exception>
         </member>
         <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawGrid(Sudoku.Concepts.Grid@)">
             <summary>
@@ -421,6 +423,11 @@
         <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.AlmostLockedSetColorSet">
             <summary>
             Indicates the almost locked set color set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.RectangleColorSet">
+            <summary>
+            Indicates the almost rectangle color set.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ColorPalette">

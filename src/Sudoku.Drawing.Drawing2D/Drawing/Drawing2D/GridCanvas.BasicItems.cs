@@ -12,7 +12,6 @@ public partial class GridCanvas
 	{
 		DrawBackground();
 		DrawBorderLines();
-		DrawFooterText();
 	}
 
 	/// <summary>
@@ -44,13 +43,20 @@ public partial class GridCanvas
 	/// <summary>
 	/// Draw footer text onto the canvas.
 	/// </summary>
-	public partial void DrawFooterText()
+	/// <param name="footerText">The footer text.</param>
+	/// <exception cref="InvalidOperationException">Throws when the canvas doesn't support drawing footer text.</exception>
+	public partial void DrawFooterText(string footerText)
 	{
+		if (!_needFooterText)
+		{
+			throw new InvalidOperationException();
+		}
+
 		var w = _calculator.Width;
 		using var brush = new SolidBrush(Settings.FooterTextColor);
 		using var font = GetFooterTextFont(w, Settings);
-		var extraHeight = _g.MeasureString(_footerText, font).Height;
-		_g.DrawString(_footerText, font, brush, new RectangleF(0, w, w, extraHeight), _stringAligner);
+		var extraHeight = _g.MeasureString(footerText, font).Height;
+		_g.DrawString(footerText, font, brush, new RectangleF(0, w, w, extraHeight), _stringAligner);
 	}
 
 	/// <summary>
