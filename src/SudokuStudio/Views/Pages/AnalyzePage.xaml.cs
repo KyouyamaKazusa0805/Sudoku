@@ -989,6 +989,12 @@ public sealed partial class AnalyzePage : Page
 		};
 	}
 
+	private void SudokuPane_DigitInput(SudokuPane sender, DigitInputEventArgs e)
+	{
+		VisualUnit = null;
+		SudokuPane.ViewUnit = null;
+	}
+
 	private void MainMenuFlyout_Closed(object sender, object e)
 	{
 		foreach (var element in MainMenuFlyout.SecondaryCommands.OfType<AppBarButton>())
