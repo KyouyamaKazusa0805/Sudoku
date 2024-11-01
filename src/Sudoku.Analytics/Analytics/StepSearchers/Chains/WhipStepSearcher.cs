@@ -134,7 +134,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 							// we'll know that in fact A-C is a better choice than A-B-E,
 							// because A-C has a shorter path to reach same whip node.
 							// However, due to design of this algorithm, we'll return if any one possible path is found.
-							// This means, if A-B-E is encountered before A-C, there'll ignore such better paths like A-C.
+							// This means, if A-B-E is encountered before A-C, this algorithm will ignore better paths like A-C.
 							// To fix this issue, we should check for all conclusions produced here instead,
 							// in order to choose a shorter one without ignoring the other paths A-C and A-D
 							// while searching A-B-E and A-B-F.
