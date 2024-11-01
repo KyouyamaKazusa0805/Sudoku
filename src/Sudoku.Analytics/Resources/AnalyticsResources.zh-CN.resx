@@ -3490,6 +3490,7 @@
   </data>
   <data name="StepSearcherName_RotatingDeadlyPatternStepSearcher" xml:space="preserve">
     <value>旋转致命结构</value>
+    <comment>Step Searcher Name</comment>
   </data>
   <data name="TechniqueFormat_RotatingDeadlyPatternStep" xml:space="preserve">
     <value>{0}({1})</value>
@@ -3573,6 +3574,13 @@
   </data>
   <data name="StepSearcherName_FinnedRectangleChainStepSearcher" xml:space="preserve">
     <value>鳍链（+ 唯一矩形）</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="TechniqueFormat_BivalueUniversalGraveForcingChainsStep" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="StepSearcherName_BivalueUniversalGraveForcingChainsStepSearcher" xml:space="preserve">
+    <value>全双值格致死解法强制链</value>
     <comment>Step Searcher Name</comment>
   </data>
 </root>

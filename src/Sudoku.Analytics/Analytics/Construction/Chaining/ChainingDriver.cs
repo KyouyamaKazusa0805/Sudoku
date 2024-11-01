@@ -196,9 +196,10 @@ internal static partial class ChainingDriver
 				// Highlight UR nodes.
 				foreach (var cell in chain.Cells)
 				{
+					var node = new CellViewNode(ColorIdentifier.Rectangle1, cell);
 					foreach (var view in views)
 					{
-						view.Add(new CellViewNode(ColorIdentifier.Rectangle1, cell));
+						view.Add(node);
 					}
 				}
 
@@ -227,6 +228,104 @@ internal static partial class ChainingDriver
 			if (!onlyFindFinnedChain)
 			{
 				var rfcStep = new RectangleForcingChainsStep(
+					chain.Conclusions,
+					chain.GetViews(in grid, chain.Conclusions, supportedRules),
+					context.Options,
+					chain
+				);
+				if (context.OnlyFindOne)
+				{
+					return rfcStep;
+				}
+
+				accumulator.Add(rfcStep);
+			}
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// The collect method called by rectangle forcing chains step searcher.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+	/// <returns>The first found step.</returns>
+	public static unsafe Step? CollectBivalueUniversalGraveMultipleCore(
+		ref StepAnalysisContext context,
+		SortedSet<ChainStep> accumulator,
+		bool allowsAdvancedLinks,
+		bool onlyFindFinnedChain
+	)
+	{
+		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
+		ref readonly var grid = ref context.Grid;
+		InitializeLinks(
+			in grid,
+			linkTypes.Aggregate(@delegate.EnumFlagMerger),
+			context.Options,
+			out var supportedRules
+		);
+
+		foreach (var chain in CollectBivalueUniversalGraveMultipleChains(in context.Grid, context.OnlyFindOne))
+		{
+			var cachedAlsIndex = 0;
+			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
+			{
+				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
+				var views = (View[])[
+					[
+						.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
+						.. finnedChain.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0]
+					]
+				];
+
+				// Change nodes into fin-like view nodes.
+				foreach (var node in (ViewNode[])[.. views[0]])
+				{
+					if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
+					{
+						views[0].Remove(node);
+						views[0].Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
+					}
+				}
+
+				// Highlight UR nodes.
+				foreach (var candidate in chain.Candidates)
+				{
+					var node = new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate);
+					foreach (var view in views)
+					{
+						view.Add(node);
+					}
+				}
+
+				var finnedChainStep = new FinnedChainStep(
+					chain.Conclusions,
+					views,
+					context.Options,
+					finnedChain,
+					in fins,
+					MultipleChainBasedComponent.Rectangle
+				);
+				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
+				{
+					continue;
+				}
+
+				if (context.OnlyFindOne)
+				{
+					return finnedChainStep;
+				}
+
+				accumulator.Add(finnedChainStep);
+				continue;
+			}
+
+			if (!onlyFindFinnedChain)
+			{
+				var rfcStep = new BivalueUniversalGraveForcingChainsStep(
 					chain.Conclusions,
 					chain.GetViews(in grid, chain.Conclusions, supportedRules),
 					context.Options,

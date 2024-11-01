@@ -4196,16 +4196,6 @@ public enum Technique
 	BivalueUniversalGraveFalseCandidateType,
 
 	/// <summary>
-	/// Indicates bi-value universal grave + n with forcing chains.
-	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Nightmare,
-		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
-		Features = TechniqueFeatures.NotImplemented,
-		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
-	BivalueUniversalGravePlusNForcingChains,
-
-	/// <summary>
 	/// Indicates bi-value universal grave XZ rule.
 	/// </summary>
 	[TechniqueMetadata(
@@ -5304,6 +5294,16 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains)]
 	RectangleForcingChains,
+
+	/// <summary>
+	/// Indicates bi-value universal grave + n with forcing chains.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 70,
+		DifficultyLevel = DifficultyLevel.Nightmare,
+		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
+		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
+	BivalueUniversalGravePlusNForcingChains,
 
 	/// <summary>
 	/// Indicates dynamic region forcing chains (i.e. dynamic house forcing chains).

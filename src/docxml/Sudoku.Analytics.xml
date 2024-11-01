@@ -1698,6 +1698,14 @@
             <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
             <returns>All possible multiple forcing chain instances.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBivalueUniversalGraveMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Collect all multiple forcing chains on applying to a bi-value universal grave, appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
             <summary>
             The collect method called by chain step searchers.
@@ -1718,6 +1726,16 @@
             <returns>The first found step.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectRectangleMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+            <summary>
+            The collect method called by rectangle forcing chains step searcher.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBivalueUniversalGraveMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
             <summary>
             The collect method called by rectangle forcing chains step searcher.
             </summary>
@@ -2231,6 +2249,37 @@
             </summary>
             <param name="this">The instance to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains">
+            <summary>
+            Represents a multiple forcing chains that is applied to a bi-value universal grave + n.
+            </summary>
+            <param name="trueCandidates">Indicates all true candidates.</param>
+            <param name="conclusions"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])" path="/param[@name='conclusions']"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.#ctor(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Conclusion[])">
+            <summary>
+            Represents a multiple forcing chains that is applied to a bi-value universal grave + n.
+            </summary>
+            <param name="trueCandidates">Indicates all true candidates.</param>
+            <param name="conclusions"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])" path="/param[@name='conclusions']"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.IsCellMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.IsHouseMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.IsAdvancedMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.GetInitialViewNodes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.TrueCandidates">
+            <summary>
+            The generated property declaration for parameter <c>trueCandidates</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.BlossomLoop">
             <summary>
@@ -7860,6 +7909,18 @@
             The generated property declaration for parameter <c>level</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveForcingChainsStepSearcher">
+            <summary>
+            Provides with a <b>Bi-value Universal Grave + n Forcing Chains</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Bi-value Univerasl Grave + n Forcing Chains</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveForcingChainsStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher">
             <summary>
             Provides with a <b>Blossom Loop</b> step searcher.
@@ -12542,6 +12603,64 @@
         <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.ZDigitsMask">
             <summary>
             The generated property declaration for parameter <c>zDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave + n Forcing Chains</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">The pattern to be used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave + n Forcing Chains</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">The pattern to be used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.IsMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.IsDynamic">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.IsGrouped">
+            <summary>
+            Indicates whether the pattern uses grouped nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.CompareTo(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.Pattern">
+            <summary>
+            The generated property declaration for parameter <c>pattern</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BlossomLoopStep">
@@ -23597,11 +23716,6 @@
             Indicates bi-value universal grave false candidate type.
             </summary>
         </member>
-        <member name="F:Sudoku.Categorization.Technique.BivalueUniversalGravePlusNForcingChains">
-            <summary>
-            Indicates bi-value universal grave + n with forcing chains.
-            </summary>
-        </member>
         <member name="F:Sudoku.Categorization.Technique.BivalueUniversalGraveXzRule">
             <summary>
             Indicates bi-value universal grave XZ rule.
@@ -24015,6 +24129,11 @@
         <member name="F:Sudoku.Categorization.Technique.RectangleForcingChains">
             <summary>
             Indicates rectangle forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.Technique.BivalueUniversalGravePlusNForcingChains">
+            <summary>
+            Indicates bi-value universal grave + n with forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.Technique.DynamicRegionForcingChains">
@@ -30781,6 +30900,11 @@
               Looks up a localized string similar to Bivalue Oddagon.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_BivalueUniversalGraveForcingChainsStepSearcher">
+            <summary>
+              Looks up a localized string similar to BUG + n Forcing Chains.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_BivalueUniversalGraveStepSearcher">
             <summary>
               Looks up a localized string similar to Bivalue Universal Grave.
@@ -31914,6 +32038,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep">
             <summary>
               Looks up a localized string similar to If {0} is true, the grid will be reduced to a BUG deadly pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BivalueUniversalGraveForcingChainsStep">
+            <summary>
+              Looks up a localized string similar to {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BivalueUniversalGraveMultipleStep">

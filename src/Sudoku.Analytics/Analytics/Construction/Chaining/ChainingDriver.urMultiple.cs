@@ -112,7 +112,7 @@ internal partial class ChainingDriver
 			var map = CandidateMap.Empty;
 			foreach (var branch in mfc.Values)
 			{
-				map |= branch[1].Map; // branch[0] is for conclusion and branch[^1] is for branch start house/cell.
+				map |= branch[1].Map;
 			}
 
 			var newConclusions = new List<Conclusion>();

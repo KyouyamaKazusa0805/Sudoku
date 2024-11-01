@@ -5842,6 +5842,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BUG + n Forcing Chains.
+        /// </summary>
+        public static string StepSearcherName_BivalueUniversalGraveForcingChainsStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_BivalueUniversalGraveForcingChainsStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bivalue Universal Grave.
         /// </summary>
         public static string StepSearcherName_BivalueUniversalGraveStepSearcher {
@@ -7881,6 +7890,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}.
+        /// </summary>
+        public static string TechniqueFormat_BivalueUniversalGraveForcingChainsStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveForcingChainsStep", resourceCulture);
             }
         }
         

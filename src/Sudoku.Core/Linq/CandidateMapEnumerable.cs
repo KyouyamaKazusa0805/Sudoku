@@ -46,7 +46,7 @@ public static class CandidateMapEnumerable
 	}
 
 	/// <inheritdoc cref="CellMapEnumerable.Select{TResult}(ref readonly CellMap, Func{int, TResult})"/>
-	public static ReadOnlySpan<TResult> Select<TResult>(this ref readonly CandidateMap @this, Func<Candidate, TResult> selector)
+	public static ReadOnlySpan<TResult> Select<TResult>(this scoped ref readonly CandidateMap @this, Func<Candidate, TResult> selector)
 	{
 		var offsets = @this.Offsets;
 		var result = new TResult[offsets.Length];
@@ -80,7 +80,7 @@ public static class CandidateMapEnumerable
 
 	/// <inheritdoc cref="CellMapEnumerable.GroupBy{TKey}(ref readonly CellMap, Func{int, TKey})"/>
 	public static ReadOnlySpan<CellMapOrCandidateMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>> GroupBy<TKey>(
-		this ref readonly CandidateMap @this,
+		this scoped ref readonly CandidateMap @this,
 		Func<Candidate, TKey> keySelector
 	) where TKey : notnull
 	{
