@@ -20,40 +20,40 @@ using GridBase = IGrid<Grid>;
 	IsLargeStructure = true)]
 public partial struct Grid : GridBase
 {
-	/// <inheritdoc cref="IGrid{TSelf}.DefaultMask"/>
+	/// <inheritdoc cref="GridBase.DefaultMask"/>
 	public const Mask DefaultMask = EmptyMask | MaxCandidatesMask;
 
-	/// <inheritdoc cref="IGrid{TSelf}.MaxCandidatesMask"/>
+	/// <inheritdoc cref="GridBase.MaxCandidatesMask"/>
 	public const Mask MaxCandidatesMask = (1 << 9) - 1;
 
-	/// <inheritdoc cref="IGrid{TSelf}.EmptyMask"/>
+	/// <inheritdoc cref="GridBase.EmptyMask"/>
 	public const Mask EmptyMask = (Mask)CellState.Empty << 9;
 
-	/// <inheritdoc cref="IGrid{TSelf}.ModifiableMask"/>
+	/// <inheritdoc cref="GridBase.ModifiableMask"/>
 	public const Mask ModifiableMask = (Mask)CellState.Modifiable << 9;
 
-	/// <inheritdoc cref="IGrid{TSelf}.GivenMask"/>
+	/// <inheritdoc cref="GridBase.GivenMask"/>
 	public const Mask GivenMask = (Mask)CellState.Given << 9;
 
 #if EMPTY_GRID_STRING_CONSTANT
-	/// <inheritdoc cref="IGrid{TSelf}.EmptyString"/>
+	/// <inheritdoc cref="GridBase.EmptyString"/>
 	public const string EmptyString = "000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 #endif
 
 
 #if !EMPTY_GRID_STRING_CONSTANT
-	/// <inheritdoc cref="IGrid{TSelf}.EmptyString"/>
+	/// <inheritdoc cref="GridBase.EmptyString"/>
 	public static readonly string EmptyString = new('0', 81);
 #endif
 
-	/// <inheritdoc cref="IGrid{TSelf}.Empty"/>
+	/// <inheritdoc cref="GridBase.Empty"/>
 	public static readonly Grid Empty = [DefaultMask];
 
-	/// <inheritdoc cref="IGrid{TSelf}.Undefined"/>
+	/// <inheritdoc cref="GridBase.Undefined"/>
 	public static readonly Grid Undefined;
 
 
-	/// <inheritdoc cref="IGrid{TSelf}.FirstMaskRef"/>
+	/// <inheritdoc cref="GridBase.FirstMaskRef"/>
 	private Mask _values;
 
 
@@ -1108,7 +1108,7 @@ public partial struct Grid : GridBase
 		}
 	}
 
-	/// <inheritdoc cref="IGrid{TSelf}.OnValueChanged(ref TSelf, Cell, Digit)"/>
+	/// <inheritdoc cref="GridBase.OnValueChanged(ref Grid, Cell, Digit)"/>
 	private static void OnValueChanged(ref Grid @this, Cell cell, Digit setValue)
 	{
 		if (setValue == -1)
@@ -1126,7 +1126,7 @@ public partial struct Grid : GridBase
 		}
 	}
 
-	/// <inheritdoc cref="IGrid{TSelf}.OnRefreshingCandidates(ref TSelf)"/>
+	/// <inheritdoc cref="GridBase.OnRefreshingCandidates(ref Grid)"/>
 	private static void OnRefreshingCandidates(ref Grid @this)
 	{
 		for (var cell = 0; cell < 81; cell++)
