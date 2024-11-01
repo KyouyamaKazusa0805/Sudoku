@@ -1331,6 +1331,18 @@
         <member name="M:Sudoku.Concepts.Coloring.CellGraph.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.op_Equality(Sudoku.Concepts.Coloring.CellGraph,Sudoku.Concepts.Coloring.CellGraph)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.op_Inequality(Sudoku.Concepts.Coloring.CellGraph,Sudoku.Concepts.Coloring.CellGraph)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
         <member name="M:Sudoku.Concepts.Coloring.CellGraph.Equals(Sudoku.Concepts.Coloring.CellGraph)">
             <inheritdoc/>
         </member>

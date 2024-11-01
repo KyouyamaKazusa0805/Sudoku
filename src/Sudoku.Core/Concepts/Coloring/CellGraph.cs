@@ -9,7 +9,7 @@ namespace Sudoku.Concepts.Coloring;
 /// </summary>
 /// <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
 [CollectionBuilder(typeof(CellGraph), nameof(Create))]
-[TypeImpl(TypeImplFlags.Equatable)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
 public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, IReadOnlyCollection<Cell>
 {
 	/// <summary>
@@ -22,6 +22,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 	/// Indicates the cells used.
 	/// </summary>
 	[EquatableMember]
+	[HashCodeMember]
 	private readonly CellMap _cells;
 
 	/// <summary>
