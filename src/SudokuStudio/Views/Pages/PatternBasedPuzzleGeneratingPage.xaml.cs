@@ -211,7 +211,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 				PatternCounter: var counterTextBlock,
 				SudokuPane: var pane
 			} page,
-			{ NewValue: CellMap newValue }
+		{ NewValue: CellMap newValue }
 		))
 		{
 			return;
@@ -243,7 +243,6 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 			puzzle.SetDigit(cell, digit);
 		}
 		pane.Puzzle = puzzle;
-		pane.ViewUnit = null;
 	}
 
 
@@ -271,12 +270,6 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 
 	private void SudokuPane_DigitInput(SudokuPane sender, DigitInputEventArgs e)
 	{
-		if (SudokuPane.Puzzle is { ModifiableCellsCount: 0 })
-		{
-			SudokuPane.Puzzle = Grid.Empty;
-			SudokuPane.ViewUnit = null;
-		}
-
 		// Update fixed candidates.
 		var originalMap = FixedCandidates;
 		if (e.DigitInput == -1)
