@@ -1211,27 +1211,6 @@
         <member name="M:Sudoku.Analytics.CollectorContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Analytics.CollectorDifficultyLevelMode">
-            <summary>
-            Indicates the mode that describe the difficulty level controlling for a <see cref="T:Sudoku.Analytics.Collector"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Collector"/>
-        </member>
-        <member name="F:Sudoku.Analytics.CollectorDifficultyLevelMode.OnlySame">
-            <summary>
-            Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CollectorDifficultyLevelMode.OneLevelHarder">
-            <summary>
-            Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid or one level harder.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CollectorDifficultyLevelMode.All">
-            <summary>
-            Indicates the collecting mode is to collect all possible steps, no matter which level the step belongs to.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter">
             <summary>
             Provides a style that displays for a letter in a baba group.
@@ -1339,6 +1318,27 @@
         <member name="F:Sudoku.Analytics.Configuration.BabaGroupLetterCasing.Lower">
             <summary>
             Indicates the lower casing.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Configuration.CollectorDifficultyLevelMode">
+            <summary>
+            Indicates the mode that describe the difficulty level controlling for a <see cref="T:Sudoku.Analytics.Collector"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Collector"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.CollectorDifficultyLevelMode.OnlySame">
+            <summary>
+            Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.CollectorDifficultyLevelMode.OneLevelHarder">
+            <summary>
+            Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid or one level harder.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.CollectorDifficultyLevelMode.All">
+            <summary>
+            Indicates the collecting mode is to collect all possible steps, no matter which level the step belongs to.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Configuration.SettingItemNameAttribute">
@@ -21121,7 +21121,7 @@
             <param name="count">The value to be set or updated.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods_With.WithSameLevelConfiguration(Sudoku.Analytics.Collector,Sudoku.Analytics.CollectorDifficultyLevelMode)">
+        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods_With.WithSameLevelConfiguration(Sudoku.Analytics.Collector,Sudoku.Analytics.Configuration.CollectorDifficultyLevelMode)">
             <summary>
             Sets the property <see cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/> with the target value.
             </summary>

@@ -12341,9 +12341,9 @@
         </member>
         <member name="P:SudokuStudio.Views.Attached.CollectorProperties.DifficultyLevelMode">
             <summary>
-            Indicates the difficulty level mode. Casted from <see cref="T:Sudoku.Analytics.CollectorDifficultyLevelMode"/>.
+            Indicates the difficulty level mode. Casted from <see cref="T:Sudoku.Analytics.Configuration.CollectorDifficultyLevelMode"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.CollectorDifficultyLevelMode"/>
+            <seealso cref="T:Sudoku.Analytics.Configuration.CollectorDifficultyLevelMode"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.CollectorProperties.CollectorMaxStepsCollectedProperty">
             <summary>

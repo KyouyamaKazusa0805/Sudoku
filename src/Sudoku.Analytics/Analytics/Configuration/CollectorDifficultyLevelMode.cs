@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.Configuration;
 
 /// <summary>
 /// Indicates the mode that describe the difficulty level controlling for a <see cref="Collector"/> instance.
