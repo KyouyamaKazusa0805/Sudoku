@@ -108,13 +108,19 @@ public partial class GridCanvas
 				{
 					using var brush = new SolidBrush(GetColor(identifier));
 					var (x, y) = _calculator.GetMousePointInCenter(cell);
-					var drawingAction = figureNode switch
+					Action<Brush, float, float, float, float> drawingAction = figureNode switch
 					{
 						SquareViewNode => _g.FillRectangle,
-						CircleViewNode => _g.FillEllipse,
-						_ => default(Action<Brush, float, float, float, float>)!
+						CircleViewNode => _g.FillEllipse
 					};
 					drawingAction(brush, x - cw / 2 + padding, y - ch / 2 + padding, cw - 2 * padding, ch - 2 * padding);
+					break;
+				}
+				case CrossViewNode(var cell) { Identifier: var identifier }:
+				{
+					using var pen = new Pen(GetColor(identifier), 6);
+					var rectangle = _calculator.GetMouseRectangleViaCell(cell);
+					_g.DrawCrossSign(pen, rectangle);
 					break;
 				}
 				case HeartViewNode(var cell) { Identifier: var identifier }:
