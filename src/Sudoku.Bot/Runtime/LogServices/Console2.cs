@@ -19,9 +19,9 @@ public static class Console2
 	public static void WriteLog(LogSeverity severity, string s)
 		=> Console.WriteLine($"{severity switch
 		{
-			LogSeverity.Info => "\e[38;2;19;161;14m\e",
-			LogSeverity.Warning => "\e[38;2;193;156;0m\e",
-			LogSeverity.Error => "\e[38;2;197;15;31m\e",
+			LogSeverity.Info => "\e[38;2;19;161;14m",
+			LogSeverity.Warning => "\e[38;2;193;156;0m",
+			LogSeverity.Error => "\e[38;2;197;15;31m",
 			_ => string.Empty
 		}}[{DateTime.Now:yyyy/MM/dd HH\\:mm\\:ss}] {s}\e[0m");
 
