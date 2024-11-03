@@ -538,7 +538,20 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 				sb.Append(SR.Get("AnalysisResultTechniqueUsing", culture));
 			}
 
-			foreach (ref readonly var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.GetName(formatProvider))
+			var stepsSortedByName = new List<Step>();
+			stepsSortedByName.AddRange(steps);
+			stepsSortedByName.Sort(
+				(left, right) => left.DifficultyLevel.CompareTo(right.DifficultyLevel) is var difficultyLevelComparisonResult and not 0
+					? difficultyLevelComparisonResult
+					: left.Code.CompareTo(right.Code) is var codeComparisonResult and not 0
+						? codeComparisonResult
+						: StepMarshal.CompareName(left, right, formatProvider)
+			);
+
+			foreach (ref readonly var solvingStepsGroup in
+				from step in stepsSortedByName
+				select step into step
+				group step by step.GetName(formatProvider))
 			{
 				if (f(FormattingOptions.ShowStepDetail))
 				{
