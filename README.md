@@ -50,11 +50,11 @@ This repository is created for the following users:
   * Difficulty rating
   * Step-by-step analysis
   * Bottleneck analysis
-  * Direct technique specialized supports
-  * Partial implementation on extremely hard and studying-only techniques
+  * Diff analysis & technique usage analysis
+  * Specialized supports on direct & partial-marking techniques
+  * Partial implementation on some extremely hard techniques
 * Drawing
-  * GDI+ drawing functions (e.g. Adding/removing drawing nodes, sudoku grid canvas, background color, bottom text, etc.)
-  * Incremental rendering in UI layer
+  * GDI+ drawing functions
 * Text
   * I/O handling on variant grid text types (Susser, HoDoKu library format, etc.)
   * JSON serialization and deserialization on most of data structures
@@ -66,16 +66,16 @@ This repository is created for the following users:
 
 This solution supports many kinds of human-friendly techniques. Here I will list them.
 
-* Directs
+* Direct Techniques
   * Full House
   * Last Digit
   * Hidden Single (Crosshatching)
   * Naked Single
-* Partial-mark Candidates
+* Partial-Marking Techniques
   * Direct Intersection
   * Direct Subset
   * Complex Singles
-* Full-mark Candidates
+* Full-Marking Techniques
   * Intersections
     * Locked Candidates (*LC*)
     * Law of Leftover (*LoL*)
