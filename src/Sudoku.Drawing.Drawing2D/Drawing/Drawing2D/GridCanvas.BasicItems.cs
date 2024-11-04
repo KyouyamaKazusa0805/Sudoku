@@ -6,7 +6,7 @@ public partial class GridCanvas
 	/// Clear the canvas, removing all drawn elements.
 	/// </summary>
 	/// <remarks>
-	/// This will invalidate drawing items, and draw background, border lines and footer text.
+	/// This will invalidate drawing items, and draw background and border lines.
 	/// </remarks>
 	public partial void Clear()
 	{
