@@ -27,9 +27,16 @@ public static class DiffAnalysis
 			return true;
 		}
 
+		// If not, determine whether the second grid ('right') can revert to the first grid ('left') by just resetting all digits.
+		var (lr, rr) = (Grid.Parse(left.ToString()), Grid.Parse(right.ToString()));
+		if (lr == right)
+		{
+			result = new ResetDiffResult();
+			return true;
+		}
+
 		// If not, determine whether they are different in reset grid state.
 		// Check whether they don't have a same reset grid. If so, we should check given cells or make a fast fail.
-		var (lr, rr) = (Grid.Parse(left.ToString()), Grid.Parse(right.ToString()));
 		if (lr != rr)
 		{
 			// Check changing status on given digits from two grids.
@@ -180,13 +187,6 @@ public static class DiffAnalysis
 			{
 				goto ReturnFalse;
 			}
-		}
-
-		// Finally, determine whether the second grid ('right') can revert to the first grid ('left') by just resetting all digits.
-		if (rr == left)
-		{
-			result = new ResetDiffResult();
-			return true;
 		}
 
 	ReturnFalse:
