@@ -1152,7 +1152,7 @@ public partial struct Grid : GridBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DiffResult? operator -(in Grid left, in Grid right)
 	{
-		DiffAnalysis.TryAnalyzeDifference(in left, in right, out var result);
+		DiffAnalysis.TryAnalyzeDiff(in left, in right, out var result);
 		return result;
 	}
 

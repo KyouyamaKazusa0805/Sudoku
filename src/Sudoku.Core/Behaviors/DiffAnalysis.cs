@@ -18,10 +18,10 @@ public static class DiffAnalysis
 	/// but it might be failed to check in some difference cases; no exceptions will be thrown in this method,
 	/// except for some severe errors should be reported.
 	/// </remarks>
-	public static bool TryAnalyzeDifference(ref readonly Grid left, ref readonly Grid right, [NotNullWhen(true)] out DiffResult? result)
+	public static bool TryAnalyzeDiff(ref readonly Grid left, ref readonly Grid right, [NotNullWhen(true)] out DiffResult? result)
 	{
 		// Determine whether they are totally same.
-		if (left == right)
+		if (Unsafe.AreSame(in left, in right) || left == right)
 		{
 			result = new NothingChangedDiffResult();
 			return true;
@@ -60,6 +60,20 @@ public static class DiffAnalysis
 				result = new RemoveGivenDiffResult(in givenCandidates);
 				return true;
 			}
+			else if (leftResetGridGivens == rightResetGridGivens)
+			{
+				var changedCandidates = CandidateMap.Empty;
+				foreach (var cell in leftResetGridGivens)
+				{
+					if (left.GetDigit(cell) != right.GetDigit(cell))
+					{
+						changedCandidates.Add(cell * 9 + right.GetDigit(cell));
+					}
+				}
+
+				result = new ChangedGivenDiffResult(in changedCandidates);
+				return true;
+			}
 
 			// Fast fail.
 			goto ReturnFalse;
@@ -91,6 +105,20 @@ public static class DiffAnalysis
 			result = new RemoveModifiableDiffResult(in modifiableCandidates);
 			return true;
 		}
+		else if (leftModifiables == rightModifiables && !!leftModifiables)
+		{
+			var changedCandidates = CandidateMap.Empty;
+			foreach (var cell in leftModifiables)
+			{
+				if (left.GetDigit(cell) != right.GetDigit(cell))
+				{
+					changedCandidates.Add(cell * 9 + right.GetDigit(cell));
+				}
+			}
+
+			result = new ChangedModifiableDiffResult(in changedCandidates);
+			return true;
+		}
 
 		// If not, determine whether the second grid ('right') adds several candidates from the first grid ('left').
 		// This requires two grids hold a same list of empty cells.
@@ -100,7 +128,7 @@ public static class DiffAnalysis
 			// Check candidate state.
 			var addedCandidates = CandidateMap.Empty;
 			var removedCandidates = CandidateMap.Empty;
-			var flag = true;
+			var changedCandidates = CandidateMap.Empty;
 			foreach (var cell in leftEmptyCells)
 			{
 				var leftCandidates = left.GetCandidates(cell);
@@ -126,23 +154,26 @@ public static class DiffAnalysis
 				}
 				else
 				{
-					flag = false;
-					break;
+					foreach (var digit in rightCandidates)
+					{
+						changedCandidates.Add(cell * 9 + digit);
+					}
 				}
 			}
-			if (!flag)
-			{
-				goto ReturnFalse;
-			}
 
-			if (addedCandidates && ~removedCandidates)
+			if (addedCandidates && ~removedCandidates && ~changedCandidates)
 			{
 				result = new AddCandidateDiffResult(in addedCandidates, right.GetUniqueness() != Uniqueness.Bad);
 				return true;
 			}
-			else if (~addedCandidates && removedCandidates)
+			else if (~addedCandidates && removedCandidates && ~changedCandidates)
 			{
 				result = new RemoveCandidateDiffResult(in removedCandidates);
+				return true;
+			}
+			else if (changedCandidates)
+			{
+				result = new ChangedCandidateDiffResult(in changedCandidates);
 				return true;
 			}
 			else

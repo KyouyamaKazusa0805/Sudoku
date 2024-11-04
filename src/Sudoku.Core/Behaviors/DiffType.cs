@@ -42,7 +42,22 @@ public enum DiffType
 	RemoveCandidate,
 
 	/// <summary>
+	/// Indicates given digits are changed.
+	/// </summary>
+	ChangedGiven,
+
+	/// <summary>
+	/// Indicates modifiable digits are changed.
+	/// </summary>
+	ChangedModifiable,
+
+	/// <summary>
+	/// Indicates candidate digits are changed.
+	/// </summary>
+	ChangedCandidate,
+
+	/// <summary>
 	/// Indicates the second grid is the reset grid of the first one.
 	/// </summary>
-	Reset,
+	Reset
 }
