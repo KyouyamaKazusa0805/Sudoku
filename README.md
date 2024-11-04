@@ -189,8 +189,6 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Templating
     * Brute Force
 
-Some other techniques will be implemented later, such as baba grouping and chains. Today I use algorithm from Sudoku Explainer to implement, because I'm not good at writing chaining algorithms by myself.
-
 ## Forks & PRs (Pull Requests) for This Repo
 
 Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the [MIT license](https://github.com/KyouyamaKazusa0805/Sudoku/blob/main/LICENSE). However, due to the copy of the GitHub repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms. Please visit the following part "Basic Information" for learning about more details.
