@@ -35,6 +35,7 @@ global using Sudoku.Analytics.Primitives;
 global using Sudoku.Analytics.Steps;
 global using Sudoku.Analytics.StepSearchers;
 global using Sudoku.Analytics.Traits;
+global using Sudoku.Behaviors.DiffResults;
 global using Sudoku.Categorization;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Coloring;
