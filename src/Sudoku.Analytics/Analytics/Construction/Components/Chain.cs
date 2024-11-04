@@ -79,7 +79,7 @@ public abstract partial class Chain :
 	/// <summary>
 	/// Indicates whether the chain pattern uses grouped logic.
 	/// </summary>
-	public bool IsGrouped => ValidNodes.Any(static node => node.IsAdvanced || node.IsGroupedNode);
+	public bool IsGrouped => ValidNodes.Any(static node => node.IsGroupedNode);
 
 	/// <summary>
 	/// Indicates whether the chain pattern contains grouped nodes,

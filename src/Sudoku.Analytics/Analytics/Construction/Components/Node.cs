@@ -5,22 +5,14 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <param name="map">Indicates the backing map.</param>
 /// <param name="isOn">Indicates whether the node is on.</param>
-/// <param name="isAdvanced">
-/// <para>Indicates whether the node is advanced one.</para>
-/// <para><inheritdoc cref="Node" path="/shared-comments"/></para>
-/// </param>
 /// <param name="parent">
 /// <para>Indicates the parent node. The value can be <see langword="null"/> in handling.</para>
-/// <para><inheritdoc cref="Node" path="/shared-comments"/></para>
+/// <para><i>This value doesn't participate in equality comparison.</i></para>
 /// </param>
-/// <shared-comments>
-/// Please note that this value doesn't participate in equality comparison.
-/// </shared-comments>
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.AllEqualityComparisonOperators)]
 public sealed partial class Node(
 	[Field, HashCodeMember] ref readonly CandidateMap map,
 	[Property, HashCodeMember] bool isOn,
-	[Property] bool isAdvanced,
 	[Property(Setter = PropertySetters.Set)] Node? parent = null
 ) :
 	IComparable<Node>,
@@ -200,7 +192,7 @@ public sealed partial class Node(
 	/// </summary>
 	/// <returns>A cloned instance whose internal values are same as the current instance, independent.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node Clone() => new(in _map, IsOn, IsAdvanced) { Parent = Parent };
+	public Node Clone() => new(in _map, IsOn) { Parent = Parent };
 
 	/// <inheritdoc/>
 	object ICloneable.Clone() => Clone();
@@ -212,7 +204,7 @@ public sealed partial class Node(
 	/// <param name="value">The current node.</param>
 	/// <returns>The node negated.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Node operator ~(Node value) => new(in value._map, !value.IsOn, value.IsAdvanced) { Parent = value.Parent };
+	public static Node operator ~(Node value) => new(in value._map, !value.IsOn) { Parent = value.Parent };
 
 	/// <summary>
 	/// Creates a <see cref="Node"/> instance with parent node.
@@ -221,5 +213,5 @@ public sealed partial class Node(
 	/// <param name="parent">The parent node.</param>
 	/// <returns>The new node created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Node operator >>(Node current, Node? parent) => new(in current._map, current.IsOn, current.IsAdvanced, parent);
+	public static Node operator >>(Node current, Node? parent) => new(in current._map, current.IsOn, parent);
 }

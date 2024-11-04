@@ -4097,35 +4097,21 @@
             </summary>
             <param name="map">Indicates the backing map.</param>
             <param name="isOn">Indicates whether the node is on.</param>
-            <param name="isAdvanced">
-            <para>Indicates whether the node is advanced one.</para>
-            <para><inheritdoc cref="T:Sudoku.Analytics.Construction.Components.Node" path="/shared-comments"/></para>
-            </param>
             <param name="parent">
             <para>Indicates the parent node. The value can be <see langword="null"/> in handling.</para>
-            <para><inheritdoc cref="T:Sudoku.Analytics.Construction.Components.Node" path="/shared-comments"/></para>
+            <para><i>This value doesn't participate in equality comparison.</i></para>
             </param>
-            <shared-comments>
-            Please note that this value doesn't participate in equality comparison.
-            </shared-comments>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean,System.Boolean,Sudoku.Analytics.Construction.Components.Node)">
+        <member name="M:Sudoku.Analytics.Construction.Components.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean,Sudoku.Analytics.Construction.Components.Node)">
             <summary>
             Represents a chain node.
             </summary>
             <param name="map">Indicates the backing map.</param>
             <param name="isOn">Indicates whether the node is on.</param>
-            <param name="isAdvanced">
-            <para>Indicates whether the node is advanced one.</para>
-            <para><inheritdoc cref="T:Sudoku.Analytics.Construction.Components.Node" path="/shared-comments"/></para>
-            </param>
             <param name="parent">
             <para>Indicates the parent node. The value can be <see langword="null"/> in handling.</para>
-            <para><inheritdoc cref="T:Sudoku.Analytics.Construction.Components.Node" path="/shared-comments"/></para>
+            <para><i>This value doesn't participate in equality comparison.</i></para>
             </param>
-            <shared-comments>
-            Please note that this value doesn't participate in equality comparison.
-            </shared-comments>
         </member>
         <member name="F:Sudoku.Analytics.Construction.Components.Node.MapFormatString">
             <summary>
@@ -4274,11 +4260,6 @@
         <member name="P:Sudoku.Analytics.Construction.Components.Node.IsOn">
             <summary>
             The generated property declaration for parameter <c>isOn</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Node.IsAdvanced">
-            <summary>
-            The generated property declaration for parameter <c>isAdvanced</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Node.Parent">

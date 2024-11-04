@@ -32,8 +32,8 @@ internal sealed class CachedXChainingRule : ChainingRule
 
 				var pos1 = Mask.TrailingZeroCount(mask);
 				var pos2 = mask.GetNextSet(pos1);
-				var node1 = new Node((HousesCells[house][pos1] * 9 + digit).AsCandidateMap(), false, false);
-				var node2 = new Node((HousesCells[house][pos2] * 9 + digit).AsCandidateMap(), true, false);
+				var node1 = new Node((HousesCells[house][pos1] * 9 + digit).AsCandidateMap(), false);
+				var node2 = new Node((HousesCells[house][pos2] * 9 + digit).AsCandidateMap(), true);
 				context.StrongLinks.AddEntry(node1, node2);
 			}
 		}
@@ -51,8 +51,8 @@ internal sealed class CachedXChainingRule : ChainingRule
 				var mask = cellsInThisHouse / house;
 				foreach (var combinationPair in mask.GetAllSets().GetSubsets(2))
 				{
-					var node1 = new Node((HousesCells[house][combinationPair[0]] * 9 + digit).AsCandidateMap(), true, false);
-					var node2 = new Node((HousesCells[house][combinationPair[1]] * 9 + digit).AsCandidateMap(), false, false);
+					var node1 = new Node((HousesCells[house][combinationPair[0]] * 9 + digit).AsCandidateMap(), true);
+					var node2 = new Node((HousesCells[house][combinationPair[1]] * 9 + digit).AsCandidateMap(), false);
 					context.WeakLinks.AddEntry(node1, node2);
 				}
 			}

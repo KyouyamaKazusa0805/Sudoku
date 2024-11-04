@@ -115,8 +115,8 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 						continue;
 					}
 
-					var node1 = new Node(cells1 * digit, false, true);
-					var node2 = new Node(fins * digit, true, true);
+					var node1 = new Node(cells1 * digit, false);
+					var node2 = new Node(fins * digit, true);
 					context.StrongLinks.AddEntry(node1, node2, true, fish);
 
 					// Weak.
@@ -140,7 +140,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 							continue;
 						}
 
-						var node4 = new Node(cells4 * digit, false, true);
+						var node4 = new Node(cells4 * digit, false);
 						context.WeakLinks.AddEntry(node3, node4);
 					}
 				}

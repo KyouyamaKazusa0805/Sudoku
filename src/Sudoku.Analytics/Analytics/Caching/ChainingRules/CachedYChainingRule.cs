@@ -27,15 +27,15 @@ internal sealed class CachedYChainingRule : ChainingRule
 			{
 				var digit1 = Mask.TrailingZeroCount(mask);
 				var digit2 = mask.GetNextSet(digit1);
-				var node1 = new Node((cell * 9 + digit1).AsCandidateMap(), false, false);
-				var node2 = new Node((cell * 9 + digit2).AsCandidateMap(), true, false);
+				var node1 = new Node((cell * 9 + digit1).AsCandidateMap(), false);
+				var node2 = new Node((cell * 9 + digit2).AsCandidateMap(), true);
 				context.StrongLinks.AddEntry(node1, node2);
 			}
 
 			foreach (var combinationPair in mask.GetAllSets().GetSubsets(2))
 			{
-				var node1 = new Node((cell * 9 + combinationPair[0]).AsCandidateMap(), true, false);
-				var node2 = new Node((cell * 9 + combinationPair[1]).AsCandidateMap(), false, false);
+				var node1 = new Node((cell * 9 + combinationPair[0]).AsCandidateMap(), true);
+				var node2 = new Node((cell * 9 + combinationPair[1]).AsCandidateMap(), false);
 				context.WeakLinks.AddEntry(node1, node2);
 			}
 		}

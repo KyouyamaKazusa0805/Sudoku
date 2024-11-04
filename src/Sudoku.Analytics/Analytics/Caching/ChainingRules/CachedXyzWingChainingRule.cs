@@ -38,8 +38,8 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 				}
 
 				// Strong.
-				var node1 = new Node(cells1 * zDigit, false, true);
-				var node2 = new Node(cells2 * zDigit, true, true);
+				var node1 = new Node(cells1 * zDigit, false);
+				var node2 = new Node(cells2 * zDigit, true);
 				context.StrongLinks.AddEntry(node1, node2, true, pattern);
 
 			CollectWeak:
@@ -63,8 +63,8 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 						continue;
 					}
 
-					var node3 = new Node(cells1 * zDigit, true, true);
-					var node4 = new Node(cells * zDigit, false, true);
+					var node3 = new Node(cells1 * zDigit, true);
+					var node4 = new Node(cells * zDigit, false);
 					context.WeakLinks.AddEntry(node3, node4);
 				}
 				foreach (ref readonly var cells in possibleCells2 | limit2)
@@ -75,8 +75,8 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 						continue;
 					}
 
-					var node3 = new Node(cells2 * zDigit, true, true);
-					var node4 = new Node(cells * zDigit, false, true);
+					var node3 = new Node(cells2 * zDigit, true);
+					var node4 = new Node(cells * zDigit, false);
 					context.WeakLinks.AddEntry(node3, node4);
 				}
 			}

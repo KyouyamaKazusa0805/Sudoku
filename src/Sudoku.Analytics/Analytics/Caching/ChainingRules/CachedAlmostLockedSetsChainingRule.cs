@@ -71,8 +71,8 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				var digit2 = digitsPair.GetNextSet(digit1);
 				var node1Cells = HousesMap[house] & cells & CandidatesMap[digit1];
 				var node2Cells = HousesMap[house] & cells & CandidatesMap[digit2];
-				var node1 = new Node(node1Cells * digit1, false, true);
-				var node2 = new Node(node2Cells * digit2, true, true);
+				var node1 = new Node(node1Cells * digit1, false);
+				var node2 = new Node(node2Cells * digit2, true);
 				context.StrongLinks.AddEntry(node1, node2, true, als);
 			}
 
@@ -83,7 +83,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 			foreach (var digit in digitsMask)
 			{
 				var cells3 = CandidatesMap[digit] & cells;
-				var node3 = new Node(cells3 * digit, true, true);
+				var node3 = new Node(cells3 * digit, true);
 				foreach (var cells3House in cells3.SharedHouses)
 				{
 					var otherCells = HousesMap[cells3House] & CandidatesMap[digit] & ~cells;
@@ -99,7 +99,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 							continue;
 						}
 
-						var node4 = new Node(cells4 * digit, false, true);
+						var node4 = new Node(cells4 * digit, false);
 						context.WeakLinks.AddEntry(node3, node4);
 					}
 				}

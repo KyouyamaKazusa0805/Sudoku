@@ -70,7 +70,7 @@ internal partial class ChainingDriver
 				var resultNodesSupposedOff = default(HashSet<Node>);
 				foreach (var candidate in branchStartCandidates)
 				{
-					var currentNode = new Node(candidate.AsCandidateMap(), true, false);
+					var currentNode = new Node(candidate.AsCandidateMap(), true);
 					var (nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
 
 					nodesSupposedOnGrouped.Add(candidate, nodesSupposedOn);

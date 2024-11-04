@@ -20,7 +20,7 @@ internal partial class ChainingDriver
 			var digitsMask = grid.GetCandidates(cell);
 			foreach (var digit in digitsMask)
 			{
-				var currentNode = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
+				var currentNode = new Node((cell * 9 + digit).AsCandidateMap(), true);
 				var (nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
 
 				// Iterate on three house types, to collect with region forcing chains.
@@ -58,7 +58,7 @@ internal partial class ChainingDriver
 						}
 						else
 						{
-							var other = new Node(otherCandidate.AsCandidateMap(), true, false);
+							var other = new Node(otherCandidate.AsCandidateMap(), true);
 							var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindForcingChains(other);
 							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOn_InHouse);
 							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOff_InHouse);

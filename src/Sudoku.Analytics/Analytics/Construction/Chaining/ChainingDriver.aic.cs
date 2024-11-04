@@ -52,7 +52,7 @@ internal partial class ChainingDriver
 			var trueDigit = Solution.IsUndefined ? -1 : Solution.GetDigit(cell);
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				var node = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
+				var node = new Node((cell * 9 + digit).AsCandidateMap(), true);
 
 				// Suppose the digit as "off" (false) to make a contradiction.
 				// Obviously, only incorrect digits can be formed a contradiction.
@@ -101,7 +101,8 @@ internal partial class ChainingDriver
 	/// <returns>The first found <see cref="NamedChain"/> pattern.</returns>
 	/// <seealso cref="NamedChain"/>
 #if STRICT_LENGTH_CHECKING
-	[SuppressMessage("Performance", "CA1859:Use concrete types when possible for improved performance", Justification = "<Pending>")]
+#pragma warning disable IDE0079
+#pragma warning disable CA1859
 #endif
 	private static NamedChain? FindChains(Node startNode, ref readonly Grid grid, bool onlyFindOne, SortedSet<NamedChain> result)
 	{
@@ -231,4 +232,8 @@ internal partial class ChainingDriver
 		}
 		return null;
 	}
+#if STRICT_LENGTH_CHECKING
+#pragma warning restore CA1859
+#pragma warning restore IDE0079
+#endif
 }

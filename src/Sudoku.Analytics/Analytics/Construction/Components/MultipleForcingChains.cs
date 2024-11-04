@@ -300,11 +300,11 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 				throw new InvalidOperationException();
 			}
 
-			var currentNode = new Node(in nodes[i].Map, false, nodes[i].IsAdvanced);
+			var currentNode = new Node(in nodes[i].Map, false);
 			(i, var (lastNode, isOn)) = ((i + 1) % nodes.Length, (currentNode, true));
 			for (var x = 0; x < nodes.Length; i = (i + 1) % nodes.Length, x++)
 			{
-				currentNode.Parent = new(in nodes[i].Map, isOn, nodes[i].IsAdvanced);
+				currentNode.Parent = new(in nodes[i].Map, isOn);
 				currentNode = currentNode.Parent;
 				isOn = !isOn;
 			}

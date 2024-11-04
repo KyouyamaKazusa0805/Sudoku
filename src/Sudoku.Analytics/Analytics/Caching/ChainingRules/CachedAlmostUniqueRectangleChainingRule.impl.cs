@@ -16,8 +16,8 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 			if (linkOption == LinkOption.Intersection && (cells1.IsInIntersection || cells2.IsInIntersection)
 				|| linkOption != LinkOption.Intersection)
 			{
-				var node1 = new Node(cells1 * otherOnlyDigit, false, true);
-				var node2 = new Node(cells2 * otherOnlyDigit, true, true);
+				var node1 = new Node(cells1 * otherOnlyDigit, false);
+				var node2 = new Node(cells2 * otherOnlyDigit, true);
 				linkDictionary.AddEntry(node1, node2, true, ur);
 			}
 		}
@@ -32,8 +32,8 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 			if (linkOption == LinkOption.Intersection && (cells3.IsInIntersection || cells4.IsInIntersection)
 				|| linkOption != LinkOption.Intersection)
 			{
-				var node3 = new Node(cells3 * otherOnlyDigit, false, true);
-				var node4 = new Node(cells4 * otherOnlyDigit, true, true);
+				var node3 = new Node(cells3 * otherOnlyDigit, false);
+				var node4 = new Node(cells4 * otherOnlyDigit, true);
 				linkDictionary.AddEntry(node3, node4, false, ur);
 			}
 		}
@@ -48,8 +48,8 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		if (linkOption == LinkOption.Intersection && (cells1.IsInIntersection || cells2.IsInIntersection)
 			|| linkOption != LinkOption.Intersection)
 		{
-			var node1 = new Node(cells1 * theOtherDigit1, false, true);
-			var node2 = new Node(cells2 * theOtherDigit2, true, true);
+			var node1 = new Node(cells1 * theOtherDigit1, false);
+			var node2 = new Node(cells2 * theOtherDigit2, true);
 			linkDictionary.AddEntry(node1, node2, true, ur);
 		}
 	}
@@ -83,7 +83,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 				continue;
 			}
 
-			var node1 = new Node(cells * otherDigit, false, true);
+			var node1 = new Node(cells * otherDigit, false);
 			foreach (var lockedHouse in urOtherSideCells.SharedHouses)
 			{
 				var lockedUrDigitsMask = (Mask)0;
@@ -109,7 +109,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 					continue;
 				}
 
-				var node2 = new Node(otherCellsContainingLastUrDigit * lastUrDigit, true, true);
+				var node2 = new Node(otherCellsContainingLastUrDigit * lastUrDigit, true);
 				linkDictionary.AddEntry(node1, node2, true, ur);
 			}
 		}
@@ -140,8 +140,8 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 			if (linkOption == LinkOption.Intersection && (cells1.IsInIntersection || cells2.IsInIntersection)
 				|| linkOption != LinkOption.Intersection)
 			{
-				var node1 = new Node(cells1 * digit1, false, true);
-				var node2 = new Node(cells2 * digit2, true, true);
+				var node1 = new Node(cells1 * digit1, false);
+				var node2 = new Node(cells2 * digit2, true);
 				linkDictionary.AddEntry(node1, node2, true, ur);
 			}
 		}

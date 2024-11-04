@@ -30,8 +30,8 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 				var h2 = firstPair.GetNextSet(h1);
 				var cells1 = cells & HousesMap[h1];
 				var cells2 = cells & HousesMap[h2];
-				var node1 = new Node(cells1 * digit, false, false);
-				var node2 = new Node(cells2 * digit, true, false);
+				var node1 = new Node(cells1 * digit, false);
+				var node2 = new Node(cells2 * digit, true);
 				context.StrongLinks.AddEntry(node1, node2);
 			}
 		}
@@ -60,8 +60,8 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 							continue;
 						}
 
-						var node1 = new Node(cells1 * digit, true, false);
-						var node2 = new Node(cells2 * digit, false, false);
+						var node1 = new Node(cells1 * digit, true);
+						var node2 = new Node(cells2 * digit, false);
 						context.WeakLinks.AddEntry(node1, node2);
 					}
 				}

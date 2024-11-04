@@ -23,7 +23,7 @@ internal partial class ChainingDriver
 			foreach (var digit in grid.GetCandidates(cell))
 			{
 				var startCandidate = cell * 9 + digit;
-				var startNode = new Node(startCandidate.AsCandidateMap(), true, false);
+				var startNode = new Node(startCandidate.AsCandidateMap(), true);
 				foreach (var endNode in FindForcingChains(startNode).OnNodes)
 				{
 					if (endNode.Map is not [var endCandidate])
