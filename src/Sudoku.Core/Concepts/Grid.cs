@@ -827,7 +827,7 @@ public partial struct Grid : GridBase
 		return result;
 	}
 
-	
+
 	/// <inheritdoc/>
 	public static bool TryParse(string? s, out Grid result)
 	{
@@ -1057,7 +1057,7 @@ public partial struct Grid : GridBase
 		=> EqualityComparer<Grid>.Create((a, b) => a.Equals(in b, comparison), obj => obj.GetHashCode(comparison));
 
 	/// <inheritdoc/>
-	static void GridBase.OnValueChanged(ref Grid @this, Cell cell,  Digit setValue) => OnValueChanged(ref @this, cell, setValue);
+	static void GridBase.OnValueChanged(ref Grid @this, Cell cell, Digit setValue) => OnValueChanged(ref @this, cell, setValue);
 
 	/// <inheritdoc/>
 	static void GridBase.OnRefreshingCandidates(ref Grid @this) => OnRefreshingCandidates(ref @this);
@@ -1146,6 +1146,20 @@ public partial struct Grid : GridBase
 			}
 		}
 	}
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static DiffResult? operator -(in Grid left, in Grid right)
+	{
+		DiffAnalysis.TryAnalyzeDifference(in left, in right, out var result);
+		return result;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static DiffResult operator checked -(in Grid left, in Grid right)
+		=> left - right ?? throw new GridDifferenceTooMuchException();
 
 
 	/// <summary>

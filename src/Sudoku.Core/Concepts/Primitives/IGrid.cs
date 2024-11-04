@@ -15,6 +15,7 @@ public interface IGrid<TSelf> :
 	IParsable<TSelf>,
 	IReadOnlyCollection<Digit>,
 	ISelectMethod<TSelf, Candidate>,
+	ISubtractionOperators<TSelf, TSelf, DiffResult?>,
 	ISpanFormattable,
 	ISpanParsable<TSelf>,
 	IToArrayMethod<TSelf, Digit>,
@@ -704,6 +705,26 @@ public interface IGrid<TSelf> :
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
 	public static abstract bool operator <=(in TSelf left, in TSelf right);
 
+	/// <summary>
+	/// Analyzes difference between two grids.
+	/// If two grids are not same from given cells, the return value will be <see langword="null"/>.
+	/// </summary>
+	/// <param name="left">The first grid to be checked.</param>
+	/// <param name="right">The second grid to be checked.</param>
+	/// <returns>The difference between two grids.</returns>
+	public static abstract DiffResult? operator -(in TSelf left, in TSelf right);
+
+	/// <summary>
+	/// Analyzes difference between two grids.
+	/// If two grids are not same from given cells, a <see cref="GridDifferenceTooMuchException"/> instance will be thrown.
+	/// </summary>
+	/// <param name="left">The first grid to be checked.</param>
+	/// <param name="right">The second grid to be checked.</param>
+	/// <returns>The difference between two grids.</returns>
+	/// <exception cref="GridDifferenceTooMuchException">Throws when two grids are not same from given cells.</exception>
+	public static virtual DiffResult operator checked -(in TSelf left, in TSelf right)
+		=> left - right ?? throw new GridDifferenceTooMuchException();
+
 	/// <inheritdoc/>
 	static bool IEqualityOperators<TSelf, TSelf, bool>.operator ==(TSelf left, TSelf right) => left == right;
 
@@ -721,6 +742,13 @@ public interface IGrid<TSelf> :
 
 	/// <inheritdoc/>
 	static bool IComparisonOperators<TSelf, TSelf, bool>.operator <=(TSelf left, TSelf right) => left <= right;
+
+	/// <inheritdoc/>
+	static DiffResult? ISubtractionOperators<TSelf, TSelf, DiffResult?>.operator -(TSelf left, TSelf right) => left - right;
+
+	/// <inheritdoc/>
+	static DiffResult? ISubtractionOperators<TSelf, TSelf, DiffResult?>.operator checked -(TSelf left, TSelf right)
+		=> checked(left - right);
 
 
 	/// <summary>
