@@ -66,84 +66,33 @@ internal static partial class ChainingDriver
 	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
 	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectMultipleCore(
+	public static unsafe Step? CollectMultipleCore(
 		ref StepAnalysisContext context,
 		SortedSet<ChainStep> accumulator,
 		bool allowsAdvancedLinks,
 		bool onlyFindFinnedChain
 	)
 	{
-		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
-		ref readonly var grid = ref context.Grid;
-		InitializeLinks(
-			in grid,
-			linkTypes.Aggregate(@delegate.EnumFlagMerger),
-			context.Options,
-			out var supportedRules
+		return CollectGeneralizedMultipleCore(
+			ref context,
+			accumulator,
+			allowsAdvancedLinks,
+			onlyFindFinnedChain,
+			&component,
+			&CollectMultipleChains,
+			&stepCreator
 		);
 
-		foreach (var chain in CollectMultipleChains(in context.Grid, context.OnlyFindOne))
-		{
-			var cachedAlsIndex = 0;
-			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
-			{
-				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
-				var views = (View[])[
-					[
-						.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
-						.. finnedChain.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0]
-					]
-				];
 
-				// Change nodes into fin-like view nodes.
-				foreach (var node in (ViewNode[])[.. views[0]])
-				{
-					if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
-					{
-						views[0].Remove(node);
-						views[0].Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
-					}
-				}
+		static MultipleChainBasedComponent component(MultipleForcingChains mfc)
+			=> mfc.IsCellMultiple ? MultipleChainBasedComponent.Cell : MultipleChainBasedComponent.House;
 
-				var finnedChainStep = new FinnedChainStep(
-					chain.Conclusions,
-					views,
-					context.Options,
-					finnedChain,
-					in fins,
-					chain.IsCellMultiple ? MultipleChainBasedComponent.Cell : MultipleChainBasedComponent.House
-				);
-				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
-				{
-					continue;
-				}
-
-				if (context.OnlyFindOne)
-				{
-					return finnedChainStep;
-				}
-
-				accumulator.Add(finnedChainStep);
-				continue;
-			}
-
-			if (!onlyFindFinnedChain)
-			{
-				var mfcStep = new MultipleForcingChainsStep(
-					chain.Conclusions,
-					chain.GetViews(in grid, chain.Conclusions, supportedRules),
-					context.Options,
-					chain
-				);
-				if (context.OnlyFindOne)
-				{
-					return mfcStep;
-				}
-
-				accumulator.Add(mfcStep);
-			}
-		}
-		return null;
+		static MultipleForcingChainsStep stepCreator(
+			MultipleForcingChains chain,
+			ref readonly Grid grid,
+			ref readonly StepAnalysisContext context,
+			ChainingRuleCollection supportedRules
+		) => new(chain.Conclusions, chain.GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
 
 	/// <summary>
@@ -161,62 +110,25 @@ internal static partial class ChainingDriver
 		bool onlyFindFinnedChain
 	)
 	{
-		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
-		ref readonly var grid = ref context.Grid;
-		InitializeLinks(
-			in grid,
-			linkTypes.Aggregate(@delegate.EnumFlagMerger),
-			context.Options,
-			out var supportedRules
+		return CollectGeneralizedMultipleCore(
+			ref context,
+			accumulator,
+			allowsAdvancedLinks,
+			onlyFindFinnedChain,
+			&component,
+			&CollectRectangleMultipleChains,
+			&stepCreator
 		);
 
-		foreach (var chain in CollectRectangleMultipleChains(in context.Grid, context.OnlyFindOne))
-		{
-			var cachedAlsIndex = 0;
-			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
-			{
-				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
-				chain.PrepareFinnedChainViewNodes(finnedChain, ref cachedAlsIndex, supportedRules, in grid, in fins, out var views);
 
-				var finnedChainStep = new FinnedChainStep(
-					chain.Conclusions,
-					views,
-					context.Options,
-					finnedChain,
-					in fins,
-					MultipleChainBasedComponent.Rectangle
-				);
-				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
-				{
-					continue;
-				}
+		static MultipleChainBasedComponent component(MultipleForcingChains mfc) => MultipleChainBasedComponent.Rectangle;
 
-				if (context.OnlyFindOne)
-				{
-					return finnedChainStep;
-				}
-
-				accumulator.Add(finnedChainStep);
-				continue;
-			}
-
-			if (!onlyFindFinnedChain)
-			{
-				var rfcStep = new RectangleForcingChainsStep(
-					chain.Conclusions,
-					chain.GetViews(in grid, chain.Conclusions, supportedRules),
-					context.Options,
-					chain
-				);
-				if (context.OnlyFindOne)
-				{
-					return rfcStep;
-				}
-
-				accumulator.Add(rfcStep);
-			}
-		}
-		return null;
+		static RectangleForcingChainsStep stepCreator(
+			RectangleForcingChains chain,
+			ref readonly Grid grid,
+			ref readonly StepAnalysisContext context,
+			ChainingRuleCollection supportedRules
+		) => new(chain.Conclusions, chain.GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
 
 	/// <summary>
@@ -234,62 +146,25 @@ internal static partial class ChainingDriver
 		bool onlyFindFinnedChain
 	)
 	{
-		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
-		ref readonly var grid = ref context.Grid;
-		InitializeLinks(
-			in grid,
-			linkTypes.Aggregate(@delegate.EnumFlagMerger),
-			context.Options,
-			out var supportedRules
+		return CollectGeneralizedMultipleCore(
+			ref context,
+			accumulator,
+			allowsAdvancedLinks,
+			onlyFindFinnedChain,
+			&component,
+			&CollectBivalueUniversalGraveMultipleChains,
+			&stepCreator
 		);
 
-		foreach (var chain in CollectBivalueUniversalGraveMultipleChains(in context.Grid, context.OnlyFindOne))
-		{
-			var cachedAlsIndex = 0;
-			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
-			{
-				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
-				chain.PrepareFinnedChainViewNodes(finnedChain, ref cachedAlsIndex, supportedRules, in grid, in fins, out var views);
 
-				var finnedChainStep = new FinnedChainStep(
-					chain.Conclusions,
-					views,
-					context.Options,
-					finnedChain,
-					in fins,
-					MultipleChainBasedComponent.BivalueUniversalGrave
-				);
-				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
-				{
-					continue;
-				}
+		static MultipleChainBasedComponent component(MultipleForcingChains mfc) => MultipleChainBasedComponent.BivalueUniversalGrave;
 
-				if (context.OnlyFindOne)
-				{
-					return finnedChainStep;
-				}
-
-				accumulator.Add(finnedChainStep);
-				continue;
-			}
-
-			if (!onlyFindFinnedChain)
-			{
-				var rfcStep = new BivalueUniversalGraveForcingChainsStep(
-					chain.Conclusions,
-					chain.GetViews(in grid, chain.Conclusions, supportedRules),
-					context.Options,
-					chain
-				);
-				if (context.OnlyFindOne)
-				{
-					return rfcStep;
-				}
-
-				accumulator.Add(rfcStep);
-			}
-		}
-		return null;
+		static BivalueUniversalGraveForcingChainsStep stepCreator(
+			BivalueUniversalGraveForcingChains chain,
+			ref readonly Grid grid,
+			ref readonly StepAnalysisContext context,
+			ChainingRuleCollection supportedRules
+		) => new(chain.Conclusions, chain.GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
 
 	/// <summary>
@@ -363,6 +238,86 @@ internal static partial class ChainingDriver
 			}
 			return [globalView, .. otherViews];
 		}
+	}
+
+	/// <summary>
+	/// The internal method that can collect for general-typed multiple forcing chains.
+	/// </summary>
+	/// <typeparam name="TMultipleForcingChains">The type of multiple forcing chains.</typeparam>
+	/// <typeparam name="TStep">The type of target step created.</typeparam>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+	/// <param name="componentCreator">Indicates the component that the current forcing chains pattern is.</param>
+	/// <param name="chainsCollector">
+	/// The collector method that can find a list of <typeparamref name="TMultipleForcingChains"/> instances in the grid.
+	/// </param>
+	/// <param name="stepCreator">The creator method that can create a chain step.</param>
+	/// <returns>The first found step.</returns>
+	private static unsafe Step? CollectGeneralizedMultipleCore<TMultipleForcingChains, TStep>(
+		ref StepAnalysisContext context,
+		SortedSet<ChainStep> accumulator,
+		bool allowsAdvancedLinks,
+		bool onlyFindFinnedChain,
+		delegate*<TMultipleForcingChains, MultipleChainBasedComponent> componentCreator,
+		delegate*<ref readonly Grid, bool, ReadOnlySpan<TMultipleForcingChains>> chainsCollector,
+		delegate*<TMultipleForcingChains, ref readonly Grid, ref readonly StepAnalysisContext, ChainingRuleCollection, TStep> stepCreator
+	)
+		where TMultipleForcingChains : MultipleForcingChains
+		where TStep : ChainStep
+	{
+		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
+		ref readonly var grid = ref context.Grid;
+		InitializeLinks(
+			in grid,
+			linkTypes.Aggregate(@delegate.EnumFlagMerger),
+			context.Options,
+			out var supportedRules
+		);
+
+		foreach (var chain in chainsCollector(in context.Grid, context.OnlyFindOne))
+		{
+			var cachedAlsIndex = 0;
+			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
+			{
+				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
+				chain.PrepareFinnedChainViewNodes(finnedChain, ref cachedAlsIndex, supportedRules, in grid, in fins, out var views);
+
+				var finnedChainStep = new FinnedChainStep(
+					chain.Conclusions,
+					views,
+					context.Options,
+					finnedChain,
+					in fins,
+					componentCreator(chain)
+				);
+				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
+				{
+					continue;
+				}
+
+				if (context.OnlyFindOne)
+				{
+					return finnedChainStep;
+				}
+
+				accumulator.Add(finnedChainStep);
+				continue;
+			}
+
+			if (!onlyFindFinnedChain)
+			{
+				var rfcStep = stepCreator(chain, in grid, in context, supportedRules);
+				if (context.OnlyFindOne)
+				{
+					return rfcStep;
+				}
+
+				accumulator.Add(rfcStep);
+			}
+		}
+		return null;
 	}
 }
 

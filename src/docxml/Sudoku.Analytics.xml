@@ -1753,6 +1753,23 @@
             <param name="accumulator">The instance that temporarily records for chain steps.</param>
             <returns>The first found step.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectGeneralizedMultipleCore``2(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean,,,)">
+            <summary>
+            The internal method that can collect for general-typed multiple forcing chains.
+            </summary>
+            <typeparam name="TMultipleForcingChains">The type of multiple forcing chains.</typeparam>
+            <typeparam name="TStep">The type of target step created.</typeparam>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+            <param name="componentCreator">Indicates the component that the current forcing chains pattern is.</param>
+            <param name="chainsCollector">
+            The collector method that can find a list of <typeparamref name="TMultipleForcingChains"/> instances in the grid.
+            </param>
+            <param name="stepCreator">The creator method that can create a chain step.</param>
+            <returns>The first found step.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Collect all multiple forcing chains appeared in a grid.
