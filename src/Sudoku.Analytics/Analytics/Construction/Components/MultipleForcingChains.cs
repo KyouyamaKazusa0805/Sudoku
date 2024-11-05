@@ -425,12 +425,39 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	}
 
 	/// <summary>
-	/// Try to update initial view nodes, inserting into <paramref name="views"/>.
+	/// Try to prepare initial view nodes that will be displayed as a finned chain.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	/// <param name="cachedAlsIndex">Indicates currently used ALS index.</param>
+	/// <param name="supportedRules">Indicates the supported rules.</param>
+	/// <param name="finnedChain">Indicates the finned chain.</param>
+	/// <param name="fins">Indicates the fins.</param>
 	/// <param name="views">The views.</param>
-	protected internal virtual void UpdateInitialViewNodes(ref readonly Grid grid, View[] views)
+	protected internal virtual void PrepareFinnedChainViewNodes(
+		NamedChain finnedChain,
+		ref int cachedAlsIndex,
+		ChainingRuleCollection supportedRules,
+		ref readonly Grid grid,
+		ref readonly CandidateMap fins,
+		out View[] views
+	)
 	{
+		views = [
+			[
+				.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
+				.. finnedChain.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0]
+			]
+		];
+
+		// Change nodes into fin-like view nodes.
+		foreach (var node in (ViewNode[])[.. views[0]])
+		{
+			if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
+			{
+				views[0].Remove(node);
+				views[0].Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
+			}
+		}
 	}
 
 	/// <summary>

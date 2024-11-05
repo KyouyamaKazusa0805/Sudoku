@@ -176,24 +176,7 @@ internal static partial class ChainingDriver
 			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
 			{
 				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
-				var views = (View[])[
-					[
-						.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
-						.. finnedChain.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0]
-					]
-				];
-
-				// Change nodes into fin-like view nodes.
-				foreach (var node in (ViewNode[])[.. views[0]])
-				{
-					if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
-					{
-						views[0].Remove(node);
-						views[0].Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
-					}
-				}
-
-				chain.UpdateInitialViewNodes(in grid, views);
+				chain.PrepareFinnedChainViewNodes(finnedChain, ref cachedAlsIndex, supportedRules, in grid, in fins, out var views);
 
 				var finnedChainStep = new FinnedChainStep(
 					chain.Conclusions,
@@ -266,24 +249,7 @@ internal static partial class ChainingDriver
 			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
 			{
 				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
-				var views = (View[])[
-					[
-						.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
-						.. finnedChain.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0]
-					]
-				];
-
-				// Change nodes into fin-like view nodes.
-				foreach (var node in (ViewNode[])[.. views[0]])
-				{
-					if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
-					{
-						views[0].Remove(node);
-						views[0].Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
-					}
-				}
-
-				chain.UpdateInitialViewNodes(in grid, views);
+				chain.PrepareFinnedChainViewNodes(finnedChain, ref cachedAlsIndex, supportedRules, in grid, in fins, out var views);
 
 				var finnedChainStep = new FinnedChainStep(
 					chain.Conclusions,

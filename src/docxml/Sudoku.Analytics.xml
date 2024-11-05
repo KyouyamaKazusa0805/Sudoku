@@ -2273,6 +2273,9 @@
         <member name="P:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.IsAdvancedMultiple">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.PrepareFinnedChainViewNodes(Sudoku.Analytics.Construction.Components.NamedChain,System.Int32@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Drawing.View[]@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.GetInitialViewNodes(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
@@ -3991,6 +3994,17 @@
             <param name="supportedRules">The supported rules.</param>
             <returns>The views.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.PrepareFinnedChainViewNodes(Sudoku.Analytics.Construction.Components.NamedChain,System.Int32@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Drawing.View[]@)">
+            <summary>
+            Try to prepare initial view nodes that will be displayed as a finned chain.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cachedAlsIndex">Indicates currently used ALS index.</param>
+            <param name="supportedRules">Indicates the supported rules.</param>
+            <param name="finnedChain">Indicates the finned chain.</param>
+            <param name="fins">Indicates the fins.</param>
+            <param name="views">The views.</param>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetInitialViewNodes(Sudoku.Concepts.Grid@)">
             <summary>
             Try to create a list of initial view nodes.
@@ -4421,6 +4435,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.RectangleForcingChains.IsAdvancedMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleForcingChains.PrepareFinnedChainViewNodes(Sudoku.Analytics.Construction.Components.NamedChain,System.Int32@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Drawing.View[]@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.RectangleForcingChains.GetInitialViewNodes(Sudoku.Concepts.Grid@)">
