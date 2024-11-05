@@ -716,14 +716,14 @@ public interface IGrid<TSelf> :
 
 	/// <summary>
 	/// Analyzes difference between two grids.
-	/// If two grids are not same from given cells, a <see cref="GridDifferenceTooMuchException"/> instance will be thrown.
+	/// If two grids are not same from given cells, a <see cref="GridDiffTooMuchException"/> instance will be thrown.
 	/// </summary>
 	/// <param name="left">The first grid to be checked.</param>
 	/// <param name="right">The second grid to be checked.</param>
 	/// <returns>The difference between two grids.</returns>
-	/// <exception cref="GridDifferenceTooMuchException">Throws when two grids are not same from given cells.</exception>
+	/// <exception cref="GridDiffTooMuchException">Throws when two grids are not same from given cells.</exception>
 	public static virtual DiffResult operator checked -(in TSelf left, in TSelf right)
-		=> left - right ?? throw new GridDifferenceTooMuchException();
+		=> left - right ?? throw new GridDiffTooMuchException();
 
 	/// <inheritdoc/>
 	static bool IEqualityOperators<TSelf, TSelf, bool>.operator ==(TSelf left, TSelf right) => left == right;

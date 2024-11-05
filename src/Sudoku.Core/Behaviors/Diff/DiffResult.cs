@@ -1,4 +1,4 @@
-namespace Sudoku.Behaviors;
+namespace Sudoku.Behaviors.Diff;
 
 /// <summary>
 /// Represents a difference result.

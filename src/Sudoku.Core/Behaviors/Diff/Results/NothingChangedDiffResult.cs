@@ -1,8 +1,9 @@
-namespace Sudoku.Behaviors.DiffResults;
+namespace Sudoku.Behaviors.Diff.Results;
 
 /// <summary>
 /// Represents a result that describes two grids are same.
 /// </summary>
+[IntroducedSince(3, 4)]
 [method: JsonConstructor]
 public sealed class NothingChangedDiffResult() : DiffResult
 {

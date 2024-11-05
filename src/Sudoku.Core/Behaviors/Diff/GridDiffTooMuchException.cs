@@ -1,6 +1,7 @@
-namespace Sudoku.Behaviors;
+namespace Sudoku.Behaviors.Diff;
 
 /// <summary>
 /// Represents an exception that describes two grids are different, and cannot analyze difference between them.
 /// </summary>
-public sealed class GridDifferenceTooMuchException : Exception;
+[IntroducedSince(3, 4)]
+public sealed class GridDiffTooMuchException : Exception;

@@ -1,9 +1,10 @@
-namespace Sudoku.Behaviors.DiffResults;
+namespace Sudoku.Behaviors.Diff.Results;
 
 /// <summary>
 /// Represents a difference that describes a list of given digits is changed.
 /// </summary>
 /// <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
+[IntroducedSince(3, 4)]
 [method: JsonConstructor]
 public sealed class ChangedGivenDiffResult(CandidateMap candidates) : ChangedDiffResult(candidates)
 {

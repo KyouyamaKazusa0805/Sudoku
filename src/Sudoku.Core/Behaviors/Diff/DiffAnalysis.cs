@@ -1,4 +1,4 @@
-namespace Sudoku.Behaviors;
+namespace Sudoku.Behaviors.Diff;
 
 /// <summary>
 /// Provides a way to analyze difference between two grids.

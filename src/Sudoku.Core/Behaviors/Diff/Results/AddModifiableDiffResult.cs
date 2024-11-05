@@ -1,10 +1,11 @@
-namespace Sudoku.Behaviors.DiffResults;
+namespace Sudoku.Behaviors.Diff.Results;
 
 /// <summary>
 /// Represents a difference that describes a list of modifiable digits are added.
 /// </summary>
 /// <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
 /// <param name="areCorrect"><inheritdoc path="/param[@name='areCorrect']"/></param>
+[IntroducedSince(3, 4)]
 [method: JsonConstructor]
 public sealed class AddModifiableDiffResult(CandidateMap candidates, bool areCorrect) : AddDiffResult(candidates, areCorrect)
 {

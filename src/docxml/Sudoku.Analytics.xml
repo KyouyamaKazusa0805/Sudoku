@@ -21277,12 +21277,12 @@
         <member name="M:Sudoku.Behaviors.BlockFirst.GetDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.SingleStep,Sudoku.Concepts.Grid}}@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Behaviors.DiffTechniqueAnalysis">
+        <member name="T:Sudoku.Behaviors.Diff.DiffTechniqueAnalysis">
             <summary>
             Provides a way to analyze technique usages on difference between two grids.
             </summary>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffTechniqueAnalysis.TryAnalyzeTechnique(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Collector,Sudoku.Analytics.Step@)">
+        <member name="M:Sudoku.Behaviors.Diff.DiffTechniqueAnalysis.TryAnalyzeTechnique(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Collector,Sudoku.Analytics.Step@)">
             <summary>
             Try to analyze technique used that causes <paramref name="left"/> changing into <paramref name="right"/>.
             </summary>

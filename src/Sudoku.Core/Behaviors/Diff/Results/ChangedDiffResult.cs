@@ -1,14 +1,15 @@
-namespace Sudoku.Behaviors.DiffResults;
+namespace Sudoku.Behaviors.Diff.Results;
 
 /// <summary>
-/// Represents a difference that describes a type of digits (given, value or candidate) is removed.
+/// Represents a difference that describes a type of digits (given, value or candidate) is changed.
 /// </summary>
 /// <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
-public abstract class RemoveDiffResult(CandidateMap candidates) : UpdatedDiffResult(candidates)
+[IntroducedSince(3, 4)]
+public abstract class ChangedDiffResult(CandidateMap candidates) : UpdatedDiffResult(candidates)
 {
 	/// <inheritdoc/>
 	public sealed override bool Equals([NotNullWhen(true)] DiffResult? other)
-		=> other is RemoveDiffResult comparer && Candidates == comparer.Candidates && EqualityContract == comparer.EqualityContract;
+		=> other is ChangedDiffResult comparer && Candidates == comparer.Candidates && EqualityContract == comparer.EqualityContract;
 
 	/// <inheritdoc/>
 	public sealed override int GetHashCode() => HashCode.Combine(EqualityContract, Candidates);
@@ -17,6 +18,6 @@ public abstract class RemoveDiffResult(CandidateMap candidates) : UpdatedDiffRes
 	public sealed override string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
-		return $"{CellTypeString} digits removed: {converter.CandidateConverter(Candidates)}";
+		return $"{CellTypeString} digits changed: {converter.CandidateConverter(Candidates)}";
 	}
 }

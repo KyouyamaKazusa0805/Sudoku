@@ -1159,7 +1159,7 @@ public partial struct Grid : GridBase
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DiffResult operator checked -(in Grid left, in Grid right)
-		=> left - right ?? throw new GridDifferenceTooMuchException();
+		=> left - right ?? throw new GridDiffTooMuchException();
 
 
 	/// <summary>

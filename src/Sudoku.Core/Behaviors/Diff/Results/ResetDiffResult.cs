@@ -1,8 +1,9 @@
-namespace Sudoku.Behaviors.DiffResults;
+namespace Sudoku.Behaviors.Diff.Results;
 
 /// <summary>
 /// Represents a difference result that describes candidates are reset.
 /// </summary>
+[IntroducedSince(3, 4)]
 [method: JsonConstructor]
 public sealed class ResetDiffResult() : DiffResult
 {

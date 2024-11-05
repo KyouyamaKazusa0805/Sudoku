@@ -1,4 +1,4 @@
-namespace Sudoku.Behaviors.DiffResults;
+namespace Sudoku.Behaviors.Diff.Results;
 
 /// <summary>
 /// Represents a difference that describes a type of digits (given, value or candidate) is added.
@@ -7,6 +7,7 @@ namespace Sudoku.Behaviors.DiffResults;
 /// <inheritdoc cref="UpdatedDiffResult(CandidateMap)" path="/param[@name='candidates']"/>
 /// </param>
 /// <param name="areCorrect">Indicates whether the digits are correct to be added.</param>
+[IntroducedSince(3, 4)]
 public abstract partial class AddDiffResult(CandidateMap candidates, [Property] bool areCorrect) : UpdatedDiffResult(candidates)
 {
 	/// <inheritdoc/>
