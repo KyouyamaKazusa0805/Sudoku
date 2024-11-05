@@ -3816,24 +3816,8 @@
             </summary>
             <param name="conclusions">Indicates the conclusions.</param>
             <remarks>
-            <para>
-            By the way, this type is directly derived from <see cref="T:System.Collections.Generic.SortedDictionary`2"/>
-            of key and value types <see cref="T:System.Int32"/> and <see cref="T:Sudoku.Analytics.Construction.Components.StrongForcingChain"/> or <see cref="T:Sudoku.Analytics.Construction.Components.WeakForcingChain"/>
-            respectively.
-            </para>
-            <para>
-            For keys, <see cref="T:System.Int32"/> describes for a candidate used as the start of a branch.
-            However, in fact this type can be replaced with other ones, in order to achieve the implementation goals
-            on generalized forcing chains logic.
-            </para>
-            <para>
-            For example, a UR forcing chains can be made key types to be <see cref="T:Sudoku.Analytics.Construction.Components.Node"/>
-            instead of <see cref="T:System.Int32"/>.
-            </para>
-            <para>
-            Also, please note that the concept "Forcing Chains" is always represented as a plural noun,
+            Please note that the concept "Forcing Chains" is always represented as a plural noun,
             i.e. the concept represents a list of chains, rather than "Forcing Chain".
-            </para>
             </remarks>
             <seealso cref="T:System.Collections.Generic.SortedDictionary`2"/>
             <seealso cref="T:System.Int32"/>
@@ -3847,24 +3831,8 @@
             </summary>
             <param name="conclusions">Indicates the conclusions.</param>
             <remarks>
-            <para>
-            By the way, this type is directly derived from <see cref="T:System.Collections.Generic.SortedDictionary`2"/>
-            of key and value types <see cref="T:System.Int32"/> and <see cref="T:Sudoku.Analytics.Construction.Components.StrongForcingChain"/> or <see cref="T:Sudoku.Analytics.Construction.Components.WeakForcingChain"/>
-            respectively.
-            </para>
-            <para>
-            For keys, <see cref="T:System.Int32"/> describes for a candidate used as the start of a branch.
-            However, in fact this type can be replaced with other ones, in order to achieve the implementation goals
-            on generalized forcing chains logic.
-            </para>
-            <para>
-            For example, a UR forcing chains can be made key types to be <see cref="T:Sudoku.Analytics.Construction.Components.Node"/>
-            instead of <see cref="T:System.Int32"/>.
-            </para>
-            <para>
-            Also, please note that the concept "Forcing Chains" is always represented as a plural noun,
+            Please note that the concept "Forcing Chains" is always represented as a plural noun,
             i.e. the concept represents a list of chains, rather than "Forcing Chain".
-            </para>
             </remarks>
             <seealso cref="T:System.Collections.Generic.SortedDictionary`2"/>
             <seealso cref="T:System.Int32"/>

@@ -5,24 +5,8 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <param name="conclusions">Indicates the conclusions.</param>
 /// <remarks>
-/// <para>
-/// By the way, this type is directly derived from <see cref="SortedDictionary{TKey, TValue}"/>
-/// of key and value types <see cref="Candidate"/> and <see cref="StrongForcingChain"/> or <see cref="WeakForcingChain"/>
-/// respectively.
-/// </para>
-/// <para>
-/// For keys, <see cref="Candidate"/> describes for a candidate used as the start of a branch.
-/// However, in fact this type can be replaced with other ones, in order to achieve the implementation goals
-/// on generalized forcing chains logic.
-/// </para>
-/// <para>
-/// For example, a UR forcing chains can be made key types to be <see cref="Node"/>
-/// instead of <see cref="Candidate"/>.
-/// </para>
-/// <para>
-/// Also, please note that the concept "Forcing Chains" is always represented as a plural noun,
+/// Please note that the concept "Forcing Chains" is always represented as a plural noun,
 /// i.e. the concept represents a list of chains, rather than "Forcing Chain".
-/// </para>
 /// </remarks>
 /// <seealso cref="SortedDictionary{TKey, TValue}"/>
 /// <seealso cref="Candidate"/>
