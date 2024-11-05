@@ -52,7 +52,7 @@ public static class DiffAnalysis
 				}
 
 				// Check validity of the second puzzle.
-				result = new AddGivenDiffResult(in givenCandidates, right.GetUniqueness() != Uniqueness.Bad);
+				result = new AddGivenDiffResult(givenCandidates, right.GetUniqueness() != Uniqueness.Bad);
 				return true;
 			}
 			else if ((leftResetGridGivens & rightResetGridGivens) == rightResetGridGivens && leftResetGridGivens != rightResetGridGivens)
@@ -64,7 +64,7 @@ public static class DiffAnalysis
 					givenCandidates.Add(cell * 9 + lr.GetDigit(cell));
 				}
 
-				result = new RemoveGivenDiffResult(in givenCandidates);
+				result = new RemoveGivenDiffResult(givenCandidates);
 				return true;
 			}
 			else if (leftResetGridGivens == rightResetGridGivens)
@@ -78,7 +78,7 @@ public static class DiffAnalysis
 					}
 				}
 
-				result = new ChangedGivenDiffResult(in changedCandidates);
+				result = new ChangedGivenDiffResult(changedCandidates);
 				return true;
 			}
 
@@ -98,7 +98,7 @@ public static class DiffAnalysis
 			}
 
 			// Check validity of the second puzzle.
-			result = new AddModifiableDiffResult(in modifiableCandidates, right.GetUniqueness() != Uniqueness.Bad);
+			result = new AddModifiableDiffResult(modifiableCandidates, right.GetUniqueness() != Uniqueness.Bad);
 			return true;
 		}
 		else if ((leftModifiables & rightModifiables) == rightModifiables && leftModifiables != rightModifiables)
@@ -109,7 +109,7 @@ public static class DiffAnalysis
 				modifiableCandidates.Add(cell * 9 + left.GetDigit(cell));
 			}
 
-			result = new RemoveModifiableDiffResult(in modifiableCandidates);
+			result = new RemoveModifiableDiffResult(modifiableCandidates);
 			return true;
 		}
 		else if (leftModifiables == rightModifiables && !!leftModifiables)
@@ -123,7 +123,7 @@ public static class DiffAnalysis
 				}
 			}
 
-			result = new ChangedModifiableDiffResult(in changedCandidates);
+			result = new ChangedModifiableDiffResult(changedCandidates);
 			return true;
 		}
 
@@ -170,17 +170,17 @@ public static class DiffAnalysis
 
 			if (addedCandidates && ~removedCandidates && ~changedCandidates)
 			{
-				result = new AddCandidateDiffResult(in addedCandidates, right.GetUniqueness() != Uniqueness.Bad);
+				result = new AddCandidateDiffResult(addedCandidates, right.GetUniqueness() != Uniqueness.Bad);
 				return true;
 			}
 			else if (~addedCandidates && removedCandidates && ~changedCandidates)
 			{
-				result = new RemoveCandidateDiffResult(in removedCandidates);
+				result = new RemoveCandidateDiffResult(removedCandidates);
 				return true;
 			}
 			else if (changedCandidates)
 			{
-				result = new ChangedCandidateDiffResult(in changedCandidates);
+				result = new ChangedCandidateDiffResult(changedCandidates);
 				return true;
 			}
 			else

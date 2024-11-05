@@ -3,7 +3,8 @@ namespace Sudoku.Behaviors.DiffResults;
 /// <summary>
 /// Represents a difference result that describes candidates are reset.
 /// </summary>
-public sealed class ResetDiffResult : DiffResult
+[method: JsonConstructor]
+public sealed class ResetDiffResult() : DiffResult
 {
 	/// <inheritdoc/>
 	public override string Notation => "R";

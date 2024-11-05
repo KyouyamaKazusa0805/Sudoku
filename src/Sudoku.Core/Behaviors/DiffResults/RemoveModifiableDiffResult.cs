@@ -1,10 +1,11 @@
-﻿namespace Sudoku.Behaviors.DiffResults;
+namespace Sudoku.Behaviors.DiffResults;
 
 /// <summary>
 /// Represents a difference that describes a list of modifiable digits is removed.
 /// </summary>
 /// <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
-public sealed class RemoveModifiableDiffResult(ref readonly CandidateMap candidates) : RemoveDiffResult(in candidates)
+[method: JsonConstructor]
+public sealed class RemoveModifiableDiffResult(CandidateMap candidates) : RemoveDiffResult(candidates)
 {
 	/// <inheritdoc/>
 	public override string NotationPrefix => "M-";

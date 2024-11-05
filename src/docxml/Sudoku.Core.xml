@@ -89,7 +89,7 @@
             <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
             <param name="areCorrect"><inheritdoc path="/param[@name='areCorrect']"/></param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.AddCandidateDiffResult.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean)">
+        <member name="M:Sudoku.Behaviors.DiffResults.AddCandidateDiffResult.#ctor(Sudoku.Concepts.CandidateMap,System.Boolean)">
             <summary>
             Represents a difference that describes a list of candidate digits are added.
             </summary>
@@ -116,16 +116,16 @@
             Represents a difference that describes a type of digits (given, value or candidate) is added.
             </summary>
             <param name="candidates">
-            <inheritdoc cref="M:Sudoku.Behaviors.DiffResults.UpdatedDiffResult.#ctor(Sudoku.Concepts.CandidateMap@)" path="/param[@name='candidates']"/>
+            <inheritdoc cref="M:Sudoku.Behaviors.DiffResults.UpdatedDiffResult.#ctor(Sudoku.Concepts.CandidateMap)" path="/param[@name='candidates']"/>
             </param>
             <param name="areCorrect">Indicates whether the digits are correct to be added.</param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.AddDiffResult.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean)">
+        <member name="M:Sudoku.Behaviors.DiffResults.AddDiffResult.#ctor(Sudoku.Concepts.CandidateMap,System.Boolean)">
             <summary>
             Represents a difference that describes a type of digits (given, value or candidate) is added.
             </summary>
             <param name="candidates">
-            <inheritdoc cref="M:Sudoku.Behaviors.DiffResults.UpdatedDiffResult.#ctor(Sudoku.Concepts.CandidateMap@)" path="/param[@name='candidates']"/>
+            <inheritdoc cref="M:Sudoku.Behaviors.DiffResults.UpdatedDiffResult.#ctor(Sudoku.Concepts.CandidateMap)" path="/param[@name='candidates']"/>
             </param>
             <param name="areCorrect">Indicates whether the digits are correct to be added.</param>
         </member>
@@ -150,7 +150,7 @@
             <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
             <param name="areCorrect"><inheritdoc path="/param[@name='areCorrect']"/></param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.AddGivenDiffResult.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean)">
+        <member name="M:Sudoku.Behaviors.DiffResults.AddGivenDiffResult.#ctor(Sudoku.Concepts.CandidateMap,System.Boolean)">
             <summary>
             Represents a difference that describes a list of given digits are added.
             </summary>
@@ -176,7 +176,7 @@
             <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
             <param name="areCorrect"><inheritdoc path="/param[@name='areCorrect']"/></param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.AddModifiableDiffResult.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean)">
+        <member name="M:Sudoku.Behaviors.DiffResults.AddModifiableDiffResult.#ctor(Sudoku.Concepts.CandidateMap,System.Boolean)">
             <summary>
             Represents a difference that describes a list of modifiable digits are added.
             </summary>
@@ -201,7 +201,7 @@
             </summary>
             <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.ChangedCandidateDiffResult.#ctor(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Behaviors.DiffResults.ChangedCandidateDiffResult.#ctor(Sudoku.Concepts.CandidateMap)">
             <summary>
             Represents a difference that describes a list of candidate digits is changed.
             </summary>
@@ -228,7 +228,7 @@
             </summary>
             <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.ChangedDiffResult.#ctor(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Behaviors.DiffResults.ChangedDiffResult.#ctor(Sudoku.Concepts.CandidateMap)">
             <summary>
             Represents a difference that describes a type of digits (given, value or candidate) is changed.
             </summary>
@@ -249,7 +249,7 @@
             </summary>
             <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.ChangedGivenDiffResult.#ctor(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Behaviors.DiffResults.ChangedGivenDiffResult.#ctor(Sudoku.Concepts.CandidateMap)">
             <summary>
             Represents a difference that describes a list of given digits is changed.
             </summary>
@@ -273,7 +273,7 @@
             </summary>
             <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.ChangedModifiableDiffResult.#ctor(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Behaviors.DiffResults.ChangedModifiableDiffResult.#ctor(Sudoku.Concepts.CandidateMap)">
             <summary>
             Represents a difference that describes a list of modifiable digits is changed.
             </summary>
@@ -292,6 +292,11 @@
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Behaviors.DiffResults.NothingChangedDiffResult">
+            <summary>
+            Represents a result that describes two grids are same.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Behaviors.DiffResults.NothingChangedDiffResult.#ctor">
             <summary>
             Represents a result that describes two grids are same.
             </summary>
@@ -320,7 +325,7 @@
             </summary>
             <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.RemoveCandidateDiffResult.#ctor(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Behaviors.DiffResults.RemoveCandidateDiffResult.#ctor(Sudoku.Concepts.CandidateMap)">
             <summary>
             Represents a difference that describes a list of candidate digits is removed.
             </summary>
@@ -347,7 +352,7 @@
             </summary>
             <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.RemoveDiffResult.#ctor(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Behaviors.DiffResults.RemoveDiffResult.#ctor(Sudoku.Concepts.CandidateMap)">
             <summary>
             Represents a difference that describes a type of digits (given, value or candidate) is removed.
             </summary>
@@ -368,7 +373,7 @@
             </summary>
             <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.RemoveGivenDiffResult.#ctor(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Behaviors.DiffResults.RemoveGivenDiffResult.#ctor(Sudoku.Concepts.CandidateMap)">
             <summary>
             Represents a difference that describes a list of given digits is removed.
             </summary>
@@ -392,7 +397,7 @@
             </summary>
             <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.RemoveModifiableDiffResult.#ctor(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Behaviors.DiffResults.RemoveModifiableDiffResult.#ctor(Sudoku.Concepts.CandidateMap)">
             <summary>
             Represents a difference that describes a list of modifiable digits is removed.
             </summary>
@@ -411,6 +416,11 @@
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Behaviors.DiffResults.ResetDiffResult">
+            <summary>
+            Represents a difference result that describes candidates are reset.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Behaviors.DiffResults.ResetDiffResult.#ctor">
             <summary>
             Represents a difference result that describes candidates are reset.
             </summary>
@@ -439,7 +449,7 @@
             </summary>
             <param name="candidates">Indicates the candidates to be updated.</param>
         </member>
-        <member name="M:Sudoku.Behaviors.DiffResults.UpdatedDiffResult.#ctor(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Behaviors.DiffResults.UpdatedDiffResult.#ctor(Sudoku.Concepts.CandidateMap)">
             <summary>
             Represents a difference that describes a type of digits (given, value or candidate) is updated.
             </summary>

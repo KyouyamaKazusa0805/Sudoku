@@ -3,7 +3,8 @@ namespace Sudoku.Behaviors.DiffResults;
 /// <summary>
 /// Represents a result that describes two grids are same.
 /// </summary>
-public sealed class NothingChangedDiffResult : DiffResult
+[method: JsonConstructor]
+public sealed class NothingChangedDiffResult() : DiffResult
 {
 	/// <inheritdoc/>
 	public override string Notation => "N";

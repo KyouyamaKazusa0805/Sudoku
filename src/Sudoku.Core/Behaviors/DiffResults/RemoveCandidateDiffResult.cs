@@ -4,7 +4,8 @@ namespace Sudoku.Behaviors.DiffResults;
 /// Represents a difference that describes a list of candidate digits is removed.
 /// </summary>
 /// <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
-public sealed class RemoveCandidateDiffResult(ref readonly CandidateMap candidates) : RemoveDiffResult(in candidates)
+[method: JsonConstructor]
+public sealed class RemoveCandidateDiffResult(CandidateMap candidates) : RemoveDiffResult(candidates)
 {
 	/// <inheritdoc/>
 	public override string NotationPrefix => "C-";

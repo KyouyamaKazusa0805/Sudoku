@@ -5,8 +5,8 @@ namespace Sudoku.Behaviors.DiffResults;
 /// </summary>
 /// <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
 /// <param name="areCorrect"><inheritdoc path="/param[@name='areCorrect']"/></param>
-public sealed class AddGivenDiffResult(ref readonly CandidateMap candidates, bool areCorrect) :
-	AddDiffResult(in candidates, areCorrect)
+[method: JsonConstructor]
+public sealed class AddGivenDiffResult(CandidateMap candidates, bool areCorrect) : AddDiffResult(candidates, areCorrect)
 {
 	/// <inheritdoc/>
 	public override string NotationPrefix => "G+";

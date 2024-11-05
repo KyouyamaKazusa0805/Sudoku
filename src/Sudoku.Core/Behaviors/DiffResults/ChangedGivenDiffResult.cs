@@ -4,7 +4,8 @@ namespace Sudoku.Behaviors.DiffResults;
 /// Represents a difference that describes a list of given digits is changed.
 /// </summary>
 /// <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
-public sealed class ChangedGivenDiffResult(ref readonly CandidateMap candidates) : ChangedDiffResult(in candidates)
+[method: JsonConstructor]
+public sealed class ChangedGivenDiffResult(CandidateMap candidates) : ChangedDiffResult(candidates)
 {
 	/// <inheritdoc/>
 	public override string NotationPrefix => "G^";

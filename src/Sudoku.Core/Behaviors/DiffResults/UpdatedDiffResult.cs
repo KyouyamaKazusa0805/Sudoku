@@ -4,7 +4,7 @@ namespace Sudoku.Behaviors.DiffResults;
 /// Represents a difference that describes a type of digits (given, value or candidate) is updated.
 /// </summary>
 /// <param name="candidates">Indicates the candidates to be updated.</param>
-public abstract partial class UpdatedDiffResult([Property] ref readonly CandidateMap candidates) : DiffResult
+public abstract partial class UpdatedDiffResult([Property] CandidateMap candidates) : DiffResult
 {
 	/// <inheritdoc/>
 	public abstract override string NotationPrefix { get; }

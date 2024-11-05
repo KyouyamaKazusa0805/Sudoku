@@ -1,13 +1,14 @@
-﻿namespace Sudoku.Behaviors.DiffResults;
+namespace Sudoku.Behaviors.DiffResults;
 
 /// <summary>
 /// Represents a difference that describes a list of candidate digits is changed.
 /// </summary>
 /// <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
-public sealed class ChangedCandidateDiffResult(ref readonly CandidateMap candidates) : ChangedDiffResult(in candidates)
+[method: JsonConstructor]
+public sealed class ChangedCandidateDiffResult(CandidateMap candidates) : ChangedDiffResult(candidates)
 {
 	/// <inheritdoc/>
-	public override string NotationPrefix => "G^";
+	public override string NotationPrefix => "C^";
 
 	/// <inheritdoc/>
 	public override CellState CellType => CellState.Given;
