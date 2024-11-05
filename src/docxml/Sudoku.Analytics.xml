@@ -7073,6 +7073,54 @@
             <summary>
             Try to apply setters.
             </summary>
+            <param name="instance">The instance itself.</param>
+            <remarks>
+            <feature name="static-dim">
+			<para>
+				The keyword combinations <see langword="static abstract" />, <see langword="static virtual" />
+				and <see langword="static sealed" /> are basic of DIM (default interface implementation)
+				for <see langword="static" /> members, introduced from C# 11.
+				<list type="table">
+					<listheader>
+						<term>Keyword combination</term>
+						<description>Meaning</description>
+					</listheader>
+					<item>
+						<term>
+							<see langword="static abstract" />
+						</term>
+						<description>
+							Such members must be implemented by concrete types
+							(<see langword="class" />, <see langword="struct" />, etc.).
+						</description>
+					</item>
+					<item>
+						<term>
+							<see langword="static virtual" />
+						</term>
+						<description>
+							Such members has a default implementation, no matter whether the member is re-implemented
+							(same meaning with "overridding" for instance members in <see langword="class" /> types,
+							but is <see langword="static" /> version) in concrete types, no compiler errors will be produced.
+							If such members don't have an overridden one, default implementation will be invoked;
+							otherwise, overridden one will be invoked.
+						</description>
+					</item>
+					<item>
+						<term>
+							<see langword="static sealed" />
+						</term>
+						<description>
+							Such members cannot be re-implemented. Default implmentation will be frozen and no way to override it.
+						</description>
+					</item>
+				</list>
+			</para>
+			<para>
+				Please note that the rule can only be used inside a <see langword="interface" />.
+			</para>
+		</feature>
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Primitives.IStepGatherer`3.FilterStepSearchers(System.ReadOnlyMemory{Sudoku.Analytics.StepSearcher},Sudoku.Analytics.StepSearchers.StepSearcherRunningArea)">
             <summary>
@@ -7081,6 +7129,53 @@
             <param name="in">The step searchers passed in.</param>
             <param name="runningArea">The running area to be checked.</param>
             <returns>Filtered collection.</returns>
+            <remarks>
+            <feature name="static-dim">
+			<para>
+				The keyword combinations <see langword="static abstract" />, <see langword="static virtual" />
+				and <see langword="static sealed" /> are basic of DIM (default interface implementation)
+				for <see langword="static" /> members, introduced from C# 11.
+				<list type="table">
+					<listheader>
+						<term>Keyword combination</term>
+						<description>Meaning</description>
+					</listheader>
+					<item>
+						<term>
+							<see langword="static abstract" />
+						</term>
+						<description>
+							Such members must be implemented by concrete types
+							(<see langword="class" />, <see langword="struct" />, etc.).
+						</description>
+					</item>
+					<item>
+						<term>
+							<see langword="static virtual" />
+						</term>
+						<description>
+							Such members has a default implementation, no matter whether the member is re-implemented
+							(same meaning with "overridding" for instance members in <see langword="class" /> types,
+							but is <see langword="static" /> version) in concrete types, no compiler errors will be produced.
+							If such members don't have an overridden one, default implementation will be invoked;
+							otherwise, overridden one will be invoked.
+						</description>
+					</item>
+					<item>
+						<term>
+							<see langword="static sealed" />
+						</term>
+						<description>
+							Such members cannot be re-implemented. Default implmentation will be frozen and no way to override it.
+						</description>
+					</item>
+				</list>
+			</para>
+			<para>
+				Please note that the rule can only be used inside a <see langword="interface" />.
+			</para>
+		</feature>
+            </remarks>
         </member>
         <member name="T:Sudoku.Analytics.Primitives.PencilmarkVisibilities">
             <summary>

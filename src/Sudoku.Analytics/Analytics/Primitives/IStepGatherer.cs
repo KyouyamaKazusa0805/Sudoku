@@ -51,6 +51,10 @@ public interface IStepGatherer<in TSelf, TContext, out TResult>
 	/// <summary>
 	/// Try to apply setters.
 	/// </summary>
+	/// <param name="instance">The instance itself.</param>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp11/feature[@name='static-dim']"/>
+	/// </remarks>
 	protected static sealed void ApplySetters(TSelf instance)
 	{
 		foreach (var setter in instance.Setters)
@@ -68,6 +72,9 @@ public interface IStepGatherer<in TSelf, TContext, out TResult>
 	/// <param name="in">The step searchers passed in.</param>
 	/// <param name="runningArea">The running area to be checked.</param>
 	/// <returns>Filtered collection.</returns>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp11/feature[@name='static-dim']"/>
+	/// </remarks>
 	protected static sealed ReadOnlyMemory<StepSearcher> FilterStepSearchers(ReadOnlyMemory<StepSearcher> @in, StepSearcherRunningArea runningArea)
 		=> from searcher in @in where searcher.RunningArea.HasFlag(runningArea) select searcher;
 }
