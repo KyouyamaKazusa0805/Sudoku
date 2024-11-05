@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Behaviors;
+namespace Sudoku.Behaviors;
 
 /// <summary>
 /// Represents constants of <see cref="UserBehavior"/>.
 /// </summary>
 /// <seealso cref="UserBehavior"/>
-public readonly struct UserBehaviors
+public static class UserBehaviors
 {
 	/// <summary>
 	/// Indicates all possible behaviors.

@@ -4,8 +4,7 @@ namespace Sudoku.Analytics.Primitives;
 /// Represents a list of constants of <see cref="PencilmarkVisibility"/>.
 /// </summary>
 /// <seealso cref="PencilmarkVisibility"/>
-[method: Obsolete("Don't instantiate this type.", true)]
-public readonly struct PencilmarkVisibilities()
+public static class PencilmarkVisibilities
 {
 	/// <summary>
 	/// Indicates all visibilities.

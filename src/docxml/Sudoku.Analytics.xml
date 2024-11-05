@@ -7086,12 +7086,6 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/>
         </member>
-        <member name="M:Sudoku.Analytics.Primitives.PencilmarkVisibilities.#ctor">
-            <summary>
-            Represents a list of constants of <see cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/>
-        </member>
         <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibilities.All">
             <summary>
             Indicates all visibilities.
