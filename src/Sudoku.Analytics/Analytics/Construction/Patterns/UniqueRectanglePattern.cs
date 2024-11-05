@@ -131,21 +131,13 @@ public sealed partial class UniqueRectanglePattern(
 	/// <param name="d2">The second digit.</param>
 	/// <param name="cells">All four cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool CanMakeDeadlyPattern(ref readonly Grid grid, Digit d1, Digit d2, Cell[] cells)
-	{
 		// Labeling of four cells:
 		// c1 c2
 		// c3 c4
-
-		foreach (var ((c1, c4), (c2, c3)) in (((cells[0], cells[3]), (cells[1], cells[2])), ((cells[1], cells[2]), (cells[0], cells[3]))))
-		{
-			if (((grid.GetCandidates(c1) & grid.GetCandidates(c4)) >> d1 & 1) == 0
-				|| ((grid.GetCandidates(c2) & grid.GetCandidates(c3)) >> d2 & 1) == 0)
-			{
-				return false;
-			}
-			break;
-		}
-		return true;
-	}
+		=> ((grid.GetCandidates(cells[0]) & grid.GetCandidates(cells[3])) >> d1 & 1) != 0
+		&& ((grid.GetCandidates(cells[1]) & grid.GetCandidates(cells[2])) >> d2 & 1) != 0
+		|| ((grid.GetCandidates(cells[1]) & grid.GetCandidates(cells[2])) >> d1 & 1) != 0
+		&& ((grid.GetCandidates(cells[0]) & grid.GetCandidates(cells[3])) >> d2 & 1) != 0;
 }
