@@ -440,7 +440,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.Any() => Count != 0;
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.Any(Func<KeyValuePair<int, UnnamedChain>, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.Any(Func<KeyValuePair<Candidate, UnnamedChain>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
@@ -453,7 +453,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.All(Func<KeyValuePair<int, UnnamedChain>, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.All(Func<KeyValuePair<Candidate, UnnamedChain>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
