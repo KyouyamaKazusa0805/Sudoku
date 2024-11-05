@@ -36,18 +36,7 @@ internal partial class ChainingDriver
 				// Determine whether such digits can be filled in diagonal cells.
 				// If a rectangle is correct, we should guarantee both digits can be filled twice in rectangle pattern,
 				// in order to make a valid deadly pattern (i.e. guarantee having at least one possible unavoidable set).
-				var suchDigitsCanBeFilledInDiagonalCells = true;
-				foreach (var ((c1, c4), (c2, c3)) in (((urCells[0], urCells[3]), (urCells[1], urCells[2])), ((urCells[1], urCells[2]), (urCells[0], urCells[3]))))
-				{
-					if (((grid.GetCandidates(c1) & grid.GetCandidates(c4)) >> d1 & 1) == 0
-						|| ((grid.GetCandidates(c2) & grid.GetCandidates(c3)) >> d2 & 1) == 0)
-					{
-						suchDigitsCanBeFilledInDiagonalCells = false;
-						break;
-					}
-					break;
-				}
-				if (!suchDigitsCanBeFilledInDiagonalCells)
+				if (!UniqueRectanglePattern.CanMakeDeadlyPattern(in grid, d1, d2, urCells))
 				{
 					continue;
 				}

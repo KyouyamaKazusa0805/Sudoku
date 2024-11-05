@@ -115,4 +115,33 @@ public sealed partial class UniqueRectanglePattern(
 
 	/// <inheritdoc/>
 	public override UniqueRectanglePattern Clone() => new(Cells, DigitsMask, OtherDigitsMask);
+
+
+	/// <summary>
+	/// Determine whether four cells <paramref name="urCells"/> can be formed a valid unique rectangle pattern.
+	/// This method only checks for validity of four cells that contains at least one deadly pattern:
+	/// <code><![CDATA[
+	/// a b
+	/// b a
+	/// ]]></code>
+	/// If four cells cannot make such pattern, this method will return <see langword="false"/>.
+	/// </summary>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="d1">The first digit.</param>
+	/// <param name="d2">The second digit.</param>
+	/// <param name="urCells">All four cells.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool CanMakeDeadlyPattern(ref readonly Grid grid, Digit d1, Digit d2, Cell[] urCells)
+	{
+		foreach (var ((c1, c4), (c2, c3)) in (((urCells[0], urCells[3]), (urCells[1], urCells[2])), ((urCells[1], urCells[2]), (urCells[0], urCells[3]))))
+		{
+			if (((grid.GetCandidates(c1) & grid.GetCandidates(c4)) >> d1 & 1) == 0
+				|| ((grid.GetCandidates(c2) & grid.GetCandidates(c3)) >> d2 & 1) == 0)
+			{
+				return false;
+			}
+			break;
+		}
+		return true;
+	}
 }
