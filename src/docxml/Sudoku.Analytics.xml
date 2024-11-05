@@ -6220,7 +6220,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueRectanglePattern.CanMakeDeadlyPattern(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[])">
             <summary>
-            Determine whether four cells <paramref name="urCells"/> can be formed a valid unique rectangle pattern.
+            Determine whether four cells <paramref name="cells"/> can be formed a valid unique rectangle pattern.
             This method only checks for validity of four cells that contains at least one deadly pattern:
             <code><![CDATA[
             a b
@@ -6231,7 +6231,7 @@
             <param name="grid">The grid to be checked.</param>
             <param name="d1">The first digit.</param>
             <param name="d2">The second digit.</param>
-            <param name="urCells">All four cells.</param>
+            <param name="cells">All four cells.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueRectanglePattern.Cells">
