@@ -118,26 +118,6 @@ internal partial class ChainingDriver
 		return result.ToArray();
 
 
-		static Conclusion[] getThoroughConclusions(ref readonly Grid grid, MultipleForcingChains mfc)
-		{
-			// Modify conclusions in order to check more thoroughly.
-			var map = CandidateMap.Empty;
-			foreach (var branch in mfc.Values)
-			{
-				map |= branch[1].Map; // branch[0] is for conclusion and branch[^1] is for branch start house/cell.
-			}
-
-			var newConclusions = new List<Conclusion>();
-			foreach (var candidate in map.PeerIntersection)
-			{
-				if (grid.Exists(candidate) is true)
-				{
-					newConclusions.Add(new(Elimination, candidate));
-				}
-			}
-			return newConclusions.Count == 0 ? [] : [.. newConclusions];
-		}
-
 		ReadOnlySpan<MultipleForcingChains> cfcOn(
 			ref readonly Grid grid,
 			Cell cell,
@@ -203,7 +183,7 @@ internal partial class ChainingDriver
 					var branchNode = offNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
-				if (getThoroughConclusions(in grid, cfc) is not { Length: not 0 } conclusions)
+				if (cfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
 				{
 					continue;
 				}
@@ -289,7 +269,7 @@ internal partial class ChainingDriver
 						node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
 					);
 				}
-				if (getThoroughConclusions(in grid, rfc) is not { Length: not 0 } conclusions)
+				if (rfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
 				{
 					continue;
 				}

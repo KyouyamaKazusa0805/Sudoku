@@ -332,6 +332,30 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 		return hashCode.ToHashCode();
 	}
 
+	/// <summary>
+	/// Try to get all possible conclusions of the multiple forcing chains.
+	/// </summary>
+	/// <param name="grid">Indicates the current grid to be checked.</param>
+	/// <returns>A list of conclusions found.</returns>
+	public Conclusion[] GetThoroughConclusions(ref readonly Grid grid)
+	{
+		var map = CandidateMap.Empty;
+		foreach (var branch in Values)
+		{
+			map |= branch[1].Map;
+		}
+
+		var newConclusions = new List<Conclusion>();
+		foreach (var candidate in map.PeerIntersection)
+		{
+			if (grid.Exists(candidate) is true)
+			{
+				newConclusions.Add(new(Elimination, candidate));
+			}
+		}
+		return newConclusions.Count == 0 ? [] : [.. newConclusions];
+	}
+
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)

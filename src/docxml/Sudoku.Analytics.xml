@@ -3963,6 +3963,13 @@
             <param name="patternComparison">The chain comparison rule.</param>
             <returns>Hash code value.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetThoroughConclusions(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get all possible conclusions of the multiple forcing chains.
+            </summary>
+            <param name="grid">Indicates the current grid to be checked.</param>
+            <returns>A list of conclusions found.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>

@@ -60,26 +60,6 @@ internal partial class ChainingDriver
 		return result.ToArray();
 
 
-		static Conclusion[] getThoroughConclusions(ref readonly Grid grid, MultipleForcingChains mfc)
-		{
-			// Modify conclusions in order to check more thoroughly.
-			var map = CandidateMap.Empty;
-			foreach (var branch in mfc.Values)
-			{
-				map |= branch[1].Map;
-			}
-
-			var newConclusions = new List<Conclusion>();
-			foreach (var candidate in map.PeerIntersection)
-			{
-				if (grid.Exists(candidate) is true)
-				{
-					newConclusions.Add(new(Elimination, candidate));
-				}
-			}
-			return newConclusions.Count == 0 ? [] : [.. newConclusions];
-		}
-
 		ReadOnlySpan<BivalueUniversalGraveForcingChains> rfcOn(
 			scoped ref readonly CandidateMap trueCandidates,
 			ref readonly Grid grid,
@@ -143,7 +123,7 @@ internal partial class ChainingDriver
 					var branchNode = offNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					rfc.Add(candidate, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
-				if (getThoroughConclusions(in grid, rfc) is not { Length: not 0 } conclusions)
+				if (rfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
 				{
 					continue;
 				}
