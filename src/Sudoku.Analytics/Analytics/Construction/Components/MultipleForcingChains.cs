@@ -425,6 +425,15 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	}
 
 	/// <summary>
+	/// Try to update initial view nodes, inserting into <paramref name="views"/>.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="views">The views.</param>
+	protected internal virtual void UpdateInitialViewNodes(ref readonly Grid grid, View[] views)
+	{
+	}
+
+	/// <summary>
 	/// Try to create a list of initial view nodes.
 	/// </summary>
 	/// <param name="grid">The grid.</param>

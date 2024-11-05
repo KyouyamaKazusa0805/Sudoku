@@ -21,6 +21,19 @@ public sealed partial class BivalueUniversalGraveForcingChains(
 
 
 	/// <inheritdoc/>
+	protected internal override void UpdateInitialViewNodes(ref readonly Grid grid, View[] views)
+	{
+		foreach (var candidate in Candidates)
+		{
+			var node = new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate);
+			foreach (var view in views)
+			{
+				view.Add(node);
+			}
+		}
+	}
+
+	/// <inheritdoc/>
 	protected override ReadOnlySpan<ViewNode> GetInitialViewNodes(ref readonly Grid grid)
 		=> from candidate in TrueCandidates select (ViewNode)new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate);
 }

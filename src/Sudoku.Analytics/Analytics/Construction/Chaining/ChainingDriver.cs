@@ -193,23 +193,7 @@ internal static partial class ChainingDriver
 					}
 				}
 
-				// Highlight UR nodes.
-				foreach (var cell in chain.Cells)
-				{
-					var node = new CellViewNode(ColorIdentifier.Rectangle1, cell);
-					foreach (var view in views)
-					{
-						view.Add(node);
-					}
-					foreach (var digit in chain.UrDigitsMask & grid.GetCandidates(cell))
-					{
-						var candidateNode = new CandidateViewNode(ColorIdentifier.Rectangle1, cell * 9 + digit);
-						foreach (var view in views)
-						{
-							view.Add(candidateNode);
-						}
-					}
-				}
+				chain.UpdateInitialViewNodes(in grid, views);
 
 				var finnedChainStep = new FinnedChainStep(
 					chain.Conclusions,
@@ -299,15 +283,7 @@ internal static partial class ChainingDriver
 					}
 				}
 
-				// Highlight UR nodes.
-				foreach (var candidate in chain.Candidates)
-				{
-					var node = new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate);
-					foreach (var view in views)
-					{
-						view.Add(node);
-					}
-				}
+				chain.UpdateInitialViewNodes(in grid, views);
 
 				var finnedChainStep = new FinnedChainStep(
 					chain.Conclusions,

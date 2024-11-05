@@ -23,6 +23,27 @@ public sealed partial class RectangleForcingChains(
 
 
 	/// <inheritdoc/>
+	protected internal override void UpdateInitialViewNodes(ref readonly Grid grid, View[] views)
+	{
+		foreach (var cell in Cells)
+		{
+			var node = new CellViewNode(ColorIdentifier.Rectangle1, cell);
+			foreach (var view in views)
+			{
+				view.Add(node);
+			}
+			foreach (var digit in UrDigitsMask & grid.GetCandidates(cell))
+			{
+				var candidateNode = new CandidateViewNode(ColorIdentifier.Rectangle1, cell * 9 + digit);
+				foreach (var view in views)
+				{
+					view.Add(candidateNode);
+				}
+			}
+		}
+	}
+
+	/// <inheritdoc/>
 	protected override ReadOnlySpan<ViewNode> GetInitialViewNodes(ref readonly Grid grid)
 	{
 		var result = new List<ViewNode>();
