@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.Construction.Components;
 
+using MfcValue = KeyValuePair<Candidate, UnnamedChain>;
+
 /// <summary>
 /// Represents an instance that describes for cell forcing chains or region forcing chains (i.e. house forcing chains).
 /// </summary>
@@ -19,7 +21,7 @@ namespace Sudoku.Analytics.Construction.Components;
 	OtherModifiersOnToString = "sealed")]
 public partial class MultipleForcingChains([Property(Setter = PropertySetters.InternalSet)] params Conclusion[] conclusions) :
 	SortedDictionary<Candidate, UnnamedChain>,
-	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>,
+	IAnyAllMethod<MultipleForcingChains, MfcValue>,
 	IComparable<MultipleForcingChains>,
 	IComparisonOperators<MultipleForcingChains, MultipleForcingChains, bool>,
 	IComponent,
@@ -457,10 +459,10 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 		];
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.Any() => Count != 0;
+	bool IAnyAllMethod<MultipleForcingChains, MfcValue>.Any() => Count != 0;
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.Any(Func<KeyValuePair<Candidate, UnnamedChain>, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, MfcValue>.Any(Func<MfcValue, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
@@ -473,7 +475,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.All(Func<KeyValuePair<Candidate, UnnamedChain>, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, MfcValue>.All(Func<MfcValue, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
