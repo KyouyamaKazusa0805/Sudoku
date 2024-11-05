@@ -19,11 +19,6 @@ public partial class UniqueRectangleStepSearcher
 	private partial void CheckExternalType1Or2(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Digit d1, Digit d2, int index, bool arMode)
 	{
 		var cells = urCells.AsCellMap();
-		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
-		{
-			return;
-		}
-
 		if (!arMode && (EmptyCells & cells) != cells)
 		{
 			return;
@@ -133,11 +128,6 @@ public partial class UniqueRectangleStepSearcher
 	private partial void CheckExternalType3(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
 		var cells = urCells.AsCellMap();
-		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
-		{
-			return;
-		}
-
 		if (!arMode && (EmptyCells & cells) != cells)
 		{
 			return;
@@ -304,11 +294,6 @@ public partial class UniqueRectangleStepSearcher
 	private partial void CheckExternalType4(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
 		var cells = urCells.AsCellMap();
-		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
-		{
-			return;
-		}
-
 		if (!arMode && (EmptyCells & cells) != cells)
 		{
 			return;
@@ -472,10 +457,6 @@ public partial class UniqueRectangleStepSearcher
 	private partial void CheckExternalTurbotFish(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index)
 	{
 		var cells = urCells.AsCellMap();
-		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
-		{
-			return;
-		}
 
 		// Iterates on each digit, checking whether the current digit forms a guardian pattern but the other digit not.
 		foreach (var (guardianDigit, nonGuardianDigit) in ((d1, d2), (d2, d1)))
@@ -696,10 +677,6 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		var cells = urCells.AsCellMap();
-		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
-		{
-			return;
-		}
 
 		// Iterates on each digit, checking whether the current digit forms a guardian pattern but the other digit not.
 		// Here the variable 'xDigit' has a same concept as guardian digit.
@@ -877,11 +854,6 @@ public partial class UniqueRectangleStepSearcher
 	private partial void CheckExternalXyWing(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
 		var cells = urCells.AsCellMap();
-		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
-		{
-			return;
-		}
-
 		if (!arMode && (EmptyCells & cells) != cells)
 		{
 			return;
@@ -1179,11 +1151,6 @@ public partial class UniqueRectangleStepSearcher
 	private partial void CheckExternalAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
 		var cells = urCells.AsCellMap();
-		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
-		{
-			return;
-		}
-
 		if (!arMode && (EmptyCells & cells) != cells)
 		{
 			return;

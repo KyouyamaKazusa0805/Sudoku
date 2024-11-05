@@ -914,11 +914,6 @@ public partial class UniqueRectangleStepSearcher
 	private partial void CheckAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, int index)
 	{
 		var cells = urCells.AsCellMap();
-		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
-		{
-			return;
-		}
-
 		if (!arMode && (EmptyCells & cells) != cells)
 		{
 			return;

@@ -233,6 +233,12 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				{
 					var d2 = allDigitsInThem[j];
 
+					// Check validity of UR.
+					if (!UniqueRectanglePattern.CanMakeDeadlyPattern(in grid, d1, d2, urCells))
+					{
+						continue;
+					}
+
 					// All possible UR patterns should contain at least one cell that contains both 'd1' and 'd2'.
 					var comparer = (Mask)(1 << d1 | 1 << d2);
 					var isNotPossibleUr = true;
@@ -401,38 +407,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		return modifiableCount != 4 && emptyCountWhenArMode != 4;
-	}
-
-	/// <summary>
-	/// Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="urCells">The UR cells.</param>
-	/// <param name="d1">The first digit used.</param>
-	/// <param name="d2">The second digit used.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	private static bool CheckPreconditionsOnIncomplete(ref readonly Grid grid, Cell[] urCells, Digit d1, Digit d2)
-	{
-		// Same-sided cells cannot contain only one digit of two digits 'd1' and 'd2'.
-		foreach (var (a, b) in ((0, 1), (2, 3), (0, 2), (1, 3)))
-		{
-			var collectedMask = (Mask)(grid.GetCandidates(urCells[a]) | grid.GetCandidates(urCells[b]));
-			if ((collectedMask >> d1 & 1) == 0 || (collectedMask >> d2 & 1) == 0)
-			{
-				return false;
-			}
-		}
-
-		// All four cells must contain at least one digit appeared in the UR.
-		var comparer = (Mask)(1 << d1 | 1 << d2);
-		foreach (var cell in urCells)
-		{
-			if ((grid.GetCandidates(cell) & comparer) == 0)
-			{
-				return false;
-			}
-		}
-		return true;
 	}
 
 	/// <summary>

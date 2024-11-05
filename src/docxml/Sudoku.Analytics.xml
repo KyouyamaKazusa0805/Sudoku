@@ -9175,16 +9175,6 @@
             <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
             <returns>Indicates whether the UR is passed to check.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32)">
-            <summary>
-            Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="urCells">The UR cells.</param>
-            <param name="d1">The first digit used.</param>
-            <param name="d2">The second digit used.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsConjugatePair(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             To determine whether the specified house forms a conjugate pair
