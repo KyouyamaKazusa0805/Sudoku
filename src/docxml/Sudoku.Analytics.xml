@@ -2273,7 +2273,7 @@
         <member name="P:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.IsAdvancedMultiple">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.GetInitialViewNodes">
+        <member name="M:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.GetInitialViewNodes(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains.TrueCandidates">
@@ -3991,10 +3991,11 @@
             <param name="supportedRules">The supported rules.</param>
             <returns>The views.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetInitialViewNodes">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetInitialViewNodes(Sudoku.Concepts.Grid@)">
             <summary>
             Try to create a list of initial view nodes.
             </summary>
+            <param name="grid">The grid.</param>
             <returns>A list of initial view nodes.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#UnnamedChain}}#Any">
@@ -4402,13 +4403,15 @@
             Represents a multiple forcing chains that is applied to a unique rectangle.
             </summary>
             <param name="cells">Indicates the pattern cells.</param>
+            <param name="urDigitsMask">Indicates the digits used in pattern.</param>
             <param name="conclusions"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])" path="/param[@name='conclusions']"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.RectangleForcingChains.#ctor(System.Int32[],Sudoku.Concepts.Conclusion[])">
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleForcingChains.#ctor(System.Int32[],System.Int16,Sudoku.Concepts.Conclusion[])">
             <summary>
             Represents a multiple forcing chains that is applied to a unique rectangle.
             </summary>
             <param name="cells">Indicates the pattern cells.</param>
+            <param name="urDigitsMask">Indicates the digits used in pattern.</param>
             <param name="conclusions"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])" path="/param[@name='conclusions']"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.RectangleForcingChains.IsCellMultiple">
@@ -4420,12 +4423,17 @@
         <member name="P:Sudoku.Analytics.Construction.Components.RectangleForcingChains.IsAdvancedMultiple">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.RectangleForcingChains.GetInitialViewNodes">
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleForcingChains.GetInitialViewNodes(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.RectangleForcingChains.Cells">
             <summary>
             The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.RectangleForcingChains.UrDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>urDigitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.StrongForcingChain">

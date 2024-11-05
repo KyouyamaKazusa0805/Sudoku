@@ -427,8 +427,9 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	/// <summary>
 	/// Try to create a list of initial view nodes.
 	/// </summary>
+	/// <param name="grid">The grid.</param>
 	/// <returns>A list of initial view nodes.</returns>
-	protected virtual ReadOnlySpan<ViewNode> GetInitialViewNodes()
+	protected virtual ReadOnlySpan<ViewNode> GetInitialViewNodes(ref readonly Grid grid)
 		=> (ViewNode[])[
 			IsCellMultiple
 				? new CellViewNode(ColorIdentifier.Normal, this.First().Key / 9)
@@ -477,7 +478,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	private ReadOnlySpan<ViewNode[]> GetViewsCore(ref readonly Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions)
 	{
 		var result = new ViewNode[Count + 1][];
-		var initialViewNodes = GetInitialViewNodes();
+		var initialViewNodes = GetInitialViewNodes(in grid);
 		var i = 0;
 		var globalView = new List<ViewNode>();
 		foreach (var key in Keys)

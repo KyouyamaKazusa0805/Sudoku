@@ -201,6 +201,14 @@ internal static partial class ChainingDriver
 					{
 						view.Add(node);
 					}
+					foreach (var digit in chain.UrDigitsMask & grid.GetCandidates(cell))
+					{
+						var candidateNode = new CandidateViewNode(ColorIdentifier.Rectangle1, cell * 9 + digit);
+						foreach (var view in views)
+						{
+							view.Add(candidateNode);
+						}
+					}
 				}
 
 				var finnedChainStep = new FinnedChainStep(

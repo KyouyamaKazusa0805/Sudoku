@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Construction.Components;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// Represents a multiple forcing chains that is applied to a bi-value universal grave + n.
@@ -21,6 +21,6 @@ public sealed partial class BivalueUniversalGraveForcingChains(
 
 
 	/// <inheritdoc/>
-	protected override ReadOnlySpan<ViewNode> GetInitialViewNodes()
+	protected override ReadOnlySpan<ViewNode> GetInitialViewNodes(ref readonly Grid grid)
 		=> from candidate in TrueCandidates select (ViewNode)new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate);
 }

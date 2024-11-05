@@ -79,13 +79,13 @@ internal partial class ChainingDriver
 					}
 				}
 
-				var step1 = rfcOn(urCells, in grid, in branchStartCandidates, nodesSupposedOnGrouped, resultNodesSupposedOn);
+				var step1 = rfcOn(urCells, in grid, d1, d2, in branchStartCandidates, nodesSupposedOnGrouped, resultNodesSupposedOn);
 				if (!step1.IsEmpty)
 				{
 					return step1;
 				}
 
-				var step2 = rfcOff(urCells, in grid, in branchStartCandidates, nodesSupposedOffGrouped, resultNodesSupposedOff);
+				var step2 = rfcOff(urCells, in grid, d1, d2, in branchStartCandidates, nodesSupposedOffGrouped, resultNodesSupposedOff);
 				if (!step2.IsEmpty)
 				{
 					return step2;
@@ -98,6 +98,8 @@ internal partial class ChainingDriver
 		ReadOnlySpan<RectangleForcingChains> rfcOn(
 			Cell[] urCells,
 			ref readonly Grid grid,
+			Digit d1,
+			Digit d2,
 			scoped ref readonly CandidateMap branchStartCandidates,
 			Dictionary<Candidate, HashSet<Node>> onNodes,
 			HashSet<Node>? resultOnNodes
@@ -117,7 +119,7 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var rfc = new RectangleForcingChains(urCells, conclusion);
+				var rfc = new RectangleForcingChains(urCells, (Mask)(1 << d1 | 1 << d2), conclusion);
 				foreach (var candidate in branchStartCandidates)
 				{
 					var branchNode = onNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
@@ -135,6 +137,8 @@ internal partial class ChainingDriver
 		ReadOnlySpan<RectangleForcingChains> rfcOff(
 			Cell[] urCells,
 			ref readonly Grid grid,
+			Digit d1,
+			Digit d2,
 			scoped ref readonly CandidateMap branchStartCandidates,
 			Dictionary<Candidate, HashSet<Node>> offNodes,
 			HashSet<Node>? resultOffNodes
@@ -154,7 +158,7 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var rfc = new RectangleForcingChains(urCells);
+				var rfc = new RectangleForcingChains(urCells, (Mask)(1 << d1 | 1 << d2));
 				foreach (var candidate in branchStartCandidates)
 				{
 					var branchNode = offNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
