@@ -54,5 +54,5 @@ public sealed partial class UniqueMatrixType3Step(
 
 	private string ExtraDigitStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
-	private string SubsetName => TechniqueNaming.GetSubsetName(Mask.PopCount(SubsetDigitsMask));
+	private string SubsetName => TechniqueNaming.Subset.GetSubsetName(Mask.PopCount(SubsetDigitsMask));
 }

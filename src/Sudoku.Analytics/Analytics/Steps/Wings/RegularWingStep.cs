@@ -66,7 +66,7 @@ public sealed partial class RegularWingStep(
 
 	/// <inheritdoc/>
 	public override Technique Code
-		=> TechniqueNaming.MakeRegularWingTechniqueCode(TechniqueNaming.GetRegularWingEnglishName(Size, IsIncomplete));
+		=> TechniqueNaming.RegularWing.MakeRegularWingTechniqueCode(TechniqueNaming.RegularWing.GetRegularWingEnglishName(Size, IsIncomplete));
 
 	/// <inheritdoc/>
 	public override Mask DigitsUsed => DigitsMask;

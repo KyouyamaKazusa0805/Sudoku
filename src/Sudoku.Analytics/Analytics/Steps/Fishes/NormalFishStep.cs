@@ -83,7 +83,7 @@ public sealed class NormalFishStep(
 				(false, null) => string.Empty,
 				_ => throw new InvalidOperationException($"Siamese fish requires a non-null value for property '{nameof(IsSashimi)}'.")
 			};
-			return $"{prefix}{TechniqueNaming.GetFishEnglishName(Size)}";
+			return $"{prefix}{TechniqueNaming.Fish.GetFishEnglishName(Size)}";
 		}
 	}
 }

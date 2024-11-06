@@ -41,43 +41,7 @@ public sealed partial class ComplexFishStep(
 	public override int BaseDifficulty => 32;
 
 	/// <inheritdoc/>
-	public override Technique Code
-	{
-		get
-		{
-			// Creates a buffer to store the characters that isn't a space or a bar.
-			var name = internalName();
-			var buffer = (stackalloc char[name.Length]);
-			var bufferLength = 0;
-			foreach (var ch in name)
-			{
-				if (ch is not ('-' or ' '))
-				{
-					buffer[bufferLength++] = ch;
-				}
-			}
-
-			return Enum.Parse<Technique>(buffer[..bufferLength]);
-
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			ReadOnlyCharSequence internalName()
-			{
-				var finKindStr = finKind() is var finModifier and not FishFinKind.Normal
-					? IsSiamese ? $"Siamese {finModifier} " : $"{finModifier} "
-					: string.Empty;
-				var shapeKindStr = shapeKind() is var shapeModifier and not FishShapeKind.Basic ? $"{shapeModifier} " : string.Empty;
-				return $"{finKindStr}{shapeKindStr}{TechniqueNaming.GetFishEnglishName(Size)}";
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			FishFinKind finKind()
-				=> IsSashimi switch { true => FishFinKind.Sashimi, false => FishFinKind.Finned, _ => FishFinKind.Normal };
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			FishShapeKind shapeKind() => IsFranken ? FishShapeKind.Franken : FishShapeKind.Mutant;
-		}
-	}
+	public override Technique Code => TechniqueNaming.Fish.GetTechnique(this);
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations

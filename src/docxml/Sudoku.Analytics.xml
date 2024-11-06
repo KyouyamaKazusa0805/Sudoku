@@ -6610,6 +6610,105 @@
             <param name="grid">The grid.</param>
             <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/>.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Hub.TechniqueNaming">
+            <summary>
+            Represents naming rules for some techniques.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Hub.TechniqueNaming.ChineseDigitCharacters">
+            <summary>
+            Indicates the digit characters.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Hub.TechniqueNaming.ChineseDigitsPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[一二三四五六七八九十]</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [\u4E00\u4E03\u4E09\u4E5D\u4E8C\u4E94\u516B\u516D\u5341\u56DB].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.GetDigitCharacter(System.Globalization.CultureInfo,System.Int32)">
+            <summary>
+            Returns a character that represents the digit.
+            </summary>
+            <param name="culture">The culture.</param>
+            <param name="digit">The digit value.</param>
+            <returns>The character that represents the specified digit.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.ChineseDigitCompare(System.Int32,System.Int32)">
+            <summary>
+            Compares Chinese digit characters of two digits.
+            </summary>
+            <param name="left">The left value to be compared.</param>
+            <param name="right">The right value to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> indicating which is bigger.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.GetChineseDigit(System.Char)">
+            <summary>
+            Returns corresponding 0-based digit value by the specified digit character in Chinese.
+            </summary>
+            <param name="digitCharacter">The digit character.</param>
+            <returns>The corresponding digit.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.TechniqueNaming.Fish">
+            <summary>
+            Represents fish naming rules.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.Fish.GetFishEnglishName(System.Int32)">
+            <summary>
+            Gets the name of the fish via the specified size.
+            </summary>
+            <param name="size">The size.</param>
+            <returns>The fish name.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> is 0.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.Fish.GetTechnique(Sudoku.Analytics.Steps.ComplexFishStep)">
+            <summary>
+            Infers the technique of the specified complex fish pattern, specified as <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>.
+            </summary>
+            <param name="step">The step.</param>
+            <returns>The technique.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.TechniqueNaming.RegularWing">
+            <summary>
+            Represents naming rules on regular wings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.RegularWing.GetRegularWingEnglishName(System.Int32,System.Boolean)">
+            <summary>
+            Make the real name of the regular wing.
+            </summary>
+            <param name="size">Indicates the size of the wing.</param>
+            <param name="isIncomplete">A <see cref="T:System.Boolean"/> value indicating whether the wing is incomplete.</param>
+            <returns>The real name of the regular wing.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> isn't between 3 and 9.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.RegularWing.MakeRegularWingTechniqueCode(System.String)">
+            <summary>
+            Try to fetch corresponding <see cref="T:Sudoku.Categorization.Technique"/> instance via the real name representing as a <see cref="T:System.String"/> text.
+            </summary>
+            <param name="englishName">The real name of the regular wing technique.</param>
+            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> instance.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the argument <paramref name="englishName"/> is invalid.</exception>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.TechniqueNaming.Subset">
+            <summary>
+            Represents naming rules for subsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.Subset.GetSubsetName(System.Int32)">
+            <summary>
+            Try to get the real name for the specified size of subset.
+            </summary>
+            <param name="size">The number of cells used in a subset.</param>
+            <returns>The name of the subset.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.PatternSearcher`1">
             <summary>
             Represents a pattern searcher type.
@@ -33684,83 +33783,6 @@
         </member>
         <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Resources.TechniqueNaming">
-            <summary>
-            Represents the naming of techniques.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Resources.TechniqueNaming.ChineseDigitCharacters">
-            <summary>
-            Indicates the digit characters.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.TechniqueNaming.ChineseDigitsPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[一二三四五六七八九十]</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [\u4E00\u4E03\u4E09\u4E5D\u4E8C\u4E94\u516B\u516D\u5341\u56DB].<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Resources.TechniqueNaming.GetDigitCharacter(System.Globalization.CultureInfo,System.Int32)">
-            <summary>
-            Returns a character that represents the digit.
-            </summary>
-            <param name="culture">The culture.</param>
-            <param name="digit">The digit value.</param>
-            <returns>The character that represents the specified digit.</returns>
-        </member>
-        <member name="M:Sudoku.Resources.TechniqueNaming.ChineseDigitCompare(System.Int32,System.Int32)">
-            <summary>
-            Compares Chinese digit characters of two digits.
-            </summary>
-            <param name="left">The left value to be compared.</param>
-            <param name="right">The right value to be compared.</param>
-            <returns>An <see cref="T:System.Int32"/> indicating which is bigger.</returns>
-        </member>
-        <member name="M:Sudoku.Resources.TechniqueNaming.GetSubsetName(System.Int32)">
-            <summary>
-            Try to get the real name for the specified size of subset.
-            </summary>
-            <param name="size">The number of cells used in a subset.</param>
-            <returns>The name of the subset.</returns>
-        </member>
-        <member name="M:Sudoku.Resources.TechniqueNaming.GetChineseDigit(System.Char)">
-            <summary>
-            Returns corresponding 0-based digit value by the specified digit character in Chinese.
-            </summary>
-            <param name="digitCharacter">The digit character.</param>
-            <returns>The corresponding digit.</returns>
-        </member>
-        <member name="M:Sudoku.Resources.TechniqueNaming.GetRegularWingEnglishName(System.Int32,System.Boolean)">
-            <summary>
-            Make the real name of the regular wing.
-            </summary>
-            <param name="size">Indicates the size of the wing.</param>
-            <param name="isIncomplete">A <see cref="T:System.Boolean"/> value indicating whether the wing is incomplete.</param>
-            <returns>The real name of the regular wing.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> isn't between 3 and 9.</exception>
-        </member>
-        <member name="M:Sudoku.Resources.TechniqueNaming.GetFishEnglishName(System.Int32)">
-            <summary>
-            Gets the name of the fish via the specified size.
-            </summary>
-            <param name="size">The size.</param>
-            <returns>The fish name.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> is 0.</exception>
-        </member>
-        <member name="M:Sudoku.Resources.TechniqueNaming.MakeRegularWingTechniqueCode(System.String)">
-            <summary>
-            Try to fetch corresponding <see cref="T:Sudoku.Categorization.Technique"/> instance via the real name representing as a <see cref="T:System.String"/> text.
-            </summary>
-            <param name="englishName">The real name of the regular wing technique.</param>
-            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> instance.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the argument <paramref name="englishName"/> is invalid.</exception>
         </member>
         <member name="T:Sudoku.Runtime.InteropServices.Hodoku.HodokuAttribute">
             <summary>
