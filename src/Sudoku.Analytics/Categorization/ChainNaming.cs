@@ -24,9 +24,9 @@ public static class ChainNaming
 	public static Technique GetTechnique(this NamedChain @this, ConclusionSet conclusions)
 		=> @this switch
 		{
-			AlternatingInferenceChain { SatisfyXRule: var isX, IsGrouped: var isGrouped, Links: var links } instance => instance switch
+			AlternatingInferenceChain { IsX: var isX, IsGrouped: var isGrouped, Links: var links } instance => instance switch
 			{
-				{ ContainsOverlappedNodes: true } and [{ Map: var map1 }, .., { Map: var map2 }] when map1 == map2
+				{ IsOverlapped: true } and [{ Map: var map1 }, .., { Map: var map2 }] when map1 == map2
 					=> isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
 				{ IsAlmostLockedSetWWing: true, IsStrongLinksStrictlyGrouped: var isStrictlyGrouped }
 					=> isStrictlyGrouped ? Technique.GroupedAlmostLockedSetsWWing : Technique.AlmostLockedSetsWWing,
@@ -36,9 +36,9 @@ public static class ChainNaming
 					3 => Technique.AlmostLockedSetsXyWing,
 					_ => Technique.AlmostLockedSetsChain
 				},
-				{ SatisfyXRule: true } => isGrouped ? Technique.GroupedXChain : Technique.XChain,
-				{ SatisfyYRule: true } => isGrouped ? Technique.GroupedXyChain : Technique.XyChain,
-				{ ContainsOverlappedNodes: true } => Technique.NodeCollision,
+				{ IsX: true } => isGrouped ? Technique.GroupedXChain : Technique.XChain,
+				{ IsY: true } => isGrouped ? Technique.GroupedXyChain : Technique.XyChain,
+				{ IsOverlapped: true } => Technique.NodeCollision,
 #if false
 				{ IsWoodsWing: true } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
 				{ IsMedusaWing: true } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
@@ -68,20 +68,16 @@ public static class ChainNaming
 					}
 #pragma warning restore format
 				},
-				[var first, .., var last] => (first, last) switch
-				{
-					({ Map.Digits: var digits1 }, { Map.Digits: var digits2 }) => (digits1 == digits2) switch
-					{
-						true => isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain,
-						_ => conclusions.Count switch
+				[{ Map.Digits: var digits1 }, .., { Map.Digits: var digits2 }]
+					=> digits1 == digits2
+						? isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain
+						: conclusions.Count switch
 						{
 							1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
 							_ => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain
 						}
-					}
-				}
 			},
-			ContinuousNiceLoop { SatisfyXRule: var isX, SatisfyYRule: var isY, IsGrouped: var isGrouped } instance => instance switch
+			ContinuousNiceLoop { IsX: var isX, IsY: var isY, IsGrouped: var isGrouped } instance => instance switch
 			{
 				{ IsAlmostLockedSetSequence: true, AlmostLockedSetsCount: 2 } => Technique.DoublyLinkedAlmostLockedSetsXzRule,
 				_ => (isX, isY) switch

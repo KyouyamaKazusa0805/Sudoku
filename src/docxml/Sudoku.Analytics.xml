@@ -2483,17 +2483,17 @@
             </summary>
             <seealso cref="P:Sudoku.Analytics.Construction.Components.Link.GroupedLinkPattern"/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.SatisfyXRule">
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsX">
             <summary>
             Indicates whether the pattern only uses same digits.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.SatisfyYRule">
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsY">
             <summary>
             Indicates whether the pattern only uses cell strong links.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.ContainsOverlappedNodes">
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsOverlapped">
             <summary>
             Indicates whether at least one node in the whole pattern overlaps with a node.
             </summary>

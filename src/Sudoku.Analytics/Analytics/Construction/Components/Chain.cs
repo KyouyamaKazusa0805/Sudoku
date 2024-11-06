@@ -91,7 +91,7 @@ public abstract partial class Chain :
 	/// <summary>
 	/// Indicates whether the pattern only uses same digits.
 	/// </summary>
-	public bool SatisfyXRule
+	public bool IsX
 	{
 		get
 		{
@@ -107,7 +107,7 @@ public abstract partial class Chain :
 	/// <summary>
 	/// Indicates whether the pattern only uses cell strong links.
 	/// </summary>
-	public bool SatisfyYRule
+	public bool IsY
 	{
 		get
 		{
@@ -125,7 +125,7 @@ public abstract partial class Chain :
 	/// <summary>
 	/// Indicates whether at least one node in the whole pattern overlaps with a node.
 	/// </summary>
-	public bool ContainsOverlappedNodes
+	public bool IsOverlapped
 	{
 		get
 		{
