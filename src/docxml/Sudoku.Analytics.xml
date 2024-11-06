@@ -3142,9 +3142,6 @@
         <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Equals(Sudoku.Analytics.Construction.Components.ForcingChainInfo)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Equals(Sudoku.Analytics.Construction.Components.ForcingChainInfo,Sudoku.Analytics.Construction.Components.NodeComparison)">
             <summary>
             Determines whether two <see cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/> instances contain a same <see cref="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.StartNode"/> property,
@@ -3275,6 +3272,9 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Equals(Sudoku.Analytics.Construction.Components.ForcingChainInfo)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.GridExocetExtensions">
             <summary>

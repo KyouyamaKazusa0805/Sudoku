@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="OffNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "off".</param>
 /// <seealso cref="Node"/>
 /// <seealso cref="Node.IsOn"/>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Equatable)]
 public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, HashSet<Node> OffNodes) :
 	IComponent,
 	IEnumerable<Node>,
@@ -20,6 +20,7 @@ public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, Ha
 	/// <summary>
 	/// Indicates the start node.
 	/// </summary>
+	[EquatableMember]
 	public Node StartNode => OnNodes.First().Root;
 
 	/// <inheritdoc/>
@@ -28,10 +29,6 @@ public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, Ha
 	[HashCodeMember]
 	private int StartNodeHashCode => StartNode.GetHashCode();
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ForcingChainInfo other) => StartNode == other.StartNode;
 
 	/// <summary>
 	/// Determines whether two <see cref="ForcingChainInfo"/> instances contain a same <see cref="StartNode"/> property,
