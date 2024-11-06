@@ -9,8 +9,8 @@ namespace Sudoku.Analytics.Construction.Patterns;
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class MultisectorLockedSetPattern(
 	[Property, HashCodeMember] ref readonly CellMap map,
-	[Property] int rowCount,
-	[Property] int columnCount
+	[Property] RowIndex rowCount,
+	[Property] ColumnIndex columnCount
 ) : Pattern
 {
 	/// <inheritdoc/>
@@ -22,7 +22,7 @@ public sealed partial class MultisectorLockedSetPattern(
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out CellMap map, out int rowCount, out int columnCount)
+	public void Deconstruct(out CellMap map, out RowIndex rowCount, out ColumnIndex columnCount)
 		=> (map, rowCount, columnCount) = (Map, RowCount, ColumnCount);
 
 	/// <inheritdoc/>

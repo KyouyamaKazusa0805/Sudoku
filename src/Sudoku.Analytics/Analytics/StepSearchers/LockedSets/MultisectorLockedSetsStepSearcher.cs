@@ -21,7 +21,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
 	/// </remarks>
-	private static readonly BlockIndex[][] PossibleSizes = [[3, 3], [3, 4], [4, 3], [4, 4], [4, 5], [5, 4]];
+	private static readonly (RowIndex Rows, ColumnIndex Columns)[] PossibleSizes = [(3, 3), (3, 4), (4, 3), (4, 4), (4, 5), (5, 4)];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -29,11 +29,12 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 	{
 		const HouseMask a = ~7, b = ~56, c = ~448;
 		var result = new MultisectorLockedSetPattern[74601];
+		var digitsSpan = Digits.AsReadOnlySpan();
 		var i = 0;
-		for (var sizeLength = 0; sizeLength < PossibleSizes.Length; sizeLength++)
+		for (var l = 0; l < PossibleSizes.Length; l++)
 		{
-			var (rows, columns) = (PossibleSizes[sizeLength][0], PossibleSizes[sizeLength][1]);
-			foreach (var rowList in Digits.AsReadOnlySpan().GetSubsets(rows))
+			var (rows, columns) = PossibleSizes[l];
+			foreach (var rowList in digitsSpan.GetSubsets(rows))
 			{
 				var (rowMask, rowMap) = ((Mask)0, CellMap.Empty);
 				foreach (var row in rowList)
@@ -41,13 +42,12 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 					rowMask |= (Mask)(1 << row);
 					rowMap |= HousesMap[row + 9];
 				}
-
 				if ((rowMask & a) == 0 || (rowMask & b) == 0 || (rowMask & c) == 0)
 				{
 					continue;
 				}
 
-				foreach (var columnList in Digits.AsReadOnlySpan().GetSubsets(columns))
+				foreach (var columnList in digitsSpan.GetSubsets(columns))
 				{
 					var (columnMask, columnMap) = ((Mask)0, CellMap.Empty);
 					foreach (var column in columnList)
@@ -55,7 +55,6 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 						columnMask |= (Mask)(1 << column);
 						columnMap |= HousesMap[column + 18];
 					}
-
 					if ((columnMask & a) == 0 || (columnMask & b) == 0 || (columnMask & c) == 0)
 					{
 						continue;
