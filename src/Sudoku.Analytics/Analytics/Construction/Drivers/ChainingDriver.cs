@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Chaining;
+namespace Sudoku.Analytics.Construction.Drivers;
 
 /// <summary>
 /// Provides a driver that can generate normal chains and forcing chains.

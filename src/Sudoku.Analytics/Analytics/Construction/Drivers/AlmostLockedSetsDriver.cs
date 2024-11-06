@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction;
+namespace Sudoku.Analytics.Construction.Drivers;
 
 /// <summary>
 /// Represents for the driver that will be used for searching for almost locked sets.

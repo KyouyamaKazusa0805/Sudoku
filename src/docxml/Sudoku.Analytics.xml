@@ -1522,213 +1522,6 @@
             </list>
             </remarks>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.AlmostLockedSetsDriver">
-            <summary>
-            Represents for the driver that will be used for searching for almost locked sets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.AlmostLockedSetsDriver.CollectAlmostLockedSets(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to collect all possible ALSes in the specified grid.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <returns>A list of ALSes.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Chaining.ChainingDriver">
-            <summary>
-            Provides a driver that can generate normal chains and forcing chains.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
-            <summary>
-            Collect all chains and loops appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="allowsAdvancedLinks">Indicates whether this method allows for advanced links.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
-            <returns>All possible <see cref="T:Sudoku.Analytics.Construction.Components.Chain" /> instances.</returns>
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            A valid chain can only be categorized by the following three cases:
-            <list type="number">
-            <item>
-            <para><b>Discontinuous Nice Loop</b></para>
-            <para>
-            Start with weak link, alternating strong and weak links and return to itself of a weak link
-            (with an even number of nodes, odd number of links).
-            </para>
-            </item>
-            <item>
-            <para><b>Discontinuous Nice Loop</b></para>
-            <para>
-            Start with strong link, alternating strong and weak links and return to itself of a strong link
-            (with an even number of nodes, even number of links).
-            </para>
-            </item>
-            <item>
-            <para><b>Continuous Nice Loop</b></para>
-            <para>
-            Start with strong link, alternating strong and weak links and return to itself of a weak link
-            (with an even number of nodes, even number of links).
-            </para>
-            </item>
-            </list>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.FindChains(Sudoku.Analytics.Construction.Components.Node,Sudoku.Concepts.Grid@,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Analytics.Construction.Components.NamedChain})">
-            <summary>
-            <para>
-            Find all possible <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> patterns starting with the current node,
-            and to make an confliction with itself.
-            </para>
-            <para>
-            This method will return <see langword="null"/> if <paramref name="onlyFindOne"/> is <see langword="false"/>,
-            or the method cannot find a valid chain that forms a confliction with the current node.
-            </para>
-            </summary>
-            <param name="startNode">The current instance.</param>
-            <param name="grid">The grid to be checked.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> and return.</param>
-            <param name="result">
-            A collection that stores all possible found <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> patterns
-            if <paramref name="onlyFindOne"/> is <see langword="false"/>.
-            </param>
-            <returns>The first found <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> pattern.</returns>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
-            <summary>
-            Collect all blossom loops appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
-            <returns>All possible multiple forcing chain instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBivalueUniversalGraveMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Collect all multiple forcing chains on applying to a bi-value universal grave, appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <returns>All possible multiple forcing chain instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
-            <summary>
-            The collect method called by chain step searchers.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
-            <summary>
-            The collect method called by multiple forcing chains step searcher.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectRectangleMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
-            <summary>
-            The collect method called by rectangle forcing chains step searcher.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBivalueUniversalGraveMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
-            <summary>
-            The collect method called by rectangle forcing chains step searcher.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
-            <summary>
-            The collect method called by blossom loop step searchers.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectGeneralizedMultipleCore``2(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean,,,)">
-            <summary>
-            The internal method that can collect for general-typed multiple forcing chains.
-            </summary>
-            <typeparam name="TMultipleForcingChains">The type of multiple forcing chains.</typeparam>
-            <typeparam name="TStep">The type of target step created.</typeparam>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
-            <param name="componentCreator">Indicates the component that the current forcing chains pattern is.</param>
-            <param name="chainsCollector">
-            The collector method that can find a list of <typeparamref name="TMultipleForcingChains"/> instances in the grid.
-            </param>
-            <param name="stepCreator">The creator method that can create a chain step.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Collect all multiple forcing chains appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <returns>All possible multiple forcing chain instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.FindForcingChains(Sudoku.Analytics.Construction.Components.Node)">
-            <summary>
-            <para>Finds a list of nodes that can implicitly connects to current node via a forcing chain.</para>
-            <para>This method only uses cached fields <see cref="F:Sudoku.Analytics.Caching.MemoryCachedData.StrongLinkDictionary"/> and <see cref="F:Sudoku.Analytics.Caching.MemoryCachedData.WeakLinkDictionary"/>.</para>
-            </summary>
-            <param name="startNode">The current instance.</param>
-            <returns>
-            A pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances, indicating all possible nodes
-            that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states,
-            encapsulating with type <see cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/>.
-            </returns>
-            <seealso cref="F:Sudoku.Analytics.Caching.MemoryCachedData.StrongLinkDictionary"/>
-            <seealso cref="F:Sudoku.Analytics.Caching.MemoryCachedData.WeakLinkDictionary"/>
-            <seealso cref="T:System.Collections.Generic.HashSet`1"/>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectRectangleMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Collect all multiple forcing chains on applying to a unique rectangle, appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <returns>All possible multiple forcing chain instances.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Chaining.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Extensions.IsAdvancedAllowed(Sudoku.Analytics.Steps.ChainStep,System.Boolean)">
-            <summary>
-            Determine whether a <see cref="T:Sudoku.Analytics.Steps.ChainStep"/> instance is allowed to contain advanced links.
-            </summary>
-            <param name="this">The chain to be checked.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the element has already been added.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.ChainingRule">
             <summary>
             Represents a rule that make inferences (strong or weak) between two <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances.
@@ -4735,6 +4528,236 @@
             Indicates the component is complex senior exocet.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Drivers.AlmostLockedSetsDriver">
+            <summary>
+            Represents for the driver that will be used for searching for almost locked sets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.AlmostLockedSetsDriver.CollectAlmostLockedSets(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to collect all possible ALSes in the specified grid.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>A list of ALSes.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Drivers.ChainingDriver">
+            <summary>
+            Provides a driver that can generate normal chains and forcing chains.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
+            <summary>
+            Collect all chains and loops appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="allowsAdvancedLinks">Indicates whether this method allows for advanced links.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
+            <returns>All possible <see cref="T:Sudoku.Analytics.Construction.Components.Chain" /> instances.</returns>
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            A valid chain can only be categorized by the following three cases:
+            <list type="number">
+            <item>
+            <para><b>Discontinuous Nice Loop</b></para>
+            <para>
+            Start with weak link, alternating strong and weak links and return to itself of a weak link
+            (with an even number of nodes, odd number of links).
+            </para>
+            </item>
+            <item>
+            <para><b>Discontinuous Nice Loop</b></para>
+            <para>
+            Start with strong link, alternating strong and weak links and return to itself of a strong link
+            (with an even number of nodes, even number of links).
+            </para>
+            </item>
+            <item>
+            <para><b>Continuous Nice Loop</b></para>
+            <para>
+            Start with strong link, alternating strong and weak links and return to itself of a weak link
+            (with an even number of nodes, even number of links).
+            </para>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.FindChains(Sudoku.Analytics.Construction.Components.Node,Sudoku.Concepts.Grid@,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Analytics.Construction.Components.NamedChain})">
+            <summary>
+            <para>
+            Find all possible <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> patterns starting with the current node,
+            and to make an confliction with itself.
+            </para>
+            <para>
+            This method will return <see langword="null"/> if <paramref name="onlyFindOne"/> is <see langword="false"/>,
+            or the method cannot find a valid chain that forms a confliction with the current node.
+            </para>
+            </summary>
+            <param name="startNode">The current instance.</param>
+            <param name="grid">The grid to be checked.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> and return.</param>
+            <param name="result">
+            A collection that stores all possible found <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> patterns
+            if <paramref name="onlyFindOne"/> is <see langword="false"/>.
+            </param>
+            <returns>The first found <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> pattern.</returns>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
+            <summary>
+            Collect all blossom loops appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectBivalueUniversalGraveMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Collect all multiple forcing chains on applying to a bi-value universal grave, appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
+            <summary>
+            The collect method called by chain step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+            <summary>
+            The collect method called by multiple forcing chains step searcher.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectRectangleMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+            <summary>
+            The collect method called by rectangle forcing chains step searcher.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectBivalueUniversalGraveMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+            <summary>
+            The collect method called by rectangle forcing chains step searcher.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
+            <summary>
+            The collect method called by blossom loop step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectGeneralizedMultipleCore``2(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean,,,)">
+            <summary>
+            The internal method that can collect for general-typed multiple forcing chains.
+            </summary>
+            <typeparam name="TMultipleForcingChains">The type of multiple forcing chains.</typeparam>
+            <typeparam name="TStep">The type of target step created.</typeparam>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+            <param name="componentCreator">Indicates the component that the current forcing chains pattern is.</param>
+            <param name="chainsCollector">
+            The collector method that can find a list of <typeparamref name="TMultipleForcingChains"/> instances in the grid.
+            </param>
+            <param name="stepCreator">The creator method that can create a chain step.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Collect all multiple forcing chains appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.FindForcingChains(Sudoku.Analytics.Construction.Components.Node)">
+            <summary>
+            <para>Finds a list of nodes that can implicitly connects to current node via a forcing chain.</para>
+            <para>This method only uses cached fields <see cref="F:Sudoku.Analytics.Caching.MemoryCachedData.StrongLinkDictionary"/> and <see cref="F:Sudoku.Analytics.Caching.MemoryCachedData.WeakLinkDictionary"/>.</para>
+            </summary>
+            <param name="startNode">The current instance.</param>
+            <returns>
+            A pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances, indicating all possible nodes
+            that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states,
+            encapsulating with type <see cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/>.
+            </returns>
+            <seealso cref="F:Sudoku.Analytics.Caching.MemoryCachedData.StrongLinkDictionary"/>
+            <seealso cref="F:Sudoku.Analytics.Caching.MemoryCachedData.WeakLinkDictionary"/>
+            <seealso cref="T:System.Collections.Generic.HashSet`1"/>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectRectangleMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Collect all multiple forcing chains on applying to a unique rectangle, appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Drivers.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.Extensions.IsAdvancedAllowed(Sudoku.Analytics.Steps.ChainStep,System.Boolean)">
+            <summary>
+            Determine whether a <see cref="T:Sudoku.Analytics.Steps.ChainStep"/> instance is allowed to contain advanced links.
+            </summary>
+            <param name="this">The chain to be checked.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the element has already been added.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Drivers.SubsetDriver">
+            <summary>
+            Represents a subset searching driver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.SubsetDriver.CollectCore(System.Boolean,Sudoku.Analytics.StepAnalysisContext@)">
+            <summary>
+            The internal method to create subset steps.
+            </summary>
+            <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
+            <param name="context">The context.</param>
+            <returns>The collected steps.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.SubsetDriver.HiddenSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
+            <summary>
+            Search for hidden subsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.SubsetDriver.NakedSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
+            <summary>
+            Search for naked subsets.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.IComponent">
             <summary>
             Represents a component in analysis of patterns.
@@ -6370,29 +6393,6 @@
         <member name="F:Sudoku.Analytics.Construction.PatternType.XyzWing">
             <summary>
             Indicates XYZ-Wing.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.SubsetDriver">
-            <summary>
-            Represents a subset searching driver.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.SubsetDriver.CollectCore(System.Boolean,Sudoku.Analytics.StepAnalysisContext@)">
-            <summary>
-            The internal method to create subset steps.
-            </summary>
-            <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
-            <param name="context">The context.</param>
-            <returns>The collected steps.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.SubsetDriver.HiddenSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
-            <summary>
-            Search for hidden subsets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.SubsetDriver.NakedSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
-            <summary>
-            Search for naked subsets.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Hub">
@@ -8270,10 +8270,10 @@
 		</para>
 	</developer-notes>
             <para>
-            All implementations are extracted in type <see cref="T:Sudoku.Analytics.Construction.Chaining.ChainingDriver" />. Please visit it to learn more information.
+            All implementations are extracted in type <see cref="T:Sudoku.Analytics.Construction.Drivers.ChainingDriver" />. Please visit it to learn more information.
             </para>
             </remarks>
-            <seealso cref="T:Sudoku.Analytics.Construction.Chaining.ChainingDriver" />
+            <seealso cref="T:Sudoku.Analytics.Construction.Drivers.ChainingDriver" />
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.FinnedChainStepSearcher">
             <summary>
