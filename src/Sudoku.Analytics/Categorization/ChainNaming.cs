@@ -26,7 +26,7 @@ public static class ChainNaming
 		{
 			AlternatingInferenceChain { SatisfyXRule: var isX, IsGrouped: var isGrouped, Links: var links } instance => instance switch
 			{
-				{ ContainsOverlappedNodes: true, First.Map: var map1, Last.Map: var map2 } when map1 == map2
+				{ ContainsOverlappedNodes: true } and [{ Map: var map1 }, .., { Map: var map2 }] when map1 == map2
 					=> isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
 				{ IsAlmostLockedSetWWing: true, IsStrongLinksStrictlyGrouped: var isStrictlyGrouped }
 					=> isStrictlyGrouped ? Technique.GroupedAlmostLockedSetsWWing : Technique.AlmostLockedSetsWWing,
@@ -68,7 +68,7 @@ public static class ChainNaming
 					}
 #pragma warning restore format
 				},
-				{ First: var first, Last: var last } => (first, last) switch
+				[var first, .., var last] => (first, last) switch
 				{
 					({ Map.Digits: var digits1 }, { Map.Digits: var digits2 }) => (digits1 == digits2) switch
 					{
