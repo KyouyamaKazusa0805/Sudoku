@@ -35,6 +35,9 @@ public static class HashSetEnumerable
 		throw new InvalidOperationException(SR.ExceptionMessage("NoElementsFoundInCollection"));
 	}
 
+	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource})"/>
+	public static TSource? FirstOrDefault<TSource>(this HashSet<TSource> source) => source.Count == 0 ? default : source.First();
+
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static TSource? FirstOrDefault<TSource>(this HashSet<TSource> source, Func<TSource, bool> predicate)
 	{
