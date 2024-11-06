@@ -253,7 +253,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				baseSet,
 				(HousesMap[house] & candidatesMap[digit]) - lastCell,
 				digit,
-				SingleModule.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
+				TechniqueNaming.Single.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
 				house switch
 				{
 					< 9 => Technique.CrosshatchingBlock,
@@ -324,7 +324,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				baseSet,
 				in lastCell.AsCellMap(),
 				digit,
-				SingleModule.GetNakedSingleSubtype(in grid, lastCell),
+				TechniqueNaming.Single.GetNakedSingleSubtype(in grid, lastCell),
 				Technique.NakedSingle,
 				baseSet < 9
 			);

@@ -208,7 +208,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					house,
 					resultCell,
 					digit,
-					SingleModule.GetLasting(in grid, resultCell, house)
+					Lasting.GetLasting(in grid, resultCell, house)
 				);
 
 				if (context.OnlyFindOne)
@@ -254,7 +254,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (SingleModule.GetNakedSingleSubtype(in grid, cell) is var subtype && subtype.IsUnnecessary()
+				if (TechniqueNaming.Single.GetNakedSingleSubtype(in grid, cell) is var subtype && subtype.IsUnnecessary()
 					&& grid.PuzzleType != SudokuType.Sukaku)
 				{
 					continue;
@@ -267,7 +267,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					cell,
 					digit,
 					subtype,
-					SingleModule.GetLastingAllHouses(in grid, cell, out var lastingHouse),
+					Lasting.GetLastingAllHouses(in grid, cell, out var lastingHouse),
 					lastingHouse.ToHouseType()
 				);
 				if (context.OnlyFindOne)
@@ -348,7 +348,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				house,
 				resultCell,
 				digit,
-				SingleModule.GetLasting(in grid, resultCell, house)
+				Lasting.GetLasting(in grid, resultCell, house)
 			);
 			if (context.OnlyFindOne)
 			{
@@ -458,8 +458,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				context.Options,
 				cell,
 				digit,
-				SingleModule.GetNakedSingleSubtype(in grid, cell),
-				SingleModule.GetLastingAllHouses(in grid, cell, out var lastingHouse),
+				TechniqueNaming.Single.GetNakedSingleSubtype(in grid, cell),
+				Lasting.GetLastingAllHouses(in grid, cell, out var lastingHouse),
 				lastingHouse.ToHouseType()
 			);
 			if (context.OnlyFindOne)
@@ -541,11 +541,11 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				resultCell,
 				digit,
 				house,
-				SingleModule.GetLastingAllHouses(in grid, resultCell, out _)
+				Lasting.GetLastingAllHouses(in grid, resultCell, out _)
 			),
 			_ => Excluder.GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells, out var excluderInfo) switch
 			{
-				var cellOffsets2 => SingleModule.GetHiddenSingleSubtype(in grid, resultCell, house, in chosenCells) switch
+				var cellOffsets2 => TechniqueNaming.Single.GetHiddenSingleSubtype(in grid, resultCell, house, in chosenCells) switch
 				{
 					var subtype when subtype.IsUnnecessary() && grid.PuzzleType != SudokuType.Sukaku => null,
 					var subtype => new HiddenSingleStep(
@@ -556,7 +556,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 						digit,
 						house,
 						enableAndIsLastDigit,
-						SingleModule.GetLasting(in grid, resultCell, house),
+						Lasting.GetLasting(in grid, resultCell, house),
 						subtype,
 						excluderInfo
 					)

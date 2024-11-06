@@ -17,7 +17,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 		ref readonly var grid = ref context.Grid;
 		var linkOption = context.GetLinkOption(LinkType.AlmostLockedSets);
 		var maskTempList = (stackalloc Mask[81]);
-		foreach (var als in AlmostLockedSetsModule.CollectAlmostLockedSets(in grid))
+		foreach (var als in AlmostLockedSetsDriver.CollectAlmostLockedSets(in grid))
 		{
 			if (als is not (var digitsMask, var cells) { IsBivalueCell: false, StrongLinks: var links, House: var house })
 			{

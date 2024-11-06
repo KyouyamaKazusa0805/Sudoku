@@ -22,10 +22,10 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
+		var alses = AlmostLockedSetsDriver.CollectAlmostLockedSets(in grid);
 
 		// Gather all conjugate pairs.
-		var conjugatePairs = AlmostLockedSetsModule.CollectConjugatePairs();
+		var conjugatePairs = CollectConjugatePairs();
 
 		// Iterate on each ALS.
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
@@ -195,5 +195,26 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 		}
 
 		return null;
+	}
+
+
+	/// <summary>
+	/// Collect possible conjugate pairs grouped by digit.
+	/// </summary>
+	/// <returns>The conjugate pairs found, grouped by digit.</returns>
+	private static HashSet<Conjugate>?[] CollectConjugatePairs()
+	{
+		var conjugatePairs = new HashSet<Conjugate>?[9];
+		for (var digit = 0; digit < 9; digit++)
+		{
+			for (var houseIndex = 0; houseIndex < 27; houseIndex++)
+			{
+				if ((HousesMap[houseIndex] & CandidatesMap[digit]) is { Count: 2 } temp)
+				{
+					(conjugatePairs[digit] ??= []).Add(new(in temp, digit));
+				}
+			}
+		}
+		return conjugatePairs;
 	}
 }

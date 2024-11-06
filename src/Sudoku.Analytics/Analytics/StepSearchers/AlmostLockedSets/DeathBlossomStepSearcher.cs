@@ -55,7 +55,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		}
 
 		ref readonly var grid = ref context.Grid;
-		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
+		var alses = AlmostLockedSetsDriver.CollectAlmostLockedSets(in grid);
 		var alsesUsed = (stackalloc CellMap[90]); // First 10 elements are not used.
 		var usedIndex = (stackalloc int[729]);
 		var finalCells = (stackalloc Cell[9]);
@@ -389,7 +389,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		{
 			foreach (var alsCell in alsCells)
 			{
-				var alsColor = AlmostLockedSetsModule.GetColor(indexOfAls);
+				var alsColor = GetColor(indexOfAls);
 				foreach (var digit in grid.GetCandidates(alsCell))
 				{
 					var node = new CandidateViewNode(
@@ -518,7 +518,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			{
 				foreach (var alsCell in alsCells)
 				{
-					var alsColor = AlmostLockedSetsModule.GetColor(indexOfAls);
+					var alsColor = GetColor(indexOfAls);
 					foreach (var digit in grid.GetCandidates(alsCell))
 					{
 						var node = new CandidateViewNode(
@@ -672,7 +672,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			var targetAls = alses[indexUsed2All[usedAlsIndex]];
 			foreach (var cell in targetAls.Cells)
 			{
-				var cellNode = new CellViewNode(AlmostLockedSetsModule.GetColor(alsIndex), cell);
+				var cellNode = new CellViewNode(GetColor(alsIndex), cell);
 				view.Add(cellNode);
 				cellOffsets.Add(cellNode);
 
@@ -680,7 +680,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				{
 					var colorIdentifier = (rcc >> digit & 1) != 0
 						? ColorIdentifier.Auxiliary2
-						: (zDigitsMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : AlmostLockedSetsModule.GetColor(alsIndex);
+						: (zDigitsMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : GetColor(alsIndex);
 					var candidateNode = new CandidateViewNode(colorIdentifier, cell * 9 + digit);
 					view.Add(candidateNode);
 					candidateOffsets.Add(candidateNode);
@@ -733,4 +733,21 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		accumulator.Add(step);
 		return null;
 	}
+
+
+	/// <summary>
+	/// Try to fetch the ALS color.
+	/// </summary>
+	/// <param name="index">The index of the target ALS.</param>
+	/// <returns>The color identifier.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static ColorIdentifier GetColor(int index)
+		=> (index % 5) switch
+		{
+			0 => ColorIdentifier.AlmostLockedSet1,
+			1 => ColorIdentifier.AlmostLockedSet2,
+			2 => ColorIdentifier.AlmostLockedSet3,
+			3 => ColorIdentifier.AlmostLockedSet4,
+			4 => ColorIdentifier.AlmostLockedSet5
+		};
 }

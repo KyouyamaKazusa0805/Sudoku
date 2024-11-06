@@ -1,11 +1,11 @@
-namespace Sudoku.Analytics.Caching.Modules;
+namespace Sudoku.Analytics.Construction;
 
 using unsafe SubsetModuleSearcherFuncPtr = delegate*<ref StepAnalysisContext, ref readonly Grid, ref readonly CellMap, ReadOnlySpan<CellMap>, int, bool, Step?>;
 
 /// <summary>
-/// Represents a subset module.
+/// Represents a subset searching driver.
 /// </summary>
-internal static class SubsetModule
+internal static class SubsetDriver
 {
 	/// <summary>
 	/// The internal method to create subset steps.

@@ -1030,107 +1030,6 @@
             <param name="options">The options used by step searchers.</param>
             <param name="rules">The <see cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRule"/> instance that collects with strong and weak links if worth.</param>
         </member>
-        <member name="T:Sudoku.Analytics.Caching.Modules.AlmostHiddenSetsModule">
-            <summary>
-            Represents for the module that will be used for searching for almost hidden sets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostHiddenSetsModule.CollectAlmostHiddenSets(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to collect all possible AHSes in the specified grid.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <returns>A list of AHSes.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule">
-            <summary>
-            Represents for the module that will be used for searching for almost locked sets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule.CollectAlmostLockedSets(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to collect all possible ALSes in the specified grid.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <returns>A list of ALSes.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule.GetColor(System.Int32)">
-            <summary>
-            Try to fetch the ALS color.
-            </summary>
-            <param name="index">The index of the target ALS.</param>
-            <returns>The color identifier.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule.CollectConjugatePairs">
-            <summary>
-            Collect possible conjugate pairs grouped by digit.
-            </summary>
-            <returns>The conjugate pairs found, grouped by digit.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.Modules.SingleModule">
-            <summary>
-            Represents single module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetLasting(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Gets the lasting value of the full house in the target house.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="house">The house.</param>
-            <returns>The lasting value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetLastingAllHouses(Sudoku.Concepts.Grid@,System.Int32,System.Int32@)">
-            <summary>
-            Gets the lasting value of the naked single in the target direction.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="house">The house.</param>
-            <returns>The lasting value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Get subtype of the hidden single.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="house">Indicates the house.</param>
-            <param name="chosenCells">The chosen cells.</param>
-            <returns>The subtype of the hidden single.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetNakedSingleSubtype(Sudoku.Concepts.Grid@,System.Int32)">
-            <summary>
-            Get subtype of the naked single.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <returns>The subtype of the naked single.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.Modules.SubsetModule">
-            <summary>
-            Represents a subset module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.SubsetModule.CollectCore(System.Boolean,Sudoku.Analytics.StepAnalysisContext@)">
-            <summary>
-            The internal method to create subset steps.
-            </summary>
-            <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
-            <param name="context">The context.</param>
-            <returns>The collected steps.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.SubsetModule.HiddenSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
-            <summary>
-            Search for hidden subsets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.SubsetModule.NakedSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
-            <summary>
-            Search for naked subsets.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Caching.PatternSearchers.CachedXyzWingPatternSearcher">
             <summary>
             Represents a pattern searcher on XYZ-Wings.
@@ -1622,6 +1521,18 @@
             </item>
             </list>
             </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.AlmostLockedSetsDriver">
+            <summary>
+            Represents for the driver that will be used for searching for almost locked sets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.AlmostLockedSetsDriver.CollectAlmostLockedSets(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to collect all possible ALSes in the specified grid.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>A list of ALSes.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.ChainingDriver">
             <summary>
@@ -6461,6 +6372,29 @@
             Indicates XYZ-Wing.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.SubsetDriver">
+            <summary>
+            Represents a subset searching driver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.SubsetDriver.CollectCore(System.Boolean,Sudoku.Analytics.StepAnalysisContext@)">
+            <summary>
+            The internal method to create subset steps.
+            </summary>
+            <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
+            <param name="context">The context.</param>
+            <returns>The collected steps.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.SubsetDriver.HiddenSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
+            <summary>
+            Search for hidden subsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.SubsetDriver.NakedSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
+            <summary>
+            Search for naked subsets.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Hub">
             <summary>
             The top-level type that stores <see langword="static class"/>es as nested ones,
@@ -6542,6 +6476,29 @@
             All the other cases can be handled by supposing positions of digits <c>a</c> and <c>b</c>.
             </para>
             </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.Lasting">
+            <summary>
+            Represents lasting rule of a single technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Lasting.GetLasting(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Gets the lasting value of the full house in the target house.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">The house.</param>
+            <returns>The lasting value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Lasting.GetLastingAllHouses(Sudoku.Concepts.Grid@,System.Int32,System.Int32@)">
+            <summary>
+            Gets the lasting value of the naked single in the target direction.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">The house.</param>
+            <returns>The lasting value.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Hub.LockedCandidates">
             <summary>
@@ -6696,6 +6653,29 @@
             <param name="englishName">The real name of the regular wing technique.</param>
             <returns>The <see cref="T:Sudoku.Categorization.Technique"/> instance.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the argument <paramref name="englishName"/> is invalid.</exception>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.TechniqueNaming.Single">
+            <summary>
+            Represents naming rules for single techniques.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.Single.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Get subtype of the hidden single.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">Indicates the house.</param>
+            <param name="chosenCells">The chosen cells.</param>
+            <returns>The subtype of the hidden single.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.Single.GetNakedSingleSubtype(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Get subtype of the naked single.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>The subtype of the naked single.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Hub.TechniqueNaming.Subset">
             <summary>
@@ -8063,6 +8043,12 @@
         <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.CollectConjugatePairs">
+            <summary>
+            Collect possible conjugate pairs grouped by digit.
+            </summary>
+            <returns>The conjugate pairs found, grouped by digit.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher">
             <summary>
             Provides with an <b>Almost Locked Sets XY-Wing</b> step searcher.
@@ -8173,6 +8159,13 @@
             Search for A^nLS blooming type, and create a <see cref="T:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep"/> instance
             and add it into the accumulator if worth.
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.GetColor(System.Int32)">
+            <summary>
+            Try to fetch the ALS color.
+            </summary>
+            <param name="index">The index of the target ALS.</param>
+            <returns>The color identifier.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher">
             <summary>

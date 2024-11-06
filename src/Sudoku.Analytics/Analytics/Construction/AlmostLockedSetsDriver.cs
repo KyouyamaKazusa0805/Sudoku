@@ -1,9 +1,9 @@
-namespace Sudoku.Analytics.Caching.Modules;
+namespace Sudoku.Analytics.Construction;
 
 /// <summary>
-/// Represents for the module that will be used for searching for almost locked sets.
+/// Represents for the driver that will be used for searching for almost locked sets.
 /// </summary>
-internal static class AlmostLockedSetsModule
+internal static class AlmostLockedSetsDriver
 {
 	/// <summary>
 	/// Try to collect all possible ALSes in the specified grid.
@@ -75,41 +75,5 @@ internal static class AlmostLockedSetsModule
 			}
 		}
 		return result.AsSpan();
-	}
-
-	/// <summary>
-	/// Try to fetch the ALS color.
-	/// </summary>
-	/// <param name="index">The index of the target ALS.</param>
-	/// <returns>The color identifier.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static ColorIdentifier GetColor(int index)
-		=> (index % 5) switch
-		{
-			0 => ColorIdentifier.AlmostLockedSet1,
-			1 => ColorIdentifier.AlmostLockedSet2,
-			2 => ColorIdentifier.AlmostLockedSet3,
-			3 => ColorIdentifier.AlmostLockedSet4,
-			4 => ColorIdentifier.AlmostLockedSet5
-		};
-
-	/// <summary>
-	/// Collect possible conjugate pairs grouped by digit.
-	/// </summary>
-	/// <returns>The conjugate pairs found, grouped by digit.</returns>
-	internal static HashSet<Conjugate>?[] CollectConjugatePairs()
-	{
-		var conjugatePairs = new HashSet<Conjugate>?[9];
-		for (var digit = 0; digit < 9; digit++)
-		{
-			for (var houseIndex = 0; houseIndex < 27; houseIndex++)
-			{
-				if ((HousesMap[houseIndex] & CandidatesMap[digit]) is { Count: 2 } temp)
-				{
-					(conjugatePairs[digit] ??= []).Add(new(in temp, digit));
-				}
-			}
-		}
-		return conjugatePairs;
 	}
 }

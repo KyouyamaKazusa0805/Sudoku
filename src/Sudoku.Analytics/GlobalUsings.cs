@@ -24,7 +24,6 @@ global using System.Threading;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Caching;
 global using Sudoku.Analytics.Caching.ChainingRules;
-global using Sudoku.Analytics.Caching.Modules;
 global using Sudoku.Analytics.Caching.PatternSearchers;
 global using Sudoku.Analytics.Configuration;
 global using Sudoku.Analytics.Construction;

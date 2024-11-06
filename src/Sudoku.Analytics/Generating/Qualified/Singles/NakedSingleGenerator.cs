@@ -80,8 +80,8 @@ public sealed class NakedSingleGenerator : SingleGenerator
 			null!,
 			targetCell,
 			targetDigit,
-			SingleModule.GetNakedSingleSubtype(in puzzle, targetCell),
-			SingleModule.GetLastingAllHouses(in puzzle, targetCell, out var lastingHouse),
+			TechniqueNaming.Single.GetNakedSingleSubtype(in puzzle, targetCell),
+			Lasting.GetLastingAllHouses(in puzzle, targetCell, out var lastingHouse),
 			lastingHouse.ToHouseType()
 		);
 		result = puzzle.FixedGrid;

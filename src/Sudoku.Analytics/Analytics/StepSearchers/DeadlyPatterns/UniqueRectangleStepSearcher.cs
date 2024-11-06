@@ -208,7 +208,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Collect(SortedSet<UniqueRectangleStep> collected, ref readonly Grid grid, ref StepAnalysisContext context, bool arMode)
 	{
 		// Search for ALSes. This result will be used by UR External ALS-XZ structures.
-		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
+		var alses = AlmostLockedSetsDriver.CollectAlmostLockedSets(in grid);
 
 		// Iterate on each possible UR pattern.
 		for (var index = 0; index < UniqueRectanglePattern.AllPatterns.Length; index++)

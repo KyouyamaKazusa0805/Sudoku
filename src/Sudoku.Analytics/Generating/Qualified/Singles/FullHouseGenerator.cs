@@ -109,7 +109,7 @@ public sealed class FullHouseGenerator : SingleGenerator
 			selectedHouse,
 			targetCell,
 			targetDigit,
-			SingleModule.GetLasting(in puzzle, targetCell, selectedHouse)
+			Lasting.GetLasting(in puzzle, targetCell, selectedHouse)
 		);
 		result = puzzle.FixedGrid;
 		return true;

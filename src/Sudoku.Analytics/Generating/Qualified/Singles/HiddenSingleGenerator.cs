@@ -166,7 +166,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 					targetDigit,
 					house,
 					false,
-					SingleModule.GetLasting(in puzzle, targetCell, house),
+					Lasting.GetLasting(in puzzle, targetCell, house),
 					subtype,
 					null
 				);
@@ -355,7 +355,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 					targetDigit,
 					house,
 					false,
-					SingleModule.GetLasting(in puzzle, targetCell, house),
+					Lasting.GetLasting(in puzzle, targetCell, house),
 					subtype,
 					null
 				);

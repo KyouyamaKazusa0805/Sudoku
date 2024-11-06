@@ -526,7 +526,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					subsetHouse,
 					in eliminatedCells,
 					(Mask)(1 << digit),
-					SingleModule.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
+					TechniqueNaming.Single.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
 					houseType switch
 					{
 						HouseType.Block => Technique.CrosshatchingBlock,
@@ -605,7 +605,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				subsetHouse,
 				[cell],
 				eliminatedDigitsMask,
-				SingleModule.GetNakedSingleSubtype(in grid, cell),
+				TechniqueNaming.Single.GetNakedSingleSubtype(in grid, cell),
 				Technique.NakedSingle,
 				subsetTechnique
 			);
@@ -797,7 +797,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					subsetHouse,
 					in eliminatedCells,
 					(Mask)(1 << digit),
-					SingleModule.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
+					TechniqueNaming.Single.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
 					houseType switch
 					{
 						HouseType.Block => Technique.CrosshatchingBlock,
@@ -878,7 +878,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				subsetHouse,
 				[cell],
 				eliminatedDigitsMask,
-				SingleModule.GetNakedSingleSubtype(in grid, cell),
+				TechniqueNaming.Single.GetNakedSingleSubtype(in grid, cell),
 				Technique.NakedSingle,
 				subsetTechnique
 			);
