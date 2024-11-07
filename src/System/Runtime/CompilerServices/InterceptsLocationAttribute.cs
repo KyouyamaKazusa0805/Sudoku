@@ -2,7 +2,6 @@ namespace System.Runtime.CompilerServices;
 
 /// <summary>
 /// <para>
-/// (<b>Interceptor-related attribute</b>)<br/>
 /// Interceptors are an experimental compiler feature planned to ship in .NET 8 (with support for C# only).
 /// The feature may be subject to breaking changes or removal in a future release.
 /// </para>

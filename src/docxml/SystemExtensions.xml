@@ -6330,7 +6330,6 @@
         <member name="T:System.Runtime.CompilerServices.InterceptsLocationAttribute">
             <summary>
             <para>
-            (<b>Interceptor-related attribute</b>)<br/>
             Interceptors are an experimental compiler feature planned to ship in .NET 8 (with support for C# only).
             The feature may be subject to breaking changes or removal in a future release.
             </para>
@@ -6347,7 +6346,6 @@
         <member name="M:System.Runtime.CompilerServices.InterceptsLocationAttribute.#ctor(System.String,System.Int32,System.Int32)">
             <summary>
             <para>
-            (<b>Interceptor-related attribute</b>)<br/>
             Interceptors are an experimental compiler feature planned to ship in .NET 8 (with support for C# only).
             The feature may be subject to breaking changes or removal in a future release.
             </para>

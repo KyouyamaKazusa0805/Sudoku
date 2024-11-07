@@ -6383,55 +6383,6 @@
             Indicates XYZ-Wing.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Intercepting.Generated.AlmostLockedSetsPattern_InterceptorGenerated">
-            <summary>
-            Represents for the driver that will be used for searching for almost locked sets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Intercepting.Generated.AlmostLockedSetsPattern_InterceptorGenerated.CollectAlmostLockedSets(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to collect all possible ALSes in the specified grid.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <returns>A list of ALSes.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Intercepting.Generated.AlmostLockedSetPattern_Intercepted">
-            <summary>
-            Interceptor method that will replace implementation on such referenced method invocation.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Intercepting.Generated.AlmostLockedSetPattern_Intercepted.Collect(Sudoku.Concepts.Grid@)">
-            <summary>
-            Collects all possible <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/>s in the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>All possible found <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/> instances.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Intercepting.CachedAttribute">
-            <summary>
-            (<b>Interceptor-related attribute</b>)<br/>
-            Represents an attribute type that can be applied to a method,
-            making source generator produces a new method that copies the code from this,
-            with <see cref="T:Sudoku.Concepts.Grid"/> properties replaced with corresponding properties in <see cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>.
-            </summary>
-            <remarks>
-            <para>
-            Please note that all cached members should be named starting with two underscore characters, like "<c>__BivalueCells</c>".
-            Interceptor source generator will detect such name and replace them with property <see cref="P:Sudoku.Analytics.Caching.MemoryCachedData.BivalueCells"/>.
-            </para>
-            <para>In addition, this attribute doesn't support for a method that uses expression body.</para>
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-            <seealso cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>
-            <seealso cref="P:Sudoku.Analytics.Caching.MemoryCachedData.BivalueCells"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Intercepting.InterceptorMethodCallerAttribute">
-            <summary>
-            (<b>Interceptor-related attribute</b>)<br/>
-            Represents an attribute type that can be applied to a method, indicating the method uses interceptor
-            (contains interceptor method invocation).
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Hub">
             <summary>
             The top-level type that stores <see langword="static class"/>es as nested ones,
@@ -6725,6 +6676,70 @@
             </summary>
             <param name="size">The number of cells used in a subset.</param>
             <returns>The name of the subset.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Intercepting.CachedAttribute">
+             <summary>
+             Represents an attribute type that can be applied to a method,
+             making source generator produces a new method that copies the code from this,
+             with <see cref="T:Sudoku.Concepts.Grid"/> properties replaced with corresponding properties in <see cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>.
+             </summary>
+             <remarks>
+             Usage:
+             <code><![CDATA[
+             [Cached]
+             public static ReadOnlySpan<AlmostLockedSetPattern> Collect(ref readonly Grid grid)
+             {
+            	    // --INTERCEPTOR_VARIABLE_DECLARATION_BEGIN--
+                 _ = grid is { EmptyCells: var __EmptyCells, BivalueCells: var __BivalueCells, CandidatesMap: var __CandidatesMap };
+                 // --INTERCEPTOR_VARIABLE_DECLARATION_END--
+            
+                 // Get all bi-value-cell ALSes.
+                 var result = new List<AlmostLockedSetPattern>();
+                 foreach (var cell in __BivalueCells)
+                 {
+                     var eliminationMap = new CellMap[9];
+                     foreach (var digit in grid.GetCandidates(cell))
+                         eliminationMap[digit] = PeersMap[cell] & __CandidatesMap[digit];
+                     result.Add(new(grid.GetCandidates(cell), in cell.AsCellMap(), PeersMap[cell] & __EmptyCells, eliminationMap));
+                 }
+            
+                 // ...
+             }
+             ]]></code>
+             Such code will be intercepted, by replacing variables <c>__EmptyCells</c>, <c>__BivalueCells</c> and <c>__CandidatesMap</c>
+             with properties in <see cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>:
+             <code><![CDATA[
+             // Get all bi-value-cell ALSes.
+             var result = new List<AlmostLockedSetPattern>();
+             foreach (var cell in MemoryCachedData.BivalueCells)
+             {
+                 var eliminationMap = new CellMap[9];
+                 foreach (var digit in grid.GetCandidates(cell))
+                     eliminationMap[digit] = PeersMap[cell] & MemoryCachedData.CandidatesMap[digit];
+                 result.Add(new(grid.GetCandidates(cell), in cell.AsCellMap(), PeersMap[cell] & MemoryCachedData.EmptyCells, eliminationMap));
+             }
+             ]]></code>
+             </remarks>
+             <seealso cref="T:Sudoku.Concepts.Grid"/>
+             <seealso cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Intercepting.InterceptorMethodCallerAttribute">
+            <summary>
+            Represents an attribute type that can be applied to a method, indicating the method uses interceptor
+            (contains interceptor method invocation).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Intercepting.Generated.AlmostLockedSetPattern_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Intercepting.Generated.AlmostLockedSetPattern_Intercepted.Collect(Sudoku.Concepts.Grid@)">
+            <summary>
+            Collects all possible <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/>s in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All possible found <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.PatternSearcher`1">
             <summary>
