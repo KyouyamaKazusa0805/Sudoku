@@ -31,6 +31,7 @@ global using Sudoku.Analytics.Construction.Chaining;
 global using Sudoku.Analytics.Construction.Components;
 global using Sudoku.Analytics.Construction.Drivers;
 global using Sudoku.Analytics.Construction.Patterns;
+global using Sudoku.Analytics.Intercepting;
 global using Sudoku.Analytics.Primitives;
 global using Sudoku.Analytics.Steps;
 global using Sudoku.Analytics.StepSearchers;

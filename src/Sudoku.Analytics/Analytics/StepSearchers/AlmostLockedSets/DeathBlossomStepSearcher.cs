@@ -40,6 +40,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// and a same-deletion leading.
 	/// </para>
 	/// </remarks>
+	[InterceptorMethodCaller]
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		// Test examples:
@@ -55,7 +56,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		}
 
 		ref readonly var grid = ref context.Grid;
-		var alses = AlmostLockedSetsDriver.CollectAlmostLockedSets(in grid);
+		var alses = AlmostLockedSetPattern.Collect(in grid);
 		var alsesUsed = (stackalloc CellMap[90]); // First 10 elements are not used.
 		var usedIndex = (stackalloc int[729]);
 		var finalCells = (stackalloc Cell[9]);

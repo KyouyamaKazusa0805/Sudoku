@@ -19,10 +19,11 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
+	[InterceptorMethodCaller]
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		var alses = AlmostLockedSetsDriver.CollectAlmostLockedSets(in grid);
+		var alses = AlmostLockedSetPattern.Collect(in grid);
 
 		// Gather all RCCs.
 		var rccList = new List<(AlmostLockedSetPattern Left, AlmostLockedSetPattern Right, Mask Mask)>();

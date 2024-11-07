@@ -7,6 +7,7 @@ namespace Sudoku.Analytics.Caching.ChainingRules;
 internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
+	[InterceptorMethodCaller]
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
 		if (context.GetLinkOption(LinkType.AlmostLockedSets) == LinkOption.None)
@@ -17,7 +18,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 		ref readonly var grid = ref context.Grid;
 		var linkOption = context.GetLinkOption(LinkType.AlmostLockedSets);
 		var maskTempList = (stackalloc Mask[81]);
-		foreach (var als in AlmostLockedSetsDriver.CollectAlmostLockedSets(in grid))
+		foreach (var als in AlmostLockedSetPattern.Collect(in grid))
 		{
 			if (als is not (var digitsMask, var cells) { IsBivalueCell: false, StrongLinks: var links, House: var house })
 			{

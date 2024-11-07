@@ -1,15 +1,21 @@
-namespace Sudoku.Analytics.Construction.Drivers;
+namespace Sudoku.Analytics.Intercepting.Generated;
 
 /// <summary>
 /// Represents for the driver that will be used for searching for almost locked sets.
 /// </summary>
-internal static class AlmostLockedSetsDriver
+internal static class AlmostLockedSetsPattern_InterceptorGenerated
 {
 	/// <summary>
 	/// Try to collect all possible ALSes in the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid to be used.</param>
 	/// <returns>A list of ALSes.</returns>
+	//[InterceptsLocation(@"C:\Users\admin\source\repos\SunnieShine\Sudoku\src\Sudoku.Analytics\Analytics\Caching\ChainingRules\CachedAlmostLockedSetsChainingRule.cs", 21, 46)]
+	//[InterceptsLocation(@"C:\Users\admin\source\repos\SunnieShine\Sudoku\src\Sudoku.Analytics\Analytics\StepSearchers\AlmostLockedSets\AlmostLockedSetsWWingStepSearcher.cs", 26, 38)]
+	//[InterceptsLocation(@"C:\Users\admin\source\repos\SunnieShine\Sudoku\src\Sudoku.Analytics\Analytics\StepSearchers\AlmostLockedSets\AlmostLockedSetsXyWingStepSearcher.cs", 26, 38)]
+	//[InterceptsLocation(@"C:\Users\admin\source\repos\SunnieShine\Sudoku\src\Sudoku.Analytics\Analytics\StepSearchers\AlmostLockedSets\AlmostLockedSetsXzStepSearcher.cs", 46, 38)]
+	//[InterceptsLocation(@"C:\Users\admin\source\repos\SunnieShine\Sudoku\src\Sudoku.Analytics\Analytics\StepSearchers\AlmostLockedSets\DeathBlossomStepSearcher.cs", 59, 38)]
+	//[InterceptsLocation(@"C:\Users\admin\source\repos\SunnieShine\Sudoku\src\Sudoku.Analytics\Analytics\StepSearchers\DeadlyPatterns\UniqueRectangleStepSearcher.cs", 212, 38)]
 	public static ReadOnlySpan<AlmostLockedSetPattern> CollectAlmostLockedSets(ref readonly Grid grid)
 	{
 		// Get all bi-value-cell ALSes.

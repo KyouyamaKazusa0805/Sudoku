@@ -154,27 +154,30 @@ public sealed partial class AlmostLockedSetPattern(
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All possible found <see cref="AlmostLockedSetPattern"/> instances.</returns>
+	[Cached]
 	public static ReadOnlySpan<AlmostLockedSetPattern> Collect(ref readonly Grid grid)
 	{
-		_ = grid is { EmptyCells: var emptyMap, BivalueCells: var bivalueMap, CandidatesMap: var candidatesMap };
+		// --INTERCEPTOR_VARIABLE_DECLARATION_BEGIN--
+		_ = grid is { EmptyCells: var __EmptyCells, BivalueCells: var __BivalueCells, CandidatesMap: var __CandidatesMap };
+		// --INTERCEPTOR_VARIABLE_DECLARATION_END--
 
 		// Get all bi-value-cell ALSes.
 		var result = new List<AlmostLockedSetPattern>();
-		foreach (var cell in bivalueMap)
+		foreach (var cell in __BivalueCells)
 		{
 			var eliminationMap = new CellMap[9];
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				eliminationMap[digit] = PeersMap[cell] & candidatesMap[digit];
+				eliminationMap[digit] = PeersMap[cell] & __CandidatesMap[digit];
 			}
 
-			result.Add(new(grid.GetCandidates(cell), [cell], PeersMap[cell] & emptyMap, eliminationMap));
+			result.Add(new(grid.GetCandidates(cell), in cell.AsCellMap(), PeersMap[cell] & __EmptyCells, eliminationMap));
 		}
 
 		// Get all non-bi-value-cell ALSes.
 		for (var house = 0; house < 27; house++)
 		{
-			if ((HousesMap[house] & emptyMap) is not { Count: >= 3 } tempMap)
+			if ((HousesMap[house] & __EmptyCells) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
@@ -201,7 +204,7 @@ public sealed partial class AlmostLockedSetPattern(
 					var eliminationMap = new CellMap[9];
 					foreach (var digit in digitsMask)
 					{
-						eliminationMap[digit] = map % candidatesMap[digit];
+						eliminationMap[digit] = map % __CandidatesMap[digit];
 					}
 
 					var coveredLine = map.SharedLine;
@@ -210,7 +213,7 @@ public sealed partial class AlmostLockedSetPattern(
 							digitsMask,
 							in map,
 							house < 9 && coveredLine is >= 9 and not 32
-								? (HousesMap[house] | HousesMap[coveredLine]) & emptyMap & ~map
+								? (HousesMap[house] | HousesMap[coveredLine]) & __EmptyCells & ~map
 								: tempMap & ~map,
 							eliminationMap
 						)

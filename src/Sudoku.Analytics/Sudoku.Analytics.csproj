@@ -5,6 +5,9 @@
 		<RootNamespace>Sudoku</RootNamespace>
 		<Description>Provides analytical APIs for solving and analyzing a sudoku puzzle.</Description>
 		<DocumentationFile>..\docxml\Sudoku.Analytics.xml</DocumentationFile>
+
+		<Features>Interceptors</Features>
+		<InterceptorsNamespaces>$(InterceptorsNamespaces);Sudoku.Analytics.Intercepting.Generated</InterceptorsNamespaces>
 	</PropertyGroup>
 
 	<ItemGroup>

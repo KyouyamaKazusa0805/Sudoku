@@ -19,10 +19,11 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
+	[InterceptorMethodCaller]
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		var alses = AlmostLockedSetsDriver.CollectAlmostLockedSets(in grid);
+		var alses = AlmostLockedSetPattern.Collect(in grid);
 
 		// Gather all conjugate pairs.
 		var conjugatePairs = CollectConjugatePairs();

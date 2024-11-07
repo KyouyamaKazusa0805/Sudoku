@@ -7,10 +7,7 @@ namespace Sudoku.SourceGeneration;
 public sealed class Generator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
-	public void Initialize(IncrementalGeneratorInitializationContext context)
-	{
-		Basic(context);
-	}
+	public void Initialize(IncrementalGeneratorInitializationContext context) => Basic(context);
 
 
 	private void Basic(IncrementalGeneratorInitializationContext context)
