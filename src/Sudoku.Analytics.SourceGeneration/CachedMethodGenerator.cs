@@ -146,7 +146,8 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				TargetNode: MethodDeclarationSyntax
 				{
 					ExpressionBody: var expressionBody,
-					Identifier: { ValueText: var methodName } identifierToken
+					Identifier: { ValueText: var methodName } identifierToken,
+					//ConstraintClauses: var constraints
 				} node,
 				SemanticModel: { Compilation: var compilation } semanticModel
 			})
@@ -349,6 +350,8 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			};
 			var returnTypeString = $"{returnRefKindType}{returnTypeName}";
 
+			//var constraintsString = constraints.Count != 0 ? constraints.ToString() : string.Empty;
+
 			// Return the value.
 			return new SuccessTransformResult(
 				$$"""
@@ -359,7 +362,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				{
 					{{(xmlDocCommentLines.Count == 0 ? "/// <summary>Intercepted method.</summary>" : string.Join("\r\n\t", xmlDocCommentLines))}}
 					{{AttributeInsertionMatchString}}
-					public static {{returnTypeString}} {{referencedMethodSymbol.Name}}{{string.Empty}}({{parametersString}})
+					public static {{returnTypeString}} {{referencedMethodSymbol.Name}}({{parametersString}})
 					{
 					{{string.Join("\r\n", targetStringAppendIndenting)}}
 					}
