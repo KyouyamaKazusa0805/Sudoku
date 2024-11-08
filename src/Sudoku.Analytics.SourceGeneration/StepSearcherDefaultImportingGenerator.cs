@@ -86,8 +86,8 @@ public sealed class StepSearcherDefaultImportingGenerator : IIncrementalGenerato
 		}
 
 		// Iterate on each valid attribute data, and checks the inner value to be used by the source generator to output.
-		var (generatedCodeSnippets, namespaceUsed) = (new List<string>(), foundAttributesData[0].Namespace);
-		foreach (var (_, baseType, priority, level, name, namedArguments) in foundAttributesData)
+		var generatedCodeSnippets = new List<string>();
+		foreach (var (@namespace, baseType, priority, level, name, namedArguments) in foundAttributesData)
 		{
 			// Checks whether the attribute has configured any extra options.
 			var nullableRunningArea = default(int?);
@@ -116,8 +116,19 @@ public sealed class StepSearcherDefaultImportingGenerator : IIncrementalGenerato
 			}
 
 			// Output the generated code.
+			var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
 			var baseTypeFullName = baseType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-			generatedCodeSnippets.Add($"partial class {name}() : {baseTypeFullName}({priority}, {sb});");
+			generatedCodeSnippets.Add(
+				$$"""
+				namespace {{namespaceString}}
+				{
+					[method: global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(StepSearcherDefaultImportingGenerator).FullName}}", "{{Value}}")]
+					[method: global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+					partial class {{name}}() :
+						{{baseTypeFullName}}({{priority}}, {{sb}});
+				}
+				"""
+			);
 		}
 
 		spc.AddSource(
@@ -128,8 +139,6 @@ public sealed class StepSearcherDefaultImportingGenerator : IIncrementalGenerato
 			#pragma warning disable CS1591
 			#nullable enable
 
-			namespace {{namespaceUsed.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..]}};
-			
 			{{string.Join("\r\n\r\n", generatedCodeSnippets)}}
 			"""
 		);
