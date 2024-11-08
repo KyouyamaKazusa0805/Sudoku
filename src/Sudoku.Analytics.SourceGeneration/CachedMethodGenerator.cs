@@ -455,14 +455,14 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			// The target XML doc commment structure won't include triple slashes. We should append them;
 			// In addition, consider indenting, we should append indenting \t's.
 			// And, we should remove the first and last line (<member> tag).
-			var xmlDocComments = referencedMethodSymbol.GetDocumentationCommentXml(cancellationToken: ct)?
+			var xmlDocCommentsSplitByLine = referencedMethodSymbol.GetDocumentationCommentXml(cancellationToken: ct)?
 				.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 			var xmlDocCommentLines = new List<string>();
-			if (xmlDocComments is not null)
+			if (xmlDocCommentsSplitByLine is not null)
 			{
-				for (var i = 1; i < xmlDocComments.Length - 1; i++)
+				for (var i = 1; i < xmlDocCommentsSplitByLine.Length - 1; i++)
 				{
-					xmlDocCommentLines.Add($"/// {xmlDocComments[i].TrimStart()}");
+					xmlDocCommentLines.Add($"/// {xmlDocCommentsSplitByLine[i].TrimStart()}");
 				}
 			}
 
@@ -478,6 +478,14 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 			//var constraintsString = constraints.Count != 0 ? constraints.ToString() : string.Empty;
 
+			var xmlDocComments = xmlDocCommentLines.Count == 0
+				? """
+					/// <summary>
+					/// Intercepted method.
+					/// </summary>
+				"""
+				: string.Join("\r\n\t", xmlDocCommentLines);
+
 			// Return the value.
 			return new SuccessTransformResult(
 				$$"""
@@ -486,7 +494,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				/// </summary>
 				public static class {{referencedMethodSymbol.ContainingType.Name}}_Intercepted
 				{
-					{{(xmlDocCommentLines.Count == 0 ? "/// <summary>Intercepted method.</summary>" : string.Join("\r\n\t", xmlDocCommentLines))}}
+				{{xmlDocComments}}
 					{{AttributeInsertionMatchString}}
 					public static {{returnTypeString}} {{referencedMethodSymbol.Name}}({{parametersString}})
 					{
