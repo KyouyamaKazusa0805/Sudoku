@@ -9,6 +9,11 @@
             Represents a source generator that copies the whole method, and replaces some variables with cached fields.
             </summary>
         </member>
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptsLocationAttributeSourceCode">
+            <summary>
+            Indicates the raw source code for intercepts location attribute.
+            </summary>
+        </member>
         <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0101">
             <summary>
             Represents message "Method marked '[InterceptorMethodCaller]' can only be block body".
