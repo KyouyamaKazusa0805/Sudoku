@@ -27,6 +27,11 @@
         </member>
         <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
+            <remarks>
+            This generator will aim to methods, to find whether a method block contains at least one intercepted usage.
+            If so, such method will be replaced with cached method.
+            The requirement is that, the callee method should be applied with '<c>[InterceptorMethodCaller]</c>'.
+            </remarks>
         </member>
         <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult">
             <summary>
