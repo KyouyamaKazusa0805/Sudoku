@@ -6,11 +6,8 @@ namespace System.Resources;
 /// <param name="assembly"><inheritdoc/></param>
 /// <param name="resourceKey">The resource key.</param>
 /// <param name="culture">The culture information.</param>
-public sealed partial class ResourceNotFoundException(
-	Assembly? assembly,
-	[Field] string resourceKey,
-	[Field] CultureInfo? culture
-) : ResourceException(assembly)
+public sealed partial class ResourceNotFoundException(Assembly? assembly, [Field] string resourceKey, [Field] CultureInfo? culture) :
+	ResourceException(assembly)
 {
 	/// <summary>
 	/// The "unspecified" text.
