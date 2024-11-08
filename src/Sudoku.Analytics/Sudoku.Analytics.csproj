@@ -7,7 +7,7 @@
 		<DocumentationFile>..\docxml\Sudoku.Analytics.xml</DocumentationFile>
 
 		<Features>Interceptors</Features>
-		<InterceptorsNamespaces>$(InterceptorsNamespaces);Sudoku.Analytics.Intercepting.Generated</InterceptorsNamespaces>
+		<InterceptorsNamespaces>$(InterceptorsNamespaces);Sudoku.Runtime.InterceptorServices.Generated</InterceptorsNamespaces>
 	</PropertyGroup>
 
 	<ItemGroup>

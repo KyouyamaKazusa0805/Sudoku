@@ -25,6 +25,12 @@
             Represents message "Method marked '[Cached]' cannot be <see langword="partial"/>".
             </summary>
         </member>
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Diagnostic_Interceptor0104">
+            <summary>
+            Represents message "Lacks of usage of necessary comments:
+            '<c>INTERCEPTOR_VARIABLE_DECLARATION_BEGIN</c>' and '<c>INTERCEPTOR_VARIABLE_DECLARATION_END</c>'".
+            </summary>
+        </member>
         <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
             <remarks>

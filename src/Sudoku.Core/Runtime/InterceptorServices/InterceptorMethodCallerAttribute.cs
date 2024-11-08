@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Intercepting;
+namespace Sudoku.Runtime.InterceptorServices;
 
 /// <summary>
 /// Represents an attribute type that can be applied to a method, indicating the method uses interceptor

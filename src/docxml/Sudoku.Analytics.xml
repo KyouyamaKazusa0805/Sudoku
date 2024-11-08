@@ -6681,84 +6681,6 @@
             <param name="size">The number of cells used in a subset.</param>
             <returns>The name of the subset.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Intercepting.CachedAttribute">
-             <summary>
-             Represents an attribute type that can be applied to a method,
-             to tell interceptor source generator to produce a new method that copies full implementation from this method,
-             with <see cref="T:Sudoku.Concepts.Grid"/> properties replaced with corresponding properties in <see cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>.
-             </summary>
-             <remarks>
-             Usage:
-             <code><![CDATA[
-             [Cached]
-             public static ReadOnlySpan<AlmostLockedSetPattern> Collect(ref readonly Grid grid)
-             {
-            	    // --INTERCEPTOR_VARIABLE_DECLARATION_BEGIN--
-                 _ = grid is { EmptyCells: var __EmptyCells, BivalueCells: var __BivalueCells, CandidatesMap: var __CandidatesMap };
-                 // --INTERCEPTOR_VARIABLE_DECLARATION_END--
-            
-                 // Get all bi-value-cell ALSes.
-                 var result = new List<AlmostLockedSetPattern>();
-                 foreach (var cell in __BivalueCells)
-                 {
-                     var eliminationMap = new CellMap[9];
-                     foreach (var digit in grid.GetCandidates(cell))
-                         eliminationMap[digit] = PeersMap[cell] & __CandidatesMap[digit];
-                     result.Add(new(grid.GetCandidates(cell), in cell.AsCellMap(), PeersMap[cell] & __EmptyCells, eliminationMap));
-                 }
-            
-                 // ...
-             }
-             ]]></code>
-             Such code will be intercepted, by replacing variables <c>__EmptyCells</c>, <c>__BivalueCells</c> and <c>__CandidatesMap</c>
-             with properties in <see cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>:
-             <code><![CDATA[
-             // Get all bi-value-cell ALSes.
-             var result = new List<AlmostLockedSetPattern>();
-             foreach (var cell in MemoryCachedData.BivalueCells)
-             {
-                 var eliminationMap = new CellMap[9];
-                 foreach (var digit in grid.GetCandidates(cell))
-                     eliminationMap[digit] = PeersMap[cell] & MemoryCachedData.CandidatesMap[digit];
-                 result.Add(new(grid.GetCandidates(cell), in cell.AsCellMap(), PeersMap[cell] & MemoryCachedData.EmptyCells, eliminationMap));
-             }
-             ]]></code>
-             </remarks>
-             <seealso cref="T:Sudoku.Concepts.Grid"/>
-             <seealso cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Intercepting.InterceptorMethodCallerAttribute">
-            <summary>
-            Represents an attribute type that can be applied to a method, indicating the method uses interceptor
-            (contains interceptor method invocation).
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Intercepting.Generated.AlmostLockedSetPattern_Intercepted">
-            <summary>
-            Interceptor method that will replace implementation on such referenced method invocation.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Intercepting.Generated.AlmostLockedSetPattern_Intercepted.Collect(Sudoku.Concepts.Grid@)">
-            <summary>
-            Collects all possible <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/>s in the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>All possible found <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/> instances.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Intercepting.Generated.TrueCandidate_Intercepted">
-            <summary>
-            Interceptor method that will replace implementation on such referenced method invocation.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Intercepting.Generated.TrueCandidate_Intercepted.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            Get all true candidates when the number of empty cells is below than the argument.
-            </summary>
-            <param name="grid">Indicates the puzzle.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>All true candidates.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
-        </member>
         <member name="T:Sudoku.Analytics.PatternSearcher`1">
             <summary>
             Represents a pattern searcher type.
@@ -33872,6 +33794,78 @@
         </member>
         <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.CachedAttribute">
+             <summary>
+             Represents an attribute type that can be applied to a method,
+             to tell interceptor source generator to produce a new method that copies full implementation from this method,
+             with <see cref="T:Sudoku.Concepts.Grid"/> properties replaced with corresponding properties in <see cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>.
+             </summary>
+             <remarks>
+             Usage:
+             <code><![CDATA[
+             [Cached]
+             public static ReadOnlySpan<AlmostLockedSetPattern> Collect(ref readonly Grid grid)
+             {
+            	    // --INTERCEPTOR_VARIABLE_DECLARATION_BEGIN--
+                 _ = grid is { EmptyCells: var __EmptyCells, BivalueCells: var __BivalueCells, CandidatesMap: var __CandidatesMap };
+                 // --INTERCEPTOR_VARIABLE_DECLARATION_END--
+            
+                 // Get all bi-value-cell ALSes.
+                 var result = new List<AlmostLockedSetPattern>();
+                 foreach (var cell in __BivalueCells)
+                 {
+                     var eliminationMap = new CellMap[9];
+                     foreach (var digit in grid.GetCandidates(cell))
+                         eliminationMap[digit] = PeersMap[cell] & __CandidatesMap[digit];
+                     result.Add(new(grid.GetCandidates(cell), in cell.AsCellMap(), PeersMap[cell] & __EmptyCells, eliminationMap));
+                 }
+            
+                 // ...
+             }
+             ]]></code>
+             Such code will be intercepted, by replacing variables <c>__EmptyCells</c>, <c>__BivalueCells</c> and <c>__CandidatesMap</c>
+             with properties in <see cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>:
+             <code><![CDATA[
+             // Get all bi-value-cell ALSes.
+             var result = new List<AlmostLockedSetPattern>();
+             foreach (var cell in MemoryCachedData.BivalueCells)
+             {
+                 var eliminationMap = new CellMap[9];
+                 foreach (var digit in grid.GetCandidates(cell))
+                     eliminationMap[digit] = PeersMap[cell] & MemoryCachedData.CandidatesMap[digit];
+                 result.Add(new(grid.GetCandidates(cell), in cell.AsCellMap(), PeersMap[cell] & MemoryCachedData.EmptyCells, eliminationMap));
+             }
+             ]]></code>
+             </remarks>
+             <seealso cref="T:Sudoku.Concepts.Grid"/>
+             <seealso cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.AlmostLockedSetPattern_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.AlmostLockedSetPattern_Intercepted.Collect(Sudoku.Concepts.Grid@)">
+            <summary>
+            Collects all possible <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/>s in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All possible found <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.TrueCandidate_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.TrueCandidate_Intercepted.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Get all true candidates when the number of empty cells is below than the argument.
+            </summary>
+            <param name="grid">Indicates the puzzle.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>All true candidates.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="T:Sudoku.Runtime.InteropServices.Hodoku.HodokuAttribute">
             <summary>
