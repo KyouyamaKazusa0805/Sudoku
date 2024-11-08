@@ -33,13 +33,13 @@
         <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Diagnostic_Interceptor0104">
             <summary>
             Represents message "Lacks of usage of necessary comments:
-            '<c>INTERCEPTOR_VARIABLE_DECLARATION_BEGIN</c>' and '<c>INTERCEPTOR_VARIABLE_DECLARATION_END</c>'".
+            '<c>VARIABLE_DECLARATION_BEGIN</c>' and '<c>VARIABLE_DECLARATION_END</c>'".
             </summary>
         </member>
         <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Diagnostic_Interceptor0105">
             <summary>
             Represents message "Duplicate comments:
-            '<c>INTERCEPTOR_VARIABLE_DECLARATION_BEGIN</c>' and '<c>INTERCEPTOR_VARIABLE_DECLARATION_END</c>'".
+            '<c>VARIABLE_DECLARATION_BEGIN</c>' and '<c>VARIABLE_DECLARATION_END</c>'".
             </summary>
         </member>
         <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">

@@ -14,9 +14,9 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 	private const string InterceptsLocationAttributeFullName = "System.Runtime.CompilerServices.InterceptsLocationAttribute";
 
-	private const string CommentLineBegin = "// --INTERCEPTOR_VARIABLE_DECLARATION_BEGIN--";
+	private const string CommentLineBegin = "VARIABLE_DECLARATION_BEGIN";
 
-	private const string CommentLineEnd = "// --INTERCEPTOR_VARIABLE_DECLARATION_END--";
+	private const string CommentLineEnd = "VARIABLE_DECLARATION_END";
 
 	private const string AttributeInsertionMatchString = "<<insert-here>>";
 
@@ -33,17 +33,17 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 		namespace System.Runtime.CompilerServices;
 
 		/// <summary>
-		///     <para>
-		///         Interceptors are an experimental compiler feature planned to ship in .NET 8 (with support for C# only).
-		///         The feature may be subject to breaking changes or removal in a future release.
-		///     </para>
-		///     <para>
-		///         An interceptor is a method which can declaratively substitute a call to an interceptable method with a call
-		///         to itself at compile time.
-		///         This substitution occurs by having the interceptor declare the source locations of the calls that it intercepts.
-		///         This provides a limited facility to change the semantics of existing code
-		///         by adding new code to a compilation (e.g. in a source generator).
-		///     </para>
+		/// <para>
+		/// Interceptors are an experimental compiler feature planned to ship in .NET 8 (with support for C# only).
+		/// The feature may be subject to breaking changes or removal in a future release.
+		/// </para>
+		/// <para>
+		/// An interceptor is a method which can declaratively substitute a call to an interceptable method with a call
+		/// to itself at compile time.
+		/// This substitution occurs by having the interceptor declare the source locations of the calls that it intercepts.
+		/// This provides a limited facility to change the semantics of existing code
+		/// by adding new code to a compilation (e.g. in a source generator).
+		/// </para>
 		/// </summary>
 		/// <param name="filePath">The required file path.</param>
 		/// <param name="line">The line.</param>
@@ -54,17 +54,17 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 		public sealed partial class InterceptsLocationAttribute(string filePath, int line, int character) : global::System.Attribute
 		{
 			/// <summary>
-			/// The generated property declaration for parameter <c>filePath</c>.
+			/// Indicates the target file path.
 			/// </summary>
 			public string FilePath { get; } = filePath;
 
 			/// <summary>
-			/// The generated property declaration for parameter <c>line</c>.
+			/// Indicates the line number.
 			/// </summary>
 			public int Line { get; } = line;
 
 			/// <summary>
-			/// The generated property declaration for parameter <c>character</c>.
+			/// Indicates the character number.
 			/// </summary>
 			public int Character { get; } = character;
 		}
@@ -117,12 +117,12 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 	/// <summary>
 	/// Represents message "Lacks of usage of necessary comments:
-	/// '<c>INTERCEPTOR_VARIABLE_DECLARATION_BEGIN</c>' and '<c>INTERCEPTOR_VARIABLE_DECLARATION_END</c>'".
+	/// '<c>VARIABLE_DECLARATION_BEGIN</c>' and '<c>VARIABLE_DECLARATION_END</c>'".
 	/// </summary>
 	private static readonly DiagnosticDescriptor Diagnostic_Interceptor0104 = new(
 		"INTERCEPTOR0104",
-		"Lacks of usage of necessary comments: 'INTERCEPTOR_VARIABLE_DECLARATION_BEGIN' and 'INTERCEPTOR_VARIABLE_DECLARATION_END'",
-		"Lacks of usage of necessary comments: 'INTERCEPTOR_VARIABLE_DECLARATION_BEGIN' and 'INTERCEPTOR_VARIABLE_DECLARATION_END'",
+		$"Lacks of usage of necessary comments: '{CommentLineBegin}' and '{CommentLineEnd}'",
+		$"Lacks of usage of necessary comments: '{CommentLineBegin}' and '{CommentLineEnd}'",
 		"Interceptor.Design",
 		DiagnosticSeverity.Error,
 		true
@@ -130,12 +130,12 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 	/// <summary>
 	/// Represents message "Duplicate comments:
-	/// '<c>INTERCEPTOR_VARIABLE_DECLARATION_BEGIN</c>' and '<c>INTERCEPTOR_VARIABLE_DECLARATION_END</c>'".
+	/// '<c>VARIABLE_DECLARATION_BEGIN</c>' and '<c>VARIABLE_DECLARATION_END</c>'".
 	/// </summary>
 	private static readonly DiagnosticDescriptor Diagnostic_Interceptor0105 = new(
 		"INTERCEPTOR0105",
-		"Duplicate comments: 'INTERCEPTOR_VARIABLE_DECLARATION_BEGIN' and 'INTERCEPTOR_VARIABLE_DECLARATION_END'",
-		"Duplicate comments: 'INTERCEPTOR_VARIABLE_DECLARATION_BEGIN' and 'INTERCEPTOR_VARIABLE_DECLARATION_END'",
+		$"Duplicate comments: '{CommentLineBegin}' and '{CommentLineEnd}'",
+		$"Duplicate comments: '{CommentLineBegin}' and '{CommentLineEnd}'",
 		"Interceptor.Design",
 		DiagnosticSeverity.Error,
 		true
