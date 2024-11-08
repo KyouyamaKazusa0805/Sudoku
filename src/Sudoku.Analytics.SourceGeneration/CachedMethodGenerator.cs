@@ -381,7 +381,20 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					_ => string.Empty
 				}
 				let typeNameString = parameter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
-				select $"{scopedKindString}{refKindString}{typeNameString} {parameter.Name}"
+				let defaultValue = parameter.HasExplicitDefaultValue
+					? parameter.ExplicitDefaultValue switch
+					{
+						null => "default",
+						string s =>
+							$""""
+							"""{s}"""
+							"""",
+						char c => $"'{c}'",
+						var value => value.ToString()
+					}
+					: null
+				let defaultValueString = defaultValue is null ? string.Empty : $" = {defaultValue}"
+				select $"{scopedKindString}{refKindString}{typeNameString} {parameter.Name}{defaultValueString}"
 			);
 
 			// Replace reserved identifiers with cached properties.
