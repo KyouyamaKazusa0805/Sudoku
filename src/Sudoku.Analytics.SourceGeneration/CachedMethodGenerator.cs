@@ -79,6 +79,19 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 		true
 	);
 
+	/// <summary>
+	/// Represents message "Duplicate comments:
+	/// '<c>INTERCEPTOR_VARIABLE_DECLARATION_BEGIN</c>' and '<c>INTERCEPTOR_VARIABLE_DECLARATION_END</c>'".
+	/// </summary>
+	private static readonly DiagnosticDescriptor Diagnostic_Interceptor0105 = new(
+		"INTERCEPTOR0105",
+		"Duplicate comments: 'INTERCEPTOR_VARIABLE_DECLARATION_BEGIN' and 'INTERCEPTOR_VARIABLE_DECLARATION_END'",
+		"Duplicate comments: 'INTERCEPTOR_VARIABLE_DECLARATION_BEGIN' and 'INTERCEPTOR_VARIABLE_DECLARATION_END'",
+		"Interceptor.Design",
+		DiagnosticSeverity.Error,
+		true
+	);
+
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -304,6 +317,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			var statements = new List<StatementSyntax>();
 			var flag = false;
 			var (existsBeginComment, existsEndComment) = (false, false);
+			var duplicateBeginCommentOrEndComment = false;
 			foreach (var statement in bodyStatements)
 			{
 				if (statement.HasLeadingTrivia)
@@ -312,7 +326,15 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					if (leadingTrivia.Contains(CommentLineBegin))
 					{
 						flag = true;
-						existsBeginComment = true;
+						if (!existsBeginComment)
+						{
+							existsBeginComment = true;
+						}
+						else
+						{
+							duplicateBeginCommentOrEndComment = true;
+							break;
+						}
 						continue;
 					}
 					if (leadingTrivia.Contains(CommentLineEnd))
@@ -333,7 +355,15 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 								.WithLeadingTrivia(SyntaxFactory.ParseLeadingTrivia(string.Join("\r\n", otherLines)))
 						);
 						flag = false;
-						existsEndComment = true;
+						if (!existsEndComment)
+						{
+							existsEndComment = true;
+						}
+						else
+						{
+							duplicateBeginCommentOrEndComment = true;
+							break;
+						}
 						continue;
 					}
 				}
@@ -342,11 +372,16 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					statements.Add(statement);
 				}
 			}
-			if (invocationLocation.SourceTree is not { FilePath: var filePath })
+			if (duplicateBeginCommentOrEndComment)
 			{
-				continue;
+				return new FailedTransformResult(
+					Diagnostic.Create(
+						Diagnostic_Interceptor0105,
+						identifierToken.GetLocation(),
+						messageArgs: [identifierToken.ValueText]
+					)
+				);
 			}
-
 			if (!existsBeginComment || !existsEndComment)
 			{
 				return new FailedTransformResult(
@@ -356,6 +391,11 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 						messageArgs: [identifierToken.ValueText]
 					)
 				);
+			}
+
+			if (invocationLocation.SourceTree is not { FilePath: var filePath })
+			{
+				continue;
 			}
 
 			//var genericTypesString = referencedMethodSymbol.IsGenericMethod
