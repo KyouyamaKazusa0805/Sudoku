@@ -490,7 +490,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					{{AttributeInsertionMatchString}}
 					public static {{returnTypeString}} {{referencedMethodSymbol.Name}}({{parametersString}})
 					{
-					{{string.Join("\r\n", targetStringAppendIndenting)}}
+				{{string.Join("\r\n", targetStringAppendIndenting)}}
 					}
 				}
 				""",
