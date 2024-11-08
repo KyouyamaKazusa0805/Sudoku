@@ -21,6 +21,12 @@ public abstract class ChainStep(StepConclusions conclusions, View[]? views, Step
 	public abstract bool IsDynamic { get; }
 
 	/// <summary>
+	/// Indicates whether the chain is specialized.
+	/// In other words, the pattern may not be checked as a chain or forcing chains pattern.
+	/// </summary>
+	public abstract bool IsSpecialized { get; }
+
+	/// <summary>
 	/// Indicates the length of the whole chain pattern, i.e. the number of links used in a pattern.
 	/// </summary>
 	public abstract int Complexity { get; }

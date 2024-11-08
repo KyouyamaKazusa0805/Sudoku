@@ -9,6 +9,7 @@ public sealed partial class BlossomLoop([Property] params ConclusionSet conclusi
 	SortedDictionary<Candidate, StrongForcingChain>,
 	IComparable<BlossomLoop>,
 	IComparisonOperators<BlossomLoop, BlossomLoop, bool>,
+	IChainOrForcingChains,
 	IComponent,
 	IEquatable<BlossomLoop>,
 	IEqualityOperators<BlossomLoop, BlossomLoop, bool>,
@@ -23,6 +24,12 @@ public sealed partial class BlossomLoop([Property] params ConclusionSet conclusi
 	/// Indicates whether the loop exit is cell type.
 	/// </summary>
 	public bool ExitIsCellType => !Mask.IsPow2(Exits.Digits);
+
+	/// <inheritdoc/>
+	public bool IsGrouped => Values.Any(static v => v.IsGrouped);
+
+	/// <inheritdoc/>
+	public bool IsStrictlyGrouped => Values.Any(static v => v.IsStrictlyGrouped);
 
 	/// <summary>
 	/// Indicates the complexity of the whole pattern.

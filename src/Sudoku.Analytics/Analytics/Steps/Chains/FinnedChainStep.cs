@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Finned (Grouped) Chain</b> or <b>Finned (Grouped) Loop</b> technique.
+/// Provides with a step that is a <b>(Grouped) Finned Chain</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -24,16 +24,16 @@ public sealed partial class FinnedChainStep(
 	/// <summary>
 	/// Indicates the base technique used.
 	/// </summary>
-	public Technique BasedOn => Pattern.GetTechnique(Conclusions.AsSet());
+	public Technique BasedOn => Casted.GetTechnique(Conclusions.AsSet());
 
 	/// <inheritdoc/>
 	public override Technique Code
-		=> IsGrouped || BasedComponent is not (MultipleChainBasedComponent.Cell or MultipleChainBasedComponent.House)
+		=> Casted.IsStrictlyGrouped || BasedComponent is not (MultipleChainBasedComponent.Cell or MultipleChainBasedComponent.House)
 			? Technique.FinnedGroupedChain
 			: Technique.FinnedChain;
 
 	/// <inheritdoc/>
-	public override Mask DigitsUsed => Pattern.DigitsMask;
+	public override Mask DigitsUsed => Casted.DigitsMask;
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations

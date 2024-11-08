@@ -2027,6 +2027,12 @@
             Indicates whether the loop exit is cell type.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.IsGrouped">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.IsStrictlyGrouped">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.Complexity">
             <summary>
             Indicates the complexity of the whole pattern.
@@ -2176,16 +2182,10 @@
             </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsGrouped">
-            <summary>
-            Indicates whether the chain pattern uses grouped logic.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsStrictlyGrouped">
-            <summary>
-            Indicates whether the chain pattern contains grouped nodes,
-            ignoring all links containing <see cref="P:Sudoku.Analytics.Construction.Components.Link.GroupedLinkPattern"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.Construction.Components.Link.GroupedLinkPattern"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsX">
             <summary>
@@ -3070,6 +3070,24 @@
         <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection,Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.IChainOrForcingChains">
+            <summary>
+            Represents a component that is a chain or forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.IsGrouped">
+            <summary>
+            Indicates whether the pattern is grouped (i.e. contains a node uses at least 2 candidates).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.IsStrictlyGrouped">
+            <summary>
+            Indicates whether the pattern is strictly grouped,
+            meaning at least one link (no matter what kind of link, strong or weak) uses advanced checking rules like AUR and ALS,
+            or returns <see langword="true"/> from property <see cref="P:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.IsGrouped"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.IsGrouped"/>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IComplexSeniorExocet">
             <summary>
             The base overrides for complex senior exocet steps.
@@ -3570,9 +3588,10 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsGrouped">
-            <summary>
-            Indicates whether at least one branch contains grouped links or nodes.
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsStrictlyGrouped">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Complexity">
             <summary>
@@ -4707,21 +4726,6 @@
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
             <returns>All possible multiple forcing chain instances.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Drivers.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Drivers.Extensions.IsAdvancedAllowed(Sudoku.Analytics.Steps.ChainStep,System.Boolean)">
-            <summary>
-            Determine whether a <see cref="T:Sudoku.Analytics.Steps.ChainStep"/> instance is allowed to contain advanced links.
-            </summary>
-            <param name="this">The chain to be checked.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the element has already been added.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Drivers.SubsetDriver">
             <summary>
@@ -12986,7 +12990,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">The pattern to be used.</param>
+            <param name="pattern"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains)">
             <summary>
@@ -12995,7 +12999,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">The pattern to be used.</param>
+            <param name="pattern"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.IsMultiple">
             <inheritdoc/>
@@ -13032,11 +13036,6 @@
         <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveForcingChainsStep.Pattern">
-            <summary>
-            The generated property declaration for parameter <c>pattern</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.BlossomLoopStep">
             <summary>
             Provides with a step that is a <b>Blossom Loop</b> technique.
@@ -13044,7 +13043,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">Indicates the backing pattern.</param>
+            <param name="pattern"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.BlossomLoop)">
             <summary>
@@ -13053,7 +13052,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">Indicates the backing pattern.</param>
+            <param name="pattern"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.IsMultiple">
             <inheritdoc/>
@@ -13090,11 +13089,6 @@
         <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Pattern">
-            <summary>
-            The generated property declaration for parameter <c>pattern</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.ChainStep">
             <summary>
             Provides with a step that is a <b>Chain</b> technique.
@@ -13122,6 +13116,12 @@
             also, dynamic chains always contain internal branches.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainStep.IsSpecialized">
+            <summary>
+            Indicates whether the chain is specialized.
+            In other words, the pattern may not be checked as a chain or forcing chains pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ChainStep.Complexity">
             <summary>
             Indicates the length of the whole chain pattern, i.e. the number of links used in a pattern.
@@ -13129,7 +13129,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.FinnedChainStep">
             <summary>
-            Provides with a step that is a <b>Finned (Grouped) Chain</b> or <b>Finned (Grouped) Loop</b> technique.
+            Provides with a step that is a <b>(Grouped) Finned Chain</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13140,7 +13140,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.FinnedChainStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.CandidateMap@,Sudoku.Analytics.Construction.Components.MultipleChainBasedComponent)">
             <summary>
-            Provides with a step that is a <b>Finned (Grouped) Chain</b> or <b>Finned (Grouped) Loop</b> technique.
+            Provides with a step that is a <b>(Grouped) Finned Chain</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13183,7 +13183,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">The pattern to be used.</param>
+            <param name="pattern"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.MultipleForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.MultipleForcingChains)">
             <summary>
@@ -13192,7 +13192,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">The pattern to be used.</param>
+            <param name="pattern"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.IsMultiple">
             <inheritdoc/>
@@ -13229,11 +13229,6 @@
         <member name="M:Sudoku.Analytics.Steps.MultipleForcingChainsStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.Pattern">
-            <summary>
-            The generated property declaration for parameter <c>pattern</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.NormalChainStep">
             <summary>
             Provides with a step that is a <b>(Grouped) Chain</b> or <b>(Grouped) Loop</b> technique.
@@ -13241,7 +13236,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">Indicates the pattern.</param>
+            <param name="pattern"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.NormalChainStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.NamedChain)">
             <summary>
@@ -13250,7 +13245,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">Indicates the pattern.</param>
+            <param name="pattern"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalChainStep.SortKey">
             <summary>
@@ -13303,11 +13298,6 @@
         <member name="M:Sudoku.Analytics.Steps.NormalChainStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalChainStep.Pattern">
-            <summary>
-            The generated property declaration for parameter <c>pattern</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.Extensions">
             <target name="class" when="extension">
 				<summary>
@@ -13328,6 +13318,32 @@
             <param name="conclusions">Indicates conclusions to be used.</param>
             <returns>The pattern sort key.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.PatternBasedChainStep">
+            <summary>
+            Provides with a step that is a <b>Pattern-Based Chain</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">Indicates the pattern to be used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.PatternBasedChainStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.IChainOrForcingChains)">
+            <summary>
+            Provides with a step that is a <b>Pattern-Based Chain</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">Indicates the pattern to be used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.PatternBasedChainStep.IsSpecialized">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.PatternBasedChainStep.Pattern">
+            <summary>
+            The generated property declaration for parameter <c>pattern</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.RectangleForcingChainsStep">
             <summary>
             Provides with a step that is a <b>Rectangle Forcing Chains</b> technique.
@@ -13335,7 +13351,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">The pattern to be used.</param>
+            <param name="pattern"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.RectangleForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.RectangleForcingChains)">
             <summary>
@@ -13344,7 +13360,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">The pattern to be used.</param>
+            <param name="pattern"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.IsMultiple">
             <inheritdoc/>
@@ -13380,11 +13396,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.RectangleForcingChainsStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RectangleForcingChainsStep.Pattern">
-            <summary>
-            The generated property declaration for parameter <c>pattern</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.RemotePairStep">
             <summary>
@@ -13446,6 +13457,25 @@
             <summary>
             The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SpecializedChainStep">
+            <summary>
+            Provides with a step that is a <b>Specialized Chain</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SpecializedChainStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
+            <summary>
+            Provides with a step that is a <b>Specialized Chain</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SpecializedChainStep.IsSpecialized">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.WhipStep">
             <summary>

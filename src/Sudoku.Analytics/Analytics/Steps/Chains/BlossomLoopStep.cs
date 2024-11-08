@@ -6,13 +6,9 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-/// <param name="pattern">Indicates the backing pattern.</param>
-public sealed partial class BlossomLoopStep(
-	StepConclusions conclusions,
-	View[]? views,
-	StepGathererOptions options,
-	[Property] BlossomLoop pattern
-) : ChainStep(conclusions, views, options)
+/// <param name="pattern"><inheritdoc/></param>
+public sealed class BlossomLoopStep(StepConclusions conclusions, View[]? views, StepGathererOptions options, BlossomLoop pattern) :
+	PatternBasedChainStep(conclusions, views, options, pattern)
 {
 	/// <inheritdoc/>
 	public override bool IsMultiple => true;
@@ -23,10 +19,10 @@ public sealed partial class BlossomLoopStep(
 	/// <summary>
 	/// Indicates whether the pattern uses grouped nodes.
 	/// </summary>
-	public bool IsGrouped => Pattern.Exists(static chain => chain.IsGrouped);
+	public bool IsGrouped => Casted.Exists(static chain => chain.IsStrictlyGrouped);
 
 	/// <inheritdoc/>
-	public override int Complexity => Pattern.Complexity;
+	public override int Complexity => Casted.Complexity;
 
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 65;
@@ -35,7 +31,7 @@ public sealed partial class BlossomLoopStep(
 	public override Technique Code => Technique.BlossomLoop;
 
 	/// <inheritdoc/>
-	public override Mask DigitsUsed => Pattern.DigitsMask;
+	public override Mask DigitsUsed => Casted.DigitsMask;
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
@@ -84,14 +80,16 @@ public sealed partial class BlossomLoopStep(
 			)
 		];
 
-	private string BurredLoopStr => Pattern.ToString(new ChainFormatInfo(Options.Converter));
+	private string BurredLoopStr => Casted.ToString(new ChainFormatInfo(Options.Converter));
+
+	private BlossomLoop Casted => (BlossomLoop)Pattern;
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Step? other)
-		=> other is BlossomLoopStep comparer && Pattern.Equals(comparer.Pattern);
+		=> other is BlossomLoopStep comparer && Casted.Equals(comparer.Casted);
 
 	/// <inheritdoc/>
 	public override int CompareTo(Step? other)
-		=> other is BlossomLoopStep comparer ? Pattern.CompareTo(comparer.Pattern) : -1;
+		=> other is BlossomLoopStep comparer ? Casted.CompareTo(comparer.Casted) : -1;
 }

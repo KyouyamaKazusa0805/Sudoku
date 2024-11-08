@@ -16,7 +16,7 @@ public sealed partial class WhipStep(
 	[Property] ReadOnlyMemory<Space> truths,
 	[Property] ReadOnlyMemory<Space> links,
 	[Property] bool isGrouped
-) : ChainStep(conclusions, views, options)
+) : SpecializedChainStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override bool IsMultiple => false;

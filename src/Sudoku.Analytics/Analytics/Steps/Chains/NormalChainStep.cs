@@ -6,19 +6,19 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-/// <param name="pattern">Indicates the pattern.</param>
-public partial class NormalChainStep(
+/// <param name="pattern"><inheritdoc/></param>
+public class NormalChainStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] NamedChain pattern
-) : ChainStep(conclusions, views, options)
+	NamedChain pattern
+) : PatternBasedChainStep(conclusions, views, options, pattern)
 {
 	/// <summary>
 	/// Indicates the sort key that can be used as chaining comparison.
 	/// </summary>
 	public int SortKey
-		=> (IsLoop ? 2000 : 0) + (IsCannibalistic ? 1000 : 0) + (IsGrouped ? 500 : 0) + Pattern.GetSortKey(Conclusions.AsSet());
+		=> (IsLoop ? 2000 : 0) + (IsCannibalistic ? 1000 : 0) + (IsGrouped ? 500 : 0) + Casted.GetSortKey(Conclusions.AsSet());
 
 	/// <inheritdoc/>
 	public sealed override bool IsMultiple => false;
@@ -30,7 +30,7 @@ public partial class NormalChainStep(
 	/// Indicates whether the chain is cannibalistic,
 	/// meaning at least one of a candidate inside a node used in the pattern is also a conclusion.
 	/// </summary>
-	public bool IsCannibalistic => Pattern.OverlapsWithConclusions(Conclusions.AsSet());
+	public bool IsCannibalistic => Casted.OverlapsWithConclusions(Conclusions.AsSet());
 
 	/// <summary>
 	/// Indicates whether the chain uses at least one grouped node.
@@ -46,13 +46,13 @@ public partial class NormalChainStep(
 	public override int BaseDifficulty => 60;
 
 	/// <inheritdoc/>
-	public sealed override int Complexity => Pattern.Length;
+	public sealed override int Complexity => Casted.Length;
 
 	/// <inheritdoc/>
-	public override Technique Code => Pattern.GetTechnique(Conclusions.AsSet());
+	public override Technique Code => Casted.GetTechnique(Conclusions.AsSet());
 
 	/// <inheritdoc/>
-	public override Mask DigitsUsed => Pattern.DigitsMask;
+	public override Mask DigitsUsed => Casted.DigitsMask;
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
@@ -99,19 +99,21 @@ public partial class NormalChainStep(
 			)
 		];
 
-	private protected string ChainString => Pattern.ToString(new ChainFormatInfo(Options.Converter));
+	private protected string ChainString => Casted.ToString(new ChainFormatInfo(Options.Converter));
+
+	private protected NamedChain Casted => (NamedChain)Pattern;
 
 
 	/// <inheritdoc/>
 	public sealed override bool Equals([NotNullWhen(true)] Step? other)
-		=> other is NormalChainStep comparer && Pattern.Equals(comparer.Pattern);
+		=> other is NormalChainStep comparer && Casted.Equals(comparer.Casted);
 
 	/// <inheritdoc/>
 	public sealed override int CompareTo(Step? other)
 		=> other is NormalChainStep comparer
 			? SortKey.CompareTo(comparer.SortKey) is var result and not 0
 				? result
-				: Pattern.CompareTo(comparer.Pattern)
+				: Casted.CompareTo(comparer.Casted)
 			: -1;
 }
 

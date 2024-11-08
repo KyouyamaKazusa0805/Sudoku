@@ -12,6 +12,7 @@ namespace Sudoku.Analytics.Construction.Components;
 public abstract partial class Chain :
 	IComparable<Chain>,
 	IComparisonOperators<Chain, Chain, bool>,
+	IChainOrForcingChains,
 	IComponent,
 	IEnumerable<Node>,
 	IEquatable<Chain>,
@@ -76,16 +77,10 @@ public abstract partial class Chain :
 	/// </remarks>
 	public abstract bool IsNamed { get; }
 
-	/// <summary>
-	/// Indicates whether the chain pattern uses grouped logic.
-	/// </summary>
+	/// <inheritdoc/>
 	public bool IsGrouped => ValidNodes.Any(static node => node.IsGroupedNode);
 
-	/// <summary>
-	/// Indicates whether the chain pattern contains grouped nodes,
-	/// ignoring all links containing <see cref="Link.GroupedLinkPattern"/>.
-	/// </summary>
-	/// <seealso cref="Link.GroupedLinkPattern"/>
+	/// <inheritdoc/>
 	public bool IsStrictlyGrouped => IsStrongLinksStrictlyGrouped || IsWeakLinksStrictlyGrouped;
 
 	/// <summary>
@@ -249,8 +244,8 @@ public abstract partial class Chain :
 		{
 			foreach (var link in StrongLinks)
 			{
-				if (link is { GroupedLinkPattern: null, FirstNode.Map.Count: var d1, SecondNode.Map.Count: var d2 }
-					&& (d1 != 1 || d2 != 1))
+				if (link is { GroupedLinkPattern: var groupedPattern, FirstNode.Map.Count: var d1, SecondNode.Map.Count: var d2 }
+					&& (d1 != 1 || d2 != 1 || groupedPattern is not null))
 				{
 					return true;
 				}
@@ -269,8 +264,8 @@ public abstract partial class Chain :
 		{
 			foreach (var link in WeakLinks)
 			{
-				if (link is { GroupedLinkPattern: null, FirstNode.Map.Count: var d1, SecondNode.Map.Count: var d2 }
-					&& (d1 != 1 || d2 != 1))
+				if (link is { GroupedLinkPattern: var groupedPattern, FirstNode.Map.Count: var d1, SecondNode.Map.Count: var d2 }
+					&& (d1 != 1 || d2 != 1 || groupedPattern is not null))
 				{
 					return true;
 				}

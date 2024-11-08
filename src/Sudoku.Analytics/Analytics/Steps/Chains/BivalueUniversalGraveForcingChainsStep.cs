@@ -6,13 +6,13 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-/// <param name="pattern">The pattern to be used.</param>
-public sealed partial class BivalueUniversalGraveForcingChainsStep(
+/// <param name="pattern"><inheritdoc/></param>
+public sealed class BivalueUniversalGraveForcingChainsStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] BivalueUniversalGraveForcingChains pattern
-) : ChainStep(conclusions, views, options)
+	BivalueUniversalGraveForcingChains pattern
+) : PatternBasedChainStep(conclusions, views, options, pattern)
 {
 	/// <inheritdoc/>
 	public override bool IsMultiple => true;
@@ -23,19 +23,19 @@ public sealed partial class BivalueUniversalGraveForcingChainsStep(
 	/// <summary>
 	/// Indicates whether the pattern uses grouped nodes.
 	/// </summary>
-	public bool IsGrouped => Pattern.Exists(static chain => chain.IsGrouped);
+	public bool IsGrouped => Casted.Exists(static chain => chain.IsGrouped);
 
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 70;
 
 	/// <inheritdoc/>
-	public override int Complexity => Pattern.Complexity;
+	public override int Complexity => Casted.Complexity;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGravePlusNForcingChains;
 
 	/// <inheritdoc/>
-	public override Mask DigitsUsed => Pattern.DigitsMask;
+	public override Mask DigitsUsed => Casted.DigitsMask;
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations => [new(SR.EnglishLanguage, [ChainsStr]), new(SR.ChineseLanguage, [ChainsStr])];
@@ -83,7 +83,9 @@ public sealed partial class BivalueUniversalGraveForcingChainsStep(
 			)
 		];
 
-	private string ChainsStr => Pattern.ToString(new ChainFormatInfo(Options.Converter));
+	private string ChainsStr => Casted.ToString(new ChainFormatInfo(Options.Converter));
+
+	private BivalueUniversalGraveForcingChains Casted => (BivalueUniversalGraveForcingChains)Pattern;
 
 
 	/// <inheritdoc/>
@@ -95,6 +97,6 @@ public sealed partial class BivalueUniversalGraveForcingChainsStep(
 		=> other is BivalueUniversalGraveForcingChainsStep comparer
 			? Conclusions.Length.CompareTo(comparer.Conclusions.Length) is var r and not 0
 				? r
-				: Pattern.CompareTo(comparer.Pattern)
+				: Casted.CompareTo(comparer.Casted)
 			: -1;
 }

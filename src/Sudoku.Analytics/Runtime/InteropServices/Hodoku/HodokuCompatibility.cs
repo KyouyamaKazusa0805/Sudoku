@@ -56,7 +56,7 @@ public static class HodokuCompatibility
 			[var g, ..] => (from c in g select c.Candidate).AsCandidateMap().ToString(conclusionConverter),
 			_ => string.Empty
 		};
-		var extraString = step is NormalChainStep { Pattern: { Length: var nodesLength } pattern }
+		var extraString = step is NormalChainStep { Pattern: NamedChain { Length: var nodesLength } pattern }
 			? (nodesLength - (pattern is AlternatingInferenceChain ? 1 : 0)).ToString()
 			: string.Empty;
 		var gridStringColonTokenIfNecessary = gridString.Contains(':') ? string.Empty : ":";

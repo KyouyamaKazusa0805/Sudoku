@@ -6,13 +6,13 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-/// <param name="pattern">The pattern to be used.</param>
-public sealed partial class MultipleForcingChainsStep(
+/// <param name="pattern"><inheritdoc/></param>
+public sealed class MultipleForcingChainsStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] MultipleForcingChains pattern
-) : ChainStep(conclusions, views, options)
+	MultipleForcingChains pattern
+) : PatternBasedChainStep(conclusions, views, options, pattern)
 {
 	/// <inheritdoc/>
 	public override bool IsMultiple => true;
@@ -23,22 +23,22 @@ public sealed partial class MultipleForcingChainsStep(
 	/// <summary>
 	/// Indicates whether the pattern uses grouped nodes.
 	/// </summary>
-	public bool IsGrouped => Pattern.Exists(static chain => chain.IsGrouped);
+	public bool IsGrouped => Casted.Exists(static chain => chain.IsGrouped);
 
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 70;
 
 	/// <inheritdoc/>
-	public override int Complexity => Pattern.Complexity;
+	public override int Complexity => Casted.Complexity;
 
 	/// <inheritdoc/>
 	public override Technique Code
 		=> Conclusions.Length >= 2
-			? Pattern.IsCellMultiple ? Technique.MergedCellForcingChains : Technique.MergedRegionForcingChains
-			: Pattern.IsCellMultiple ? Technique.CellForcingChains : Technique.RegionForcingChains;
+			? Casted.IsCellMultiple ? Technique.MergedCellForcingChains : Technique.MergedRegionForcingChains
+			: Casted.IsCellMultiple ? Technique.CellForcingChains : Technique.RegionForcingChains;
 
 	/// <inheritdoc/>
-	public override Mask DigitsUsed => Pattern.DigitsMask;
+	public override Mask DigitsUsed => Casted.DigitsMask;
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
@@ -87,18 +87,20 @@ public sealed partial class MultipleForcingChainsStep(
 			)
 		];
 
-	private string ChainsStr => Pattern.ToString(new ChainFormatInfo(Options.Converter));
+	private string ChainsStr => Casted.ToString(new ChainFormatInfo(Options.Converter));
+
+	private MultipleForcingChains Casted => (MultipleForcingChains)Pattern;
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Step? other)
-		=> other is MultipleForcingChainsStep comparer && Pattern.Equals(comparer.Pattern);
+		=> other is MultipleForcingChainsStep comparer && Casted.Equals(comparer.Casted);
 
 	/// <inheritdoc/>
 	public override int CompareTo(Step? other)
 		=> other is MultipleForcingChainsStep comparer
 			? Conclusions.Length.CompareTo(comparer.Conclusions.Length) is var r and not 0
 				? r
-				: Pattern.CompareTo(comparer.Pattern)
+				: Casted.CompareTo(comparer.Casted)
 			: -1;
 }

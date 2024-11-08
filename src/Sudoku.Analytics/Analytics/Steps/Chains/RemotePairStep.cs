@@ -16,7 +16,7 @@ public sealed partial class RemotePairStep(
 	[Property] ref readonly CellMap cells,
 	[Property] bool isComplex,
 	[Property] Mask digitsMask
-) : ChainStep(conclusions, views, options)
+) : SpecializedChainStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override bool IsMultiple => false;

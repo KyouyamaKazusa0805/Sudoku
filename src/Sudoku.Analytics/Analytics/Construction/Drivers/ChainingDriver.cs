@@ -27,7 +27,7 @@ internal static partial class ChainingDriver
 				context.Options,
 				chain
 			);
-			if (!step.IsAdvancedAllowed(allowsAdvancedLinks))
+			if (chain.IsStrictlyGrouped ^ allowsAdvancedLinks)
 			{
 				continue;
 			}
@@ -188,10 +188,11 @@ internal static partial class ChainingDriver
 				context.Options,
 				blossomLoop
 			);
-			if (!step.IsAdvancedAllowed(allowsAdvancedLinks))
-			{
-				continue;
-			}
+			//if (blossomLoop.IsStrictlyGrouped ^ allowsAdvancedLinks)
+			//{
+			//	continue;
+			//}
+
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -292,7 +293,7 @@ internal static partial class ChainingDriver
 					in fins,
 					componentCreator(chain)
 				);
-				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
+				if (finnedChain.IsStrictlyGrouped ^ allowsAdvancedLinks)
 				{
 					continue;
 				}
@@ -318,34 +319,5 @@ internal static partial class ChainingDriver
 			}
 		}
 		return null;
-	}
-}
-
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-file static class Extensions
-{
-	/// <summary>
-	/// Determine whether a <see cref="ChainStep"/> instance is allowed to contain advanced links.
-	/// </summary>
-	/// <param name="this">The chain to be checked.</param>
-	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether the element has already been added.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe bool IsAdvancedAllowed(this ChainStep @this, bool allowsAdvancedLinks)
-	{
-		return @this switch
-		{
-			NormalChainStep { IsGrouped: var g, Pattern.Links: var l }
-				when allowsAdvancedLinks ^ (g || l.AnyUnsafe(&lp)) => false,
-			MultipleForcingChainsStep { IsGrouped: var g, Pattern: var p }
-				when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.AnyUnsafe(&lp))) => false,
-			BlossomLoopStep { IsGrouped: var g, Pattern: var p }
-				when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.AnyUnsafe(&lp))) => false,
-			NormalChainStep or MultipleForcingChainsStep or BlossomLoopStep => true,
-			_ => false
-		};
-
-
-		static bool lp(Link link) => link.GroupedLinkPattern is not null;
 	}
 }

@@ -24,6 +24,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	IAnyAllMethod<MultipleForcingChains, MfcValue>,
 	IComparable<MultipleForcingChains>,
 	IComparisonOperators<MultipleForcingChains, MultipleForcingChains, bool>,
+	IChainOrForcingChains,
 	IComponent,
 	IEquatable<MultipleForcingChains>,
 	IEqualityOperators<MultipleForcingChains, MultipleForcingChains, bool>,
@@ -54,10 +55,11 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	/// </summary>
 	public virtual bool IsAdvancedMultiple => false;
 
-	/// <summary>
-	/// Indicates whether at least one branch contains grouped links or nodes.
-	/// </summary>
+	/// <inheritdoc/>
 	public bool IsGrouped => Values.Any(static v => v.IsGrouped);
+
+	/// <inheritdoc/>
+	public bool IsStrictlyGrouped => Values.Any(static v => v.IsStrictlyGrouped);
 
 	/// <summary>
 	/// Indicates the complexity of the whole pattern.
