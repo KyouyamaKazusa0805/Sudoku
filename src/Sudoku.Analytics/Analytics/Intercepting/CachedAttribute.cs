@@ -2,7 +2,7 @@ namespace Sudoku.Analytics.Intercepting;
 
 /// <summary>
 /// Represents an attribute type that can be applied to a method,
-/// making source generator produces a new method that copies the code from this,
+/// to tell interceptor source generator to produce a new method that copies full implementation from this method,
 /// with <see cref="Grid"/> properties replaced with corresponding properties in <see cref="MemoryCachedData"/>.
 /// </summary>
 /// <remarks>

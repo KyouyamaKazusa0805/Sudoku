@@ -12,15 +12,20 @@ public static class TrueCandidate
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>All true candidates.</returns>
 	/// <exception cref="ArgumentException">Throws when the puzzle is invalid.</exception>
+	[Cached]
 	public static CandidateMap GetAllTrueCandidates(ref readonly Grid grid, CancellationToken cancellationToken = default)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.GetIsValid(), true);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.PuzzleType == SudokuType.Standard, true);
 
+		// --INTERCEPTOR_VARIABLE_DECLARATION_BEGIN--
+		_ = grid is { EmptyCells: var __EmptyCells, BivalueCells: var __BivalueCells, CandidatesMap: var __CandidatesMap };
+		// --INTERCEPTOR_VARIABLE_DECLARATION_END--
+
 		// Get the number of multi-value cells.
 		// If the number of that is greater than the specified number, here will return the default list directly.
 		var multivalueCellsCount = 0;
-		foreach (var cell in grid.EmptyCells)
+		foreach (var cell in __EmptyCells)
 		{
 			switch (Mask.PopCount(grid.GetCandidates(cell)))
 			{
@@ -39,7 +44,7 @@ public static class TrueCandidate
 		// Store all bi-value cells and construct the relations.
 		var peerHouses = (stackalloc House[3]);
 		var stack = new CellMap[multivalueCellsCount + 1, 9];
-		foreach (var cell in grid.BivalueCells)
+		foreach (var cell in __BivalueCells)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
@@ -66,7 +71,7 @@ public static class TrueCandidate
 		// The comments will help you to understand the processing.
 		Unsafe.SkipInit<Mask>(out var mask);
 		var pairs = new Mask[multivalueCellsCount, (1 + 8) * 8 / 2 + 1];
-		var multivalueCells = (Cell[])[.. grid.EmptyCells & ~grid.BivalueCells];
+		var multivalueCells = (Cell[])[.. __EmptyCells & ~__BivalueCells];
 		for (var i = 0; i < multivalueCells.Length; i++)
 		{
 			// e.g. [2, 4, 6] (42)
@@ -145,7 +150,7 @@ public static class TrueCandidate
 					{
 						// Take the cell that doesn't contain in the map above.
 						// Here, the cell is the "true candidate cell".
-						foreach (var cell in grid.CandidatesMap[digit] & ~stack[currentIndex, digit])
+						foreach (var cell in __CandidatesMap[digit] & ~stack[currentIndex, digit])
 						{
 							result.Add(cell * 9 + digit);
 						}

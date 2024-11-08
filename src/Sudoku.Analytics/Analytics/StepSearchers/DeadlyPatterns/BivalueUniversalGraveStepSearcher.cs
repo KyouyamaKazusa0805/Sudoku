@@ -63,6 +63,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="context"><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
+	[InterceptorMethodCaller]
 	private Step? CheckForTrueCandidateTypes(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;

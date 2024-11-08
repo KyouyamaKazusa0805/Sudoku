@@ -6680,7 +6680,7 @@
         <member name="T:Sudoku.Analytics.Intercepting.CachedAttribute">
              <summary>
              Represents an attribute type that can be applied to a method,
-             making source generator produces a new method that copies the code from this,
+             to tell interceptor source generator to produce a new method that copies full implementation from this method,
              with <see cref="T:Sudoku.Concepts.Grid"/> properties replaced with corresponding properties in <see cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>.
              </summary>
              <remarks>
@@ -6740,6 +6740,20 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>All possible found <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Intercepting.Generated.TrueCandidate_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Intercepting.Generated.TrueCandidate_Intercepted.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Get all true candidates when the number of empty cells is below than the argument.
+            </summary>
+            <param name="grid">Indicates the puzzle.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>All true candidates.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="T:Sudoku.Analytics.PatternSearcher`1">
             <summary>
