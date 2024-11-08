@@ -83,34 +83,6 @@
         <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.FailedTransformResult.Diagnostic">
             <summary>The diagnostic result.</summary>
         </member>
-        <member name="T:Sudoku.SourceGeneration.Generator">
-            <summary>
-            Represents a source generator type that runs multiple different usage of source output services on compiling code.
-            </summary>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Generator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler">
-            <summary>
-            The generator handler for step searcher default importing.
-            </summary>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.Compilation)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.CollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Int32,System.Int32,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>
-        </member>
         <member name="T:Sudoku.SourceGeneration.InterceptedLocation">
             <summary>
             Represents location information for an intercepted method.
@@ -135,6 +107,14 @@
         </member>
         <member name="P:Sudoku.SourceGeneration.InterceptedLocation.Character">
             <summary>Indicates the character position.</summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.StepSearcherDefaultImportingGenerator">
+            <summary>
+            Represents a source generator type that runs multiple different usage of source output services on compiling code.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.StepSearcherDefaultImportingGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
         </member>
         <member name="T:SolutionVersion">
             <summary>

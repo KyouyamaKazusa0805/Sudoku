@@ -7,6 +7,4 @@ global using System.Threading;
 global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
-global using Sudoku.SourceGeneration.Handlers;
 global using static SolutionVersion;
-global using NamedArgs = System.Collections.Immutable.ImmutableArray<System.Collections.Generic.KeyValuePair<string, Microsoft.CodeAnalysis.TypedConstant>>;

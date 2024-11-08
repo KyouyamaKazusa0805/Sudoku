@@ -1,9 +1,10 @@
-namespace Sudoku.SourceGeneration.Handlers;
+namespace Sudoku.SourceGeneration;
 
 /// <summary>
-/// The generator handler for step searcher default importing.
+/// Represents a source generator type that runs multiple different usage of source output services on compiling code.
 /// </summary>
-internal static class StepSearcherDefaultImportingHandler
+[Generator(LanguageNames.CSharp)]
+public sealed class StepSearcherDefaultImportingGenerator : IIncrementalGenerator
 {
 	private const string AreasPropertyName = "Areas";
 
@@ -15,7 +16,11 @@ internal static class StepSearcherDefaultImportingHandler
 
 
 	/// <inheritdoc/>
-	public static void Output(SourceProductionContext spc, Compilation compilation)
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(context.CompilationProvider, Output);
+
+
+	private static void Output(SourceProductionContext spc, Compilation compilation)
 	{
 		// Checks whether the assembly has marked any attributes.
 		if (compilation.Assembly.GetAttributes() is not { IsDefaultOrEmpty: false } attributesData)
@@ -149,17 +154,14 @@ internal static class StepSearcherDefaultImportingHandler
 			return string.Join(" | ", targetList);
 		}
 	}
-}
 
-/// <summary>
-/// Indicates the data collected via <see cref="StepSearcherDefaultImportingHandler"/>.
-/// </summary>
-/// <seealso cref="StepSearcherDefaultImportingHandler"/>
-file sealed record CollectedResult(
-	INamespaceSymbol Namespace,
-	INamedTypeSymbol BaseType,
-	int PriorityValue,
-	int StepSearcherLevel,
-	string TypeName,
-	NamedArgs NamedArguments
-);
+
+	private sealed record CollectedResult(
+		INamespaceSymbol Namespace,
+		INamedTypeSymbol BaseType,
+		int PriorityValue,
+		int StepSearcherLevel,
+		string TypeName,
+		ImmutableArray<KeyValuePair<string, TypedConstant>> NamedArguments
+	);
+}
