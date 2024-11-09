@@ -51,7 +51,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 		[global::System.AttributeUsageAttribute(global::System.AttributeTargets.Method, AllowMultiple = true)]
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(CachedMethodGenerator).FullName}}", "{{Value}}")]
 		[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-		public sealed partial class InterceptsLocationAttribute(string filePath, int line, int character) : global::System.Attribute
+		internal sealed partial class InterceptsLocationAttribute(string filePath, int line, int character) : global::System.Attribute
 		{
 			/// <summary>
 			/// Indicates the target file path.
