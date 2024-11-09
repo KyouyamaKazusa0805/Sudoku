@@ -298,7 +298,6 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					break;
 				}
 			}
-
 			if (invocationLocation is null || referencedMethodDeclaration is null || referencedMethodSymbol is null)
 			{
 				continue;
@@ -482,6 +481,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 			//var constraintsString = constraints.Count != 0 ? constraints.ToString() : string.Empty;
 
+			// XML documentation comments.
 			var xmlDocComments = xmlDocCommentLines.Count == 0
 				? """
 					/// <summary>
@@ -489,6 +489,62 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					/// </summary>
 				"""
 				: string.Join("\r\n\t", xmlDocCommentLines);
+
+			// If the referenced method is an instance method instead of a static method,
+			// we should consider inserting an extra parameter as instance member accessing.
+			var instanceParameter = string.Empty;
+			if (referencedMethodSymbol is { IsStatic: false, ContainingType: { IsRefLikeType: var isRefStruct } containingType })
+			{
+				var scopedKeyword = isRefStruct ? "scoped " : string.Empty;
+				var containingTypeString = containingType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+				instanceParameter = $"this {scopedKeyword}{containingTypeString} @this, ";
+
+				// Check whether the referenced method declaration has instance member accessing.
+				// If so, we should replace them with '@this.' invocation (or disallow now).
+				var hasThisMemberAccessing = false;
+				foreach (var tempNode in referencedMethodDeclaration.DescendantNodes().OfType<MemberAccessExpressionSyntax>())
+				{
+					// Detect 'this.' references has two cases:
+					//   1) this.Member
+					//   2) Member, with 'Member' is an instance member in the current type 'containingType'
+					// By check its operation, we can know which kind of the reference it is.
+					switch (semanticModel.GetOperation(tempNode, ct))
+					{
+						// 1) this.Member
+						case IInstanceReferenceOperation
+						{
+							ReferenceKind: InstanceReferenceKind.ContainingTypeInstance
+						}:
+						{
+							hasThisMemberAccessing = true;
+							break;
+						}
+
+						// 2) Member
+						case IMemberReferenceOperation
+						{
+							Member:
+							{
+								IsStatic: false,
+								ContainingType: var memberContaingType
+							}
+						}
+						when SymbolEqualityComparer.Default.Equals(memberContaingType, containingType):
+						{
+							hasThisMemberAccessing = true;
+							break;
+						}
+					}
+					if (hasThisMemberAccessing)
+					{
+						break;
+					}
+				}
+				if (hasThisMemberAccessing)
+				{
+					return null;
+				}
+			}
 
 			// Return the value.
 			return new SuccessTransformResult(
@@ -498,16 +554,16 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				/// </summary>
 				public static class {{referencedMethodSymbol.ContainingType.Name}}_Intercepted
 				{
-				{{xmlDocComments}}
+					{{xmlDocComments}}
 					{{AttributeInsertionMatchString}}
-					public static {{returnTypeString}} {{referencedMethodSymbol.Name}}({{parametersString}})
+					public static {{returnTypeString}} {{referencedMethodSymbol.Name}}({{instanceParameter}}{{parametersString}})
 					{
 				{{string.Join("\r\n", targetStringAppendIndenting)}}
 					}
 				}
 				""",
 
-				// Here we should manually add 1... I don't know why the value is always less exactly 1.
+				// Here we should manually add 1... I don't know why :(
 				new(filePath, lineSpan.StartLinePosition.Line + 1, lineSpan.StartLinePosition.Character + 1)
 			);
 		}
