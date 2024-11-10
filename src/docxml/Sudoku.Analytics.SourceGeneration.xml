@@ -100,6 +100,75 @@
         <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.FailedTransformResult.Diagnostic">
             <summary>The diagnostic result.</summary>
         </member>
+        <member name="T:Sudoku.SourceGeneration.CachedMethodSyntaxRewriter">
+            <summary>
+            Represents a syntax rewriter that will:
+            <list type="number">
+            <item>
+            Remove declarations declared between comments
+            '<c>VARIABLE_DECLARATION_BEGIN</c>' and '<c>VARIABLE_DECLARATION_END</c>'
+            </item>
+            <item>Append extra <see langword="this"/> parameter <c>@this</c> if it is an instance method</item>
+            <item>Replace <see langword="this"/> references to parameter <c>@this</c> references</item>
+            </list>
+            </summary>
+            <param name="semanticModel">Indicates the bound semantic model of this syntax tree.</param>
+            <param name="cancellationToken">Indicates the cancellation token that can cancel the current operation.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodSyntaxRewriter.#ctor(Microsoft.CodeAnalysis.SemanticModel,System.Threading.CancellationToken)">
+            <summary>
+            Represents a syntax rewriter that will:
+            <list type="number">
+            <item>
+            Remove declarations declared between comments
+            '<c>VARIABLE_DECLARATION_BEGIN</c>' and '<c>VARIABLE_DECLARATION_END</c>'
+            </item>
+            <item>Append extra <see langword="this"/> parameter <c>@this</c> if it is an instance method</item>
+            <item>Replace <see langword="this"/> references to parameter <c>@this</c> references</item>
+            </list>
+            </summary>
+            <param name="semanticModel">Indicates the bound semantic model of this syntax tree.</param>
+            <param name="cancellationToken">Indicates the cancellation token that can cancel the current operation.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodSyntaxRewriter.VisitParameterList(Microsoft.CodeAnalysis.CSharp.Syntax.ParameterListSyntax)">
+            <summary>
+            Changing code by adding a new parameter <c>this TypeName @this</c> to the parameter list
+            if the referenced method is an instance method.
+            </summary>
+            <param name="node">The original node.</param>
+            <returns>The replaced new node.</returns>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodSyntaxRewriter.VisitIdentifierName(Microsoft.CodeAnalysis.CSharp.Syntax.IdentifierNameSyntax)">
+            <summary>
+            Changing code by updating expression <c>MemberName</c> to <c>@this.MemberName</c>
+            if <c>MemberName</c> is an instance member.
+            </summary>
+            <param name="node">The original node.</param>
+            <returns>The replaced new node.</returns>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodSyntaxRewriter.VisitMemberAccessExpression(Microsoft.CodeAnalysis.CSharp.Syntax.MemberAccessExpressionSyntax)">
+            <summary>
+            Changing code by updating expression <c>this.MemberName</c> to <c>@this.MemberName</c>,
+            or <c>base.MemberName</c> to <c>((BaseType)@this).MemberName</c>.
+            </summary>
+            <param name="node">The original node.</param>
+            <returns>The replaced new node.</returns>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodSyntaxRewriter.VisitInvocationExpression(Microsoft.CodeAnalysis.CSharp.Syntax.InvocationExpressionSyntax)">
+            <summary>
+            Changing code by updating expression <c>MemberName(parameters)</c> to <c>@this.MemberName(parameters)</c>.
+            </summary>
+            <param name="node">The original node.</param>
+            <returns>The replaced new node.</returns>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodSyntaxRewriter.VisitElementAccessExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ElementAccessExpressionSyntax)">
+            <summary>
+            Changing code by updating expression <c>this[parameters]</c> to <c>@this[parameters]</c>,
+            or <c>base[parameters]</c> to <c>((BaseType)@this)[parameters]</c>.
+            </summary>
+            <param name="node">The original node.</param>
+            <returns>The replaced new node.</returns>
+        </member>
         <member name="T:Sudoku.SourceGeneration.InterceptedLocation">
             <summary>
             Represents location information for an intercepted method.

@@ -542,6 +542,8 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				}
 				if (hasThisMemberAccessing)
 				{
+					// Today I won't handle this because it is too complex to be checked...
+					// I'll implement a 'SyntaxRewriter' to replace nodes, to change this code.
 					return null;
 				}
 			}
