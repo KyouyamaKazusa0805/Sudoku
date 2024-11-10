@@ -159,14 +159,10 @@ internal sealed class CachedMethodSyntaxRewriter(
 			SyntaxKind.SimpleMemberAccessExpression,
 			isBaseKeyword
 				? SyntaxFactory.ParenthesizedExpression(
-					SyntaxFactory.Token(SyntaxKind.OpenParenToken),
 					SyntaxFactory.CastExpression(
-						SyntaxFactory.Token(SyntaxKind.OpenParenToken),
 						SyntaxFactory.ParseTypeName(factContainingType.Name),
-						SyntaxFactory.Token(SyntaxKind.CloseParenToken),
 						SyntaxFactory.IdentifierName("@this")
-					),
-					SyntaxFactory.Token(SyntaxKind.CloseParenToken)
+					)
 				)
 				: SyntaxFactory.IdentifierName("@this"),
 			SyntaxFactory.Token(SyntaxKind.DotToken),
