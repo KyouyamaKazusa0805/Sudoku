@@ -102,7 +102,7 @@ internal sealed class CachedMethodSyntaxRewriter(
 		}
 
 		var newNode = SyntaxFactory.MemberAccessExpression(
-			default,
+			SyntaxKind.SimpleMemberAccessExpression,
 			SyntaxFactory.IdentifierName("@this"),
 			SyntaxFactory.Token(SyntaxKind.DotToken),
 			SyntaxFactory.IdentifierName(memberName)
@@ -156,7 +156,7 @@ internal sealed class CachedMethodSyntaxRewriter(
 		}
 
 		var newNode = SyntaxFactory.MemberAccessExpression(
-			default,
+			SyntaxKind.SimpleMemberAccessExpression,
 			isBaseKeyword
 				? SyntaxFactory.ParenthesizedExpression(
 					SyntaxFactory.Token(SyntaxKind.OpenParenToken),
