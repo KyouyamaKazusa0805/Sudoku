@@ -39,6 +39,7 @@ public abstract partial class ChainingRule
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <seealso cref="ChainingRuleLinkContext"/>
+	//[Cached]
 	public abstract void GetLinks(ref ChainingRuleLinkContext context);
 
 	/// <summary>
