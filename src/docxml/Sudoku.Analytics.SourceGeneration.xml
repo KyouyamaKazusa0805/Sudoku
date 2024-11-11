@@ -14,6 +14,19 @@
             Indicates the raw source code for intercepts location attribute.
             </summary>
         </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+            <remarks>
+            This generator will aim to methods, to find whether a method block contains at least one intercepted usage.
+            If so, such method will be replaced with cached method.
+            The requirement is that, the callee method should be applied with '<c>[InterceptorMethodCaller]</c>'.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0100">
+            <summary>
+            Represents message "Necessary type is missing".
+            </summary>
+        </member>
         <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0101">
             <summary>
             Represents message "Method marked '[InterceptorMethodCaller]' can only be block body".
@@ -47,14 +60,6 @@
             Represents message "If method is marked '[Cached]',
             it is disallowed to consume instance members by using <see langword="this"/> or <see langword="base"/>".
             </summary>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-            <remarks>
-            This generator will aim to methods, to find whether a method block contains at least one intercepted usage.
-            If so, such method will be replaced with cached method.
-            The requirement is that, the callee method should be applied with '<c>[InterceptorMethodCaller]</c>'.
-            </remarks>
         </member>
         <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult">
             <summary>

@@ -5,6 +5,7 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
+INTERCEPTOR0100 | Interceptor.Design | Error | CachedMethodGenerator
 INTERCEPTOR0101 | Interceptor.Design | Error | CachedMethodGenerator
 INTERCEPTOR0102 | Interceptor.Design | Error | CachedMethodGenerator
 INTERCEPTOR0103 | Interceptor.Design | Error | CachedMethodGenerator

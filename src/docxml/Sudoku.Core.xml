@@ -9938,6 +9938,33 @@
             Indicates the grid to be used.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.InterceptorInstanceTypesAttribute">
+            <summary>
+            Represents an attribute type that can be applied to a method, indicating the method uses interceptor,
+            but the target method is an instance method with inheritance. Specified types are the possible derived types of the instance.
+            </summary>
+            <param name="types">Indicates all possible types.</param>
+            <remarks>
+            This attribute will be used by source generator to generate an extra entry to consume all possible types,
+            which is useful for <see langword="abstract"/>, <see langword="virtual"/> and <see langword="sealed"/> methods.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.InterceptorInstanceTypesAttribute.#ctor(System.Type[])">
+            <summary>
+            Represents an attribute type that can be applied to a method, indicating the method uses interceptor,
+            but the target method is an instance method with inheritance. Specified types are the possible derived types of the instance.
+            </summary>
+            <param name="types">Indicates all possible types.</param>
+            <remarks>
+            This attribute will be used by source generator to generate an extra entry to consume all possible types,
+            which is useful for <see langword="abstract"/>, <see langword="virtual"/> and <see langword="sealed"/> methods.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Runtime.InterceptorServices.InterceptorInstanceTypesAttribute.Types">
+            <summary>
+            The generated property declaration for parameter <c>types</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.InterceptorServices.InterceptorMethodCallerAttribute">
             <summary>
             Represents an attribute type that can be applied to a method, indicating the method uses interceptor

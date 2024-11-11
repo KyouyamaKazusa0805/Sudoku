@@ -145,6 +145,11 @@ internal static class MemoryCachedData
 	/// <param name="options">The options used by step searchers.</param>
 	/// <param name="rules">The <see cref="ChainingRule"/> instance that collects with strong and weak links if worth.</param>
 	//[InterceptorMethodCaller]
+	[InterceptorInstanceTypes(
+		typeof(CachedXChainingRule), typeof(CachedYChainingRule),
+		typeof(CachedLockedCandidatesChainingRule), typeof(CachedAlmostLockedSetsChainingRule),
+		typeof(CachedAlmostUniqueRectangleChainingRule), typeof(CachedAlmostAvoidableRectangleChainingRule),
+		typeof(CachedKrakenNormalFishChainingRule), typeof(CachedXyzWingChainingRule))]
 	public static void InitializeLinks(ref readonly Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)
 	{
 		rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;
