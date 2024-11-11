@@ -273,12 +273,24 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 			if (referencedMethodSymbol.IsGenericMethod)
 			{
-				continue;
+				return new FailedTransformResult(
+					Diagnostic.Create(
+						Descriptor_Interceptor0107,
+						invocationLocation,
+						messageArgs: [referencedMethodSymbol.Name]
+					)
+				);
 			}
 
 			if (referencedMethodDeclaration.Body is not { Statements: var bodyStatements })
 			{
-				continue;
+				return new FailedTransformResult(
+					Diagnostic.Create(
+						Descriptor_Interceptor0101,
+						invocationLocation,
+						messageArgs: [referencedMethodSymbol.Name]
+					)
+				);
 			}
 
 			// Now we have the referenced method data.

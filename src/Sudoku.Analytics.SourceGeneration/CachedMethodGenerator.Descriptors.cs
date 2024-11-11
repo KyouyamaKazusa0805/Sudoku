@@ -15,12 +15,12 @@ public partial class CachedMethodGenerator
 	);
 
 	/// <summary>
-	/// Represents message "Method marked '[InterceptorMethodCaller]' can only be block body".
+	/// Represents message "Method marked '[InterceptorMethodCaller]' or '[Cached]' can only be block body".
 	/// </summary>
 	private static readonly DiagnosticDescriptor Descriptor_Interceptor0101 = new(
 		"INTERCEPTOR0101",
-		"Method marked '[InterceptorMethodCaller]' can only be block body",
-		"Method '{0}' marked '[InterceptorMethodCaller]' can only be block body",
+		"Method marked '[InterceptorMethodCaller]' or '[Cached]' can only be block body",
+		"Method '{0}' marked '[InterceptorMethodCaller]' or '[Cached]' can only be block body",
 		"Interceptor.Design",
 		DiagnosticSeverity.Error,
 		true
@@ -85,6 +85,18 @@ public partial class CachedMethodGenerator
 		"INTERCEPTOR0106",
 		"If method is marked '[Cached]', it is disallowed to consume instance members by using 'this' or 'base'",
 		"If method is marked '[Cached]', it is disallowed to consume instance members by using 'this' or 'base'",
+		"Interceptor.Design",
+		DiagnosticSeverity.Error,
+		true
+	);
+
+	/// <summary>
+	/// Represents message "Method marked '[Cached]' cannot be generic".
+	/// </summary>
+	private static readonly DiagnosticDescriptor Descriptor_Interceptor0107 = new(
+		"INTERCEPTOR0107",
+		"Method marked '[Cached]' cannot be generic",
+		"Method '{0}' marked '[Cached]' cannot be generic",
 		"Interceptor.Design",
 		DiagnosticSeverity.Error,
 		true

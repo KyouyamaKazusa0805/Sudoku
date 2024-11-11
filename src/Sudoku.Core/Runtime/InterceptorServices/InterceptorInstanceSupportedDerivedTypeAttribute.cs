@@ -6,8 +6,29 @@ namespace Sudoku.Runtime.InterceptorServices;
 /// </summary>
 /// <param name="types">Indicates all possible types.</param>
 /// <remarks>
+/// <para>
 /// This attribute will be used by source generator to generate an extra entry to consume all possible types,
 /// which is useful for <see langword="abstract"/>, <see langword="virtual"/> and <see langword="sealed"/> methods.
+/// </para>
+/// <para>
+/// Usage:
+/// <code><![CDATA[
+/// [InterceptorMethodCaller]
+/// [InterceptorInstanceTypes(typeof(XChainingRule), typeof(YChainingRule))]
+/// public static void InitializeLinks(ref readonly Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)
+/// {
+///     rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;
+///     if (!StrongLinkTypesCollected.HasFlag(linkTypes) || !WeakLinkTypesCollected.HasFlag(linkTypes))
+///     {
+///         var context = new ChainingRuleLinkContext(in grid, new LinkDictionary(), new LinkDictionary(), options);
+///         foreach (var rule in rules)
+///             rule.GetLinks(ref context);
+///     }
+///
+///     // ...
+/// }
+/// ]]></code>
+/// </para>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]
 public sealed partial class InterceptorInstanceTypesAttribute([Property] params Type[] types) : Attribute;

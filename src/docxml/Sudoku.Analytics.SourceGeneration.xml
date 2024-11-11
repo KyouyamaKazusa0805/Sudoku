@@ -29,7 +29,7 @@
         </member>
         <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0101">
             <summary>
-            Represents message "Method marked '[InterceptorMethodCaller]' can only be block body".
+            Represents message "Method marked '[InterceptorMethodCaller]' or '[Cached]' can only be block body".
             </summary>
         </member>
         <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0102">
@@ -59,6 +59,11 @@
             <summary>
             Represents message "If method is marked '[Cached]',
             it is disallowed to consume instance members by using <see langword="this"/> or <see langword="base"/>".
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0107">
+            <summary>
+            Represents message "Method marked '[Cached]' cannot be generic".
             </summary>
         </member>
         <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult">
