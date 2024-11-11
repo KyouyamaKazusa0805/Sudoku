@@ -10,3 +10,4 @@ INTERCEPTOR0102 | Interceptor.Design | Error | CachedMethodGenerator
 INTERCEPTOR0103 | Interceptor.Design | Error | CachedMethodGenerator
 INTERCEPTOR0104 | Interceptor.Design | Error | CachedMethodGenerator
 INTERCEPTOR0105 | Interceptor.Design | Error | CachedMethodGenerator
+INTERCEPTOR0106 | Interceptor.Design | Error | CachedMethodGenerator
