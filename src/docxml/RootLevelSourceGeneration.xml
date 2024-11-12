@@ -95,6 +95,20 @@
             and is with type argument constraints.
             </summary>
         </member>
+        <member name="T:Microsoft.CodeAnalysis.FileLinePositionSpanExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.CodeAnalysis.FileLinePositionSpan"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.FileLinePositionSpan"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.FileLinePositionSpanExtensions.Deconstruct(Microsoft.CodeAnalysis.FileLinePositionSpan,Microsoft.CodeAnalysis.Text.LinePosition@,Microsoft.CodeAnalysis.Text.LinePosition@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
         <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>.
@@ -200,6 +214,20 @@
             </summary>
             <param name="this">The current type symbol.</param>
             <returns>The type of element.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Text.LinePositionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.CodeAnalysis.Text.LinePosition"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Text.LinePosition"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Text.LinePositionExtensions.Deconstruct(Microsoft.CodeAnalysis.Text.LinePosition,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
         <member name="T:Microsoft.CodeAnalysis.StringExtensions">
             <summary>

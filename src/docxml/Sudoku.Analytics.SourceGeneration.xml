@@ -81,6 +81,12 @@
         <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult.Success">
             <summary>Indicates whether the result describes for "successful".</summary>
         </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult.op_Implicit(Microsoft.CodeAnalysis.Diagnostic)~Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult">
+            <summary>
+            Implicit cast from <see cref="T:Microsoft.CodeAnalysis.Diagnostic"/> to <see cref="T:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult"/>.
+            </summary>
+            <param name="diagnostic">The diagnostic result.</param>
+        </member>
         <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult">
             <summary>
             Represents a transform result after successfully to be handled.

@@ -173,71 +173,42 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 		if (compilation.GetTypeByMetadataName(InterceptorMethodCallerAttributeTypeFullName) is null)
 		{
-			return new FailedTransformResult(
-				Diagnostic.Create(
-					Descriptor_Interceptor0100,
-					null,
-					messageArgs: [InterceptorMethodCallerAttributeTypeFullName]
-				)
-			);
+			return Diagnostic.Create(Descriptor_Interceptor0100, null, messageArgs: [InterceptorMethodCallerAttributeTypeFullName]);
 		}
 
 		var interceptorInstanceTypesAttributeSymbol = compilation.GetTypeByMetadataName(InterceptorInstanceTypesAttributeTypeFullName);
 		if (interceptorInstanceTypesAttributeSymbol is null)
 		{
-			return new FailedTransformResult(
-				Diagnostic.Create(
-					Descriptor_Interceptor0100,
-					null,
-					messageArgs: [InterceptorInstanceTypesAttributeTypeFullName]
-				)
-			);
+			return Diagnostic.Create(Descriptor_Interceptor0100, null, messageArgs: [InterceptorInstanceTypesAttributeTypeFullName]);
 		}
 
 		var cachedAttributeSymbol = compilation.GetTypeByMetadataName(CachedAttributeTypeFullName);
 		if (cachedAttributeSymbol is null)
 		{
-			return new FailedTransformResult(
-				Diagnostic.Create(
-					Descriptor_Interceptor0100,
-					null,
-					messageArgs: [CachedAttributeTypeFullName]
-				)
-			);
+			return Diagnostic.Create(Descriptor_Interceptor0100, null, messageArgs: [CachedAttributeTypeFullName]);
 		}
 
 		if (expressionBody is not null)
 		{
-			return new FailedTransformResult(
-				Diagnostic.Create(
-					Descriptor_Interceptor0101,
-					node.GetLocation(),
-					messageArgs: [methodName]
-				)
-			);
+			return Diagnostic.Create(Descriptor_Interceptor0101, node.GetLocation(), messageArgs: [methodName]);
 		}
 
+		// Iterate on each invocation expression syntax node, to find any referenced methods marked '[Cached]' attribute.
 		foreach (var invocation in node.DescendantNodes().OfType<InvocationExpressionSyntax>())
 		{
-			var invocationLocation = default(Location);
-			var referencedMethodDeclaration = default(MethodDeclarationSyntax);
-			var referencedMethodSymbol = default(IMethodSymbol);
-
+			var (invocationLocation, referencedMethodDeclaration, referencedMethodSymbol) = default((Location, MethodDeclarationSyntax, IMethodSymbol));
 			var invocationExpression = invocation.Expression;
-			var symbolInfo = semanticModel.GetSymbolInfo(invocation, ct);
-			switch (symbolInfo)
+			switch (semanticModel.GetSymbolInfo(invocation, ct))
 			{
 				case { CandidateSymbols: [IMethodSymbol { DeclaringSyntaxReferences: var syntaxRefs } methodSymbol] }
 				when methodSymbol.GetAttributes().Any(cachedAttributeChecker):
 				{
 					if (syntaxRefs is not [var syntaxRef])
 					{
-						return new FailedTransformResult(
-							Diagnostic.Create(
-								Descriptor_Interceptor0103,
-								Location.Create(syntaxRefs[0].SyntaxTree, syntaxRefs[0].Span),
-								messageArgs: [invocationExpression.ToString()]
-							)
+						return Diagnostic.Create(
+							Descriptor_Interceptor0103,
+							Location.Create(syntaxRefs[0].SyntaxTree, syntaxRefs[0].Span),
+							messageArgs: [invocationExpression.ToString()]
 						);
 					}
 
@@ -251,12 +222,10 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				{
 					if (syntaxRefs is not [var syntaxRef])
 					{
-						return new FailedTransformResult(
-							Diagnostic.Create(
-								Descriptor_Interceptor0103,
-								Location.Create(syntaxRefs[0].SyntaxTree, syntaxRefs[0].Span),
-								messageArgs: [invocationExpression.ToString()]
-							)
+						return Diagnostic.Create(
+							Descriptor_Interceptor0103,
+							Location.Create(syntaxRefs[0].SyntaxTree, syntaxRefs[0].Span),
+							messageArgs: [invocationExpression.ToString()]
 						);
 					}
 
@@ -266,30 +235,27 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					break;
 				}
 			}
-			if (invocationLocation is null || referencedMethodDeclaration is null || referencedMethodSymbol is null)
+			if ((invocationLocation, referencedMethodDeclaration, referencedMethodSymbol)
+				is not ({ SourceTree.FilePath: var filePath }, not null, not null))
 			{
 				continue;
 			}
 
 			if (referencedMethodSymbol.IsGenericMethod)
 			{
-				return new FailedTransformResult(
-					Diagnostic.Create(
-						Descriptor_Interceptor0107,
-						invocationLocation,
-						messageArgs: [referencedMethodSymbol.Name]
-					)
+				return Diagnostic.Create(
+					Descriptor_Interceptor0107,
+					invocationLocation,
+					messageArgs: [referencedMethodSymbol.Name]
 				);
 			}
 
 			if (referencedMethodDeclaration.Body is not { Statements: var bodyStatements })
 			{
-				return new FailedTransformResult(
-					Diagnostic.Create(
-						Descriptor_Interceptor0101,
-						invocationLocation,
-						messageArgs: [referencedMethodSymbol.Name]
-					)
+				return Diagnostic.Create(
+					Descriptor_Interceptor0101,
+					invocationLocation,
+					messageArgs: [referencedMethodSymbol.Name]
 				);
 			}
 
@@ -357,28 +323,19 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			}
 			if (duplicateBeginCommentOrEndComment)
 			{
-				return new FailedTransformResult(
-					Diagnostic.Create(
-						Descriptor_Interceptor0105,
-						identifierToken.GetLocation(),
-						messageArgs: [identifierToken.ValueText]
-					)
+				return Diagnostic.Create(
+					Descriptor_Interceptor0105,
+					identifierToken.GetLocation(),
+					messageArgs: [identifierToken.ValueText]
 				);
 			}
 			if (!existsBeginComment || !existsEndComment)
 			{
-				return new FailedTransformResult(
-					Diagnostic.Create(
-						Descriptor_Interceptor0104,
-						identifierToken.GetLocation(),
-						messageArgs: [identifierToken.ValueText]
-					)
+				return Diagnostic.Create(
+					Descriptor_Interceptor0104,
+					identifierToken.GetLocation(),
+					messageArgs: [identifierToken.ValueText]
 				);
-			}
-
-			if (invocationLocation.SourceTree is not { FilePath: var filePath })
-			{
-				continue;
 			}
 
 			//var genericTypesString = referencedMethodSymbol.IsGenericMethod
@@ -386,7 +343,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			//	&& string.Join(", ", p) is var typeParametersString
 			//	? $"<{typeParametersString}>"
 			//	: string.Empty;
-			var lineSpan = invocationLocation.GetMappedLineSpan();
+			var ((startLine, startCharacter), _) = invocationLocation.GetMappedLineSpan();
 			var parametersString = string.Join(
 				", ",
 				from parameter in referencedMethodSymbol.Parameters
@@ -490,47 +447,24 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					// By check its operation, we can know which kind of the reference it is.
 					switch (semanticModel.GetOperation(tempNode, ct))
 					{
-						// 1) this.Member
-						case IInstanceReferenceOperation
-						{
-							ReferenceKind: InstanceReferenceKind.ContainingTypeInstance
-						}:
-						{
-							hasThisMemberAccessing = true;
-							break;
-						}
-
+						// 1) this.Member or base.Member
+						case IInstanceReferenceOperation { ReferenceKind: InstanceReferenceKind.ContainingTypeInstance }:
 						// 2) Member
-						case IMemberReferenceOperation
-						{
-							Member:
-							{
-								IsStatic: false,
-								ContainingType: var memberContaingType
-							}
-						}
+						case IMemberReferenceOperation { Member: { IsStatic: false, ContainingType: var memberContaingType } }
 						when SymbolEqualityComparer.Default.Equals(memberContaingType, containingType):
 						{
 							hasThisMemberAccessing = true;
-							break;
+							goto CheckThisOrBaseExpression;
 						}
 					}
-					if (hasThisMemberAccessing)
-					{
-						break;
-					}
 				}
+
+			CheckThisOrBaseExpression:
 				if (hasThisMemberAccessing)
 				{
 					// Today I won't handle this because it is too complex to be checked...
 					// I'll implement a 'SyntaxRewriter' to replace nodes, to change this code.
-					return new FailedTransformResult(
-						Diagnostic.Create(
-							Descriptor_Interceptor0106,
-							identifierToken.GetLocation(),
-							messageArgs: null
-						)
-					);
+					return Diagnostic.Create(Descriptor_Interceptor0106, identifierToken.GetLocation(), messageArgs: null);
 				}
 			}
 
@@ -551,18 +485,12 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				}
 				""",
 
-				// Here we should manually add 1... I don't know why :(
-				new(filePath, lineSpan.StartLinePosition.Line + 1, lineSpan.StartLinePosition.Character + 1)
+				// Here we should manually add 1 because line number starts with 1 instead of 0.
+				new(filePath, startLine + 1, startCharacter + 1)
 			);
 		}
 
-		return new FailedTransformResult(
-			Diagnostic.Create(
-				Descriptor_Interceptor0102,
-				identifierToken.GetLocation(),
-				messageArgs: [identifierToken.ValueText]
-			)
-		);
+		return Diagnostic.Create(Descriptor_Interceptor0102, identifierToken.GetLocation(), messageArgs: [identifierToken.ValueText]);
 
 
 		bool cachedAttributeChecker(AttributeData a)

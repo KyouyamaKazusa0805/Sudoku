@@ -6,7 +6,14 @@ public partial class CachedMethodGenerator
 	/// Represents a transform result.
 	/// </summary>
 	/// <param name="Success">Indicates whether the result describes for "successful".</param>
-	private abstract record TransformResult(bool Success);
+	private abstract record TransformResult(bool Success)
+	{
+		/// <summary>
+		/// Implicit cast from <see cref="Diagnostic"/> to <see cref="TransformResult"/>.
+		/// </summary>
+		/// <param name="diagnostic">The diagnostic result.</param>
+		public static implicit operator TransformResult(Diagnostic diagnostic) => new FailedTransformResult(diagnostic);
+	}
 
 	/// <summary>
 	/// Represents a transform result after successfully to be handled.
