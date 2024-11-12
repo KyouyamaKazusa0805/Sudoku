@@ -366,8 +366,14 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					? parameter.ExplicitDefaultValue switch
 					{
 						null => "default",
-						string s =>
-							$""""
+						string and [.. var s, '"']
+							=> $""""
+							"""
+							{s}"
+							"""
+							"""",
+						string s
+							=> $""""
 							"""{s}"""
 							"""",
 						char c => $"'{c}'",
