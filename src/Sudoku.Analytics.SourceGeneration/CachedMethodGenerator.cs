@@ -111,7 +111,8 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			Action r = result switch
 			{
 				FailedTransformResult f => () => failed.Add(f),
-				SuccessTransformResult s => () => success.Add(s)
+				SuccessTransformResult s => () => success.Add(s),
+				AggregateSuccessTransformResult a => () => success.AddRange(a)
 			};
 			r();
 		}
@@ -160,21 +161,18 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 		if (gasc is not
 			{
+				Attributes: _,
 				TargetNode: MethodDeclarationSyntax
 				{
 					ExpressionBody: var expressionBody,
 					Identifier: { ValueText: var methodName } identifierToken,
 					//ConstraintClauses: var constraints
 				} node,
+				TargetSymbol: IMethodSymbol currentMethodSymbol,
 				SemanticModel: { Compilation: var compilation } semanticModel
 			})
 		{
 			return null;
-		}
-
-		if (compilation.GetTypeByMetadataName(InterceptorMethodCallerAttributeTypeFullName) is null)
-		{
-			return Diagnostic.Create(Descriptor_Interceptor0100, null, messageArgs: [InterceptorMethodCallerAttributeTypeFullName]);
 		}
 
 		var interceptorInstanceTypesAttributeSymbol = compilation.GetTypeByMetadataName(InterceptorInstanceTypesAttributeTypeFullName);
@@ -236,8 +234,17 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					break;
 				}
 			}
-			if ((invocationLocation, referencedMethodDeclaration, referencedMethodSymbol)
-				is not ({ SourceTree.FilePath: var filePath }, not null, not null))
+
+#pragma warning disable format
+			if ((invocationLocation, referencedMethodDeclaration, referencedMethodSymbol) is not (
+				{ SourceTree.FilePath: var filePath },
+				not null,
+				{
+					ReturnType: var referencedMethodReturnType,
+					Parameters: var referencedMethodParameters
+				}
+			))
+#pragma warning restore format
 			{
 				continue;
 			}
@@ -344,10 +351,11 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			//	&& string.Join(", ", p) is var typeParametersString
 			//	? $"<{typeParametersString}>"
 			//	: string.Empty;
+
 			var ((startLine, startCharacter), _) = invocationLocation.GetMappedLineSpan();
 			var parametersString = string.Join(
 				", ",
-				from parameter in referencedMethodSymbol.Parameters
+				from parameter in referencedMethodParameters
 				let refKindString = parameter.RefKind switch
 				{
 					RefKind.Ref => "ref ",
@@ -414,7 +422,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			}
 
 			// Return type.
-			var returnTypeName = referencedMethodSymbol.ReturnType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+			var returnTypeName = referencedMethodReturnType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 			var returnRefKindType = referencedMethodSymbol switch
 			{
 				{ ReturnsByRefReadonly: true } => "ref readonly ",
@@ -475,7 +483,79 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				}
 			}
 
-			// Return the value.
+			// Check whether the method marked '[InterceptorMethodCaller]' is also marked '[InterceptorInstanceTypes]'.
+			// If so, we should generate an extra entry method to route functions by checking the target type
+			// of this parameter '@this'.
+			//var attributesMarked = currentMethodSymbol.GetAttributes();
+			//var instanceTypesAttributeMarked = attributesMarked.FirstOrDefault(interceptorInstanceTypesAttributeChecker);
+			//if (instanceTypesAttributeMarked is { ConstructorArguments: [{ Values: var instanceTypesRawValue }] })
+			//{
+			//	var instanceTypes = (
+			//		from i in instanceTypesRawValue
+			//		let targetType = i.Type as INamedTypeSymbol
+			//		where targetType is not null
+			//		select targetType into targetType
+			//		let targetTypeString = targetType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+			//		select (Type: targetType, TypeString: targetTypeString)
+			//	).ToArray();
+			//
+			//	var switchStatementOrExpressionString = referencedMethodReturnType.SpecialType == SpecialType.System_Void
+			//		? ""
+			//		: "";
+			//	var entryMethodString =
+			//		$$"""
+			//			/// <summary>
+			//			/// The backing entry that can route functions
+			//			/// by checking the target type of instance parameter <paramref cref="this"/>.
+			//			/// </summary>
+			//			private static {{returnTypeString}} {{referencedMethodSymbol.Name}}_SwitchEntry({{instanceParameter}}{{parametersString}})
+			//			{
+			//		{{switchStatementOrExpressionString}}
+			//			}
+			//		""";
+			//
+			//	var instanceTypesGeneratedResult = new List<SuccessTransformResult>();
+			//	foreach (var (instanceType, instanceTypeString) in instanceTypes)
+			//	{
+			//		var referencedMethodSymbol_a = instanceType.GetMembers().FirstOrDefault(referencedMethodSymbolChecker);
+			//		if (referencedMethodSymbol_a is not
+			//			{
+			//				ContainingType.Name: var referencedMethodContainingTypeName_a,
+			//				DeclaringSyntaxReferences: [var syntaxRef],
+			//				Name: var referencedMethodName_a
+			//			})
+			//		{
+			//			continue;
+			//		}
+			//
+			//		var invocationLocation_a = (invocationExpression as MemberAccessExpressionSyntax)?.Name.GetLocation();
+			//		var referencedMethodDeclaration_a = syntaxRef.GetSyntax(ct) as MethodDeclarationSyntax;
+			//		//instanceTypesGeneratedResult.Add(
+			//		//	new(
+			//		//		$$"""
+			//		//		/// <summary>
+			//		//		/// Interceptor method that will replace implementation on such referenced method invocation.
+			//		//		/// </summary>
+			//		//		public static class {{referencedMethodContainingTypeName_a}}_Intercepted
+			//		//		{
+			//		//			{{xmlDocComments}}
+			//		//			{{AttributeInsertionMatchString}}
+			//		//			public static {{returnTypeString}} {{referencedMethodName_a}}({{instanceParameter}}{{parametersString}})
+			//		//			{
+			//		//				{{string.Join("\r\n", targetStringAppendIndenting)}}
+			//		//			}
+			//		//		}
+			//		//		""",
+			//		//
+			//		//		// Here we should manually add 1 because line number starts with 1 instead of 0.
+			//		//		new(filePath, startLine + 1, startCharacter + 1)
+			//		//	)
+			//		//);
+			//	}
+			//	return instanceTypesGeneratedResult.ToArray();
+			//}
+
+			// Return the value (not aggregate).
 			return new SuccessTransformResult(
 				$$"""
 				/// <summary>
@@ -495,6 +575,10 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				// Here we should manually add 1 because line number starts with 1 instead of 0.
 				new(filePath, startLine + 1, startCharacter + 1)
 			);
+
+
+			//bool referencedMethodSymbolChecker(ISymbol member)
+			//	=> member is IMethodSymbol && member.Name == referencedMethodSymbol.Name && member.IsOverride;
 		}
 
 		return Diagnostic.Create(Descriptor_Interceptor0102, identifierToken.GetLocation(), messageArgs: [identifierToken.ValueText]);
@@ -502,5 +586,8 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 		bool cachedAttributeChecker(AttributeData a)
 			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, cachedAttributeSymbol);
+
+		//bool interceptorInstanceTypesAttributeChecker(AttributeData a)
+		//	=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, interceptorInstanceTypesAttributeSymbol);
 	}
 }

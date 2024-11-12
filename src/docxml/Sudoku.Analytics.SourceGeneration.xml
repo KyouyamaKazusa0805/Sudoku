@@ -87,6 +87,33 @@
             </summary>
             <param name="diagnostic">The diagnostic result.</param>
         </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult.op_Implicit(Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult[])~Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult"/> array to <see cref="T:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult"/>.
+            </summary>
+            <param name="results">The results.</param>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.AggregateSuccessTransformResult">
+            <summary>
+            Represents a transform result that creates a list of <see cref="T:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult"/> instances to be generated once.
+            </summary>
+            <param name="Results">Indicates the results created.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.AggregateSuccessTransformResult.#ctor(Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult[])">
+            <summary>
+            Represents a transform result that creates a list of <see cref="T:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult"/> instances to be generated once.
+            </summary>
+            <param name="Results">Indicates the results created.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.AggregateSuccessTransformResult.Results">
+            <summary>Indicates the results created.</summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.AggregateSuccessTransformResult.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.AggregateSuccessTransformResult.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult">
             <summary>
             Represents a transform result after successfully to be handled.

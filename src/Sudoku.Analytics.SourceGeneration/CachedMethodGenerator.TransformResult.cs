@@ -13,6 +13,26 @@ public partial class CachedMethodGenerator
 		/// </summary>
 		/// <param name="diagnostic">The diagnostic result.</param>
 		public static implicit operator TransformResult(Diagnostic diagnostic) => new FailedTransformResult(diagnostic);
+
+		/// <summary>
+		/// Implicit cast from <see cref="SuccessTransformResult"/> array to <see cref="TransformResult"/>.
+		/// </summary>
+		/// <param name="results">The results.</param>
+		public static implicit operator TransformResult(SuccessTransformResult[] results)
+			=> new AggregateSuccessTransformResult(results);
+	}
+
+	/// <summary>
+	/// Represents a transform result that creates a list of <see cref="SuccessTransformResult"/> instances to be generated once.
+	/// </summary>
+	/// <param name="Results">Indicates the results created.</param>
+	private sealed record AggregateSuccessTransformResult(SuccessTransformResult[] Results) : TransformResult(true), IEnumerable<SuccessTransformResult>
+	{
+		/// <inheritdoc/>
+		public IEnumerator<SuccessTransformResult> GetEnumerator() => Results.AsEnumerable().GetEnumerator();
+
+		/// <inheritdoc/>
+		IEnumerator IEnumerable.GetEnumerator() => Results.GetEnumerator();
 	}
 
 	/// <summary>
