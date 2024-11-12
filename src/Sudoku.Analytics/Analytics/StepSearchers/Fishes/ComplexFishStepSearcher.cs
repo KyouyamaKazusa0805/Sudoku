@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Fishes;
 
 /// <summary>
 /// Provides with a <b>Complex Fish</b> step searcher.

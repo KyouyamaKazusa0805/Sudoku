@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Singles;
 
 using unsafe DirectSubsetHandlerFuncPtr = delegate*<DirectSubsetStepSearcher, HashSet<DirectSubsetStep>, ref StepAnalysisContext, ref readonly Grid, int, bool, ref readonly CellMap, ReadOnlySpan<CellMap>, DirectSubsetStep?>;
 

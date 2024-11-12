@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Chains;
 
 /// <summary>
 /// Provides with a <b>Multiple Forcing Chains</b> step searcher.

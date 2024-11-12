@@ -42,7 +42,7 @@ public static class StepSearcherFactory
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static StepSearcher GetStepSearcher(string typeName)
-		=> GetStepSearcher(ThisAssembly.GetType($"Sudoku.Analytics.StepSearchers.{typeName}")!);
+		=> GetStepSearcher(ThisAssembly.GetDerivedTypes<StepSearcher>().FirstOrDefault(t => t.Name == typeName)!);
 
 	/// <summary>
 	/// The internal method to get all <see cref="StepSearcher"/> instances derived from <paramref name="type"/> defined in this assembly.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.AlmostLockedSets;
 
 /// <summary>
 /// Provides with an <b>Almost Locked Sets XY-Wing</b> step searcher.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Uniqueness;
 
 /// <summary>
 /// Provides with a <b>Uniqueness Clue Cover</b> step searcher.

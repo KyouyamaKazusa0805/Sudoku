@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Intersections;
 
 /// <summary>
 /// Provides with an <b>Law of Leftover</b> step searcher.

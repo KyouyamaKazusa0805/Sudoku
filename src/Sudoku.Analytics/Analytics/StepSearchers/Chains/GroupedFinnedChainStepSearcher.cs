@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Chains;
 
 /// <summary>
 /// Provides with a <b>Grouped Finned Chain</b> step searcher.

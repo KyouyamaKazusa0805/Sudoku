@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Invalidity;
 
 /// <summary>
 /// Provides with a <b>Chromatic Pattern</b> step searcher.

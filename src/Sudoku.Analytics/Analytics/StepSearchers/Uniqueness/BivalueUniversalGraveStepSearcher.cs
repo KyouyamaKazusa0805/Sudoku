@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Uniqueness;
 
 using TargetCandidatesGroup = CellMapOrCandidateMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, Cell>;
 

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.SymmetricalPlacements;
 
 using unsafe AntiGurthSymmetricalPlacementModuleSearcherFuncPtr = delegate*<ref readonly Grid, ref StepAnalysisContext, AntiGurthSymmetricalPlacementStep?>;
 

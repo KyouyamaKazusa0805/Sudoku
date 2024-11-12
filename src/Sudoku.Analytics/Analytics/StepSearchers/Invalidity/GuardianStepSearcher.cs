@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Invalidity;
 
 using unsafe CollectorPredicateFuncPtr = delegate*<ref readonly CellMap, bool>;
 

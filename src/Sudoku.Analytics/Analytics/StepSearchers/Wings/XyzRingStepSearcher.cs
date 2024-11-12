@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Wings;
 
 /// <summary>
 /// Provides with an <b>XYZ-Ring</b> step searcher.

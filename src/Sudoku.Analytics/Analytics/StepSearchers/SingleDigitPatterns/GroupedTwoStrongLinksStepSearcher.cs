@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.SingleDigitPatterns;
 
 /// <summary>
 /// Provides with a <b>Grouped Two-strong Links</b> step searcher.

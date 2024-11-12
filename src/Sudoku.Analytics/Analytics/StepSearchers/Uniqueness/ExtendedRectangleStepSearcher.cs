@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Uniqueness;
 
 /// <summary>
 /// Provides with an <b>Extended Rectangle</b> step searcher.

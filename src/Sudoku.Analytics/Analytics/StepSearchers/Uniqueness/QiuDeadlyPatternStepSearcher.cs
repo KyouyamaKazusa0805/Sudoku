@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Uniqueness;
 
 /// <summary>
 /// Provides with a <b>Qiu's Deadly Pattern</b> step searcher.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Subsets;
 
 /// <summary>
 /// Provides with a <b>Locked Subset</b> step searcher. The step searcher will include the following techniques:

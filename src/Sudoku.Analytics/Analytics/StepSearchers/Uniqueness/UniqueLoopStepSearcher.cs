@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Uniqueness;
 
 using unsafe SearcherSubtypeCheckerFuncPtr = delegate*<SortedSet<UniqueLoopStep>, ref readonly Grid, ref StepAnalysisContext, Digit, Digit, ref readonly CellMap, ref readonly CellMap, Mask, Cell[], UniqueLoopStep?>;
 

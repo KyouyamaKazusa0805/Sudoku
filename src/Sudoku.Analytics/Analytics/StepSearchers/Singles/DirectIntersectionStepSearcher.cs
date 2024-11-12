@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Singles;
 
 /// <summary>
 /// Provides with a <b>Direct Intersection</b> step searcher.

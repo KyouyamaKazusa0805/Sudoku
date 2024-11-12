@@ -4,7 +4,7 @@
 #error You should configure at least one symbol of 'CELL_CONTRADICTION_CHECK' and 'HOUSE_CONTRADICTION_CHECK'.
 #endif
 
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Chains;
 
 /// <summary>
 /// Provides with a <b>Whip</b> step searcher.

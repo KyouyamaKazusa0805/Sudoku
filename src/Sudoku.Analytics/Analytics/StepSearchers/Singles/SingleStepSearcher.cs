@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers.Singles;
 
 using unsafe SingleModuleSearcherFuncPtr = delegate*<SingleStepSearcher, ref StepAnalysisContext, ref readonly Grid, Step?>;
 
