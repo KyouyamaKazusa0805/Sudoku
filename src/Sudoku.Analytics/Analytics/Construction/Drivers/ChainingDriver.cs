@@ -22,7 +22,7 @@ internal static partial class ChainingDriver
 		foreach (var chain in CollectChains(in context.Grid, allowsAdvancedLinks, context.OnlyFindOne))
 		{
 			var step = new NormalChainStep(
-				c(chain, in grid, supportedRules),
+				CollectChainConclusions(chain, in grid, supportedRules),
 				chain.GetViews(in grid, supportedRules, ref cachedAlsIndex),
 				context.Options,
 				chain
@@ -40,22 +40,6 @@ internal static partial class ChainingDriver
 			accumulator.Add(step);
 		}
 		return null;
-
-
-		static Conclusion[] c(NamedChain pattern, ref readonly Grid grid, ChainingRuleCollection rules)
-		{
-			var conclusions = pattern.GetConclusions(in grid);
-			if (pattern is ContinuousNiceLoop { Links: var links })
-			{
-				var context = new ChainingRuleLoopConclusionContext(in grid, links);
-				foreach (var r in rules)
-				{
-					r.GetLoopConclusions(ref context);
-					conclusions |= context.Conclusions;
-				}
-			}
-			return [.. conclusions];
-		}
 	}
 
 	/// <summary>
@@ -319,5 +303,33 @@ internal static partial class ChainingDriver
 			}
 		}
 		return null;
+	}
+
+	/// <summary>
+	/// The backing method to collect chain conclusions.
+	/// </summary>
+	/// <param name="pattern">The pattern.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="supportedRules">All supported rules used.</param>
+	/// <returns>Found conclusions.</returns>
+	[InterceptorMethodCaller]
+	[InterceptorInstanceTypes(
+		typeof(AlmostLockedSetsChainingRule),
+		typeof(KrakenNormalFishChainingRule),
+		typeof(LockedCandidatesChainingRule),
+		DefaultBehavior = InterceptorInstanceRoutingDefaultBehavior.DoNothingOrReturnDefault)]
+	private static Conclusion[] CollectChainConclusions(NamedChain pattern, ref readonly Grid grid, ChainingRuleCollection supportedRules)
+	{
+		var conclusions = pattern.GetConclusions(in grid);
+		if (pattern is ContinuousNiceLoop { Links: var links })
+		{
+			var context = new ChainingRuleLoopConclusionContext(in grid, links);
+			foreach (var rule in supportedRules)
+			{
+				rule.GetLoopConclusions(ref context);
+				conclusions |= context.Conclusions;
+			}
+		}
+		return [.. conclusions];
 	}
 }

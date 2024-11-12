@@ -1,10 +1,10 @@
-namespace Sudoku.Analytics.Caching.ChainingRules;
+namespace Sudoku.Analytics.Construction.Chaining.Rules;
 
 /// <summary>
 /// Represents a chaining rule on X rule (i.e. <see cref="LinkType.SingleDigit"/>).
 /// </summary>
 /// <seealso cref="LinkType.SingleDigit"/>
-internal sealed class CachedXChainingRule : ChainingRule
+public sealed class XChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
@@ -14,12 +14,16 @@ internal sealed class CachedXChainingRule : ChainingRule
 			return;
 		}
 
+		// VARIABLE_DECLARATION_BEGIN
+		_ = context.Grid is { CandidatesMap: var __CandidatesMap };
+		// VARIABLE_DECLARATION_END
+
 		// Strong.
 		for (var digit = 0; digit < 9; digit++)
 		{
 			for (var house = 0; house < 27; house++)
 			{
-				if ((HousesMap[house] & CandidatesMap[digit]) is not { Count: not (0 or 1) } cellsInThisHouse)
+				if ((HousesMap[house] & __CandidatesMap[digit]) is not { Count: not (0 or 1) } cellsInThisHouse)
 				{
 					continue;
 				}
@@ -43,7 +47,7 @@ internal sealed class CachedXChainingRule : ChainingRule
 		{
 			for (var house = 0; house < 27; house++)
 			{
-				if ((HousesMap[house] & CandidatesMap[digit]) is not { Count: not (0 or 1) } cellsInThisHouse)
+				if ((HousesMap[house] & __CandidatesMap[digit]) is not { Count: not (0 or 1) } cellsInThisHouse)
 				{
 					continue;
 				}

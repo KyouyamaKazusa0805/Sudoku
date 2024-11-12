@@ -101,4 +101,16 @@ public partial class CachedMethodGenerator
 		DiagnosticSeverity.Error,
 		true
 	);
+
+	/// <summary>
+	/// Represents message "Method cannot be local function, lambda and the other functions that cannot be referenced by name".
+	/// </summary>
+	private static readonly DiagnosticDescriptor IC0108 = new(
+		nameof(IC0108),
+		"Method cannot be local function, lambda and the other functions that cannot be referenced by name",
+		"Method cannot be local function, lambda and the other functions that cannot be referenced by name",
+		"Interceptor.Design",
+		DiagnosticSeverity.Error,
+		true
+	);
 }

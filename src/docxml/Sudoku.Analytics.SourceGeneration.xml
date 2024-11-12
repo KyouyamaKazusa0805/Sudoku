@@ -66,6 +66,11 @@
             Represents message "Method marked '[Cached]' cannot be generic".
             </summary>
         </member>
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.IC0108">
+            <summary>
+            Represents message "Method cannot be local function, lambda and the other functions that cannot be referenced by name".
+            </summary>
+        </member>
         <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult">
             <summary>
             Represents a transform result.
@@ -148,6 +153,21 @@
         </member>
         <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.FailedTransformResult.Diagnostic">
             <summary>The diagnostic result.</summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.InterceptorInstanceRoutingDefaultBehavior">
+            <summary>
+            Indicates the default behavior on routing for interceptor instance type checking.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.InterceptorInstanceRoutingDefaultBehavior.DoNothingOrReturnDefault">
+            <summary>
+            Indicates the default behavior is to return <see langword="default"/> or do nothing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.InterceptorInstanceRoutingDefaultBehavior.ThrowNotSupportedException">
+            <summary>
+            Indicates the default behavior is to throw a <see cref="T:System.NotSupportedException"/>.
+            </summary>
         </member>
         <member name="T:Sudoku.SourceGeneration.CachedMethodSyntaxRewriter">
             <summary>

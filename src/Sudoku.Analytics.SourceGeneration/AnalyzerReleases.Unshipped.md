@@ -13,3 +13,4 @@ IC0104 | Interceptor.Design | Error | CachedMethodGenerator
 IC0105 | Interceptor.Design | Error | CachedMethodGenerator
 IC0106 | Interceptor.Design | Error | CachedMethodGenerator
 IC0107 | Interceptor.Design | Error | CachedMethodGenerator
+IC0108 | Interceptor.Design | Error | CachedMethodGenerator

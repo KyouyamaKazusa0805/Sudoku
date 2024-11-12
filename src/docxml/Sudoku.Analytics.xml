@@ -797,105 +797,6 @@
             <param name="linkType">The link type.</param>
             <returns>The created <see cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRule"/> instance created.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Caching.ChainingRules.CachedAlmostAvoidableRectangleChainingRule">
-            <summary>
-            Represents a chaining rule on AAR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostAvoidableRectangle"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostAvoidableRectangle"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedAlmostAvoidableRectangleChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedAlmostAvoidableRectangleChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.ChainingRules.CachedAlmostLockedSetsChainingRule">
-            <summary>
-            Represents a chaining rule on ALS rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostLockedSets"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostLockedSets"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedAlmostLockedSetsChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedAlmostLockedSetsChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedAlmostLockedSetsChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.ChainingRules.CachedAlmostUniqueRectangleChainingRule">
-            <summary>
-            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostUniqueRectangle"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostUniqueRectangle"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedAlmostUniqueRectangleChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedAlmostUniqueRectangleChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedAlmostUniqueRectangleChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.ChainingRules.CachedKrakenNormalFishChainingRule">
-            <summary>
-            Represents a chaining rule on normal fish rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.KrakenNormalFish"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.KrakenNormalFish"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedKrakenNormalFishChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedKrakenNormalFishChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedKrakenNormalFishChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.ChainingRules.CachedLockedCandidatesChainingRule">
-            <summary>
-            Represents a chaining rule on locked candidates (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.LockedCandidates"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.LockedCandidates"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedLockedCandidatesChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedLockedCandidatesChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.ChainingRules.CachedXChainingRule">
-            <summary>
-            Represents a chaining rule on X rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.SingleDigit"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.SingleDigit"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedXChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.ChainingRules.CachedXyzWingChainingRule">
-            <summary>
-            Represents a chaining rule on XYZ-Wing rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.XyzWing"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.XyzWing"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedXyzWingChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedXyzWingChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.ChainingRules.CachedYChainingRule">
-            <summary>
-            Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.SingleCell"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.SingleCell"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.ChainingRules.CachedYChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Caching.MemoryCachedData">
             <summary>
             Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.
@@ -1796,6 +1697,105 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.AlmostAvoidableRectangleChainingRule">
+            <summary>
+            Represents a chaining rule on AAR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostAvoidableRectangle"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostAvoidableRectangle"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostAvoidableRectangleChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostAvoidableRectangleChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.AlmostLockedSetsChainingRule">
+            <summary>
+            Represents a chaining rule on ALS rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostLockedSets"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostLockedSets"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostLockedSetsChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostLockedSetsChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostLockedSetsChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.AlmostUniqueRectangleChainingRule">
+            <summary>
+            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostUniqueRectangle"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostUniqueRectangle"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostUniqueRectangleChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostUniqueRectangleChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostUniqueRectangleChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.KrakenNormalFishChainingRule">
+            <summary>
+            Represents a chaining rule on normal fish rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.KrakenNormalFish"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.KrakenNormalFish"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.KrakenNormalFishChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.KrakenNormalFishChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.KrakenNormalFishChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.LockedCandidatesChainingRule">
+            <summary>
+            Represents a chaining rule on locked candidates (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.LockedCandidates"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.LockedCandidates"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.LockedCandidatesChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.LockedCandidatesChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule">
+            <summary>
+            Represents a chaining rule on X rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.SingleDigit"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.SingleDigit"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.XyzWingChainingRule">
+            <summary>
+            Represents a chaining rule on XYZ-Wing rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.XyzWing"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.XyzWing"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XyzWingChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XyzWingChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule">
+            <summary>
+            Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.SingleCell"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.SingleCell"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain">
             <summary>
@@ -4622,6 +4622,16 @@
             <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
             <returns>All possible multiple forcing chain instances.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectBlossomConclusions(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Analytics.Construction.Components.Link},Sudoku.Concepts.CandidateMap@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
+            <summary>
+            The backing method to collect blossom conclusions.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="patternLinks">The pattern links.</param>
+            <param name="exits">The exit candidates.</param>
+            <param name="supportedRules">All supported rules used.</param>
+            <returns>Found conclusions.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectBivalueUniversalGraveMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Collect all multiple forcing chains on applying to a bi-value universal grave, appeared in a grid.
@@ -4693,6 +4703,15 @@
             </param>
             <param name="stepCreator">The creator method that can create a chain step.</param>
             <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectChainConclusions(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
+            <summary>
+            The backing method to collect chain conclusions.
+            </summary>
+            <param name="pattern">The pattern.</param>
+            <param name="grid">The grid.</param>
+            <param name="supportedRules">All supported rules used.</param>
+            <returns>Found conclusions.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
@@ -33807,9 +33826,9 @@
              [Cached]
              public static ReadOnlySpan<AlmostLockedSetPattern> Collect(ref readonly Grid grid)
              {
-            	    // INTERCEPTOR_VARIABLE_DECLARATION_BEGIN
+            	    // VARIABLE_DECLARATION_BEGIN
                  _ = grid is { EmptyCells: var __EmptyCells, BivalueCells: var __BivalueCells, CandidatesMap: var __CandidatesMap };
-                 // INTERCEPTOR_VARIABLE_DECLARATION_END
+                 // VARIABLE_DECLARATION_END
             
                  // Get all bi-value-cell ALSes.
                  var result = new List<AlmostLockedSetPattern>();
@@ -33841,24 +33860,132 @@
              <seealso cref="T:Sudoku.Concepts.Grid"/>
              <seealso cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>
         </member>
-        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__AlmostLockedSetPattern_Intercepted">
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__ChainingRule_GetLinks_Intercepted">
             <summary>
             Interceptor method that will replace implementation on such referenced method invocation.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__AlmostLockedSetPattern_Intercepted.Collect(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__ChainingRule_GetLinks_Intercepted.GetLinks_SwitchEntry(Sudoku.Analytics.Construction.Chaining.ChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <summary>
+            The backing entry that can route functions by checking the target type of instance parameter <paramref cref="!:this"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__XChainingRule_GetLinks_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__XChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__YChainingRule_GetLinks_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__YChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__LockedCandidatesChainingRule_GetLinks_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__LockedCandidatesChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.LockedCandidatesChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__AlmostLockedSetsChainingRule_GetLinks_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__AlmostLockedSetsChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.AlmostLockedSetsChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__AlmostUniqueRectangleChainingRule_GetLinks_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__AlmostUniqueRectangleChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.AlmostUniqueRectangleChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__AlmostAvoidableRectangleChainingRule_GetLinks_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__AlmostAvoidableRectangleChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.AlmostAvoidableRectangleChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__KrakenNormalFishChainingRule_GetLinks_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__KrakenNormalFishChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.KrakenNormalFishChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__XyzWingChainingRule_GetLinks_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__XyzWingChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.XyzWingChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__AlmostLockedSetPattern_Collect_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__AlmostLockedSetPattern_Collect_Intercepted.Collect(Sudoku.Concepts.Grid@)">
             <summary>
             Collects all possible <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/>s in the specified grid.
             </summary>
             <param name="grid">The grid.</param>
             <returns>All possible found <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/> instances.</returns>
         </member>
-        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__TrueCandidate_Intercepted">
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__ChainingRule_GetLoopConclusions_Intercepted">
             <summary>
             Interceptor method that will replace implementation on such referenced method invocation.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__TrueCandidate_Intercepted.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__ChainingRule_GetLoopConclusions_Intercepted.GetLoopConclusions_SwitchEntry(Sudoku.Analytics.Construction.Chaining.ChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
+            <summary>
+            The backing entry that can route functions by checking the target type of instance parameter <paramref cref="!:this"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__AlmostLockedSetsChainingRule_GetLoopConclusions_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__AlmostLockedSetsChainingRule_GetLoopConclusions_Intercepted.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.Rules.AlmostLockedSetsChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__KrakenNormalFishChainingRule_GetLoopConclusions_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__KrakenNormalFishChainingRule_GetLoopConclusions_Intercepted.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.Rules.KrakenNormalFishChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__LockedCandidatesChainingRule_GetLoopConclusions_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__LockedCandidatesChainingRule_GetLoopConclusions_Intercepted.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.Rules.LockedCandidatesChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__TrueCandidate_GetAllTrueCandidates_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__TrueCandidate_GetAllTrueCandidates_Intercepted.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <summary>
             Get all true candidates when the number of empty cells is below than the argument.
             </summary>

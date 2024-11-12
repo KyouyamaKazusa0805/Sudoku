@@ -1,10 +1,10 @@
-namespace Sudoku.Analytics.Caching.ChainingRules;
+namespace Sudoku.Analytics.Construction.Chaining.Rules;
 
 /// <summary>
 /// Represents a chaining rule on AAR rule (i.e. <see cref="LinkType.AlmostAvoidableRectangle"/>).
 /// </summary>
 /// <seealso cref="LinkType.AlmostAvoidableRectangle"/>
-internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
+public sealed class AlmostAvoidableRectangleChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
@@ -19,6 +19,10 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 		{
 			return;
 		}
+
+		// VARIABLE_DECLARATION_BEGIN
+		_ = grid is { CandidatesMap: var __CandidatesMap };
+		// VARIABLE_DECLARATION_END
 
 		// Weak.
 		foreach (var pattern in UniqueRectanglePattern.AllPatterns)
@@ -57,8 +61,8 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 			var digitsMask = (Mask)(1 << digit1 | 1 << digit2);
 			if (modifiableCellsInPattern.CanSeeEachOther)
 			{
-				var cells1 = emptyCellsInPattern & CandidatesMap[digit1];
-				var cells2 = emptyCellsInPattern & CandidatesMap[digit2];
+				var cells1 = emptyCellsInPattern & __CandidatesMap[digit1];
+				var cells2 = emptyCellsInPattern & __CandidatesMap[digit2];
 				if (!cells1 || !cells2)
 				{
 					continue;

@@ -22,7 +22,11 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 	private const string CommentLineEnd = "VARIABLE_DECLARATION_END";
 
+	private const string DefaultBehaviorPropertyName = "DefaultBehavior";
+
 	private const string AttributeInsertionMatchString = "<<insert-here>>";
+
+	private const string ThrowNotSupportedExceptionString = "throw new global::System.NotSupportedException(\"The target type of '@this' is not supported.\")";
 
 
 	/// <summary>
@@ -152,7 +156,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 		);
 	}
 
-	private static TransformResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
+	private static TransformResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
 #if DEBUG
 		if (!System.Diagnostics.Debugger.IsAttached)
@@ -170,7 +174,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					Identifier: { ValueText: var methodName } identifierToken,
 					ConstraintClauses: var constraints
 				} node,
-				TargetSymbol: IMethodSymbol currentMethodSymbol,
+				TargetSymbol: IMethodSymbol { MethodKind: var methodKind } currentMethodSymbol,
 				SemanticModel: { Compilation: var compilation } semanticModel
 			})
 		{
@@ -189,6 +193,11 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			return Diagnostic.Create(IC0100, null, messageArgs: [CachedAttributeTypeFullName]);
 		}
 
+		if (methodKind is MethodKind.LambdaMethod or MethodKind.LocalFunction or MethodKind.AnonymousFunction)
+		{
+			return Diagnostic.Create(IC0108, null, messageArgs: null);
+		}
+
 		if (expressionBody is not null)
 		{
 			return Diagnostic.Create(IC0101, node.GetLocation(), messageArgs: [methodName]);
@@ -201,12 +210,12 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			// If the method cannot be found, we should skip code generation for the current method.
 			var resultTriplet = default(NullableResultTriplet);
 			var invocationExpression = invocation.Expression;
-			switch (semanticModel.GetSymbolInfo(invocation, ct))
+			switch (semanticModel.GetSymbolInfo(invocation, cancellationToken))
 			{
 				case { CandidateSymbols: [IMethodSymbol { DeclaringSyntaxReferences: var syntaxRefs } methodSymbol] }
 				when methodSymbol.GetAttributes().Any(cachedAttributeChecker):
 				{
-					if ((resultTriplet = g(methodSymbol, invocationExpression, syntaxRefs, out var diagnostic, ct)) is null
+					if ((resultTriplet = g(methodSymbol, invocationExpression, syntaxRefs, out var diagnostic, cancellationToken)) is null
 						&& diagnostic is not null)
 					{
 						return diagnostic;
@@ -216,7 +225,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				case { Symbol: IMethodSymbol { DeclaringSyntaxReferences: var syntaxRefs } methodSymbol }
 				when methodSymbol.GetAttributes().Any(cachedAttributeChecker):
 				{
-					if ((resultTriplet = g(methodSymbol, invocationExpression, syntaxRefs, out var diagnostic, ct)) is null
+					if ((resultTriplet = g(methodSymbol, invocationExpression, syntaxRefs, out var diagnostic, cancellationToken)) is null
 						&& diagnostic is not null)
 					{
 						return diagnostic;
@@ -229,7 +238,10 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 #pragma warning disable format
 			if (resultTriplet is not (
 				{ SourceTree.FilePath: var filePath } invocationLocation,
-				{ Body: var referencedMethodBody } referencedMethodDeclaration,
+				{
+					Body: var referencedMethodBody,
+					Modifiers: var referencedMethodModifiers
+				} referencedMethodDeclaration,
 				{
 					ReturnType: var referencedMethodReturnType,
 					Parameters: var referencedMethodParameters,
@@ -246,7 +258,8 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			{
 				return Diagnostic.Create(IC0107, invocationLocation, messageArgs: [referencedMethodName]);
 			}
-			if (referencedMethodBody is not { Statements: var bodyStatements })
+			if (referencedMethodModifiers.Any(SyntaxKind.StaticKeyword)
+				&& referencedMethodBody is not { Statements: var bodyStatements })
 			{
 				return Diagnostic.Create(IC0101, invocationLocation, messageArgs: [referencedMethodName]);
 			}
@@ -255,9 +268,349 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			// We should determine whether the method is block-bodied, and remove variable declarations
 			// bound with cached-related properties, and append attributes [InterceptsLocation], emitting referenced locations.
 			// However, here we cannot collect for all possible usages of [InterceptsLocation], so it will be postponed to be checked.
-			var statements = new List<StatementSyntax>();
-			var (flag, existsBeginComment, existsEndComment, duplicateBeginCommentOrEndComment) = (false, false, false, false);
-			foreach (var statement in bodyStatements)
+			var statements = getStatements(
+				bodyStatements,
+				out var duplicateBeginCommentOrEndComment,
+				out var existsBeginComment,
+				out var existsEndComment
+			);
+			if (duplicateBeginCommentOrEndComment)
+			{
+				return Diagnostic.Create(IC0105, identifierToken.GetLocation(), messageArgs: [methodName]);
+			}
+			if (referencedMethodModifiers.Any(SyntaxKind.StaticKeyword) && !(existsBeginComment && existsEndComment))
+			{
+				return Diagnostic.Create(IC0104, identifierToken.GetLocation(), messageArgs: [methodName]);
+			}
+
+			// If the referenced method is an instance method instead of a static method,
+			// we should consider inserting an extra parameter as instance member accessing.
+			var instanceParameter = string.Empty;
+			if (referencedMethodSymbol is { IsStatic: false, ContainingType: { IsRefLikeType: var isRefStruct } containingType })
+			{
+				var scopedKeyword = isRefStruct ? "scoped " : string.Empty;
+				var containingTypeString = containingType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+				instanceParameter = $"this {scopedKeyword}{containingTypeString} @this, ";
+
+				// Check whether the referenced method declaration has instance member accessing.
+				// If so, we should replace them with '@this.' invocation (or disallow now).
+				var hasThisMemberAccessing = false;
+				foreach (var tempNode in referencedMethodDeclaration.DescendantNodes().OfType<MemberAccessExpressionSyntax>())
+				{
+					// Detect 'this.' references has two cases:
+					//   1) this.Member
+					//   2) Member, with 'Member' is an instance member in the current type 'containingType'
+					// By check its operation, we can know which kind of the reference it is.
+					try
+					{
+						switch (semanticModel.GetOperation(tempNode, cancellationToken))
+						{
+							// 1) this.Member or base.Member
+							case IInstanceReferenceOperation { ReferenceKind: InstanceReferenceKind.ContainingTypeInstance }:
+							// 2) Member
+							case IMemberReferenceOperation { Member: { IsStatic: false, ContainingType: var memberContaingType } }
+							when SymbolEqualityComparer.Default.Equals(memberContaingType, containingType):
+							{
+								hasThisMemberAccessing = true;
+								goto CheckThisOrBaseExpression;
+							}
+						}
+					}
+					catch (ArgumentException)
+					{
+						// May throw this to report message 'Syntax node is not within syntax tree'.
+					}
+				}
+
+			CheckThisOrBaseExpression:
+				if (hasThisMemberAccessing)
+				{
+					// Today I won't handle this because it is too complex to be checked...
+					// I'll implement a 'SyntaxRewriter' to replace nodes, to change this code.
+					return Diagnostic.Create(IC0106, identifierToken.GetLocation(), messageArgs: null);
+				}
+			}
+
+			// Check whether the method marked '[InterceptorMethodCaller]' is also marked '[InterceptorInstanceTypes]'.
+			// If so, we should generate an extra entry method to route functions by checking the target type
+			// of this parameter '@this'.
+			var attributesMarked = currentMethodSymbol.GetAttributes();
+			var instanceTypesAttributeMarked = attributesMarked.FirstOrDefault(interceptorInstanceTypesAttributeChecker);
+			if (instanceTypesAttributeMarked is { ConstructorArguments: [{ Values: var instanceTypesRawValue }] })
+			{
+				var instanceTypes = (
+					from i in instanceTypesRawValue
+					let targetType = i.Value as INamedTypeSymbol
+					where targetType is not null
+					select targetType into targetType
+					let targetTypeString = targetType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+					select (Type: targetType, TypeString: targetTypeString)
+				).ToArray();
+				var defaultBehavior = (InterceptorInstanceRoutingDefaultBehavior)instanceTypesAttributeMarked.GetNamedArgument(DefaultBehaviorPropertyName, 0);
+
+				var parametersInvocationString = string.Join(
+					", ",
+					from parameterSymbol in referencedMethodSymbol.Parameters
+					let parameterRefKind = parameterSymbol.RefKind switch
+					{
+						RefKind.Ref => "ref ",
+						RefKind.Out => "out ",
+						RefKind.RefReadOnlyParameter or RefKind.In => "in ",
+						_ => string.Empty
+					}
+					select $"{parameterRefKind}{parameterSymbol.Name}"
+				);
+				var switchBranches = string.Join(
+					"\r\n\t\t\t",
+					from instanceType in instanceTypes
+					let targetTypeName = instanceType.Type.Name
+					let targetTypeString = instanceType.TypeString
+					let interceptedMethodGroup = $$"""__{{targetTypeName}}_{{referencedMethodName}}_Intercepted.{{referencedMethodSymbol.Name}}"""
+					select referencedMethodReturnType.SpecialType == SpecialType.System_Void
+						? $$"""
+						case {{targetTypeString}} instance:
+									{
+										{{interceptedMethodGroup}}(instance, {{parametersInvocationString}});
+										break;
+									}
+						"""
+						: $$"""
+						{{targetTypeString}} instance
+										=> {{interceptedMethodGroup}}(instance, {{parametersInvocationString}}),
+						"""
+				);
+				var isVoid = referencedMethodReturnType.SpecialType == SpecialType.System_Void;
+				var defaultBehaviorString = defaultBehavior switch
+				{
+					InterceptorInstanceRoutingDefaultBehavior.DoNothingOrReturnDefault => isVoid ? "break" : "default",
+					_ => isVoid ? $"{ThrowNotSupportedExceptionString};" : ThrowNotSupportedExceptionString
+				};
+				var switchStatementOrExpressionString = isVoid
+					? $$"""
+							switch (@this)
+							{
+								{{switchBranches}}
+								default:
+								{
+									{{defaultBehaviorString}};
+								}	
+							}
+					"""
+					: $$"""
+							return @this switch
+							{
+								{{switchBranches}},
+								_ => {{defaultBehaviorString}}
+							};
+					""";
+				var returnTypeString = getReturnTypeString(referencedMethodReturnType, referencedMethodSymbol);
+				var parametersString = getParametersString(referencedMethodParameters);
+				var ((startLine, startCharacter), _) = invocationLocation.GetMappedLineSpan();
+				var instanceTypesGeneratedResult = new List<SuccessTransformResult>
+				{
+					new(
+						$$"""
+						/// <summary>
+						/// Interceptor method that will replace implementation on such referenced method invocation.
+						/// </summary>
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(CachedMethodGenerator)}}", "{{Value}}")]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						public static class __{{referencedMethodSymbol.ContainingType.Name}}_{{referencedMethodName}}_Intercepted
+						{
+							/// <summary>
+							/// The backing entry that can route functions by checking the target type of instance parameter <paramref cref="this"/>.
+							/// </summary>
+							{{AttributeInsertionMatchString}}
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(CachedMethodGenerator)}}", "{{Value}}")]
+							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+							public static {{returnTypeString}} {{referencedMethodName}}_SwitchEntry({{instanceParameter}}{{parametersString}})
+							{
+						{{switchStatementOrExpressionString}}
+							}
+						}
+						""",
+						new(filePath, startLine + 1, startCharacter + 1)
+					)
+				};
+
+				foreach (var (instanceType, instanceTypeString) in instanceTypes)
+				{
+					if (instanceType.GetMembers().FirstOrDefault(referencedMethodSymbolChecker) is not IMethodSymbol
+						{
+							DeclaringSyntaxReferences: [var syntaxRef],
+							Parameters: var referencedMethodParameters_a,
+							ReturnType: var referencedMethodReturnType_a
+						} referencedMethodSymbol_a)
+					{
+						continue;
+					}
+
+					var invocationLocation_a = (invocationExpression as MemberAccessExpressionSyntax)?.Name.GetLocation();
+					if (invocationLocation_a is null)
+					{
+						continue;
+					}
+
+					if (syntaxRef.GetSyntax(cancellationToken) is not MethodDeclarationSyntax
+						{
+							Body.Statements: var statements_a,
+							SyntaxTree.FilePath: var filePath_a,
+							ConstraintClauses: var constraints_a
+						} referencedMethodDeclaration_a)
+					{
+						continue;
+					}
+
+					var bodyStatements_a = getStatements(
+						statements_a,
+						out var duplicateBeginCommentOrEndComment_a,
+						out var existsBeginComment_a,
+						out var existsEndComment_a
+					);
+					if (duplicateBeginCommentOrEndComment_a)
+					{
+						continue;
+					}
+					if (!existsBeginComment_a || !existsEndComment_a)
+					{
+						continue;
+					}
+
+					instanceTypesGeneratedResult.Add(
+						getResult(
+							invocationLocation_a,
+							referencedMethodParameters_a,
+							referencedMethodSymbol_a,
+							referencedMethodReturnType_a,
+							$"{instanceTypeString} @this, ",
+							bodyStatements_a,
+							filePath_a,
+							false,
+							constraints_a,
+							cancellationToken
+						)
+					);
+				}
+				return instanceTypesGeneratedResult.ToArray();
+			}
+
+			// Return the value (not aggregate).
+			return getResult(
+				invocationLocation,
+				referencedMethodParameters,
+				referencedMethodSymbol,
+				referencedMethodReturnType,
+				instanceParameter,
+				statements,
+				filePath,
+				true,
+				constraints,
+				cancellationToken
+			);
+
+
+			bool referencedMethodSymbolChecker(ISymbol member)
+				=> member is IMethodSymbol && member.Name == referencedMethodName && member.IsOverride;
+		}
+
+		return Diagnostic.Create(IC0102, identifierToken.GetLocation(), messageArgs: [methodName]);
+
+
+		static string getReturnTypeString(ITypeSymbol referencedMethodReturnType, IMethodSymbol referencedMethodSymbol)
+		{
+			var returnTypeName = referencedMethodReturnType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+			var returnRefKindType = referencedMethodSymbol switch
+			{
+				{ ReturnsByRefReadonly: true } => "ref readonly ",
+				{ ReturnsByRef: true } => "ref ",
+				_ => string.Empty
+			};
+			return $"{returnRefKindType}{returnTypeName}";
+		}
+
+		static string getParametersString(ImmutableArray<IParameterSymbol> referencedMethodParameters)
+		{
+			return string.Join(
+				", ",
+				from parameter in referencedMethodParameters
+				let refKindString = getRefKindString(parameter.RefKind)
+				let scopedKindString = getScopedKindString(parameter.ScopedKind)
+				let typeNameString = parameter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+				let defaultValue = getDefaultValueString(parameter)
+				let defaultValueString = defaultValue is null ? string.Empty : $" = {defaultValue}"
+				select $"{scopedKindString}{refKindString}{typeNameString} {parameter.Name}{defaultValueString}"
+			);
+
+
+			static string getRefKindString(RefKind refKind)
+				=> refKind switch
+				{
+					RefKind.Ref => "ref ",
+					RefKind.Out => "out ",
+					RefKind.In => "in ",
+					RefKind.RefReadOnlyParameter => "ref readonly ",
+					_ => string.Empty
+				};
+
+			static string getScopedKindString(ScopedKind scopedKind)
+				=> scopedKind switch { ScopedKind.ScopedRef or ScopedKind.ScopedValue => "scoped ", _ => string.Empty };
+
+			static string? getDefaultValueString(IParameterSymbol parameter)
+				=> parameter.HasExplicitDefaultValue
+					? parameter.ExplicitDefaultValue switch
+					{
+						null => "default",
+						string and [.. var s, '"']
+							=> $""""
+							"""
+							{s}"
+							"""
+							"""",
+						string s
+							=> $""""
+							"""{s}"""
+							"""",
+						char c => $"'{c}'",
+						var value => value.ToString()
+					}
+					: null;
+		}
+
+		static NullableResultTriplet g(
+			IMethodSymbol methodSymbol,
+			ExpressionSyntax invocationExpression,
+			ImmutableArray<SyntaxReference> syntaxRefs,
+			out Diagnostic? diagnostic,
+			CancellationToken cancellationToken = default
+		)
+		{
+			if (syntaxRefs is not [var syntaxRef])
+			{
+				diagnostic = Diagnostic.Create(
+					IC0103,
+					Location.Create(syntaxRefs[0].SyntaxTree, syntaxRefs[0].Span),
+					messageArgs: [invocationExpression.ToString()]
+				);
+				return null;
+			}
+
+			var invocationLocation = (invocationExpression as MemberAccessExpressionSyntax)?.Name.GetLocation();
+			var referencedMethodDeclaration = syntaxRef.GetSyntax(cancellationToken) as MethodDeclarationSyntax;
+			var referencedMethodSymbol = methodSymbol;
+			diagnostic = null;
+			return (invocationLocation, referencedMethodDeclaration, referencedMethodSymbol);
+		}
+
+		static List<StatementSyntax> getStatements(
+			SyntaxList<StatementSyntax> baseStatements,
+			out bool duplicateBeginCommentOrEndComment,
+			out bool existsBeginComment,
+			out bool existsEndComment
+		)
+		{
+			var result = new List<StatementSyntax>();
+			(var flag, (existsBeginComment, existsEndComment, duplicateBeginCommentOrEndComment)) = (false, (false, false, false));
+			foreach (var statement in baseStatements)
 			{
 				if (statement.HasLeadingTrivia)
 				{
@@ -288,7 +641,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 							}
 						}
 
-						statements.Add(
+						result.Add(
 							statement
 								.WithoutLeadingTrivia()
 								.WithLeadingTrivia(SyntaxFactory.ParseLeadingTrivia(string.Join("\r\n", otherLines)))
@@ -308,175 +661,10 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				}
 				if (!flag)
 				{
-					statements.Add(statement);
+					result.Add(statement);
 				}
 			}
-			if (duplicateBeginCommentOrEndComment)
-			{
-				return Diagnostic.Create(IC0105, identifierToken.GetLocation(), messageArgs: [methodName]);
-			}
-			if (!existsBeginComment || !existsEndComment)
-			{
-				return Diagnostic.Create(IC0104, identifierToken.GetLocation(), messageArgs: [methodName]);
-			}
-
-			// If the referenced method is an instance method instead of a static method,
-			// we should consider inserting an extra parameter as instance member accessing.
-			var instanceParameter = string.Empty;
-			if (referencedMethodSymbol is { IsStatic: false, ContainingType: { IsRefLikeType: var isRefStruct } containingType })
-			{
-				var scopedKeyword = isRefStruct ? "scoped " : string.Empty;
-				var containingTypeString = containingType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-				instanceParameter = $"this {scopedKeyword}{containingTypeString} @this, ";
-
-				// Check whether the referenced method declaration has instance member accessing.
-				// If so, we should replace them with '@this.' invocation (or disallow now).
-				var hasThisMemberAccessing = false;
-				foreach (var tempNode in referencedMethodDeclaration.DescendantNodes().OfType<MemberAccessExpressionSyntax>())
-				{
-					// Detect 'this.' references has two cases:
-					//   1) this.Member
-					//   2) Member, with 'Member' is an instance member in the current type 'containingType'
-					// By check its operation, we can know which kind of the reference it is.
-					switch (semanticModel.GetOperation(tempNode, ct))
-					{
-						// 1) this.Member or base.Member
-						case IInstanceReferenceOperation { ReferenceKind: InstanceReferenceKind.ContainingTypeInstance }:
-						// 2) Member
-						case IMemberReferenceOperation { Member: { IsStatic: false, ContainingType: var memberContaingType } }
-						when SymbolEqualityComparer.Default.Equals(memberContaingType, containingType):
-						{
-							hasThisMemberAccessing = true;
-							goto CheckThisOrBaseExpression;
-						}
-					}
-				}
-
-			CheckThisOrBaseExpression:
-				if (hasThisMemberAccessing)
-				{
-					// Today I won't handle this because it is too complex to be checked...
-					// I'll implement a 'SyntaxRewriter' to replace nodes, to change this code.
-					return Diagnostic.Create(IC0106, identifierToken.GetLocation(), messageArgs: null);
-				}
-			}
-
-			// Check whether the method marked '[InterceptorMethodCaller]' is also marked '[InterceptorInstanceTypes]'.
-			// If so, we should generate an extra entry method to route functions by checking the target type
-			// of this parameter '@this'.
-			//var attributesMarked = currentMethodSymbol.GetAttributes();
-			//var instanceTypesAttributeMarked = attributesMarked.FirstOrDefault(interceptorInstanceTypesAttributeChecker);
-			//if (instanceTypesAttributeMarked is { ConstructorArguments: [{ Values: var instanceTypesRawValue }] })
-			//{
-			//	var instanceTypes = (
-			//		from i in instanceTypesRawValue
-			//		let targetType = i.Type as INamedTypeSymbol
-			//		where targetType is not null
-			//		select targetType into targetType
-			//		let targetTypeString = targetType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
-			//		select (Type: targetType, TypeString: targetTypeString)
-			//	).ToArray();
-			//
-			//	var switchStatementOrExpressionString = referencedMethodReturnType.SpecialType == SpecialType.System_Void
-			//		? ""
-			//		: "";
-			//	var entryMethodString =
-			//		$$"""
-			//			/// <summary>
-			//			/// The backing entry that can route functions
-			//			/// by checking the target type of instance parameter <paramref cref="this"/>.
-			//			/// </summary>
-			//			private static {{returnTypeString}} {{referencedMethodName}}_SwitchEntry({{instanceParameter}}{{parametersString}})
-			//			{
-			//		{{switchStatementOrExpressionString}}
-			//			}
-			//		""";
-			//
-			//	var instanceTypesGeneratedResult = new List<SuccessTransformResult>();
-			//	foreach (var (instanceType, instanceTypeString) in instanceTypes)
-			//	{
-			//		var referencedMethodSymbol_a = instanceType.GetMembers().FirstOrDefault(referencedMethodSymbolChecker);
-			//		if (referencedMethodSymbol_a is not
-			//			{
-			//				ContainingType.Name: var referencedMethodContainingTypeName_a,
-			//				DeclaringSyntaxReferences: [var syntaxRef],
-			//				Name: var referencedMethodName_a
-			//			})
-			//		{
-			//			continue;
-			//		}
-			//
-			//		var invocationLocation_a = (invocationExpression as MemberAccessExpressionSyntax)?.Name.GetLocation();
-			//		var referencedMethodDeclaration_a = syntaxRef.GetSyntax(ct) as MethodDeclarationSyntax;
-			//		//instanceTypesGeneratedResult.Add(
-			//		//	new(
-			//		//		$$"""
-			//		//		/// <summary>
-			//		//		/// Interceptor method that will replace implementation on such referenced method invocation.
-			//		//		/// </summary>
-			//		//		public static class __{{referencedMethodContainingTypeName_a}}_Intercepted
-			//		//		{
-			//		//			{{xmlDocComments}}
-			//		//			{{AttributeInsertionMatchString}}
-			//		//			public static {{returnTypeString}} {{referencedMethodName_a}}({{instanceParameter}}{{parametersString}})
-			//		//			{
-			//		//				{{string.Join("\r\n", targetStringAppendIndenting)}}
-			//		//			}
-			//		//		}
-			//		//		""",
-			//		//
-			//		//		// Here we should manually add 1 because line number starts with 1 instead of 0.
-			//		//		new(filePath, startLine + 1, startCharacter + 1)
-			//		//	)
-			//		//);
-			//	}
-			//	return instanceTypesGeneratedResult.ToArray();
-			//}
-
-			// Return the value (not aggregate).
-			return getResult(
-				invocationLocation,
-				referencedMethodParameters,
-				referencedMethodSymbol,
-				referencedMethodReturnType,
-				instanceParameter,
-				statements,
-				filePath,
-				constraints,
-				ct
-			);
-
-
-			//bool referencedMethodSymbolChecker(ISymbol member)
-			//	=> member is IMethodSymbol && member.Name == referencedMethodName && member.IsOverride;
-		}
-
-		return Diagnostic.Create(IC0102, identifierToken.GetLocation(), messageArgs: [methodName]);
-
-
-		static NullableResultTriplet g(
-			IMethodSymbol methodSymbol,
-			ExpressionSyntax invocationExpression,
-			ImmutableArray<SyntaxReference> syntaxRefs,
-			out Diagnostic? diagnostic,
-			CancellationToken cancellationToken = default
-		)
-		{
-			if (syntaxRefs is not [var syntaxRef])
-			{
-				diagnostic = Diagnostic.Create(
-					IC0103,
-					Location.Create(syntaxRefs[0].SyntaxTree, syntaxRefs[0].Span),
-					messageArgs: [invocationExpression.ToString()]
-				);
-				return null;
-			}
-
-			var invocationLocation = (invocationExpression as MemberAccessExpressionSyntax)?.Name.GetLocation();
-			var referencedMethodDeclaration = syntaxRef.GetSyntax(cancellationToken) as MethodDeclarationSyntax;
-			var referencedMethodSymbol = methodSymbol;
-			diagnostic = null;
-			return (invocationLocation, referencedMethodDeclaration, referencedMethodSymbol);
+			return result;
 		}
 
 		static SuccessTransformResult getResult(
@@ -487,6 +675,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			string instanceParameter,
 			List<StatementSyntax> statements,
 			string filePath,
+			bool emitInterceptsLocationAttribute,
 			SyntaxList<TypeParameterConstraintClauseSyntax>? constraints = null,
 			CancellationToken cancellationToken = default
 		)
@@ -502,13 +691,13 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				/// <summary>
 				/// Interceptor method that will replace implementation on such referenced method invocation.
 				/// </summary>
-				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Sudoku.SourceGeneration.CachedMethodGenerator", "3.4.0")]
+				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(CachedMethodGenerator)}}", "{{Value}}")]
 				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-				public static class __{{referencedMethodSymbol.ContainingType.Name}}_Intercepted
+				public static class __{{referencedMethodSymbol.ContainingType.Name}}_{{referencedMethodSymbol.Name}}_Intercepted
 				{
 					{{xmlDocCommentsStr}}
-					{{AttributeInsertionMatchString}}
-					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Sudoku.SourceGeneration.CachedMethodGenerator", "3.4.0")]
+					{{(emitInterceptsLocationAttribute ? AttributeInsertionMatchString : string.Empty)}}
+					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(CachedMethodGenerator)}}", "{{Value}}")]
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 					public static {{returnTypeStr}} {{referencedMethodSymbol.Name}}({{instanceParameter}}{{parametersString}})
 					{
@@ -547,18 +736,6 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					: string.Join("\r\n\t", xmlDocCommentLines);
 			}
 
-			static string getReturnTypeString(ITypeSymbol referencedMethodReturnType, IMethodSymbol referencedMethodSymbol)
-			{
-				var returnTypeName = referencedMethodReturnType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-				var returnRefKindType = referencedMethodSymbol switch
-				{
-					{ ReturnsByRefReadonly: true } => "ref readonly ",
-					{ ReturnsByRef: true } => "ref ",
-					_ => string.Empty
-				};
-				return $"{returnRefKindType}{returnTypeName}";
-			}
-
 			static string getGenericTypeParametersString(IMethodSymbol referencedMethodSymbol)
 				=> referencedMethodSymbol.IsGenericMethod
 					&& (from typeParameter in referencedMethodSymbol.TypeParameters select typeParameter.ToDisplayString()) is var p
@@ -568,54 +745,6 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 			static string getConstraintsString(SyntaxList<TypeParameterConstraintClauseSyntax>? constraints)
 				=> (constraints?.Count ?? 0) != 0 ? $"\r\n\t\t{constraints}" : string.Empty;
-
-			static string getParametersString(ImmutableArray<IParameterSymbol> referencedMethodParameters)
-			{
-				return string.Join(
-					", ",
-					from parameter in referencedMethodParameters
-					let refKindString = getRefKindString(parameter.RefKind)
-					let scopedKindString = getScopedKindString(parameter.ScopedKind)
-					let typeNameString = parameter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
-					let defaultValue = getDefaultValueString(parameter)
-					let defaultValueString = defaultValue is null ? string.Empty : $" = {defaultValue}"
-					select $"{scopedKindString}{refKindString}{typeNameString} {parameter.Name}{defaultValueString}"
-				);
-
-
-				static string getRefKindString(RefKind refKind)
-					=> refKind switch
-					{
-						RefKind.Ref => "ref ",
-						RefKind.Out => "out ",
-						RefKind.In => "in ",
-						RefKind.RefReadOnlyParameter => "ref readonly ",
-						_ => string.Empty
-					};
-
-				static string getScopedKindString(ScopedKind scopedKind)
-					=> scopedKind switch { ScopedKind.ScopedRef or ScopedKind.ScopedValue => "scoped ", _ => string.Empty };
-
-				static string? getDefaultValueString(IParameterSymbol parameter)
-					=> parameter.HasExplicitDefaultValue
-						? parameter.ExplicitDefaultValue switch
-						{
-							null => "default",
-							string and [.. var s, '"']
-								=> $""""
-								"""
-								{s}"
-								"""
-								"""",
-							string s
-								=> $""""
-								"""{s}"""
-								"""",
-							char c => $"'{c}'",
-							var value => value.ToString()
-						}
-						: null;
-			}
 
 			static List<string> getTargetStringAppendIndenting(List<StatementSyntax> statements)
 			{
@@ -638,7 +767,23 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 		bool cachedAttributeChecker(AttributeData a)
 			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, cachedAttributeSymbol);
 
-		//bool interceptorInstanceTypesAttributeChecker(AttributeData a)
-		//	=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, interceptorInstanceTypesAttributeSymbol);
+		bool interceptorInstanceTypesAttributeChecker(AttributeData a)
+			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, interceptorInstanceTypesAttributeSymbol);
 	}
+}
+
+/// <summary>
+/// Indicates the default behavior on routing for interceptor instance type checking.
+/// </summary>
+file enum InterceptorInstanceRoutingDefaultBehavior
+{
+	/// <summary>
+	/// Indicates the default behavior is to return <see langword="default"/> or do nothing.
+	/// </summary>
+	DoNothingOrReturnDefault,
+
+	/// <summary>
+	/// Indicates the default behavior is to throw a <see cref="NotSupportedException"/>.
+	/// </summary>
+	ThrowNotSupportedException
 }

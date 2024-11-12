@@ -11,14 +11,14 @@ internal static class ChainingRulePool
 	/// </summary>
 	private static readonly FrozenDictionary<LinkType, Func<ChainingRule>> RuleRouter = new Dictionary<LinkType, Func<ChainingRule>>
 	{
-		{ LinkType.SingleDigit, static () => new CachedXChainingRule() },
-		{ LinkType.SingleCell, static () => new CachedYChainingRule() },
-		{ LinkType.LockedCandidates, static () => new CachedLockedCandidatesChainingRule() },
-		{ LinkType.AlmostLockedSets, static () => new CachedAlmostLockedSetsChainingRule() },
-		{ LinkType.KrakenNormalFish, static () => new CachedKrakenNormalFishChainingRule() },
-		{ LinkType.XyzWing, static () => new CachedXyzWingChainingRule() },
-		{ LinkType.AlmostUniqueRectangle, static () => new CachedAlmostUniqueRectangleChainingRule() },
-		{ LinkType.AlmostAvoidableRectangle, static () => new CachedAlmostAvoidableRectangleChainingRule() },
+		{ LinkType.SingleDigit, static () => new XChainingRule() },
+		{ LinkType.SingleCell, static () => new YChainingRule() },
+		{ LinkType.LockedCandidates, static () => new LockedCandidatesChainingRule() },
+		{ LinkType.AlmostLockedSets, static () => new AlmostLockedSetsChainingRule() },
+		{ LinkType.KrakenNormalFish, static () => new KrakenNormalFishChainingRule() },
+		{ LinkType.XyzWing, static () => new XyzWingChainingRule() },
+		{ LinkType.AlmostUniqueRectangle, static () => new AlmostUniqueRectangleChainingRule() },
+		{ LinkType.AlmostAvoidableRectangle, static () => new AlmostAvoidableRectangleChainingRule() },
 	}.ToFrozenDictionary();
 
 	/// <summary>

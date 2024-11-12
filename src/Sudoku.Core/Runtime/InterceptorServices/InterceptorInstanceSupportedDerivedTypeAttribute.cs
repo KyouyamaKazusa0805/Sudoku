@@ -31,4 +31,11 @@ namespace Sudoku.Runtime.InterceptorServices;
 /// </para>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]
-public sealed partial class InterceptorInstanceTypesAttribute([Property] params Type[] types) : Attribute;
+public sealed partial class InterceptorInstanceTypesAttribute([Property] params Type[] types) : Attribute
+{
+	/// <summary>
+	/// Indicates the routing default behavior on generated method for <see langword="default"/> label
+	/// or <see langword="_"/> token in <see langword="switch"/> statement or expression respectively.
+	/// </summary>
+	public InterceptorInstanceRoutingDefaultBehavior DefaultBehavior { get; init; }
+}

@@ -9938,6 +9938,21 @@
             Indicates the grid to be used.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.InterceptorInstanceRoutingDefaultBehavior">
+            <summary>
+            Indicates the default behavior on routing for interceptor instance type checking.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InterceptorServices.InterceptorInstanceRoutingDefaultBehavior.DoNothingOrReturnDefault">
+            <summary>
+            Indicates the default behavior is to return <see langword="default"/> or do nothing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InterceptorServices.InterceptorInstanceRoutingDefaultBehavior.ThrowNotSupportedException">
+            <summary>
+            Indicates the default behavior is to throw a <see cref="T:System.NotSupportedException"/>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.InterceptorServices.InterceptorInstanceTypesAttribute">
              <summary>
              Represents an attribute type that can be applied to a method, indicating the method uses interceptor,
@@ -10001,6 +10016,12 @@
              ]]></code>
              </para>
              </remarks>
+        </member>
+        <member name="P:Sudoku.Runtime.InterceptorServices.InterceptorInstanceTypesAttribute.DefaultBehavior">
+            <summary>
+            Indicates the routing default behavior on generated method for <see langword="default"/> label
+            or <see langword="_"/> token in <see langword="switch"/> statement or expression respectively.
+            </summary>
         </member>
         <member name="P:Sudoku.Runtime.InterceptorServices.InterceptorInstanceTypesAttribute.Types">
             <summary>

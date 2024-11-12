@@ -1,10 +1,10 @@
-namespace Sudoku.Analytics.Caching.ChainingRules;
+namespace Sudoku.Analytics.Construction.Chaining.Rules;
 
 /// <summary>
 /// Represents a chaining rule on ALS rule (i.e. <see cref="LinkType.AlmostLockedSets"/>).
 /// </summary>
 /// <seealso cref="LinkType.AlmostLockedSets"/>
-internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
+public sealed class AlmostLockedSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
 	[InterceptorMethodCaller]
@@ -16,9 +16,14 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 		}
 
 		ref readonly var grid = ref context.Grid;
+
+		// VARIABLE_DECLARATION_BEGIN
+		_ = grid is { CandidatesMap: var __CandidatesMap };
+		// VARIABLE_DECLARATION_END
+
 		var linkOption = context.GetLinkOption(LinkType.AlmostLockedSets);
 		var maskTempList = (stackalloc Mask[81]);
-		foreach (var als in AlmostLockedSetPattern.Collect(in grid))
+		foreach (var als in AlmostLockedSetPattern.Collect(in grid)) // Here might raise an confliction to call nested-level interceptor.
 		{
 			if (als is not (var digitsMask, var cells) { IsBivalueCell: false, StrongLinks: var links, House: var house })
 			{
@@ -70,8 +75,8 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 
 				var digit1 = Mask.TrailingZeroCount(digitsPair);
 				var digit2 = digitsPair.GetNextSet(digit1);
-				var node1Cells = HousesMap[house] & cells & CandidatesMap[digit1];
-				var node2Cells = HousesMap[house] & cells & CandidatesMap[digit2];
+				var node1Cells = HousesMap[house] & cells & __CandidatesMap[digit1];
+				var node2Cells = HousesMap[house] & cells & __CandidatesMap[digit2];
 				var node1 = new Node(node1Cells * digit1, false);
 				var node2 = new Node(node2Cells * digit2, true);
 				context.StrongLinks.AddEntry(node1, node2, true, als);
@@ -83,11 +88,11 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 			// behaved as normal locked candidate nodes.
 			foreach (var digit in digitsMask)
 			{
-				var cells3 = CandidatesMap[digit] & cells;
+				var cells3 = __CandidatesMap[digit] & cells;
 				var node3 = new Node(cells3 * digit, true);
 				foreach (var cells3House in cells3.SharedHouses)
 				{
-					var otherCells = HousesMap[cells3House] & CandidatesMap[digit] & ~cells;
+					var otherCells = HousesMap[cells3House] & __CandidatesMap[digit] & ~cells;
 					var weakLimit = linkOption switch
 					{
 						LinkOption.Intersection => 3,
@@ -157,6 +162,11 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 
 		// A valid ALS can be eliminated as a real naked subset.
 		ref readonly var grid = ref context.Grid;
+
+		// VARIABLE_DECLARATION_BEGIN
+		_ = grid is { CandidatesMap: var __CandidatesMap };
+		// VARIABLE_DECLARATION_END
+
 		var result = ConclusionSet.Empty;
 		foreach (var element in context.Links)
 		{
@@ -171,7 +181,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				var elimDigitsMask = (Mask)(digitsMask & ~(digitsMask1 | digitsMask2));
 				foreach (var digit in elimDigitsMask)
 				{
-					foreach (var cell in alsCells % CandidatesMap[digit])
+					foreach (var cell in alsCells % __CandidatesMap[digit])
 					{
 						result.Add(new(Elimination, cell, digit));
 					}

@@ -1,10 +1,10 @@
-namespace Sudoku.Analytics.Caching.ChainingRules;
+namespace Sudoku.Analytics.Construction.Chaining.Rules;
 
 /// <summary>
 /// Represents a chaining rule on XYZ-Wing rule (i.e. <see cref="LinkType.XyzWing"/>).
 /// </summary>
 /// <seealso cref="LinkType.XyzWing"/>
-internal sealed class CachedXyzWingChainingRule : ChainingRule
+public sealed class XyzWingChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
@@ -15,6 +15,11 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 		}
 
 		ref readonly var grid = ref context.Grid;
+
+		// VARIABLE_DECLARATION_BEGIN
+		_ = grid is { CandidatesMap: var __CandidatesMap, EmptyCells: var __EmptyCells };
+		// VARIABLE_DECLARATION_END
+
 		var linkOption = context.GetLinkOption(LinkType.XyzWing);
 
 		// Iterate on each XYZ-Wing pattern, to get strong links.
@@ -47,11 +52,11 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 				// Please note that weak links may not contain pattern objects,
 				// because it will be rendered into view nodes; but they are plain ones,
 				// behaved as normal locked candidate nodes.
-				var possibleCells1 = cells1.PeerIntersection & CandidatesMap[zDigit];
-				var possibleCells2 = cells2.PeerIntersection & CandidatesMap[zDigit];
+				var possibleCells1 = cells1.PeerIntersection & __CandidatesMap[zDigit];
+				var possibleCells2 = cells2.PeerIntersection & __CandidatesMap[zDigit];
 				var (limit1, limit2) = linkOption switch
 				{
-					LinkOption.House => (Math.Min((EmptyCells & possibleCells1).Count, 9), Math.Min((EmptyCells & possibleCells2).Count, 9)),
+					LinkOption.House => (Math.Min((__EmptyCells & possibleCells1).Count, 9), Math.Min((__EmptyCells & possibleCells2).Count, 9)),
 					LinkOption.All => (possibleCells1.Count, possibleCells2.Count),
 					_ => (3, 3)
 				};

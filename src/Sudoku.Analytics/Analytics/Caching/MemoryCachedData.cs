@@ -144,12 +144,16 @@ internal static class MemoryCachedData
 	/// <param name="linkTypes">The link types to be checked.</param>
 	/// <param name="options">The options used by step searchers.</param>
 	/// <param name="rules">The <see cref="ChainingRule"/> instance that collects with strong and weak links if worth.</param>
-	//[InterceptorMethodCaller]
+	[InterceptorMethodCaller]
 	[InterceptorInstanceTypes(
-		typeof(CachedXChainingRule), typeof(CachedYChainingRule),
-		typeof(CachedLockedCandidatesChainingRule), typeof(CachedAlmostLockedSetsChainingRule),
-		typeof(CachedAlmostUniqueRectangleChainingRule), typeof(CachedAlmostAvoidableRectangleChainingRule),
-		typeof(CachedKrakenNormalFishChainingRule), typeof(CachedXyzWingChainingRule))]
+		typeof(XChainingRule),
+		typeof(YChainingRule),
+		typeof(LockedCandidatesChainingRule),
+		typeof(AlmostLockedSetsChainingRule),
+		typeof(AlmostUniqueRectangleChainingRule),
+		typeof(AlmostAvoidableRectangleChainingRule),
+		typeof(KrakenNormalFishChainingRule),
+		typeof(XyzWingChainingRule))]
 	public static void InitializeLinks(ref readonly Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)
 	{
 		rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;

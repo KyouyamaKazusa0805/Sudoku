@@ -79,38 +79,6 @@ internal partial class ChainingDriver
 			return rootMap;
 		}
 
-		static ConclusionSet collectConclusions(ref readonly Grid grid, List<Link> patternLinks, ref readonly CandidateMap exits, ChainingRuleCollection supportedRules)
-		{
-			var result = ConclusionSet.Empty;
-
-			// Collect on eliminations from weak links.
-			foreach (var link in patternLinks)
-			{
-				foreach (var conclusion in EliminationCalculator.Chain.GetConclusions(in grid, link.FirstNode, link.SecondNode))
-				{
-					result.Add(conclusion);
-				}
-			}
-
-			// Collect on patterns (like ALSes).
-			var context = new ChainingRuleLoopConclusionContext(in grid, patternLinks.AsSpan());
-			foreach (var rule in supportedRules)
-			{
-				rule.GetLoopConclusions(ref context);
-				result |= context.Conclusions;
-			}
-
-			// Collect on end-point nodes.
-			foreach (var candidate in exits.PeerIntersection)
-			{
-				if (grid.Exists(candidate) is true)
-				{
-					result.Add(new(Elimination, candidate));
-				}
-			}
-			return result;
-		}
-
 		void cellToCell(ref readonly Grid grid, CellsDistribution cellsDistribution, Cell startCell, ChainingRuleCollection supportedRules)
 		{
 			// Iterate on cells' distribution.
@@ -140,7 +108,7 @@ internal partial class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = collectConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
+				var conclusions = CollectBlossomConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -188,7 +156,7 @@ internal partial class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = collectConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
+				var conclusions = CollectBlossomConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -236,7 +204,7 @@ internal partial class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = collectConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
+				var conclusions = CollectBlossomConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -282,7 +250,7 @@ internal partial class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = collectConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
+				var conclusions = CollectBlossomConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -362,5 +330,56 @@ internal partial class ChainingDriver
 			}
 			return (cellsDistribution, housesDistribution);
 		}
+	}
+
+	/// <summary>
+	/// The backing method to collect blossom conclusions.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="patternLinks">The pattern links.</param>
+	/// <param name="exits">The exit candidates.</param>
+	/// <param name="supportedRules">All supported rules used.</param>
+	/// <returns>Found conclusions.</returns>
+	[InterceptorMethodCaller]
+	[InterceptorInstanceTypes(
+		typeof(AlmostLockedSetsChainingRule),
+		typeof(KrakenNormalFishChainingRule),
+		typeof(LockedCandidatesChainingRule),
+		DefaultBehavior = InterceptorInstanceRoutingDefaultBehavior.DoNothingOrReturnDefault)]
+	private static ConclusionSet CollectBlossomConclusions(
+		ref readonly Grid grid,
+		List<Link> patternLinks,
+		ref readonly CandidateMap exits,
+		ChainingRuleCollection supportedRules
+	)
+	{
+		var result = ConclusionSet.Empty;
+
+		// Collect on eliminations from weak links.
+		foreach (var link in patternLinks)
+		{
+			foreach (var conclusion in EliminationCalculator.Chain.GetConclusions(in grid, link.FirstNode, link.SecondNode))
+			{
+				result.Add(conclusion);
+			}
+		}
+
+		// Collect on patterns (like ALSes).
+		var context = new ChainingRuleLoopConclusionContext(in grid, patternLinks.AsSpan());
+		foreach (var rule in supportedRules)
+		{
+			rule.GetLoopConclusions(ref context);
+			result |= context.Conclusions;
+		}
+
+		// Collect on end-point nodes.
+		foreach (var candidate in exits.PeerIntersection)
+		{
+			if (grid.Exists(candidate) is true)
+			{
+				result.Add(new(Elimination, candidate));
+			}
+		}
+		return result;
 	}
 }

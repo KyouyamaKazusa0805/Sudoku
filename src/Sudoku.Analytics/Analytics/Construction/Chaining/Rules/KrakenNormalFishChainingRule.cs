@@ -1,10 +1,10 @@
-namespace Sudoku.Analytics.Caching.ChainingRules;
+namespace Sudoku.Analytics.Construction.Chaining.Rules;
 
 /// <summary>
 /// Represents a chaining rule on normal fish rule (i.e. <see cref="LinkType.KrakenNormalFish"/>).
 /// </summary>
 /// <seealso cref="LinkType.KrakenNormalFish"/>
-internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
+public sealed class KrakenNormalFishChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
@@ -14,19 +14,23 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 			return;
 		}
 
+		// VARIABLE_DECLARATION_BEGIN
+		_ = context.Grid is { ValuesMap: var __ValuesMap, CandidatesMap: var __CandidatesMap };
+		// VARIABLE_DECLARATION_END
+
 		// Collect for available rows and columns.
 		var sets = (stackalloc HouseMask[9]);
 		sets.Clear();
 		for (var digit = 0; digit < 9; digit++)
 		{
-			if (ValuesMap[digit].Count == 9)
+			if (__ValuesMap[digit].Count == 9)
 			{
 				continue;
 			}
 
 			for (var house = 9; house < 27; house++)
 			{
-				if ((CandidatesMap[digit] & HousesMap[house]).Count >= 2)
+				if ((__CandidatesMap[digit] & HousesMap[house]).Count >= 2)
 				{
 					sets[digit] |= 1 << house;
 				}
@@ -38,13 +42,20 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 		{
 			for (var digit = 0; digit < 9; digit++)
 			{
-				collect(in context, true, size, digit, sets);
-				collect(in context, false, size, digit, sets);
+				collect(in context, true, size, digit, sets, __CandidatesMap);
+				collect(in context, false, size, digit, sets, __CandidatesMap);
 			}
 		}
 
 
-		static void collect(ref readonly ChainingRuleLinkContext context, bool isRow, Digit size, Digit digit, Span<HouseMask> sets)
+		static void collect(
+			ref readonly ChainingRuleLinkContext context,
+			bool isRow,
+			Digit size,
+			Digit digit,
+			Span<HouseMask> sets,
+			ReadOnlySpan<CellMap> candidatesMap
+		)
 		{
 			var linkOption = context.GetLinkOption(LinkType.KrakenNormalFish);
 			var baseSetsToIterate = (sets[digit] & ~(isRow ? HouseMaskOperations.AllColumnsMask : HouseMaskOperations.AllRowsMask)).GetAllSets();
@@ -59,7 +70,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 				var (baseSetsMap, baseSetIsValid) = (CellMap.Empty, true);
 				foreach (var p in bs)
 				{
-					var cells = CandidatesMap[digit] & HousesMap[p];
+					var cells = candidatesMap[digit] & HousesMap[p];
 					if (cells.Count < 2)
 					{
 						// Here we keep the pattern to be "readable", we don't allow Sashimi Kraken Fishes here.
@@ -80,7 +91,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 					var coverSetsMap = CellMap.Empty;
 					foreach (var p in cs)
 					{
-						var cells = CandidatesMap[digit] & HousesMap[p];
+						var cells = candidatesMap[digit] & HousesMap[p];
 						coverSetsMap |= cells;
 					}
 
@@ -186,8 +197,12 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	public override void GetLoopConclusions(ref ChainingRuleLoopConclusionContext context)
 	{
 		ref readonly var grid = ref context.Grid;
+
+		// VARIABLE_DECLARATION_BEGIN
+		_ = grid is { CandidatesMap: var __CandidatesMap };
+		// VARIABLE_DECLARATION_END
+
 		var result = ConclusionSet.Empty;
-		var candidatesMap = grid.CandidatesMap;
 		var links = context.Links;
 		foreach (var link in links)
 		{
@@ -204,7 +219,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 			var elimMap = CellMap.Empty;
 			foreach (var coverSet in coverSets)
 			{
-				elimMap |= HousesMap[coverSet] & candidatesMap[digit];
+				elimMap |= HousesMap[coverSet] & __CandidatesMap[digit];
 			}
 			foreach (var baseSet in baseSets)
 			{

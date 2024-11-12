@@ -39,7 +39,7 @@ public abstract partial class ChainingRule
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <seealso cref="ChainingRuleLinkContext"/>
-	//[Cached]
+	[Cached]
 	public abstract void GetLinks(ref ChainingRuleLinkContext context);
 
 	/// <summary>
@@ -63,5 +63,6 @@ public abstract partial class ChainingRule
 	/// <remarks>
 	/// This method should not be overridden if no eliminations exists in the loop pattern.
 	/// </remarks>
+	[Cached]
 	public virtual void GetLoopConclusions(ref ChainingRuleLoopConclusionContext context) => context.Conclusions = ConclusionSet.Empty;
 }
