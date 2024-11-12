@@ -108,11 +108,12 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 		var success = new List<SuccessTransformResult>();
 		foreach (var result in transformResults)
 		{
-			switch (result)
+			Action r = result switch
 			{
-				case FailedTransformResult f: { failed.Add(f); break; }
-				case SuccessTransformResult s: { success.Add(s); break; }
-			}
+				FailedTransformResult f => () => failed.Add(f),
+				SuccessTransformResult s => () => success.Add(s)
+			};
+			r();
 		}
 		failed.ForEach(f => spc.ReportDiagnostic(f.Diagnostic));
 		if (failed.Count != 0)
