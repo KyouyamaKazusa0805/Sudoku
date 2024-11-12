@@ -22,46 +22,46 @@
             The requirement is that, the callee method should be applied with '<c>[InterceptorMethodCaller]</c>'.
             </remarks>
         </member>
-        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0100">
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.IC0100">
             <summary>
             Represents message "Necessary type is missing".
             </summary>
         </member>
-        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0101">
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.IC0101">
             <summary>
             Represents message "Method marked '[InterceptorMethodCaller]' or '[Cached]' can only be block body".
             </summary>
         </member>
-        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0102">
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.IC0102">
             <summary>
             Represents message "Method marked '[InterceptorMethodCaller]' requires at least one invocation expression
             that references to a method marked '[Cached]'".
             </summary>
         </member>
-        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0103">
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.IC0103">
             <summary>
             Represents message "Method marked '[Cached]' cannot be <see langword="partial"/>".
             </summary>
         </member>
-        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0104">
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.IC0104">
             <summary>
             Represents message "Lacks of usage of necessary comments:
             '<c>VARIABLE_DECLARATION_BEGIN</c>' and '<c>VARIABLE_DECLARATION_END</c>'".
             </summary>
         </member>
-        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0105">
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.IC0105">
             <summary>
             Represents message "Duplicate comments:
             '<c>VARIABLE_DECLARATION_BEGIN</c>' and '<c>VARIABLE_DECLARATION_END</c>'".
             </summary>
         </member>
-        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0106">
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.IC0106">
             <summary>
             Represents message "If method is marked '[Cached]',
             it is disallowed to consume instance members by using <see langword="this"/> or <see langword="base"/>".
             </summary>
         </member>
-        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.Descriptor_Interceptor0107">
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.IC0107">
             <summary>
             Represents message "Method marked '[Cached]' cannot be generic".
             </summary>

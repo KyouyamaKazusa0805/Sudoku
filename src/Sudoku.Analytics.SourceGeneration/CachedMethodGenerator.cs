@@ -180,18 +180,18 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 		var interceptorInstanceTypesAttributeSymbol = compilation.GetTypeByMetadataName(InterceptorInstanceTypesAttributeTypeFullName);
 		if (interceptorInstanceTypesAttributeSymbol is null)
 		{
-			return Diagnostic.Create(Descriptor_Interceptor0100, null, messageArgs: [InterceptorInstanceTypesAttributeTypeFullName]);
+			return Diagnostic.Create(IC0100, null, messageArgs: [InterceptorInstanceTypesAttributeTypeFullName]);
 		}
 
 		var cachedAttributeSymbol = compilation.GetTypeByMetadataName(CachedAttributeTypeFullName);
 		if (cachedAttributeSymbol is null)
 		{
-			return Diagnostic.Create(Descriptor_Interceptor0100, null, messageArgs: [CachedAttributeTypeFullName]);
+			return Diagnostic.Create(IC0100, null, messageArgs: [CachedAttributeTypeFullName]);
 		}
 
 		if (expressionBody is not null)
 		{
-			return Diagnostic.Create(Descriptor_Interceptor0101, node.GetLocation(), messageArgs: [methodName]);
+			return Diagnostic.Create(IC0101, node.GetLocation(), messageArgs: [methodName]);
 		}
 
 		// Iterate on each invocation expression syntax node, to find any referenced methods marked '[Cached]' attribute.
@@ -244,11 +244,11 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 			if (referencedMethodIsGenericMethod)
 			{
-				return Diagnostic.Create(Descriptor_Interceptor0107, invocationLocation, messageArgs: [referencedMethodName]);
+				return Diagnostic.Create(IC0107, invocationLocation, messageArgs: [referencedMethodName]);
 			}
 			if (referencedMethodBody is not { Statements: var bodyStatements })
 			{
-				return Diagnostic.Create(Descriptor_Interceptor0101, invocationLocation, messageArgs: [referencedMethodName]);
+				return Diagnostic.Create(IC0101, invocationLocation, messageArgs: [referencedMethodName]);
 			}
 
 			// Now we have the referenced method data.
@@ -313,11 +313,11 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			}
 			if (duplicateBeginCommentOrEndComment)
 			{
-				return Diagnostic.Create(Descriptor_Interceptor0105, identifierToken.GetLocation(), messageArgs: [methodName]);
+				return Diagnostic.Create(IC0105, identifierToken.GetLocation(), messageArgs: [methodName]);
 			}
 			if (!existsBeginComment || !existsEndComment)
 			{
-				return Diagnostic.Create(Descriptor_Interceptor0104, identifierToken.GetLocation(), messageArgs: [methodName]);
+				return Diagnostic.Create(IC0104, identifierToken.GetLocation(), messageArgs: [methodName]);
 			}
 
 			// If the referenced method is an instance method instead of a static method,
@@ -357,7 +357,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				{
 					// Today I won't handle this because it is too complex to be checked...
 					// I'll implement a 'SyntaxRewriter' to replace nodes, to change this code.
-					return Diagnostic.Create(Descriptor_Interceptor0106, identifierToken.GetLocation(), messageArgs: null);
+					return Diagnostic.Create(IC0106, identifierToken.GetLocation(), messageArgs: null);
 				}
 			}
 
@@ -451,7 +451,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			//	=> member is IMethodSymbol && member.Name == referencedMethodName && member.IsOverride;
 		}
 
-		return Diagnostic.Create(Descriptor_Interceptor0102, identifierToken.GetLocation(), messageArgs: [methodName]);
+		return Diagnostic.Create(IC0102, identifierToken.GetLocation(), messageArgs: [methodName]);
 
 
 		static NullableResultTriplet g(
@@ -465,7 +465,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			if (syntaxRefs is not [var syntaxRef])
 			{
 				diagnostic = Diagnostic.Create(
-					Descriptor_Interceptor0103,
+					IC0103,
 					Location.Create(syntaxRefs[0].SyntaxTree, syntaxRefs[0].Span),
 					messageArgs: [invocationExpression.ToString()]
 				);

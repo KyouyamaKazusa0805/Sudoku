@@ -5,11 +5,11 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
-INTERCEPTOR0100 | Interceptor.Design | Error | CachedMethodGenerator
-INTERCEPTOR0101 | Interceptor.Design | Error | CachedMethodGenerator
-INTERCEPTOR0102 | Interceptor.Design | Error | CachedMethodGenerator
-INTERCEPTOR0103 | Interceptor.Design | Error | CachedMethodGenerator
-INTERCEPTOR0104 | Interceptor.Design | Error | CachedMethodGenerator
-INTERCEPTOR0105 | Interceptor.Design | Error | CachedMethodGenerator
-INTERCEPTOR0106 | Interceptor.Design | Error | CachedMethodGenerator
-INTERCEPTOR0107 | Interceptor.Design | Error | CachedMethodGenerator
+IC0100 | Interceptor.Design | Error | CachedMethodGenerator
+IC0101 | Interceptor.Design | Error | CachedMethodGenerator
+IC0102 | Interceptor.Design | Error | CachedMethodGenerator
+IC0103 | Interceptor.Design | Error | CachedMethodGenerator
+IC0104 | Interceptor.Design | Error | CachedMethodGenerator
+IC0105 | Interceptor.Design | Error | CachedMethodGenerator
+IC0106 | Interceptor.Design | Error | CachedMethodGenerator
+IC0107 | Interceptor.Design | Error | CachedMethodGenerator
