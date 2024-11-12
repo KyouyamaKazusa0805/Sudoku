@@ -931,14 +931,6 @@
             <param name="options">The options used by step searchers.</param>
             <param name="rules">The <see cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRule"/> instance that collects with strong and weak links if worth.</param>
         </member>
-        <member name="T:Sudoku.Analytics.Caching.PatternSearchers.CachedXyzWingPatternSearcher">
-            <summary>
-            Represents a pattern searcher on XYZ-Wings.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.PatternSearchers.CachedXyzWingPatternSearcher.Search(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Collector">
             <summary>
             Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one state.
@@ -4828,6 +4820,49 @@
         <member name="M:Sudoku.Analytics.Construction.Pattern.op_Inequality(Sudoku.Analytics.Construction.Pattern,Sudoku.Analytics.Construction.Pattern)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.PatternSearcher`1">
+            <summary>
+            Represents a pattern searcher type.
+            </summary>
+            <typeparam name="TPattern">The type of pattern.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.PatternSearcher`1.Type">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.PatternSearcher`1.Search(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to search patterns and return them.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>The found patterns.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.PatternSearchers.XyzWingPatternSearcher">
+            <summary>
+            Represents a pattern searcher on XYZ-Wings.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.PatternSearchers.XyzWingPatternSearcher.Type">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.PatternSearchers.XyzWingPatternSearcher.Search(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+            <remarks><i>This method cannot be used as caching because most of callers have already been cached.</i></remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.PatternSearcherType">
+            <summary>
+            Represents a pattern searcher type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternSearcherType.None">
+            <summary>
+            Indicates the placeholder.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternSearcherType.XyzWing">
+            <summary>
+            Indicates the pattern searcher is for searching for XYZ-Wing patterns.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.AlmostHiddenSetPattern">
             <summary>
             Defines a data pattern that describes an AHS.
@@ -6699,19 +6734,6 @@
             </summary>
             <param name="size">The number of cells used in a subset.</param>
             <returns>The name of the subset.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.PatternSearcher`1">
-            <summary>
-            Represents a pattern searcher type.
-            </summary>
-            <typeparam name="TPattern">The type of pattern.</typeparam>
-        </member>
-        <member name="M:Sudoku.Analytics.PatternSearcher`1.Search(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to search patterns and return them.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>The found patterns.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Primitives.BottleneckFilter">
             <summary>

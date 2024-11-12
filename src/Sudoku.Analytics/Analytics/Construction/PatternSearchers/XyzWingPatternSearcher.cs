@@ -1,16 +1,23 @@
-namespace Sudoku.Analytics.Caching.PatternSearchers;
+namespace Sudoku.Analytics.Construction.PatternSearchers;
 
 /// <summary>
 /// Represents a pattern searcher on XYZ-Wings.
 /// </summary>
-internal sealed class CachedXyzWingPatternSearcher : PatternSearcher<XyzWingPattern>
+public sealed class XyzWingPatternSearcher : PatternSearcher<XyzWingPattern>
 {
 	/// <inheritdoc/>
+	public override PatternSearcherType Type => PatternSearcherType.XyzWing;
+
+
+	/// <inheritdoc/>
+	/// <remarks><i>This method cannot be used as caching because most of callers have already been cached.</i></remarks>
 	public override ReadOnlySpan<XyzWingPattern> Search(ref readonly Grid grid)
 	{
+		_ = grid is { BivalueCells: var bivalueCells, EmptyCells: var emptyCells };
+
 		// Collect for tri-value cells.
 		var trivalueCells = CellMap.Empty;
-		foreach (var cell in EmptyCells & ~BivalueCells)
+		foreach (var cell in emptyCells & ~bivalueCells)
 		{
 			if (Mask.PopCount(grid.GetCandidates(cell)) == 3)
 			{
@@ -29,8 +36,8 @@ internal sealed class CachedXyzWingPatternSearcher : PatternSearcher<XyzWingPatt
 			{
 				var house1 = pivot.ToHouse(housePair[0]);
 				var house2 = pivot.ToHouse(housePair[1]);
-				var bivalueCellsFromHouse1 = BivalueCells & HousesMap[house1];
-				var bivalueCellsFromHouse2 = BivalueCells & HousesMap[house2];
+				var bivalueCellsFromHouse1 = bivalueCells & HousesMap[house1];
+				var bivalueCellsFromHouse2 = bivalueCells & HousesMap[house2];
 				if (!bivalueCellsFromHouse1 || !bivalueCellsFromHouse2)
 				{
 					continue;

@@ -95,7 +95,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 		}
 
 		// Iterate on patterns found.
-		foreach (var (pivot, leafCell1, leafCell2, house1, house2, unionDigitsMask, zDigit) in new CachedXyzWingPatternSearcher().Search(in grid))
+		foreach (var (pivot, leafCell1, leafCell2, house1, house2, unionDigitsMask, zDigit) in new XyzWingPatternSearcher().Search(in grid))
 		{
 			var digitsMaskPivot = grid.GetCandidates(pivot);
 			var digitsMask1 = grid.GetCandidates(leafCell1);
