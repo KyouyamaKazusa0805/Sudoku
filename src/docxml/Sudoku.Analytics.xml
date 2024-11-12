@@ -33841,24 +33841,24 @@
              <seealso cref="T:Sudoku.Concepts.Grid"/>
              <seealso cref="T:Sudoku.Analytics.Caching.MemoryCachedData"/>
         </member>
-        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.AlmostLockedSetPattern_Intercepted">
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__AlmostLockedSetPattern_Intercepted">
             <summary>
             Interceptor method that will replace implementation on such referenced method invocation.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.AlmostLockedSetPattern_Intercepted.Collect(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__AlmostLockedSetPattern_Intercepted.Collect(Sudoku.Concepts.Grid@)">
             <summary>
             Collects all possible <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/>s in the specified grid.
             </summary>
             <param name="grid">The grid.</param>
             <returns>All possible found <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/> instances.</returns>
         </member>
-        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.TrueCandidate_Intercepted">
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__TrueCandidate_Intercepted">
             <summary>
             Interceptor method that will replace implementation on such referenced method invocation.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.TrueCandidate_Intercepted.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__TrueCandidate_Intercepted.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <summary>
             Get all true candidates when the number of empty cells is below than the argument.
             </summary>

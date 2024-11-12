@@ -1,5 +1,7 @@
 namespace Sudoku.SourceGeneration;
 
+using NullableResultTriplet = (Location? Location, MethodDeclarationSyntax? RefMethodDeclarationSyntaxNode, IMethodSymbol RefMethodSymbol)?;
+
 /// <summary>
 /// Represents a source generator that copies the whole method, and replaces some variables with cached fields.
 /// </summary>
@@ -166,7 +168,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				{
 					ExpressionBody: var expressionBody,
 					Identifier: { ValueText: var methodName } identifierToken,
-					//ConstraintClauses: var constraints
+					ConstraintClauses: var constraints
 				} node,
 				TargetSymbol: IMethodSymbol currentMethodSymbol,
 				SemanticModel: { Compilation: var compilation } semanticModel
@@ -195,76 +197,58 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 		// Iterate on each invocation expression syntax node, to find any referenced methods marked '[Cached]' attribute.
 		foreach (var invocation in node.DescendantNodes().OfType<InvocationExpressionSyntax>())
 		{
-			var (invocationLocation, referencedMethodDeclaration, referencedMethodSymbol) = default((Location, MethodDeclarationSyntax, IMethodSymbol));
+			// Try to check referenced method data.
+			// If the method cannot be found, we should skip code generation for the current method.
+			var resultTriplet = default(NullableResultTriplet);
 			var invocationExpression = invocation.Expression;
 			switch (semanticModel.GetSymbolInfo(invocation, ct))
 			{
 				case { CandidateSymbols: [IMethodSymbol { DeclaringSyntaxReferences: var syntaxRefs } methodSymbol] }
 				when methodSymbol.GetAttributes().Any(cachedAttributeChecker):
 				{
-					if (syntaxRefs is not [var syntaxRef])
+					if ((resultTriplet = g(methodSymbol, invocationExpression, syntaxRefs, out var diagnostic, ct)) is null
+						&& diagnostic is not null)
 					{
-						return Diagnostic.Create(
-							Descriptor_Interceptor0103,
-							Location.Create(syntaxRefs[0].SyntaxTree, syntaxRefs[0].Span),
-							messageArgs: [invocationExpression.ToString()]
-						);
+						return diagnostic;
 					}
-
-					invocationLocation = (invocationExpression as MemberAccessExpressionSyntax)?.Name.GetLocation();
-					referencedMethodDeclaration = syntaxRef.GetSyntax(ct) as MethodDeclarationSyntax;
-					referencedMethodSymbol = methodSymbol;
 					break;
 				}
 				case { Symbol: IMethodSymbol { DeclaringSyntaxReferences: var syntaxRefs } methodSymbol }
 				when methodSymbol.GetAttributes().Any(cachedAttributeChecker):
 				{
-					if (syntaxRefs is not [var syntaxRef])
+					if ((resultTriplet = g(methodSymbol, invocationExpression, syntaxRefs, out var diagnostic, ct)) is null
+						&& diagnostic is not null)
 					{
-						return Diagnostic.Create(
-							Descriptor_Interceptor0103,
-							Location.Create(syntaxRefs[0].SyntaxTree, syntaxRefs[0].Span),
-							messageArgs: [invocationExpression.ToString()]
-						);
+						return diagnostic;
 					}
-
-					invocationLocation = (invocationExpression as MemberAccessExpressionSyntax)?.Name.GetLocation();
-					referencedMethodDeclaration = syntaxRef.GetSyntax(ct) as MethodDeclarationSyntax;
-					referencedMethodSymbol = methodSymbol;
 					break;
 				}
 			}
 
+			// Verify the triplet data.
 #pragma warning disable format
-			if ((invocationLocation, referencedMethodDeclaration, referencedMethodSymbol) is not (
-				{ SourceTree.FilePath: var filePath },
-				not null,
+			if (resultTriplet is not (
+				{ SourceTree.FilePath: var filePath } invocationLocation,
+				{ Body: var referencedMethodBody } referencedMethodDeclaration,
 				{
 					ReturnType: var referencedMethodReturnType,
-					Parameters: var referencedMethodParameters
-				}
+					Parameters: var referencedMethodParameters,
+					Name: var referencedMethodName,
+					IsGenericMethod: var referencedMethodIsGenericMethod
+				} referencedMethodSymbol
 			))
 #pragma warning restore format
 			{
 				continue;
 			}
 
-			if (referencedMethodSymbol.IsGenericMethod)
+			if (referencedMethodIsGenericMethod)
 			{
-				return Diagnostic.Create(
-					Descriptor_Interceptor0107,
-					invocationLocation,
-					messageArgs: [referencedMethodSymbol.Name]
-				);
+				return Diagnostic.Create(Descriptor_Interceptor0107, invocationLocation, messageArgs: [referencedMethodName]);
 			}
-
-			if (referencedMethodDeclaration.Body is not { Statements: var bodyStatements })
+			if (referencedMethodBody is not { Statements: var bodyStatements })
 			{
-				return Diagnostic.Create(
-					Descriptor_Interceptor0101,
-					invocationLocation,
-					messageArgs: [referencedMethodSymbol.Name]
-				);
+				return Diagnostic.Create(Descriptor_Interceptor0101, invocationLocation, messageArgs: [referencedMethodName]);
 			}
 
 			// Now we have the referenced method data.
@@ -272,9 +256,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			// bound with cached-related properties, and append attributes [InterceptsLocation], emitting referenced locations.
 			// However, here we cannot collect for all possible usages of [InterceptsLocation], so it will be postponed to be checked.
 			var statements = new List<StatementSyntax>();
-			var flag = false;
-			var (existsBeginComment, existsEndComment) = (false, false);
-			var duplicateBeginCommentOrEndComment = false;
+			var (flag, existsBeginComment, existsEndComment, duplicateBeginCommentOrEndComment) = (false, false, false, false);
 			foreach (var statement in bodyStatements)
 			{
 				if (statement.HasLeadingTrivia)
@@ -331,116 +313,12 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			}
 			if (duplicateBeginCommentOrEndComment)
 			{
-				return Diagnostic.Create(
-					Descriptor_Interceptor0105,
-					identifierToken.GetLocation(),
-					messageArgs: [identifierToken.ValueText]
-				);
+				return Diagnostic.Create(Descriptor_Interceptor0105, identifierToken.GetLocation(), messageArgs: [methodName]);
 			}
 			if (!existsBeginComment || !existsEndComment)
 			{
-				return Diagnostic.Create(
-					Descriptor_Interceptor0104,
-					identifierToken.GetLocation(),
-					messageArgs: [identifierToken.ValueText]
-				);
+				return Diagnostic.Create(Descriptor_Interceptor0104, identifierToken.GetLocation(), messageArgs: [methodName]);
 			}
-
-			//var genericTypesString = referencedMethodSymbol.IsGenericMethod
-			//	&& (from typeParameter in referencedMethodSymbol.TypeParameters select typeParameter.ToDisplayString()) is var p
-			//	&& string.Join(", ", p) is var typeParametersString
-			//	? $"<{typeParametersString}>"
-			//	: string.Empty;
-
-			var ((startLine, startCharacter), _) = invocationLocation.GetMappedLineSpan();
-			var parametersString = string.Join(
-				", ",
-				from parameter in referencedMethodParameters
-				let refKindString = parameter.RefKind switch
-				{
-					RefKind.Ref => "ref ",
-					RefKind.Out => "out ",
-					RefKind.In => "in ",
-					RefKind.RefReadOnlyParameter => "ref readonly ",
-					_ => string.Empty
-				}
-				let scopedKindString = parameter.ScopedKind switch
-				{
-					ScopedKind.ScopedRef or ScopedKind.ScopedValue => "scoped ",
-					_ => string.Empty
-				}
-				let typeNameString = parameter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
-				let defaultValue = parameter.HasExplicitDefaultValue
-					? parameter.ExplicitDefaultValue switch
-					{
-						null => "default",
-						string and [.. var s, '"']
-							=> $""""
-							"""
-							{s}"
-							"""
-							"""",
-						string s
-							=> $""""
-							"""{s}"""
-							"""",
-						char c => $"'{c}'",
-						var value => value.ToString()
-					}
-					: null
-				let defaultValueString = defaultValue is null ? string.Empty : $" = {defaultValue}"
-				select $"{scopedKindString}{refKindString}{typeNameString} {parameter.Name}{defaultValueString}"
-			);
-
-			// Replace reserved identifiers with cached properties.
-			var targetString = string.Join("\r\n", from statement in statements select statement.ToFullString());
-			foreach (var variableName in ValidVariableNames)
-			{
-				targetString = targetString.Replace(variableName, variableName[2..]);
-			}
-
-			// Add one extra indenting.
-			var targetStringAppendIndenting = new List<string>();
-			foreach (var line in targetString.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries))
-			{
-				targetStringAppendIndenting.Add(line);
-			}
-
-			// Get XML doc comments.
-			// The target XML doc commment structure won't include triple slashes. We should append them;
-			// In addition, consider indenting, we should append indenting \t's.
-			// And, we should remove the first and last line (<member> tag).
-			var xmlDocCommentsSplitByLine = referencedMethodSymbol.GetDocumentationCommentXml(cancellationToken: ct)?
-				.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
-			var xmlDocCommentLines = new List<string>();
-			if (xmlDocCommentsSplitByLine is not null)
-			{
-				for (var i = 1; i < xmlDocCommentsSplitByLine.Length - 1; i++)
-				{
-					xmlDocCommentLines.Add($"/// {xmlDocCommentsSplitByLine[i].TrimStart()}");
-				}
-			}
-
-			// Return type.
-			var returnTypeName = referencedMethodReturnType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-			var returnRefKindType = referencedMethodSymbol switch
-			{
-				{ ReturnsByRefReadonly: true } => "ref readonly ",
-				{ ReturnsByRef: true } => "ref ",
-				_ => string.Empty
-			};
-			var returnTypeString = $"{returnRefKindType}{returnTypeName}";
-
-			//var constraintsString = constraints.Count != 0 ? constraints.ToString() : string.Empty;
-
-			// XML documentation comments.
-			var xmlDocComments = xmlDocCommentLines.Count == 0
-				? """
-					/// <summary>
-					/// Intercepted method.
-					/// </summary>
-				"""
-				: string.Join("\r\n\t", xmlDocCommentLines);
 
 			// If the referenced method is an instance method instead of a static method,
 			// we should consider inserting an extra parameter as instance member accessing.
@@ -508,7 +386,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			//			/// The backing entry that can route functions
 			//			/// by checking the target type of instance parameter <paramref cref="this"/>.
 			//			/// </summary>
-			//			private static {{returnTypeString}} {{referencedMethodSymbol.Name}}_SwitchEntry({{instanceParameter}}{{parametersString}})
+			//			private static {{returnTypeString}} {{referencedMethodName}}_SwitchEntry({{instanceParameter}}{{parametersString}})
 			//			{
 			//		{{switchStatementOrExpressionString}}
 			//			}
@@ -536,7 +414,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			//		//		/// <summary>
 			//		//		/// Interceptor method that will replace implementation on such referenced method invocation.
 			//		//		/// </summary>
-			//		//		public static class {{referencedMethodContainingTypeName_a}}_Intercepted
+			//		//		public static class __{{referencedMethodContainingTypeName_a}}_Intercepted
 			//		//		{
 			//		//			{{xmlDocComments}}
 			//		//			{{AttributeInsertionMatchString}}
@@ -556,33 +434,206 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			//}
 
 			// Return the value (not aggregate).
-			return new SuccessTransformResult(
-				$$"""
-				/// <summary>
-				/// Interceptor method that will replace implementation on such referenced method invocation.
-				/// </summary>
-				public static class {{referencedMethodSymbol.ContainingType.Name}}_Intercepted
-				{
-					{{xmlDocComments}}
-					{{AttributeInsertionMatchString}}
-					public static {{returnTypeString}} {{referencedMethodSymbol.Name}}({{instanceParameter}}{{parametersString}})
-					{
-				{{string.Join("\r\n", targetStringAppendIndenting)}}
-					}
-				}
-				""",
-
-				// Here we should manually add 1 because line number starts with 1 instead of 0.
-				new(filePath, startLine + 1, startCharacter + 1)
+			return getResult(
+				invocationLocation,
+				referencedMethodParameters,
+				referencedMethodSymbol,
+				referencedMethodReturnType,
+				instanceParameter,
+				statements,
+				filePath,
+				constraints,
+				ct
 			);
 
 
 			//bool referencedMethodSymbolChecker(ISymbol member)
-			//	=> member is IMethodSymbol && member.Name == referencedMethodSymbol.Name && member.IsOverride;
+			//	=> member is IMethodSymbol && member.Name == referencedMethodName && member.IsOverride;
 		}
 
-		return Diagnostic.Create(Descriptor_Interceptor0102, identifierToken.GetLocation(), messageArgs: [identifierToken.ValueText]);
+		return Diagnostic.Create(Descriptor_Interceptor0102, identifierToken.GetLocation(), messageArgs: [methodName]);
 
+
+		static NullableResultTriplet g(
+			IMethodSymbol methodSymbol,
+			ExpressionSyntax invocationExpression,
+			ImmutableArray<SyntaxReference> syntaxRefs,
+			out Diagnostic? diagnostic,
+			CancellationToken cancellationToken = default
+		)
+		{
+			if (syntaxRefs is not [var syntaxRef])
+			{
+				diagnostic = Diagnostic.Create(
+					Descriptor_Interceptor0103,
+					Location.Create(syntaxRefs[0].SyntaxTree, syntaxRefs[0].Span),
+					messageArgs: [invocationExpression.ToString()]
+				);
+				return null;
+			}
+
+			var invocationLocation = (invocationExpression as MemberAccessExpressionSyntax)?.Name.GetLocation();
+			var referencedMethodDeclaration = syntaxRef.GetSyntax(cancellationToken) as MethodDeclarationSyntax;
+			var referencedMethodSymbol = methodSymbol;
+			diagnostic = null;
+			return (invocationLocation, referencedMethodDeclaration, referencedMethodSymbol);
+		}
+
+		static SuccessTransformResult getResult(
+			Location invocationLocation,
+			ImmutableArray<IParameterSymbol> referencedMethodParameters,
+			IMethodSymbol referencedMethodSymbol,
+			ITypeSymbol referencedMethodReturnType,
+			string instanceParameter,
+			List<StatementSyntax> statements,
+			string filePath,
+			SyntaxList<TypeParameterConstraintClauseSyntax>? constraints = null,
+			CancellationToken cancellationToken = default
+		)
+		{
+			var ((startLine, startCharacter), _) = invocationLocation.GetMappedLineSpan();
+			var parametersString = getParametersString(referencedMethodParameters);
+			var xmlDocCommentsStr = getXmlDocComments(referencedMethodSymbol, cancellationToken);
+			var returnTypeStr = getReturnTypeString(referencedMethodReturnType, referencedMethodSymbol);
+			var genericTypesStr = getGenericTypeParametersString(referencedMethodSymbol);
+			var constraintsStr = getConstraintsString(constraints);
+			return new(
+				$$"""
+				/// <summary>
+				/// Interceptor method that will replace implementation on such referenced method invocation.
+				/// </summary>
+				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Sudoku.SourceGeneration.CachedMethodGenerator", "3.4.0")]
+				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+				public static class __{{referencedMethodSymbol.ContainingType.Name}}_Intercepted
+				{
+					{{xmlDocCommentsStr}}
+					{{AttributeInsertionMatchString}}
+					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Sudoku.SourceGeneration.CachedMethodGenerator", "3.4.0")]
+					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+					public static {{returnTypeStr}} {{referencedMethodSymbol.Name}}({{instanceParameter}}{{parametersString}})
+					{
+				{{string.Join("\r\n", getTargetStringAppendIndenting(statements))}}
+					}
+				}
+				""",
+				new(filePath, startLine + 1, startCharacter + 1)
+			);
+
+
+			static string getXmlDocComments(IMethodSymbol referencedMethodSymbol, CancellationToken cancellationToken = default)
+			{
+				// Get XML doc comments.
+				// The target XML doc commment structure won't include triple slashes. We should append them;
+				// In addition, consider indenting, we should append indenting \t's.
+				// And, we should remove the first and last line (<member> tag).
+				var xmlDocCommentsSplitByLine = referencedMethodSymbol.GetDocumentationCommentXml(cancellationToken: cancellationToken)?
+					.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
+
+				var xmlDocCommentLines = new List<string>();
+				if (xmlDocCommentsSplitByLine is not null)
+				{
+					for (var i = 1; i < xmlDocCommentsSplitByLine.Length - 1; i++)
+					{
+						xmlDocCommentLines.Add($"/// {xmlDocCommentsSplitByLine[i].TrimStart()}");
+					}
+				}
+
+				return xmlDocCommentLines.Count == 0
+					? """
+						/// <summary>
+						/// Intercepted method.
+						/// </summary>
+					"""
+					: string.Join("\r\n\t", xmlDocCommentLines);
+			}
+
+			static string getReturnTypeString(ITypeSymbol referencedMethodReturnType, IMethodSymbol referencedMethodSymbol)
+			{
+				var returnTypeName = referencedMethodReturnType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+				var returnRefKindType = referencedMethodSymbol switch
+				{
+					{ ReturnsByRefReadonly: true } => "ref readonly ",
+					{ ReturnsByRef: true } => "ref ",
+					_ => string.Empty
+				};
+				return $"{returnRefKindType}{returnTypeName}";
+			}
+
+			static string getGenericTypeParametersString(IMethodSymbol referencedMethodSymbol)
+				=> referencedMethodSymbol.IsGenericMethod
+					&& (from typeParameter in referencedMethodSymbol.TypeParameters select typeParameter.ToDisplayString()) is var p
+					&& string.Join(", ", p) is var typeParametersString
+					? $"<{typeParametersString}>"
+					: string.Empty;
+
+			static string getConstraintsString(SyntaxList<TypeParameterConstraintClauseSyntax>? constraints)
+				=> (constraints?.Count ?? 0) != 0 ? $"\r\n\t\t{constraints}" : string.Empty;
+
+			static string getParametersString(ImmutableArray<IParameterSymbol> referencedMethodParameters)
+			{
+				return string.Join(
+					", ",
+					from parameter in referencedMethodParameters
+					let refKindString = getRefKindString(parameter.RefKind)
+					let scopedKindString = getScopedKindString(parameter.ScopedKind)
+					let typeNameString = parameter.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+					let defaultValue = getDefaultValueString(parameter)
+					let defaultValueString = defaultValue is null ? string.Empty : $" = {defaultValue}"
+					select $"{scopedKindString}{refKindString}{typeNameString} {parameter.Name}{defaultValueString}"
+				);
+
+
+				static string getRefKindString(RefKind refKind)
+					=> refKind switch
+					{
+						RefKind.Ref => "ref ",
+						RefKind.Out => "out ",
+						RefKind.In => "in ",
+						RefKind.RefReadOnlyParameter => "ref readonly ",
+						_ => string.Empty
+					};
+
+				static string getScopedKindString(ScopedKind scopedKind)
+					=> scopedKind switch { ScopedKind.ScopedRef or ScopedKind.ScopedValue => "scoped ", _ => string.Empty };
+
+				static string? getDefaultValueString(IParameterSymbol parameter)
+					=> parameter.HasExplicitDefaultValue
+						? parameter.ExplicitDefaultValue switch
+						{
+							null => "default",
+							string and [.. var s, '"']
+								=> $""""
+								"""
+								{s}"
+								"""
+								"""",
+							string s
+								=> $""""
+								"""{s}"""
+								"""",
+							char c => $"'{c}'",
+							var value => value.ToString()
+						}
+						: null;
+			}
+
+			static List<string> getTargetStringAppendIndenting(List<StatementSyntax> statements)
+			{
+				// Replace reserved identifiers with cached properties.
+				var targetString = string.Join("\r\n", from statement in statements select statement.ToFullString());
+				foreach (var variableName in ValidVariableNames)
+				{
+					targetString = targetString.Replace(variableName, variableName[2..]);
+				}
+
+				var result = new List<string>();
+				foreach (var line in targetString.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries))
+				{
+					result.Add(line);
+				}
+				return result;
+			}
+		}
 
 		bool cachedAttributeChecker(AttributeData a)
 			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, cachedAttributeSymbol);
