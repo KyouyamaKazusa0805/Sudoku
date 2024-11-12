@@ -14,12 +14,14 @@ file static class Program
 	{
 		checkProcessRequirements();
 		ComWrappersSupport.InitializeComWrappers();
-		Application.Start(static delegate
-		{
-			var context = new dispatching::DispatcherQueueSynchronizationContext(dispatching::DispatcherQueue.GetForCurrentThread());
-			SynchronizationContext.SetSynchronizationContext(context);
-			_ = new App();
-		});
+		Application.Start(
+			static __ =>
+			{
+				var context = new dispatching::DispatcherQueueSynchronizationContext(dispatching::DispatcherQueue.GetForCurrentThread());
+				SynchronizationContext.SetSynchronizationContext(context);
+				_ = new App();
+			}
+		);
 
 
 		[DllImport("Microsoft.ui.xaml", EntryPoint = "XamlCheckProcessRequirements")]
