@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.Fishes;
 
 /// <summary>
 /// Provides with a step that is a <b>Fish</b> technique.

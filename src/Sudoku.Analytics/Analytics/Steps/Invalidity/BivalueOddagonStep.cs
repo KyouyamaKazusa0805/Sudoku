@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.Invalidity;
 
 /// <summary>
 /// Provides with a step that is a <b>Bi-value Oddagon</b> technique.

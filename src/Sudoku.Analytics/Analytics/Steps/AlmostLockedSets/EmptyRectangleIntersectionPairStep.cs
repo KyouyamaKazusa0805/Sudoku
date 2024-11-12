@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.AlmostLockedSets;
 
 /// <summary>
 /// Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.Uniqueness;
 
 /// <summary>
 /// Provides with a step that is a <b>Conditional Deadly Pattern</b> technique.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.Subsets;
 
 /// <summary>
 /// Represents a data structure that describes for a technique of <b>Naked Subset</b>.

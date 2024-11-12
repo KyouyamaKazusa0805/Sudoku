@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.Permutations;
 
 /// <summary>
 /// Provides with a step that is an <b>Aligned Exclusion</b> technique.

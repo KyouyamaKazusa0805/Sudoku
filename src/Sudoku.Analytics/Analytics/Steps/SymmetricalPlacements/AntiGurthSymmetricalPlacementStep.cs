@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.SymmetricalPlacements;
 
 /// <summary>
 /// Provides with a step that is an <b>Anti- Gurth's Symmetrical Placement</b> technique.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.LockedSets;
 
 /// <summary>
 /// Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.

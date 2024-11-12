@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.Permutations;
 
 /// <summary>
 /// Provides with a step that is a <b>Permutation</b> technique.

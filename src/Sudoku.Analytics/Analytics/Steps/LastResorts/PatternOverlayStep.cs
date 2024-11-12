@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.LastResorts;
 
 /// <summary>
 /// Provides with a step that is a <b>Pattern Overlay</b> technique.

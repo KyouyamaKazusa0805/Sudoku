@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.Wings;
 
 /// <summary>
 /// Provides with a step that is a <b>Irregular Wing</b> technique.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps.Exocets;
 
 /// <summary>
 /// Provides with a step that is an <b>Exocet</b> technique.
