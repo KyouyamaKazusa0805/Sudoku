@@ -49,14 +49,32 @@ public enum LinkType
 	XyzWing = 1 << 6,
 
 	/// <summary>
-	/// Indicates the link type is an almost unique rectangle.
+	/// Indicates the link type is an almost unique rectangle, with same digit strong link.
 	/// </summary>
-	[ChainingRule<AlmostUniqueRectangleChainingRule>]
-	AlmostUniqueRectangle = 1 << 7,
+	[ChainingRule<UniqueRectangleSameDigitChainingRule>]
+	UniqueRectangle_SameDigit = 1 << 7,
+
+	/// <summary>
+	/// Indicates the link type is an almost unique rectangle, with different digits strong link.
+	/// </summary>
+	[ChainingRule<UniqueRectangleDifferentDigitChainingRule>]
+	UniqueRectangle_DifferentDigit = 1 << 8,
+
+	/// <summary>
+	/// Indicates the link type is an almost unique rectangle, with a strong link using single-side to be external.
+	/// </summary>
+	[ChainingRule<UniqueRectangleSingleSideExternalChainingRule>]
+	UniqueRectangle_SingleSideExternal = 1 << 9,
+
+	/// <summary>
+	/// Indicates the link type is an almost unique rectangle, with a strong link using double-side to be external.
+	/// </summary>
+	[ChainingRule<UniqueRectangleDoubleSideExternalChainingRule>]
+	UniqueRectangle_DoubleSideExternal = 1 << 10,
 
 	/// <summary>
 	/// Indicates the link type is an almost avoidable rectangle.
 	/// </summary>
-	[ChainingRule<AlmostAvoidableRectangleChainingRule>]
-	AlmostAvoidableRectangle = 1 << 8
+	[ChainingRule<AvoidableRectangleChainingRule>]
+	AvoidableRectangle = 1 << 11
 }

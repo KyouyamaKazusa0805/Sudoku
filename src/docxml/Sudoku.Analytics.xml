@@ -1685,18 +1685,6 @@
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.AlmostAvoidableRectangleChainingRule">
-            <summary>
-            Represents a chaining rule on AAR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostAvoidableRectangle"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostAvoidableRectangle"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostAvoidableRectangleChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostAvoidableRectangleChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.AlmostLockedSetsChainingRule">
             <summary>
             Represents a chaining rule on ALS rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostLockedSets"/>).
@@ -1712,19 +1700,16 @@
         <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostLockedSetsChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.AlmostUniqueRectangleChainingRule">
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.AvoidableRectangleChainingRule">
             <summary>
-            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostUniqueRectangle"/>).
+            Represents a chaining rule on AAR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.AvoidableRectangle"/>).
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostUniqueRectangle"/>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.AvoidableRectangle"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostUniqueRectangleChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AvoidableRectangleChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostUniqueRectangleChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AlmostUniqueRectangleChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.AvoidableRectangleChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.KrakenNormalFishChainingRule">
@@ -1752,6 +1737,56 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.LockedCandidatesChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleChainingRule">
+            <summary>
+            Represents a chaining rule on AUR rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleDifferentDigitChainingRule">
+            <summary>
+            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_DifferentDigit"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_DifferentDigit"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleDifferentDigitChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleDoubleSideExternalChainingRule">
+            <summary>
+            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_DoubleSideExternal"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_DoubleSideExternal"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleDoubleSideExternalChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSameDigitChainingRule">
+            <summary>
+            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_SameDigit"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_SameDigit"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSameDigitChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSameDigitChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSingleSideExternalChainingRule">
+            <summary>
+            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_SingleSideExternal"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_SingleSideExternal"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSingleSideExternalChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule">
@@ -3441,12 +3476,27 @@
             Indicates the link type is an XYZ-Wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostUniqueRectangle">
+        <member name="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_SameDigit">
             <summary>
-            Indicates the link type is an almost unique rectangle.
+            Indicates the link type is an almost unique rectangle, with same digit strong link.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.LinkType.AlmostAvoidableRectangle">
+        <member name="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_DifferentDigit">
+            <summary>
+            Indicates the link type is an almost unique rectangle, with different digits strong link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_SingleSideExternal">
+            <summary>
+            Indicates the link type is an almost unique rectangle, with a strong link using single-side to be external.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_DoubleSideExternal">
+            <summary>
+            Indicates the link type is an almost unique rectangle, with a strong link using double-side to be external.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.LinkType.AvoidableRectangle">
             <summary>
             Indicates the link type is an almost avoidable rectangle.
             </summary>
@@ -33939,20 +33989,44 @@
         <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__AlmostLockedSetsChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.AlmostLockedSetsChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__AlmostUniqueRectangleChainingRule_GetLinks_Intercepted">
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__UniqueRectangleSameDigitChainingRule_GetLinks_Intercepted">
             <summary>
             Interceptor method that will replace implementation on such referenced method invocation.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__AlmostUniqueRectangleChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.AlmostUniqueRectangleChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__UniqueRectangleSameDigitChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSameDigitChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__AlmostAvoidableRectangleChainingRule_GetLinks_Intercepted">
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__UniqueRectangleDifferentDigitChainingRule_GetLinks_Intercepted">
             <summary>
             Interceptor method that will replace implementation on such referenced method invocation.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__AlmostAvoidableRectangleChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.AlmostAvoidableRectangleChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__UniqueRectangleDifferentDigitChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleDifferentDigitChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__UniqueRectangleSingleSideExternalChainingRule_GetLinks_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__UniqueRectangleSingleSideExternalChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSingleSideExternalChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__UniqueRectangleDoubleSideExternalChainingRule_GetLinks_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__UniqueRectangleDoubleSideExternalChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleDoubleSideExternalChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__AvoidableRectangleChainingRule_GetLinks_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__AvoidableRectangleChainingRule_GetLinks_Intercepted.GetLinks(Sudoku.Analytics.Construction.Chaining.Rules.AvoidableRectangleChainingRule,Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__KrakenNormalFishChainingRule_GetLinks_Intercepted">

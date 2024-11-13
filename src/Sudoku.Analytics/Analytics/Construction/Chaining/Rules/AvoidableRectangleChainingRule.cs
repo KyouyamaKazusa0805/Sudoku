@@ -1,15 +1,15 @@
 namespace Sudoku.Analytics.Construction.Chaining.Rules;
 
 /// <summary>
-/// Represents a chaining rule on AAR rule (i.e. <see cref="LinkType.AlmostAvoidableRectangle"/>).
+/// Represents a chaining rule on AAR rule (i.e. <see cref="LinkType.AvoidableRectangle"/>).
 /// </summary>
-/// <seealso cref="LinkType.AlmostAvoidableRectangle"/>
-public sealed class AlmostAvoidableRectangleChainingRule : ChainingRule
+/// <seealso cref="LinkType.AvoidableRectangle"/>
+public sealed class AvoidableRectangleChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
-		if (context.GetLinkOption(LinkType.AlmostAvoidableRectangle) == LinkOption.None)
+		if (context.GetLinkOption(LinkType.AvoidableRectangle) == LinkOption.None)
 		{
 			return;
 		}

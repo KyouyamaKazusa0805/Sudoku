@@ -8133,19 +8133,14 @@
               Looks up a localized string similar to Disabled.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_AlmostAvoidableRectangle">
-            <summary>
-              Looks up a localized string similar to Almost Avoidable Rectangles: Links connecting with Almost Avoidable Rectangles (AUR) pattern.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_AlmostLockedSets">
             <summary>
               Looks up a localized string similar to Almost Locked Sets: Links connecting with an Almost Locked Set (ALS) pattern.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_AlmostUniqueRectangle">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_AvoidableRectangle">
             <summary>
-              Looks up a localized string similar to Almost Unique Rectangles: Links connecting with an Almost Unique Rectangle (AUR) pattern.
+              Looks up a localized string similar to Almost Avoidable Rectangles: Links connecting with Almost Avoidable Rectangles (AUR) pattern.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_KrakenNormalFish">
@@ -8166,6 +8161,26 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_SingleDigit">
             <summary>
               Looks up a localized string similar to X Rule: Links of single digit in a same house.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_UniqueRectangleDifferentDigit">
+            <summary>
+              Looks up a localized string similar to Unique Rectangles: Different-digit connections.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_UniqueRectangleDoubleSideExternal">
+            <summary>
+              Looks up a localized string similar to Unique Rectangles: Double-side external connections.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_UniqueRectangleSameDigit">
+            <summary>
+              Looks up a localized string similar to Unique Rectangles: Same-digit connections.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_UniqueRectangleSingleSideExternal">
+            <summary>
+              Looks up a localized string similar to Unique Rectangles: Single-side external connections.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_About">

@@ -57,16 +57,50 @@
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
 						</w:Segmented>
 					</w:SettingsCard>
-					<w:SettingsCard Header="{m:R Key=LinkType_AlmostUniqueRectangle}">
-						<w:Segmented x:Name="AlmostUniqueRectangleComboBox" SelectionChanged="AlmostUniqueRectangleComboBox_SelectionChanged">
+					<w:SettingsCard Header="{m:R Key=LinkType_UniqueRectangleSameDigit}">
+						<w:Segmented
+							x:Name="UniqueRectangleSameDigitComboBox"
+							SelectionChanged="UniqueRectangleSameDigitComboBox_SelectionChanged">
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
 						</w:Segmented>
 					</w:SettingsCard>
-					<w:SettingsCard Header="{m:R Key=LinkType_AlmostAvoidableRectangle}">
-						<w:Segmented x:Name="AlmostAvoidableRectangleComboBox" SelectionChanged="AlmostAvoidableRectangleComboBox_SelectionChanged">
+					<w:SettingsCard Header="{m:R Key=LinkType_UniqueRectangleDifferentDigit}">
+						<w:Segmented
+							x:Name="UniqueRectangleDifferentDigitComboBox"
+							SelectionChanged="UniqueRectangleDifferentDigitComboBox_SelectionChanged">
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
+						</w:Segmented>
+					</w:SettingsCard>
+					<w:SettingsCard Header="{m:R Key=LinkType_UniqueRectangleSingleSideExternal}">
+						<w:Segmented
+							x:Name="UniqueRectangleSingleSideExternalComboBox"
+							SelectionChanged="UniqueRectangleSingleSideExternalComboBox_SelectionChanged">
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
+						</w:Segmented>
+					</w:SettingsCard>
+					<w:SettingsCard Header="{m:R Key=LinkType_UniqueRectangleDoubleSideExternal}">
+						<w:Segmented
+							x:Name="UniqueRectangleDoubleSideExternalComboBox"
+							SelectionChanged="UniqueRectangleDoubleSideExternalComboBox_SelectionChanged">
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
+						</w:Segmented>
+					</w:SettingsCard>
+					<w:SettingsCard Header="{m:R Key=LinkType_AvoidableRectangle}">
+						<w:Segmented
+							x:Name="AvoidableRectangleComboBox"
+							SelectionChanged="AvoidableRectangleComboBox_SelectionChanged">
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />

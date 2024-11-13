@@ -26,8 +26,8 @@ public abstract partial class ChainingRule
 		LinkType.LockedCandidates,
 		LinkType.AlmostLockedSets,
 		//LinkType.KrakenNormalFish,
-		LinkType.AlmostUniqueRectangle,
-		LinkType.AlmostAvoidableRectangle,
+		LinkType.UniqueRectangle_SameDigit,
+		LinkType.AvoidableRectangle,
 		//LinkType.XyzWing,
 	];
 

@@ -2738,10 +2738,10 @@
   <data name="LinkType_KrakenNormalFish" xml:space="preserve">
     <value>鱼：连接鱼的链（目前只包含普通鱼，复杂鱼暂未实现）</value>
   </data>
-  <data name="LinkType_AlmostUniqueRectangle" xml:space="preserve">
-    <value>唯一矩形：连接唯一矩形（UR）的链</value>
+  <data name="LinkType_UniqueRectangleSameDigit" xml:space="preserve">
+    <value>唯一矩形：同数强链</value>
   </data>
-  <data name="LinkType_AlmostAvoidableRectangle" xml:space="preserve">
+  <data name="LinkType_AvoidableRectangle" xml:space="preserve">
     <value>可规避矩形：连接可规避矩形（AR）的链</value>
   </data>
   <data name="LinkOptions_None" xml:space="preserve">
@@ -2872,5 +2872,14 @@
   </data>
   <data name="SettingsPage_RectangleColors" xml:space="preserve">
     <value>矩形（唯一矩形、可规避矩形）配色</value>
+  </data>
+  <data name="LinkType_UniqueRectangleDifferentDigit" xml:space="preserve">
+    <value>唯一矩形：异数强链</value>
+  </data>
+  <data name="LinkType_UniqueRectangleSingleSideExternal" xml:space="preserve">
+    <value>唯一矩形：单侧外部强链</value>
+  </data>
+  <data name="LinkType_UniqueRectangleDoubleSideExternal" xml:space="preserve">
+    <value>唯一矩形：双侧外部强链</value>
   </data>
 </root>

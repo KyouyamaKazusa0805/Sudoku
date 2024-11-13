@@ -50,8 +50,11 @@ public sealed partial class ChainSettingPage : Page
 		SingleCellComboBox.SelectedIndex = GetSegmentedItemIndex(LinkType.SingleCell);
 		LockedCandidatesComboBox.SelectedIndex = GetSegmentedItemIndex(LinkType.LockedCandidates);
 		AlmostLockedSetsComboBox.SelectedIndex = GetSegmentedItemIndex(LinkType.AlmostLockedSets);
-		AlmostUniqueRectangleComboBox.SelectedIndex = GetSegmentedItemIndex(LinkType.AlmostUniqueRectangle);
-		AlmostAvoidableRectangleComboBox.SelectedIndex = GetSegmentedItemIndex(LinkType.AlmostAvoidableRectangle);
+		UniqueRectangleSameDigitComboBox.SelectedIndex = GetSegmentedItemIndex(LinkType.UniqueRectangle_SameDigit);
+		UniqueRectangleDifferentDigitComboBox.SelectedIndex = GetSegmentedItemIndex(LinkType.UniqueRectangle_DifferentDigit);
+		UniqueRectangleSingleSideExternalComboBox.SelectedIndex = GetSegmentedItemIndex(LinkType.UniqueRectangle_SingleSideExternal);
+		UniqueRectangleDoubleSideExternalComboBox.SelectedIndex = GetSegmentedItemIndex(LinkType.UniqueRectangle_DoubleSideExternal);
+		AvoidableRectangleComboBox.SelectedIndex = GetSegmentedItemIndex(LinkType.AvoidableRectangle);
 		KrakenNormalFishComboBox.SelectedIndex = GetSegmentedItemIndex(LinkType.KrakenNormalFish);
 	}
 
@@ -67,11 +70,20 @@ public sealed partial class ChainSettingPage : Page
 	private void AlmostLockedSetsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		=> SetSegmentedItemIndex(LinkType.AlmostLockedSets, AlmostLockedSetsComboBox.SelectedIndex);
 
-	private void AlmostUniqueRectangleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		=> SetSegmentedItemIndex(LinkType.AlmostUniqueRectangle, AlmostUniqueRectangleComboBox.SelectedIndex);
+	private void UniqueRectangleSameDigitComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		=> SetSegmentedItemIndex(LinkType.UniqueRectangle_SameDigit, UniqueRectangleSameDigitComboBox.SelectedIndex);
 
-	private void AlmostAvoidableRectangleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		=> SetSegmentedItemIndex(LinkType.AlmostAvoidableRectangle, AlmostAvoidableRectangleComboBox.SelectedIndex);
+	private void UniqueRectangleDoubleSideExternalComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		=> SetSegmentedItemIndex(LinkType.UniqueRectangle_DifferentDigit, UniqueRectangleDifferentDigitComboBox.SelectedIndex);
+
+	private void UniqueRectangleSingleSideExternalComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		=> SetSegmentedItemIndex(LinkType.UniqueRectangle_SingleSideExternal, UniqueRectangleSingleSideExternalComboBox.SelectedIndex);
+
+	private void UniqueRectangleDifferentDigitComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		=> SetSegmentedItemIndex(LinkType.UniqueRectangle_DoubleSideExternal, UniqueRectangleDoubleSideExternalComboBox.SelectedIndex);
+
+	private void AvoidableRectangleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		=> SetSegmentedItemIndex(LinkType.AvoidableRectangle, AvoidableRectangleComboBox.SelectedIndex);
 
 	private void KrakenNormalFishComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		=> SetSegmentedItemIndex(LinkType.KrakenNormalFish, KrakenNormalFishComboBox.SelectedIndex);

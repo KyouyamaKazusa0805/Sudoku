@@ -150,8 +150,11 @@ internal static class MemoryCachedData
 		typeof(YChainingRule),
 		typeof(LockedCandidatesChainingRule),
 		typeof(AlmostLockedSetsChainingRule),
-		typeof(AlmostUniqueRectangleChainingRule),
-		typeof(AlmostAvoidableRectangleChainingRule),
+		typeof(UniqueRectangleSameDigitChainingRule),
+		typeof(UniqueRectangleDifferentDigitChainingRule),
+		typeof(UniqueRectangleSingleSideExternalChainingRule),
+		typeof(UniqueRectangleDoubleSideExternalChainingRule),
+		typeof(AvoidableRectangleChainingRule),
 		typeof(KrakenNormalFishChainingRule),
 		typeof(XyzWingChainingRule))]
 	public static void InitializeLinks(ref readonly Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)

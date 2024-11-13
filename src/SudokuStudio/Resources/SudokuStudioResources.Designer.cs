@@ -4078,15 +4078,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Almost Avoidable Rectangles: Links connecting with Almost Avoidable Rectangles (AUR) pattern.
-        /// </summary>
-        internal static string LinkType_AlmostAvoidableRectangle {
-            get {
-                return ResourceManager.GetString("LinkType_AlmostAvoidableRectangle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Almost Locked Sets: Links connecting with an Almost Locked Set (ALS) pattern.
         /// </summary>
         internal static string LinkType_AlmostLockedSets {
@@ -4096,11 +4087,11 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Almost Unique Rectangles: Links connecting with an Almost Unique Rectangle (AUR) pattern.
+        ///   Looks up a localized string similar to Almost Avoidable Rectangles: Links connecting with Almost Avoidable Rectangles (AUR) pattern.
         /// </summary>
-        internal static string LinkType_AlmostUniqueRectangle {
+        internal static string LinkType_AvoidableRectangle {
             get {
-                return ResourceManager.GetString("LinkType_AlmostUniqueRectangle", resourceCulture);
+                return ResourceManager.GetString("LinkType_AvoidableRectangle", resourceCulture);
             }
         }
         
@@ -4137,6 +4128,42 @@ namespace SudokuStudio.Resources {
         internal static string LinkType_SingleDigit {
             get {
                 return ResourceManager.GetString("LinkType_SingleDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangles: Different-digit connections.
+        /// </summary>
+        internal static string LinkType_UniqueRectangleDifferentDigit {
+            get {
+                return ResourceManager.GetString("LinkType_UniqueRectangleDifferentDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangles: Double-side external connections.
+        /// </summary>
+        internal static string LinkType_UniqueRectangleDoubleSideExternal {
+            get {
+                return ResourceManager.GetString("LinkType_UniqueRectangleDoubleSideExternal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangles: Same-digit connections.
+        /// </summary>
+        internal static string LinkType_UniqueRectangleSameDigit {
+            get {
+                return ResourceManager.GetString("LinkType_UniqueRectangleSameDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangles: Single-side external connections.
+        /// </summary>
+        internal static string LinkType_UniqueRectangleSingleSideExternal {
+            get {
+                return ResourceManager.GetString("LinkType_UniqueRectangleSingleSideExternal", resourceCulture);
             }
         }
         
