@@ -167,6 +167,12 @@ file static class Extensions
 		{ Technique.NodeCollision, 218 },
 		{ Technique.GroupedAlternatingInferenceChain, 219 },
 		{ Technique.GroupedDiscontinuousNiceLoop, 220 },
+		{ Technique.SinglyLinkedAlmostLockedSetsXzRule, 221 },
+		{ Technique.DoublyLinkedAlmostLockedSetsXzRule, 222 },
+		{ Technique.AlmostLockedSetsXyWing, 223 },
+		{ Technique.AlmostLockedSetsWWing, 224 },
+		{ Technique.GroupedAlmostLockedSetsWWing, 225 },
+		{ Technique.AlmostLockedSetsChain, 226 }
 	};
 
 
