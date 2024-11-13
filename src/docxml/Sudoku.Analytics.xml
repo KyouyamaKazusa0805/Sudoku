@@ -1777,9 +1777,6 @@
         <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSameDigitChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSameDigitChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSingleSideExternalChainingRule">
             <summary>
             Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_SingleSideExternal"/>).
@@ -1787,6 +1784,9 @@
             <seealso cref="F:Sudoku.Analytics.Construction.Components.LinkType.UniqueRectangle_SingleSideExternal"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSingleSideExternalChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSingleSideExternalChainingRule.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule">
