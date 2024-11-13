@@ -7,21 +7,6 @@ namespace Sudoku.Analytics.Caching;
 internal static class ChainingRulePool
 {
 	/// <summary>
-	/// Indicates the rule router.
-	/// </summary>
-	private static readonly FrozenDictionary<LinkType, Func<ChainingRule>> RuleRouter = new Dictionary<LinkType, Func<ChainingRule>>
-	{
-		{ LinkType.SingleDigit, static () => new XChainingRule() },
-		{ LinkType.SingleCell, static () => new YChainingRule() },
-		{ LinkType.LockedCandidates, static () => new LockedCandidatesChainingRule() },
-		{ LinkType.AlmostLockedSets, static () => new AlmostLockedSetsChainingRule() },
-		{ LinkType.KrakenNormalFish, static () => new KrakenNormalFishChainingRule() },
-		{ LinkType.XyzWing, static () => new XyzWingChainingRule() },
-		{ LinkType.AlmostUniqueRectangle, static () => new AlmostUniqueRectangleChainingRule() },
-		{ LinkType.AlmostAvoidableRectangle, static () => new AlmostAvoidableRectangleChainingRule() },
-	}.ToFrozenDictionary();
-
-	/// <summary>
 	/// Indicates the cached rules.
 	/// </summary>
 	private static readonly Dictionary<LinkType, ChainingRule> CachedRules = [];
@@ -46,14 +31,12 @@ internal static class ChainingRulePool
 			return rule;
 		}
 
-		if (RuleRouter.TryGetValue(linkType, out var func))
+		if (linkType.GetRuleInstance() is { } createdRule)
 		{
 			CachedRules.Remove(linkType);
-			var instanceCreated = func();
-			CachedRules.Add(linkType, instanceCreated);
-			return instanceCreated;
+			CachedRules.Add(linkType, createdRule);
+			return createdRule;
 		}
-
 		return null;
 	}
 }

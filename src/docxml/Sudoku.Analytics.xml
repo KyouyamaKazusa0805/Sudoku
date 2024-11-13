@@ -775,11 +775,6 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRule"/>
         </member>
-        <member name="F:Sudoku.Analytics.Caching.ChainingRulePool.RuleRouter">
-            <summary>
-            Indicates the rule router.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Caching.ChainingRulePool.CachedRules">
             <summary>
             Indicates the cached rules.
@@ -2466,6 +2461,13 @@
             For example, <c>A == B -- C == D</c> is not equal to <c>D == C -- B == A</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.ChainingRuleAttribute`1">
+            <summary>
+            Represents an attribute type that is applied to a field in type <see cref="T:Sudoku.Analytics.Construction.Components.LinkType"/>,
+            indicating the corresponding chaining rule.
+            </summary>
+            <typeparam name="TChainingRule">The type of the target chaining rule.</typeparam>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop">
             <summary>
             Represents a loop pattern that has no start node (all nodes can be start nodes), forming a closed loop,
@@ -3448,6 +3450,19 @@
             <summary>
             Indicates the link type is an almost avoidable rectangle.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.LinkTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Construction.Components.LinkType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.LinkType"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.LinkTypeExtensions.GetRuleInstance(Sudoku.Analytics.Construction.Components.LinkType)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRule"/> instance from the specified link type.
+            </summary>
+            <param name="this">The link type.</param>
+            <returns>The target <see cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRule"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.LockedMember">
             <summary>
