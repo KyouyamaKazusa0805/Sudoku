@@ -43,8 +43,13 @@ public sealed class UniqueRectangleSameDigitChainingRule : UniqueRectangleChaini
 					continue;
 				}
 
-				var urDigitsMask = (Mask)(1 << digitPair[0] | 1 << digitPair[1]);
+				var urDigitsMask = (Mask)(1 << d1 | 1 << d2);
 				var otherDigitsMask = (Mask)(allDigitsMask & ~urDigitsMask);
+				if (!Mask.IsPow2(otherDigitsMask))
+				{
+					continue;
+				}
+
 				var ur = new UniqueRectanglePattern(in urCells, urDigitsMask, otherDigitsMask);
 
 				var otherOnlyDigit = Mask.Log2(otherDigitsMask);

@@ -24,7 +24,7 @@ public sealed class UniqueRectangleDifferentDigitChainingRule : UniqueRectangleC
 		_ = grid is { EmptyCells: var __EmptyCells, CandidatesMap: var __CandidatesMap };
 		// VARIABLE_DECLARATION_END
 
-		var linkOption = context.GetLinkOption(LinkType.UniqueRectangle_SameDigit);
+		var linkOption = context.GetLinkOption(LinkType.UniqueRectangle_DifferentDigit);
 		foreach (var pattern in UniqueRectanglePattern.AllPatterns)
 		{
 			var urCells = pattern.AsCellMap();
@@ -45,6 +45,11 @@ public sealed class UniqueRectangleDifferentDigitChainingRule : UniqueRectangleC
 
 				var urDigitsMask = (Mask)(1 << digitPair[0] | 1 << digitPair[1]);
 				var otherDigitsMask = (Mask)(allDigitsMask & ~urDigitsMask);
+				if (Mask.PopCount(otherDigitsMask) != 2)
+				{
+					continue;
+				}
+
 				var ur = new UniqueRectanglePattern(in urCells, urDigitsMask, otherDigitsMask);
 
 				var theOtherDigit1 = Mask.TrailingZeroCount(otherDigitsMask);

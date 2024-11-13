@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Construction.Chaining.Rules;
+namespace Sudoku.Analytics.Construction.Chaining.Rules;
 
 /// <summary>
 /// Represents a chaining rule on AUR rule (i.e. <see cref="LinkType.UniqueRectangle_SingleSideExternal"/>).
@@ -24,7 +24,7 @@ public sealed class UniqueRectangleSingleSideExternalChainingRule : UniqueRectan
 		_ = grid is { EmptyCells: var __EmptyCells, CandidatesMap: var __CandidatesMap };
 		// VARIABLE_DECLARATION_END
 
-		var linkOption = context.GetLinkOption(LinkType.UniqueRectangle_SameDigit);
+		var linkOption = context.GetLinkOption(LinkType.UniqueRectangle_SingleSideExternal);
 		foreach (var pattern in UniqueRectanglePattern.AllPatterns)
 		{
 			var urCells = pattern.AsCellMap();
@@ -45,6 +45,11 @@ public sealed class UniqueRectangleSingleSideExternalChainingRule : UniqueRectan
 
 				var urDigitsMask = (Mask)(1 << digitPair[0] | 1 << digitPair[1]);
 				var otherDigitsMask = (Mask)(allDigitsMask & ~urDigitsMask);
+				if (Mask.PopCount(otherDigitsMask) < 2)
+				{
+					continue;
+				}
+
 				var ur = new UniqueRectanglePattern(in urCells, urDigitsMask, otherDigitsMask);
 
 				var urCellsContainingOtherDigits = CellMap.Empty;
