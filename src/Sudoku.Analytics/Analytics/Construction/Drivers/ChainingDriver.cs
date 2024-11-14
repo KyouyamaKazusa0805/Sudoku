@@ -172,11 +172,6 @@ internal static partial class ChainingDriver
 				context.Options,
 				blossomLoop
 			);
-			//if (blossomLoop.IsStrictlyGrouped ^ allowsAdvancedLinks)
-			//{
-			//	continue;
-			//}
-
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -314,9 +309,7 @@ internal static partial class ChainingDriver
 	/// <returns>Found conclusions.</returns>
 	[InterceptorMethodCaller]
 	[InterceptorInstanceTypes(
-		typeof(AlmostLockedSetsChainingRule),
-		typeof(KrakenNormalFishChainingRule),
-		typeof(LockedCandidatesChainingRule),
+		typeof(AlmostLockedSetsChainingRule), typeof(KrakenNormalFishChainingRule), typeof(LockedCandidatesChainingRule),
 		DefaultBehavior = InterceptorInstanceRoutingDefaultBehavior.DoNothingOrReturnDefault)]
 	private static Conclusion[] CollectChainConclusions(NamedChain pattern, ref readonly Grid grid, ChainingRuleCollection supportedRules)
 	{
