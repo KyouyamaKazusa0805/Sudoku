@@ -3128,6 +3128,19 @@
             <param name="baseCellsDigitsMask">The digits appeared in base cells.</param>
             <returns>A list of digits appeared in cross-line cells as value representation.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.GridNodeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.GridNodeExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.Node)">
+            <summary>
+            Treat the specified node as a real conclusion, and apply to a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="node">The node.</param>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.Grouped">
             <summary>
             Represents a list of methods that operates with concept "Grouped Node".

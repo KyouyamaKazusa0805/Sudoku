@@ -36,6 +36,7 @@ internal partial class ChainingDriver
 		(contradiction, var (pendingNodesSupposedOn, pendingNodesSupposedOff)) = (null, (new LinkedList<Node>(), new LinkedList<Node>()));
 		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);
 
+		var tempGrid = grid;
 		var nodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
 		var nodesSupposedOff = new HashSet<Node>(ChainingComparers.NodeMapComparer);
 		while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
@@ -43,7 +44,7 @@ internal partial class ChainingDriver
 			if (pendingNodesSupposedOn.Count != 0)
 			{
 				var currentNode = pendingNodesSupposedOn.RemoveFirstNode();
-				if (GetNodesFromOnToOff(currentNode, chainingRules, options, in grid) is var supposedOff and not [])
+				if (GetNodesFromOnToOff(currentNode, chainingRules, options, in tempGrid) is var supposedOff and not [])
 				{
 					foreach (var node in supposedOff)
 					{
@@ -65,7 +66,9 @@ internal partial class ChainingDriver
 			else
 			{
 				var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
-				if (GetNodesFromOffToOn(currentNode, chainingRules, options, in grid) is var supposedOn and not [])
+				tempGrid.Apply(currentNode);
+
+				if (GetNodesFromOffToOn(currentNode, chainingRules, options, in tempGrid) is var supposedOn and not [])
 				{
 					foreach (var node in supposedOn)
 					{
