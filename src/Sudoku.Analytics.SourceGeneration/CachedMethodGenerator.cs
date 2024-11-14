@@ -78,6 +78,15 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 		}
 		""";
 
+	/// <summary>
+	/// Repressents a list of properties that will be replaced with cached members.
+	/// </summary>
+	/// <remarks>
+	/// Please note that here we don't replace expression <c>grid.GetSolution()</c> with <c>Solution</c> at present
+	/// because it'll change syntax node
+	/// (from <see cref="InvocationExpressionSyntax"/> to <see cref="MemberAccessExpressionSyntax"/>).
+	/// It may be considered in the future.
+	/// </remarks>
 	private static readonly string[] ValidVariableNames = [
 		"__EmptyCells",
 		"__BivalueCells",
@@ -715,7 +724,8 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				// The target XML doc commment structure won't include triple slashes. We should append them;
 				// In addition, consider indenting, we should append indenting \t's.
 				// And, we should remove the first and last line (<member> tag).
-				var xmlDocCommentsSplitByLine = referencedMethodSymbol.GetDocumentationCommentXml(cancellationToken: cancellationToken)?
+				var xmlDocCommentsSplitByLine = referencedMethodSymbol
+					.GetDocumentationCommentXml(cancellationToken: cancellationToken)?
 					.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
 				var xmlDocCommentLines = new List<string>();

@@ -14,6 +14,17 @@
             Indicates the raw source code for intercepts location attribute.
             </summary>
         </member>
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.ValidVariableNames">
+            <summary>
+            Repressents a list of properties that will be replaced with cached members.
+            </summary>
+            <remarks>
+            Please note that here we don't replace expression <c>grid.GetSolution()</c> with <c>Solution</c> at present
+            because it'll change syntax node
+            (from <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.InvocationExpressionSyntax"/> to <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.MemberAccessExpressionSyntax"/>).
+            It may be considered in the future.
+            </remarks>
+        </member>
         <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
             <remarks>
