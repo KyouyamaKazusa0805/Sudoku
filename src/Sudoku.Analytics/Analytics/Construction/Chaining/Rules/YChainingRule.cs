@@ -45,4 +45,47 @@ public sealed class YChainingRule : ChainingRule
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	public override void GetStrongLinks(ref ChainingRuleNextNodeContext context)
+	{
+		var currentNode = context.CurrentNode;
+		if (currentNode is not { Map: [var startCandidate], IsOn: false })
+		{
+			return;
+		}
+
+		ref readonly var grid = ref context.Grid;
+		var cell = startCandidate / 9;
+		var startDigit = startCandidate % 9;
+		var digitsMask = grid.GetCandidates(cell);
+		var resultNodes = new HashSet<Node>();
+		if (Mask.PopCount(digitsMask) == 2)
+		{
+			var endDigit = Mask.Log2((Mask)(digitsMask & ~(1 << startDigit)));
+			resultNodes.Add(new((cell * 9 + endDigit).AsCandidateMap(), true));
+		}
+		context.CollectedNodes = resultNodes.ToArray();
+	}
+
+	/// <inheritdoc/>
+	public override void GetWeakLinks(ref ChainingRuleNextNodeContext context)
+	{
+		var currentNode = context.CurrentNode;
+		if (currentNode is not { Map: [var startCandidate], IsOn: false })
+		{
+			return;
+		}
+
+		ref readonly var grid = ref context.Grid;
+		var cell = startCandidate / 9;
+		var startDigit = startCandidate % 9;
+		var digitsMask = grid.GetCandidates(cell);
+		var resultNodes = new HashSet<Node>();
+		foreach (var endDigit in (Mask)(digitsMask & ~(1 << startDigit)))
+		{
+			resultNodes.Add(new((cell * 9 + endDigit).AsCandidateMap(), false));
+		}
+		context.CollectedNodes = resultNodes.ToArray();
+	}
 }

@@ -62,4 +62,52 @@ public sealed class XChainingRule : ChainingRule
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	public override void GetStrongLinks(ref ChainingRuleNextNodeContext context)
+	{
+		var currentNode = context.CurrentNode;
+		if (currentNode is not { Map: [var startCandidate], IsOn: false })
+		{
+			return;
+		}
+
+		ref readonly var grid = ref context.Grid;
+		var candidatesMap = grid.CandidatesMap;
+		var startCell = startCandidate / 9;
+		var digit = startCandidate % 9;
+		var resultNodes = new HashSet<Node>();
+		foreach (var houseType in HouseTypes)
+		{
+			if ((HousesMap[startCell.ToHouse(houseType)] & candidatesMap[digit]) - startCell is [var endCell])
+			{
+				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), true));
+			}
+		}
+		context.CollectedNodes = resultNodes.ToArray();
+	}
+
+	/// <inheritdoc/>
+	public override void GetWeakLinks(ref ChainingRuleNextNodeContext context)
+	{
+		var currentNode = context.CurrentNode;
+		if (currentNode is not { Map: [var startCandidate], IsOn: true })
+		{
+			return;
+		}
+
+		ref readonly var grid = ref context.Grid;
+		var candidatesMap = grid.CandidatesMap;
+		var startCell = startCandidate / 9;
+		var digit = startCandidate % 9;
+		var resultNodes = new HashSet<Node>();
+		foreach (var houseType in HouseTypes)
+		{
+			foreach (var endCell in (HousesMap[startCell.ToHouse(houseType)] & candidatesMap[digit]) - startCell)
+			{
+				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), false));
+			}
+		}
+		context.CollectedNodes = resultNodes.ToArray();
+	}
 }

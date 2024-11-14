@@ -224,10 +224,7 @@ internal partial class ChainingDriver
 				foreach (var c in cellsInHouse)
 				{
 					var branchNode = onNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					rfc.Add(
-						c * 9 + digit,
-						node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
-					);
+					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
 				if (onlyFindOne)
 				{
@@ -264,10 +261,7 @@ internal partial class ChainingDriver
 				foreach (var c in cellsInHouse)
 				{
 					var branchNode = offNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					rfc.Add(
-						c * 9 + digit,
-						node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
-					);
+					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
 				if (rfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
 				{

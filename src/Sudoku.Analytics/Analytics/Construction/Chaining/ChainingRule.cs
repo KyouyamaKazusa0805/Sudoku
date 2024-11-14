@@ -46,6 +46,20 @@ public abstract partial class ChainingRule
 	public abstract void GetLinks(ref ChainingRuleLinkContext context);
 
 	/// <summary>
+	/// Collects for strong links, and store them into <see cref="ChainingRuleNextNodeContext.CollectedNodes"/>.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <seealso cref="ChainingRuleNextNodeContext"/>
+	public virtual void GetStrongLinks(ref ChainingRuleNextNodeContext context) => context.CollectedNodes = [];
+
+	/// <summary>
+	/// Collects for weak links, and store them into <see cref="ChainingRuleNextNodeContext.CollectedNodes"/>.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <seealso cref="ChainingRuleNextNodeContext"/>
+	public virtual void GetWeakLinks(ref ChainingRuleNextNodeContext context) => context.CollectedNodes = [];
+
+	/// <summary>
 	/// Collects for extra view nodes for the pattern.
 	/// This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
 	/// </summary>
