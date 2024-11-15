@@ -13,16 +13,17 @@ public static class GridNodeExtensions
 	/// <param name="node">The node.</param>
 	public static void Apply(this ref Grid grid, Node node)
 	{
+		ref readonly var map = ref node.Map;
 		if (node.IsOn)
 		{
 			// Find intersections to be removed; or assign it directly if the node only uses 1 candidate.
-			if (node.Map is [var onlyCandidate])
+			if (map is [var onlyCandidate])
 			{
 				grid.SetDigit(onlyCandidate / 9, onlyCandidate % 9);
 			}
 			else
 			{
-				foreach (var candidate in node.Map.PeerIntersection)
+				foreach (var candidate in map.PeerIntersection)
 				{
 					if (grid.GetState(candidate / 9) == CellState.Empty)
 					{
@@ -34,7 +35,7 @@ public static class GridNodeExtensions
 		else
 		{
 			// If a node is considered as false, we should remove all possible candidates of the node.
-			foreach (var candidate in node.Map)
+			foreach (var candidate in map)
 			{
 				grid[candidate / 9] &= (Mask)~(1 << candidate % 9);
 			}

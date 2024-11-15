@@ -4787,12 +4787,15 @@
             <param name="supportedRules">All supported rules used.</param>
             <returns>Found conclusions.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectBivalueUniversalGraveMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectBivalueUniversalGraveMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
             <summary>
             Collect all multiple forcing chains on applying to a bi-value universal grave, appeared in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <param name="_">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='dynamicChaining']"/>
+            </param>
             <returns>All possible multiple forcing chain instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.Chains.NormalChainStep},System.Boolean)">
@@ -4914,12 +4917,13 @@
             </summary>
             <inheritdoc cref="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.GetNodesFromOnToOff(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.Grid@)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
             <summary>
             Collect all multiple forcing chains appeared in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <param name="dynamicChaining">Indicates whether the method will handle for dynamic chaining rules.</param>
             <returns>All possible multiple forcing chain instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.FindForcingChains(Sudoku.Analytics.Construction.Components.Node)">
@@ -4939,12 +4943,15 @@
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectRectangleMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectRectangleMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
             <summary>
             Collect all multiple forcing chains on applying to a unique rectangle, appeared in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <param name="_">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='dynamicChaining']"/>
+            </param>
             <returns>All possible multiple forcing chain instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Drivers.SubsetDriver">

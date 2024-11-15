@@ -7,8 +7,9 @@ internal partial class ChainingDriver
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+	/// <param name="dynamicChaining">Indicates whether the method will handle for dynamic chaining rules.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
-	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChains(ref readonly Grid grid, bool onlyFindOne)
+	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChains(ref readonly Grid grid, bool onlyFindOne, bool dynamicChaining)
 	{
 		var result = new SortedSet<MultipleForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
 		foreach (var cell in EmptyCells & ~BivalueCells)
@@ -24,63 +25,10 @@ internal partial class ChainingDriver
 				var (nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
 
 				// Iterate on three house types, to collect with region forcing chains.
-				foreach (var houseType in HouseTypes)
+				if (chaining_Region(cell, digit, in grid, nodesSupposedOn, nodesSupposedOff)
+					is var regionForcingChainsFound and not [])
 				{
-					var house = cell.ToHouse(houseType);
-					var cellsInHouse = HousesMap[house] & CandidatesMap[digit];
-					if (cellsInHouse.Count <= 2)
-					{
-						// There's no need iterating on such house because the chain only contains 2 branches,
-						// which means it can be combined into one normal chain.
-						continue;
-					}
-
-					var firstCellInHouse = cellsInHouse[0];
-					if (firstCellInHouse != cell)
-					{
-						// We should skip the other cells in the house, in order to avoid duplicate forcing chains.
-						continue;
-					}
-
-					var nodesSupposedOn_GroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
-					var nodesSupposedOff_GroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
-					var nodesSupposedOn_InHouse = new HashSet<Node>(ChainingComparers.NodeMapComparer);
-					var nodesSupposedOff_InHouse = new HashSet<Node>(ChainingComparers.NodeMapComparer);
-					foreach (var otherCell in cellsInHouse)
-					{
-						var otherCandidate = otherCell * 9 + digit;
-						if (otherCell == cell)
-						{
-							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, nodesSupposedOn);
-							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, nodesSupposedOff);
-							nodesSupposedOn_InHouse.UnionWith(nodesSupposedOn);
-							nodesSupposedOff_InHouse.UnionWith(nodesSupposedOff);
-						}
-						else
-						{
-							var other = new Node(otherCandidate.AsCandidateMap(), true);
-							var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindForcingChains(other);
-							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOn_InHouse);
-							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOff_InHouse);
-							nodesSupposedOn_InHouse.IntersectWith(otherNodesSupposedOn_InHouse);
-							nodesSupposedOff_InHouse.IntersectWith(otherNodesSupposedOff_InHouse);
-						}
-					}
-
-					////////////////////////////////////////
-					// Collect with region forcing chains //
-					////////////////////////////////////////
-					var _a = rfcOn(in grid, digit, in cellsInHouse, nodesSupposedOn_GroupedByHouse, nodesSupposedOn_InHouse);
-					if (!_a.IsEmpty)
-					{
-						return _a;
-					}
-
-					var _b = rfcOff(in grid, digit, in cellsInHouse, nodesSupposedOff_GroupedByHouse, nodesSupposedOff_InHouse);
-					if (!_b.IsEmpty)
-					{
-						return _b;
-					}
+					return regionForcingChainsFound;
 				}
 
 				nodesSupposedOn_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOn);
@@ -100,23 +48,110 @@ internal partial class ChainingDriver
 				}
 			}
 
-			//////////////////////////////////////
-			// Collect with cell forcing chains //
-			//////////////////////////////////////
-			var _c = cfcOn(in grid, cell, nodesSupposedOn_GroupedByDigit, nodesSupposedOn_InCell, digitsMask);
-			if (!_c.IsEmpty)
+			if (chaining_Cell(
+				cell, digitsMask, in grid, nodesSupposedOn_GroupedByDigit, nodesSupposedOff_GroupedByDigit,
+				nodesSupposedOn_InCell, nodesSupposedOff_InCell)
+				is var cellForcingChainsFound and not [])
 			{
-				return _c;
-			}
-
-			var _d = cfcOff(in grid, cell, nodesSupposedOff_GroupedByDigit, nodesSupposedOff_InCell, digitsMask);
-			if (!_d.IsEmpty)
-			{
-				return _d;
+				return cellForcingChainsFound;
 			}
 		}
 		return result.ToArray();
 
+
+		ReadOnlySpan<MultipleForcingChains> chaining_Cell(
+			Cell cell,
+			Mask digitsMask,
+			ref readonly Grid grid,
+			Dictionary<Cell, HashSet<Node>> nodesSupposedOn_GroupedByDigit,
+			Dictionary<Cell, HashSet<Node>> nodesSupposedOff_GroupedByDigit,
+			HashSet<Node>? nodesSupposedOn_InCell,
+			HashSet<Node>? nodesSupposedOff_InCell
+		)
+		{
+			//////////////////////////////////////
+			// Collect with cell forcing chains //
+			//////////////////////////////////////
+			var cellOn = cfcOn(in grid, cell, nodesSupposedOn_GroupedByDigit, nodesSupposedOn_InCell, digitsMask);
+			if (!cellOn.IsEmpty)
+			{
+				return cellOn;
+			}
+			var cellOff = cfcOff(in grid, cell, nodesSupposedOff_GroupedByDigit, nodesSupposedOff_InCell, digitsMask);
+			if (!cellOff.IsEmpty)
+			{
+				return cellOff;
+			}
+			return [];
+		}
+
+		ReadOnlySpan<MultipleForcingChains> chaining_Region(
+			Cell cell,
+			Digit digit,
+			ref readonly Grid grid,
+			HashSet<Node> nodesSupposedOn,
+			HashSet<Node> nodesSupposedOff
+		)
+		{
+			foreach (var houseType in HouseTypes)
+			{
+				var house = cell.ToHouse(houseType);
+				var cellsInHouse = HousesMap[house] & CandidatesMap[digit];
+				if (cellsInHouse.Count <= 2)
+				{
+					// There's no need iterating on such house because the chain only contains 2 branches,
+					// which means it can be combined into one normal chain.
+					continue;
+				}
+
+				var firstCellInHouse = cellsInHouse[0];
+				if (firstCellInHouse != cell)
+				{
+					// We should skip the other cells in the house, in order to avoid duplicate forcing chains.
+					continue;
+				}
+
+				var nodesSupposedOn_GroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
+				var nodesSupposedOff_GroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
+				var nodesSupposedOn_InHouse = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+				var nodesSupposedOff_InHouse = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+				foreach (var otherCell in cellsInHouse)
+				{
+					var otherCandidate = otherCell * 9 + digit;
+					if (otherCell == cell)
+					{
+						nodesSupposedOn_GroupedByHouse.Add(otherCandidate, nodesSupposedOn);
+						nodesSupposedOff_GroupedByHouse.Add(otherCandidate, nodesSupposedOff);
+						nodesSupposedOn_InHouse.UnionWith(nodesSupposedOn);
+						nodesSupposedOff_InHouse.UnionWith(nodesSupposedOff);
+					}
+					else
+					{
+						var other = new Node(otherCandidate.AsCandidateMap(), true);
+						var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindForcingChains(other);
+						nodesSupposedOn_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOn_InHouse);
+						nodesSupposedOff_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOff_InHouse);
+						nodesSupposedOn_InHouse.IntersectWith(otherNodesSupposedOn_InHouse);
+						nodesSupposedOff_InHouse.IntersectWith(otherNodesSupposedOff_InHouse);
+					}
+				}
+
+				////////////////////////////////////////
+				// Collect with region forcing chains //
+				////////////////////////////////////////
+				var regionOn = rfcOn(in grid, digit, in cellsInHouse, nodesSupposedOn_GroupedByHouse, nodesSupposedOn_InHouse);
+				if (!regionOn.IsEmpty)
+				{
+					return regionOn;
+				}
+				var regionOff = rfcOff(in grid, digit, in cellsInHouse, nodesSupposedOff_GroupedByHouse, nodesSupposedOff_InHouse);
+				if (!regionOff.IsEmpty)
+				{
+					return regionOff;
+				}
+			}
+			return [];
+		}
 
 		ReadOnlySpan<MultipleForcingChains> cfcOn(
 			ref readonly Grid grid,

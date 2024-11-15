@@ -7,9 +7,16 @@ internal partial class ChainingDriver
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+	/// <param name="_">
+	/// <inheritdoc cref="CollectMultipleChains(ref readonly Grid, bool, bool)" path="/param[@name='dynamicChaining']"/>
+	/// </param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
 	[InterceptorMethodCaller]
-	public static ReadOnlySpan<BivalueUniversalGraveForcingChains> CollectBivalueUniversalGraveMultipleChains(ref readonly Grid grid, bool onlyFindOne)
+	public static ReadOnlySpan<BivalueUniversalGraveForcingChains> CollectBivalueUniversalGraveMultipleChains(
+		ref readonly Grid grid,
+		bool onlyFindOne,
+		bool _
+	)
 	{
 		var result = new SortedSet<BivalueUniversalGraveForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
 		var trueCandidates = TrueCandidate.GetAllTrueCandidates(in grid);

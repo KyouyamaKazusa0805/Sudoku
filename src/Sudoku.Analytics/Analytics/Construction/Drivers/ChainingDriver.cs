@@ -241,7 +241,7 @@ internal static partial class ChainingDriver
 		bool allowsAdvancedLinks,
 		bool onlyFindFinnedChain,
 		delegate*<TMultipleForcingChains, MultipleChainBasedComponent> componentCreator,
-		delegate*<ref readonly Grid, bool, ReadOnlySpan<TMultipleForcingChains>> chainsCollector,
+		delegate*<ref readonly Grid, bool, bool, ReadOnlySpan<TMultipleForcingChains>> chainsCollector,
 		delegate*<TMultipleForcingChains, ref readonly Grid, ref readonly StepAnalysisContext, ChainingRuleCollection, TStep> stepCreator
 	)
 		where TMultipleForcingChains : MultipleForcingChains
@@ -256,7 +256,7 @@ internal static partial class ChainingDriver
 			out var supportedRules
 		);
 
-		foreach (var chain in chainsCollector(in context.Grid, context.OnlyFindOne))
+		foreach (var chain in chainsCollector(in context.Grid, context.OnlyFindOne, false))
 		{
 			var cachedAlsIndex = 0;
 			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
