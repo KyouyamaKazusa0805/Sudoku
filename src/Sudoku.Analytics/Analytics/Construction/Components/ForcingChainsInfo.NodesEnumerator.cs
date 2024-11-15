@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.Construction.Components;
 
-public partial record struct ForcingChainInfo
+public partial record struct ForcingChainsInfo
 {
 	/// <summary>
 	/// Represents an enumerator type that can iterate on nodes supposed with "on".

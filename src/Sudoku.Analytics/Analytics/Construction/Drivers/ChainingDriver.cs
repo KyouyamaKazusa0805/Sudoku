@@ -63,7 +63,7 @@ internal static partial class ChainingDriver
 			allowsAdvancedLinks,
 			onlyFindFinnedChain,
 			&component,
-			&CollectMultipleChains,
+			&CollectMultipleForcingChains,
 			&stepCreator
 		);
 
@@ -100,7 +100,7 @@ internal static partial class ChainingDriver
 			allowsAdvancedLinks,
 			onlyFindFinnedChain,
 			&component,
-			&CollectRectangleMultipleChains,
+			&CollectRectangleMultipleForcingChains,
 			&stepCreator
 		);
 
@@ -136,7 +136,7 @@ internal static partial class ChainingDriver
 			allowsAdvancedLinks,
 			onlyFindFinnedChain,
 			&component,
-			&CollectBivalueUniversalGraveMultipleChains,
+			&CollectBivalueUniversalGraveMultipleForcingChains,
 			&stepCreator
 		);
 
@@ -241,7 +241,7 @@ internal static partial class ChainingDriver
 		bool allowsAdvancedLinks,
 		bool onlyFindFinnedChain,
 		delegate*<TMultipleForcingChains, MultipleChainBasedComponent> componentCreator,
-		delegate*<ref readonly Grid, bool, bool, ReadOnlySpan<TMultipleForcingChains>> chainsCollector,
+		delegate*<ref readonly Grid, bool, ReadOnlySpan<TMultipleForcingChains>> chainsCollector,
 		delegate*<TMultipleForcingChains, ref readonly Grid, ref readonly StepAnalysisContext, ChainingRuleCollection, TMultipleForcingChainsStep> stepCreator
 	)
 		where TMultipleForcingChains : MultipleForcingChains
@@ -252,7 +252,7 @@ internal static partial class ChainingDriver
 		ref readonly var grid = ref context.Grid;
 		InitializeLinks(in grid, linkTypes, context.Options, out var supportedRules);
 
-		foreach (var chain in chainsCollector(in context.Grid, context.OnlyFindOne, false))
+		foreach (var chain in chainsCollector(in context.Grid, context.OnlyFindOne))
 		{
 			var cachedAlsIndex = 0;
 			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))

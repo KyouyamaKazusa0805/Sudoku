@@ -5335,7 +5335,7 @@ public enum Technique
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1304")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.DynamicForcingChain, RatingOriginal = [8.8, 9.4])]
 	[TechniqueMetadata(
-		Rating = 95,
+		Rating = 88,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
 		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented)]
@@ -5347,7 +5347,7 @@ public enum Technique
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1304")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.DynamicForcingChain, RatingOriginal = [8.8, 9.4])]
 	[TechniqueMetadata(
-		Rating = 95,
+		Rating = 88,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
 		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented)]

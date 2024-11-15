@@ -7,9 +7,8 @@ internal partial class ChainingDriver
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-	/// <param name="dynamicChaining">Indicates whether the method will handle for dynamic chaining rules.</param>
-	/// <returns>All possible multiple forcing chain instances.</returns>
-	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChains(ref readonly Grid grid, bool onlyFindOne, bool dynamicChaining)
+	/// <returns>All possible multiple forcing chains instances.</returns>
+	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleForcingChains(ref readonly Grid grid, bool onlyFindOne)
 	{
 		var result = new SortedSet<MultipleForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
 		foreach (var cell in EmptyCells & ~BivalueCells)
@@ -322,14 +321,14 @@ internal partial class ChainingDriver
 	/// <returns>
 	/// A pair of <see cref="HashSet{T}"/> of <see cref="Node"/> instances, indicating all possible nodes
 	/// that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states,
-	/// encapsulating with type <see cref="ForcingChainInfo"/>.
+	/// encapsulating with type <see cref="ForcingChainsInfo"/>.
 	/// </returns>
 	/// <seealso cref="StrongLinkDictionary"/>
 	/// <seealso cref="WeakLinkDictionary"/>
 	/// <seealso cref="HashSet{T}"/>
 	/// <seealso cref="Node"/>
-	/// <seealso cref="ForcingChainInfo"/>
-	private static ForcingChainInfo FindForcingChains(Node startNode)
+	/// <seealso cref="ForcingChainsInfo"/>
+	private static ForcingChainsInfo FindForcingChains(Node startNode)
 	{
 		var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new LinkedList<Node>(), new LinkedList<Node>());
 		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);

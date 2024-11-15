@@ -24,10 +24,10 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	IAnyAllMethod<MultipleForcingChains, MfcValue>,
 	IComparable<MultipleForcingChains>,
 	IComparisonOperators<MultipleForcingChains, MultipleForcingChains, bool>,
-	IChainOrForcingChains,
 	IComponent,
 	IEquatable<MultipleForcingChains>,
 	IEqualityOperators<MultipleForcingChains, MultipleForcingChains, bool>,
+	IForcingChains,
 	IFormattable
 {
 	/// <summary>
@@ -61,14 +61,10 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	/// <inheritdoc/>
 	public bool IsStrictlyGrouped => Values.Any(static v => v.IsStrictlyGrouped);
 
-	/// <summary>
-	/// Indicates the complexity of the whole pattern.
-	/// </summary>
+	/// <inheritdoc/>
 	public int Complexity => BranchedComplexity.Sum();
 
-	/// <summary>
-	/// Indicates the digits used in this pattern.
-	/// </summary>
+	/// <inheritdoc/>
 	public Mask DigitsMask
 	{
 		get
@@ -85,9 +81,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 		}
 	}
 
-	/// <summary>
-	/// Indicates the complexity of each branch.
-	/// </summary>
+	/// <inheritdoc/>
 	public ReadOnlySpan<int> BranchedComplexity => (from v in Values select v.Length).ToArray();
 
 	/// <summary>
@@ -376,13 +370,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 		throw new InvalidOperationException(SR.ExceptionMessage("CannotCastFinnedChain"));
 	}
 
-	/// <summary>
-	/// Collect views for the current chain.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="newConclusions">The conclusions.</param>
-	/// <param name="supportedRules">The supported rules.</param>
-	/// <returns>The views.</returns>
+	/// <inheritdoc/>
 	public View[] GetViews(ref readonly Grid grid, Conclusion[] newConclusions, ChainingRuleCollection supportedRules)
 	{
 		var viewNodes = GetViewsCore(in grid, supportedRules, newConclusions);

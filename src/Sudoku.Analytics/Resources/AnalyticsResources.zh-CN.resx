@@ -3583,4 +3583,10 @@
     <value>全双值格致死解法强制链</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="Factor_DynamicForcingChainsLengthFactor" xml:space="preserve">
+    <value>动态强制链的长度</value>
+  </data>
+  <data name="TechniqueFormat_BinaryForcingChainsStep" xml:space="preserve">
+    <value>{0}</value>
+  </data>
 </root>

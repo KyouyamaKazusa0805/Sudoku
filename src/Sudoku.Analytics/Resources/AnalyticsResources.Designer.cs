@@ -2203,6 +2203,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Length of dynamic forcing chains.
+        /// </summary>
+        public static string Factor_DynamicForcingChainsLengthFactor {
+            get {
+                return ResourceManager.GetString("Factor_DynamicForcingChainsLengthFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Size of almost hidden subset in exocet.
         /// </summary>
         public static string Factor_ExocetAlmostHiddenSetSizeFactor {
@@ -7854,6 +7863,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_BinaryChainingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BinaryChainingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}.
+        /// </summary>
+        public static string TechniqueFormat_BinaryForcingChainsStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BinaryForcingChainsStep", resourceCulture);
             }
         }
         

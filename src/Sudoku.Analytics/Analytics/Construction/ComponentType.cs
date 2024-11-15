@@ -46,6 +46,11 @@ public enum ComponentType
 	MultipleForcingChains,
 
 	/// <summary>
+	/// Indicates the component is binary forcing chains.
+	/// </summary>
+	BinaryForcingChains,
+
+	/// <summary>
 	/// Indicates the component is blossom loop.
 	/// </summary>
 	BlossomLoop,

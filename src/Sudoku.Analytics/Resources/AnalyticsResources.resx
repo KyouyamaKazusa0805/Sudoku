@@ -3459,4 +3459,10 @@ Error grid: '{0:#}'</value>
   <data name="StepSearcherName_BivalueUniversalGraveForcingChainsStepSearcher" xml:space="preserve">
     <value>BUG + n Forcing Chains</value>
   </data>
+  <data name="Factor_DynamicForcingChainsLengthFactor" xml:space="preserve">
+    <value>Length of dynamic forcing chains</value>
+  </data>
+  <data name="TechniqueFormat_BinaryForcingChainsStep" xml:space="preserve">
+    <value>{0}</value>
+  </data>
 </root>

@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <seealso cref="Node"/>
 /// <seealso cref="Node.IsOn"/>
 [TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Equatable)]
-public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, HashSet<Node> OffNodes) :
+public readonly partial record struct ForcingChainsInfo(HashSet<Node> OnNodes, HashSet<Node> OffNodes) :
 	IComponent,
 	IEnumerable<Node>,
 	IReadOnlyCollection<Node>
@@ -31,14 +31,14 @@ public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, Ha
 
 
 	/// <summary>
-	/// Determines whether two <see cref="ForcingChainInfo"/> instances contain a same <see cref="StartNode"/> property,
+	/// Determines whether two <see cref="ForcingChainsInfo"/> instances contain a same <see cref="StartNode"/> property,
 	/// with the specified comparison rule.
 	/// </summary>
 	/// <param name="other">The other instance to be compared.</param>
 	/// <param name="nodeComparison">The node comparison rule.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ForcingChainInfo other, NodeComparison nodeComparison) => StartNode.Equals(other.StartNode, nodeComparison);
+	public bool Equals(ForcingChainsInfo other, NodeComparison nodeComparison) => StartNode.Equals(other.StartNode, nodeComparison);
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

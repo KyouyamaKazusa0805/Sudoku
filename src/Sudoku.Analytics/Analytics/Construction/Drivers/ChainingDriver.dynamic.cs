@@ -3,8 +3,448 @@ namespace Sudoku.Analytics.Construction.Drivers;
 internal partial class ChainingDriver
 {
 	/// <summary>
-	/// Finds a list of nodes that can implicitly connects to current node via a forcing chain,
-	/// with tracking contradiction checking.
+	/// Collect all dynamic multiple forcing chains and dynamic binary forcing chains appeared in a grid.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">Indicates the context to be used.</param>
+	/// <param name="chainingRules">Indicates the chaining rules used.</param>
+	/// <returns>All possible dynamic forcing chains instances.</returns>
+	public static ReadOnlySpan<IForcingChains> CollectDynamicForcingChains(
+		ref readonly Grid grid,
+		ref readonly StepAnalysisContext context,
+		ChainingRuleCollection chainingRules
+	)
+	{
+		var result = new List<IForcingChains>();
+		foreach (var cell in EmptyCells & ~BivalueCells)
+		{
+			var nodesSupposedOn_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
+			var nodesSupposedOff_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
+			var nodesSupposedOn_InCell = default(HashSet<Node>);
+			var nodesSupposedOff_InCell = default(HashSet<Node>);
+			var digitsMask = grid.GetCandidates(cell);
+			foreach (var digit in digitsMask)
+			{
+				if (chaining_Binary(cell, digit, in grid, in context, chainingRules, out var nodesSupposedOn, out var nodesSupposedOff)
+					is var binaryForcingChainsFound and not [])
+				{
+					return binaryForcingChainsFound;
+				}
+
+				if (chaining_Region(cell, digit, in grid, in context, nodesSupposedOn, nodesSupposedOff)
+					is var regionForcingChainsFound and not [])
+				{
+					return regionForcingChainsFound;
+				}
+
+				nodesSupposedOn_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOn);
+				nodesSupposedOff_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOff);
+				if (nodesSupposedOn_InCell is null)
+				{
+					nodesSupposedOn_InCell = new(ChainingComparers.NodeMapComparer);
+					nodesSupposedOff_InCell = new(ChainingComparers.NodeMapComparer);
+					nodesSupposedOn_InCell.UnionWith(nodesSupposedOn);
+					nodesSupposedOff_InCell.UnionWith(nodesSupposedOff);
+				}
+				else
+				{
+					Debug.Assert(nodesSupposedOff_InCell is not null);
+					nodesSupposedOn_InCell.IntersectWith(nodesSupposedOn);
+					nodesSupposedOff_InCell.IntersectWith(nodesSupposedOff);
+				}
+			}
+
+			if (chaining_Cell(
+				cell, digitsMask, in grid, in context, nodesSupposedOn_GroupedByDigit, nodesSupposedOff_GroupedByDigit,
+				nodesSupposedOn_InCell, nodesSupposedOff_InCell)
+				is var cellForcingChainsFound and not [])
+			{
+				return cellForcingChainsFound;
+			}
+		}
+		return result.ToArray();
+
+
+		ReadOnlySpan<BinaryForcingChains> chaining_Binary(
+			Cell cell,
+			Digit digit,
+			ref readonly Grid grid,
+			ref readonly StepAnalysisContext context,
+			ChainingRuleCollection chainingRules,
+			out HashSet<Node> nodesSupposedOn,
+			out HashSet<Node> nodesSupposedOff
+		)
+		{
+			///////////////////////////////////////////////
+			// Collect with contradiction forcing chains //
+			///////////////////////////////////////////////
+
+			// Test for "on" state.
+			var currentNodeOn = new Node((cell * 9 + digit).AsCandidateMap(), true);
+			(nodesSupposedOn, nodesSupposedOff) = FindDynamicForcingChains(
+				currentNodeOn,
+				in grid,
+				chainingRules,
+				context.Options,
+				out var contradiction
+			);
+			if (contradiction is var (onNode_OnState, offNode_OnState))
+			{
+				if (bfcOn(in grid, in context, chainingRules, currentNodeOn, onNode_OnState, offNode_OnState)
+					is var contradictionForcingChains and not [])
+				{
+					return contradictionForcingChains;
+				}
+			}
+
+			// Test for "off" state.
+			var currentNodeOff = ~currentNodeOn;
+			var (nodesSupposedOn_OffCase, nodesSupposedOff_OffCase) = FindDynamicForcingChains(
+				currentNodeOff,
+				in grid,
+				chainingRules,
+				context.Options,
+				out contradiction
+			);
+			if (contradiction is var (onNode_OffState, offNode_OffState))
+			{
+				if (bfcOff(in grid, in context, chainingRules, currentNodeOff, onNode_OffState, offNode_OffState)
+					is var contradictionForcingChains and not [])
+				{
+					return contradictionForcingChains;
+				}
+			}
+
+			////////////////////////////////////////
+			// Collect with double forcing chains //
+			////////////////////////////////////////
+
+			return [];
+		}
+
+		ReadOnlySpan<MultipleForcingChains> chaining_Cell(
+			Cell cell,
+			Mask digitsMask,
+			ref readonly Grid grid,
+			ref readonly StepAnalysisContext context,
+			Dictionary<Cell, HashSet<Node>> nodesSupposedOn_GroupedByDigit,
+			Dictionary<Cell, HashSet<Node>> nodesSupposedOff_GroupedByDigit,
+			HashSet<Node>? nodesSupposedOn_InCell,
+			HashSet<Node>? nodesSupposedOff_InCell
+		)
+		{
+			//////////////////////////////////////
+			// Collect with cell forcing chains //
+			//////////////////////////////////////
+			var cellOn = cfcOn(in grid, cell, in context, nodesSupposedOn_GroupedByDigit, nodesSupposedOn_InCell, digitsMask);
+			if (!cellOn.IsEmpty)
+			{
+				return cellOn;
+			}
+			var cellOff = cfcOff(in grid, cell, in context, nodesSupposedOff_GroupedByDigit, nodesSupposedOff_InCell, digitsMask);
+			if (!cellOff.IsEmpty)
+			{
+				return cellOff;
+			}
+			return [];
+		}
+
+		ReadOnlySpan<MultipleForcingChains> chaining_Region(
+			Cell cell,
+			Digit digit,
+			ref readonly Grid grid,
+			ref readonly StepAnalysisContext context,
+			HashSet<Node> nodesSupposedOn,
+			HashSet<Node> nodesSupposedOff
+		)
+		{
+			foreach (var houseType in HouseTypes)
+			{
+				var house = cell.ToHouse(houseType);
+				var cellsInHouse = HousesMap[house] & CandidatesMap[digit];
+				if (cellsInHouse.Count <= 2)
+				{
+					// There's no need iterating on such house because the chain only contains 2 branches,
+					// which means it can be combined into one normal chain.
+					continue;
+				}
+
+				var firstCellInHouse = cellsInHouse[0];
+				if (firstCellInHouse != cell)
+				{
+					// We should skip the other cells in the house, in order to avoid duplicate forcing chains.
+					continue;
+				}
+
+				var nodesSupposedOn_GroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
+				var nodesSupposedOff_GroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
+				var nodesSupposedOn_InHouse = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+				var nodesSupposedOff_InHouse = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+				foreach (var otherCell in cellsInHouse)
+				{
+					var otherCandidate = otherCell * 9 + digit;
+					if (otherCell == cell)
+					{
+						nodesSupposedOn_GroupedByHouse.Add(otherCandidate, nodesSupposedOn);
+						nodesSupposedOff_GroupedByHouse.Add(otherCandidate, nodesSupposedOff);
+						nodesSupposedOn_InHouse.UnionWith(nodesSupposedOn);
+						nodesSupposedOff_InHouse.UnionWith(nodesSupposedOff);
+					}
+					else
+					{
+						var other = new Node(otherCandidate.AsCandidateMap(), true);
+						var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindForcingChains(other);
+						nodesSupposedOn_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOn_InHouse);
+						nodesSupposedOff_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOff_InHouse);
+						nodesSupposedOn_InHouse.IntersectWith(otherNodesSupposedOn_InHouse);
+						nodesSupposedOff_InHouse.IntersectWith(otherNodesSupposedOff_InHouse);
+					}
+				}
+
+				////////////////////////////////////////
+				// Collect with region forcing chains //
+				////////////////////////////////////////
+				var regionOn = rfcOn(in grid, digit, in cellsInHouse, in context, nodesSupposedOn_GroupedByHouse, nodesSupposedOn_InHouse);
+				if (!regionOn.IsEmpty)
+				{
+					return regionOn;
+				}
+				var regionOff = rfcOff(in grid, digit, in cellsInHouse, in context, nodesSupposedOff_GroupedByHouse, nodesSupposedOff_InHouse);
+				if (!regionOff.IsEmpty)
+				{
+					return regionOff;
+				}
+			}
+			return [];
+		}
+
+		ReadOnlySpan<MultipleForcingChains> cfcOn(
+			ref readonly Grid grid,
+			Cell cell,
+			ref readonly StepAnalysisContext context,
+			Dictionary<Candidate, HashSet<Node>> onNodes,
+			HashSet<Node>? resultOnNodes,
+			Mask digitsMask
+		)
+		{
+			foreach (var node in resultOnNodes ?? [])
+			{
+				if (node.IsGroupedNode)
+				{
+					// Grouped nodes are not supported as target node.
+					continue;
+				}
+
+				var conclusion = new Conclusion(Assignment, node.Map[0]);
+				if (grid.Exists(conclusion.Candidate) is not true)
+				{
+					continue;
+				}
+
+				var cfc = new MultipleForcingChains(conclusion);
+				foreach (var d in digitsMask)
+				{
+					var branchNode = onNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+				}
+				if (context.OnlyFindOne)
+				{
+					return (MultipleForcingChains[])[cfc];
+				}
+				result.Add(cfc);
+			}
+			return [];
+		}
+
+		ReadOnlySpan<MultipleForcingChains> cfcOff(
+			ref readonly Grid grid,
+			Cell cell,
+			ref readonly StepAnalysisContext context,
+			Dictionary<Candidate, HashSet<Node>> offNodes,
+			HashSet<Node>? resultOffNodes,
+			Mask digitsMask
+		)
+		{
+			foreach (var node in resultOffNodes ?? [])
+			{
+				if (node.IsGroupedNode)
+				{
+					// Grouped nodes are not supported as target node.
+					continue;
+				}
+
+				var conclusion = new Conclusion(Elimination, node.Map[0]);
+				if (grid.Exists(conclusion.Candidate) is not true)
+				{
+					continue;
+				}
+
+				var cfc = new MultipleForcingChains();
+				foreach (var d in digitsMask)
+				{
+					var branchNode = offNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+				}
+				if (cfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
+				{
+					continue;
+				}
+
+				cfc.Conclusions = conclusions;
+				if (context.OnlyFindOne)
+				{
+					return (MultipleForcingChains[])[cfc];
+				}
+				result.Add(cfc);
+			}
+			return [];
+		}
+
+		ReadOnlySpan<MultipleForcingChains> rfcOn(
+			ref readonly Grid grid,
+			Digit digit,
+			scoped ref readonly CellMap cellsInHouse,
+			ref readonly StepAnalysisContext context,
+			Dictionary<Candidate, HashSet<Node>> onNodes,
+			HashSet<Node> houseOnNodes
+		)
+		{
+			foreach (var node in houseOnNodes)
+			{
+				if (node.IsGroupedNode)
+				{
+					// Grouped nodes are not supported as target node.
+					continue;
+				}
+
+				var conclusion = new Conclusion(Assignment, node.Map[0]);
+				if (grid.Exists(conclusion.Candidate) is not true)
+				{
+					continue;
+				}
+
+				var rfc = new MultipleForcingChains(conclusion);
+				foreach (var c in cellsInHouse)
+				{
+					var branchNode = onNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+				}
+				if (context.OnlyFindOne)
+				{
+					return (MultipleForcingChains[])[rfc];
+				}
+				result.Add(rfc);
+			}
+			return [];
+		}
+
+		ReadOnlySpan<MultipleForcingChains> rfcOff(
+			ref readonly Grid grid,
+			Digit digit,
+			scoped ref readonly CellMap cellsInHouse,
+			ref readonly StepAnalysisContext context,
+			Dictionary<Candidate, HashSet<Node>> offNodes,
+			HashSet<Node> houseOffNodes
+		)
+		{
+			foreach (var node in houseOffNodes)
+			{
+				if (node.IsGroupedNode)
+				{
+					// Grouped nodes are not supported as target node.
+					continue;
+				}
+
+				var conclusion = new Conclusion(Elimination, node.Map[0]);
+				if (grid.Exists(conclusion.Candidate) is not true)
+				{
+					continue;
+				}
+
+				var rfc = new MultipleForcingChains();
+				foreach (var c in cellsInHouse)
+				{
+					var branchNode = offNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+				}
+				if (rfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
+				{
+					continue;
+				}
+
+				rfc.Conclusions = conclusions;
+				if (context.OnlyFindOne)
+				{
+					return (MultipleForcingChains[])[rfc];
+				}
+				result.Add(rfc);
+			}
+			return [];
+		}
+
+		ReadOnlySpan<BinaryForcingChains> bfcOn(
+			ref readonly Grid grid,
+			ref readonly StepAnalysisContext context,
+			ChainingRuleCollection chainingRules,
+			Node onNode,
+			Node onNode_OnState,
+			Node offNode_OnState
+		)
+		{
+			// Because an "on" node makes such contradiction, we can conclude that the node is false in logic.
+			if (onNode is not { Map: [var candidate], IsOn: true })
+			{
+				return [];
+			}
+
+			var conclusion = new Conclusion(Elimination, candidate);
+			if (grid.Exists(conclusion.Candidate) is not true)
+			{
+				return [];
+			}
+
+			return (BinaryForcingChains[])[
+				new(
+					onNode_OnState.IsOn ? new StrongForcingChain(onNode_OnState) : new WeakForcingChain(onNode_OnState),
+					offNode_OnState.IsOn ? new StrongForcingChain(offNode_OnState) : new WeakForcingChain(offNode_OnState),
+					conclusion
+				)
+			];
+		}
+
+		ReadOnlySpan<BinaryForcingChains> bfcOff(
+			ref readonly Grid grid,
+			ref readonly StepAnalysisContext context,
+			ChainingRuleCollection chainingRules,
+			Node offNode,
+			Node onNode_OffState,
+			Node offNode_OffState
+		)
+		{
+			// Because an "off" node makes such contradiction, we can conclude that the node is true in logic.
+			if (offNode is not { Map: [var candidate], IsOn: false })
+			{
+				return [];
+			}
+
+			var conclusion = new Conclusion(Assignment, candidate);
+			if (grid.Exists(conclusion.Candidate) is not true)
+			{
+				return [];
+			}
+
+			return (BinaryForcingChains[])[
+				new(
+					onNode_OffState.IsOn ? new StrongForcingChain(onNode_OffState) : new WeakForcingChain(onNode_OffState),
+					offNode_OffState.IsOn ? new StrongForcingChain(offNode_OffState) : new WeakForcingChain(offNode_OffState),
+					conclusion
+				)
+			];
+		}
+	}
+
+	/// <summary>
+	/// Finds a list of nodes that can implicitly connects to current node via a dynamic forcing chain.
 	/// This method won't use cached dictionary.
 	/// </summary>
 	/// <param name="startNode">The current instance.</param>
@@ -12,20 +452,27 @@ internal partial class ChainingDriver
 	/// <param name="chainingRules">Indicates the chaining rules to be used.</param>
 	/// <param name="options">Indicates the options used.</param>
 	/// <param name="contradiction">
+	/// <para>
 	/// The found contradiction node pairs.
 	/// If there's no contradiction here, this argument will keep the value <see langword="null"/>.
+	/// </para>
+	/// <para>
+	/// In general, non-dynamic cases will always make this argument <see langword="null"/>,
+	/// because non-dynamic contradiction can be integrated into one normal alternating inference chain,
+	/// by combining two different branches.
+	/// </para>
 	/// </param>
 	/// <returns>
 	/// A pair of <see cref="HashSet{T}"/> of <see cref="Node"/> instances, indicating all possible nodes
 	/// that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states,
-	/// encapsulating with type <see cref="ForcingChainInfo"/>.
+	/// encapsulating with type <see cref="ForcingChainsInfo"/>.
 	/// </returns>
 	/// <seealso cref="StrongLinkDictionary"/>
 	/// <seealso cref="WeakLinkDictionary"/>
 	/// <seealso cref="HashSet{T}"/>
 	/// <seealso cref="Node"/>
-	/// <seealso cref="ForcingChainInfo"/>
-	private static ForcingChainInfo FindForcingChainsTrackingContradiction(
+	/// <seealso cref="ForcingChainsInfo"/>
+	private static ForcingChainsInfo FindDynamicForcingChains(
 		Node startNode,
 		ref readonly Grid grid,
 		ChainingRuleCollection chainingRules,

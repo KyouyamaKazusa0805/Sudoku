@@ -2078,6 +2078,78 @@
             <param name="this">The instance to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.BinaryForcingChains">
+            <summary>
+            Represents a binary forcing chains (contradiction forcing chains or double forcing chains).
+            </summary>
+            <param name="branch1">Indicates the first branch.</param>
+            <param name="branch2">Indicates the second branch.</param>
+            <param name="conclusion">Indicates the conclusion.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.#ctor(Sudoku.Analytics.Construction.Components.UnnamedChain,Sudoku.Analytics.Construction.Components.UnnamedChain,Sudoku.Concepts.Conclusion)">
+            <summary>
+            Represents a binary forcing chains (contradiction forcing chains or double forcing chains).
+            </summary>
+            <param name="branch1">Indicates the first branch.</param>
+            <param name="branch2">Indicates the second branch.</param>
+            <param name="conclusion">Indicates the conclusion.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.IsGrouped">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.IsStrictlyGrouped">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.DigitsMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.BranchedComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Branches">
+            <summary>
+            Indicates the backing branches.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.GetViewsCore(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Conclusion[])">
+            <summary>
+            Represents a method that creates a list of views.
+            </summary>
+            <param name="grid">The target grid.</param>
+            <param name="rules">The rules used.</param>
+            <param name="newConclusions">The conclusions used.</param>
+            <returns>A list of nodes.</returns>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Branch1">
+            <summary>
+            The generated property declaration for parameter <c>branch1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Branch2">
+            <summary>
+            The generated property declaration for parameter <c>branch2</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Conclusion">
+            <summary>
+            The generated property declaration for parameter <c>conclusion</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains">
             <summary>
             Represents a multiple forcing chains that is applied to a bi-value universal grave + n.
@@ -2923,7 +2995,7 @@
             Indicates the mutant fish.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo">
+        <member name="T:Sudoku.Analytics.Construction.Components.ForcingChainsInfo">
             <summary>
             Represents a pair of data on a certain <see cref="T:Sudoku.Analytics.Construction.Components.Node"/>, describing all possible <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances
             that can implicitly connect to it, grouped by its <see cref="P:Sudoku.Analytics.Construction.Components.Node.IsOn"/> property value.
@@ -2933,7 +3005,7 @@
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
             <seealso cref="P:Sudoku.Analytics.Construction.Components.Node.IsOn"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.#ctor(System.Collections.Generic.HashSet{Sudoku.Analytics.Construction.Components.Node},System.Collections.Generic.HashSet{Sudoku.Analytics.Construction.Components.Node})">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.#ctor(System.Collections.Generic.HashSet{Sudoku.Analytics.Construction.Components.Node},System.Collections.Generic.HashSet{Sudoku.Analytics.Construction.Components.Node})">
             <summary>
             Represents a pair of data on a certain <see cref="T:Sudoku.Analytics.Construction.Components.Node"/>, describing all possible <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances
             that can implicitly connect to it, grouped by its <see cref="P:Sudoku.Analytics.Construction.Components.Node.IsOn"/> property value.
@@ -2943,55 +3015,55 @@
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
             <seealso cref="P:Sudoku.Analytics.Construction.Components.Node.IsOn"/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.OnNodes">
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.OnNodes">
             <summary>Indicates all possible nodes that can implicitly connect to node, supposed to "on".</summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.OffNodes">
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.OffNodes">
             <summary>Indicates all possible nodes that can implicitly connect to node, supposed to "off".</summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Count">
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Count">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.StartNode">
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.StartNode">
             <summary>
             Indicates the start node.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Sudoku#Analytics#Construction#IComponent#Type">
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Equals(Sudoku.Analytics.Construction.Components.ForcingChainInfo,Sudoku.Analytics.Construction.Components.NodeComparison)">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Equals(Sudoku.Analytics.Construction.Components.ForcingChainsInfo,Sudoku.Analytics.Construction.Components.NodeComparison)">
             <summary>
-            Determines whether two <see cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/> instances contain a same <see cref="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.StartNode"/> property,
+            Determines whether two <see cref="T:Sudoku.Analytics.Construction.Components.ForcingChainsInfo"/> instances contain a same <see cref="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.StartNode"/> property,
             with the specified comparison rule.
             </summary>
             <param name="other">The other instance to be compared.</param>
             <param name="nodeComparison">The node comparison rule.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.GetEnumerator">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.EnumerateOnNodes">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.EnumerateOnNodes">
             <summary>
             Try to enumerate for nodes that supposed with "on" state.
             </summary>
             <returns>An enumerator that can iterate on nodes supposed with "on" state.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.EnumerateOffNodes">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.EnumerateOffNodes">
             <summary>
             Try to enumerate for nodes that supposed with "off" state.
             </summary>
             <returns>An enumerator that can iterate on nodes supposed with "off" state.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Construction#Components#Node}#GetEnumerator">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Construction#Components#Node}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.PrintMembers(System.Text.StringBuilder)">
-            <target name="method" cref="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.PrintMembers(System.Text.StringBuilder)">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.PrintMembers(System.Text.StringBuilder)">
+            <target name="method" cref="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.PrintMembers(System.Text.StringBuilder)">
 				<summary>
 					Provides an easy way to concatenate output members inside a <see langword="record" />
 					or a <see langword="record struct" /> type.
@@ -3001,7 +3073,7 @@
 				</param>
 				<returns>
 					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
-					by implementing to-string method <see cref="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.ToString" />.
+					by implementing to-string method <see cref="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.ToString" />.
 				</returns>
 				<remarks>
 					<para>
@@ -3029,69 +3101,69 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Enumerator">
+        <member name="T:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Enumerator">
             <summary>
             Represents an enumerator type that can iterate on all nodes in the collection.
             </summary>
             <param name="_nodes">The collection of all nodes.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Enumerator.#ctor(System.Collections.Generic.HashSet{Sudoku.Analytics.Construction.Components.Node})">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Enumerator.#ctor(System.Collections.Generic.HashSet{Sudoku.Analytics.Construction.Components.Node})">
             <summary>
             Represents an enumerator type that can iterate on all nodes in the collection.
             </summary>
             <param name="_nodes">The collection of all nodes.</param>
         </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Enumerator._enumerator">
+        <member name="F:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Enumerator._enumerator">
             <summary>
             Indicates the backing enumerator.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Enumerator.Current">
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Enumerator.Current">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Enumerator.System#Collections#IEnumerator#Current">
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Enumerator.System#Collections#IEnumerator#Current">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Enumerator.Dispose">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Enumerator.Dispose">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Enumerator.Reset">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Enumerator.Reset">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Enumerator.MoveNext">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Enumerator.MoveNext">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo.NodesEnumerator">
+        <member name="T:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.NodesEnumerator">
             <summary>
             Represents an enumerator type that can iterate on nodes supposed with "on".
             </summary>
             <param name="_enumerator">The backing enumerator.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.NodesEnumerator.#ctor(System.Collections.Generic.HashSet{Sudoku.Analytics.Construction.Components.Node}.Enumerator)">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.NodesEnumerator.#ctor(System.Collections.Generic.HashSet{Sudoku.Analytics.Construction.Components.Node}.Enumerator)">
             <summary>
             Represents an enumerator type that can iterate on nodes supposed with "on".
             </summary>
             <param name="_enumerator">The backing enumerator.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.NodesEnumerator.Current">
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.NodesEnumerator.Current">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainInfo.NodesEnumerator.System#Collections#IEnumerator#Current">
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.NodesEnumerator.System#Collections#IEnumerator#Current">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.NodesEnumerator.Dispose">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.NodesEnumerator.Dispose">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.NodesEnumerator.Reset">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.NodesEnumerator.Reset">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.NodesEnumerator.MoveNext">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.NodesEnumerator.MoveNext">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.GetHashCode">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainInfo.Equals(Sudoku.Analytics.Construction.Components.ForcingChainInfo)">
+        <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Equals(Sudoku.Analytics.Construction.Components.ForcingChainsInfo)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.GridExocetExtensions">
@@ -3284,6 +3356,35 @@
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.IDoubleExocet.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.IForcingChains">
+            <summary>
+            Represents a forcing chains component.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.Complexity">
+            <summary>
+            Indicates the complexity of the whole pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.DigitsMask">
+            <summary>
+            Indicates the digits used in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.BranchedComplexity">
+            <summary>
+            Indicates the complexity of each branch.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
+            <summary>
+            Collect views for the current chain.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="newConclusions">The conclusions.</param>
+            <param name="supportedRules">The supported rules.</param>
+            <returns>The views.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1">
             <summary>
@@ -3749,19 +3850,13 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Complexity">
-            <summary>
-            Indicates the complexity of the whole pattern.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.DigitsMask">
-            <summary>
-            Indicates the digits used in this pattern.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.BranchedComplexity">
-            <summary>
-            Indicates the complexity of each branch.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Candidates">
             <summary>
@@ -3849,13 +3944,7 @@
             <exception cref="T:System.InvalidOperationException">Throws when the current instance cannot be converted.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
-            <summary>
-            Collect views for the current chain.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="newConclusions">The conclusions.</param>
-            <param name="supportedRules">The supported rules.</param>
-            <returns>The views.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.PrepareFinnedChainViewNodes(Sudoku.Analytics.Construction.Components.NamedChain,System.Int32@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Drawing.View[]@)">
             <summary>
@@ -4672,6 +4761,11 @@
             Indicates the component is multiple forcing chains.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.BinaryForcingChains">
+            <summary>
+            Indicates the component is binary forcing chains.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Construction.ComponentType.BlossomLoop">
             <summary>
             Indicates the component is blossom loop.
@@ -4787,15 +4881,12 @@
             <param name="supportedRules">All supported rules used.</param>
             <returns>Found conclusions.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectBivalueUniversalGraveMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectBivalueUniversalGraveMultipleForcingChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Collect all multiple forcing chains on applying to a bi-value universal grave, appeared in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <param name="_">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='dynamicChaining']"/>
-            </param>
             <returns>All possible multiple forcing chain instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.Chains.NormalChainStep},System.Boolean)">
@@ -4871,10 +4962,18 @@
             <param name="supportedRules">All supported rules used.</param>
             <returns>Found conclusions.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.FindForcingChainsTrackingContradiction(Sudoku.Analytics.Construction.Components.Node,Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Analytics.Configuration.StepGathererOptions,System.Nullable{System.ValueTuple{Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node}}@)">
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectDynamicForcingChains(Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
             <summary>
-            Finds a list of nodes that can implicitly connects to current node via a forcing chain,
-            with tracking contradiction checking.
+            Collect all dynamic multiple forcing chains and dynamic binary forcing chains appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="context">Indicates the context to be used.</param>
+            <param name="chainingRules">Indicates the chaining rules used.</param>
+            <returns>All possible dynamic forcing chains instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.FindDynamicForcingChains(Sudoku.Analytics.Construction.Components.Node,Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Analytics.Configuration.StepGathererOptions,System.Nullable{System.ValueTuple{Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node}}@)">
+            <summary>
+            Finds a list of nodes that can implicitly connects to current node via a dynamic forcing chain.
             This method won't use cached dictionary.
             </summary>
             <param name="startNode">The current instance.</param>
@@ -4882,19 +4981,26 @@
             <param name="chainingRules">Indicates the chaining rules to be used.</param>
             <param name="options">Indicates the options used.</param>
             <param name="contradiction">
+            <para>
             The found contradiction node pairs.
             If there's no contradiction here, this argument will keep the value <see langword="null"/>.
+            </para>
+            <para>
+            In general, non-dynamic cases will always make this argument <see langword="null"/>,
+            because non-dynamic contradiction can be integrated into one normal alternating inference chain,
+            by combining two different branches.
+            </para>
             </param>
             <returns>
             A pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances, indicating all possible nodes
             that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states,
-            encapsulating with type <see cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/>.
+            encapsulating with type <see cref="T:Sudoku.Analytics.Construction.Components.ForcingChainsInfo"/>.
             </returns>
             <seealso cref="F:Sudoku.Analytics.Caching.MemoryCachedData.StrongLinkDictionary"/>
             <seealso cref="F:Sudoku.Analytics.Caching.MemoryCachedData.WeakLinkDictionary"/>
             <seealso cref="T:System.Collections.Generic.HashSet`1"/>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.ForcingChainsInfo"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.GetNodesFromOnToOff(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.Grid@)">
             <summary>
@@ -4917,14 +5023,13 @@
             </summary>
             <inheritdoc cref="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.GetNodesFromOnToOff(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.Grid@)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleForcingChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Collect all multiple forcing chains appeared in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <param name="dynamicChaining">Indicates whether the method will handle for dynamic chaining rules.</param>
-            <returns>All possible multiple forcing chain instances.</returns>
+            <returns>All possible multiple forcing chains instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.FindForcingChains(Sudoku.Analytics.Construction.Components.Node)">
             <summary>
@@ -4935,23 +5040,20 @@
             <returns>
             A pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances, indicating all possible nodes
             that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states,
-            encapsulating with type <see cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/>.
+            encapsulating with type <see cref="T:Sudoku.Analytics.Construction.Components.ForcingChainsInfo"/>.
             </returns>
             <seealso cref="F:Sudoku.Analytics.Caching.MemoryCachedData.StrongLinkDictionary"/>
             <seealso cref="F:Sudoku.Analytics.Caching.MemoryCachedData.WeakLinkDictionary"/>
             <seealso cref="T:System.Collections.Generic.HashSet`1"/>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.ForcingChainInfo"/>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.ForcingChainsInfo"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectRectangleMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectRectangleMultipleForcingChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Collect all multiple forcing chains on applying to a unique rectangle, appeared in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <param name="_">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='dynamicChaining']"/>
-            </param>
             <returns>All possible multiple forcing chain instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Drivers.SubsetDriver">
@@ -13160,6 +13262,55 @@
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSets.RectangleDeathBlossomStep.ZDigitsMask">
             <summary>
             The generated property declaration for parameter <c>zDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep">
+            <summary>
+            Provides with a step that is a <b>Binary Forcing Chains</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="isContradiction">Indicates whether the pattern is contradiction forcing chains.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.BinaryForcingChains,System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Binary Forcing Chains</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="isContradiction">Indicates whether the pattern is contradiction forcing chains.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.IsMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.IsDynamic">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.IsContradiction">
+            <summary>
+            The generated property declaration for parameter <c>isContradiction</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.Chains.BivalueUniversalGraveForcingChainsStep">
@@ -29496,6 +29647,11 @@
               Looks up a localized string similar to Subset size in direct subset.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_DynamicForcingChainsLengthFactor">
+            <summary>
+              Looks up a localized string similar to Length of dynamic forcing chains.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExocetAlmostHiddenSetSizeFactor">
             <summary>
               Looks up a localized string similar to Size of almost hidden subset in exocet.
@@ -32637,6 +32793,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BinaryChainingStep">
             <summary>
               Looks up a localized string similar to {Name}: It can be proved to be a contradiction if {AnchorIsTrueOrFalseStr} is {AnchorIsNotOnStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BinaryForcingChainsStep">
+            <summary>
+              Looks up a localized string similar to {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BivalueOddagonType1Step">
