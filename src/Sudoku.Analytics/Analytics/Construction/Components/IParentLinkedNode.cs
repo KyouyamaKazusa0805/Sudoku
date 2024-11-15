@@ -29,6 +29,23 @@ public interface IParentLinkedNode<TSelf> :
 	}
 
 	/// <summary>
+	/// Indicates all ancestor nodes of the current node.
+	/// </summary>
+	public virtual ReadOnlySpan<TSelf> Ancestors
+	{
+		get
+		{
+			var (result, p) = (new List<TSelf> { (TSelf)this }, Parent);
+			while (p is not null)
+			{
+				result.Add(p);
+				p = p.Parent;
+			}
+			return result.AsSpan();
+		}
+	}
+
+	/// <summary>
 	/// Indicates the parent node.
 	/// </summary>
 	public abstract TSelf? Parent { get; }
@@ -38,6 +55,23 @@ public interface IParentLinkedNode<TSelf> :
 	/// </summary>
 	public abstract TSelf Root { get; }
 
+
+	/// <summary>
+	/// Determines whether the current node is an ancestor of the specified node. 
+	/// </summary>
+	/// <param name="childNode">The node to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public virtual bool IsAncestorOf(TSelf childNode)
+	{
+		for (var node = childNode; node is not null; node = node.Parent)
+		{
+			if (Equals(node))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public abstract string ToString(IFormatProvider? formatProvider);

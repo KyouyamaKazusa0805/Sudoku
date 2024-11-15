@@ -3423,6 +3423,11 @@
             Indicates the length of ancestors.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.Ancestors">
+            <summary>
+            Indicates all ancestor nodes of the current node.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.Parent">
             <summary>
             Indicates the parent node.
@@ -3432,6 +3437,13 @@
             <summary>
             Indicates the root node.
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.IsAncestorOf(`0)">
+            <summary>
+            Determines whether the current node is an ancestor of the specified node. 
+            </summary>
+            <param name="childNode">The node to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
@@ -3778,6 +3790,121 @@
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.op_Inequality(Sudoku.Analytics.Construction.Components.LockedMember,Sudoku.Analytics.Construction.Components.LockedMember)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.MultiparentNode">
+            <summary>
+            Represents a chain node, allowing multiple parents.
+            </summary>
+            <param name="candidate">Indicates the candidate used.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+            <param name="parents">Indicates all possible parents.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.#ctor(System.Int32,System.Boolean,System.ReadOnlyMemory{Sudoku.Analytics.Construction.Components.MultiparentNode})">
+            <summary>
+            Represents a chain node, allowing multiple parents.
+            </summary>
+            <param name="candidate">Indicates the candidate used.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+            <param name="parents">Indicates all possible parents.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultiparentNode.IsSingleParent">
+            <summary>
+            Indicates whether the current node has only one parent node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultiparentNode.Ancestors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultiparentNode.Root">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultiparentNode.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultiparentNode.Sudoku#Analytics#Construction#Components#IParentLinkedNode{Sudoku#Analytics#Construction#Components#MultiparentNode}#Parent">
+            <summary>
+            Represents the parent of the node. If a node doesn't contain only one parent, <see langword="null"/> will be returned.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.Equals(Sudoku.Analytics.Construction.Components.MultiparentNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.IsAncestorOf(Sudoku.Analytics.Construction.Components.MultiparentNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+            <remarks>
+            Format description:
+            <list type="table">
+            <listheader>
+            <term>Format character</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><c>m</c></term>
+            <description>The map text. For example, <c>r1c23(4)</c></description>
+            </item>
+            <item>
+            <term><c>S</c> and <c>s</c></term>
+            <description>
+            The <see cref="P:Sudoku.Analytics.Construction.Components.MultiparentNode.IsOn"/> property value (<see langword="true"/> or <see langword="false"/>).
+            If the character <c>s</c> is upper-cased, the result text will be upper-cased on initial letter.
+            </description>
+            </item>
+            </list>
+            For example, format value <c>"m: S"</c> will be replaced with value <c>"r1c23(4): True"</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.Clone">
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.op_RightShift(Sudoku.Analytics.Construction.Components.MultiparentNode,Sudoku.Analytics.Construction.Components.MultiparentNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.op_RightShift(Sudoku.Analytics.Construction.Components.MultiparentNode,System.ReadOnlyMemory{Sudoku.Analytics.Construction.Components.MultiparentNode})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Construction.Components.MultiparentNode"/> instance, with specified parents appended into the current instance.
+            </summary>
+            <param name="current">Indicates the current instance.</param>
+            <param name="parents">Indciates the parent nodes.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.Construction.Components.MultiparentNode"/> instance created.</returns>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultiparentNode.Candidate">
+            <summary>
+            The generated property declaration for parameter <c>candidate</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultiparentNode.IsOn">
+            <summary>
+            The generated property declaration for parameter <c>isOn</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultiparentNode.Parents">
+            <summary>
+            The generated property declaration for parameter <c>parents</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.op_Equality(Sudoku.Analytics.Construction.Components.MultiparentNode,Sudoku.Analytics.Construction.Components.MultiparentNode)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultiparentNode.op_Inequality(Sudoku.Analytics.Construction.Components.MultiparentNode,Sudoku.Analytics.Construction.Components.MultiparentNode)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.MultipleChainBasedComponent">
@@ -4223,10 +4350,7 @@
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Node.Clone">
-            <summary>
-            Creates a copy of the current instance.
-            </summary>
-            <returns>A cloned instance whose internal values are same as the current instance, independent.</returns>
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Node.System#ICloneable#Clone">
             <inheritdoc/>
@@ -4754,6 +4878,11 @@
         <member name="F:Sudoku.Analytics.Construction.ComponentType.ChainNode">
             <summary>
             Indicates the component is chain node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.MultiparentChainNode">
+            <summary>
+            Indicates the component is multiparent chain node.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Construction.ComponentType.ChainLink">

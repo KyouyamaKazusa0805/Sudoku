@@ -21,6 +21,11 @@ public enum ComponentType
 	ChainNode,
 
 	/// <summary>
+	/// Indicates the component is multiparent chain node.
+	/// </summary>
+	MultiparentChainNode,
+
+	/// <summary>
 	/// Indicates the component is chain link.
 	/// </summary>
 	ChainLink,

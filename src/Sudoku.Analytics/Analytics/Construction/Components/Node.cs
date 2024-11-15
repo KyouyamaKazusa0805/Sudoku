@@ -23,12 +23,12 @@ public sealed partial class Node(
 	/// <summary>
 	/// Indicates the map format string.
 	/// </summary>
-	private const string MapFormatString = "m";
+	internal const string MapFormatString = "m";
 
 	/// <summary>
 	/// Indicates the property <see cref="IsOn"/> format string.
 	/// </summary>
-	private const string IsOnFormatString = "s";
+	internal const string IsOnFormatString = "s";
 
 
 	/// <summary>
@@ -187,10 +187,7 @@ public sealed partial class Node(
 			.Replace(MapFormatString, _map.ToString(formatProvider))
 			.Replace(IsOnFormatString, IsOn.ToString().ToLower());
 
-	/// <summary>
-	/// Creates a copy of the current instance.
-	/// </summary>
-	/// <returns>A cloned instance whose internal values are same as the current instance, independent.</returns>
+	/// <inheritdoc cref="ICloneable.Clone"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Node Clone() => new(in _map, IsOn) { Parent = Parent };
 
