@@ -224,7 +224,7 @@ internal static partial class ChainingDriver
 	/// The internal method that can collect for general-typed multiple forcing chains.
 	/// </summary>
 	/// <typeparam name="TMultipleForcingChains">The type of multiple forcing chains.</typeparam>
-	/// <typeparam name="TStep">The type of target step created.</typeparam>
+	/// <typeparam name="TMultipleForcingChainsStep">The type of target step can be created.</typeparam>
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
@@ -235,26 +235,22 @@ internal static partial class ChainingDriver
 	/// </param>
 	/// <param name="stepCreator">The creator method that can create a chain step.</param>
 	/// <returns>The first found step.</returns>
-	private static unsafe Step? CollectGeneralizedMultipleCore<TMultipleForcingChains, TStep>(
+	private static unsafe Step? CollectGeneralizedMultipleCore<TMultipleForcingChains, TMultipleForcingChainsStep>(
 		ref StepAnalysisContext context,
 		SortedSet<ChainStep> accumulator,
 		bool allowsAdvancedLinks,
 		bool onlyFindFinnedChain,
 		delegate*<TMultipleForcingChains, MultipleChainBasedComponent> componentCreator,
 		delegate*<ref readonly Grid, bool, bool, ReadOnlySpan<TMultipleForcingChains>> chainsCollector,
-		delegate*<TMultipleForcingChains, ref readonly Grid, ref readonly StepAnalysisContext, ChainingRuleCollection, TStep> stepCreator
+		delegate*<TMultipleForcingChains, ref readonly Grid, ref readonly StepAnalysisContext, ChainingRuleCollection, TMultipleForcingChainsStep> stepCreator
 	)
 		where TMultipleForcingChains : MultipleForcingChains
-		where TStep : ChainStep
+		where TMultipleForcingChainsStep : PatternBasedChainStep
 	{
-		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
+		LinkType[] l = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
+		var linkTypes = l.Aggregate(@delegate.EnumFlagMerger);
 		ref readonly var grid = ref context.Grid;
-		InitializeLinks(
-			in grid,
-			linkTypes.Aggregate(@delegate.EnumFlagMerger),
-			context.Options,
-			out var supportedRules
-		);
+		InitializeLinks(in grid, linkTypes, context.Options, out var supportedRules);
 
 		foreach (var chain in chainsCollector(in context.Grid, context.OnlyFindOne, false))
 		{

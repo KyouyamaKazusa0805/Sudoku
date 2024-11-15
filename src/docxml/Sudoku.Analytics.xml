@@ -4850,7 +4850,7 @@
             The internal method that can collect for general-typed multiple forcing chains.
             </summary>
             <typeparam name="TMultipleForcingChains">The type of multiple forcing chains.</typeparam>
-            <typeparam name="TStep">The type of target step created.</typeparam>
+            <typeparam name="TMultipleForcingChainsStep">The type of target step can be created.</typeparam>
             <param name="context">The context.</param>
             <param name="accumulator">The instance that temporarily records for chain steps.</param>
             <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
