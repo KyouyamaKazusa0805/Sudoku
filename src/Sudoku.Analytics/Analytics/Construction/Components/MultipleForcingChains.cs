@@ -92,6 +92,9 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.MultipleForcingChains;
 
+	/// <inheritdoc/>
+	StepConclusions IForcingChains.Conclusions => Conclusions;
+
 
 	/// <summary>
 	/// Determines whether the collection contains at least one element satisfying the specified condition.

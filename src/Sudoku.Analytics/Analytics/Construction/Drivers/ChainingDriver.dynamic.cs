@@ -90,7 +90,7 @@ internal partial class ChainingDriver
 			);
 			if (contradiction is var (onNode_OnState, offNode_OnState))
 			{
-				if (bfcOn(in grid, in context, chainingRules, currentNodeOn, onNode_OnState, offNode_OnState)
+				if (bcfcOn(in grid, in context, chainingRules, currentNodeOn, onNode_OnState, offNode_OnState)
 					is var contradictionForcingChains and not [])
 				{
 					return contradictionForcingChains;
@@ -108,7 +108,7 @@ internal partial class ChainingDriver
 			);
 			if (contradiction is var (onNode_OffState, offNode_OffState))
 			{
-				if (bfcOff(in grid, in context, chainingRules, currentNodeOff, onNode_OffState, offNode_OffState)
+				if (bcfcOff(in grid, in context, chainingRules, currentNodeOff, onNode_OffState, offNode_OffState)
 					is var contradictionForcingChains and not [])
 				{
 					return contradictionForcingChains;
@@ -382,7 +382,7 @@ internal partial class ChainingDriver
 			return [];
 		}
 
-		ReadOnlySpan<BinaryForcingChains> bfcOn(
+		ReadOnlySpan<BinaryForcingChains> bcfcOn(
 			ref readonly Grid grid,
 			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection chainingRules,
@@ -407,12 +407,13 @@ internal partial class ChainingDriver
 				new(
 					onNode_OnState.IsOn ? new StrongForcingChain(onNode_OnState) : new WeakForcingChain(onNode_OnState),
 					offNode_OnState.IsOn ? new StrongForcingChain(offNode_OnState) : new WeakForcingChain(offNode_OnState),
-					conclusion
+					conclusion,
+					true
 				)
 			];
 		}
 
-		ReadOnlySpan<BinaryForcingChains> bfcOff(
+		ReadOnlySpan<BinaryForcingChains> bcfcOff(
 			ref readonly Grid grid,
 			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection chainingRules,
@@ -437,7 +438,8 @@ internal partial class ChainingDriver
 				new(
 					onNode_OffState.IsOn ? new StrongForcingChain(onNode_OffState) : new WeakForcingChain(onNode_OffState),
 					offNode_OffState.IsOn ? new StrongForcingChain(offNode_OffState) : new WeakForcingChain(offNode_OffState),
-					conclusion
+					conclusion,
+					true
 				)
 			];
 		}
@@ -496,10 +498,10 @@ internal partial class ChainingDriver
 					foreach (var node in supposedOff)
 					{
 						var nextNode = node >> currentNode;
-						if (nodesSupposedOn.Contains(~nextNode))
+						if (nodesSupposedOn.FirstOrDefault(n => n.Equals(~nextNode)) is { } nextNodeNegated)
 						{
 							// Contradiction is found.
-							contradiction = (~node, node);
+							contradiction = (nextNodeNegated, nextNode);
 							goto ReturnResult;
 						}
 
@@ -520,10 +522,10 @@ internal partial class ChainingDriver
 					foreach (var node in supposedOn)
 					{
 						var nextNode = node >> currentNode;
-						if (nodesSupposedOff.Contains(~nextNode))
+						if (nodesSupposedOff.FirstOrDefault(n => n.Equals(~nextNode)) is { } nextNodeNegated)
 						{
 							// Contradiction is found.
-							contradiction = (node, ~node);
+							contradiction = (nextNode, nextNodeNegated);
 							goto ReturnResult;
 						}
 
@@ -559,9 +561,9 @@ internal partial class ChainingDriver
 		var context = new ChainingRuleNextNodeContext(node, in grid, options);
 		foreach (var chainingRule in chainingRules)
 		{
-			chainingRule.GetWeakLinks(ref context);
+			chainingRule.CollectOffNodes(ref context);
 		}
-		return context.CollectedNodes;
+		return context.Nodes;
 	}
 
 	/// <summary>
@@ -573,8 +575,8 @@ internal partial class ChainingDriver
 		var context = new ChainingRuleNextNodeContext(node, in grid, options);
 		foreach (var chainingRule in chainingRules)
 		{
-			chainingRule.GetStrongLinks(ref context);
+			chainingRule.CollectOnNodes(ref context);
 		}
-		return context.CollectedNodes;
+		return context.Nodes;
 	}
 }

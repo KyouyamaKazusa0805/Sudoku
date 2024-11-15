@@ -1435,16 +1435,18 @@
             <param name="context">The context.</param>
             <seealso cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRule.GetStrongLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRule.CollectOnNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
             <summary>
-            Collects for strong links, and store them into <see cref="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.CollectedNodes"/>.
+            Collects nodes that is supposed to "on" from the current node supposed to "off",
+            and store them into <see cref="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.Nodes"/>.
             </summary>
             <param name="context">The context.</param>
             <seealso cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRule.GetWeakLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRule.CollectOffNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
             <summary>
-            Collects for weak links, and store them into <see cref="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.CollectedNodes"/>.
+            Collects nodes that is supposed to "off" from the current node supposed to "on",
+            and store them into <see cref="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.Nodes"/>.
             </summary>
             <param name="context">The context.</param>
             <seealso cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext"/>
@@ -1662,7 +1664,7 @@
             <param name="grid">The grid to be checked.</param>
             <param name="options">Indicates the step searcher options to be used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.CollectedNodes">
+        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.Nodes">
             <summary>
             Indicates the collected nodes.
             </summary>
@@ -1871,10 +1873,10 @@
         <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule.GetStrongLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule.CollectOnNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule.GetWeakLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule.CollectOffNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.XyzWingChainingRule">
@@ -1898,10 +1900,10 @@
         <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.GetStrongLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.CollectOnNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.GetWeakLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.CollectOffNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain">
@@ -2085,14 +2087,16 @@
             <param name="branch1">Indicates the first branch.</param>
             <param name="branch2">Indicates the second branch.</param>
             <param name="conclusion">Indicates the conclusion.</param>
+            <param name="isContradiction">Indicates whether the pattern is a contradiction forcing chains.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.#ctor(Sudoku.Analytics.Construction.Components.UnnamedChain,Sudoku.Analytics.Construction.Components.UnnamedChain,Sudoku.Concepts.Conclusion)">
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.#ctor(Sudoku.Analytics.Construction.Components.UnnamedChain,Sudoku.Analytics.Construction.Components.UnnamedChain,Sudoku.Concepts.Conclusion,System.Boolean)">
             <summary>
             Represents a binary forcing chains (contradiction forcing chains or double forcing chains).
             </summary>
             <param name="branch1">Indicates the first branch.</param>
             <param name="branch2">Indicates the second branch.</param>
             <param name="conclusion">Indicates the conclusion.</param>
+            <param name="isContradiction">Indicates whether the pattern is a contradiction forcing chains.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.IsGrouped">
             <inheritdoc/>
@@ -2110,6 +2114,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#Conclusions">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Branches">
@@ -2148,6 +2155,11 @@
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Conclusion">
             <summary>
             The generated property declaration for parameter <c>conclusion</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.IsContradiction">
+            <summary>
+            The generated property declaration for parameter <c>isContradiction</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.BivalueUniversalGraveForcingChains">
@@ -3372,6 +3384,11 @@
             Indicates the digits used in this pattern.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.Conclusions">
+            <summary>
+            Indicates the conclusions of the pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.BranchedComplexity">
             <summary>
             Indicates the complexity of each branch.
@@ -3864,6 +3881,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#Conclusions">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Exists(System.Func{Sudoku.Analytics.Construction.Components.UnnamedChain,System.Boolean})">
@@ -4931,6 +4951,14 @@
         <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.Chains.BlossomLoopStep})">
             <summary>
             The collect method called by blossom loop step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectDynamicForcingChainsCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.Chains.PatternBasedChainStep})">
+            <summary>
+            The collect method called by dynamic forcing chains step searchers.
             </summary>
             <param name="context">The context.</param>
             <param name="accumulator">The instance that temporarily records for chain steps.</param>
@@ -8625,6 +8653,21 @@
             </para>
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Construction.Drivers.ChainingDriver" />
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.Chains.DynamicForcingChainsStepSearcher">
+            <summary>
+            Provides with a <b>Dynamic Forcing Chains</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Dynamic Cell Forcing Chains</item>
+            <item>Dynamic Region Forcing Chains (i.e. Dynamic House Forcing Chains)</item>
+            <item>Dynamic Contradiction Forcing Chains</item>
+            <item>Dynamic Double Forcing Chains</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Chains.DynamicForcingChainsStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.Chains.FinnedChainStepSearcher">
             <summary>
@@ -13272,9 +13315,8 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="pattern"><inheritdoc/></param>
-            <param name="isContradiction">Indicates whether the pattern is contradiction forcing chains.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.BinaryForcingChains,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.BinaryForcingChains)">
             <summary>
             Provides with a step that is a <b>Binary Forcing Chains</b> technique.
             </summary>
@@ -13282,13 +13324,17 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="pattern"><inheritdoc/></param>
-            <param name="isContradiction">Indicates whether the pattern is contradiction forcing chains.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.IsMultiple">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.IsDynamic">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.IsContradiction">
+            <summary>
+            Indicates whether the binary forcing chains is a contradiction forcing chains.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.Complexity">
             <inheritdoc/>
@@ -13307,11 +13353,6 @@
         </member>
         <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.Factors">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.IsContradiction">
-            <summary>
-            The generated property declaration for parameter <c>isContradiction</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.Chains.BivalueUniversalGraveForcingChainsStep">
             <summary>
@@ -31743,6 +31784,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_DominoLoopStepSearcher">
             <summary>
               Looks up a localized string similar to Domino Loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_DynamicForcingChainsStepSearcher">
+            <summary>
+              Looks up a localized string similar to Dynamic Forcing Chains.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_EmptyRectangleIntersectionPairStepSearcher">

@@ -47,7 +47,7 @@ public sealed class YChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void GetStrongLinks(ref ChainingRuleNextNodeContext context)
+	public override void CollectOnNodes(ref ChainingRuleNextNodeContext context)
 	{
 		var currentNode = context.CurrentNode;
 		if (currentNode is not { Map: [var startCandidate], IsOn: false })
@@ -58,21 +58,21 @@ public sealed class YChainingRule : ChainingRule
 		ref readonly var grid = ref context.Grid;
 		var cell = startCandidate / 9;
 		var startDigit = startCandidate % 9;
-		var digitsMask = grid.GetCandidates(cell);
+		var digitsMask = (Mask)(grid.GetCandidates(cell) & ~(1 << startDigit));
 		var resultNodes = new HashSet<Node>();
-		if (Mask.PopCount(digitsMask) == 2)
+		if (Mask.IsPow2(digitsMask))
 		{
-			var endDigit = Mask.Log2((Mask)(digitsMask & ~(1 << startDigit)));
+			var endDigit = Mask.Log2(digitsMask);
 			resultNodes.Add(new((cell * 9 + endDigit).AsCandidateMap(), true));
 		}
-		context.CollectedNodes = resultNodes.ToArray();
+		context.Nodes = resultNodes.ToArray();
 	}
 
 	/// <inheritdoc/>
-	public override void GetWeakLinks(ref ChainingRuleNextNodeContext context)
+	public override void CollectOffNodes(ref ChainingRuleNextNodeContext context)
 	{
 		var currentNode = context.CurrentNode;
-		if (currentNode is not { Map: [var startCandidate], IsOn: false })
+		if (currentNode is not { Map: [var startCandidate], IsOn: true })
 		{
 			return;
 		}
@@ -80,12 +80,11 @@ public sealed class YChainingRule : ChainingRule
 		ref readonly var grid = ref context.Grid;
 		var cell = startCandidate / 9;
 		var startDigit = startCandidate % 9;
-		var digitsMask = grid.GetCandidates(cell);
 		var resultNodes = new HashSet<Node>();
-		foreach (var endDigit in (Mask)(digitsMask & ~(1 << startDigit)))
+		foreach (var endDigit in (Mask)(grid.GetCandidates(cell) & ~(1 << startDigit)))
 		{
 			resultNodes.Add(new((cell * 9 + endDigit).AsCandidateMap(), false));
 		}
-		context.CollectedNodes = resultNodes.ToArray();
+		context.Nodes = resultNodes.ToArray();
 	}
 }

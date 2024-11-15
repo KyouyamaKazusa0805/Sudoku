@@ -17,7 +17,7 @@ public ref partial struct ChainingRuleNextNodeContext(
 	/// <summary>
 	/// Indicates the collected nodes.
 	/// </summary>
-	public ReadOnlySpan<Node> CollectedNodes { get; set; }
+	public ReadOnlySpan<Node> Nodes { get; set; }
 
 	/// <inheritdoc/>
 	readonly ref readonly Grid IContext.Grid => ref Grid;

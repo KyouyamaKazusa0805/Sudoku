@@ -5977,6 +5977,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dynamic Forcing Chains.
+        /// </summary>
+        public static string StepSearcherName_DynamicForcingChainsStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_DynamicForcingChainsStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty Rectangle Intersection Pair.
         /// </summary>
         public static string StepSearcherName_EmptyRectangleIntersectionPairStepSearcher {

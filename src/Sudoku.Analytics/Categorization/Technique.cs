@@ -5313,8 +5313,7 @@ public enum Technique
 	[TechniqueMetadata(
 		Rating = 85,
 		DifficultyLevel = DifficultyLevel.Nightmare,
-		ContainingGroup = TechniqueGroup.ForcingChains,
-		Features = TechniqueFeatures.NotImplemented)]
+		ContainingGroup = TechniqueGroup.ForcingChains)]
 	DynamicRegionForcingChains,
 
 	/// <summary>
@@ -5325,8 +5324,7 @@ public enum Technique
 	[TechniqueMetadata(
 		Rating = 85,
 		DifficultyLevel = DifficultyLevel.Nightmare,
-		ContainingGroup = TechniqueGroup.ForcingChains,
-		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented)]
+		ContainingGroup = TechniqueGroup.ForcingChains)]
 	DynamicCellForcingChains,
 
 	/// <summary>
@@ -5337,8 +5335,7 @@ public enum Technique
 	[TechniqueMetadata(
 		Rating = 88,
 		DifficultyLevel = DifficultyLevel.Nightmare,
-		ContainingGroup = TechniqueGroup.ForcingChains,
-		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented)]
+		ContainingGroup = TechniqueGroup.ForcingChains)]
 	DynamicContradictionForcingChains,
 
 	/// <summary>
@@ -5349,8 +5346,7 @@ public enum Technique
 	[TechniqueMetadata(
 		Rating = 88,
 		DifficultyLevel = DifficultyLevel.Nightmare,
-		ContainingGroup = TechniqueGroup.ForcingChains,
-		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented)]
+		ContainingGroup = TechniqueGroup.ForcingChains)]
 	DynamicDoubleForcingChains,
 
 	/// <summary>

@@ -221,6 +221,45 @@ internal static partial class ChainingDriver
 	}
 
 	/// <summary>
+	/// The collect method called by dynamic forcing chains step searchers.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <returns>The first found step.</returns>
+	public static Step? CollectDynamicForcingChainsCore(ref StepAnalysisContext context, List<PatternBasedChainStep> accumulator)
+	{
+		var linkTypes = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
+		ref readonly var grid = ref context.Grid;
+		InitializeLinks(in grid, linkTypes, context.Options, out var supportedRules);
+
+		foreach (var forcingChains in CollectDynamicForcingChains(in grid, in context, supportedRules))
+		{
+			PatternBasedChainStep step = forcingChains switch
+			{
+				BinaryForcingChains b => new BinaryForcingChainsStep(
+					new SingletonArray<Conclusion>(b.Conclusion),
+					b.GetViews(in grid, [b.Conclusion], supportedRules),
+					context.Options,
+					b
+				),
+				MultipleForcingChains m => new MultipleForcingChainsStep(
+					m.Conclusions,
+					m.GetViews(in grid, m.Conclusions, supportedRules),
+					context.Options,
+					m
+				)
+			};
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			accumulator.Add(step);
+		}
+		return null;
+	}
+
+	/// <summary>
 	/// The internal method that can collect for general-typed multiple forcing chains.
 	/// </summary>
 	/// <typeparam name="TMultipleForcingChains">The type of multiple forcing chains.</typeparam>

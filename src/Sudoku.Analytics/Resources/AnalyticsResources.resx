@@ -3465,4 +3465,7 @@ Error grid: '{0:#}'</value>
   <data name="TechniqueFormat_BinaryForcingChainsStep" xml:space="preserve">
     <value>{0}</value>
   </data>
+  <data name="StepSearcherName_DynamicForcingChainsStepSearcher" xml:space="preserve">
+    <value>Dynamic Forcing Chains</value>
+  </data>
 </root>

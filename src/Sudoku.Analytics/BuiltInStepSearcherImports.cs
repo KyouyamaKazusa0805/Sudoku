@@ -50,6 +50,7 @@
 [assembly: AssemblyStepSearcher<BivalueUniversalGraveForcingChainsStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<DeathBlossomStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<WhipStepSearcher>(3)]
+[assembly: AssemblyStepSearcher<DynamicForcingChainsStepSearcher>(3)]
 [assembly: AssemblyStepSearcher<BowmanBingoStepSearcher>(3, Areas = StepSearcherRunningArea.None)]
 [assembly: AssemblyStepSearcher<TemplateStepSearcher>(3, Areas = StepSearcherRunningArea.None)]
 [assembly: AssemblyStepSearcher<PatternOverlayStepSearcher>(3, Areas = StepSearcherRunningArea.Collecting)]

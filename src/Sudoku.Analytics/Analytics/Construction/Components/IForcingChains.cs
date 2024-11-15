@@ -16,6 +16,11 @@ public interface IForcingChains : IChainOrForcingChains
 	public abstract Mask DigitsMask { get; }
 
 	/// <summary>
+	/// Indicates the conclusions of the pattern.
+	/// </summary>
+	public abstract StepConclusions Conclusions { get; }
+
+	/// <summary>
 	/// Indicates the complexity of each branch.
 	/// </summary>
 	public abstract ReadOnlySpan<int> BranchedComplexity { get; }

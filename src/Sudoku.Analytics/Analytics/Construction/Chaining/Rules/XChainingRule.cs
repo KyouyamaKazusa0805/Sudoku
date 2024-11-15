@@ -64,7 +64,7 @@ public sealed class XChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void GetStrongLinks(ref ChainingRuleNextNodeContext context)
+	public override void CollectOnNodes(ref ChainingRuleNextNodeContext context)
 	{
 		var currentNode = context.CurrentNode;
 		if (currentNode is not { Map: [var startCandidate], IsOn: false })
@@ -84,11 +84,11 @@ public sealed class XChainingRule : ChainingRule
 				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), true));
 			}
 		}
-		context.CollectedNodes = resultNodes.ToArray();
+		context.Nodes = resultNodes.ToArray();
 	}
 
 	/// <inheritdoc/>
-	public override void GetWeakLinks(ref ChainingRuleNextNodeContext context)
+	public override void CollectOffNodes(ref ChainingRuleNextNodeContext context)
 	{
 		var currentNode = context.CurrentNode;
 		if (currentNode is not { Map: [var startCandidate], IsOn: true })
@@ -108,6 +108,6 @@ public sealed class XChainingRule : ChainingRule
 				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), false));
 			}
 		}
-		context.CollectedNodes = resultNodes.ToArray();
+		context.Nodes = resultNodes.ToArray();
 	}
 }

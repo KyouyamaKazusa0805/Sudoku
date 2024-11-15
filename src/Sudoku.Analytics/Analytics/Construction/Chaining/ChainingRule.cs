@@ -46,18 +46,20 @@ public abstract partial class ChainingRule
 	public abstract void GetLinks(ref ChainingRuleLinkContext context);
 
 	/// <summary>
-	/// Collects for strong links, and store them into <see cref="ChainingRuleNextNodeContext.CollectedNodes"/>.
+	/// Collects nodes that is supposed to "on" from the current node supposed to "off",
+	/// and store them into <see cref="ChainingRuleNextNodeContext.Nodes"/>.
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <seealso cref="ChainingRuleNextNodeContext"/>
-	public virtual void GetStrongLinks(ref ChainingRuleNextNodeContext context) => context.CollectedNodes = [];
+	public virtual void CollectOnNodes(ref ChainingRuleNextNodeContext context) => context.Nodes = [];
 
 	/// <summary>
-	/// Collects for weak links, and store them into <see cref="ChainingRuleNextNodeContext.CollectedNodes"/>.
+	/// Collects nodes that is supposed to "off" from the current node supposed to "on",
+	/// and store them into <see cref="ChainingRuleNextNodeContext.Nodes"/>.
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <seealso cref="ChainingRuleNextNodeContext"/>
-	public virtual void GetWeakLinks(ref ChainingRuleNextNodeContext context) => context.CollectedNodes = [];
+	public virtual void CollectOffNodes(ref ChainingRuleNextNodeContext context) => context.Nodes = [];
 
 	/// <summary>
 	/// Collects for extra view nodes for the pattern.

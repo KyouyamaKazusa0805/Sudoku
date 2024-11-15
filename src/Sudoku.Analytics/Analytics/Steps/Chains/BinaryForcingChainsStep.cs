@@ -7,13 +7,11 @@ namespace Sudoku.Analytics.Steps.Chains;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
 /// <param name="pattern"><inheritdoc/></param>
-/// <param name="isContradiction">Indicates whether the pattern is contradiction forcing chains.</param>
 public sealed partial class BinaryForcingChainsStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	BinaryForcingChains pattern,
-	[Property] bool isContradiction
+	BinaryForcingChains pattern
 ) : PatternBasedChainStep(conclusions, views, options, pattern)
 {
 	/// <inheritdoc/>
@@ -21,6 +19,11 @@ public sealed partial class BinaryForcingChainsStep(
 
 	/// <inheritdoc/>
 	public override bool IsDynamic => true;
+
+	/// <summary>
+	/// Indicates whether the binary forcing chains is a contradiction forcing chains.
+	/// </summary>
+	public bool IsContradiction => Casted.IsContradiction;
 
 	/// <inheritdoc/>
 	public override int Complexity => Casted.Complexity;

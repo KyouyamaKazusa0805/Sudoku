@@ -3589,4 +3589,8 @@
   <data name="TechniqueFormat_BinaryForcingChainsStep" xml:space="preserve">
     <value>{0}</value>
   </data>
+  <data name="StepSearcherName_DynamicForcingChainsStepSearcher" xml:space="preserve">
+    <value>动态强制链</value>
+    <comment>Step Searcher Name</comment>
+  </data>
 </root>

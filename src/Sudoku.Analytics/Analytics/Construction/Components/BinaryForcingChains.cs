@@ -6,10 +6,12 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="branch1">Indicates the first branch.</param>
 /// <param name="branch2">Indicates the second branch.</param>
 /// <param name="conclusion">Indicates the conclusion.</param>
+/// <param name="isContradiction">Indicates whether the pattern is a contradiction forcing chains.</param>
 public sealed partial class BinaryForcingChains(
 	[Property] UnnamedChain branch1,
 	[Property] UnnamedChain branch2,
-	[Property] Conclusion conclusion
+	[Property] Conclusion conclusion,
+	[Property] bool isContradiction
 ) :
 	IForcingChains,
 	IFormattable
@@ -46,6 +48,9 @@ public sealed partial class BinaryForcingChains(
 
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.BinaryForcingChains;
+
+	/// <inheritdoc/>
+	StepConclusions IForcingChains.Conclusions => new SingletonArray<Conclusion>(Conclusion);
 
 	/// <summary>
 	/// Indicates the backing branches.
