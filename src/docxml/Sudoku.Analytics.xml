@@ -2116,7 +2116,10 @@
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#Conclusions">
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains{Sudoku#Analytics#Construction#Components#Node}#Conclusions">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IBinaryForcingChains{Sudoku#Analytics#Construction#Components#BinaryForcingChains,Sudoku#Analytics#Construction#Components#UnnamedChain,Sudoku#Analytics#Construction#Components#Node}#Branches">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Branches">
@@ -2125,12 +2128,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.GetViewsCore(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Conclusion[])">
@@ -3281,6 +3281,28 @@
         <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection,Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.IBinaryForcingChains`3">
+            <summary>
+            Represents a binary forcing chains.
+            </summary>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+            <typeparam name="TBranch">The type of each branch.</typeparam>
+            <typeparam name="TNode">The type of each node.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IBinaryForcingChains`3.Branches">
+            <summary>
+            Indicates the backing branches.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IChainOrForcingChains">
             <summary>
             Represents a component that is a chain or forcing chains.
@@ -3369,32 +3391,36 @@
         <member name="P:Sudoku.Analytics.Construction.Components.IDoubleExocet.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.IForcingChains">
+        <member name="T:Sudoku.Analytics.Construction.Components.IForcingChains`1">
             <summary>
             Represents a forcing chains component.
             </summary>
+            <typeparam name="TNode">The type of each node.</typeparam>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.Complexity">
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains`1.Complexity">
             <summary>
             Indicates the complexity of the whole pattern.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.DigitsMask">
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains`1.DigitsMask">
             <summary>
             Indicates the digits used in this pattern.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.Conclusions">
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains`1.Conclusions">
             <summary>
             Indicates the conclusions of the pattern.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.BranchedComplexity">
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains`1.BranchedComplexity">
             <summary>
             Indicates the complexity of each branch.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
+        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains`1.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains`1.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
             <summary>
             Collect views for the current chain.
             </summary>
@@ -3402,6 +3428,70 @@
             <param name="newConclusions">The conclusions.</param>
             <param name="supportedRules">The supported rules.</param>
             <returns>The views.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains`1.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3">
+            <summary>
+            Represents a multiple forcing chains.
+            </summary>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+            <typeparam name="TBranch">The type of branch.</typeparam>
+            <typeparam name="TNode">The type of each node.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsCellMultiple">
+            <summary>
+            Indicates whether the pattern is aimed to a cell, producing multiple branches.
+            </summary>
+            <remarks>
+            This value is conflict with <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsHouseMultiple"/>. If this property is <see langword="true"/>,
+            the property <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsHouseMultiple"/> will always return <see langword="false"/> and vice versa.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsHouseMultiple"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsHouseMultiple">
+            <summary>
+            Indicates whether the pattern is aimed to a house, producing multiple branches.
+            </summary>
+            <remarks>
+            This value is conflict with <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsCellMultiple"/>. If this property is <see langword="true"/>,
+            the property <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsCellMultiple"/> will always return <see langword="false"/> and vice versa.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsCellMultiple"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsAdvancedMultiple">
+            <summary>
+            Indicates whether the pattern is advanced. In other words, the start candidates are not inside a cell or a house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.Candidates">
+            <summary>
+            Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the start.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.Exists(System.Func{`1,System.Boolean})">
+            <summary>
+            Determines whether the collection contains at least one element satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.TrueForAll(System.Func{`1,System.Boolean})">
+            <summary>
+            Determines whether all elements in this collection satisfy the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1">
             <summary>
@@ -3963,29 +4053,13 @@
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsCellMultiple">
-            <summary>
-            Indicates whether the pattern is aimed to a cell, producing multiple branches.
-            </summary>
-            <remarks>
-            This value is conflict with <see cref="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsHouseMultiple"/>. If this property is <see langword="true"/>,
-            the property <see cref="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsHouseMultiple"/> will always return <see langword="false"/> and vice versa.
-            </remarks>
-            <seealso cref="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsHouseMultiple"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsHouseMultiple">
-            <summary>
-            Indicates whether the pattern is aimed to a house, producing multiple branches.
-            </summary>
-            <remarks>
-            This value is conflict with <see cref="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsCellMultiple"/>. If this property is <see langword="true"/>,
-            the property <see cref="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsCellMultiple"/> will always return <see langword="false"/> and vice versa.
-            </remarks>
-            <seealso cref="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsCellMultiple"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsAdvancedMultiple">
-            <summary>
-            Indicates whether the pattern is advanced. In other words, the start candidates are not inside a cell or a house.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsGrouped">
             <inheritdoc/>
@@ -4003,29 +4077,19 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Candidates">
-            <summary>
-            Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the start.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#Conclusions">
+        <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains{Sudoku#Analytics#Construction#Components#Node}#Conclusions">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Exists(System.Func{Sudoku.Analytics.Construction.Components.UnnamedChain,System.Boolean})">
-            <summary>
-            Determines whether the collection contains at least one element satisfying the specified condition.
-            </summary>
-            <param name="predicate">The condition to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.TrueForAll(System.Func{Sudoku.Analytics.Construction.Components.UnnamedChain,System.Boolean})">
-            <summary>
-            Determines whether all elements in this collection satisfy the specified condition.
-            </summary>
-            <param name="predicate">The condition to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.CompareTo(Sudoku.Analytics.Construction.Components.MultipleForcingChains)">
             <inheritdoc/>
@@ -4071,15 +4135,15 @@
             <param name="patternComparison">The chain comparison rule.</param>
             <returns>Hash code value.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetThoroughConclusions(Sudoku.Concepts.Grid@)">
             <summary>
             Try to get all possible conclusions of the multiple forcing chains.
             </summary>
             <param name="grid">Indicates the current grid to be checked.</param>
             <returns>A list of conclusions found.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.CastToFinnedChain(Sudoku.Concepts.CandidateMap@)">
             <summary>
@@ -4118,9 +4182,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#UnnamedChain}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Analytics.Construction.Components.UnnamedChain},System.Boolean})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetViewsCore(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Conclusion[])">

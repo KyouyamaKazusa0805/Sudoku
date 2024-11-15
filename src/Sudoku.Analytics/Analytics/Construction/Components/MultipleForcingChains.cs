@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.Construction.Components;
 
-using MfcValue = KeyValuePair<Candidate, UnnamedChain>;
-
 /// <summary>
 /// Represents an instance that describes for cell forcing chains or region forcing chains (i.e. house forcing chains).
 /// </summary>
@@ -21,38 +19,20 @@ using MfcValue = KeyValuePair<Candidate, UnnamedChain>;
 	OtherModifiersOnToString = "sealed")]
 public partial class MultipleForcingChains([Property(Setter = PropertySetters.InternalSet)] params Conclusion[] conclusions) :
 	SortedDictionary<Candidate, UnnamedChain>,
-	IAnyAllMethod<MultipleForcingChains, MfcValue>,
+	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>,
 	IComparable<MultipleForcingChains>,
 	IComparisonOperators<MultipleForcingChains, MultipleForcingChains, bool>,
-	IComponent,
 	IEquatable<MultipleForcingChains>,
 	IEqualityOperators<MultipleForcingChains, MultipleForcingChains, bool>,
-	IForcingChains,
-	IFormattable
+	IMultipleForcingChains<MultipleForcingChains, UnnamedChain, Node>
 {
-	/// <summary>
-	/// Indicates whether the pattern is aimed to a cell, producing multiple branches.
-	/// </summary>
-	/// <remarks>
-	/// This value is conflict with <see cref="IsHouseMultiple"/>. If this property is <see langword="true"/>,
-	/// the property <see cref="IsHouseMultiple"/> will always return <see langword="false"/> and vice versa.
-	/// </remarks>
-	/// <seealso cref="IsHouseMultiple"/>
+	/// <inheritdoc/>
 	public virtual bool IsCellMultiple => Candidates.Cells.Count == 1;
 
-	/// <summary>
-	/// Indicates whether the pattern is aimed to a house, producing multiple branches.
-	/// </summary>
-	/// <remarks>
-	/// This value is conflict with <see cref="IsCellMultiple"/>. If this property is <see langword="true"/>,
-	/// the property <see cref="IsCellMultiple"/> will always return <see langword="false"/> and vice versa.
-	/// </remarks>
-	/// <seealso cref="IsCellMultiple"/>
+	/// <inheritdoc/>
 	public virtual bool IsHouseMultiple => Mask.IsPow2(Candidates.Digits);
 
-	/// <summary>
-	/// Indicates whether the pattern is advanced. In other words, the start candidates are not inside a cell or a house.
-	/// </summary>
+	/// <inheritdoc/>
 	public virtual bool IsAdvancedMultiple => false;
 
 	/// <inheritdoc/>
@@ -84,23 +64,17 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	/// <inheritdoc/>
 	public ReadOnlySpan<int> BranchedComplexity => (from v in Values select v.Length).ToArray();
 
-	/// <summary>
-	/// Returns a <see cref="CandidateMap"/> indicating all candidates used in this pattern, as the start.
-	/// </summary>
+	/// <inheritdoc/>
 	public CandidateMap Candidates => [.. Keys];
 
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.MultipleForcingChains;
 
 	/// <inheritdoc/>
-	StepConclusions IForcingChains.Conclusions => Conclusions;
+	StepConclusions IForcingChains<Node>.Conclusions => Conclusions;
 
 
-	/// <summary>
-	/// Determines whether the collection contains at least one element satisfying the specified condition.
-	/// </summary>
-	/// <param name="predicate">The condition to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <inheritdoc/>
 	public bool Exists(Func<UnnamedChain, bool> predicate)
 	{
 		foreach (var element in Values)
@@ -113,11 +87,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 		return false;
 	}
 
-	/// <summary>
-	/// Determines whether all elements in this collection satisfy the specified condition.
-	/// </summary>
-	/// <param name="predicate">The condition to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <inheritdoc/>
 	public bool TrueForAll(Func<UnnamedChain, bool> predicate)
 	{
 		foreach (var element in Values)
@@ -317,6 +287,20 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 		return hashCode.ToHashCode();
 	}
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(IFormatProvider? formatProvider)
+	{
+		var converter = CoordinateConverter.GetInstance(formatProvider);
+		return string.Join(
+			", ",
+			from kvp in this
+			let candidate = kvp.Key
+			let pattern = kvp.Value
+			select $"{converter.CandidateConverter(candidate.AsCandidateMap())}: {pattern.ToString(converter)}"
+		);
+	}
+
 	/// <summary>
 	/// Try to get all possible conclusions of the multiple forcing chains.
 	/// </summary>
@@ -339,20 +323,6 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 			}
 		}
 		return newConclusions.Count == 0 ? [] : [.. newConclusions];
-	}
-
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(IFormatProvider? formatProvider)
-	{
-		var converter = CoordinateConverter.GetInstance(formatProvider);
-		return string.Join(
-			", ",
-			from kvp in this
-			let candidate = kvp.Key
-			let pattern = kvp.Value
-			select $"{converter.CandidateConverter(candidate.AsCandidateMap())}: {pattern.ToString(converter)}"
-		);
 	}
 
 	/// <summary>
@@ -452,10 +422,10 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 		];
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, MfcValue>.Any() => Count != 0;
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.Any() => Count != 0;
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, MfcValue>.Any(Func<MfcValue, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.Any(Func<KeyValuePair<Candidate, UnnamedChain>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
@@ -468,7 +438,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, MfcValue>.All(Func<MfcValue, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>.All(Func<KeyValuePair<Candidate, UnnamedChain>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
@@ -479,9 +449,6 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 		}
 		return true;
 	}
-
-	/// <inheritdoc/>
-	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <summary>
 	/// Represents a method that creates a list of views.

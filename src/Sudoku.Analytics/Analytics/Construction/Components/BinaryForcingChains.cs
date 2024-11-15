@@ -12,9 +12,7 @@ public sealed partial class BinaryForcingChains(
 	[Property] UnnamedChain branch2,
 	[Property] Conclusion conclusion,
 	[Property] bool isContradiction
-) :
-	IForcingChains,
-	IFormattable
+) : IBinaryForcingChains<BinaryForcingChains, UnnamedChain, Node>
 {
 	/// <inheritdoc/>
 	public bool IsGrouped => false;
@@ -50,7 +48,10 @@ public sealed partial class BinaryForcingChains(
 	ComponentType IComponent.Type => ComponentType.BinaryForcingChains;
 
 	/// <inheritdoc/>
-	StepConclusions IForcingChains.Conclusions => new SingletonArray<Conclusion>(Conclusion);
+	StepConclusions IForcingChains<Node>.Conclusions => new SingletonArray<Conclusion>(Conclusion);
+
+	/// <inheritdoc/>
+	ReadOnlySpan<UnnamedChain> IBinaryForcingChains<BinaryForcingChains, UnnamedChain, Node>.Branches => Branches;
 
 	/// <summary>
 	/// Indicates the backing branches.
@@ -58,7 +59,7 @@ public sealed partial class BinaryForcingChains(
 	private ReadOnlySpan<UnnamedChain> Branches => (UnnamedChain[])[Branch1, Branch2];
 
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
@@ -95,9 +96,6 @@ public sealed partial class BinaryForcingChains(
 		}
 		return result;
 	}
-
-	/// <inheritdoc/>
-	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <summary>
 	/// Represents a method that creates a list of views.
