@@ -259,8 +259,8 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 			(i, var (lastNode, isOn)) = ((i + 1) % nodes.Length, (currentNode, true));
 			for (var x = 0; x < nodes.Length; i = (i + 1) % nodes.Length, x++)
 			{
-				currentNode.Parent = new(in nodes[i].Map, isOn);
-				currentNode = currentNode.Parent;
+				currentNode.Parents = new Node(in nodes[i].Map, isOn);
+				currentNode = (Node)currentNode.Parents!;
 				isOn = !isOn;
 			}
 			return new(lastNode);

@@ -51,7 +51,7 @@ public abstract partial class Chain :
 	protected Chain(Node lastNode, bool isLoop, bool autoReversingOnComparison = true)
 	{
 		var nodes = (List<Node>)[lastNode];
-		for (var node = lastNode.Parent!; isLoop ? node != lastNode : node is not null; node = node.Parent!)
+		for (var node = (Node)lastNode.Parents!; isLoop ? node != lastNode : node is not null; node = (Node)node.Parents!)
 		{
 			nodes.Add(node >> null);
 		}
