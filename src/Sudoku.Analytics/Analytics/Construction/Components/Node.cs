@@ -46,10 +46,10 @@ public sealed partial class Node(
 	{
 		get
 		{
-			var (result, p) = (this, Parents);
-			while (p is [var parent, ..])
+			var (result, p) = (this, (Node?)Parents);
+			while (p is not null)
 			{
-				_ = (result = p[0], p = parent);
+				_ = (result = p, p = (Node?)p.Parents);
 			}
 			return result;
 		}

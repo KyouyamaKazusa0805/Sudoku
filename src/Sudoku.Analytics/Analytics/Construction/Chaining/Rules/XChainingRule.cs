@@ -73,15 +73,28 @@ public sealed class XChainingRule : ChainingRule
 		}
 
 		ref readonly var grid = ref context.Grid;
+		ref readonly var originalGrid = ref context.OriginalGrid;
 		var candidatesMap = grid.CandidatesMap;
 		var startCell = startCandidate / 9;
 		var digit = startCandidate % 9;
 		var resultNodes = new HashSet<Node>();
+		var nodesSupposedOff = context.NodesSupposedOff;
 		foreach (var houseType in HouseTypes)
 		{
 			if ((HousesMap[startCell.ToHouse(houseType)] & candidatesMap[digit]) - startCell is [var endCell])
 			{
-				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), true));
+				var mapToCheck = HousesMap[endCell.ToHouse(houseType)] & (originalGrid.CandidatesMap[digit] & ~candidatesMap[digit]);
+				resultNodes.Add(
+					new(
+						(endCell * 9 + digit).AsCandidateMap(),
+						true,
+						[
+							..
+							from cell in mapToCheck
+							select nodesSupposedOff.First(n => n.Map is [var c] && c == cell * 9 + digit)
+						]
+					)
+				);
 			}
 		}
 		context.Nodes = resultNodes.ToArray();

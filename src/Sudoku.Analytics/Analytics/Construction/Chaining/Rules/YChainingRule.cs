@@ -56,14 +56,27 @@ public sealed class YChainingRule : ChainingRule
 		}
 
 		ref readonly var grid = ref context.Grid;
+		ref readonly var originalGrid = ref context.OriginalGrid;
 		var cell = startCandidate / 9;
 		var startDigit = startCandidate % 9;
 		var digitsMask = (Mask)(grid.GetCandidates(cell) & ~(1 << startDigit));
 		var resultNodes = new HashSet<Node>();
+		var nodesSupposedOff = context.NodesSupposedOff;
 		if (Mask.IsPow2(digitsMask))
 		{
 			var endDigit = Mask.Log2(digitsMask);
-			resultNodes.Add(new((cell * 9 + endDigit).AsCandidateMap(), true));
+			var digitsToCheck = (Mask)(originalGrid.GetCandidates(cell) & ~grid.GetCandidates(cell));
+			resultNodes.Add(
+				new(
+					(cell * 9 + endDigit).AsCandidateMap(),
+					true,
+					[
+						..
+						from digit in digitsToCheck
+						select nodesSupposedOff.First(n => n.Map is [var c] && c == cell * 9 + digit)
+					]
+				)
+			);
 		}
 		context.Nodes = resultNodes.ToArray();
 	}

@@ -488,6 +488,8 @@ internal partial class ChainingDriver
 		var tempGrid = grid;
 		var nodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
 		var nodesSupposedOff = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+		(startNode.IsOn ? nodesSupposedOn : nodesSupposedOff).Add(startNode);
+
 		while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
 		{
 			if (pendingNodesSupposedOn.Count != 0)
