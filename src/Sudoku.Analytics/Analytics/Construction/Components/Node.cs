@@ -215,4 +215,13 @@ public sealed partial class Node(
 	/// <returns>The new node created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Node operator >>(Node current, Node? parent) => new(in current._map, current.IsOn, parent);
+
+	/// <summary>
+	/// Creates a <see cref="Node"/> instance with a list of parent nodes.
+	/// </summary>
+	/// <param name="current">The current node.</param>
+	/// <param name="parents">The parent nodes.</param>
+	/// <returns>The new node created.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Node operator >>(Node current, NodeSet? parents) => new(in current._map, current.IsOn, parents);
 }

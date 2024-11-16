@@ -493,7 +493,8 @@ internal partial class ChainingDriver
 			if (pendingNodesSupposedOn.Count != 0)
 			{
 				var currentNode = pendingNodesSupposedOn.RemoveFirstNode();
-				if (GetNodesFromOnToOff(currentNode, chainingRules, options, in tempGrid) is var supposedOff and not [])
+				if (GetNodesFromOnToOff(currentNode, chainingRules, options, in tempGrid)
+					is var supposedOff and not [])
 				{
 					foreach (var node in supposedOff)
 					{
@@ -517,7 +518,8 @@ internal partial class ChainingDriver
 				var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
 				tempGrid.Apply(currentNode);
 
-				if (GetNodesFromOffToOn(currentNode, chainingRules, options, in tempGrid) is var supposedOn and not [])
+				if (GetNodesFromOffToOn(currentNode, chainingRules, nodesSupposedOff, options, in tempGrid, in grid)
+					is var supposedOn and not [])
 				{
 					foreach (var node in supposedOn)
 					{
@@ -547,18 +549,23 @@ internal partial class ChainingDriver
 	/// Try to find nodes that will be considered as "off" state if the specified node is "on" state.
 	/// </summary>
 	/// <param name="node">The previous node to be checked.</param>
-	/// <param name="options">The options.</param>
 	/// <param name="chainingRules">The chaining rule collection to be used.</param>
-	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="options">The options.</param>
+	/// <param name="grid">The current grid.</param>
 	/// <returns>A list of nodes found.</returns>
 	/// <remarks><i>
 	/// This method doesn't use cache on purpose, therefore this method won't be marked type
 	/// <see cref="InterceptorMethodCallerAttribute"/>.
 	/// </i></remarks>
 	/// <seealso cref="InterceptorMethodCallerAttribute"/>
-	private static ReadOnlySpan<Node> GetNodesFromOnToOff(Node node, ChainingRuleCollection chainingRules, StepGathererOptions options, ref readonly Grid grid)
+	private static ReadOnlySpan<Node> GetNodesFromOnToOff(
+		Node node,
+		ChainingRuleCollection chainingRules,
+		StepGathererOptions options,
+		ref readonly Grid grid
+	)
 	{
-		var context = new ChainingRuleNextNodeContext(node, in grid, options);
+		var context = new ChainingRuleNextOffNodeContext(node, in grid, options);
 		foreach (var chainingRule in chainingRules)
 		{
 			chainingRule.CollectOffNodes(ref context);
@@ -569,10 +576,28 @@ internal partial class ChainingDriver
 	/// <summary>
 	/// Try to find nodes that will be considered as "on" state if the specified node is "off" state.
 	/// </summary>
-	/// <inheritdoc cref="GetNodesFromOnToOff(Node, ChainingRuleCollection, StepGathererOptions, ref readonly Grid)"/>
-	private static ReadOnlySpan<Node> GetNodesFromOffToOn(Node node, ChainingRuleCollection chainingRules, StepGathererOptions options, ref readonly Grid grid)
+	/// <param name="node">The previous node to be checked.</param>
+	/// <param name="chainingRules">The chaining rule collection to be used.</param>
+	/// <param name="nodesSupposedOff">Indicates the nodes supposed to be "off".</param>
+	/// <param name="options">The options.</param>
+	/// <param name="grid">The current grid.</param>
+	/// <param name="originalGrid">Indicates the original grid.</param>
+	/// <returns>A list of nodes found.</returns>
+	/// <remarks><i>
+	/// This method doesn't use cache on purpose, therefore this method won't be marked type
+	/// <see cref="InterceptorMethodCallerAttribute"/>.
+	/// </i></remarks>
+	/// <seealso cref="InterceptorMethodCallerAttribute"/>
+	private static ReadOnlySpan<Node> GetNodesFromOffToOn(
+		Node node,
+		ChainingRuleCollection chainingRules,
+		HashSet<Node> nodesSupposedOff,
+		StepGathererOptions options,
+		ref readonly Grid grid,
+		ref readonly Grid originalGrid
+	)
 	{
-		var context = new ChainingRuleNextNodeContext(node, in grid, options);
+		var context = new ChainingRuleNextOnNodeContext(node, in grid, in originalGrid, nodesSupposedOff, options);
 		foreach (var chainingRule in chainingRules)
 		{
 			chainingRule.CollectOnNodes(ref context);

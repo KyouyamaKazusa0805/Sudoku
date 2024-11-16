@@ -47,7 +47,7 @@ public sealed class YChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void CollectOnNodes(ref ChainingRuleNextNodeContext context)
+	public override void CollectOnNodes(ref ChainingRuleNextOnNodeContext context)
 	{
 		var currentNode = context.CurrentNode;
 		if (currentNode is not { Map: [var startCandidate], IsOn: false })
@@ -69,7 +69,7 @@ public sealed class YChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void CollectOffNodes(ref ChainingRuleNextNodeContext context)
+	public override void CollectOffNodes(ref ChainingRuleNextOffNodeContext context)
 	{
 		var currentNode = context.CurrentNode;
 		if (currentNode is not { Map: [var startCandidate], IsOn: true })
