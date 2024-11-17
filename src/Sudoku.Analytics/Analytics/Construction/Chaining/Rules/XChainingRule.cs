@@ -89,6 +89,7 @@ public sealed class XChainingRule : ChainingRule
 						(endCell * 9 + digit).AsCandidateMap(),
 						true,
 						[
+							currentNode,
 							..
 							from cell in mapToCheck
 							select nodesSupposedOff.First(n => n.Map is [var c] && c == cell * 9 + digit)

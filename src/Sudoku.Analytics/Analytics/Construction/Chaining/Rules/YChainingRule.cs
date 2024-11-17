@@ -71,6 +71,7 @@ public sealed class YChainingRule : ChainingRule
 					(cell * 9 + endDigit).AsCandidateMap(),
 					true,
 					[
+						currentNode,
 						..
 						from digit in digitsToCheck
 						select nodesSupposedOff.First(n => n.Map is [var c] && c == cell * 9 + digit)

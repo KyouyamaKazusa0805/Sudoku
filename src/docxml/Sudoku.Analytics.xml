@@ -2404,7 +2404,12 @@
             The backing field of nodes stored. Such nodes may contain ones that are also be treated as conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)">
+        <member name="F:Sudoku.Analytics.Construction.Components.Chain._dynamicLinks">
+            <summary>
+            Indicates the links used in dynamic chaining rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Initializes <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> data.
             </summary>
@@ -2420,6 +2425,7 @@
             if you don't want to make the constructor reverse the whole chain.
             </para>
             </param>
+            <param name="isDynamicChaining">Indicates whether the initialization will respect dynamic chaining rule.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsNamed">
             <summary>
@@ -4325,8 +4331,8 @@
             <item>Continuous nice loop (corresponds to type <see cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>)</item>
             </list>
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
-            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain"/>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>
         </member>
@@ -4338,8 +4344,8 @@
             <item>Continuous nice loop (corresponds to type <see cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>)</item>
             </list>
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
-            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain"/>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>
         </member>
@@ -4794,11 +4800,19 @@
             <summary>
             Represents a chain segment (forcing chain) starting with strong link.
             </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.#ctor(Sudoku.Analytics.Construction.Components.Node)">
+        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean)">
             <summary>
             Represents a chain segment (forcing chain) starting with strong link.
             </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.StrongForcingChain.WeakStartIdentity">
             <inheritdoc/>
@@ -4879,13 +4893,19 @@
             <summary>
             Represents a forcing chain branch.
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.UnnamedChain.#ctor(Sudoku.Analytics.Construction.Components.Node)">
+        <member name="M:Sudoku.Analytics.Construction.Components.UnnamedChain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean)">
             <summary>
             Represents a forcing chain branch.
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.UnnamedChain.IsNamed">
             <inheritdoc/>
@@ -4900,11 +4920,19 @@
             <summary>
             Represents a chain segment (forcing chain) starting with weak link.
             </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.#ctor(Sudoku.Analytics.Construction.Components.Node)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean)">
             <summary>
             Represents a chain segment (forcing chain) starting with weak link.
             </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WeakForcingChain.WeakStartIdentity">
             <inheritdoc/>

@@ -32,6 +32,11 @@ public abstract partial class Chain :
 	/// </summary>
 	protected readonly Node[] _nodes;
 
+	/// <summary>
+	/// Indicates the links used in dynamic chaining rule.
+	/// </summary>
+	protected readonly HashSet<Link>? _dynamicLinks = [];
+
 
 	/// <summary>
 	/// Initializes <see cref="Chain"/> data.
@@ -48,21 +53,49 @@ public abstract partial class Chain :
 	/// if you don't want to make the constructor reverse the whole chain.
 	/// </para>
 	/// </param>
-	protected Chain(Node lastNode, bool isLoop, bool autoReversingOnComparison = true)
+	/// <param name="isDynamicChaining">Indicates whether the initialization will respect dynamic chaining rule.</param>
+	protected Chain(Node lastNode, bool isLoop, bool autoReversingOnComparison = true, bool isDynamicChaining = false)
 	{
-		var nodes = (List<Node>)[lastNode];
-		for (var node = (Node)lastNode.Parents!; isLoop ? node != lastNode : node is not null; node = (Node)node.Parents!)
+		if (isDynamicChaining)
 		{
-			nodes.Add(node >> null);
-		}
-		_nodes = [.. nodes];
+			IsDynamic = true;
 
-		// Now reverse the chain if worth.
-		// If the last node is supposed 'on', it will be a normal elimination-typed chain, and can be reversed.
-		// Now we should reverse the whole chain if the first node is greater than the last node in logic.
-		if (autoReversingOnComparison && _nodes[^1].IsOn && nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
+			var nodes = new HashSet<Node> { lastNode };
+			var links = new HashSet<Link>();
+			var queue = new LinkedList<Node>();
+			queue.AddLast(lastNode);
+			while (queue.Count != 0)
+			{
+				var currentNode = queue.RemoveFirstNode();
+				foreach (var parentNode in currentNode.Parents ?? [])
+				{
+					queue.AddLast(parentNode);
+					nodes.Add(parentNode);
+					links.Add(new(parentNode, currentNode, !parentNode.IsOn, null));
+				}
+			}
+
+			_nodes = [.. nodes];
+			_dynamicLinks = links;
+		}
+		else
 		{
-			Reverse();
+			IsDynamic = false;
+
+			var nodes = (List<Node>)[lastNode];
+			for (var node = (Node)lastNode.Parents!; isLoop ? node != lastNode : node is not null; node = (Node)node.Parents!)
+			{
+				nodes.Add(node >> null);
+			}
+			_nodes = [.. nodes];
+
+			// Now reverse the chain if worth.
+			// If the last node is supposed 'on', it will be a normal elimination-typed chain, and can be reversed.
+			// Now we should reverse the whole chain if the first node is greater than the last node in logic.
+			if (autoReversingOnComparison && _nodes[^1].IsOn && nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
+			{
+				Reverse();
+			}
 		}
 	}
 
@@ -80,7 +113,7 @@ public abstract partial class Chain :
 	/// <summary>
 	/// Indicates whether the current chain is dynamic.
 	/// </summary>
-	public bool IsDynamic => ValidNodes.Any(static node => node.Parents?.Length is >= 2);
+	public bool IsDynamic { get; }
 
 	/// <inheritdoc/>
 	public bool IsGrouped => ValidNodes.Any(static node => node.IsGroupedNode);
@@ -298,17 +331,24 @@ public abstract partial class Chain :
 		{
 			if (field is null)
 			{
-				var span = ValidNodes;
-				var resultLength = Length - LoopIdentity;
-				var result = new Link[resultLength];
-				for (var (linkIndex, i) = (WeakStartIdentity, 0); i < resultLength; linkIndex++, i++)
+				if (IsDynamic)
 				{
-					var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
-					var pool = (isStrong ? StrongLinkDictionary : WeakLinkDictionary).GroupedLinkPool;
-					pool.TryGetValue(new(span[i], span[(i + 1) % Length], isStrong), out var pattern);
-					result[i] = new(span[i], span[(i + 1) % Length], isStrong, pattern);
+					field = [.. _dynamicLinks?.ToArray() ?? []];
 				}
-				field = result;
+				else
+				{
+					var span = ValidNodes;
+					var resultLength = Length - LoopIdentity;
+					var result = new Link[resultLength];
+					for (var (linkIndex, i) = (WeakStartIdentity, 0); i < resultLength; linkIndex++, i++)
+					{
+						var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
+						var pool = (isStrong ? StrongLinkDictionary : WeakLinkDictionary).GroupedLinkPool;
+						pool.TryGetValue(new(span[i], span[(i + 1) % Length], isStrong), out var pattern);
+						result[i] = new(span[i], span[(i + 1) % Length], isStrong, pattern);
+					}
+					field = result;
+				}
 			}
 			return field;
 		}
@@ -443,11 +483,13 @@ public abstract partial class Chain :
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)
-		=> formatProvider switch
-		{
-			ChainFormatInfo f => ChainFormatInfo.FormatCoreUnsafeAccessor(f, this),
-			_ => ToString(ChainFormatInfo.Standard)
-		};
+		=> IsDynamic
+			? string.Empty // TODO: Format dynamic forcing chains later.
+			: formatProvider switch
+			{
+				ChainFormatInfo f => ChainFormatInfo.FormatCoreUnsafeAccessor(f, this),
+				_ => ToString(ChainFormatInfo.Standard)
+			};
 
 	/// <summary>
 	/// Slices the collection with the specified start node and its length.

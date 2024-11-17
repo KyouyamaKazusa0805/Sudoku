@@ -245,7 +245,7 @@ internal partial class ChainingDriver
 				foreach (var d in digitsMask)
 				{
 					var branchNode = onNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode, true) : new WeakForcingChain(branchNode, true));
 				}
 				if (context.OnlyFindOne)
 				{
@@ -283,7 +283,7 @@ internal partial class ChainingDriver
 				foreach (var d in digitsMask)
 				{
 					var branchNode = offNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode, true) : new WeakForcingChain(branchNode, true));
 				}
 				if (cfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
 				{
@@ -327,7 +327,7 @@ internal partial class ChainingDriver
 				foreach (var c in cellsInHouse)
 				{
 					var branchNode = onNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode, true) : new WeakForcingChain(branchNode, true));
 				}
 				if (context.OnlyFindOne)
 				{
@@ -365,7 +365,7 @@ internal partial class ChainingDriver
 				foreach (var c in cellsInHouse)
 				{
 					var branchNode = offNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode, true) : new WeakForcingChain(branchNode, true));
 				}
 				if (rfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
 				{
@@ -405,8 +405,12 @@ internal partial class ChainingDriver
 
 			return (BinaryForcingChains[])[
 				new(
-					onNode_OnState.IsOn ? new StrongForcingChain(onNode_OnState) : new WeakForcingChain(onNode_OnState),
-					offNode_OnState.IsOn ? new StrongForcingChain(offNode_OnState) : new WeakForcingChain(offNode_OnState),
+					onNode_OnState.IsOn
+						? new StrongForcingChain(onNode_OnState, true)
+						: new WeakForcingChain(onNode_OnState, true),
+					offNode_OnState.IsOn
+						? new StrongForcingChain(offNode_OnState, true)
+						: new WeakForcingChain(offNode_OnState, true),
 					conclusion,
 					true
 				)
@@ -436,8 +440,12 @@ internal partial class ChainingDriver
 
 			return (BinaryForcingChains[])[
 				new(
-					onNode_OffState.IsOn ? new StrongForcingChain(onNode_OffState) : new WeakForcingChain(onNode_OffState),
-					offNode_OffState.IsOn ? new StrongForcingChain(offNode_OffState) : new WeakForcingChain(offNode_OffState),
+					onNode_OffState.IsOn
+						? new StrongForcingChain(onNode_OffState, true)
+						: new WeakForcingChain(onNode_OffState, true),
+					offNode_OffState.IsOn
+						? new StrongForcingChain(offNode_OffState, true)
+						: new WeakForcingChain(offNode_OffState, true),
 					conclusion,
 					true
 				)
