@@ -112,10 +112,9 @@ public sealed partial class BinaryForcingChains(
 		foreach (var chain in Branches)
 		{
 			var subview = View.Empty;
-			var j = 0;
 			foreach (var node in chain)
 			{
-				var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+				var id = node.IsOn ? ColorIdentifier.Normal : ColorIdentifier.Auxiliary1;
 				foreach (var candidate in node.Map)
 				{
 					var currentViewNode = new CandidateViewNode(id, candidate);
@@ -124,7 +123,7 @@ public sealed partial class BinaryForcingChains(
 				}
 			}
 
-			j = 0;
+			var j = 0;
 			foreach (var link in chain.Links)
 			{
 				// Skip the link if there are >= 2 conclusions.
@@ -133,8 +132,12 @@ public sealed partial class BinaryForcingChains(
 					continue;
 				}
 
-				var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
-				var currentViewNode = new ChainLinkViewNode(id, link.FirstNode.Map, link.SecondNode.Map, link.IsStrong);
+				var currentViewNode = new ChainLinkViewNode(
+					ColorIdentifier.Normal,
+					link.FirstNode.Map,
+					link.SecondNode.Map,
+					link.IsStrong
+				);
 				globalView.Add(currentViewNode);
 				subview.Add(currentViewNode);
 			}

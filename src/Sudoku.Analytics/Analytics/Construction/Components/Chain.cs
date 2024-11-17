@@ -504,7 +504,7 @@ public abstract partial class Chain :
 	public Enumerator GetEnumerator() => new(this);
 
 	/// <summary>
-	/// Collect views for the current chain.
+	/// Collect views for the current chain, without nested paths checking.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="supportedRules">The supported rules.</param>

@@ -2645,7 +2645,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.GetViews(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,System.Int32@)">
             <summary>
-            Collect views for the current chain.
+            Collect views for the current chain, without nested paths checking.
             </summary>
             <param name="grid">The grid.</param>
             <param name="supportedRules">The supported rules.</param>
