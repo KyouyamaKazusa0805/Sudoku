@@ -15,7 +15,7 @@ public ref partial struct ChainingRuleNextOffNodeContext(
 ) : IChainingRuleNextNodeContext
 {
 	/// <inheritdoc/>
-	public ReadOnlySpan<Node> Nodes { get; set; }
+	public HashSet<Node> Nodes { get; set; } = [];
 
 	/// <inheritdoc/>
 	readonly ref readonly Grid IContext.Grid => ref Grid;

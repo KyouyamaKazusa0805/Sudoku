@@ -8,7 +8,7 @@ public interface IChainingRuleNextNodeContext : IContext
 	/// <summary>
 	/// Indicates the collected nodes.
 	/// </summary>
-	public abstract ReadOnlySpan<Node> Nodes { get; set; }
+	public abstract HashSet<Node> Nodes { get; set; }
 
 	/// <summary>
 	/// Indicates the current node.

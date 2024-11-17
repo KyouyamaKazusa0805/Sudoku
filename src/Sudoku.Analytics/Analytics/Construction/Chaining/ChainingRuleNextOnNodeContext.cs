@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Construction.Chaining;
+namespace Sudoku.Analytics.Construction.Chaining;
 
 /// <summary>
 /// Represents the properties used while chaining.
@@ -19,7 +19,7 @@ public ref partial struct ChainingRuleNextOnNodeContext(
 ) : IChainingRuleNextNodeContext
 {
 	/// <inheritdoc/>
-	public ReadOnlySpan<Node> Nodes { get; set; }
+	public HashSet<Node> Nodes { get; set; } = [];
 
 	/// <inheritdoc/>
 	readonly ref readonly Grid IContext.Grid => ref Grid;

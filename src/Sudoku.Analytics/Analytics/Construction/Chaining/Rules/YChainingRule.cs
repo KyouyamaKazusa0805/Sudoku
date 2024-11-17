@@ -78,7 +78,7 @@ public sealed class YChainingRule : ChainingRule
 				)
 			);
 		}
-		context.Nodes = resultNodes.ToArray();
+		context.Nodes.AddRange(resultNodes);
 	}
 
 	/// <inheritdoc/>
@@ -98,6 +98,6 @@ public sealed class YChainingRule : ChainingRule
 		{
 			resultNodes.Add(new((cell * 9 + endDigit).AsCandidateMap(), false));
 		}
-		context.Nodes = resultNodes.ToArray();
+		context.Nodes.AddRange(resultNodes);
 	}
 }

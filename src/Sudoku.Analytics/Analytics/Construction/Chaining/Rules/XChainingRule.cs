@@ -97,7 +97,7 @@ public sealed class XChainingRule : ChainingRule
 				);
 			}
 		}
-		context.Nodes = resultNodes.ToArray();
+		context.Nodes.AddRange(resultNodes);
 	}
 
 	/// <inheritdoc/>
@@ -121,6 +121,6 @@ public sealed class XChainingRule : ChainingRule
 				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), false));
 			}
 		}
-		context.Nodes = resultNodes.ToArray();
+		context.Nodes.AddRange(resultNodes);
 	}
 }

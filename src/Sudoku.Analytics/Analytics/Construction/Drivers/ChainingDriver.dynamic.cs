@@ -16,7 +16,7 @@ internal partial class ChainingDriver
 	)
 	{
 		var result = new List<IForcingChains<Node>>();
-		foreach (var cell in EmptyCells & ~BivalueCells)
+		foreach (var cell in EmptyCells)
 		{
 			var nodesSupposedOn_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
 			var nodesSupposedOff_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
@@ -518,10 +518,11 @@ internal partial class ChainingDriver
 			else
 			{
 				var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
+				var supposedOn = GetNodesFromOffToOn(currentNode, chainingRules, nodesSupposedOff, options, in tempGrid, in grid);
+
 				tempGrid.Apply(currentNode);
 
-				if (GetNodesFromOffToOn(currentNode, chainingRules, nodesSupposedOff, options, in tempGrid, in grid)
-					is var supposedOn and not [])
+				if (!supposedOn.IsEmpty)
 				{
 					foreach (var node in supposedOn)
 					{
@@ -572,7 +573,7 @@ internal partial class ChainingDriver
 		{
 			chainingRule.CollectOffNodes(ref context);
 		}
-		return context.Nodes;
+		return context.Nodes.ToArray();
 	}
 
 	/// <summary>
@@ -604,6 +605,6 @@ internal partial class ChainingDriver
 		{
 			chainingRule.CollectOnNodes(ref context);
 		}
-		return context.Nodes;
+		return context.Nodes.ToArray();
 	}
 }
