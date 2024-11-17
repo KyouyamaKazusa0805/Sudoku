@@ -77,6 +77,11 @@ public abstract partial class Chain :
 	/// </remarks>
 	public abstract bool IsNamed { get; }
 
+	/// <summary>
+	/// Indicates whether the current chain is dynamic.
+	/// </summary>
+	public bool IsDynamic => ValidNodes.Any(static node => node.Parents?.Length is >= 2);
+
 	/// <inheritdoc/>
 	public bool IsGrouped => ValidNodes.Any(static node => node.IsGroupedNode);
 

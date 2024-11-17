@@ -118,7 +118,7 @@ public sealed class XChainingRule : ChainingRule
 		{
 			foreach (var endCell in (HousesMap[startCell.ToHouse(houseType)] & candidatesMap[digit]) - startCell)
 			{
-				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), false));
+				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), false, currentNode));
 			}
 		}
 		context.Nodes.AddRange(resultNodes);

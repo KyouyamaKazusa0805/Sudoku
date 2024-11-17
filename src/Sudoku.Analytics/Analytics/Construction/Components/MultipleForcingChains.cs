@@ -36,6 +36,9 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	public virtual bool IsAdvancedMultiple => false;
 
 	/// <inheritdoc/>
+	public bool IsDynamic => this.AnyValue(static branch => branch.IsDynamic);
+
+	/// <inheritdoc/>
 	public bool IsGrouped => Values.Any(static v => v.IsGrouped);
 
 	/// <inheritdoc/>

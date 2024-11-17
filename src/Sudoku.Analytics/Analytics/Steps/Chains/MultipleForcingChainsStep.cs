@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps.Chains;
 
 /// <summary>
-/// Provides with a step that is a <b>Multiple Forcing Chains</b> technique.
+/// Provides with a step that is a <b>(Dynamic) Multiple Forcing Chains</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -18,7 +18,7 @@ public sealed class MultipleForcingChainsStep(
 	public override bool IsMultiple => true;
 
 	/// <inheritdoc/>
-	public override bool IsDynamic => false;
+	public override bool IsDynamic => Casted.IsDynamic;
 
 	/// <summary>
 	/// Indicates whether the pattern uses grouped nodes.
@@ -26,16 +26,18 @@ public sealed class MultipleForcingChainsStep(
 	public bool IsGrouped => Casted.Exists(static chain => chain.IsGrouped);
 
 	/// <inheritdoc/>
-	public override int BaseDifficulty => 70;
+	public override int BaseDifficulty => IsDynamic ? 88 : 70;
 
 	/// <inheritdoc/>
 	public override int Complexity => Casted.Complexity;
 
 	/// <inheritdoc/>
 	public override Technique Code
-		=> Conclusions.Length >= 2
-			? Casted.IsCellMultiple ? Technique.MergedCellForcingChains : Technique.MergedRegionForcingChains
-			: Casted.IsCellMultiple ? Technique.CellForcingChains : Technique.RegionForcingChains;
+		=> IsDynamic
+			? Casted.IsCellMultiple ? Technique.DynamicCellForcingChains : Technique.DynamicRegionForcingChains
+			: Conclusions.Length >= 2
+				? Casted.IsCellMultiple ? Technique.MergedCellForcingChains : Technique.MergedRegionForcingChains
+				: Casted.IsCellMultiple ? Technique.CellForcingChains : Technique.RegionForcingChains;
 
 	/// <inheritdoc/>
 	public override Mask DigitsUsed => Casted.DigitsMask;

@@ -96,7 +96,7 @@ public sealed class YChainingRule : ChainingRule
 		var resultNodes = new HashSet<Node>();
 		foreach (var endDigit in (Mask)(grid.GetCandidates(cell) & ~(1 << startDigit)))
 		{
-			resultNodes.Add(new((cell * 9 + endDigit).AsCandidateMap(), false));
+			resultNodes.Add(new((cell * 9 + endDigit).AsCandidateMap(), false, currentNode));
 		}
 		context.Nodes.AddRange(resultNodes);
 	}

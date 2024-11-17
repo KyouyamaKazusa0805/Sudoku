@@ -2431,6 +2431,11 @@
             In such cases, this property will return <see langword="false"/>, indicating there's no name corresponding to the pattern.
             </remarks>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsDynamic">
+            <summary>
+            Indicates whether the current chain is dynamic.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsGrouped">
             <inheritdoc/>
         </member>
@@ -3362,6 +3367,9 @@
             Indicates the backing branches.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IBinaryForcingChains`3.Sudoku#Analytics#Construction#Components#IForcingChains{TNode}#IsDynamic">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IChainingRuleNextNodeContext">
             <summary>
             Represents a context type that is used for finding for next nodes from the specified node.
@@ -3475,6 +3483,11 @@
             Represents a forcing chains component.
             </summary>
             <typeparam name="TNode">The type of each node.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains`1.IsDynamic">
+            <summary>
+            Indicates whether the current forcing chain pattern is dynamic.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains`1.Complexity">
             <summary>
@@ -4138,6 +4151,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsAdvancedMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsDynamic">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsGrouped">
@@ -13679,7 +13695,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep">
             <summary>
-            Provides with a step that is a <b>Binary Forcing Chains</b> technique.
+            Provides with a step that is a <b>Dynamic Binary Forcing Chains</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13688,7 +13704,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.BinaryForcingChains)">
             <summary>
-            Provides with a step that is a <b>Binary Forcing Chains</b> technique.
+            Provides with a step that is a <b>Dynamic Binary Forcing Chains</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13919,7 +13935,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.Chains.MultipleForcingChainsStep">
             <summary>
-            Provides with a step that is a <b>Multiple Forcing Chains</b> technique.
+            Provides with a step that is a <b>(Dynamic) Multiple Forcing Chains</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13928,7 +13944,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.Chains.MultipleForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.MultipleForcingChains)">
             <summary>
-            Provides with a step that is a <b>Multiple Forcing Chains</b> technique.
+            Provides with a step that is a <b>(Dynamic) Multiple Forcing Chains</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>

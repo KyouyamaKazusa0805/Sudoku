@@ -500,17 +500,16 @@ internal partial class ChainingDriver
 				{
 					foreach (var node in supposedOff)
 					{
-						var nextNode = node >> currentNode;
-						if (nodesSupposedOn.FirstOrDefault(n => n.Equals(~nextNode)) is { } nextNodeNegated)
+						if (nodesSupposedOn.FirstOrDefault(n => n.Equals(~node, NodeComparison.IncludeIsOn)) is { } nextNodeNegated)
 						{
 							// Contradiction is found.
-							contradiction = (nextNodeNegated, nextNode);
+							contradiction = (nextNodeNegated, node);
 							goto ReturnResult;
 						}
 
-						if (nodesSupposedOff.Add(nextNode))
+						if (nodesSupposedOff.Add(node))
 						{
-							pendingNodesSupposedOff.AddLast(nextNode);
+							pendingNodesSupposedOff.AddLast(node);
 						}
 					}
 				}
@@ -526,17 +525,16 @@ internal partial class ChainingDriver
 				{
 					foreach (var node in supposedOn)
 					{
-						var nextNode = node >> currentNode;
-						if (nodesSupposedOff.FirstOrDefault(n => n.Equals(~nextNode)) is { } nextNodeNegated)
+						if (nodesSupposedOff.FirstOrDefault(n => n.Equals(~node, NodeComparison.IncludeIsOn)) is { } nextNodeNegated)
 						{
 							// Contradiction is found.
-							contradiction = (nextNode, nextNodeNegated);
+							contradiction = (node, nextNodeNegated);
 							goto ReturnResult;
 						}
 
-						if (nodesSupposedOn.Add(nextNode))
+						if (nodesSupposedOn.Add(node))
 						{
-							pendingNodesSupposedOn.AddLast(nextNode);
+							pendingNodesSupposedOn.AddLast(node);
 						}
 					}
 				}

@@ -15,4 +15,7 @@ public interface IBinaryForcingChains<TSelf, TBranch, TNode> : IForcingChains<TN
 	/// Indicates the backing branches.
 	/// </summary>
 	protected abstract ReadOnlySpan<TBranch> Branches { get; }
+
+	/// <inheritdoc/>
+	bool IForcingChains<TNode>.IsDynamic => true;
 }
