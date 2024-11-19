@@ -3354,7 +3354,7 @@
         <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection,Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.IBinaryForcingChains`3">
+        <member name="T:Sudoku.Analytics.Construction.Components.IBinaryForcingChains`2">
             <summary>
             Represents a binary forcing chains.
             </summary>
@@ -3369,7 +3369,6 @@
 		</para>
 	</self-type-constraint></typeparam>
             <typeparam name="TBranch">The type of each branch.</typeparam>
-            <typeparam name="TNode">The type of each node.</typeparam>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IChainingRuleNextNodeContext">
             <summary>
@@ -3539,7 +3538,7 @@
         <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3">
+        <member name="T:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2">
             <summary>
             Represents a multiple forcing chains.
             </summary>
@@ -3554,46 +3553,45 @@
 		</para>
 	</self-type-constraint></typeparam>
             <typeparam name="TBranch">The type of branch.</typeparam>
-            <typeparam name="TNode">The type of each node.</typeparam>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsCellMultiple">
+        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.IsCellMultiple">
             <summary>
             Indicates whether the pattern is aimed to a cell, producing multiple branches.
             </summary>
             <remarks>
-            This value is conflict with <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsHouseMultiple"/>. If this property is <see langword="true"/>,
-            the property <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsHouseMultiple"/> will always return <see langword="false"/> and vice versa.
+            This value is conflict with <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.IsHouseMultiple"/>. If this property is <see langword="true"/>,
+            the property <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.IsHouseMultiple"/> will always return <see langword="false"/> and vice versa.
             </remarks>
-            <seealso cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsHouseMultiple"/>
+            <seealso cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.IsHouseMultiple"/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsHouseMultiple">
+        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.IsHouseMultiple">
             <summary>
             Indicates whether the pattern is aimed to a house, producing multiple branches.
             </summary>
             <remarks>
-            This value is conflict with <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsCellMultiple"/>. If this property is <see langword="true"/>,
-            the property <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsCellMultiple"/> will always return <see langword="false"/> and vice versa.
+            This value is conflict with <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.IsCellMultiple"/>. If this property is <see langword="true"/>,
+            the property <see cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.IsCellMultiple"/> will always return <see langword="false"/> and vice versa.
             </remarks>
-            <seealso cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsCellMultiple"/>
+            <seealso cref="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.IsCellMultiple"/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.IsAdvancedMultiple">
+        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.IsAdvancedMultiple">
             <summary>
             Indicates whether the pattern is advanced. In other words, the start candidates are not inside a cell or a house.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.Candidates">
+        <member name="P:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.Candidates">
             <summary>
             Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the start.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.Exists(System.Func{`1,System.Boolean})">
+        <member name="M:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.Exists(System.Func{`1,System.Boolean})">
             <summary>
             Determines whether the collection contains at least one element satisfying the specified condition.
             </summary>
             <param name="predicate">The condition to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3.TrueForAll(System.Func{`1,System.Boolean})">
+        <member name="M:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2.TrueForAll(System.Func{`1,System.Boolean})">
             <summary>
             Determines whether all elements in this collection satisfy the specified condition.
             </summary>

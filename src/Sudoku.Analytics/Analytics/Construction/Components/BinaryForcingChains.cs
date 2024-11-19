@@ -13,7 +13,7 @@ public sealed partial class BinaryForcingChains(
 	[Property] Conclusion conclusion,
 	[Property] bool isContradiction
 ) :
-	IBinaryForcingChains<BinaryForcingChains, UnnamedChain, Node>,
+	IBinaryForcingChains<BinaryForcingChains, UnnamedChain>,
 	IDynamicForcingChains
 {
 	/// <inheritdoc/>

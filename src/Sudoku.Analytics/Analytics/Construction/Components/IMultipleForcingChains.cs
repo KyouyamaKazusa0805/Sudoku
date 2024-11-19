@@ -5,14 +5,12 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TBranch">The type of branch.</typeparam>
-/// <typeparam name="TNode">The type of each node.</typeparam>
-public interface IMultipleForcingChains<TSelf, TBranch, TNode> :
+public interface IMultipleForcingChains<TSelf, TBranch> :
 	IDictionary<Candidate, TBranch>,
 	IForcingChains,
 	IReadOnlyDictionary<Candidate, TBranch>
-	where TSelf : IMultipleForcingChains<TSelf, TBranch, TNode>
-	where TBranch : IChainOrForcingChains, IEnumerable<TNode>
-	where TNode : IParentLinkedNode<TNode>
+	where TSelf : IMultipleForcingChains<TSelf, TBranch>
+	where TBranch : IChainOrForcingChains, IEnumerable<Node>
 {
 	/// <summary>
 	/// Indicates whether the pattern is aimed to a cell, producing multiple branches.

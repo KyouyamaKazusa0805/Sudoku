@@ -25,7 +25,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	IDynamicForcingChains,
 	IEquatable<MultipleForcingChains>,
 	IEqualityOperators<MultipleForcingChains, MultipleForcingChains, bool>,
-	IMultipleForcingChains<MultipleForcingChains, UnnamedChain, Node>
+	IMultipleForcingChains<MultipleForcingChains, UnnamedChain>
 {
 	/// <inheritdoc/>
 	public virtual bool IsCellMultiple => Candidates.Cells.Count == 1;
