@@ -15,13 +15,8 @@ internal partial class ChainingDriver
 		ChainingRuleCollection chainingRules
 	)
 	{
-<<<<<<< HEAD
 		var result = new List<IDynamicForcingChains>();
-		foreach (var cell in EmptyCells & ~BivalueCells)
-=======
-		var result = new List<IForcingChains<Node>>();
 		foreach (var cell in EmptyCells)
->>>>>>> 271253d16c0b383a2dc19057d6c980d7147d0b4d
 		{
 			var nodesSupposedOn_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
 			var nodesSupposedOff_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();

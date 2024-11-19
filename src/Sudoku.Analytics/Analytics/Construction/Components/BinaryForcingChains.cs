@@ -23,6 +23,9 @@ public sealed partial class BinaryForcingChains(
 	public bool IsStrictlyGrouped => false;
 
 	/// <inheritdoc/>
+	public bool IsDynamic => true;
+
+	/// <inheritdoc/>
 	public int Complexity => BranchedComplexity.Sum();
 
 	/// <inheritdoc/>

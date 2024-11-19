@@ -2163,6 +2163,9 @@
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.IsStrictlyGrouped">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.IsDynamic">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Complexity">
             <inheritdoc/>
         </member>
@@ -3368,6 +3371,26 @@
             <typeparam name="TBranch">The type of each branch.</typeparam>
             <typeparam name="TNode">The type of each node.</typeparam>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.IChainingRuleNextNodeContext">
+            <summary>
+            Represents a context type that is used for finding for next nodes from the specified node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IChainingRuleNextNodeContext.Nodes">
+            <summary>
+            Indicates the collected nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IChainingRuleNextNodeContext.CurrentNode">
+            <summary>
+            Indicates the current node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IChainingRuleNextNodeContext.Options">
+            <summary>
+            Indicates the options used.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IChainOrForcingChains">
             <summary>
             Represents a component that is a chain or forcing chains.
@@ -3461,9 +3484,19 @@
             Represents a dynamic forcing chains.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IDynamicForcingChains.IsDynamic">
+            <summary>
+            Indicates whether the chain is dynamic.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IForcingChains">
             <summary>
             Represents a forcing chains component.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.IsDynamic">
+            <summary>
+            Indicates whether the current forcing chain pattern is dynamic.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.Complexity">
