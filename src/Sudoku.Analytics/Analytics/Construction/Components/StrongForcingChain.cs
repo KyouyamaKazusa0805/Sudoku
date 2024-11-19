@@ -3,8 +3,13 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents a chain segment (forcing chain) starting with strong link.
 /// </summary>
+/// <param name="lastNode"><inheritdoc cref="Chain(Node, bool, bool, bool)" path="/param[@name='lastNode']"/></param>
+/// <param name="isDynamicChaining">
+/// <inheritdoc cref="Chain(Node, bool, bool, bool)" path="/param[@name='isDynamicChaining']"/>
+/// </param>
 [TypeImpl(TypeImplFlags.Object_ToString, EmitThisCastToInterface = true)]
-public sealed partial class StrongForcingChain(Node lastNode) : UnnamedChain(lastNode)
+public sealed partial class StrongForcingChain(Node lastNode, bool isDynamicChaining = false) :
+	UnnamedChain(lastNode, isDynamicChaining: isDynamicChaining)
 {
 	/// <inheritdoc/>
 	protected internal override int WeakStartIdentity => 0;

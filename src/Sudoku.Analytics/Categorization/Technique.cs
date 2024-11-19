@@ -5311,7 +5311,7 @@ public enum Technique
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1303")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.DynamicForcingChain, RatingOriginal = [8.6, 9.4])]
 	[TechniqueMetadata(
-		Rating = 85,
+		Rating = 88,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains)]
 	DynamicRegionForcingChains,
@@ -5322,7 +5322,7 @@ public enum Technique
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1303")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.DynamicForcingChain, RatingOriginal = [8.6, 9.4])]
 	[TechniqueMetadata(
-		Rating = 85,
+		Rating = 88,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains)]
 	DynamicCellForcingChains,

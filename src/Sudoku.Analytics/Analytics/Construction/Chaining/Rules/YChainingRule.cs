@@ -47,7 +47,7 @@ public sealed class YChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void CollectOnNodes(ref ChainingRuleNextNodeContext context)
+	public override void CollectOnNodes(ref ChainingRuleNextOnNodeContext context)
 	{
 		var currentNode = context.CurrentNode;
 		if (currentNode is not { Map: [var startCandidate], IsOn: false })
@@ -56,20 +56,34 @@ public sealed class YChainingRule : ChainingRule
 		}
 
 		ref readonly var grid = ref context.Grid;
+		ref readonly var originalGrid = ref context.OriginalGrid;
 		var cell = startCandidate / 9;
 		var startDigit = startCandidate % 9;
 		var digitsMask = (Mask)(grid.GetCandidates(cell) & ~(1 << startDigit));
 		var resultNodes = new HashSet<Node>();
+		var nodesSupposedOff = context.NodesSupposedOff;
 		if (Mask.IsPow2(digitsMask))
 		{
 			var endDigit = Mask.Log2(digitsMask);
-			resultNodes.Add(new((cell * 9 + endDigit).AsCandidateMap(), true));
+			var digitsToCheck = (Mask)(originalGrid.GetCandidates(cell) & ~grid.GetCandidates(cell));
+			resultNodes.Add(
+				new(
+					(cell * 9 + endDigit).AsCandidateMap(),
+					true,
+					[
+						currentNode,
+						..
+						from digit in digitsToCheck
+						select nodesSupposedOff.First(n => n.Map is [var c] && c == cell * 9 + digit)
+					]
+				)
+			);
 		}
-		context.Nodes = resultNodes.ToArray();
+		context.Nodes.AddRange(resultNodes);
 	}
 
 	/// <inheritdoc/>
-	public override void CollectOffNodes(ref ChainingRuleNextNodeContext context)
+	public override void CollectOffNodes(ref ChainingRuleNextOffNodeContext context)
 	{
 		var currentNode = context.CurrentNode;
 		if (currentNode is not { Map: [var startCandidate], IsOn: true })
@@ -83,8 +97,8 @@ public sealed class YChainingRule : ChainingRule
 		var resultNodes = new HashSet<Node>();
 		foreach (var endDigit in (Mask)(grid.GetCandidates(cell) & ~(1 << startDigit)))
 		{
-			resultNodes.Add(new((cell * 9 + endDigit).AsCandidateMap(), false));
+			resultNodes.Add(new((cell * 9 + endDigit).AsCandidateMap(), false, currentNode));
 		}
-		context.Nodes = resultNodes.ToArray();
+		context.Nodes.AddRange(resultNodes);
 	}
 }

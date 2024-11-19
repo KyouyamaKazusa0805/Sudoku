@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <param name="map">Indicates the backing map.</param>
 /// <param name="isOn">Indicates whether the node is on.</param>
-/// <param name="parent">
+/// <param name="parents">
 /// <para>Indicates the parent node. The value can be <see langword="null"/> in handling.</para>
 /// <para><i>This value doesn't participate in equality comparison.</i></para>
 /// </param>
@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Construction.Components;
 public sealed partial class Node(
 	[Field, HashCodeMember] ref readonly CandidateMap map,
 	[Property, HashCodeMember] bool isOn,
-	[Property(Setter = PropertySetters.Set)] Node? parent = null
+	[Property(Setter = PropertySetters.Set)] NodeSet? parents = null
 ) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,
@@ -46,10 +46,10 @@ public sealed partial class Node(
 	{
 		get
 		{
-			var (result, p) = (this, Parent);
+			var (result, p) = (this, (Node?)Parents);
 			while (p is not null)
 			{
-				_ = (result = p, p = p.Parent);
+				_ = (result = p, p = (Node?)p.Parents);
 			}
 			return result;
 		}
@@ -57,6 +57,9 @@ public sealed partial class Node(
 
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.ChainNode;
+
+	/// <inheritdoc/>
+	Node? IParentLinkedNode<Node>.Parent => (Node?)Parents;
 
 	/// <summary>
 	/// The backing comparing value on <see cref="IsOn"/> property.
@@ -71,8 +74,8 @@ public sealed partial class Node(
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out bool isGroupedNode, out CandidateMap map, out Node? parent)
-		=> ((isGroupedNode, map), parent) = (this, Parent);
+	public void Deconstruct(out bool isGroupedNode, out CandidateMap map, out NodeSet? parents)
+		=> ((isGroupedNode, map), parents) = (this, Parents);
 
 	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] Node? other) => Equals(other, NodeComparison.IncludeIsOn);
@@ -101,9 +104,10 @@ public sealed partial class Node(
 	/// <param name="childNode">The node to be checked.</param>
 	/// <param name="nodeComparison">The comparison rule on nodes.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <remarks><b>This method only checks for the first element of all parents.</b></remarks>
 	public bool IsAncestorOf(Node childNode, NodeComparison nodeComparison)
 	{
-		for (var node = childNode; node is not null; node = node.Parent)
+		for (var node = childNode; node is not null; node = (Node?)node.Parents)
 		{
 			if (Equals(node, nodeComparison))
 			{
@@ -189,7 +193,7 @@ public sealed partial class Node(
 
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node Clone() => new(in _map, IsOn) { Parent = Parent };
+	public Node Clone() => new(in _map, IsOn) { Parents = Parents };
 
 	/// <inheritdoc/>
 	object ICloneable.Clone() => Clone();
@@ -201,7 +205,7 @@ public sealed partial class Node(
 	/// <param name="value">The current node.</param>
 	/// <returns>The node negated.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Node operator ~(Node value) => new(in value._map, !value.IsOn) { Parent = value.Parent };
+	public static Node operator ~(Node value) => new(in value._map, !value.IsOn) { Parents = value.Parents };
 
 	/// <summary>
 	/// Creates a <see cref="Node"/> instance with parent node.
@@ -211,4 +215,13 @@ public sealed partial class Node(
 	/// <returns>The new node created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Node operator >>(Node current, Node? parent) => new(in current._map, current.IsOn, parent);
+
+	/// <summary>
+	/// Creates a <see cref="Node"/> instance with a list of parent nodes.
+	/// </summary>
+	/// <param name="current">The current node.</param>
+	/// <param name="parents">The parent nodes.</param>
+	/// <returns>The new node created.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Node operator >>(Node current, NodeSet? parents) => new(in current._map, current.IsOn, parents);
 }

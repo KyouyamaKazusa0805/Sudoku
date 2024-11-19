@@ -47,19 +47,19 @@ public abstract partial class ChainingRule
 
 	/// <summary>
 	/// Collects nodes that is supposed to "on" from the current node supposed to "off",
-	/// and store them into <see cref="ChainingRuleNextNodeContext.Nodes"/>.
+	/// and store them into <see cref="ChainingRuleNextOnNodeContext.Nodes"/>.
 	/// </summary>
 	/// <param name="context">The context.</param>
-	/// <seealso cref="ChainingRuleNextNodeContext"/>
-	public virtual void CollectOnNodes(ref ChainingRuleNextNodeContext context) => context.Nodes = [];
+	/// <seealso cref="ChainingRuleNextOnNodeContext"/>
+	public virtual void CollectOnNodes(ref ChainingRuleNextOnNodeContext context) => context.Nodes = [];
 
 	/// <summary>
 	/// Collects nodes that is supposed to "off" from the current node supposed to "on",
-	/// and store them into <see cref="ChainingRuleNextNodeContext.Nodes"/>.
+	/// and store them into <see cref="ChainingRuleNextOffNodeContext.Nodes"/>.
 	/// </summary>
 	/// <param name="context">The context.</param>
-	/// <seealso cref="ChainingRuleNextNodeContext"/>
-	public virtual void CollectOffNodes(ref ChainingRuleNextNodeContext context) => context.Nodes = [];
+	/// <seealso cref="ChainingRuleNextOffNodeContext"/>
+	public virtual void CollectOffNodes(ref ChainingRuleNextOffNodeContext context) => context.Nodes = [];
 
 	/// <summary>
 	/// Collects for extra view nodes for the pattern.

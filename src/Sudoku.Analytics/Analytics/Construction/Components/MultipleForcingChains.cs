@@ -37,6 +37,9 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	public virtual bool IsAdvancedMultiple => false;
 
 	/// <inheritdoc/>
+	public bool IsDynamic => this.AnyValue(static branch => branch.IsDynamic);
+
+	/// <inheritdoc/>
 	public bool IsGrouped => Values.Any(static v => v.IsGrouped);
 
 	/// <inheritdoc/>
@@ -263,8 +266,8 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 			(i, var (lastNode, isOn)) = ((i + 1) % nodes.Length, (currentNode, true));
 			for (var x = 0; x < nodes.Length; i = (i + 1) % nodes.Length, x++)
 			{
-				currentNode.Parent = new(in nodes[i].Map, isOn);
-				currentNode = currentNode.Parent;
+				currentNode.Parents = new Node(in nodes[i].Map, isOn);
+				currentNode = (Node)currentNode.Parents!;
 				isOn = !isOn;
 			}
 			return new(lastNode);
@@ -466,6 +469,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 		var result = new ViewNode[Count + 1][];
 		var initialViewNodes = GetInitialViewNodes(in grid);
 		var i = 0;
+		var isDynamicChaining = IsDynamic;
 		var globalView = new List<ViewNode>();
 		foreach (var key in Keys)
 		{
@@ -474,7 +478,14 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 			var j = 0;
 			foreach (var node in chain)
 			{
-				var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+				// This is a compatible way to fix on and off state -
+				// because all forcing chains are reverted by its strong and weak links,
+				// so if we use unified way 'node.IsOn' to determine their own color identifiers,
+				// the coloring will be wrong due to lack of an reversion-back operation.
+				// I'll adjust the backing logic in the future.
+				var id = isDynamicChaining
+					? node.IsOn ? ColorIdentifier.Normal : ColorIdentifier.Auxiliary1
+					: (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
 				foreach (var candidate in node.Map)
 				{
 					var currentViewNode = new CandidateViewNode(id, candidate);
@@ -492,8 +503,12 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 					continue;
 				}
 
-				var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
-				var currentViewNode = new ChainLinkViewNode(id, link.FirstNode.Map, link.SecondNode.Map, link.IsStrong);
+				var currentViewNode = new ChainLinkViewNode(
+					ColorIdentifier.Normal,
+					link.FirstNode.Map,
+					link.SecondNode.Map,
+					link.IsStrong
+				);
 				globalView.Add(currentViewNode);
 				subview.Add(currentViewNode);
 			}

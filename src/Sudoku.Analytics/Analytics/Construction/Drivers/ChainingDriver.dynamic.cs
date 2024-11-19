@@ -15,8 +15,13 @@ internal partial class ChainingDriver
 		ChainingRuleCollection chainingRules
 	)
 	{
+<<<<<<< HEAD
 		var result = new List<IDynamicForcingChains>();
 		foreach (var cell in EmptyCells & ~BivalueCells)
+=======
+		var result = new List<IForcingChains<Node>>();
+		foreach (var cell in EmptyCells)
+>>>>>>> 271253d16c0b383a2dc19057d6c980d7147d0b4d
 		{
 			var nodesSupposedOn_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
 			var nodesSupposedOff_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
@@ -245,7 +250,7 @@ internal partial class ChainingDriver
 				foreach (var d in digitsMask)
 				{
 					var branchNode = onNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode, true) : new WeakForcingChain(branchNode, true));
 				}
 				if (context.OnlyFindOne)
 				{
@@ -283,7 +288,7 @@ internal partial class ChainingDriver
 				foreach (var d in digitsMask)
 				{
 					var branchNode = offNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode, true) : new WeakForcingChain(branchNode, true));
 				}
 				if (cfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
 				{
@@ -327,7 +332,7 @@ internal partial class ChainingDriver
 				foreach (var c in cellsInHouse)
 				{
 					var branchNode = onNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode, true) : new WeakForcingChain(branchNode, true));
 				}
 				if (context.OnlyFindOne)
 				{
@@ -365,7 +370,7 @@ internal partial class ChainingDriver
 				foreach (var c in cellsInHouse)
 				{
 					var branchNode = offNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode, true) : new WeakForcingChain(branchNode, true));
 				}
 				if (rfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
 				{
@@ -405,8 +410,12 @@ internal partial class ChainingDriver
 
 			return (BinaryForcingChains[])[
 				new(
-					onNode_OnState.IsOn ? new StrongForcingChain(onNode_OnState) : new WeakForcingChain(onNode_OnState),
-					offNode_OnState.IsOn ? new StrongForcingChain(offNode_OnState) : new WeakForcingChain(offNode_OnState),
+					onNode_OnState.IsOn
+						? new StrongForcingChain(onNode_OnState, true)
+						: new WeakForcingChain(onNode_OnState, true),
+					offNode_OnState.IsOn
+						? new StrongForcingChain(offNode_OnState, true)
+						: new WeakForcingChain(offNode_OnState, true),
 					conclusion,
 					true
 				)
@@ -436,8 +445,12 @@ internal partial class ChainingDriver
 
 			return (BinaryForcingChains[])[
 				new(
-					onNode_OffState.IsOn ? new StrongForcingChain(onNode_OffState) : new WeakForcingChain(onNode_OffState),
-					offNode_OffState.IsOn ? new StrongForcingChain(offNode_OffState) : new WeakForcingChain(offNode_OffState),
+					onNode_OffState.IsOn
+						? new StrongForcingChain(onNode_OffState, true)
+						: new WeakForcingChain(onNode_OffState, true),
+					offNode_OffState.IsOn
+						? new StrongForcingChain(offNode_OffState, true)
+						: new WeakForcingChain(offNode_OffState, true),
 					conclusion,
 					true
 				)
@@ -488,26 +501,28 @@ internal partial class ChainingDriver
 		var tempGrid = grid;
 		var nodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
 		var nodesSupposedOff = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+		(startNode.IsOn ? nodesSupposedOn : nodesSupposedOff).Add(startNode);
+
 		while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
 		{
 			if (pendingNodesSupposedOn.Count != 0)
 			{
 				var currentNode = pendingNodesSupposedOn.RemoveFirstNode();
-				if (GetNodesFromOnToOff(currentNode, chainingRules, options, in tempGrid) is var supposedOff and not [])
+				if (GetNodesFromOnToOff(currentNode, chainingRules, options, in tempGrid)
+					is var supposedOff and not [])
 				{
 					foreach (var node in supposedOff)
 					{
-						var nextNode = node >> currentNode;
-						if (nodesSupposedOn.FirstOrDefault(n => n.Equals(~nextNode)) is { } nextNodeNegated)
+						if (nodesSupposedOn.FirstOrDefault(n => n.Equals(~node, NodeComparison.IncludeIsOn)) is { } nextNodeNegated)
 						{
 							// Contradiction is found.
-							contradiction = (nextNodeNegated, nextNode);
+							contradiction = (nextNodeNegated, node);
 							goto ReturnResult;
 						}
 
-						if (nodesSupposedOff.Add(nextNode))
+						if (nodesSupposedOff.Add(node))
 						{
-							pendingNodesSupposedOff.AddLast(nextNode);
+							pendingNodesSupposedOff.AddLast(node);
 						}
 					}
 				}
@@ -515,23 +530,24 @@ internal partial class ChainingDriver
 			else
 			{
 				var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
+				var supposedOn = GetNodesFromOffToOn(currentNode, chainingRules, nodesSupposedOff, options, in tempGrid, in grid);
+
 				tempGrid.Apply(currentNode);
 
-				if (GetNodesFromOffToOn(currentNode, chainingRules, options, in tempGrid) is var supposedOn and not [])
+				if (!supposedOn.IsEmpty)
 				{
 					foreach (var node in supposedOn)
 					{
-						var nextNode = node >> currentNode;
-						if (nodesSupposedOff.FirstOrDefault(n => n.Equals(~nextNode)) is { } nextNodeNegated)
+						if (nodesSupposedOff.FirstOrDefault(n => n.Equals(~node, NodeComparison.IncludeIsOn)) is { } nextNodeNegated)
 						{
 							// Contradiction is found.
-							contradiction = (nextNode, nextNodeNegated);
+							contradiction = (node, nextNodeNegated);
 							goto ReturnResult;
 						}
 
-						if (nodesSupposedOn.Add(nextNode))
+						if (nodesSupposedOn.Add(node))
 						{
-							pendingNodesSupposedOn.AddLast(nextNode);
+							pendingNodesSupposedOn.AddLast(node);
 						}
 					}
 				}
@@ -547,36 +563,59 @@ internal partial class ChainingDriver
 	/// Try to find nodes that will be considered as "off" state if the specified node is "on" state.
 	/// </summary>
 	/// <param name="node">The previous node to be checked.</param>
-	/// <param name="options">The options.</param>
 	/// <param name="chainingRules">The chaining rule collection to be used.</param>
-	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="options">The options.</param>
+	/// <param name="grid">The current grid.</param>
 	/// <returns>A list of nodes found.</returns>
 	/// <remarks><i>
 	/// This method doesn't use cache on purpose, therefore this method won't be marked type
 	/// <see cref="InterceptorMethodCallerAttribute"/>.
 	/// </i></remarks>
 	/// <seealso cref="InterceptorMethodCallerAttribute"/>
-	private static ReadOnlySpan<Node> GetNodesFromOnToOff(Node node, ChainingRuleCollection chainingRules, StepGathererOptions options, ref readonly Grid grid)
+	private static ReadOnlySpan<Node> GetNodesFromOnToOff(
+		Node node,
+		ChainingRuleCollection chainingRules,
+		StepGathererOptions options,
+		ref readonly Grid grid
+	)
 	{
-		var context = new ChainingRuleNextNodeContext(node, in grid, options);
+		var context = new ChainingRuleNextOffNodeContext(node, in grid, options);
 		foreach (var chainingRule in chainingRules)
 		{
 			chainingRule.CollectOffNodes(ref context);
 		}
-		return context.Nodes;
+		return context.Nodes.ToArray();
 	}
 
 	/// <summary>
 	/// Try to find nodes that will be considered as "on" state if the specified node is "off" state.
 	/// </summary>
-	/// <inheritdoc cref="GetNodesFromOnToOff(Node, ChainingRuleCollection, StepGathererOptions, ref readonly Grid)"/>
-	private static ReadOnlySpan<Node> GetNodesFromOffToOn(Node node, ChainingRuleCollection chainingRules, StepGathererOptions options, ref readonly Grid grid)
+	/// <param name="node">The previous node to be checked.</param>
+	/// <param name="chainingRules">The chaining rule collection to be used.</param>
+	/// <param name="nodesSupposedOff">Indicates the nodes supposed to be "off".</param>
+	/// <param name="options">The options.</param>
+	/// <param name="grid">The current grid.</param>
+	/// <param name="originalGrid">Indicates the original grid.</param>
+	/// <returns>A list of nodes found.</returns>
+	/// <remarks><i>
+	/// This method doesn't use cache on purpose, therefore this method won't be marked type
+	/// <see cref="InterceptorMethodCallerAttribute"/>.
+	/// </i></remarks>
+	/// <seealso cref="InterceptorMethodCallerAttribute"/>
+	private static ReadOnlySpan<Node> GetNodesFromOffToOn(
+		Node node,
+		ChainingRuleCollection chainingRules,
+		HashSet<Node> nodesSupposedOff,
+		StepGathererOptions options,
+		ref readonly Grid grid,
+		ref readonly Grid originalGrid
+	)
 	{
-		var context = new ChainingRuleNextNodeContext(node, in grid, options);
+		var context = new ChainingRuleNextOnNodeContext(node, in grid, in originalGrid, nodesSupposedOff, options);
 		foreach (var chainingRule in chainingRules)
 		{
 			chainingRule.CollectOnNodes(ref context);
 		}
-		return context.Nodes;
+		return context.Nodes.ToArray();
 	}
 }

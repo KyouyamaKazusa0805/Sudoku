@@ -64,7 +64,7 @@ public sealed class XChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void CollectOnNodes(ref ChainingRuleNextNodeContext context)
+	public override void CollectOnNodes(ref ChainingRuleNextOnNodeContext context)
 	{
 		var currentNode = context.CurrentNode;
 		if (currentNode is not { Map: [var startCandidate], IsOn: false })
@@ -73,22 +73,36 @@ public sealed class XChainingRule : ChainingRule
 		}
 
 		ref readonly var grid = ref context.Grid;
+		ref readonly var originalGrid = ref context.OriginalGrid;
 		var candidatesMap = grid.CandidatesMap;
 		var startCell = startCandidate / 9;
 		var digit = startCandidate % 9;
 		var resultNodes = new HashSet<Node>();
+		var nodesSupposedOff = context.NodesSupposedOff;
 		foreach (var houseType in HouseTypes)
 		{
 			if ((HousesMap[startCell.ToHouse(houseType)] & candidatesMap[digit]) - startCell is [var endCell])
 			{
-				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), true));
+				var mapToCheck = HousesMap[endCell.ToHouse(houseType)] & (originalGrid.CandidatesMap[digit] & ~candidatesMap[digit]);
+				resultNodes.Add(
+					new(
+						(endCell * 9 + digit).AsCandidateMap(),
+						true,
+						[
+							currentNode,
+							..
+							from cell in mapToCheck
+							select nodesSupposedOff.First(n => n.Map is [var c] && c == cell * 9 + digit)
+						]
+					)
+				);
 			}
 		}
-		context.Nodes = resultNodes.ToArray();
+		context.Nodes.AddRange(resultNodes);
 	}
 
 	/// <inheritdoc/>
-	public override void CollectOffNodes(ref ChainingRuleNextNodeContext context)
+	public override void CollectOffNodes(ref ChainingRuleNextOffNodeContext context)
 	{
 		var currentNode = context.CurrentNode;
 		if (currentNode is not { Map: [var startCandidate], IsOn: true })
@@ -105,9 +119,9 @@ public sealed class XChainingRule : ChainingRule
 		{
 			foreach (var endCell in (HousesMap[startCell.ToHouse(houseType)] & candidatesMap[digit]) - startCell)
 			{
-				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), false));
+				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), false, currentNode));
 			}
 		}
-		context.Nodes = resultNodes.ToArray();
+		context.Nodes.AddRange(resultNodes);
 	}
 }

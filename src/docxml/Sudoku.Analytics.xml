@@ -1435,21 +1435,21 @@
             <param name="context">The context.</param>
             <seealso cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRule.CollectOnNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRule.CollectOnNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext@)">
             <summary>
             Collects nodes that is supposed to "on" from the current node supposed to "off",
-            and store them into <see cref="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.Nodes"/>.
+            and store them into <see cref="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.Nodes"/>.
             </summary>
             <param name="context">The context.</param>
-            <seealso cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext"/>
+            <seealso cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRule.CollectOffNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRule.CollectOffNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext@)">
             <summary>
             Collects nodes that is supposed to "off" from the current node supposed to "on",
-            and store them into <see cref="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.Nodes"/>.
+            and store them into <see cref="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.Nodes"/>.
             </summary>
             <param name="context">The context.</param>
-            <seealso cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext"/>
+            <seealso cref="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRule.GetViewNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext@)">
             <summary>
@@ -1648,63 +1648,122 @@
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleLoopConclusionContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext">
+        <member name="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext">
             <summary>
             Represents the properties used while chaining.
             </summary>
             <param name="currentNode">Indicates the current node.</param>
-            <param name="grid">The grid to be checked.</param>
+            <param name="grid">Indicates the current grid.</param>
             <param name="options">Indicates the step searcher options to be used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.#ctor(Sudoku.Analytics.Construction.Components.Node,Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.StepGathererOptions)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.#ctor(Sudoku.Analytics.Construction.Components.Node,Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.StepGathererOptions)">
             <summary>
             Represents the properties used while chaining.
             </summary>
             <param name="currentNode">Indicates the current node.</param>
-            <param name="grid">The grid to be checked.</param>
+            <param name="grid">Indicates the current grid.</param>
             <param name="options">Indicates the step searcher options to be used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.Nodes">
-            <summary>
-            Indicates the collected nodes.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.Sudoku#Runtime#IContext#Grid">
+        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.Nodes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.GetLinkOption(Sudoku.Analytics.Construction.Components.LinkType)">
-            <summary>
-            Try to get the link option for the specified link type.
-            </summary>
-            <param name="linkType">The link type.</param>
-            <returns>
-            The link option returned.
-            If there's no overridden link option, return <see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.DefaultLinkOption"/>.
-            </returns>
-            <seealso cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.DefaultLinkOption"/>
+        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.Sudoku#Runtime#IContext#Grid">
+            <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.CurrentNode">
+        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.Sudoku#Analytics#Construction#Components#IChainingRuleNextNodeContext#CurrentNode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.Sudoku#Analytics#Construction#Components#IChainingRuleNextNodeContext#Options">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.CurrentNode">
             <summary>
             The generated field declaration for parameter <c>currentNode</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.Grid">
+        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.Grid">
             <summary>
             The generated field declaration for parameter <c>grid</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.Options">
+        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.Options">
             <summary>
             The generated field declaration for parameter <c>options</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.Equals(System.Object)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.GetHashCode">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext.ToString">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="currentNode">Indicates the current node.</param>
+            <param name="grid">Indicates the current grid.</param>
+            <param name="originalGrid">Indicates the original grid to be used.</param>
+            <param name="nodesSupposedOff">Indicates the nodes supposed to be "off".</param>
+            <param name="options">Indicates the step searcher options to be used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.#ctor(Sudoku.Analytics.Construction.Components.Node,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Analytics.Construction.Components.Node},Sudoku.Analytics.Configuration.StepGathererOptions)">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="currentNode">Indicates the current node.</param>
+            <param name="grid">Indicates the current grid.</param>
+            <param name="originalGrid">Indicates the original grid to be used.</param>
+            <param name="nodesSupposedOff">Indicates the nodes supposed to be "off".</param>
+            <param name="options">Indicates the step searcher options to be used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.Nodes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.Sudoku#Runtime#IContext#Grid">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.Sudoku#Analytics#Construction#Components#IChainingRuleNextNodeContext#CurrentNode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.Sudoku#Analytics#Construction#Components#IChainingRuleNextNodeContext#Options">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.CurrentNode">
+            <summary>
+            The generated field declaration for parameter <c>currentNode</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.OriginalGrid">
+            <summary>
+            The generated field declaration for parameter <c>originalGrid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.NodesSupposedOff">
+            <summary>
+            The generated field declaration for parameter <c>nodesSupposedOff</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.Options">
+            <summary>
+            The generated field declaration for parameter <c>options</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext">
@@ -1873,10 +1932,10 @@
         <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule.CollectOnNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule.CollectOnNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule.CollectOffNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.XChainingRule.CollectOffNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Chaining.Rules.XyzWingChainingRule">
@@ -1900,10 +1959,10 @@
         <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.GetLinks(Sudoku.Analytics.Construction.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.CollectOnNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.CollectOnNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOnNodeContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.CollectOffNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextNodeContext@)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.CollectOffNodes(Sudoku.Analytics.Construction.Chaining.ChainingRuleNextOffNodeContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain">
@@ -2345,7 +2404,12 @@
             The backing field of nodes stored. Such nodes may contain ones that are also be treated as conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)">
+        <member name="F:Sudoku.Analytics.Construction.Components.Chain._dynamicLinks">
+            <summary>
+            Indicates the links used in dynamic chaining rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Initializes <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> data.
             </summary>
@@ -2361,6 +2425,7 @@
             if you don't want to make the constructor reverse the whole chain.
             </para>
             </param>
+            <param name="isDynamicChaining">Indicates whether the initialization will respect dynamic chaining rule.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsNamed">
             <summary>
@@ -2371,6 +2436,11 @@
             It may be a "segment" of a whole pattern (for example, a branch inside a multiple forcing chains).
             In such cases, this property will return <see langword="false"/>, indicating there's no name corresponding to the pattern.
             </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsDynamic">
+            <summary>
+            Indicates whether the current chain is dynamic.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsGrouped">
             <inheritdoc/>
@@ -2575,7 +2645,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.GetViews(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,System.Int32@)">
             <summary>
-            Collect views for the current chain.
+            Collect views for the current chain, without nested paths checking.
             </summary>
             <param name="grid">The grid.</param>
             <param name="supportedRules">The supported rules.</param>
@@ -3950,6 +4020,9 @@
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsAdvancedMultiple">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsDynamic">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.IsGrouped">
             <inheritdoc/>
         </member>
@@ -4122,8 +4195,8 @@
             <item>Continuous nice loop (corresponds to type <see cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>)</item>
             </list>
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
-            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain"/>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>
         </member>
@@ -4135,8 +4208,8 @@
             <item>Continuous nice loop (corresponds to type <see cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>)</item>
             </list>
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
-            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain"/>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>
         </member>
@@ -4171,18 +4244,18 @@
             </summary>
             <param name="map">Indicates the backing map.</param>
             <param name="isOn">Indicates whether the node is on.</param>
-            <param name="parent">
+            <param name="parents">
             <para>Indicates the parent node. The value can be <see langword="null"/> in handling.</para>
             <para><i>This value doesn't participate in equality comparison.</i></para>
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean,Sudoku.Analytics.Construction.Components.Node)">
+        <member name="M:Sudoku.Analytics.Construction.Components.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean,Sudoku.Analytics.Construction.Components.NodeSet)">
             <summary>
             Represents a chain node.
             </summary>
             <param name="map">Indicates the backing map.</param>
             <param name="isOn">Indicates whether the node is on.</param>
-            <param name="parent">
+            <param name="parents">
             <para>Indicates the parent node. The value can be <see langword="null"/> in handling.</para>
             <para><i>This value doesn't participate in equality comparison.</i></para>
             </param>
@@ -4213,6 +4286,9 @@
         <member name="P:Sudoku.Analytics.Construction.Components.Node.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Node.Sudoku#Analytics#Construction#Components#IParentLinkedNode{Sudoku#Analytics#Construction#Components#Node}#Parent">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Node.IsOnPropertyValue">
             <summary>
             The backing comparing value on <see cref="P:Sudoku.Analytics.Construction.Components.Node.IsOn"/> property.
@@ -4227,7 +4303,7 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Node.Deconstruct(System.Boolean@,Sudoku.Concepts.CandidateMap@,Sudoku.Analytics.Construction.Components.Node@)">
+        <member name="M:Sudoku.Analytics.Construction.Components.Node.Deconstruct(System.Boolean@,Sudoku.Concepts.CandidateMap@,Sudoku.Analytics.Construction.Components.NodeSet@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -4255,6 +4331,7 @@
             <param name="childNode">The node to be checked.</param>
             <param name="nodeComparison">The comparison rule on nodes.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <remarks><b>This method only checks for the first element of all parents.</b></remarks>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Node.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison)">
             <summary>
@@ -4323,6 +4400,14 @@
             <param name="parent">The parent node.</param>
             <returns>The new node created.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Node.op_RightShift(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.NodeSet)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instance with a list of parent nodes.
+            </summary>
+            <param name="current">The current node.</param>
+            <param name="parents">The parent nodes.</param>
+            <returns>The new node created.</returns>
+        </member>
         <member name="F:Sudoku.Analytics.Construction.Components.Node._map">
             <summary>
             The generated field declaration for parameter <c>map</c>.
@@ -4333,9 +4418,9 @@
             The generated property declaration for parameter <c>isOn</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Node.Parent">
+        <member name="P:Sudoku.Analytics.Construction.Components.Node.Parents">
             <summary>
-            The generated property declaration for parameter <c>parent</c>.
+            The generated property declaration for parameter <c>parents</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Node.Equals(System.Object)">
@@ -4383,6 +4468,79 @@
             </summary>
             <seealso cref="P:Sudoku.Analytics.Construction.Components.Node.IsOn"/>
             <seealso cref="P:Sudoku.Analytics.Construction.Components.Node.Map"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.NodeSet">
+            <summary>
+            Provides with a list of nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.NodeSet._nodes">
+            <summary>
+            Indicates the internal list of nodes.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NodeSet.#ctor(Sudoku.Analytics.Construction.Components.Node)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.NodeSet"/> instance via the specified node.
+            </summary>
+            <param name="node">The node.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NodeSet.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Construction.Components.Node})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.NodeSet"/> instance via the specified list of nodes.
+            </summary>
+            <param name="nodes">The nodes.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.NodeSet.Length">
+            <summary>
+            Indicates the number of elements in the collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.NodeSet.System#Collections#Generic#IReadOnlyCollection{Sudoku#Analytics#Construction#Components#Node}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.NodeSet.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.NodeSet.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NodeSet.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NodeSet.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NodeSet.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NodeSet.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NodeSet.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Construction#Components#Node}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NodeSet.Create(System.ReadOnlySpan{Sudoku.Analytics.Construction.Components.Node})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Construction.Components.NodeSet"/> instance via a list of nodes.
+            </summary>
+            <param name="nodes">A list of nodes.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.Construction.Components.NodeSet"/> instance returned.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NodeSet.op_Explicit(Sudoku.Analytics.Construction.Components.NodeSet)~Sudoku.Analytics.Construction.Components.Node">
+            <summary>
+            Explicit cast from a <see cref="T:Sudoku.Analytics.Construction.Components.NodeSet"/> to a <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instance.
+            </summary>
+            <param name="nodes">The nodes.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NodeSet.op_Implicit(Sudoku.Analytics.Construction.Components.Node)~Sudoku.Analytics.Construction.Components.NodeSet">
+            <summary>
+            Implicit cast from a <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> to a <see cref="T:Sudoku.Analytics.Construction.Components.NodeSet"/> instance.
+            </summary>
+            <param name="node">The node.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NodeSet.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection">
             <summary>
@@ -4506,11 +4664,19 @@
             <summary>
             Represents a chain segment (forcing chain) starting with strong link.
             </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.#ctor(Sudoku.Analytics.Construction.Components.Node)">
+        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean)">
             <summary>
             Represents a chain segment (forcing chain) starting with strong link.
             </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.StrongForcingChain.WeakStartIdentity">
             <inheritdoc/>
@@ -4591,13 +4757,19 @@
             <summary>
             Represents a forcing chain branch.
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.UnnamedChain.#ctor(Sudoku.Analytics.Construction.Components.Node)">
+        <member name="M:Sudoku.Analytics.Construction.Components.UnnamedChain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean)">
             <summary>
             Represents a forcing chain branch.
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.UnnamedChain.IsNamed">
             <inheritdoc/>
@@ -4612,11 +4784,19 @@
             <summary>
             Represents a chain segment (forcing chain) starting with weak link.
             </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.#ctor(Sudoku.Analytics.Construction.Components.Node)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean)">
             <summary>
             Represents a chain segment (forcing chain) starting with weak link.
             </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isDynamicChaining">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean,System.Boolean)" path="/param[@name='isDynamicChaining']"/>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WeakForcingChain.WeakStartIdentity">
             <inheritdoc/>
@@ -4831,6 +5011,11 @@
         <member name="F:Sudoku.Analytics.Construction.ComponentType.ChainNode">
             <summary>
             Indicates the component is chain node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.ComponentType.ChainNodeSet">
+            <summary>
+            Indicates the component is chain node set.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Construction.ComponentType.MultiparentChainNode">
@@ -5117,9 +5302,9 @@
             Try to find nodes that will be considered as "off" state if the specified node is "on" state.
             </summary>
             <param name="node">The previous node to be checked.</param>
-            <param name="options">The options.</param>
             <param name="chainingRules">The chaining rule collection to be used.</param>
-            <param name="grid">The grid to be checked.</param>
+            <param name="options">The options.</param>
+            <param name="grid">The current grid.</param>
             <returns>A list of nodes found.</returns>
             <remarks><i>
             This method doesn't use cache on purpose, therefore this method won't be marked type
@@ -5127,11 +5312,22 @@
             </i></remarks>
             <seealso cref="T:Sudoku.Runtime.InterceptorServices.InterceptorMethodCallerAttribute"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.GetNodesFromOffToOn(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.GetNodesFromOffToOn(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,System.Collections.Generic.HashSet{Sudoku.Analytics.Construction.Components.Node},Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             Try to find nodes that will be considered as "on" state if the specified node is "off" state.
             </summary>
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.GetNodesFromOnToOff(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.Grid@)"/>
+            <param name="node">The previous node to be checked.</param>
+            <param name="chainingRules">The chaining rule collection to be used.</param>
+            <param name="nodesSupposedOff">Indicates the nodes supposed to be "off".</param>
+            <param name="options">The options.</param>
+            <param name="grid">The current grid.</param>
+            <param name="originalGrid">Indicates the original grid.</param>
+            <returns>A list of nodes found.</returns>
+            <remarks><i>
+            This method doesn't use cache on purpose, therefore this method won't be marked type
+            <see cref="T:Sudoku.Runtime.InterceptorServices.InterceptorMethodCallerAttribute"/>.
+            </i></remarks>
+            <seealso cref="T:Sudoku.Runtime.InterceptorServices.InterceptorMethodCallerAttribute"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleForcingChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
@@ -13391,7 +13587,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep">
             <summary>
-            Provides with a step that is a <b>Binary Forcing Chains</b> technique.
+            Provides with a step that is a <b>Dynamic Binary Forcing Chains</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13400,7 +13596,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.Chains.BinaryForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.BinaryForcingChains)">
             <summary>
-            Provides with a step that is a <b>Binary Forcing Chains</b> technique.
+            Provides with a step that is a <b>Dynamic Binary Forcing Chains</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13631,7 +13827,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.Chains.MultipleForcingChainsStep">
             <summary>
-            Provides with a step that is a <b>Multiple Forcing Chains</b> technique.
+            Provides with a step that is a <b>(Dynamic) Multiple Forcing Chains</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13640,7 +13836,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.Chains.MultipleForcingChainsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.MultipleForcingChains)">
             <summary>
-            Provides with a step that is a <b>Multiple Forcing Chains</b> technique.
+            Provides with a step that is a <b>(Dynamic) Multiple Forcing Chains</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
