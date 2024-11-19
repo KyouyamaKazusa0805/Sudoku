@@ -12,7 +12,9 @@ public sealed partial class BinaryForcingChains(
 	[Property] UnnamedChain branch2,
 	[Property] Conclusion conclusion,
 	[Property] bool isContradiction
-) : IBinaryForcingChains<BinaryForcingChains, UnnamedChain, Node>
+) :
+	IBinaryForcingChains<BinaryForcingChains, UnnamedChain, Node>,
+	IDynamicForcingChains
 {
 	/// <inheritdoc/>
 	public bool IsGrouped => false;
@@ -51,7 +53,7 @@ public sealed partial class BinaryForcingChains(
 	StepConclusions IForcingChains.Conclusions => new SingletonArray<Conclusion>(Conclusion);
 
 	/// <inheritdoc/>
-	ReadOnlySpan<UnnamedChain> IBinaryForcingChains<BinaryForcingChains, UnnamedChain, Node>.Branches => Branches;
+	ReadOnlySpan<UnnamedChain> IForcingChains.Branches => Branches;
 
 	/// <summary>
 	/// Indicates the backing branches.

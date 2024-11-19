@@ -2119,7 +2119,7 @@
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#Conclusions">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IBinaryForcingChains{Sudoku#Analytics#Construction#Components#BinaryForcingChains,Sudoku#Analytics#Construction#Components#UnnamedChain,Sudoku#Analytics#Construction#Components#Node}#Branches">
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#Branches">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Branches">
@@ -3298,11 +3298,6 @@
             <typeparam name="TBranch">The type of each branch.</typeparam>
             <typeparam name="TNode">The type of each node.</typeparam>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IBinaryForcingChains`3.Branches">
-            <summary>
-            Indicates the backing branches.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IChainOrForcingChains">
             <summary>
             Represents a component that is a chain or forcing chains.
@@ -3391,6 +3386,11 @@
         <member name="P:Sudoku.Analytics.Construction.Components.IDoubleExocet.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.IDynamicForcingChains">
+            <summary>
+            Represents a dynamic forcing chains.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IForcingChains">
             <summary>
             Represents a forcing chains component.
@@ -3414,6 +3414,11 @@
         <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.BranchedComplexity">
             <summary>
             Indicates the complexity of each branch.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.Branches">
+            <summary>
+            Indicates all possible branches.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.ToString(System.IFormatProvider)">
@@ -3967,6 +3972,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#Conclusions">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#Branches">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Exists(System.Func{Sudoku.Analytics.Construction.Components.UnnamedChain,System.Boolean})">

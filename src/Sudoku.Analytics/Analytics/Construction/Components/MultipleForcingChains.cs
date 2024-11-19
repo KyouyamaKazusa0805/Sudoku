@@ -22,6 +22,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>,
 	IComparable<MultipleForcingChains>,
 	IComparisonOperators<MultipleForcingChains, MultipleForcingChains, bool>,
+	IDynamicForcingChains,
 	IEquatable<MultipleForcingChains>,
 	IEqualityOperators<MultipleForcingChains, MultipleForcingChains, bool>,
 	IMultipleForcingChains<MultipleForcingChains, UnnamedChain, Node>
@@ -72,6 +73,9 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 
 	/// <inheritdoc/>
 	StepConclusions IForcingChains.Conclusions => Conclusions;
+
+	/// <inheritdoc/>
+	ReadOnlySpan<UnnamedChain> IForcingChains.Branches => Values.ToArray();
 
 
 	/// <inheritdoc/>

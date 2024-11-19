@@ -25,6 +25,11 @@ public interface IForcingChains : IChainOrForcingChains, IFormattable
 	/// </summary>
 	public abstract ReadOnlySpan<int> BranchedComplexity { get; }
 
+	/// <summary>
+	/// Indicates all possible branches.
+	/// </summary>
+	protected abstract ReadOnlySpan<UnnamedChain> Branches { get; }
+
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public abstract string ToString(IFormatProvider? formatProvider);

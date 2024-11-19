@@ -9,10 +9,4 @@ namespace Sudoku.Analytics.Construction.Components;
 public interface IBinaryForcingChains<TSelf, TBranch, TNode> : IForcingChains
 	where TSelf : IBinaryForcingChains<TSelf, TBranch, TNode>
 	where TBranch : IChainOrForcingChains, IEnumerable<TNode>
-	where TNode : IParentLinkedNode<TNode>
-{
-	/// <summary>
-	/// Indicates the backing branches.
-	/// </summary>
-	protected abstract ReadOnlySpan<TBranch> Branches { get; }
-}
+	where TNode : IParentLinkedNode<TNode>;
