@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <typeparam name="TNode">The type of each node.</typeparam>
 public interface IMultipleForcingChains<TSelf, TBranch, TNode> :
 	IDictionary<Candidate, TBranch>,
-	IForcingChains<TNode>,
+	IForcingChains,
 	IReadOnlyDictionary<Candidate, TBranch>
 	where TSelf : IMultipleForcingChains<TSelf, TBranch, TNode>
 	where TBranch : IChainOrForcingChains, IEnumerable<TNode>

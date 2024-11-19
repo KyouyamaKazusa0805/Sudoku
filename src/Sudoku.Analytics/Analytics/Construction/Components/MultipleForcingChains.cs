@@ -71,7 +71,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	ComponentType IComponent.Type => ComponentType.MultipleForcingChains;
 
 	/// <inheritdoc/>
-	StepConclusions IForcingChains<Node>.Conclusions => Conclusions;
+	StepConclusions IForcingChains.Conclusions => Conclusions;
 
 
 	/// <inheritdoc/>

@@ -3,8 +3,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents a forcing chains component.
 /// </summary>
-/// <typeparam name="TNode">The type of each node.</typeparam>
-public interface IForcingChains<TNode> : IChainOrForcingChains, IFormattable where TNode : IParentLinkedNode<TNode>
+public interface IForcingChains : IChainOrForcingChains, IFormattable
 {
 	/// <summary>
 	/// Indicates the complexity of the whole pattern.

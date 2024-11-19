@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TBranch">The type of each branch.</typeparam>
 /// <typeparam name="TNode">The type of each node.</typeparam>
-public interface IBinaryForcingChains<TSelf, TBranch, TNode> : IForcingChains<TNode>
+public interface IBinaryForcingChains<TSelf, TBranch, TNode> : IForcingChains
 	where TSelf : IBinaryForcingChains<TSelf, TBranch, TNode>
 	where TBranch : IChainOrForcingChains, IEnumerable<TNode>
 	where TNode : IParentLinkedNode<TNode>

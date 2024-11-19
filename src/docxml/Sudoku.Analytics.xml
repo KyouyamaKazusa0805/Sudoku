@@ -2116,7 +2116,7 @@
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains{Sudoku#Analytics#Construction#Components#Node}#Conclusions">
+        <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#Conclusions">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IBinaryForcingChains{Sudoku#Analytics#Construction#Components#BinaryForcingChains,Sudoku#Analytics#Construction#Components#UnnamedChain,Sudoku#Analytics#Construction#Components#Node}#Branches">
@@ -3391,36 +3391,35 @@
         <member name="P:Sudoku.Analytics.Construction.Components.IDoubleExocet.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.IForcingChains`1">
+        <member name="T:Sudoku.Analytics.Construction.Components.IForcingChains">
             <summary>
             Represents a forcing chains component.
             </summary>
-            <typeparam name="TNode">The type of each node.</typeparam>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains`1.Complexity">
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.Complexity">
             <summary>
             Indicates the complexity of the whole pattern.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains`1.DigitsMask">
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.DigitsMask">
             <summary>
             Indicates the digits used in this pattern.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains`1.Conclusions">
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.Conclusions">
             <summary>
             Indicates the conclusions of the pattern.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains`1.BranchedComplexity">
+        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.BranchedComplexity">
             <summary>
             Indicates the complexity of each branch.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains`1.ToString(System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains`1.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
+        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
             <summary>
             Collect views for the current chain.
             </summary>
@@ -3429,7 +3428,7 @@
             <param name="supportedRules">The supported rules.</param>
             <returns>The views.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains`1.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`3">
@@ -3967,7 +3966,7 @@
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains{Sudoku#Analytics#Construction#Components#Node}#Conclusions">
+        <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#Conclusions">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Exists(System.Func{Sudoku.Analytics.Construction.Components.UnnamedChain,System.Boolean})">

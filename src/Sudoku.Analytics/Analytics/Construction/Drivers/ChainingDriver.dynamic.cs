@@ -9,13 +9,13 @@ internal partial class ChainingDriver
 	/// <param name="context">Indicates the context to be used.</param>
 	/// <param name="chainingRules">Indicates the chaining rules used.</param>
 	/// <returns>All possible dynamic forcing chains instances.</returns>
-	public static ReadOnlySpan<IForcingChains<Node>> CollectDynamicForcingChains(
+	public static ReadOnlySpan<IForcingChains> CollectDynamicForcingChains(
 		ref readonly Grid grid,
 		ref readonly StepAnalysisContext context,
 		ChainingRuleCollection chainingRules
 	)
 	{
-		var result = new List<IForcingChains<Node>>();
+		var result = new List<IForcingChains>();
 		foreach (var cell in EmptyCells & ~BivalueCells)
 		{
 			var nodesSupposedOn_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
