@@ -31,7 +31,7 @@ public interface IParentLinkedNode<TSelf> :
 	/// <summary>
 	/// Indicates all ancestor nodes of the current node.
 	/// </summary>
-	public virtual ReadOnlySpan<TSelf> Ancestors
+	public sealed ReadOnlySpan<TSelf> Ancestors
 	{
 		get
 		{
