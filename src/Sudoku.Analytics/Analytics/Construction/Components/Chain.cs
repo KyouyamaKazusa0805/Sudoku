@@ -482,9 +482,10 @@ public abstract partial class Chain :
 	public abstract int CompareTo(Chain? other);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	/// <exception cref="NotSupportedException">Throws when the chain is dynamic.</exception>
 	public string ToString(IFormatProvider? formatProvider)
 		=> IsDynamic
-			? string.Empty // TODO: Format dynamic forcing chains later.
+			? throw new NotSupportedException("Dynamic chain is not supported to be formatted.")
 			: formatProvider switch
 			{
 				ChainFormatInfo f => ChainFormatInfo.FormatCoreUnsafeAccessor(f, this),

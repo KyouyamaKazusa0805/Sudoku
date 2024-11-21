@@ -2634,6 +2634,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            <exception cref="T:System.NotSupportedException">Throws when the chain is dynamic.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.Slice(System.Int32,System.Int32)">
             <summary>
