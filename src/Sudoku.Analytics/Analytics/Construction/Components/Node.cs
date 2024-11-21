@@ -1,7 +1,11 @@
 namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
-/// Represents a chain node.
+/// Represents a chain node. There're two ways to use it:
+/// <list type="number">
+/// <item>To build an AIC pattern. Just use one parent of property <see cref="Parents"/> to build the whole chain.</item>
+/// <item>To build a dynamic forcing chain branch. Use multiple parents to build a multi-parent node.</item>
+/// </list>
 /// </summary>
 /// <param name="map">Indicates the backing map.</param>
 /// <param name="isOn">Indicates whether the node is on.</param>
