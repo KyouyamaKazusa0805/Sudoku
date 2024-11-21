@@ -3491,11 +3491,6 @@
             Represents a forcing chains component.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.IsDynamic">
-            <summary>
-            Indicates whether the current forcing chain pattern is dynamic.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.IForcingChains.Complexity">
             <summary>
             Indicates the complexity of the whole pattern.

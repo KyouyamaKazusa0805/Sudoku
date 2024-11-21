@@ -6,11 +6,6 @@ namespace Sudoku.Analytics.Construction.Components;
 public interface IForcingChains : IChainOrForcingChains, IFormattable
 {
 	/// <summary>
-	/// Indicates whether the current forcing chain pattern is dynamic.
-	/// </summary>
-	public abstract bool IsDynamic { get; }
-
-	/// <summary>
 	/// Indicates the complexity of the whole pattern.
 	/// </summary>
 	public abstract int Complexity { get; }
