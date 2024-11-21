@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents a dynamic forcing chains.
 /// </summary>
-public interface IDynamicForcingChains : IForcingChains
+internal interface IDynamicForcingChains : IForcingChains
 {
 	/// <summary>
 	/// Indicates whether the chain is dynamic.

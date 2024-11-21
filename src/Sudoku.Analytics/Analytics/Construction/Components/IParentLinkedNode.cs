@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Represents a node that supports parent linking.
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
-public interface IParentLinkedNode<TSelf> :
+internal interface IParentLinkedNode<TSelf> :
 	IComponent,
 	IEquatable<TSelf>,
 	IFormattable,

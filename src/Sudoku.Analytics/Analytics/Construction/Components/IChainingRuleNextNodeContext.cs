@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents a context type that is used for finding for next nodes from the specified node.
 /// </summary>
-public interface IChainingRuleNextNodeContext : IContext
+internal interface IChainingRuleNextNodeContext : IContext
 {
 	/// <summary>
 	/// Indicates the collected nodes.

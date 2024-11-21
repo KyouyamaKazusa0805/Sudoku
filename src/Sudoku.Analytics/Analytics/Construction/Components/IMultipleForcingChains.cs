@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TBranch">The type of branch.</typeparam>
-public interface IMultipleForcingChains<TSelf, TBranch> :
+internal interface IMultipleForcingChains<TSelf, TBranch> :
 	IDictionary<Candidate, TBranch>,
 	IForcingChains,
 	IReadOnlyDictionary<Candidate, TBranch>

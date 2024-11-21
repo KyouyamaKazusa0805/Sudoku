@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// The base overrides for complex senior exocet steps.
 /// </summary>
-public interface IComplexSeniorExocet : IComponent
+internal interface IComplexSeniorExocet : IComponent
 {
 	/// <summary>
 	/// The mask that holds a list of cross-line houses used.

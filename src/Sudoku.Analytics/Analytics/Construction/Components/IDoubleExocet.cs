@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// The base overrides for double exocet steps.
 /// </summary>
-public interface IDoubleExocet : IComponent
+internal interface IDoubleExocet : IComponent
 {
 	/// <summary>
 	/// A list of cells as the base cells.
