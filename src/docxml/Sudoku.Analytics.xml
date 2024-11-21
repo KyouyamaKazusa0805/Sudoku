@@ -3406,6 +3406,9 @@
             </summary>
             <seealso cref="P:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.IsGrouped"/>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IComplexSeniorExocet">
             <summary>
             The base overrides for complex senior exocet steps.
@@ -3515,9 +3518,6 @@
             <summary>
             Indicates all possible branches.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
             <summary>

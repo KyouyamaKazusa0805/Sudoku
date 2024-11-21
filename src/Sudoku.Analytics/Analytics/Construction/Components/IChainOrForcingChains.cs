@@ -17,4 +17,8 @@ public interface IChainOrForcingChains : IComponent
 	/// </summary>
 	/// <seealso cref="IsGrouped"/>
 	public abstract bool IsStrictlyGrouped { get; }
+
+
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	public abstract string ToString(IFormatProvider? formatProvider);
 }

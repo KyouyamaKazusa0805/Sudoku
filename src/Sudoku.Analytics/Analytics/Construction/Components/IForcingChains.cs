@@ -31,9 +31,6 @@ public interface IForcingChains : IChainOrForcingChains, IFormattable
 	protected abstract ReadOnlySpan<UnnamedChain> Branches { get; }
 
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	public abstract string ToString(IFormatProvider? formatProvider);
-
 	/// <summary>
 	/// Collect views for the current chain.
 	/// </summary>
