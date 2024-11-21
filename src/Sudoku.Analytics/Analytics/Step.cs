@@ -283,7 +283,7 @@ public abstract partial class Step(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private string FormatDescription(CultureInfo? culture, params ReadOnlySpan<string> formatArguments)
 		=> GetResourceFormat(culture) is { } p
-			? string.Format(culture, p, ReadOnlySpan<object?>.CastUp(formatArguments))
+			? string.Format(culture, p, formatArguments)
 			: throw new ResourceNotFoundException(typeof(Step).Assembly, TechniqueResourceKey, culture);
 
 	/// <summary>
