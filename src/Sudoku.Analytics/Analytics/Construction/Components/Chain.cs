@@ -482,10 +482,9 @@ public abstract partial class Chain :
 	public abstract int CompareTo(Chain? other);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	/// <exception cref="NotSupportedException">Throws when the chain is dynamic.</exception>
 	public string ToString(IFormatProvider? formatProvider)
 		=> IsDynamic
-			? throw new NotSupportedException("Dynamic chain is not supported to be formatted.")
+			? string.Empty // TODO: Implement later.
 			: formatProvider switch
 			{
 				ChainFormatInfo f => ChainFormatInfo.FormatCoreUnsafeAccessor(f, this),
@@ -503,50 +502,6 @@ public abstract partial class Chain :
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Enumerator GetEnumerator() => new(this);
-
-	/// <summary>
-	/// Collect views for the current chain, without nested paths checking.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="supportedRules">The supported rules.</param>
-	/// <param name="alsIndex">Indicates the currently operated ALS index.</param>
-	/// <returns>The views.</returns>
-	public View[] GetViews(ref readonly Grid grid, ChainingRuleCollection supportedRules, ref int alsIndex)
-	{
-		var result = (View[])[
-			[
-				.. v(),
-				..
-				from link in Links
-				let node1 = link.FirstNode
-				let node2 = link.SecondNode
-				select new ChainLinkViewNode(ColorIdentifier.Normal, node1.Map, node2.Map, link.IsStrong)
-			]
-		];
-
-		foreach (var supportedRule in supportedRules)
-		{
-			var context = new ChainingRuleViewNodeContext(in grid, this, result[0]) { CurrentAlmostLockedSetIndex = alsIndex };
-			supportedRule.GetViewNodes(ref context);
-			alsIndex = context.CurrentAlmostLockedSetIndex;
-		}
-		return result;
-
-
-		ReadOnlySpan<CandidateViewNode> v()
-		{
-			var result = new List<CandidateViewNode>();
-			for (var i = 0; i < Length; i++)
-			{
-				var id = (i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
-				foreach (var candidate in this[i].Map)
-				{
-					result.Add(new(id, candidate));
-				}
-			}
-			return result.AsSpan();
-		}
-	}
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

@@ -46,7 +46,43 @@ public interface IForcingChains : IChainOrForcingChains, IFormattable
 	/// <param name="newConclusions">The conclusions.</param>
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <returns>The views.</returns>
-	public abstract View[] GetViews(ref readonly Grid grid, Conclusion[] newConclusions, ChainingRuleCollection supportedRules);
+	public sealed View[] GetViews(ref readonly Grid grid, Conclusion[] newConclusions, ChainingRuleCollection supportedRules)
+	{
+		var viewNodes = GetViewsCore(in grid, supportedRules, newConclusions);
+		var result = new View[viewNodes.Length];
+		for (var i = 0; i < viewNodes.Length; i++)
+		{
+			CandidateMap elimMap = [.. from conclusion in newConclusions select conclusion.Candidate];
+			result[i] = [
+				..
+				from node in viewNodes[i]
+				where node is not CandidateViewNode { Candidate: var c } || !elimMap.Contains(c)
+				select node
+			];
+		}
+
+		var (viewIndex, cachedAlsIndex) = (1, 0);
+		foreach (var branch in Branches)
+		{
+			var context = new ChainingRuleViewNodeContext(in grid, branch, result[viewIndex++]) { CurrentAlmostLockedSetIndex = cachedAlsIndex };
+			foreach (var supportedRule in supportedRules)
+			{
+				supportedRule.GetViewNodes(ref context);
+				result[0].AddRange(context.ProducedViewNodes);
+			}
+			cachedAlsIndex = context.CurrentAlmostLockedSetIndex;
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Represents a method that creates a list of views.
+	/// </summary>
+	/// <param name="grid">The target grid.</param>
+	/// <param name="rules">The rules used.</param>
+	/// <param name="newConclusions">The conclusions used.</param>
+	/// <returns>A list of nodes.</returns>
+	protected abstract ReadOnlySpan<ViewNode[]> GetViewsCore(ref readonly Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

@@ -23,7 +23,7 @@ internal static partial class ChainingDriver
 		{
 			var step = new NormalChainStep(
 				CollectChainConclusions(chain, in grid, supportedRules),
-				chain.GetViews(in grid, supportedRules, ref cachedAlsIndex),
+				chain.GetViews_Monoparental(in grid, supportedRules, ref cachedAlsIndex),
 				context.Options,
 				chain
 			);
@@ -76,7 +76,7 @@ internal static partial class ChainingDriver
 			ref readonly Grid grid,
 			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
-		) => new(chain.Conclusions, chain.GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
+		) => new(chain.Conclusions, chain.Cast().GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
 
 	/// <summary>
@@ -112,7 +112,7 @@ internal static partial class ChainingDriver
 			ref readonly Grid grid,
 			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
-		) => new(chain.Conclusions, chain.GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
+		) => new(chain.Conclusions, chain.Cast().GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
 
 	/// <summary>
@@ -148,7 +148,7 @@ internal static partial class ChainingDriver
 			ref readonly Grid grid,
 			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
-		) => new(chain.Conclusions, chain.GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
+		) => new(chain.Conclusions, chain.Cast().GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
 
 	/// <summary>
@@ -191,7 +191,7 @@ internal static partial class ChainingDriver
 			var (i, cachedAlsIndex) = (0, 0);
 			foreach (var (startCandidate, branch) in blossomLoop)
 			{
-				var viewNodes = branch.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0];
+				var viewNodes = branch.GetViews_Monoparental(in grid, supportedRules, ref cachedAlsIndex)[0];
 				globalView |= viewNodes;
 				otherViews[i] |= viewNodes;
 				globalView.Add(new CandidateViewNode(ColorIdentifier.Normal, startCandidate));
@@ -238,13 +238,13 @@ internal static partial class ChainingDriver
 			{
 				BinaryForcingChains b => new BinaryForcingChainsStep(
 					new SingletonArray<Conclusion>(b.Conclusion),
-					b.GetViews(in grid, [b.Conclusion], supportedRules),
+					b.Cast().GetViews(in grid, [b.Conclusion], supportedRules),
 					context.Options,
 					b
 				),
 				MultipleForcingChains m => new MultipleForcingChainsStep(
 					m.Conclusions,
-					m.GetViews(in grid, m.Conclusions, supportedRules),
+					m.Cast().GetViews(in grid, m.Conclusions, supportedRules),
 					context.Options,
 					m
 				)
@@ -360,4 +360,19 @@ internal static partial class ChainingDriver
 		}
 		return [.. conclusions];
 	}
+}
+
+/// <summary>
+/// Provides a file-local type that can simplify casting expression of <see cref="IForcingChains"/>.
+/// </summary>
+/// <seealso cref="IForcingChains"/>
+file static class ForcingChainsCastingExtensions
+{
+	/// <summary>
+	/// Cast the object into <see cref="IForcingChains"/> regardless of its base type <typeparamref name="T"/>.
+	/// </summary>
+	/// <typeparam name="T">The type of <paramref name="this"/>.</typeparam>
+	/// <param name="this">The current instance.</param>
+	/// <returns>Casted <see cref="IForcingChains"/> instance.</returns>
+	public static IForcingChains Cast<T>(this T @this) where T : IForcingChains => @this;
 }

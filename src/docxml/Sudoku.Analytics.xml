@@ -2192,17 +2192,8 @@
         <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#GetViewsCore(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Conclusion[])">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.GetViewsCore(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Conclusion[])">
-            <summary>
-            Represents a method that creates a list of views.
-            </summary>
-            <param name="grid">The target grid.</param>
-            <param name="rules">The rules used.</param>
-            <param name="newConclusions">The conclusions used.</param>
-            <returns>A list of nodes.</returns>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Branch1">
             <summary>
@@ -2634,7 +2625,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-            <exception cref="T:System.NotSupportedException">Throws when the chain is dynamic.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.Slice(System.Int32,System.Int32)">
             <summary>
@@ -2646,15 +2636,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.GetViews(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,System.Int32@)">
-            <summary>
-            Collect views for the current chain, without nested paths checking.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="supportedRules">The supported rules.</param>
-            <param name="alsIndex">Indicates the currently operated ALS index.</param>
-            <returns>The views.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -2745,6 +2726,22 @@
             indicating the corresponding chaining rule.
             </summary>
             <typeparam name="TChainingRule">The type of the target chaining rule.</typeparam>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.ChainViewNodeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.Chain"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ChainViewNodeExtensions.GetViews_Monoparental(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,System.Int32@)">
+            <summary>
+            Collect views for the current chain, without nested paths checking.
+            </summary>
+            <param name="this">The chain to be checked.</param>
+            <param name="grid">The grid.</param>
+            <param name="supportedRules">The supported rules.</param>
+            <param name="alsIndex">Indicates the currently operated ALS index.</param>
+            <returns>The views.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop">
             <summary>
@@ -3536,6 +3533,15 @@
             <param name="supportedRules">The supported rules.</param>
             <returns>The views.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.GetViewsCore(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Conclusion[])">
+            <summary>
+            Represents a method that creates a list of views.
+            </summary>
+            <param name="grid">The target grid.</param>
+            <param name="rules">The rules used.</param>
+            <param name="newConclusions">The conclusions used.</param>
+            <returns>A list of nodes.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
@@ -4151,9 +4157,6 @@
             <returns>The pattern converted.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the current instance cannot be converted.</exception>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.PrepareFinnedChainViewNodes(Sudoku.Analytics.Construction.Components.NamedChain,System.Int32@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Drawing.View[]@)">
             <summary>
             Try to prepare initial view nodes that will be displayed as a finned chain.
@@ -4181,14 +4184,8 @@
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#UnnamedChain}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Analytics.Construction.Components.UnnamedChain},System.Boolean})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetViewsCore(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Conclusion[])">
-            <summary>
-            Represents a method that creates a list of views.
-            </summary>
-            <param name="grid">The target grid.</param>
-            <param name="rules">The rules used.</param>
-            <param name="newConclusions">The conclusions used.</param>
-            <returns>A list of nodes.</returns>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#GetViewsCore(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,Sudoku.Concepts.Conclusion[])">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Conclusions">
             <summary>
@@ -5393,6 +5390,20 @@
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
             <returns>All possible multiple forcing chain instances.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Drivers.ForcingChainsCastingExtensions">
+            <summary>
+            Provides a file-local type that can simplify casting expression of <see cref="T:Sudoku.Analytics.Construction.Components.IForcingChains"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.IForcingChains"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ForcingChainsCastingExtensions.Cast``1(``0)">
+            <summary>
+            Cast the object into <see cref="T:Sudoku.Analytics.Construction.Components.IForcingChains"/> regardless of its base type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of <paramref name="this"/>.</typeparam>
+            <param name="this">The current instance.</param>
+            <returns>Casted <see cref="T:Sudoku.Analytics.Construction.Components.IForcingChains"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Drivers.SubsetDriver">
             <summary>
