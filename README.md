@@ -155,6 +155,8 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Dynamic Forcing Chains
       * Dynamic Cell Forcing Chains
       * Dynamic Region Forcing Chains
+      * Dynamic Contradiction Forcing Chains
+      * Dynamic Double Forcing Chains
   * Almost Locked Sets (*ALS*)
     * Chaining ALSes
       * Almost Locked Sets XZ Rule (*ALS-XZ*)

@@ -90,7 +90,7 @@ internal partial class ChainingDriver
 			);
 			if (contradiction is var (onNode_OnState, offNode_OnState))
 			{
-				if (bcfcOn(in grid, in context, chainingRules, currentNodeOn, onNode_OnState, offNode_OnState)
+				if (bfcOn(in grid, in context, chainingRules, currentNodeOn, currentNodeOn, onNode_OnState, offNode_OnState, true)
 					is var contradictionForcingChains and not [])
 				{
 					return contradictionForcingChains;
@@ -108,7 +108,7 @@ internal partial class ChainingDriver
 			);
 			if (contradiction is var (onNode_OffState, offNode_OffState))
 			{
-				if (bcfcOff(in grid, in context, chainingRules, currentNodeOff, onNode_OffState, offNode_OffState)
+				if (bfcOff(in grid, in context, chainingRules, currentNodeOff, currentNodeOff, onNode_OffState, offNode_OffState, true)
 					is var contradictionForcingChains and not [])
 				{
 					return contradictionForcingChains;
@@ -118,7 +118,30 @@ internal partial class ChainingDriver
 			////////////////////////////////////////
 			// Collect with double forcing chains //
 			////////////////////////////////////////
-
+			foreach (var node in nodesSupposedOn)
+			{
+				var conflictedNode = nodesSupposedOn_OffCase.FirstOrDefault(n => n == node);
+				if (conflictedNode is not null)
+				{
+					if (bfcOff(in grid, in context, chainingRules, currentNodeOn, node, node, conflictedNode, false)
+						is var doubleForcingChains and not [])
+					{
+						return doubleForcingChains;
+					}
+				}
+			}
+			foreach (var node in nodesSupposedOff)
+			{
+				var conflictedNode = nodesSupposedOff_OffCase.FirstOrDefault(n => n == node);
+				if (conflictedNode is not null)
+				{
+					if (bfcOn(in grid, in context, chainingRules, currentNodeOff, node, node, conflictedNode, false)
+						is var doubleForcingChains and not [])
+					{
+						return doubleForcingChains;
+					}
+				}
+			}
 			return [];
 		}
 
@@ -382,17 +405,19 @@ internal partial class ChainingDriver
 			return [];
 		}
 
-		ReadOnlySpan<BinaryForcingChains> bcfcOn(
+		ReadOnlySpan<BinaryForcingChains> bfcOn(
 			ref readonly Grid grid,
 			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection chainingRules,
 			Node onNode,
+			Node targetNode,
 			Node onNode_OnState,
-			Node offNode_OnState
+			Node offNode_OnState,
+			bool isContradiction
 		)
 		{
 			// Because an "on" node makes such contradiction, we can conclude that the node is false in logic.
-			if (onNode is not { Map: [var candidate], IsOn: true })
+			if (targetNode is not { Map: [var candidate] })
 			{
 				return [];
 			}
@@ -411,7 +436,7 @@ internal partial class ChainingDriver
 					? new StrongForcingChain(offNode_OnState, true)
 					: new WeakForcingChain(offNode_OnState, true),
 				conclusion,
-				true
+				isContradiction
 			);
 			if (context.OnlyFindOne)
 			{
@@ -422,17 +447,19 @@ internal partial class ChainingDriver
 			return [];
 		}
 
-		ReadOnlySpan<BinaryForcingChains> bcfcOff(
+		ReadOnlySpan<BinaryForcingChains> bfcOff(
 			ref readonly Grid grid,
 			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection chainingRules,
 			Node offNode,
+			Node targetNode,
 			Node onNode_OffState,
-			Node offNode_OffState
+			Node offNode_OffState,
+			bool isContradiction
 		)
 		{
 			// Because an "off" node makes such contradiction, we can conclude that the node is true in logic.
-			if (offNode is not { Map: [var candidate], IsOn: false })
+			if (targetNode is not { Map: [var candidate] })
 			{
 				return [];
 			}
@@ -451,7 +478,7 @@ internal partial class ChainingDriver
 					? new StrongForcingChain(offNode_OffState, true)
 					: new WeakForcingChain(offNode_OffState, true),
 				conclusion,
-				true
+				isContradiction
 			);
 			if (context.OnlyFindOne)
 			{
