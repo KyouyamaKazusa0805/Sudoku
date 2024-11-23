@@ -403,18 +403,23 @@ internal partial class ChainingDriver
 				return [];
 			}
 
-			return (BinaryForcingChains[])[
-				new(
-					onNode_OnState.IsOn
-						? new StrongForcingChain(onNode_OnState, true)
-						: new WeakForcingChain(onNode_OnState, true),
-					offNode_OnState.IsOn
-						? new StrongForcingChain(offNode_OnState, true)
-						: new WeakForcingChain(offNode_OnState, true),
-					conclusion,
-					true
-				)
-			];
+			var dynamicChain = new BinaryForcingChains(
+				onNode_OnState.IsOn
+					? new StrongForcingChain(onNode_OnState, true)
+					: new WeakForcingChain(onNode_OnState, true),
+				offNode_OnState.IsOn
+					? new StrongForcingChain(offNode_OnState, true)
+					: new WeakForcingChain(offNode_OnState, true),
+				conclusion,
+				true
+			);
+			if (context.OnlyFindOne)
+			{
+				return (BinaryForcingChains[])[dynamicChain];
+			}
+
+			result.Add(dynamicChain);
+			return [];
 		}
 
 		ReadOnlySpan<BinaryForcingChains> bcfcOff(
@@ -438,18 +443,23 @@ internal partial class ChainingDriver
 				return [];
 			}
 
-			return (BinaryForcingChains[])[
-				new(
-					onNode_OffState.IsOn
-						? new StrongForcingChain(onNode_OffState, true)
-						: new WeakForcingChain(onNode_OffState, true),
-					offNode_OffState.IsOn
-						? new StrongForcingChain(offNode_OffState, true)
-						: new WeakForcingChain(offNode_OffState, true),
-					conclusion,
-					true
-				)
-			];
+			var dynamicChain = new BinaryForcingChains(
+				onNode_OffState.IsOn
+					? new StrongForcingChain(onNode_OffState, true)
+					: new WeakForcingChain(onNode_OffState, true),
+				offNode_OffState.IsOn
+					? new StrongForcingChain(offNode_OffState, true)
+					: new WeakForcingChain(offNode_OffState, true),
+				conclusion,
+				true
+			);
+			if (context.OnlyFindOne)
+			{
+				return (BinaryForcingChains[])[dynamicChain];
+			}
+
+			result.Add(dynamicChain);
+			return [];
 		}
 	}
 
