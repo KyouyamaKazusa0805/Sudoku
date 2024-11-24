@@ -102,7 +102,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Empty Rectangle
   * Wings
     * Regular Wing (XY-Wing, XYZ-Wing, etc.)
-    * Irregular Wing[^2]
+    * Irregular Wing[^1]
       * Woods' Wing (*W-Wing*)
       * Medusa Wing (*M-Wing*)
       * Split/Hybrid/Local Wing (*S/H/L-Wing*)
@@ -215,23 +215,10 @@ All the other projects use **MIT license**, which means you should mention the c
 
 Please see file [CODE_OF_CONDUCT](CODE_OF_CONDUCT).
 
-## Sudoku Technique References
-
-Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links[^4] to learn about more information.
-
-* [标准数独技巧教程 (Video)_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
-* [标准数独技巧教程 (Text)](https://t.sudoku-studio.wiki)
-
 ## Author
 
 I'm not a developer, but I like it!
 
 Please visit file [CONTACTS](CONTACTS) to contact me if you want.
 
-[^1]: The old name of the repository is "Sunnie's Sudoku Solution".
-
-[^2]: W-Wing is implemented by a single technique searcher type, while other irregular wing types are implemented by AIC searchers.
-
-[^3]: Because only type 2 contains a valid test example.
-
-[^4]: I'm sorry that those pages are only written in Chinese. However, I may create pages written in other languages in the future.
+[^1]: W-Wing is implemented by a single technique searcher type, while other irregular wing types are implemented by AIC searchers.
