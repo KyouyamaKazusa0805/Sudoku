@@ -6851,6 +6851,14 @@
 				</summary>
 			</target>
         </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.Deconstruct(Sudoku.Concepts.Supersymmetry.SpaceType@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.Space.RowNumber(System.Int32,System.Int32)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> for row-number space.
@@ -6908,6 +6916,315 @@
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.Space.Equals(Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Supersymmetry.SpaceSet">
+            <summary>
+            Represents a set of <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Supersymmetry.Space"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Supersymmetry.SpaceSet.BackingBuffer">
+            <summary>
+            Represents a backing buffer type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet.BackingBuffer._map">
+            <summary>
+            Indicates the backing field.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator">
+            <summary>
+            Represents an enumerator type that can iterate on each state bit.
+            </summary>
+            <param name="set">The set.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator.#ctor(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <summary>
+            Represents an enumerator type that can iterate on each state bit.
+            </summary>
+            <param name="set">The set.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator._set">
+            <summary>
+            Indicates the backing set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator._index">
+            <summary>
+            Indicates the current index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator.StatesArray">
+            <summary>
+            Returns a state array.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator.System#Collections#Generic#IEnumerable{System#Boolean}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet.Empty">
+            <summary>
+            Indicates the empty instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet._field">
+            <summary>
+            Indicates the buffer entry field.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Supersymmetry#Space}#IsReadOnly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IReadOnlyList{Sudoku#Concepts#Supersymmetry#Space}#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.CopyTo(Sudoku.Concepts.Supersymmetry.Space[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Contains(Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.EnumerateBitStates">
+            <summary>
+            Returns a <see cref="T:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator"/> instance that can iterate on each bit state.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.ToArray">
+            <summary>
+            Converts the current object into an array of <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> instances.
+            </summary>
+            <returns>An array of <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Clear">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Add(Sudoku.Concepts.Supersymmetry.Space)">
+            <summary>
+            Adds a new space into the collection.
+            </summary>
+            <param name="space">The space.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the adding operation is success.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Remove(Sudoku.Concepts.Supersymmetry.Space)">
+            <summary>
+            Removes a space from the current collection.
+            </summary>
+            <param name="space">The space.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the removing operation is success.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.AddRange(System.ReadOnlySpan{Sudoku.Concepts.Supersymmetry.Space})">
+            <summary>
+            Adds a list of new spaces into the collection.
+            </summary>
+            <param name="spaces">The spaces.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating how many spaces adding successfully.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Supersymmetry#Space}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Supersymmetry#Space}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Supersymmetry#Space}#IsSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Supersymmetry#Space}#IsSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Supersymmetry#Space}#Overlaps(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Supersymmetry#Space}#SetEquals(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ISet{Sudoku#Concepts#Supersymmetry#Space}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ISet{Sudoku#Concepts#Supersymmetry#Space}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ISet{Sudoku#Concepts#Supersymmetry#Space}#IsSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ISet{Sudoku#Concepts#Supersymmetry#Space}#IsSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ISet{Sudoku#Concepts#Supersymmetry#Space}#Overlaps(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ISet{Sudoku#Concepts#Supersymmetry#Space}#SetEquals(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IFiniteSet{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#Space}#Negate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Supersymmetry#Space}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ISet{Sudoku#Concepts#Supersymmetry#Space}#ExceptWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ISet{Sudoku#Concepts#Supersymmetry#Space}#IntersectWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ISet{Sudoku#Concepts#Supersymmetry#Space}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ISet{Sudoku#Concepts#Supersymmetry#Space}#UnionWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Supersymmetry#Space}#Add(Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IInfiniteSet{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#Space}#ExceptWith(Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_OnesComplement(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_OnesComplement(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_Addition(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc cref="M:System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_Subtraction(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc cref="M:System.Numerics.ISubtractionOperators`3.op_Subtraction(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_BitwiseAnd(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseAnd(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_BitwiseOr(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseOr(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_ExclusiveOr(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_ExclusiveOr(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet}#op_OnesComplement(Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet}#op_BitwiseAnd(Sudoku.Concepts.Supersymmetry.SpaceSet,Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet}#op_BitwiseOr(Sudoku.Concepts.Supersymmetry.SpaceSet,Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet}#op_ExclusiveOr(Sudoku.Concepts.Supersymmetry.SpaceSet,Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#IAdditionOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#Space,Sudoku#Concepts#Supersymmetry#SpaceSet}#op_Addition(Sudoku.Concepts.Supersymmetry.SpaceSet,Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#ISubtractionOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#Space,Sudoku#Concepts#Supersymmetry#SpaceSet}#op_Subtraction(Sudoku.Concepts.Supersymmetry.SpaceSet,Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Supersymmetry.SpaceSet.Enumerator">
+            <summary>
+            Represents an enumerator type that can iterate on each <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> of the current type.
+            </summary>
+            <param name="set">The set instance.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Enumerator.#ctor(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <summary>
+            Represents an enumerator type that can iterate on each <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> of the current type.
+            </summary>
+            <param name="set">The set instance.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet.Enumerator._set">
+            <summary>
+            Indicates the set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet.Enumerator._index">
+            <summary>
+            Indicates the current index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_Equality(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_Inequality(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#IEqualityOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet,System#Boolean}#op_Equality(Sudoku.Concepts.Supersymmetry.SpaceSet,Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#IEqualityOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet,System#Boolean}#op_Inequality(Sudoku.Concepts.Supersymmetry.SpaceSet,Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_True(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_True(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_False(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_False(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#ILogicalOperators{Sudoku#Concepts#Supersymmetry#SpaceSet}#op_True(Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#ILogicalOperators{Sudoku#Concepts#Supersymmetry#SpaceSet}#op_False(Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_LogicalNot(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#ILogicalOperators{Sudoku#Concepts#Supersymmetry#SpaceSet}#op_LogicalNot(Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Equals(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#IEquatable{Sudoku#Concepts#Supersymmetry#SpaceSet}#Equals(Sudoku.Concepts.Supersymmetry.SpaceSet)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Supersymmetry.SpaceType">
