@@ -95,6 +95,10 @@ public readonly partial struct Space([Field, HashCodeMember] Mask mask) : IEquat
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out int primary, out int secondary) => (primary, secondary) = (Primary, Secondary);
 
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out SpaceType type, out int primary, out int secondary) => (type, (primary, secondary)) = (Type, this);
+
 
 	/// <summary>
 	/// Creates a <see cref="Space"/> for row-number space.

@@ -485,13 +485,55 @@ public abstract partial class Chain :
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)
-		=> IsDynamic
-			? string.Empty // TODO: Implement later.
+	{
+		return IsDynamic
+			? $"{getDynamicSpaces(StrongLinks)}; {getDynamicSpaces(WeakLinks)}"
 			: formatProvider switch
 			{
 				ChainFormatInfo f => ChainFormatInfo.FormatCoreUnsafeAccessor(f, this),
 				_ => ToString(ChainFormatInfo.Standard)
 			};
+
+
+		static SpaceSet getDynamicSpaces(ReadOnlySpan<Link> links)
+		{
+			var spaces = SpaceSet.Empty;
+			foreach (var link in links)
+			{
+				ref readonly var start = ref link.FirstNode.Map;
+				ref readonly var end = ref link.SecondNode.Map;
+				var startDigits = start.Digits;
+				var endDigits = end.Digits;
+				var startCells = start.Cells;
+				var endCells = end.Cells;
+				if (startDigits == endDigits && Mask.IsPow2(startDigits))
+				{
+					// Check for cells.
+					var combined = startCells | endCells;
+					if (combined.FirstSharedHouse is var house and not 32)
+					{
+						spaces.Add(
+							house switch
+							{
+								< 9 => Space.BlockNumber(house, Mask.Log2(startDigits)),
+								< 18 => Space.RowNumber(house - 9, Mask.Log2(startDigits)),
+								_ => Space.ColumnNumber(house - 18, Mask.Log2(startDigits))
+							}
+						);
+					}
+				}
+				else
+				{
+					// Check for digits.
+					if (startCells == endCells && startCells is [var cell])
+					{
+						spaces.Add(Space.RowColumn(cell / 9, cell % 9));
+					}
+				}
+			}
+			return spaces;
+		}
+	}
 
 	/// <summary>
 	/// Slices the collection with the specified start node and its length.
