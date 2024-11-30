@@ -3,6 +3,7 @@ namespace System.Numerics;
 public partial class BitOperationsExtensions
 {
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this sbyte @this, int order)
 	{
 		for (int i = 0, count = -1; i < sizeof(sbyte) << 3; i++, @this >>= 1)
@@ -21,6 +22,7 @@ public partial class BitOperationsExtensions
 	/// <param name="this">The value.</param>
 	/// <param name="order">The number of the order of set bits.</param>
 	/// <returns>The position.</returns>
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this byte @this, int order)
 	{
 		for (int i = 0, count = -1; i < sizeof(byte) << 3; i++, @this >>= 1)
@@ -34,6 +36,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this short @this, int order)
 	{
 		for (int i = 0, count = -1; i < sizeof(short) << 3; i++, @this >>= 1)
@@ -47,6 +50,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this ushort @this, int order)
 	{
 		for (int i = 0, count = -1; i < sizeof(ushort) << 3; i++, @this >>= 1)
@@ -60,6 +64,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this int @this, int order)
 	{
 		for (int i = 0, count = -1; i < sizeof(int) << 3; i++, @this >>= 1)
@@ -73,6 +78,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this uint @this, int order)
 	{
 		for (int i = 0, count = -1; i < sizeof(uint) << 3; i++, @this >>= 1)
@@ -87,9 +93,11 @@ public partial class BitOperationsExtensions
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this long @this, int order) => SetAt((ulong)@this, order);
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this ulong @this, int order)
 	{
 		var (mask, size, @base) = (0x0000FFFFU, 16U, 0U);
@@ -116,6 +124,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this Int128 @this, int order)
 	{
 		unsafe
@@ -132,6 +141,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this UInt128 @this, int order)
 	{
 		unsafe
@@ -148,6 +158,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this nint @this, int order)
 	{
 		unsafe
@@ -164,6 +175,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	[OverloadResolutionPriority(2)]
 	public static partial int SetAt(this nuint @this, int order)
 	{
 		unsafe
@@ -180,6 +192,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	[OverloadResolutionPriority(1)]
 	public static partial int SetAt<TNumber>(this TNumber @this, int order)
 #if NUMERIC_GENERIC_TYPE
 		where TNumber : IBitwiseOperators<TNumber, TNumber, TNumber>, INumber<TNumber>, IShiftOperators<TNumber, int, TNumber>

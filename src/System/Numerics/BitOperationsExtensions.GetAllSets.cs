@@ -7,7 +7,7 @@ public partial class BitOperationsExtensions
 	/// </summary>
 	/// <param name="this">The value.</param>
 	/// <returns>All offsets.</returns>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this sbyte @this)
 	{
 		if (@this == 0)
@@ -25,7 +25,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this byte @this)
 	{
 		if (@this == 0)
@@ -43,7 +43,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this short @this)
 	{
 		if (@this == 0)
@@ -61,7 +61,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this ushort @this)
 	{
 		if (@this == 0)
@@ -79,7 +79,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this int @this)
 	{
 		if (@this == 0)
@@ -97,7 +97,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this uint @this)
 	{
 		if (@this == 0)
@@ -115,7 +115,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this long @this)
 	{
 		if (@this == 0)
@@ -133,7 +133,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this ulong @this)
 	{
 		if (@this == 0)
@@ -151,7 +151,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this Int128 @this)
 	{
 		if (@this == 0)
@@ -169,7 +169,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this UInt128 @this)
 	{
 		if (@this == 0)
@@ -187,7 +187,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this nint @this)
 	{
 		if (@this == 0)
@@ -205,7 +205,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	[OverloadResolutionPriority(1)]
+	[OverloadResolutionPriority(2)]
 	public static partial ReadOnlySpan<int> GetAllSets(this nuint @this)
 	{
 		if (@this == 0)
@@ -223,6 +223,7 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
+	[OverloadResolutionPriority(1)]
 	public static partial ReadOnlySpan<int> GetAllSets<TInteger>(this TInteger @this) where TInteger : IBinaryInteger<TInteger>
 	{
 		if (@this == TInteger.Zero)
