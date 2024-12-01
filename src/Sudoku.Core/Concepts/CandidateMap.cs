@@ -391,14 +391,14 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	public readonly Enumerator GetEnumerator() => new(Offsets);
 
 	/// <summary>
-	/// Try to enumerate cells on each candidates.
+	/// Try to enumerate cells on each candidate.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly CellEnumerator EnumerateCells() => new(Offsets);
 
 	/// <summary>
-	/// Try to enumerate cell and digit value on each candidates.
+	/// Try to enumerate cell and digit value on each candidate.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

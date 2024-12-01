@@ -10,7 +10,7 @@ public sealed class ObservableStack<T> : Stack<T>, INotifyCollectionChanged
 	/// <summary>
 	/// Initializes an <see cref="ObservableStack{T}"/> instance.
 	/// </summary>
-	public ObservableStack() : base()
+	public ObservableStack()
 	{
 	}
 

@@ -16,7 +16,7 @@
         </member>
         <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.ValidVariableNames">
             <summary>
-            Repressents a list of properties that will be replaced with cached members.
+            Represents a list of properties that will be replaced with cached members.
             </summary>
             <remarks>
             Please note that here we don't replace expression <c>grid.GetSolution()</c> with <c>Solution</c> at present

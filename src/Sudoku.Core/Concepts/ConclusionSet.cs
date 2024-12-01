@@ -9,10 +9,7 @@ namespace Sudoku.Concepts;
 		| TypeImplFlags.LogicalNotOperator | TypeImplFlags.Equatable)]
 public sealed partial class ConclusionSet :
 	IAnyAllMethod<ConclusionSet, Conclusion>,
-	IBitwiseOperators<ConclusionSet, ConclusionSet, ConclusionSet>,
-	ICollection<Conclusion>,
 	IContainsMethod<ConclusionSet, Conclusion>,
-	IEnumerable<Conclusion>,
 	IEquatable<ConclusionSet>,
 	IEqualityOperators<ConclusionSet, ConclusionSet, bool>,
 	IFiniteSet<ConclusionSet, Conclusion>,
@@ -20,9 +17,7 @@ public sealed partial class ConclusionSet :
 	IInfiniteSet<ConclusionSet, Conclusion>,
 	ILogicalOperators<ConclusionSet>,
 	IParsable<ConclusionSet>,
-	IReadOnlyCollection<Conclusion>,
 	IReadOnlySet<Conclusion>,
-	ISet<Conclusion>,
 	ISliceMethod<ConclusionSet, Conclusion>,
 	IToArrayMethod<ConclusionSet, Conclusion>
 {

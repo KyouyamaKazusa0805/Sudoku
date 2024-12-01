@@ -85,7 +85,7 @@ public static class SpanEnumerable
 
 	/// <inheritdoc cref="MinBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
 	public static TKey Min<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 	{
 		var resultKey = TKey.MaxValue;
 		foreach (var element in @this)
@@ -101,7 +101,7 @@ public static class SpanEnumerable
 
 	/// <inheritdoc cref="MinBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
 	public static TKey Min<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 	{
 		var resultKey = TKey.MaxValue;
 		foreach (ref readonly var element in @this)
@@ -124,7 +124,7 @@ public static class SpanEnumerable
 	/// <param name="keySelector">A function to extract the key for each element.</param>
 	/// <returns>The value with the minimum key in the sequence.</returns>
 	public static TSource? MinBy<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 	{
 		var (resultKey, result) = (TKey.MaxValue, default(TSource));
 		foreach (var element in @this)
@@ -139,7 +139,7 @@ public static class SpanEnumerable
 
 	/// <inheritdoc cref="MinBy{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
 	public static TSource? MinBy<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 	{
 		var (resultKey, result) = (TKey.MaxValue, default(TSource));
 		foreach (ref readonly var element in @this)
@@ -172,8 +172,8 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="MaxBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
-	public static TKey? Max<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+	public static TKey Max<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
+		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 	{
 		var resultKey = TKey.MinValue;
 		foreach (var element in @this)
@@ -188,8 +188,8 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="MaxBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
-	public static TKey? Max<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+	public static TKey Max<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
+		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 	{
 		var resultKey = TKey.MinValue;
 		foreach (ref readonly var element in @this)
@@ -212,7 +212,7 @@ public static class SpanEnumerable
 	/// <param name="keySelector">A function to extract the key for each element.</param>
 	/// <returns>The value with the maximum key in the sequence.</returns>
 	public static TSource? MaxBy<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 	{
 		var (resultKey, result) = (TKey.MinValue, default(TSource));
 		foreach (var element in @this)
@@ -227,7 +227,7 @@ public static class SpanEnumerable
 
 	/// <inheritdoc cref="MaxBy{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
 	public static TSource? MaxBy<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 	{
 		var (resultKey, result) = (TKey.MinValue, default(TSource));
 		foreach (ref readonly var element in @this)
@@ -262,7 +262,7 @@ public static class SpanEnumerable
 	/// <typeparam name="T">The type of the elements of source.</typeparam>
 	/// <param name="this">The collection to be used and checked.</param>
 	/// <returns>The value with the sum key in the sequence.</returns>
-	public static T Sum<T>(this ReadOnlySpan<T> @this) where T : IAdditiveIdentity<T, T>?, IAdditionOperators<T, T, T>?
+	public static T Sum<T>(this ReadOnlySpan<T> @this) where T : IAdditiveIdentity<T, T>, IAdditionOperators<T, T, T>
 	{
 		var result = T.AdditiveIdentity;
 		foreach (ref readonly var element in @this)
@@ -281,7 +281,7 @@ public static class SpanEnumerable
 	/// <param name="keySelector">A function to extract the key for each element.</param>
 	/// <returns>The value with the sum key in the sequence.</returns>
 	public static TKey Sum<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
-		where TKey : IAdditiveIdentity<TKey, TKey>?, IAdditionOperators<TKey, TKey, TKey>?
+		where TKey : IAdditiveIdentity<TKey, TKey>, IAdditionOperators<TKey, TKey, TKey>
 	{
 		var result = TKey.AdditiveIdentity;
 		foreach (ref readonly var element in @this)
@@ -464,8 +464,8 @@ public static class SpanEnumerable
 	/// <param name="this">The source elements.</param>
 	/// <returns>A new <see cref="ReadOnlySpan{T}"/> instance of elements of type <typeparamref name="TDerived"/>.</returns>
 	public static ReadOnlySpan<TDerived> Cast<TBase, TDerived>(this ReadOnlySpan<TBase> @this)
-		where TBase : class?
-		where TDerived : class?, TBase?
+		where TBase : class
+		where TDerived : class, TBase
 	{
 		var result = new TDerived[@this.Length];
 		var i = 0;
@@ -529,7 +529,7 @@ public static class SpanEnumerable
 	/// Projects each element in the current instance into the target-typed span of element type <typeparamref name="TResult"/>,
 	/// using the specified function to convert.
 	/// </summary>
-	/// <typeparam name="T">The type of each elements in the span.</typeparam>
+	/// <typeparam name="T">The type of each element in the span.</typeparam>
 	/// <typeparam name="TResult">The type of target value.</typeparam>
 	/// <param name="this">The collection to be used and checked.</param>
 	/// <param name="selector">The selector.</param>

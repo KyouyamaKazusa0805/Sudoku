@@ -8,7 +8,7 @@ namespace Sudoku.Analytics;
 /// <param name="views"><inheritdoc cref="IDrawable.Views" path="/summary"/></param>
 /// <param name="options">
 /// Indicates an optional instance that provides with extra information for a step searcher.
-/// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
+/// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc.
 /// </param>
 [TypeImpl(
 	TypeImplFlags.AllObjectMethods | TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.Equatable,
@@ -24,7 +24,6 @@ public abstract partial class Step(
 	IComparable<Step>,
 	IComparisonOperators<Step, Step, bool>,
 	IDrawable,
-	IEqualityOperators<Step, Step, bool>,
 	IEquatable<Step>,
 	IFormattable
 {

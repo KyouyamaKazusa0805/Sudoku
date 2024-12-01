@@ -336,12 +336,13 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 	void ISet<TElement>.SymmetricExceptWith(IEnumerable<TElement> other)
 	{
 		var left = this;
-		foreach (var element in other)
+		var elements = other as TElement[] ?? other.ToArray();
+		foreach (var element in elements)
 		{
 			left.Remove(element);
 		}
 
-		var right = [.. other] & ~(TSelf)this;
+		var right = [.. elements] & ~(TSelf)this;
 		Clear();
 		foreach (var element in (TSelf)left | right)
 		{

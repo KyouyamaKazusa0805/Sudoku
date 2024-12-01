@@ -84,11 +84,11 @@ internal partial class ChainingDriver
 	/// <summary>
 	/// <para>
 	/// Find all possible <see cref="NamedChain"/> patterns starting with the current node,
-	/// and to make an confliction with itself.
+	/// and to make a conflict with itself.
 	/// </para>
 	/// <para>
 	/// This method will return <see langword="null"/> if <paramref name="onlyFindOne"/> is <see langword="false"/>,
-	/// or the method cannot find a valid chain that forms a confliction with the current node.
+	/// or the method cannot find a valid chain that forms a conflict with the current node.
 	/// </para>
 	/// </summary>
 	/// <param name="startNode">The current instance.</param>
@@ -175,7 +175,7 @@ internal partial class ChainingDriver
 						Next:;
 						}
 
-						// This step will filter duplicate nodes in order not to make a internal loop on chains.
+						// This step will filter duplicate nodes in order not to make an internal loop on chains.
 						// The second argument must be 'NodeComparison.IgnoreIsOn' because we should explicitly ignore them
 						// no matter what state the node is.
 						// This will fix issue #673: https://github.com/KyouyamaKazusa0805/Sudoku/issues/673

@@ -833,13 +833,13 @@
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.EnumerateCells">
             <summary>
-            Try to enumerate cells on each candidates.
+            Try to enumerate cells on each candidate.
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.EnumerateCellDigit">
             <summary>
-            Try to enumerate cell and digit value on each candidates.
+            Try to enumerate cell and digit value on each candidate.
             </summary>
             <returns>The enumerator instance.</returns>
         </member>

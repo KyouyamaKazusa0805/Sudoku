@@ -25,13 +25,13 @@ internal partial class ChainingDriver
 			var digitsMask = grid.GetCandidates(cell);
 			foreach (var digit in digitsMask)
 			{
-				if (chaining_Binary(cell, digit, in grid, in context, chainingRules, out var nodesSupposedOn, out var nodesSupposedOff)
+				if (chainingOnBinary(cell, digit, in grid, in context, chainingRules, out var nodesSupposedOn, out var nodesSupposedOff)
 					is var binaryForcingChainsFound and not [])
 				{
 					return binaryForcingChainsFound;
 				}
 
-				if (chaining_Region(cell, digit, in grid, in context, nodesSupposedOn, nodesSupposedOff)
+				if (chainingOnRegion(cell, digit, in grid, in context, nodesSupposedOn, nodesSupposedOff)
 					is var regionForcingChainsFound and not [])
 				{
 					return regionForcingChainsFound;
@@ -54,7 +54,7 @@ internal partial class ChainingDriver
 				}
 			}
 
-			if (chaining_Cell(
+			if (chainingOnCell(
 				cell, digitsMask, in grid, in context, nodesSupposedOn_GroupedByDigit, nodesSupposedOff_GroupedByDigit,
 				nodesSupposedOn_InCell, nodesSupposedOff_InCell)
 				is var cellForcingChainsFound and not [])
@@ -65,7 +65,7 @@ internal partial class ChainingDriver
 		return result.ToArray();
 
 
-		ReadOnlySpan<BinaryForcingChains> chaining_Binary(
+		ReadOnlySpan<BinaryForcingChains> chainingOnBinary(
 			Cell cell,
 			Digit digit,
 			ref readonly Grid grid,
@@ -90,7 +90,7 @@ internal partial class ChainingDriver
 			);
 			if (contradiction is var (onNode_OnState, offNode_OnState))
 			{
-				if (bfcOn(in grid, in context, chainingRules, currentNodeOn, currentNodeOn, onNode_OnState, offNode_OnState, true)
+				if (bfcOn(in grid, in context, currentNodeOn, onNode_OnState, offNode_OnState, true)
 					is var contradictionForcingChains and not [])
 				{
 					return contradictionForcingChains;
@@ -108,7 +108,7 @@ internal partial class ChainingDriver
 			);
 			if (contradiction is var (onNode_OffState, offNode_OffState))
 			{
-				if (bfcOff(in grid, in context, chainingRules, currentNodeOff, currentNodeOff, onNode_OffState, offNode_OffState, true)
+				if (bfcOff(in grid, in context, currentNodeOff, onNode_OffState, offNode_OffState, true)
 					is var contradictionForcingChains and not [])
 				{
 					return contradictionForcingChains;
@@ -123,7 +123,7 @@ internal partial class ChainingDriver
 				var conflictedNode = nodesSupposedOn_OffCase.FirstOrDefault(n => n == node);
 				if (conflictedNode is not null)
 				{
-					if (bfcOff(in grid, in context, chainingRules, currentNodeOn, node, node, conflictedNode, false)
+					if (bfcOff(in grid, in context, node, node, conflictedNode, false)
 						is var doubleForcingChains and not [])
 					{
 						return doubleForcingChains;
@@ -135,7 +135,7 @@ internal partial class ChainingDriver
 				var conflictedNode = nodesSupposedOff_OffCase.FirstOrDefault(n => n == node);
 				if (conflictedNode is not null)
 				{
-					if (bfcOn(in grid, in context, chainingRules, currentNodeOff, node, node, conflictedNode, false)
+					if (bfcOn(in grid, in context, node, node, conflictedNode, false)
 						is var doubleForcingChains and not [])
 					{
 						return doubleForcingChains;
@@ -145,7 +145,7 @@ internal partial class ChainingDriver
 			return [];
 		}
 
-		ReadOnlySpan<MultipleForcingChains> chaining_Cell(
+		ReadOnlySpan<MultipleForcingChains> chainingOnCell(
 			Cell cell,
 			Mask digitsMask,
 			ref readonly Grid grid,
@@ -172,7 +172,7 @@ internal partial class ChainingDriver
 			return [];
 		}
 
-		ReadOnlySpan<MultipleForcingChains> chaining_Region(
+		ReadOnlySpan<MultipleForcingChains> chainingOnRegion(
 			Cell cell,
 			Digit digit,
 			ref readonly Grid grid,
@@ -408,8 +408,6 @@ internal partial class ChainingDriver
 		ReadOnlySpan<BinaryForcingChains> bfcOn(
 			ref readonly Grid grid,
 			ref readonly StepAnalysisContext context,
-			ChainingRuleCollection chainingRules,
-			Node onNode,
 			Node targetNode,
 			Node onNode_OnState,
 			Node offNode_OnState,
@@ -450,8 +448,6 @@ internal partial class ChainingDriver
 		ReadOnlySpan<BinaryForcingChains> bfcOff(
 			ref readonly Grid grid,
 			ref readonly StepAnalysisContext context,
-			ChainingRuleCollection chainingRules,
-			Node offNode,
 			Node targetNode,
 			Node onNode_OffState,
 			Node offNode_OffState,

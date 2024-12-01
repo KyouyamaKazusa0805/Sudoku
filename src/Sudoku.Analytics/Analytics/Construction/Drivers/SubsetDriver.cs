@@ -128,7 +128,7 @@ internal static class SubsetDriver
 					if (searchingForLocked && isLocked && !containsExtraEliminations
 						|| !searchingForLocked && isLocked && containsExtraEliminations)
 					{
-						// This is a locked hidden subset. We cannot handle this as a normal hidden subset.
+						// This is a locked-hidden subset. We cannot handle this as a normal hidden subset.
 						continue;
 					}
 

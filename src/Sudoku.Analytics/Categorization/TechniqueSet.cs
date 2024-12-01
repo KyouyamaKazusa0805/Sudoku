@@ -6,7 +6,7 @@ namespace Sudoku.Categorization;
 /// <remarks>
 /// This type uses a <see cref="BitArray"/> to construct the data structure. Because <see cref="BitArray"/> is a reference type,
 /// we cannot directly copy a <see cref="TechniqueSet"/> value. If you want to clone a <see cref="TechniqueSet"/>,
-/// please use <c>[..]</c> syntax:
+/// please use range syntax:
 /// <code><![CDATA[
 /// var techniques = TechniqueSets.All;
 /// var another = techniques[..]; // Copy all elements.
@@ -22,27 +22,22 @@ namespace Sudoku.Categorization;
 public sealed partial class TechniqueSet() :
 	IAdditionOperators<TechniqueSet, Technique, TechniqueSet>,
 	IAnyAllMethod<TechniqueSet, Technique>,
-	IBitwiseOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
-	ICollection<Technique>,
 	IContainsMethod<TechniqueSet, Technique>,
-	IEnumerable<Technique>,
 	IEquatable<TechniqueSet>,
 	IEqualityOperators<TechniqueSet, TechniqueSet, bool>,
 	IFiniteSet<TechniqueSet, Technique>,
 	IFormattable,
 	IInfiniteSet<TechniqueSet, Technique>,
 	ILogicalOperators<TechniqueSet>,
-	IReadOnlyCollection<Technique>,
 	IReadOnlySet<Technique>,
 	ISelectMethod<TechniqueSet, Technique>,
-	ISet<Technique>,
 	ISliceMethod<TechniqueSet, Technique>,
 	ISubtractionOperators<TechniqueSet, Technique, TechniqueSet>,
 	IToArrayMethod<TechniqueSet, Technique>,
 	IWhereMethod<TechniqueSet, Technique>
 {
 	/// <summary>
-	/// Indicates the information for the techniques, can lookup the relation via its belonging technique group.
+	/// Indicates the information for the techniques, can look up the relation via its belonging technique group.
 	/// This field will be used in extension method
 	/// <see cref="TechniqueGroupExtensions.GetTechniques(TechniqueGroup, Func{Technique, bool}?)"/>.
 	/// </summary>
@@ -366,7 +361,7 @@ public sealed partial class TechniqueSet() :
 		TechniqueSet otherSet = [.. other];
 
 		Clear();
-		foreach (var technique in (this & ~otherSet) | (otherSet & ~this))
+		foreach (var technique in this & ~otherSet | otherSet & ~this)
 		{
 			Add(technique);
 		}

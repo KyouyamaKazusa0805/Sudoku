@@ -42,6 +42,6 @@ public static class TupleExtensions
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TupleEnumerator<TTuple> GetEnumerator<TTuple>(this TTuple @this) where TTuple : ITuple, allows ref struct
+	public static TupleEnumerator<TTuple> GetEnumerator<TTuple>(this TTuple @this) where TTuple : ITuple?, allows ref struct
 		=> new(@this);
 }

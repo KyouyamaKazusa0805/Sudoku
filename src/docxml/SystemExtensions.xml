@@ -4202,7 +4202,7 @@
             Projects each element in the current instance into the target-typed span of element type <typeparamref name="TResult"/>,
             using the specified function to convert.
             </summary>
-            <typeparam name="T">The type of each elements in the span.</typeparam>
+            <typeparam name="T">The type of each element in the span.</typeparam>
             <typeparam name="TResult">The type of target value.</typeparam>
             <param name="this">The collection to be used and checked.</param>
             <param name="selector">The selector.</param>

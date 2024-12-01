@@ -159,8 +159,7 @@ internal static partial class ChainingDriver
 	/// <returns>The first found step.</returns>
 	public static Step? CollectBlossomLoopCore(ref StepAnalysisContext context, SortedSet<BlossomLoopStep> accumulator)
 	{
-		const bool allowsAdvancedLinks = true;
-		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
+		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. ChainingRule.AdvancedLinkTypes];
 		ref readonly var grid = ref context.Grid;
 		InitializeLinks(in grid, linkTypes.Aggregate(@delegate.EnumFlagMerger), context.Options, out var supportedRules);
 
@@ -373,6 +372,6 @@ file static class ForcingChainsCastingExtensions
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="this"/>.</typeparam>
 	/// <param name="this">The current instance.</param>
-	/// <returns>Casted <see cref="IForcingChains"/> instance.</returns>
+	/// <returns>Cast <see cref="IForcingChains"/> instance.</returns>
 	public static IForcingChains Cast<T>(this T @this) where T : IForcingChains => @this;
 }

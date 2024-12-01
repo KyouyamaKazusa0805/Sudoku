@@ -56,7 +56,7 @@ internal partial class ChainingDriver
 				// If not, the pattern may be degenerated to a normal continuous nice loop, or just not contain such digit.
 				if ((CandidatesMap[startDigit] & HousesMap[startHouse]).Count >= 3)
 				{
-					var (cellsDistribution, housesDistribution) = distributionsHouse(in grid, startHouse, startDigit);
+					var (cellsDistribution, housesDistribution) = distributionsHouse(startHouse, startDigit);
 					houseToCell(in grid, cellsDistribution, startHouse, startDigit, supportedRules);
 					houseToHouse(in grid, housesDistribution, startHouse, startDigit, supportedRules);
 				}
@@ -128,7 +128,7 @@ internal partial class ChainingDriver
 		void cellToHouse(ref readonly Grid grid, HousesDistribution housesDistribution, Cell startCell, ChainingRuleCollection supportedRules)
 		{
 			// Iterate on houses' distribution.
-			foreach (var ((startCurrentHouse, startCurrentDigit), houseDistribution) in housesDistribution)
+			foreach (var ((startCurrentHouse, _), houseDistribution) in housesDistribution)
 			{
 				if (startCell.ToHouse(HouseType.Block) == startCurrentHouse
 					|| startCell.ToHouse(HouseType.Row) == startCurrentHouse
@@ -224,7 +224,7 @@ internal partial class ChainingDriver
 		void houseToHouse(ref readonly Grid grid, HousesDistribution housesDistribution, House startHouse, Digit startDigit, ChainingRuleCollection supportedRules)
 		{
 			// Iterate on houses' distribution.
-			foreach (var ((startCurrentHouse, startCurrentDigit), houseDistribution) in housesDistribution)
+			foreach (var ((startCurrentHouse, _), houseDistribution) in housesDistribution)
 			{
 				if (startCurrentHouse == startHouse)
 				{
@@ -299,13 +299,12 @@ internal partial class ChainingDriver
 			return (cellsDistribution, housesDistribution);
 		}
 
-		(CellsDistribution, HousesDistribution) distributionsHouse(ref readonly Grid grid, House startHouse, Digit startDigit)
+		(CellsDistribution, HousesDistribution) distributionsHouse(House startHouse, Digit startDigit)
 		{
 			var cellsDistribution = new CellsDistribution();
 			var housesDistribution = new HousesDistribution();
-			foreach (var cell in HousesMap[startHouse] & CandidatesMap[startDigit])
+			foreach (var startCandidate in from cell in HousesMap[startHouse] & CandidatesMap[startDigit] select cell * 9 + startDigit)
 			{
-				var startCandidate = cell * 9 + startDigit;
 				if (allBranches.TryGetValue(startCandidate, out var dictionarySubview))
 				{
 					foreach (var (endCandidate, endNode) in dictionarySubview)

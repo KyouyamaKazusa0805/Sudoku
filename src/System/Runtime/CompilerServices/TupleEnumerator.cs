@@ -9,8 +9,8 @@ namespace System.Runtime.CompilerServices;
 	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
-public ref partial struct TupleEnumerator<TTuple>([Field] TTuple tuple) : IEnumerator, IEnumerator<object?>
-	where TTuple : ITuple, allows ref struct
+public ref partial struct TupleEnumerator<TTuple>([Field] TTuple tuple) : IEnumerator<object?>
+	where TTuple : ITuple?, allows ref struct
 {
 	/// <summary>
 	/// The current index.
@@ -19,11 +19,11 @@ public ref partial struct TupleEnumerator<TTuple>([Field] TTuple tuple) : IEnume
 
 
 	/// <inheritdoc cref="IEnumerator.Current"/>
-	public readonly object? Current => _tuple[_index];
+	public readonly object? Current => _tuple?[_index];
 
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
-	public bool MoveNext() => ++_index < _tuple.Length;
+	public bool MoveNext() => ++_index < _tuple?.Length;
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

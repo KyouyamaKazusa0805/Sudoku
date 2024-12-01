@@ -16,7 +16,7 @@ public sealed class ConstraintCollection :
 	IWhereMethod<ConstraintCollection, Constraint>
 {
 	/// <inheritdoc cref="List{T}()"/>
-	public ConstraintCollection() : base()
+	public ConstraintCollection()
 	{
 	}
 

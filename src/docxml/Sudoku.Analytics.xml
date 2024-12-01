@@ -5164,11 +5164,11 @@
             <summary>
             <para>
             Find all possible <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> patterns starting with the current node,
-            and to make an confliction with itself.
+            and to make a conflict with itself.
             </para>
             <para>
             This method will return <see langword="null"/> if <paramref name="onlyFindOne"/> is <see langword="false"/>,
-            or the method cannot find a valid chain that forms a confliction with the current node.
+            or the method cannot find a valid chain that forms a conflict with the current node.
             </para>
             </summary>
             <param name="startNode">The current instance.</param>
@@ -5406,7 +5406,7 @@
             </summary>
             <typeparam name="T">The type of <paramref name="this"/>.</typeparam>
             <param name="this">The current instance.</param>
-            <returns>Casted <see cref="T:Sudoku.Analytics.Construction.Components.IForcingChains"/> instance.</returns>
+            <returns>Cast <see cref="T:Sudoku.Analytics.Construction.Components.IForcingChains"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Drivers.SubsetDriver">
             <summary>
@@ -8096,7 +8096,7 @@
             <param name="views"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Views" path="/summary"/></param>
             <param name="options">
             Indicates an optional instance that provides with extra information for a step searcher.
-            This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
+            This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc.
             </param>
         </member>
         <member name="M:Sudoku.Analytics.Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
@@ -8108,7 +8108,7 @@
             <param name="views"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Views" path="/summary"/></param>
             <param name="options">
             Indicates an optional instance that provides with extra information for a step searcher.
-            This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
+            This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc.
             </param>
         </member>
         <member name="P:Sudoku.Analytics.Step.IsAssignment">
@@ -26338,7 +26338,7 @@
             <remarks>
             This type uses a <see cref="T:System.Collections.BitArray"/> to construct the data structure. Because <see cref="T:System.Collections.BitArray"/> is a reference type,
             we cannot directly copy a <see cref="T:Sudoku.Categorization.TechniqueSet"/> value. If you want to clone a <see cref="T:Sudoku.Categorization.TechniqueSet"/>,
-            please use <c>[..]</c> syntax:
+            please use range syntax:
             <code><![CDATA[
             var techniques = TechniqueSets.All;
             var another = techniques[..]; // Copy all elements.
@@ -26366,7 +26366,7 @@
             <remarks>
             This type uses a <see cref="T:System.Collections.BitArray"/> to construct the data structure. Because <see cref="T:System.Collections.BitArray"/> is a reference type,
             we cannot directly copy a <see cref="T:Sudoku.Categorization.TechniqueSet"/> value. If you want to clone a <see cref="T:Sudoku.Categorization.TechniqueSet"/>,
-            please use <c>[..]</c> syntax:
+            please use range syntax:
             <code><![CDATA[
             var techniques = TechniqueSets.All;
             var another = techniques[..]; // Copy all elements.
@@ -26378,7 +26378,7 @@
         </member>
         <member name="F:Sudoku.Categorization.TechniqueSet.TechniqueRelationGroups">
             <summary>
-            Indicates the information for the techniques, can lookup the relation via its belonging technique group.
+            Indicates the information for the techniques, can look up the relation via its belonging technique group.
             This field will be used in extension method
             <see cref="M:Sudoku.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Categorization.TechniqueGroup,System.Func{Sudoku.Categorization.Technique,System.Boolean})"/>.
             </summary>
@@ -35309,7 +35309,7 @@
             The feature may be subject to breaking changes or removal in a future release.
             </para>
             <para>
-            An interceptor is a method which can declaratively substitute a call to an interceptable method with a call
+            An interceptor is a method which can declaratively substitute a call to an intercept-able method with a call
             to itself at compile time.
             This substitution occurs by having the interceptor declare the source locations of the calls that it intercepts.
             This provides a limited facility to change the semantics of existing code
@@ -35327,7 +35327,7 @@
             The feature may be subject to breaking changes or removal in a future release.
             </para>
             <para>
-            An interceptor is a method which can declaratively substitute a call to an interceptable method with a call
+            An interceptor is a method which can declaratively substitute a call to an intercept-able method with a call
             to itself at compile time.
             This substitution occurs by having the interceptor declare the source locations of the calls that it intercepts.
             This provides a limited facility to change the semantics of existing code
