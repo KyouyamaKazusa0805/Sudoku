@@ -9,7 +9,6 @@
 
 	<ItemGroup>
 		<AdditionalFiles Include="..\..\Directory.Build.props" />
-		<ProjectReference Include="..\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 	<ItemGroup>

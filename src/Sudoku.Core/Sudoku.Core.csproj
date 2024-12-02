@@ -9,7 +9,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+		<ProjectReference Include="..\..\PuzzlesMeta\src\Puzzles.SourceGeneration\Puzzles.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\..\PuzzlesMeta\src\System\SystemExtensions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

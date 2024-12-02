@@ -8,11 +8,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+		<AdditionalFiles Include="..\..\Directory.Build.props" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<AdditionalFiles Include="..\..\Directory.Build.props" />
+		<ProjectReference Include="..\..\PuzzlesMeta\src\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 	<ItemGroup>

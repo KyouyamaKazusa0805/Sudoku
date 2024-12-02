@@ -9,7 +9,10 @@
 
 	<ItemGroup>
 		<AdditionalFiles Include="..\..\Directory.Build.props" />
-		<ProjectReference Include="..\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\PuzzlesMeta\src\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 	<ItemGroup>
