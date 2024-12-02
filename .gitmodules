@@ -1,0 +1,3 @@
+[submodule "PuzzlesMeta"]
+	path = PuzzlesMeta
+	url = https://github.com/KyouyamaKazusa0805/Puzzles.Meta.git
