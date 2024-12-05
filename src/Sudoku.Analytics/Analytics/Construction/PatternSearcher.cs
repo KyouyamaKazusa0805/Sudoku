@@ -9,6 +9,12 @@ public abstract class PatternSearcher<TPattern> : IConstructible<PatternSearcher
 	/// <inheritdoc/>
 	public abstract PatternSearcherType Type { get; }
 
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.None;
+
 
 	/// <summary>
 	/// Try to search patterns and return them.

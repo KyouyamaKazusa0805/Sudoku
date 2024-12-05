@@ -17,6 +17,12 @@ public sealed partial class LockedMember(
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.LockedMember;
 
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.None;
+
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

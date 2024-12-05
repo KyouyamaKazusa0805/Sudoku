@@ -55,6 +55,12 @@ internal interface IParentLinkedNode<TSelf> :
 	/// </summary>
 	public abstract TSelf Root { get; }
 
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.LinkedListBased;
+
 
 	/// <summary>
 	/// Determines whether the current node is an ancestor of the specified node. 

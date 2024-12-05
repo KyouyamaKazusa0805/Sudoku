@@ -12,6 +12,7 @@ public partial struct SpaceSet :
 	IAdditionOperators<SpaceSet, Space, SpaceSet>,
 	IBitwiseOperators<SpaceSet, SpaceSet, SpaceSet>,
 	ICollection<Space>,
+	IDataStructure,
 	IEnumerable<Space>,
 	IEquatable<SpaceSet>,
 	IEqualityOperators<SpaceSet, SpaceSet, bool>,
@@ -41,6 +42,15 @@ public partial struct SpaceSet :
 
 	/// <inheritdoc/>
 	readonly bool ICollection<Space>.IsReadOnly => false;
+
+	/// <inheritdoc/>
+	readonly DataStructureType IDataStructure.Type => DataStructureType.Set;
+
+	/// <inheritdoc/>
+	readonly DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
+
+	/// <inheritdoc/>
+	readonly DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Bit;
 
 
 	/// <inheritdoc/>

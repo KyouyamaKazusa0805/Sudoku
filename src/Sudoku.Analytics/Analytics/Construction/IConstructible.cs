@@ -4,10 +4,10 @@ namespace Sudoku.Analytics.Construction;
 /// Represents an element that is constructible.
 /// </summary>
 /// <typeparam name="TEnum">The type of enumeration.</typeparam>
-public interface IConstructible<TEnum> where TEnum : Enum
+public interface IConstructible<TEnum> : IDataStructure where TEnum : Enum
 {
 	/// <summary>
 	/// Indicates the type of the constructible element.
 	/// </summary>
-	public abstract TEnum Type { get; }
+	public new abstract TEnum Type { get; }
 }

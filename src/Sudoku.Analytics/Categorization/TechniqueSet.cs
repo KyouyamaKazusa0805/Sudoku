@@ -23,6 +23,7 @@ public sealed partial class TechniqueSet() :
 	IAdditionOperators<TechniqueSet, Technique, TechniqueSet>,
 	IAnyAllMethod<TechniqueSet, Technique>,
 	IContainsMethod<TechniqueSet, Technique>,
+	IDataStructure,
 	IEquatable<TechniqueSet>,
 	IEqualityOperators<TechniqueSet, TechniqueSet, bool>,
 	IFiniteSet<TechniqueSet, Technique>,
@@ -142,6 +143,15 @@ public sealed partial class TechniqueSet() :
 
 	/// <inheritdoc/>
 	bool ICollection<Technique>.IsReadOnly => false;
+
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.Set;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
+
+	/// <inheritdoc/>
+	DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Bit;
 
 
 	/// <summary>

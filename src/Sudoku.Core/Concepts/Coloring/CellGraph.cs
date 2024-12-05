@@ -10,7 +10,7 @@ namespace Sudoku.Concepts.Coloring;
 /// <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
 [CollectionBuilder(typeof(CellGraph), nameof(Create))]
 [TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
-public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, IReadOnlyCollection<Cell>
+public readonly partial struct CellGraph : IDataStructure, IEquatable<CellGraph>, IFormattable, IReadOnlyCollection<Cell>
 {
 	/// <summary>
 	/// Indicates the default empty graph without any cells.
@@ -124,6 +124,15 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 
 	/// <inheritdoc/>
 	int IReadOnlyCollection<Cell>.Count => VerticesCount;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
+
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.Array | DataStructureType.Graph;
+
+	/// <inheritdoc/>
+	DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Bit;
 
 
 	/// <summary>

@@ -6,7 +6,10 @@ namespace Sudoku.Concepts.Supersymmetry;
 /// </summary>
 /// <param name="mask">Indicates the backing mask.</param>
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
-public readonly partial struct Space([Field, HashCodeMember] Mask mask) : IEquatable<Space>, IEqualityOperators<Space, Space, bool>
+public readonly partial struct Space([Field, HashCodeMember] Mask mask) :
+	IDataStructure,
+	IEquatable<Space>,
+	IEqualityOperators<Space, Space, bool>
 {
 	/// <summary>
 	/// Indicates whether the space is house-related.
@@ -61,6 +64,15 @@ public readonly partial struct Space([Field, HashCodeMember] Mask mask) : IEquat
 			SpaceType.BlockNumber => Block,
 			_ => -1
 		};
+
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.None;
+
+	/// <inheritdoc/>
+	DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Bit;
 
 	/// <summary>
 	/// Indicates the represented letter.

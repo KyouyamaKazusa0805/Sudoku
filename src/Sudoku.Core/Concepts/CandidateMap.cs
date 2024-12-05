@@ -211,6 +211,12 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	readonly int CandidateMapBase.Shifting => sizeof(long) << 3;
 
 	/// <inheritdoc/>
+	readonly DataStructureType IDataStructure.Type => DataStructureType.Array;
+
+	/// <inheritdoc/>
+	readonly DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
+
+	/// <inheritdoc/>
 	readonly Candidate[] CandidateMapBase.Offsets => Offsets;
 
 

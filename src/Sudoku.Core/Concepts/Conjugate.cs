@@ -10,6 +10,7 @@ namespace Sudoku.Concepts;
 /// <param name="_mask">Indicates the target mask.</param>
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable)]
 public readonly partial struct Conjugate(ConjugateMask _mask) :
+	IDataStructure,
 	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate, bool>,
 	IFormattable,
@@ -69,6 +70,15 @@ public readonly partial struct Conjugate(ConjugateMask _mask) :
 	[HashCodeMember]
 	[EquatableMember]
 	public CellMap Map => [From, To];
+
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.None;
+
+	/// <inheritdoc/>
+	DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Bit;
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

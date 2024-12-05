@@ -12,6 +12,12 @@ public abstract record WhipAssignment(ref readonly CandidateMap Map, Technique R
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.WhipAssignment;
 
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.None;
+
 
 	/// <include
 	///     file="../../global-doc-comments.xml"

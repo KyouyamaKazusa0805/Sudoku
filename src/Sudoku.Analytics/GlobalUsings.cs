@@ -21,6 +21,7 @@ global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading;
+global using Puzzles.Meta.DataStructures;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Caching;
 global using Sudoku.Analytics.Configuration;

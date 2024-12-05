@@ -29,6 +29,7 @@ namespace Sudoku.Concepts;
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable)]
 public readonly partial struct Conclusion([Field, HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
+	IDataStructure,
 	IDrawableItem,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>,
@@ -95,6 +96,16 @@ public readonly partial struct Conclusion([Field, HashCodeMember] Mask mask) :
 
 	[EquatableMember]
 	private Mask MaskEntry => _mask;
+
+
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.None;
+
+	/// <inheritdoc/>
+	DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Bit;
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

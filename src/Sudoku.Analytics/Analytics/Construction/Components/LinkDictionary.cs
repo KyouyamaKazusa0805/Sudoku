@@ -30,6 +30,12 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>, IComponent
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.ChainLinkDictionary;
 
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.HashTable;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
+
 
 	/// <summary>
 	/// Clears the collection.

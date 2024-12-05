@@ -4,7 +4,7 @@ namespace Sudoku.Concepts.Specialized;
 /// Represents constants of <see cref="AdjacentCellDirection"/>.
 /// </summary>
 /// <seealso cref="AdjacentCellDirection"/>
-public readonly ref struct AdjacentCellDirections
+public static class AdjacentCellDirections
 {
 	/// <summary>
 	/// Indicates all directions.

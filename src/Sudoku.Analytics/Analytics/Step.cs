@@ -24,6 +24,7 @@ public abstract partial class Step(
 	IComparable<Step>,
 	IComparisonOperators<Step, Step, bool>,
 	IDrawable,
+	IDataStructure,
 	IEquatable<Step>,
 	IFormattable
 {
@@ -164,6 +165,12 @@ public abstract partial class Step(
 	/// Indicates the identifier of this type. This property will be used in resource.
 	/// </summary>
 	protected string FormatTypeIdentifier => (TechniqueResourceKeyInheritsFromBase ? GetType().BaseType! : GetType()).Name;
+
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.None;
 
 	/// <inheritdoc/>
 	ReadOnlyMemory<View> IDrawable.Views => Views;

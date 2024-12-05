@@ -5,7 +5,9 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <param name="Base">Indicates the base that describes the block and line index.</param>
 /// <param name="Result">Indicates the result values.</param>
-public readonly record struct Miniline(ref readonly MinilineBase Base, ref readonly MinilineResult Result)
+public readonly record struct Miniline(ref readonly MinilineBase Base, ref readonly MinilineResult Result) :
+	IDataStructure,
+	IEqualityOperators<Miniline, Miniline, bool>
 {
 	/// <summary>
 	/// Indicates the mini-lines to be iterated, grouped by chute index.
@@ -40,6 +42,13 @@ public readonly record struct Miniline(ref readonly MinilineBase Base, ref reado
 		[4, 7], [1, 7], [1, 4], [4, 7], [1, 7], [1, 4], [4, 7], [1, 7], [1, 4],
 		[5, 8], [2, 8], [2, 5], [5, 8], [2, 8], [2, 5], [5, 8], [2, 8], [2, 5]
 	];
+
+
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.None;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />

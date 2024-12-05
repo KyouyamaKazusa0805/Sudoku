@@ -37,6 +37,12 @@ public sealed partial class NodeSet : IComponent, IFormattable, IReadOnlyList<No
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.ChainNodeSet;
 
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.SequenceList;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
+
 
 	/// <inheritdoc/>
 	public Node this[int index] => _nodes[index];

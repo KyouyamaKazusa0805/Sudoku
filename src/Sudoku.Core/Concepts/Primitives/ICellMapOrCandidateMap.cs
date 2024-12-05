@@ -15,6 +15,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 	IComparisonOperators<TSelf, TSelf, bool>,
 	IContainsMethod<TSelf, TElement>,
 	ICountMethod<TSelf, TElement>,
+	IDataStructure,
 	IElementAtMethod<TSelf, TElement>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IEquatable<TSelf>,
@@ -77,6 +78,9 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 
 	/// <inheritdoc/>
 	bool ICollection<TElement>.IsReadOnly => false;
+
+	/// <inheritdoc/>
+	DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Bit;
 
 
 	/// <summary>

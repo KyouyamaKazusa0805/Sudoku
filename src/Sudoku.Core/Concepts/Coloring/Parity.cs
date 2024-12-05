@@ -17,8 +17,17 @@ namespace Sudoku.Concepts.Coloring;
 /// <param name="Cells">Indicates the cells used.</param>
 /// <seealso cref="Cluster"/>
 /// <seealso href="http://sudopedia.enjoysudoku.com/Parity.html">Sudopedia Mirror - Parity</seealso>
-public readonly record struct Parity(bool ParityFlag, ref readonly CellMap Cells)
+public readonly record struct Parity(bool ParityFlag, ref readonly CellMap Cells) :
+	IDataStructure,
+	IEqualityOperators<Parity, Parity, bool>
 {
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.None;
+
+
 	/// <summary>
 	/// Try to get all pairs of parities of all components of the specified graph.
 	/// </summary>

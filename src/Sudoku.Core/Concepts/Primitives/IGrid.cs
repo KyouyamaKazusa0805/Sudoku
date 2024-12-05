@@ -7,6 +7,7 @@ namespace Sudoku.Concepts.Primitives;
 public interface IGrid<TSelf> :
 	IComparable<TSelf>,
 	IComparisonOperators<TSelf, TSelf, bool>,
+	IDataStructure,
 	IEnumerable<Digit>,
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
@@ -232,6 +233,15 @@ public interface IGrid<TSelf> :
 	/// <seealso cref="SudokuType"/>
 	[UnscopedRef]
 	protected abstract ref readonly Mask FirstMaskRef { get; }
+
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.Array;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
+
+	/// <inheritdoc/>
+	DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Bit;
 
 
 	/// <summary>

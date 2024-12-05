@@ -18,6 +18,12 @@ public interface IChainOrForcingChains : IComponent
 	/// <seealso cref="IsGrouped"/>
 	public abstract bool IsStrictlyGrouped { get; }
 
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.LinkedList;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.LinkedListBased;
+
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public abstract string ToString(IFormatProvider? formatProvider);

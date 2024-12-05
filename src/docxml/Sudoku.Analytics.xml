@@ -2865,6 +2865,12 @@
         <member name="P:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.Puzzles#Meta#DataStructures#IDataStructure#Base">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.Equals(`0)">
             <inheritdoc/>
         </member>
@@ -2962,6 +2968,12 @@
             <summary>The excluded cells to be used.</summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.ExcluderInfo.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ExcluderInfo.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ExcluderInfo.Puzzles#Meta#DataStructures#IDataStructure#Base">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ExcluderInfo.TryCreate(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
@@ -3113,6 +3125,12 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Puzzles#Meta#DataStructures#IDataStructure#Base">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.Equals(Sudoku.Analytics.Construction.Components.ForcingChainsInfo,Sudoku.Analytics.Construction.Components.NodeComparison)">
@@ -3406,6 +3424,12 @@
             </summary>
             <seealso cref="P:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.IsGrouped"/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.Puzzles#Meta#DataStructures#IDataStructure#Base">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
@@ -3635,6 +3659,12 @@
             Indicates the root node.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.Puzzles#Meta#DataStructures#IDataStructure#Base">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.IParentLinkedNode`1.IsAncestorOf(`0)">
             <summary>
             Determines whether the current node is an ancestor of the specified node. 
@@ -3712,6 +3742,12 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Link.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Link.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Link.Puzzles#Meta#DataStructures#IDataStructure#Base">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Link.Equals(Sudoku.Analytics.Construction.Components.Link)">
@@ -3805,6 +3841,12 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.LinkDictionary.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.LinkDictionary.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.LinkDictionary.Puzzles#Meta#DataStructures#IDataStructure#Base">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.LinkDictionary.Clear">
@@ -3954,6 +3996,12 @@
             <param name="lockedBlock">Indicates the locked block.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.LockedMember.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.LockedMember.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.LockedMember.Puzzles#Meta#DataStructures#IDataStructure#Base">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32@)">
@@ -4534,6 +4582,12 @@
         <member name="P:Sudoku.Analytics.Construction.Components.NodeSet.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.NodeSet.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.NodeSet.Puzzles#Meta#DataStructures#IDataStructure#Base">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.NodeSet.Item(System.Int32)">
             <inheritdoc/>
         </member>
@@ -4912,6 +4966,12 @@
             <summary>Indicates the reason why the target candidate becomes available.</summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Sudoku#Analytics#Construction#IComponent#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Puzzles#Meta#DataStructures#IDataStructure#Base">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipAssignment.PrintMembers(System.Text.StringBuilder)">
@@ -5469,6 +5529,15 @@
         <member name="P:Sudoku.Analytics.Construction.Pattern.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Pattern.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Pattern.Puzzles#Meta#DataStructures#IDataStructure#Base">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Pattern.Puzzles#Meta#DataStructures#IDataStructure#ValueBase">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Pattern.Equals(Sudoku.Analytics.Construction.Pattern)">
             <inheritdoc/>
         </member>
@@ -5497,6 +5566,12 @@
             <typeparam name="TPattern">The type of pattern.</typeparam>
         </member>
         <member name="P:Sudoku.Analytics.Construction.PatternSearcher`1.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.PatternSearcher`1.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.PatternSearcher`1.Puzzles#Meta#DataStructures#IDataStructure#Base">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.PatternSearcher`1.Search(Sudoku.Concepts.Grid@)">
@@ -8224,6 +8299,12 @@
             <summary>
             Indicates the identifier of this type. This property will be used in resource.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Puzzles#Meta#DataStructures#IDataStructure#Base">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Step.Sudoku#Drawing#IDrawable#Views">
             <inheritdoc/>
@@ -26443,6 +26524,15 @@
             </summary>
         </member>
         <member name="P:Sudoku.Categorization.TechniqueSet.System#Collections#Generic#ICollection{Sudoku#Categorization#Technique}#IsReadOnly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Categorization.TechniqueSet.Puzzles#Meta#DataStructures#IDataStructure#Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Categorization.TechniqueSet.Puzzles#Meta#DataStructures#IDataStructure#Base">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Categorization.TechniqueSet.Puzzles#Meta#DataStructures#IDataStructure#ValueBase">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Categorization.TechniqueSet.Item(System.Int32)">

@@ -24,6 +24,15 @@ public abstract partial class Pattern :
 	/// <inheritdoc/>
 	public abstract PatternType Type { get; }
 
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.None;
+
+	/// <inheritdoc/>
+	DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Value;
+
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Pattern? other);

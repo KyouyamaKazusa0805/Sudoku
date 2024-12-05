@@ -14,6 +14,12 @@ public sealed record ExcluderInfo(ref readonly CellMap BaseCells, ref readonly C
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.Excluder;
 
+	/// <inheritdoc/>
+	DataStructureType IDataStructure.Type => DataStructureType.None;
+
+	/// <inheritdoc/>
+	DataStructureBase IDataStructure.Base => DataStructureBase.None;
+
 
 	/// <summary>
 	/// Try to get a pair of <see cref="CellMap"/> instances indicating the crosshatching information for the specified house,
