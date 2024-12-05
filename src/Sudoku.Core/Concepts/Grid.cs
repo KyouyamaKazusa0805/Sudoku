@@ -807,6 +807,30 @@ public partial struct Grid : GridBase
 	readonly IEnumerable<TResult> ISelectMethod<Grid, Candidate>.Select<TResult>(Func<Candidate, TResult> selector)
 		=> this.Select(selector).ToArray();
 
+	/// <inheritdoc/>
+	[UnscopedRef]
+	ref Grid ITransformable<Grid>.MirrorLeftRight() => ref this.MirrorLeftRight();
+
+	/// <inheritdoc/>
+	[UnscopedRef]
+	ref Grid ITransformable<Grid>.MirrorTopBottom() => ref this.MirrorTopBottom();
+
+	/// <inheritdoc/>
+	[UnscopedRef]
+	ref Grid ITransformable<Grid>.MirrorDiagonal() => ref this.MirrorDiagonal();
+
+	/// <inheritdoc/>
+	[UnscopedRef]
+	ref Grid ITransformable<Grid>.MirrorAntidiagonal() => ref this.MirrorAntidiagonal();
+
+	/// <inheritdoc/>
+	[UnscopedRef]
+	ref Grid ITransformable<Grid>.RotateClockwise() => ref this.RotateClockwise();
+
+	/// <inheritdoc/>
+	[UnscopedRef]
+	ref Grid ITransformable<Grid>.RotateCounterclockwise() => ref this.RotateCounterclockwise();
+
 	/// <summary>
 	/// Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.
 	/// </summary>

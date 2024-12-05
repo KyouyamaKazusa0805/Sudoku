@@ -4726,6 +4726,24 @@
         <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#Grid,System#Int32}#Select``1(System.Func{System.Int32,``0})">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#ITransformable{Sudoku#Concepts#Grid}#MirrorLeftRight">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#ITransformable{Sudoku#Concepts#Grid}#MirrorTopBottom">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#ITransformable{Sudoku#Concepts#Grid}#MirrorDiagonal">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#ITransformable{Sudoku#Concepts#Grid}#MirrorAntidiagonal">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#ITransformable{Sudoku#Concepts#Grid}#RotateClockwise">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#ITransformable{Sudoku#Concepts#Grid}#RotateCounterclockwise">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.Preserve(Sudoku.Concepts.CellMap@)">
             <summary>
             Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.

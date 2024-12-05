@@ -19,6 +19,7 @@ public interface IGrid<TSelf> :
 	ISpanFormattable,
 	ISpanParsable<TSelf>,
 	IToArrayMethod<TSelf, Digit>,
+	ITransformable<TSelf>,
 	IWhereMethod<TSelf, Candidate>
 	where TSelf : unmanaged, IGrid<TSelf>
 {

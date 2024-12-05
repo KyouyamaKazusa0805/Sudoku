@@ -24,6 +24,7 @@ global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading;
 global using System.Threading.Tasks;
+global using Puzzles.Meta;
 global using Sudoku.Behaviors.Diff;
 global using Sudoku.Behaviors.Diff.Results;
 global using Sudoku.Concepts;
