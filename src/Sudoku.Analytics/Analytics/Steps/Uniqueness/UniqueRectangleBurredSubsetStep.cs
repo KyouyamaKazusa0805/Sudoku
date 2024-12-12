@@ -56,7 +56,7 @@ public sealed partial class UniqueRectangleBurredSubsetStep(
 		=> [
 			Factor.Create(
 				"Factor_UniqueRectangleBurredSubsetSizeFactor",
-				[nameof(IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.SubsetSize)],
+				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
 				static args => (int)args![0]!
 			)

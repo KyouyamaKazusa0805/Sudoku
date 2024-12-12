@@ -67,7 +67,7 @@ public sealed partial class UniqueRectangleExternalType3Step(
 			),
 			Factor.Create(
 				"Factor_UniqueRectangleExternalSubsetSizeFactor",
-				[nameof(IPatternType3StepTrait<UniqueRectangleExternalType3Step>.SubsetSize)],
+				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
 				static args => (int)args![0]!
 			),

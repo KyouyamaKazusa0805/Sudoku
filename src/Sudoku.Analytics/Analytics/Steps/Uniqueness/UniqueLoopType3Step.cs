@@ -43,7 +43,7 @@ public sealed partial class UniqueLoopType3Step(
 			.. base.Factors,
 			Factor.Create(
 				"Factor_UniqueLoopSubsetSizeFactor",
-				[nameof(IPatternType3StepTrait<UniqueLoopType3Step>.SubsetSize)],
+				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
 				static args => (int)args![0]!
 			)

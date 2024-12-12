@@ -38,7 +38,7 @@ public sealed partial class UniqueMatrixType3Step(
 		=> [
 			Factor.Create(
 				"Factor_UniqueMatrixSubsetSizeFactor",
-				[nameof(IPatternType3StepTrait<UniqueMatrixType3Step>.SubsetSize)],
+				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
 				static args => (int)args![0]!
 			)

@@ -46,7 +46,7 @@ public sealed partial class QiuDeadlyPatternType3Step(
 		=> [
 			Factor.Create(
 				"Factor_QiuDeadlyPatternSubsetSizeFactor",
-				[nameof(IPatternType3StepTrait<QiuDeadlyPatternType3Step>.SubsetSize)],
+				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
 				static args => (int)args![0]!
 			)

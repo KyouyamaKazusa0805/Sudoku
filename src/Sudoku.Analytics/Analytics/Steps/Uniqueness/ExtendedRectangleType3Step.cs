@@ -46,7 +46,7 @@ public sealed partial class ExtendedRectangleType3Step(
 			.. base.Factors,
 			Factor.Create(
 				"Factor_ExtendedRectangleSubsetSizeFactor",
-				[nameof(IPatternType3StepTrait<ExtendedRectangleType3Step>.SubsetSize)],
+				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
 				static args => (int)args![0]!
 			),

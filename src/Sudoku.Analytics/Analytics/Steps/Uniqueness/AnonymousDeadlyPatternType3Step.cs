@@ -42,7 +42,7 @@ public sealed partial class AnonymousDeadlyPatternType3Step(
 		=> [
 			Factor.Create(
 				"Factor_AnonymousDeadlyPatternSubsetSizeFactor",
-				[nameof(IPatternType3StepTrait<AnonymousDeadlyPatternType3Step>.SubsetSize)],
+				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
 				static args => (int)args![0]!
 			)

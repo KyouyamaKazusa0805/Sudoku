@@ -40,7 +40,7 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 		=> [
 			Factor.Create(
 				"Factor_BorescoperDeadlyPatternSubsetSizeFactor",
-				[nameof(IPatternType3StepTrait<BorescoperDeadlyPatternType3Step>.SubsetSize)],
+				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
 				static args => (int)args![0]!
 			)
