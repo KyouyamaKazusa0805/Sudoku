@@ -5,6 +5,7 @@ namespace Sudoku.Concepts.Primitives;
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface IGrid<TSelf> :
+	IBoard,
 	IComparable<TSelf>,
 	IComparisonOperators<TSelf, TSelf, bool>,
 	IDataStructure,
@@ -233,6 +234,12 @@ public interface IGrid<TSelf> :
 	/// <seealso cref="SudokuType"/>
 	[UnscopedRef]
 	protected abstract ref readonly Mask FirstMaskRef { get; }
+
+	/// <inheritdoc/>
+	int IBoard.Rows => 9;
+
+	/// <inheritdoc/>
+	int IBoard.Columns => 9;
 
 	/// <inheritdoc/>
 	DataStructureType IDataStructure.Type => DataStructureType.Array;

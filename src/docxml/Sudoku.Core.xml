@@ -6210,6 +6210,12 @@
             <seealso cref="T:Sudoku.Concepts.CellState"/>
             <seealso cref="T:Sudoku.SudokuType"/>
         </member>
+        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Puzzles#Meta#IBoard#Rows">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Puzzles#Meta#IBoard#Columns">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Puzzles#Meta#DataStructures#IDataStructure#Type">
             <inheritdoc/>
         </member>
