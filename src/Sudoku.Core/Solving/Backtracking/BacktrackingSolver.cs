@@ -25,34 +25,12 @@ public sealed class BacktrackingSolver : ISolver
 
 
 	/// <summary>
-	/// To solve the specified grid.
+	/// Indicates whether the solver uses breadth-first searching algorithm instead of traditional depth-first searching.
 	/// </summary>
-	/// <param name="grid">The grid to be solved.</param>
-	/// <param name="result">
-	/// <para>The result of the grid.</para>
-	/// <para>
-	/// Different with other methods whose containing type is <see cref="ISolver"/>,
-	/// this argument can be used no matter what the result value will be.
-	/// </para>
-	/// </param>
-	/// <returns>
-	/// A <see cref="bool"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
-	/// Please note that the method will return three possible values:
-	/// <list type="table">
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>The puzzle has a unique solution.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="false"/></term>
-	/// <description>The puzzle has multiple solutions.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>The puzzle has no solution.</description>
-	/// </item>
-	/// </list>
-	/// </returns>
+	public bool UseBreadthFirstSearch { get; set; }
+
+
+	/// <inheritdoc/>
 	public bool? Solve(ref readonly Grid grid, out Grid result)
 	{
 		var resultArray = default(Digit[]);
@@ -60,7 +38,14 @@ public sealed class BacktrackingSolver : ISolver
 		{
 			var solutionsCount = 0;
 			var gridArray = grid.ToDigitsArray(); // Implicit plus one operation.
-			solve(ref solutionsCount, ref resultArray, gridArray, 0);
+			if (UseBreadthFirstSearch)
+			{
+				bfs(ref resultArray, gridArray);
+			}
+			else
+			{
+				dfs(ref resultArray, gridArray, ref solutionsCount, 0);
+			}
 
 			if (resultArray is null)
 			{
@@ -78,7 +63,7 @@ public sealed class BacktrackingSolver : ISolver
 		}
 
 
-		static void solve(ref int solutionsCount, ref Digit[]? result, Digit[] gridValues, int finishedCellsCount)
+		static void dfs(ref Digit[]? result, Digit[] gridValues, ref int solutionsCount, int finishedCellsCount)
 		{
 			if (finishedCellsCount == 81)
 			{
@@ -97,7 +82,7 @@ public sealed class BacktrackingSolver : ISolver
 
 			if (gridValues[finishedCellsCount] != 0)
 			{
-				solve(ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
+				dfs(ref result, gridValues, ref solutionsCount, finishedCellsCount + 1);
 			}
 			else
 			{
@@ -110,7 +95,7 @@ public sealed class BacktrackingSolver : ISolver
 					gridValues[finishedCellsCount]++;
 					if (IsValid(gridValues, r, c))
 					{
-						solve(ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
+						dfs(ref result, gridValues, ref solutionsCount, finishedCellsCount + 1);
 					}
 				}
 
@@ -118,6 +103,46 @@ public sealed class BacktrackingSolver : ISolver
 				// Backtracking the cell...
 				gridValues[finishedCellsCount] = 0;
 			}
+		}
+
+		static void bfs(ref Digit[]? result, Digit[] gridValues)
+		{
+			var queue = new LinkedList<Digit[]>();
+			queue.AddLast(gridValues);
+
+			var resultGrids = new List<Digit[]>(2);
+			while (queue.Count != 0)
+			{
+				var currentGrid = queue.RemoveFirstNode();
+
+				// Find for the last unfilled cell.
+				var lastUnfilledCell = currentGrid.IndexOf(0);
+				if (lastUnfilledCell == -1)
+				{
+					// No unfilled cell.
+					resultGrids.Add(currentGrid);
+					if (resultGrids.Count >= 2)
+					{
+						throw new MultipleSolutionException();
+					}
+					continue;
+				}
+
+				for (var digit = 1; digit <= 9; digit++)
+				{
+					var copied = (Digit[])currentGrid.Clone();
+					copied[lastUnfilledCell] = digit;
+
+					var lastRow = lastUnfilledCell / 9;
+					var lastColumn = lastUnfilledCell % 9;
+					if (IsValid(copied, lastRow, lastColumn))
+					{
+						queue.AddLast(copied);
+					}
+				}
+			}
+
+			result = resultGrids is [var resultGrid] ? resultGrid : null;
 		}
 	}
 
