@@ -867,8 +867,9 @@
             <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
             </summary>
             <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Analytics.Caching.MemoryCachedData.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
-            not use this field on instances which are set <see langword="true"/> for property <see cref="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.IsCachingSafe"/>.
+            This map <b>should</b> be used after <see cref="M:Sudoku.Analytics.Caching.MemoryCachedData.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> called,
+            and you<b>'d better</b> not use this field on instances which are set <see langword="true"/>
+            for property <see cref="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.IsCachingSafe"/>.
             </remarks>
             <seealso cref="M:Sudoku.Analytics.Caching.MemoryCachedData.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
             <seealso cref="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.IsCachingSafe"/>
@@ -909,9 +910,13 @@
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Caching.MemoryCachedData.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Analytics.Caching.MemoryCachedData.Initialize(Sudoku.Analytics.Analyzer,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.MemoryCachedData.Initialize(Sudoku.Analytics.Analyzer,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             Initialize the maps that used later.
             </summary>
+            <param name="analyzer">The analyzer.</param>
             <param name="g">The grid.</param>
             <param name="s">The solution of <paramref name="g"/>.</param>
         </member>

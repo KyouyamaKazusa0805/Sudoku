@@ -76,10 +76,11 @@ internal static class MemoryCachedData
 	/// <inheritdoc cref="Grid.EmptyCells"/>
 	/// </summary>
 	/// <remarks>
-	/// This map <b>should</b> be used after <see cref="Initialize"/> called, and you<b>'d better</b>
-	/// not use this field on instances which are set <see langword="true"/> for property <see cref="StepSearcherAttribute.IsCachingSafe"/>.
+	/// This map <b>should</b> be used after <see cref="Initialize(ref readonly Grid, ref readonly Grid)"/> called,
+	/// and you<b>'d better</b> not use this field on instances which are set <see langword="true"/>
+	/// for property <see cref="StepSearcherAttribute.IsCachingSafe"/>.
 	/// </remarks>
-	/// <seealso cref="Initialize"/>
+	/// <seealso cref="Initialize(ref readonly Grid, ref readonly Grid)"/>
 	/// <seealso cref="StepSearcherAttribute.IsCachingSafe"/>
 	public static ref readonly CellMap EmptyCells => ref _cachedEmptyCells;
 
@@ -119,20 +120,44 @@ internal static class MemoryCachedData
 	public static ReadOnlySpan<CellMap> ValuesMap => _cachedValuesMap;
 
 
+	/// <inheritdoc cref="Initialize(Analyzer, ref readonly Grid, ref readonly Grid)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void Initialize(ref readonly Grid g, ref readonly Grid s) => Initialize(null, in g, in s);
+
 	/// <summary>
 	/// Initialize the maps that used later.
 	/// </summary>
+	/// <param name="analyzer">The analyzer.</param>
 	/// <param name="g">The grid.</param>
 	/// <param name="s">The solution of <paramref name="g"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Initialize(ref readonly Grid g, ref readonly Grid s)
+	[IntroducedSince(3, 4, 1)]
+	public static void Initialize(Analyzer? analyzer, ref readonly Grid g, ref readonly Grid s)
 	{
 		(CandidatesCount, StrongLinkTypesCollected, WeakLinkTypesCollected) = (g.CandidatesCount, LinkType.Unknown, LinkType.Unknown);
 		(_cachedEmptyCells, _cachedBivalueCells, _cachedSolution) = (g.EmptyCells, g.BivalueCells, s);
 		(_cachedCandidatesMap, _cachedDigitsMap, _cachedValuesMap) = ([.. g.CandidatesMap], [.. g.DigitsMap], [.. g.ValuesMap]);
 
-		StrongLinkDictionary.Clear();
-		WeakLinkDictionary.Clear();
+		if (analyzer is null || analyzer.ResultStepSearchers.Span.Any(match))
+		{
+			StrongLinkDictionary.Clear();
+			WeakLinkDictionary.Clear();
+		}
+
+
+		static bool match(StepSearcher searcher)
+			=> searcher is BivalueUniversalGraveForcingChainsStepSearcher
+			or BlossomLoopStepSearcher
+			or ChainStepSearcher
+			or DynamicForcingChainsStepSearcher
+			or FinnedChainStepSearcher
+			or FinnedRectangleChainStepSearcher
+			or GroupedChainStepSearcher
+			or GroupedFinnedChainStepSearcher
+			or MultipleForcingChainsStepSearcher
+			or RectangleForcingChainsStepSearcher
+			or RemotePairStepSearcher
+			or WhipStepSearcher;
 	}
 
 	/// <summary>

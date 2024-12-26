@@ -310,7 +310,7 @@ public sealed class Analyzer : AnalyzerBase
 			}
 
 		FindNextStep:
-			Initialize(in playground, in solution);
+			Initialize(this, in playground, in solution);
 
 			string progressedStepSearcherName;
 			foreach (var searcher in stepSearchers)

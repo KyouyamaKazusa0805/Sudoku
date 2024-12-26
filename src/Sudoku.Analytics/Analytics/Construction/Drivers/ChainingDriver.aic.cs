@@ -71,14 +71,21 @@ internal partial class ChainingDriver
 
 			foreach (var (type, cell, digit) in backdoorResult.Candidates)
 			{
-				var node = new Node((cell * 9 + digit).AsCandidateMap(), true);
-				if (type == Elimination && FindChains(node, in grid, onlyFindOne, result) is { } chain1)
+				if (type == Elimination)
 				{
-					return new SingletonArray<NamedChain>(chain1);
+					var node = new Node((cell * 9 + digit).AsCandidateMap(), true);
+					if (FindChains(node, in grid, onlyFindOne, result) is { } chain1)
+					{
+						return new SingletonArray<NamedChain>(chain1);
+					}
 				}
-				if (type == Assignment && FindChains(~node, in grid, onlyFindOne, result) is { } chain2)
+				else
 				{
-					return new SingletonArray<NamedChain>(chain2);
+					var node = new Node((cell * 9 + digit).AsCandidateMap(), false);
+					if (FindChains(node, in grid, onlyFindOne, result) is { } chain1)
+					{
+						return new SingletonArray<NamedChain>(chain1);
+					}
 				}
 				traversedCandidates.Add(cell * 9 + digit);
 			}
