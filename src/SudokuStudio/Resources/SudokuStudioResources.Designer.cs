@@ -6753,6 +6753,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make non-grouped chaining searcher find conclusions around backdoors firstly.
+        /// </summary>
+        internal static string SettingsPage_MakeConclusionAroundBackdoorsGroupedChain {
+            get {
+                return ResourceManager.GetString("SettingsPage_MakeConclusionAroundBackdoorsGroupedChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make grouped chaining searcher find conclusions around backdoors firstly.
+        /// </summary>
+        internal static string SettingsPage_MakeConclusionAroundBackdoorsNormalChain {
+            get {
+                return ResourceManager.GetString("SettingsPage_MakeConclusionAroundBackdoorsNormalChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RxCy Notation - Make digits output left-side cell coordinates.
         /// </summary>
         internal static string SettingsPage_MakeDigitBeforeCellInRxCyNotation {

@@ -2882,4 +2882,10 @@
   <data name="LinkType_UniqueRectangleDoubleSideExternal" xml:space="preserve">
     <value>唯一矩形：双侧外部强链</value>
   </data>
+  <data name="SettingsPage_MakeConclusionAroundBackdoorsNormalChain" xml:space="preserve">
+    <value>优先让后门（魔术格）作为区块链的结论</value>
+  </data>
+  <data name="SettingsPage_MakeConclusionAroundBackdoorsGroupedChain" xml:space="preserve">
+    <value>优先让后门（魔术格）作为普通链的结论</value>
+  </data>
 </root>

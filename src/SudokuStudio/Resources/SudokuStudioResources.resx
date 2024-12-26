@@ -2891,4 +2891,10 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="LinkType_UniqueRectangleDoubleSideExternal" xml:space="preserve">
     <value>Unique Rectangles: Double-side external connections</value>
   </data>
+  <data name="SettingsPage_MakeConclusionAroundBackdoorsNormalChain" xml:space="preserve">
+    <value>Make grouped chaining searcher find conclusions around backdoors firstly</value>
+  </data>
+  <data name="SettingsPage_MakeConclusionAroundBackdoorsGroupedChain" xml:space="preserve">
+    <value>Make non-grouped chaining searcher find conclusions around backdoors firstly</value>
+  </data>
 </root>

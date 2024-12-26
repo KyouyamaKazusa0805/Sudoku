@@ -1190,6 +1190,12 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Wings.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MakeConclusionAroundBackdoorsNormalChain">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Chains.ChainStepSearcher.MakeConclusionAroundBackdoors"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MakeConclusionAroundBackdoorsGroupedChain">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Chains.GroupedChainStepSearcher.MakeConclusionAroundBackdoors"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlignedExclusionMaxSearchingSize">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Permutations.AlignedExclusionStepSearcher.MaxSearchingSize"/>
         </member>
@@ -1429,6 +1435,18 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MakeConclusionAroundBackdoorsNormalChainProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MakeConclusionAroundBackdoorsNormalChain"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MakeConclusionAroundBackdoorsNormalChain"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MakeConclusionAroundBackdoorsGroupedChainProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MakeConclusionAroundBackdoorsGroupedChain"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MakeConclusionAroundBackdoorsGroupedChain"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlignedExclusionMaxSearchingSizeProperty">
             <summary>
@@ -9620,6 +9638,16 @@
               Looks up a localized string similar to x=(x-y)=(y-z)=z.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_MakeConclusionAroundBackdoorsGroupedChain">
+            <summary>
+              Looks up a localized string similar to Make non-grouped chaining searcher find conclusions around backdoors firstly.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_MakeConclusionAroundBackdoorsNormalChain">
+            <summary>
+              Looks up a localized string similar to Make grouped chaining searcher find conclusions around backdoors firstly.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_MakeDigitBeforeCellInRxCyNotation">
             <summary>
               Looks up a localized string similar to RxCy Notation - Make digits output left-side cell coordinates.
@@ -11369,6 +11397,12 @@
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadruple">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Intersections.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
         </member>
+        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsNormalChain">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Chains.ChainStepSearcher.MakeConclusionAroundBackdoors"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChain">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Chains.GroupedChainStepSearcher.MakeConclusionAroundBackdoors"/>
+        </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXzRule">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher.AllowCollision"/>
         </member>
@@ -11613,6 +11647,18 @@
             Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadruple"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadruple"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsNormalChainProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsNormalChain"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsNormalChain"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChainProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChain"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChain"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXzRuleProperty">
             <summary>
@@ -12149,6 +12195,38 @@
             <param name="obj">The containing object of the property.</param>
             <returns>The value returned.</returns>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadruple"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetMakeConclusionAroundBackdoorsNormalChain(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsNormalChain"/> with the specified value.
+            </summary>
+            <param name="obj">The containing object of the property.</param>
+            <param name="value">The value to be set.</param>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsNormalChain"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetMakeConclusionAroundBackdoorsNormalChain(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsNormalChain"/> of its containing value.
+            </summary>
+            <param name="obj">The containing object of the property.</param>
+            <returns>The value returned.</returns>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsNormalChain"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetMakeConclusionAroundBackdoorsGroupedChain(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChain"/> with the specified value.
+            </summary>
+            <param name="obj">The containing object of the property.</param>
+            <param name="value">The value to be set.</param>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChain"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetMakeConclusionAroundBackdoorsGroupedChain(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChain"/> of its containing value.
+            </summary>
+            <param name="obj">The containing object of the property.</param>
+            <returns>The value returned.</returns>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChain"/>
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowCollisionOnAlmostLockedSetsXzRule(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>

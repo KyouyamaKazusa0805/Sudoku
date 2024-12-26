@@ -32,6 +32,7 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// Indicates whether conclusions will firstly aim to backdoors.
 	/// </summary>
 	[SettingItemName(SettingItemNames.MakeConclusionAroundBackdoorsNormalChain)]
+	[IntroducedSince(3, 4, 1)]
 	public bool MakeConclusionAroundBackdoors { get; set; }
 
 

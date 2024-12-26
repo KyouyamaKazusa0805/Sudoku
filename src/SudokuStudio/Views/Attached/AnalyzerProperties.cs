@@ -145,6 +145,14 @@ public static partial class AnalyzerProperties
 	[DependencyProperty]
 	public static partial bool CheckAlmostLockedQuadruple { get; set; }
 
+	/// <inheritdoc cref="ChainStepSearcher.MakeConclusionAroundBackdoors"/>
+	[DependencyProperty(DefaultValue = false)]
+	public static partial bool MakeConclusionAroundBackdoorsNormalChain { get; set; }
+
+	/// <inheritdoc cref="GroupedChainStepSearcher.MakeConclusionAroundBackdoors"/>
+	[DependencyProperty(DefaultValue = false)]
+	public static partial bool MakeConclusionAroundBackdoorsGroupedChain { get; set; }
+
 	/// <inheritdoc cref="AlmostLockedSetsXzStepSearcher.AllowCollision"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowCollisionOnAlmostLockedSetsXzRule { get; set; }

@@ -56,6 +56,7 @@ global using Sudoku.Analytics.Primitives;
 global using Sudoku.Analytics.Steps.Singles;
 global using Sudoku.Analytics.StepSearchers;
 global using Sudoku.Analytics.StepSearchers.AlmostLockedSets;
+global using Sudoku.Analytics.StepSearchers.Chains;
 global using Sudoku.Analytics.StepSearchers.Fishes;
 global using Sudoku.Analytics.StepSearchers.Intersections;
 global using Sudoku.Analytics.StepSearchers.LastResorts;

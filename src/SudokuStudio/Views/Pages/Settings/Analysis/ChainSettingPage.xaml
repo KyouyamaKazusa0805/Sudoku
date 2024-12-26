@@ -14,6 +14,14 @@
 	Loaded="Page_Loaded">
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<w:SettingsCard Header="{m:R Key=SettingsPage_MakeConclusionAroundBackdoorsNormalChain}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MakeConclusionAroundBackdoorsNormalChain,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_MakeConclusionAroundBackdoorsGroupedChain}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MakeConclusionAroundBackdoorsGroupedChain,Mode=TwoWay}" />
+			</w:SettingsCard>
 			<w:SettingsExpander IsExpanded="True" Header="{m:R Key=SettingsPage_AllowedChainLinkType}">
 				<w:SettingsExpander.Description>
 					<TextBlock>

@@ -129,6 +129,14 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	[DependencyProperty(DefaultValue = 5)]
 	public partial int MaxSizeOfRegularWing { get; set; }
 
+	/// <inheritdoc cref="ChainStepSearcher.MakeConclusionAroundBackdoors"/>
+	[DependencyProperty(DefaultValue = false)]
+	public partial bool MakeConclusionAroundBackdoorsNormalChain { get; set; }
+
+	/// <inheritdoc cref="GroupedChainStepSearcher.MakeConclusionAroundBackdoors"/>
+	[DependencyProperty(DefaultValue = false)]
+	public partial bool MakeConclusionAroundBackdoorsGroupedChain { get; set; }
+
 	/// <inheritdoc cref="AlignedExclusionStepSearcher.MaxSearchingSize"/>
 	[DependencyProperty(DefaultValue = 3)]
 	public partial int AlignedExclusionMaxSearchingSize { get; set; }
