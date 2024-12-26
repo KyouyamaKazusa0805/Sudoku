@@ -28,6 +28,13 @@ namespace Sudoku.Analytics.StepSearchers.Chains;
 	RuntimeFlags = StepSearcherRuntimeFlags.SkipVerification)]
 public sealed partial class ChainStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// Indicates whether conclusions will firstly aim to backdoors.
+	/// </summary>
+	[SettingItemName(SettingItemNames.MakeConclusionAroundBackdoorsNormalChain)]
+	public bool MakeConclusionAroundBackdoors { get; set; }
+
+
 	/// <inheritdoc/>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
@@ -39,7 +46,7 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new SortedSet<NormalChainStep>();
-		if (ChainingDriver.CollectCore(ref context, accumulator, false) is { } step)
+		if (ChainingDriver.CollectCore(ref context, accumulator, false, MakeConclusionAroundBackdoors) is { } step)
 		{
 			return step;
 		}

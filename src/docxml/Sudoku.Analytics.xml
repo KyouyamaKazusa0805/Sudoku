@@ -1246,6 +1246,12 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowCollisionOnAlmostLockedSetsWWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
         </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.MakeConclusionAroundBackdoorsNormalChain">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Chains.ChainStepSearcher.MakeConclusionAroundBackdoors"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.MakeConclusionAroundBackdoorsGroupedChain">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Chains.GroupedChainStepSearcher.MakeConclusionAroundBackdoors"/>
+        </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchForReverseBugPartiallyUsedTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
         </member>
@@ -5180,13 +5186,16 @@
             Provides a driver that can generate normal chains and forcing chains.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Collect all chains and loops appeared in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="allowsAdvancedLinks">Indicates whether this method allows for advanced links.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
+            <param name="makeConclusionAroundBackdoors">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Chains.ChainStepSearcher.MakeConclusionAroundBackdoors" path="/summary" />
+            </param>
             <returns>All possible <see cref="T:Sudoku.Analytics.Construction.Components.Chain" /> instances.</returns>
             <remarks>
             <developer-notes>
@@ -5268,13 +5277,16 @@
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
             <returns>All possible multiple forcing chain instances.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.Chains.NormalChainStep},System.Boolean)">
+        <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.Chains.NormalChainStep},System.Boolean,System.Boolean)">
             <summary>
             The collect method called by chain step searchers.
             </summary>
             <param name="context">The context.</param>
             <param name="accumulator">The instance that temporarily records for chain steps.</param>
             <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <param name="makeConclusionAroundBackdoors">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Chains.ChainStepSearcher.MakeConclusionAroundBackdoors" path="/summary"/>
+            </param>
             <returns>The first found step.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Drivers.ChainingDriver.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.Chains.ChainStep},System.Boolean,System.Boolean)">
@@ -9045,6 +9057,11 @@
             </list>
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.Chains.ChainStepSearcher.MakeConclusionAroundBackdoors">
+            <summary>
+            Indicates whether conclusions will firstly aim to backdoors.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.Chains.ChainStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc />
             <remarks>
@@ -9106,6 +9123,11 @@
             <item>Grouped Alternating Inference Chains</item>
             <item>Grouped Continuous Nice Loops</item>
             </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.Chains.GroupedChainStepSearcher.MakeConclusionAroundBackdoors">
+            <summary>
+            Indicates whether conclusions will firstly aim to backdoors.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.Chains.GroupedChainStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">

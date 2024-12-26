@@ -11,15 +11,23 @@ internal static partial class ChainingDriver
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+	/// <param name="makeConclusionAroundBackdoors">
+	/// <inheritdoc cref="ChainStepSearcher.MakeConclusionAroundBackdoors" path="/summary"/>
+	/// </param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectCore(ref StepAnalysisContext context, SortedSet<NormalChainStep> accumulator, bool allowsAdvancedLinks)
+	public static Step? CollectCore(
+		ref StepAnalysisContext context,
+		SortedSet<NormalChainStep> accumulator,
+		bool allowsAdvancedLinks,
+		bool makeConclusionAroundBackdoors
+	)
 	{
 		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
 		ref readonly var grid = ref context.Grid;
 		InitializeLinks(in grid, linkTypes.Aggregate(@delegate.EnumFlagMerger), context.Options, out var supportedRules);
 
 		var cachedAlsIndex = 0;
-		foreach (var chain in CollectChains(in context.Grid, allowsAdvancedLinks, context.OnlyFindOne))
+		foreach (var chain in CollectChains(in context.Grid, allowsAdvancedLinks, context.OnlyFindOne, makeConclusionAroundBackdoors))
 		{
 			var step = new NormalChainStep(
 				CollectChainConclusions(chain, in grid, supportedRules),

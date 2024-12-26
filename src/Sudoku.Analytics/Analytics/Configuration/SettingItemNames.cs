@@ -94,6 +94,12 @@ public static class SettingItemNames
 	/// <inheritdoc cref="AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
 	public const string AllowCollisionOnAlmostLockedSetsWWing = nameof(AllowCollisionOnAlmostLockedSetsWWing);
 
+	/// <inheritdoc cref="ChainStepSearcher.MakeConclusionAroundBackdoors"/>
+	public const string MakeConclusionAroundBackdoorsNormalChain = nameof(MakeConclusionAroundBackdoorsNormalChain);
+
+	/// <inheritdoc cref="GroupedChainStepSearcher.MakeConclusionAroundBackdoors"/>
+	public const string MakeConclusionAroundBackdoorsGroupedChain = nameof(MakeConclusionAroundBackdoorsGroupedChain);
+
 	/// <inheritdoc cref="ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
 	public const string SearchForReverseBugPartiallyUsedTypes = nameof(SearchForReverseBugPartiallyUsedTypes);
 

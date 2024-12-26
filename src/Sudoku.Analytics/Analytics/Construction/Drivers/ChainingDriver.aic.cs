@@ -16,6 +16,9 @@ internal partial class ChainingDriver
 	/// <param name="grid">The grid.</param>
 	/// <param name="allowsAdvancedLinks">Indicates whether this method allows for advanced links.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
+	/// <param name="makeConclusionAroundBackdoors">
+	/// <inheritdoc cref="ChainStepSearcher.MakeConclusionAroundBackdoors" path="/summary"/>
+	/// </param>
 	/// <returns>All possible <see cref="Chain"/> instances.</returns>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
@@ -44,20 +47,61 @@ internal partial class ChainingDriver
 	/// </item>
 	/// </list>
 	/// </remarks>
-	public static ReadOnlySpan<NamedChain> CollectChains(ref readonly Grid grid, bool allowsAdvancedLinks, bool onlyFindOne)
+	public static ReadOnlySpan<NamedChain> CollectChains(
+		ref readonly Grid grid,
+		bool allowsAdvancedLinks,
+		bool onlyFindOne,
+		bool makeConclusionAroundBackdoors
+	)
 	{
 		var result = new SortedSet<NamedChain>(ChainingComparers.ChainComparer);
+		var traversedCandidates = CandidateMap.Empty;
+		if (makeConclusionAroundBackdoors && grid.GetIsValid())
+		{
+			// Find backdoors of the puzzle.
+			// If the puzzle is invalid (multiple solutions found), we won't call this inferring method to find backdoors,
+			// in order to prevent potential exceptions.
+			if (!BackdoorInferrer.TryInfer(in grid, out var backdoorResult))
+			{
+				throw new PuzzleInvalidException(
+					in grid,
+					allowsAdvancedLinks ? typeof(ChainStepSearcher) : typeof(GroupedChainStepSearcher)
+				);
+			}
+
+			foreach (var (type, cell, digit) in backdoorResult.Candidates)
+			{
+				var node = new Node((cell * 9 + digit).AsCandidateMap(), true);
+				if (type == Elimination && FindChains(node, in grid, onlyFindOne, result) is { } chain1)
+				{
+					return new SingletonArray<NamedChain>(chain1);
+				}
+				if (type == Assignment && FindChains(~node, in grid, onlyFindOne, result) is { } chain2)
+				{
+					return new SingletonArray<NamedChain>(chain2);
+				}
+				traversedCandidates.Add(cell * 9 + digit);
+			}
+		}
+
 		foreach (var cell in EmptyCells)
 		{
 			var trueDigit = Solution.IsUndefined ? -1 : Solution.GetDigit(cell);
 			foreach (var digit in grid.GetCandidates(cell))
 			{
+				if (traversedCandidates.Contains(cell * 9 + digit))
+				{
+					// Skip for travsered candidates.
+					continue;
+				}
+
 				var node = new Node((cell * 9 + digit).AsCandidateMap(), true);
 
 				// Suppose the digit as "off" (false) to make a contradiction.
 				// Obviously, only incorrect digits can be formed a contradiction.
 				// Therefore, we only need to check such incorrect digits.
-				if ((trueDigit != -1 && digit != trueDigit || trueDigit == -1) && FindChains(node, in grid, onlyFindOne, result) is { } chain1)
+				if ((trueDigit != -1 && digit != trueDigit || trueDigit == -1)
+					&& FindChains(node, in grid, onlyFindOne, result) is { } chain1)
 				{
 					return new SingletonArray<NamedChain>(chain1);
 				}
