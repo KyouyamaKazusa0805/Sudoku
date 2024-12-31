@@ -797,6 +797,23 @@ public partial struct Grid : GridBase
 	internal void RemoveSukakuHeader() => this[0] &= (1 << GridBase.HeaderShift) - 1;
 
 	/// <inheritdoc/>
+	readonly Grid IElementSwappingTransformable<Grid, Digit>.Shuffle()
+	{
+		var rng = Random.Shared;
+		var current = this;
+		for (var d1 = 0; d1 < 9; d1++)
+		{
+			Digit d2;
+			do
+			{
+				d2 = rng.NextDigit();
+			} while (d1 == d2);
+			current = current.SwapDigit(d1, d2);
+		}
+		return current;
+	}
+
+	/// <inheritdoc/>
 	readonly IEnumerable<Candidate> IWhereMethod<Grid, Candidate>.Where(Func<Candidate, bool> predicate)
 		=> this.Where(predicate).ToArray();
 
@@ -808,28 +825,25 @@ public partial struct Grid : GridBase
 		=> this.Select(selector).ToArray();
 
 	/// <inheritdoc/>
-	[UnscopedRef]
-	ref Grid ITransformable<Grid>.MirrorLeftRight() => ref this.MirrorLeftRight();
+	Grid IBoardTransformable<Grid>.MirrorLeftRight() => this.MirrorLeftRight();
 
 	/// <inheritdoc/>
-	[UnscopedRef]
-	ref Grid ITransformable<Grid>.MirrorTopBottom() => ref this.MirrorTopBottom();
+	Grid IBoardTransformable<Grid>.MirrorTopBottom() => this.MirrorTopBottom();
 
 	/// <inheritdoc/>
-	[UnscopedRef]
-	ref Grid ITransformable<Grid>.MirrorDiagonal() => ref this.MirrorDiagonal();
+	Grid IBoardTransformable<Grid>.MirrorDiagonal() => this.MirrorDiagonal();
 
 	/// <inheritdoc/>
-	[UnscopedRef]
-	ref Grid ITransformable<Grid>.MirrorAntidiagonal() => ref this.MirrorAntidiagonal();
+	Grid IBoardTransformable<Grid>.MirrorAntidiagonal() => this.MirrorAntidiagonal();
 
 	/// <inheritdoc/>
-	[UnscopedRef]
-	ref Grid ITransformable<Grid>.RotateClockwise() => ref this.RotateClockwise();
+	Grid IBoardTransformable<Grid>.RotateClockwise() => this.RotateClockwise();
 
 	/// <inheritdoc/>
-	[UnscopedRef]
-	ref Grid ITransformable<Grid>.RotateCounterclockwise() => ref this.RotateCounterclockwise();
+	Grid IBoardTransformable<Grid>.RotateCounterclockwise() => this.RotateCounterclockwise();
+
+	/// <inheritdoc/>
+	Grid IElementSwappingTransformable<Grid, Digit>.SwapElement(Digit element1, Digit element2) => this.SwapDigit(element1, element2);
 
 	/// <summary>
 	/// Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.

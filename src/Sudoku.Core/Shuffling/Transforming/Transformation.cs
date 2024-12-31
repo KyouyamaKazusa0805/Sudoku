@@ -4,7 +4,7 @@ namespace Sudoku.Shuffling.Transforming;
 /// Provides methods for <see cref="Grid"/> instances on transformations.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class GridTransformations
+public static class Transformation
 {
 	/// <summary>
 	/// The table of clockwise rotation.

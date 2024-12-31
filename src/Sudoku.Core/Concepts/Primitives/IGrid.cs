@@ -6,9 +6,11 @@ namespace Sudoku.Concepts.Primitives;
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface IGrid<TSelf> :
 	IBoard,
+	IBoardTransformable<TSelf>,
 	IComparable<TSelf>,
 	IComparisonOperators<TSelf, TSelf, bool>,
 	IDataStructure,
+	IElementSwappingTransformable<TSelf, Digit>,
 	IEnumerable<Digit>,
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
@@ -21,7 +23,6 @@ public interface IGrid<TSelf> :
 	ISpanFormattable,
 	ISpanParsable<TSelf>,
 	IToArrayMethod<TSelf, Digit>,
-	ITransformable<TSelf>,
 	IWhereMethod<TSelf, Candidate>
 	where TSelf : unmanaged, IGrid<TSelf>
 {
