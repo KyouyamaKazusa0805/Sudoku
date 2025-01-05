@@ -4792,6 +4792,9 @@
             Removes for Sukaku puzzle header.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Transforming#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#Shuffle">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#IWhereMethod{Sudoku#Concepts#Grid,System#Int32}#Where(System.Func{System.Int32,System.Boolean})">
             <inheritdoc/>
         </member>

@@ -7,6 +7,7 @@ namespace Sudoku.Analytics;
 [TypeImpl(TypeImplFlags.Equatable)]
 public sealed partial record AnalysisResult([property: EquatableMember] ref readonly Grid Puzzle) :
 	IAnalysisResult<AnalysisResult, Analyzer, AnalyzerContext>,
+	meta::IAnalysisResult<AnalysisResult, Grid, Step>,
 	IAnyAllMethod<AnalysisResult, Step>,
 	ICastMethod<AnalysisResult, Step>,
 	IEnumerable<Step>,
@@ -303,6 +304,33 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 
 	/// <inheritdoc/>
 	int IReadOnlyCollection<KeyValuePair<Grid, Step>>.Count => Span.Length;
+
+	/// <inheritdoc/>
+	meta::FailedReason meta::IAnalysisResult<AnalysisResult, Grid, Step>.FailedReason
+	{
+		get => FailedReason switch
+		{
+			FailedReason.Nothing => meta::FailedReason.None,
+			FailedReason.PuzzleIsInvalid or FailedReason.PuzzleHasNoSolution or FailedReason.PuzzleHasMultipleSolutions
+				or FailedReason.AnalyzerGiveUp
+				=> meta::FailedReason.PuzzleInvalid,
+			FailedReason.UserCancelled => meta::FailedReason.UserCancelled,
+			FailedReason.ExceptionThrown or FailedReason.WrongStep or FailedReason.NotImplemented
+				=> meta::FailedReason.ExceptionThrown
+		};
+
+		init => FailedReason = value switch
+		{
+			meta::FailedReason.None => FailedReason.Nothing,
+			meta::FailedReason.PuzzleInvalid => FailedReason.PuzzleIsInvalid,
+			meta::FailedReason.UserCancelled => FailedReason.UserCancelled,
+			meta::FailedReason.ExceptionThrown => FailedReason.ExceptionThrown,
+			_ => throw new ArgumentOutOfRangeException(nameof(value))
+		};
+	}
+
+	/// <inheritdoc/>
+	ReadOnlySpan<Step> meta::IAnalysisResult<AnalysisResult, Grid, Step>.Steps => StepsSpan;
 
 	/// <inheritdoc/>
 	IEnumerable<Grid> IReadOnlyDictionary<Grid, Step>.Keys => InterimGrids ?? [];

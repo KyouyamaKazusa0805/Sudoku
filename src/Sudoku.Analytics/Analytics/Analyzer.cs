@@ -2,15 +2,15 @@
 
 namespace Sudoku.Analytics;
 
-using AnalyzerBase = IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>;
-
 /// <summary>
 /// Provides an analyzer that solves a sudoku puzzle using the human-friendly logics,
 /// and creates an <see cref="AnalysisResult"/> instance indicating the analytics data.
 /// </summary>
 /// <seealso cref="AnalysisResult"/>
 /// <seealso cref="Analyzer"/>
-public sealed class Analyzer : AnalyzerBase
+public sealed class Analyzer :
+	IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>,
+	meta::IAnalyzer<Analyzer, AnalysisResult, Grid, Step>
 {
 	/// <summary>
 	/// Indicates the default steps capacity.
@@ -58,7 +58,7 @@ public sealed class Analyzer : AnalyzerBase
 	{
 		get => field;
 
-		set => ResultStepSearchers = AnalyzerBase.FilterStepSearchers(field = value, StepSearcherRunningArea.Searching);
+		set => ResultStepSearchers = IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>.FilterStepSearchers(field = value, StepSearcherRunningArea.Searching);
 	}
 
 	/// <inheritdoc/>
@@ -76,7 +76,7 @@ public sealed class Analyzer : AnalyzerBase
 	public ICollection<Action<StepSearcher>> Setters { get; } = [];
 
 	/// <inheritdoc/>
-	Random AnalyzerBase.RandomNumberGenerator => _random;
+	Random IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>.RandomNumberGenerator => _random;
 
 
 	/// <summary>
@@ -205,7 +205,7 @@ public sealed class Analyzer : AnalyzerBase
 			throw new InvalidOperationException(SR.ExceptionMessage("GridAlreadySolved"));
 		}
 
-		AnalyzerBase.ApplySetters(this);
+		IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>.ApplySetters(this);
 
 		var result = new AnalysisResult(in puzzle) { IsSolved = false };
 		var solution = puzzle.GetSolutionGrid();
@@ -711,6 +711,10 @@ public sealed class Analyzer : AnalyzerBase
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	AnalysisResult meta::IAnalyzer<Analyzer, AnalysisResult, Grid, Step>.Analyze(Grid board, CancellationToken cancellationToken)
+		=> Analyze(new AnalyzerContext(in board) { CancellationToken = cancellationToken });
 
 
 	/// <summary>

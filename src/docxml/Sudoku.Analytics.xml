@@ -268,6 +268,12 @@
         <member name="P:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IReadOnlyCollection{System#Collections#Generic#KeyValuePair{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}}#Count">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Puzzles#Analytics#IAnalysisResult{Sudoku#Analytics#AnalysisResult,Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#FailedReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Puzzles#Analytics#IAnalysisResult{Sudoku#Analytics#AnalysisResult,Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Steps">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IReadOnlyDictionary{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Keys">
             <inheritdoc/>
         </member>
@@ -700,6 +706,9 @@
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Analytics.AnalyzerContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Analyzer.Puzzles#Analytics#IAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalysisResult,Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Analyze(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Analyzer.ConclusionBackingField(Sudoku.Analytics.Step)">
             <summary>
             Gets field <c><![CDATA[<Conclusions>k__BackingField]]></c> inside type <see cref="T:Sudoku.Analytics.Step"/>.
@@ -960,6 +969,9 @@
             <inheritdoc cref="M:Sudoku.Analytics.Collector.Collect(Sudoku.Analytics.CollectorContext@)"/>
         </member>
         <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Analytics.CollectorContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Collector.Puzzles#Analytics#ICollector{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Collect(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.CollectorContext">

@@ -26,7 +26,8 @@ public abstract partial class Step(
 	IDrawable,
 	IDataStructure,
 	IEquatable<Step>,
-	IFormattable
+	IFormattable,
+	meta::IStep<Step>
 {
 	/// <summary>
 	/// Indicates whether the step is an assignment. The possible result values are:
