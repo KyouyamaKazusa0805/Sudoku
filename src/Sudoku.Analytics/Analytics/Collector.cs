@@ -1,11 +1,11 @@
 namespace Sudoku.Analytics;
 
-using CollectorBase = ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>;
-
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one state.
 /// </summary>
-public sealed class Collector : CollectorBase
+public sealed class Collector :
+	ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>,
+	meta::ICollector<Grid, Step>
 {
 	/// <inheritdoc/>
 	[WithProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]
@@ -23,7 +23,7 @@ public sealed class Collector : CollectorBase
 	{
 		get => field;
 
-		set => ResultStepSearchers = CollectorBase.FilterStepSearchers(field = value, StepSearcherRunningArea.Collecting);
+		set => ResultStepSearchers = ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>.FilterStepSearchers(field = value, StepSearcherRunningArea.Collecting);
 	}
 
 	/// <inheritdoc/>
@@ -62,7 +62,7 @@ public sealed class Collector : CollectorBase
 			return [];
 		}
 
-		CollectorBase.ApplySetters(this);
+		ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>.ApplySetters(this);
 
 		try
 		{
@@ -144,4 +144,10 @@ public sealed class Collector : CollectorBase
 			return bag.AsSpan();
 		}
 	}
+
+#pragma warning disable CS9087
+	/// <inheritdoc/>
+	unsafe ReadOnlySpan<Step> meta::ICollector<Grid, Step>.Collect(Grid board, CancellationToken cancellationToken)
+		=> Collect(new CollectorContext(in board) { CancellationToken = cancellationToken });
+#pragma warning restore CS9087
 }
