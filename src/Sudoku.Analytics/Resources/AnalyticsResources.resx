@@ -3468,4 +3468,7 @@ Error grid: '{0:#}'</value>
   <data name="StepSearcherName_DynamicForcingChainsStepSearcher" xml:space="preserve">
     <value>Dynamic Forcing Chains</value>
   </data>
+  <data name="ErrorInfo_PuzzleCannotBeSolved" xml:space="preserve">
+    <value>The puzzle cannot be solved.</value>
+  </data>
 </root>

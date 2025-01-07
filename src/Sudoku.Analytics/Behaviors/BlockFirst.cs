@@ -10,27 +10,55 @@ public sealed class BlockFirst : IBehaviorMetric
 
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<int> GetDistanceArray(Collector collector, ref readonly Grid grid, out ReadOnlySpan<KeyValuePair<SingleStep, Grid>> steps)
+	public static ReadOnlySpan<int> GetDistanceArray(
+		Collector collector,
+		ref readonly Grid grid,
+		out ReadOnlySpan<KeyValuePair<SingleStep, Grid>> steps,
+		out ReadOnlySpan<KeyValuePair<Step, Grid>> stepsAll
+	)
 	{
 		var (playground, solution, result) = (grid, grid.GetSolutionGrid(), (List<int>)[]);
-		var (tempSteps, lastStep) = ((List<KeyValuePair<SingleStep, Grid>>)[], default(SingleStep)!);
+		var (resultSteps, lastStep) = ((List<KeyValuePair<SingleStep, Grid>>)[], default(SingleStep)!);
+		var resultStepsAll = (List<KeyValuePair<Step, Grid>>)[];
 		while (!playground.IsSolved)
 		{
-			var (z, s) = findNearestStep(
-				in grid,
-				in playground,
-				lastStep,
-				from step in collector.Collect(in playground).Cast<Step, SingleStep>()
-				group step by step.Code into stepGroup
-				orderby stepGroup.Key
-				select stepGroup
-			);
-			result.Add(s);
-			tempSteps.Add(KeyValuePair.Create(lastStep = z, playground));
-			playground.Apply(new(Assignment, lastStep.Cell, solution.GetDigit(lastStep.Cell)));
+			var possibleSteps = collector.Collect(in playground);
+			if (possibleSteps.Length == 0)
+			{
+				// The puzzle cannot be solved.
+				throw new InvalidOperationException(SR.ExceptionMessage("PuzzleCannotBeSolved"));
+			}
+
+			if (possibleSteps.Any(static step => step is SingleStep))
+			{
+				// The puzzle can be solved with single steps.
+				var validSteps =
+					from step in possibleSteps
+					let castedStep = step as SingleStep
+					where castedStep is not null
+					select castedStep into step
+					group step by step.Code into stepGroup
+					orderby stepGroup.Key
+					select stepGroup;
+				var (z, s) = findNearestStep(in grid, in playground, lastStep, validSteps);
+
+				lastStep = z;
+				var kvp = KeyValuePair.Create(lastStep, playground);
+				result.Add(s);
+				resultStepsAll.Add(kvp.Cast<SingleStep, Grid, Step, Grid>());
+				resultSteps.Add(kvp);
+				playground.Apply(new(Assignment, lastStep.Cell, solution.GetDigit(lastStep.Cell)));
+				continue;
+			}
+
+			// If the puzzle cannot be solved here, we should apply with indirect techniques again and again.
+			var foundStep = possibleSteps[0];
+			resultStepsAll.Add(KeyValuePair.Create(foundStep, playground));
+			playground.Apply(foundStep);
 		}
 
-		steps = tempSteps.AsSpan();
+		steps = resultSteps.AsSpan();
+		stepsAll = resultStepsAll.AsSpan();
 		return result.AsSpan();
 
 
