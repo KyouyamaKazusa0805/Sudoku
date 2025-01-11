@@ -22372,7 +22372,7 @@
         <member name="P:Sudoku.Behaviors.BlockFirst.MeasurableBehavior">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Behaviors.BlockFirst.GetDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.Singles.SingleStep,Sudoku.Concepts.Grid}}@)">
+        <member name="M:Sudoku.Behaviors.BlockFirst.GetDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.Singles.SingleStep,Sudoku.Concepts.Grid}}@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Step,Sudoku.Concepts.Grid}}@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Behaviors.Diff.DiffTechniqueAnalysis">
@@ -22398,7 +22398,7 @@
         <member name="P:Sudoku.Behaviors.DigitFirst.MeasurableBehavior">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Behaviors.DigitFirst.GetDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.Singles.SingleStep,Sudoku.Concepts.Grid}}@)">
+        <member name="M:Sudoku.Behaviors.DigitFirst.GetDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.Singles.SingleStep,Sudoku.Concepts.Grid}}@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Step,Sudoku.Concepts.Grid}}@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Behaviors.IBehaviorMetric">
@@ -22411,15 +22411,24 @@
             Indicates a behavior to be measured.
             </summary>
         </member>
-        <member name="M:Sudoku.Behaviors.IBehaviorMetric.GetDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.Singles.SingleStep,Sudoku.Concepts.Grid}}@)">
+        <member name="M:Sudoku.Behaviors.IBehaviorMetric.GetDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.Singles.SingleStep,Sudoku.Concepts.Grid}}@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Step,Sudoku.Concepts.Grid}}@)">
             <summary>
-            Try to return a list of integers representing the logical filling distance between two adjacent steps,
+            Returns a list of integers representing the logical filling distance between two adjacent steps,
             by using the current filling rule.
             </summary>
             <param name="collector">The collector instance.</param>
             <param name="grid">The grid to be checked.</param>
             <param name="steps">The steps and corresponding grid states.</param>
+            <param name="stepsAll">
+            Indicates all possible steps applied. If the puzzle cannot be solved with direct techniques,
+            this method will find indirect techniques again and again, until at least one single step can be found here.
+            </param>
             <returns>A list of distance values.</returns>
+            <remarks>
+            This method allows solving puzzles with indirect techniques. If the puzzle cannot be solved with direct-only techniques,
+            argument <paramref name="stepsAll"/> will record the usages of all techniques (including direct and indirect techniques);
+            and argument <paramref name="steps"/> only records for direct technique usages.
+            </remarks>
         </member>
         <member name="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath">
             <summary>
@@ -29874,6 +29883,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_ParentNotFoundInChain">
             <summary>
               Looks up a localized string similar to Parent not found..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_PuzzleCannotBeSolved">
+            <summary>
+              Looks up a localized string similar to The puzzle cannot be solved..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_SashimiPropertyInvalid">

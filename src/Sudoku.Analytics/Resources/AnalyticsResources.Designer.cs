@@ -1726,6 +1726,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The puzzle cannot be solved..
+        /// </summary>
+        public static string ErrorInfo_PuzzleCannotBeSolved {
+            get {
+                return ResourceManager.GetString("ErrorInfo_PuzzleCannotBeSolved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sashimi property is invalid..
         /// </summary>
         public static string ErrorInfo_SashimiPropertyInvalid {

@@ -3593,4 +3593,7 @@
     <value>动态强制链</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="ErrorInfo_PuzzleCannotBeSolved" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
 </root>
