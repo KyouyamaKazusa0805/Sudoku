@@ -39,13 +39,15 @@ This repository is created for the following users:
   * Pattern-based generator
   * Hard-pattern-based generator
   * Technique-based generator
-  * Generated puzzle filters
+    * Generated puzzle filters
 * Puzzle solving
   * Bitwise
-  * Dancing Links
+  * Dancing Links (*DLX*)
   * Backtracking
-  * LINQ-based solving algorithm
-  * Dictionary-based solving algorithm
+    * DFS-based
+    * BFS-based
+  * LINQ-based solver
+  * Dictionary-based solver
 * Puzzle analysis
   * Difficulty rating
   * Step-by-step analysis
