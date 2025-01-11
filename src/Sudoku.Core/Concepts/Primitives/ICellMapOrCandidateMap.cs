@@ -9,18 +9,14 @@ namespace Sudoku.Concepts.Primitives;
 public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IAdditionOperators<TSelf, TElement, TSelf>,
-	IAnyAllMethod<TSelf, TElement>,
-	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	IComparable<TSelf>,
 	IComparisonOperators<TSelf, TSelf, bool>,
 	IContainsMethod<TSelf, TElement>,
 	ICountMethod<TSelf, TElement>,
 	IDataStructure,
 	IElementAtMethod<TSelf, TElement>,
-	IEqualityOperators<TSelf, TSelf, bool>,
 	IEquatable<TSelf>,
 	IFiniteSet<TSelf, TElement>,
-	IFormattable,
 	IFirstLastMethod<TSelf, TElement>,
 	IGetSubsetMethod<TSelf, TElement>,
 	IGroupByMethod<TSelf, TElement>,
@@ -28,11 +24,9 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 	ILogicalOperators<TSelf>,
 	IMinMaxValue<TSelf>,
 	IModulusOperators<TSelf, TSelf, TSelf>,
-	IParsable<TSelf>,
 	IReadOnlyList<TElement>,
 	IReadOnlySet<TElement>,
 	ISelectMethod<TSelf, TElement>,
-	ISet<TElement>,
 	ISpanFormattable,
 	ISpanParsable<TSelf>,
 	ISubtractionOperators<TSelf, TElement, TSelf>,
@@ -184,7 +178,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 	/// indicating <see langword="this"/> is greater.
 	/// </item>
 	/// <item>
-	/// If <see langword="this"/> holds less offsets than <paramref name="other"/>, then return -1
+	/// If <see langword="this"/> holds fewer offsets than <paramref name="other"/>, then return -1
 	/// indicating <paramref name="other"/> is greater.
 	/// </item>
 	/// <item>
@@ -340,7 +334,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 	void ISet<TElement>.SymmetricExceptWith(IEnumerable<TElement> other)
 	{
 		var left = this;
-		var elements = other as TElement[] ?? other.ToArray();
+		var elements = other as TElement[] ?? [.. other];
 		foreach (var element in elements)
 		{
 			left.Remove(element);

@@ -238,9 +238,3 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 /// <param name="Conclusion">Indicates the conclusion to be used.</param>
 /// <param name="IsOverlapped">Indicates whether the conclusion is overlapped.</param>
 file readonly record struct ConclusionInfo(Conclusion Conclusion, bool IsOverlapped);
-
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-file static class Extensions
-{
-
-}

@@ -8850,7 +8850,7 @@
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsWWingStepSearcher.AllowCollision">
             <summary>
-            Indicates whether two ALSes make an collision, which means they share the some same cells. 
+            Indicates whether two ALSes make any collision, which means they share some same cells. 
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsWWingStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">

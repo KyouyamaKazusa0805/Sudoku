@@ -5632,7 +5632,7 @@
             indicating <see langword="this"/> is greater.
             </item>
             <item>
-            If <see langword="this"/> holds less offsets than <paramref name="other"/>, then return -1
+            If <see langword="this"/> holds fewer offsets than <paramref name="other"/>, then return -1
             indicating <paramref name="other"/> is greater.
             </item>
             <item>
