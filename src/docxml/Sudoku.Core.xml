@@ -12653,39 +12653,6 @@
         <member name="P:Sudoku.Solving.MultipleSolutionException.Message">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Uniqueness">
-            <summary>
-            Represents a flag describing the number of solutions to a puzzle.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Solving.Uniqueness.None">
-            <summary>
-            The placeholder of this type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Uniqueness.Bad">
-            <summary>
-            Indicates the puzzle has no valid solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Uniqueness.Unique">
-            <summary>
-            Indicates the puzzle has a unique solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Uniqueness.Multiple">
-            <summary>
-            Indicates the puzzle has multiple solutions.
-            </summary>
-        </member>
         <member name="T:Sudoku.SudokuType">
             <summary>
             Represents a type of sudoku puzzle.

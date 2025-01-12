@@ -791,13 +791,6 @@
         <member name="P:SudokuStudio.BindableSource.ConclusionInfo.IsOverlapped">
             <summary>Indicates whether the conclusion is overlapped.</summary>
         </member>
-        <member name="T:SudokuStudio.BindableSource.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
         <member name="T:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff">
             <summary>
             Represents a list of <see cref="T:Sudoku.Drawing.IDrawableItem"/> instances to indicate diff items
