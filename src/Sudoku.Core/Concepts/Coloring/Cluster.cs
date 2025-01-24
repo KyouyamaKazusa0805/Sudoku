@@ -25,7 +25,6 @@ public readonly ref partial struct Cluster(
 	[Property, HashCodeMember, StringMember] Digit digit,
 	[Field(RefKind = null), HashCodeMember, StringMember] scoped ref readonly CellMap map
 ) :
-	IDataStructure,
 	IEquatable<Cluster>
 {
 	/// <summary>
@@ -120,15 +119,6 @@ public readonly ref partial struct Cluster(
 			return result;
 		}
 	}
-
-	/// <inheritdoc/>
-	DataStructureBase IDataStructure.Base => DataStructureBase.None;
-
-	/// <inheritdoc/>
-	DataStructureType IDataStructure.Type => DataStructureType.None;
-
-	/// <inheritdoc/>
-	DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Value;
 
 
 	/// <summary>

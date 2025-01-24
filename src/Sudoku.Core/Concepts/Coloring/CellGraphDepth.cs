@@ -6,17 +6,8 @@ namespace Sudoku.Concepts.Coloring;
 /// <param name="Depth">Indicates the depth.</param>
 /// <param name="Cell">The cell.</param>
 /// <seealso cref="CellGraph"/>
-public readonly record struct CellGraphDepth(int Depth, Cell Cell) :
-	IDataStructure,
-	IEqualityOperators<CellGraphDepth, CellGraphDepth, bool>
+public readonly record struct CellGraphDepth(int Depth, Cell Cell) : IEqualityOperators<CellGraphDepth, CellGraphDepth, bool>
 {
-	/// <inheritdoc/>
-	DataStructureBase IDataStructure.Base => DataStructureBase.None;
-
-	/// <inheritdoc/>
-	DataStructureType IDataStructure.Type => DataStructureType.None;
-
-
 	/// <include
 	///     file="../../global-doc-comments.xml"
 	///     path="/g/csharp9/feature[@name='records']/target[@name='method' and @cref='PrintMembers']"/>

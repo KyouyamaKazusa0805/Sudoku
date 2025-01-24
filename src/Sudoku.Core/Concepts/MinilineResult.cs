@@ -12,12 +12,4 @@ namespace Sudoku.Concepts;
 /// </param>
 /// <seealso cref="Miniline.Map"/>
 public readonly record struct MinilineResult(ref readonly CellMap LineMap, ref readonly CellMap BlockMap, ref readonly CellMap IntersectionMap, byte[] OtherBlocks) :
-	IDataStructure,
-	IEqualityOperators<MinilineResult, MinilineResult, bool>
-{
-	/// <inheritdoc/>
-	DataStructureType IDataStructure.Type => DataStructureType.None;
-
-	/// <inheritdoc/>
-	DataStructureBase IDataStructure.Base => DataStructureBase.None;
-}
+	IEqualityOperators<MinilineResult, MinilineResult, bool>;

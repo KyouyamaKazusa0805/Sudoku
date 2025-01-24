@@ -766,12 +766,6 @@
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitives#ICellMapOrCandidateMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Shifting">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitives#ICellMapOrCandidateMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Offsets">
             <inheritdoc/>
         </member>
@@ -1308,12 +1302,6 @@
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#Primitives#ICellMapOrCandidateMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Shifting">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.CellMap.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#Primitives#ICellMapOrCandidateMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Offsets">
             <inheritdoc/>
         </member>
@@ -1696,12 +1684,6 @@
             Indicates the cells in this chute.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Chute.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Chute.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Chute.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
@@ -1791,15 +1773,6 @@
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coloring.CellGraph.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coloring.CellGraph.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coloring.CellGraph.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coloring.CellGraph.Puzzles#Meta#DataStructures#IDataStructure#ValueBase">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coloring.CellGraph.Item(System.Int32)">
@@ -1940,12 +1913,6 @@
         <member name="P:Sudoku.Concepts.Coloring.CellGraphDepth.Cell">
             <summary>The cell.</summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coloring.CellGraphDepth.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coloring.CellGraphDepth.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Coloring.CellGraphDepth.PrintMembers(System.Text.StringBuilder)">
             <target name="method" cref="M:Sudoku.Concepts.Coloring.CellGraphDepth.PrintMembers(System.Text.StringBuilder)">
 				<summary>
@@ -2031,15 +1998,6 @@
             <summary>
             Represents a list of cells that will form trap contradictions in the cluster.
             </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coloring.Cluster.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coloring.Cluster.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coloring.Cluster.Puzzles#Meta#DataStructures#IDataStructure#ValueBase">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Coloring.Cluster.Create(Sudoku.Concepts.Grid@,System.Int32)">
             <summary>
@@ -2131,12 +2089,6 @@
         </member>
         <member name="P:Sudoku.Concepts.Coloring.Parity.Cells">
             <summary>Indicates the cells used.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coloring.Parity.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coloring.Parity.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Coloring.Parity.Create(Sudoku.Concepts.Coloring.CellGraph@)">
             <summary>
@@ -2250,15 +2202,6 @@
             If the type is <see cref="F:Sudoku.Concepts.ConclusionType.Assignment"/>, this conclusion will be set value (Set a digit into a cell);
             otherwise, a candidate will be removed.
             </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Conclusion.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Conclusion.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Conclusion.Puzzles#Meta#DataStructures#IDataStructure#ValueBase">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.Deconstruct(Sudoku.Concepts.ConclusionType@,System.Int32@)">
             <target name="method">
@@ -2408,15 +2351,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Conclusion}#Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.ConclusionSet.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.ConclusionSet.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.ConclusionSet.Puzzles#Meta#DataStructures#IDataStructure#ValueBase">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.ConclusionSet.Empty">
@@ -2727,15 +2661,6 @@
             <summary>
             Indicates the cells (the "from" cell and "to" cell).
             </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Conjugate.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Conjugate.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Conjugate.Puzzles#Meta#DataStructures#IDataStructure#ValueBase">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.Deconstruct(System.Int32@,System.Int32@)">
             <target name="method">
@@ -5193,12 +5118,6 @@
             Indicates the internal intersection block combinations.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Miniline.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Miniline.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Miniline.#cctor">
             <static-constructor>
 		<summary>
@@ -5231,12 +5150,6 @@
         </member>
         <member name="P:Sudoku.Concepts.MinilineBase.Block">
             <summary>The index of the block.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.MinilineBase.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.MinilineBase.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.MinilineResult">
             <summary>
@@ -5277,12 +5190,6 @@
             <summary>
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.MinilineResult.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.MinilineResult.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Primitives.CellMapOrCandidateMapPredicate`3">
             <summary>
@@ -5509,9 +5416,6 @@
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#Collections#Generic#ICollection{TElement}#IsReadOnly">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Puzzles#Meta#DataStructures#IDataStructure#ValueBase">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Empty">
@@ -6220,15 +6124,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Puzzles#Meta#IBoard#Columns">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Puzzles#Meta#DataStructures#IDataStructure#ValueBase">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.IGrid`1.EmptyString">
@@ -6963,15 +6858,6 @@
             Indicates the target house, or -1 if <see cref="P:Sudoku.Concepts.Supersymmetry.Space.Type"/> is <see cref="F:Sudoku.Concepts.Supersymmetry.SpaceType.RowColumn"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Puzzles#Meta#DataStructures#IDataStructure#ValueBase">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Supersymmetry.Space.Letter">
             <summary>
             Indicates the represented letter.
@@ -7143,15 +7029,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Supersymmetry#Space}#IsReadOnly">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.Puzzles#Meta#DataStructures#IDataStructure#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.Puzzles#Meta#DataStructures#IDataStructure#Base">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.Puzzles#Meta#DataStructures#IDataStructure#ValueBase">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IReadOnlyList{Sudoku#Concepts#Supersymmetry#Space}#Item(System.Int32)">

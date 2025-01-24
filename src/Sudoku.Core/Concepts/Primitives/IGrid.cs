@@ -9,7 +9,6 @@ public interface IGrid<TSelf> :
 	IBoardTransformable<TSelf>,
 	IComparable<TSelf>,
 	IComparisonOperators<TSelf, TSelf, bool>,
-	IDataStructure,
 	IElementSwappingTransformable<TSelf, Digit>,
 	IEnumerable<Digit>,
 	IEquatable<TSelf>,
@@ -241,15 +240,6 @@ public interface IGrid<TSelf> :
 
 	/// <inheritdoc/>
 	int IBoard.Columns => 9;
-
-	/// <inheritdoc/>
-	DataStructureType IDataStructure.Type => DataStructureType.Array;
-
-	/// <inheritdoc/>
-	DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
-
-	/// <inheritdoc/>
-	DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Bit;
 
 
 	/// <summary>

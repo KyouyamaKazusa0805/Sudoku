@@ -420,12 +420,6 @@ public partial struct CellMap : CellMapBase
 	readonly int CellMapBase.Shifting => Shifting;
 
 	/// <inheritdoc/>
-	readonly DataStructureType IDataStructure.Type => DataStructureType.Array;
-
-	/// <inheritdoc/>
-	readonly DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
-
-	/// <inheritdoc/>
 	readonly Cell[] CellMapBase.Offsets => Offsets;
 
 

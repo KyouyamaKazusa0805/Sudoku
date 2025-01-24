@@ -10,7 +10,6 @@ namespace Sudoku.Concepts;
 public sealed partial class ConclusionSet :
 	IAnyAllMethod<ConclusionSet, Conclusion>,
 	IContainsMethod<ConclusionSet, Conclusion>,
-	IDataStructure,
 	IEquatable<ConclusionSet>,
 	IEqualityOperators<ConclusionSet, ConclusionSet, bool>,
 	IFiniteSet<ConclusionSet, Conclusion>,
@@ -101,15 +100,6 @@ public sealed partial class ConclusionSet :
 
 	/// <inheritdoc/>
 	int ICollection<Conclusion>.Count => Count;
-
-	/// <inheritdoc/>
-	DataStructureType IDataStructure.Type => DataStructureType.Set;
-
-	/// <inheritdoc/>
-	DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
-
-	/// <inheritdoc/>
-	DataStructureValueBase IDataStructure.ValueBase => DataStructureValueBase.Bit;
 
 
 	/// <summary>
