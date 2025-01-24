@@ -26,12 +26,6 @@ public readonly partial record struct ForcingChainsInfo(HashSet<Node> OnNodes, H
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.ForcingChains;
 
-	/// <inheritdoc/>
-	DataStructureType IDataStructure.Type => DataStructureType.Set;
-
-	/// <inheritdoc/>
-	DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
-
 	[HashCodeMember]
 	private int StartNodeHashCode => StartNode.GetHashCode();
 

@@ -47,12 +47,6 @@ public sealed partial class Link(
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.ChainLink;
 
-	/// <inheritdoc/>
-	DataStructureType IDataStructure.Type => DataStructureType.None;
-
-	/// <inheritdoc/>
-	DataStructureBase IDataStructure.Base => DataStructureBase.None;
-
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -33,12 +33,6 @@ public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> :
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.DeathBlossomBranch;
 
-	/// <inheritdoc/>
-	DataStructureType IDataStructure.Type => DataStructureType.HashTable;
-
-	/// <inheritdoc/>
-	DataStructureBase IDataStructure.Base => DataStructureBase.ArrayBased;
-
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] TSelf? other);
