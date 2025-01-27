@@ -59,7 +59,6 @@ public static class SudokuExplainerCompatibility
 			? throw new ArgumentOutOfRangeException(nameof(@this))
 			: (SudokuExplainerAttribute[])typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerAttribute>() switch
 			{
-#pragma warning disable format
 				[] => null,
 				[{ RatingOriginal: [var min], RatingAdvanced: null }] => new(new((Half)min, (Half)min), null),
 				[{ RatingOriginal: [var min, var max], RatingAdvanced: null }] => new(new((Half)min, (Half)max), null),
@@ -74,6 +73,5 @@ public static class SudokuExplainerCompatibility
 				[{ RatingOriginal: [var min1, var max1], RatingAdvanced: [var min2, var max2] }]
 					=> new(new((Half)min1, (Half)max1), new((Half)min2, (Half)max2)),
 				_ => throw new InvalidOperationException(SR.ExceptionMessage("TooMuchAttributes"))
-#pragma warning restore format
 			};
 }

@@ -116,12 +116,10 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 						var bridge = CandidatesMap[digit] & HousesMap[house];
 						var isPassed = bridge switch
 						{
-#pragma warning disable format
 							[var a, var b]
 								when (c1.AsCellMap() + a).FirstSharedHouse != 32 && (c2.AsCellMap() + b).FirstSharedHouse != 32
 								|| (c1.AsCellMap() + b).FirstSharedHouse != 32 && (c2.AsCellMap() + a).FirstSharedHouse != 32
 								=> true,
-#pragma warning restore format
 							{ Count: > 2 and <= 6, BlockMask: var blocks } => Mask.PopCount(blocks) switch
 							{
 								1 => ((PeersMap[c1] | PeersMap[c2]) & bridge) == bridge,

@@ -2642,7 +2642,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					? (targetCell1, targetCell2)
 					: (targetCell2, targetCell1);
 				var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
-#pragma warning disable format
 				var finalDigitsMask = (mirrorCellsThisTarget & ~EmptyCells) switch
 				{
 					[] when mirrorCellsThisTarget is [var a, var b]
@@ -2652,7 +2651,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					[var a, var b]
 						=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 				};
-#pragma warning restore format
 				foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & ~finalDigitsMask))
 				{
 					conclusions.Add(new(Elimination, theOtherTargetCell, digit));
@@ -3174,7 +3172,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		foreach (var (thisTargetCell, theOtherTargetCell) in ((groupsOfTargetCells[0][0], groupsOfTargetCells[1][0]), (groupsOfTargetCells[1][0], groupsOfTargetCells[0][0])))
 		{
 			var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
-#pragma warning disable format
 			var finalDigitsMask = (mirrorCellsThisTarget & ~EmptyCells) switch
 			{
 				[] when mirrorCellsThisTarget is [var a, var b]
@@ -3184,7 +3181,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				[var a, var b]
 					=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 			};
-#pragma warning restore format
 			foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & ~finalDigitsMask))
 			{
 				conclusions.Add(new(Elimination, theOtherTargetCell, digit));
@@ -3655,7 +3651,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 
 			var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
-#pragma warning disable format
 			var finalDigitsMask = (mirrorCellsThisTarget & ~EmptyCells) switch
 			{
 				[] when mirrorCellsThisTarget is [var a, var b]
@@ -3665,7 +3660,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				[var a, var b]
 					=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 			};
-#pragma warning restore format
 			foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & ~finalDigitsMask))
 			{
 				conclusions.Add(new(Elimination, theOtherTargetCell, digit));

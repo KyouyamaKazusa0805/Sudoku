@@ -18,14 +18,12 @@ public sealed class EnumerableQuerySolver : ISolver, IMultipleSolutionSolver
 	/// <inheritdoc/>
 	public bool? Solve(ref readonly Grid grid, out Grid result)
 	{
-#pragma warning disable format
 		(result, var @return) = SolveCore(grid.ToString()) switch
 		{
 			[] => (Grid.Undefined, default(bool?)),
 			[var resultString] => (Grid.Parse(resultString), true),
 			_ => (Grid.Undefined, false)
 		};
-#pragma warning restore format
 		return @return;
 	}
 

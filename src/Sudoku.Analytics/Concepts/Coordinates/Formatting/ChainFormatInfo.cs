@@ -266,9 +266,11 @@ public sealed class ChainFormatInfo : FormatInfo<Chain>
 			ExcelCoordinateConverter c => c with { MakeLettersUpperCase = MakeLettersUpperCase },
 			{ } tempConverter => tempConverter,
 			_ => throw new InvalidOperationException()
-#pragma warning disable format
-		} with { DefaultSeparator = DefaultSeparator, NotationBracket = NotationBracket };
-#pragma warning restore format
+		} with
+		{
+			DefaultSeparator = DefaultSeparator,
+			NotationBracket = NotationBracket
+		};
 
 		var needAddingBrackets_Digits = Enum.IsDefined(DigitBracketInCandidateGroups) && DigitBracketInCandidateGroups != NotationBracket.None;
 		var needAddingBrackets_Cells = Enum.IsDefined(NotationBracket) && NotationBracket != NotationBracket.None;
