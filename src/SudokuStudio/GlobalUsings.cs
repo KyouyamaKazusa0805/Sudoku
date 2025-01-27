@@ -45,7 +45,7 @@ global using Microsoft.UI.Xaml.Media.Imaging;
 global using Microsoft.UI.Xaml.Navigation;
 global using Microsoft.UI.Xaml.Shapes;
 global using Microsoft.Windows.AppLifecycle;
-global using Puzzles.Solving;
+global using Puzzles.Meta.Solving;
 global using QuestPDF.Fluent;
 global using QuestPDF.Infrastructure;
 global using SkiaSharp;

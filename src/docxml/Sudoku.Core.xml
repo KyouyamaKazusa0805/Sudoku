@@ -4717,7 +4717,7 @@
             Removes for Sukaku puzzle header.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Puzzles#Transforming#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#Shuffle">
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#Shuffle">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#IWhereMethod{Sudoku#Concepts#Grid,System#Int32}#Where(System.Func{System.Int32,System.Boolean})">
@@ -4729,25 +4729,25 @@
         <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#Grid,System#Int32}#Select``1(System.Func{System.Int32,``0})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Puzzles#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#MirrorLeftRight">
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#MirrorLeftRight">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Puzzles#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#MirrorTopBottom">
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#MirrorTopBottom">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Puzzles#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#MirrorDiagonal">
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#MirrorDiagonal">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Puzzles#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#MirrorAntidiagonal">
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#MirrorAntidiagonal">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Puzzles#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#RotateClockwise">
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#RotateClockwise">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Puzzles#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#RotateCounterclockwise">
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#Transforming#IBoardTransformable{Sudoku#Concepts#Grid}#RotateCounterclockwise">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Puzzles#Transforming#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#SwapElement(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#SwapElement(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Preserve(Sudoku.Concepts.CellMap@)">
@@ -6120,10 +6120,10 @@
             <seealso cref="T:Sudoku.Concepts.CellState"/>
             <seealso cref="T:Sudoku.SudokuType"/>
         </member>
-        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Puzzles#Meta#IBoard#Rows">
+        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Puzzles#Meta#Concepts#IBoard#Rows">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Puzzles#Meta#IBoard#Columns">
+        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Puzzles#Meta#Concepts#IBoard#Columns">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.IGrid`1.EmptyString">
