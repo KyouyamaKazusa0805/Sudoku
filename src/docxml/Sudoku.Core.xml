@@ -4565,7 +4565,7 @@
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean,System.Char)">
+        <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.MaskAggregator)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitives#IGrid{Sudoku#Concepts#Grid}#Item(System.Int32)">
@@ -6207,7 +6207,7 @@
             <param name="cells">A list of desired cells.</param>
             <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
         </member>
-        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Item(Sudoku.Concepts.CellMap@,System.Boolean,System.Char)">
+        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.Item(Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.MaskAggregator)">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Primitives.IGrid`1.Item(Sudoku.Concepts.CellMap@)" path="/summary"/>
             </summary>
@@ -6216,8 +6216,8 @@
             Indicates whether the value cells (given or modifiable ones) will be included to be checked.
             If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
             </param>
-            <param name="mergingMethod">
-            Indicates the merging method. Values are <c>'<![CDATA[&]]>'</c>, <c>'<![CDATA[|]]>'</c> and <c>'<![CDATA[~]]>'</c>.
+            <param name="aggregator">
+            Indicates the aggregator method.
             <list type="bullet">
             <item><c>'<![CDATA[&]]>'</c>: Use <b>bitwise and</b> operator to merge masks.</item>
             <item><c>'<![CDATA[|]]>'</c>: Use <b>bitwise or</b> operator to merge masks.</item>
@@ -6226,7 +6226,7 @@
             By default, the value is <c>'<![CDATA[|]]>'</c>. You can reference <see cref="T:Sudoku.Concepts.MaskAggregator"/> constants to set values.
             </param>
             <returns><inheritdoc cref="P:Sudoku.Concepts.Primitives.IGrid`1.Item(Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when <paramref name="aggregator"/> is not defined.</exception>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.IGrid`1.Reset">
             <summary>

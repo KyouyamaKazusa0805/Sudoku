@@ -384,22 +384,21 @@ public partial struct Grid : GridBase
 	}
 
 	/// <inheritdoc/>
-	public readonly unsafe Mask this[in CellMap cells, bool withValueCells, [ConstantExpected] char mergingMethod = MaskAggregator.Or]
+	public readonly unsafe Mask this[in CellMap cells, bool withValueCells, MaskAggregator aggregator = MaskAggregator.Or]
 	{
 		get
 		{
-			var result = mergingMethod switch
+			var result = aggregator switch
 			{
 				MaskAggregator.AndNot or MaskAggregator.And => MaxCandidatesMask,
 				MaskAggregator.Or => (Mask)0,
-				_ => throw new ArgumentOutOfRangeException(nameof(mergingMethod))
+				_ => throw new ArgumentOutOfRangeException(nameof(aggregator))
 			};
-			var mergingFunctionPtr = mergingMethod switch
+			delegate*<ref Mask, ref readonly Grid, Cell, void> mergingFunctionPtr = aggregator switch
 			{
 				MaskAggregator.AndNot => &andNot,
 				MaskAggregator.And => &and,
-				MaskAggregator.Or => &or,
-				_ => default(delegate*<ref Mask, ref readonly Grid, Cell, void>)
+				MaskAggregator.Or => &or
 			};
 			foreach (var cell in cells)
 			{

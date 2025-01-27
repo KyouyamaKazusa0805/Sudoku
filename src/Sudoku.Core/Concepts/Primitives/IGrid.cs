@@ -333,8 +333,8 @@ public interface IGrid<TSelf> :
 	/// Indicates whether the value cells (given or modifiable ones) will be included to be checked.
 	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
 	/// </param>
-	/// <param name="mergingMethod">
-	/// Indicates the merging method. Values are <c>'<![CDATA[&]]>'</c>, <c>'<![CDATA[|]]>'</c> and <c>'<![CDATA[~]]>'</c>.
+	/// <param name="aggregator">
+	/// Indicates the aggregator method.
 	/// <list type="bullet">
 	/// <item><c>'<![CDATA[&]]>'</c>: Use <b>bitwise and</b> operator to merge masks.</item>
 	/// <item><c>'<![CDATA[|]]>'</c>: Use <b>bitwise or</b> operator to merge masks.</item>
@@ -343,8 +343,8 @@ public interface IGrid<TSelf> :
 	/// By default, the value is <c>'<![CDATA[|]]>'</c>. You can reference <see cref="MaskAggregator"/> constants to set values.
 	/// </param>
 	/// <returns><inheritdoc cref="this[in CellMap]" path="/returns"/></returns>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
-	public abstract Mask this[in CellMap cells, bool withValueCells, [ConstantExpected] char mergingMethod = MaskAggregator.Or] { get; }
+	/// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="aggregator"/> is not defined.</exception>
+	public abstract Mask this[in CellMap cells, bool withValueCells, MaskAggregator aggregator = MaskAggregator.Or] { get; }
 
 
 	/// <summary>

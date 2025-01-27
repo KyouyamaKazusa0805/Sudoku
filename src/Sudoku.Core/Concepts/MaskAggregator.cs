@@ -3,20 +3,20 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents an aggregator of mask merging.
 /// </summary>
-public static class MaskAggregator
+public enum MaskAggregator
 {
 	/// <summary>
 	/// Indicates the method is "or".
 	/// </summary>
-	public const char Or = '|';
+	Or = '|',
 
 	/// <summary>
 	/// Indicates the method is "and".
 	/// </summary>
-	public const char And = '&';
+	And = '&',
 
 	/// <summary>
 	/// Indicates the method is "and not".
 	/// </summary>
-	public const char AndNot = '~';
+	AndNot = '~'
 }
