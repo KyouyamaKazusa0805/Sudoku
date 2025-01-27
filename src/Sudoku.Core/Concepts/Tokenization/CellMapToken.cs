@@ -47,7 +47,7 @@ public static class CellMapToken
 
 	/// <inheritdoc cref="CreateFromToken(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap CreateFromToken(ReadOnlyCharSequence token) => CreateFromToken(token.ToString());
+	public static CellMap CreateFromToken(ReadOnlySpan<char> token) => CreateFromToken(token.ToString());
 
 	/// <summary>
 	/// Creates a <see cref="CellMap"/> instance using the specified token of length 18.

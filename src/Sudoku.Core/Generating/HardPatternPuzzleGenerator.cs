@@ -87,7 +87,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <param name="solutionString">
 	/// The pointer that points to the solution. The result value will be changed here.
 	/// </param>
-	private unsafe void GenerateAnswerGrid(CharSequence puzzleString, CharSequence solutionString)
+	private unsafe void GenerateAnswerGrid(Span<char> puzzleString, Span<char> solutionString)
 	{
 		do
 		{
@@ -168,7 +168,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <param name="gridString">The pointer that points to a grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private static bool CheckDuplicate(CharSequence gridString, Cell cell)
+	private static bool CheckDuplicate(Span<char> gridString, Cell cell)
 	{
 		var value = gridString[cell];
 		foreach (var c in PeersMap[cell])

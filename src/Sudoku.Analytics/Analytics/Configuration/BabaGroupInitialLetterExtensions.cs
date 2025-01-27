@@ -44,7 +44,7 @@ public static class BabaGroupInitialLetterExtensions
 	/// <returns>The character sequence.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the specified arguments are not defined.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlyCharSequence GetSequence(this BabaGroupInitialLetter @this, BabaGroupLetterCasing casing)
+	public static ReadOnlySpan<char> GetSequence(this BabaGroupInitialLetter @this, BabaGroupLetterCasing casing)
 		=> Enum.IsDefined(@this) && Enum.IsDefined(casing)
 			? CharSequences[(@this, casing)].AsSpan()
 			: throw new ArgumentOutOfRangeException(nameof(@this));

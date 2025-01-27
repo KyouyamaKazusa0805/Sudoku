@@ -52,7 +52,7 @@ public partial class Hub
 
 
 				[MethodImpl(MethodImplOptions.AggressiveInlining)]
-				ReadOnlyCharSequence internalName()
+				ReadOnlySpan<char> internalName()
 				{
 					var finKindStr = finKind() is var finModifier and not FishFinKind.Normal
 						? step.IsSiamese ? $"Siamese {finModifier} " : $"{finModifier} "

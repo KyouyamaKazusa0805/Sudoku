@@ -49,7 +49,7 @@ public sealed partial class RemotePairStep(
 
 	private string SecondUnknownCharacterString => UnknownCharacters[1].ToString();
 
-	private ReadOnlyCharSequence UnknownCharacters => Options.BabaGroupInitialLetter.GetSequence(Options.BabaGroupLetterCasing);
+	private ReadOnlySpan<char> UnknownCharacters => Options.BabaGroupInitialLetter.GetSequence(Options.BabaGroupLetterCasing);
 
 
 	/// <inheritdoc/>
