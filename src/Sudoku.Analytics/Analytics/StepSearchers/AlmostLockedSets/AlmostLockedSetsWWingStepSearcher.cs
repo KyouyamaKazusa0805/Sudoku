@@ -8,7 +8,6 @@ namespace Sudoku.Analytics.StepSearchers.AlmostLockedSets;
 /// </list>
 /// </summary>
 [StepSearcher("StepSearcherName_AlmostLockedSetsWWingStepSearcher", Technique.AlmostLockedSetsWWing)]
-[DeprecatedSince(3, 4, DescriptionLink = "https://github.com/KyouyamaKazusa0805/Sudoku/issues/735")]
 public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 {
 	/// <summary>

@@ -12,7 +12,6 @@ namespace Sudoku.Analytics.StepSearchers.AlmostLockedSets;
 [StepSearcher(
 	"StepSearcherName_AlmostLockedSetsXzStepSearcher",
 	Technique.SinglyLinkedAlmostLockedSetsXzRule, Technique.DoublyLinkedAlmostLockedSetsXzRule)]
-[DeprecatedSince(3, 4, DescriptionLink = "https://github.com/KyouyamaKazusa0805/Sudoku/issues/735")]
 public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 {
 	/// <summary>

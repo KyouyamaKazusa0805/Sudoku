@@ -131,7 +131,6 @@ internal static class MemoryCachedData
 	/// <param name="g">The grid.</param>
 	/// <param name="s">The solution of <paramref name="g"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[IntroducedSince(3, 4, 1)]
 	public static void Initialize(Analyzer? analyzer, ref readonly Grid g, ref readonly Grid s)
 	{
 		(CandidatesCount, StrongLinkTypesCollected, WeakLinkTypesCollected) = (g.CandidatesCount, LinkType.Unknown, LinkType.Unknown);

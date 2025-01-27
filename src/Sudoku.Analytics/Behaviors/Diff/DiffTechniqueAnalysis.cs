@@ -3,7 +3,6 @@ namespace Sudoku.Behaviors.Diff;
 /// <summary>
 /// Provides a way to analyze technique usages on difference between two grids.
 /// </summary>
-[IntroducedSince(3, 4)]
 public static class DiffTechniqueAnalysis
 {
 	/// <summary>

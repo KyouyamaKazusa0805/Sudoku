@@ -11,7 +11,6 @@ namespace Sudoku.Analytics.Steps.AlmostLockedSets;
 /// <param name="conjugatePair">Indicates the conjugate pair used as a bridge.</param>
 /// <param name="wDigitsMask">Indicates the mask of W digits used.</param>
 /// <param name="xDigit">Indicates the digit X.</param>
-[DeprecatedSince(3, 4, DescriptionLink = "https://github.com/KyouyamaKazusa0805/Sudoku/issues/735")]
 public sealed partial class AlmostLockedSetsWWingStep(
 	StepConclusions conclusions,
 	View[]? views,

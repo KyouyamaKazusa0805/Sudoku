@@ -4,7 +4,6 @@ namespace Sudoku.Behaviors.Diff.Results;
 /// Represents a difference that describes a type of digits (given, value or candidate) is changed.
 /// </summary>
 /// <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
-[IntroducedSince(3, 4)]
 public abstract class ChangedDiffResult(CandidateMap candidates) : UpdatedDiffResult(candidates)
 {
 	/// <inheritdoc/>

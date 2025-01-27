@@ -102,7 +102,6 @@ public sealed class Analyzer :
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that has some extra configuration, suitable for a whole analysis lifecycle.
 	/// </summary>
-	[DeprecatedSince(3, 4, DescriptionLink = "https://github.com/KyouyamaKazusa0805/Sudoku/issues/735")]
 	public static Analyzer Balanced
 		=> Default
 			.WithIgnoreHighTimeComplexityStepSearchers(false)
@@ -125,7 +124,6 @@ public sealed class Analyzer :
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that has some extra configuration, suitable for a whole analysis lifecycle.
 	/// </summary>
-	[IntroducedSince(3, 4)]
 	public static Analyzer Standard
 		=> Default
 			.WithIgnoreHighTimeComplexityStepSearchers(false)

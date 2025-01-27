@@ -3,7 +3,6 @@ namespace Sudoku.Behaviors.Diff;
 /// <summary>
 /// Represents a difference type.
 /// </summary>
-[IntroducedSince(3, 4)]
 public enum DiffType
 {
 	/// <summary>

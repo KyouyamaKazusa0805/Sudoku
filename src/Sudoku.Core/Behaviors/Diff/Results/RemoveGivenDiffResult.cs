@@ -4,7 +4,6 @@ namespace Sudoku.Behaviors.Diff.Results;
 /// Represents a difference that describes a list of given digits is removed.
 /// </summary>
 /// <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
-[IntroducedSince(3, 4)]
 [method: JsonConstructor]
 public sealed class RemoveGivenDiffResult(CandidateMap candidates) : RemoveDiffResult(candidates)
 {

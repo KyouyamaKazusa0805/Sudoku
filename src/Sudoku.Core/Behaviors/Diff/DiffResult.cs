@@ -3,7 +3,6 @@ namespace Sudoku.Behaviors.Diff;
 /// <summary>
 /// Represents a difference result.
 /// </summary>
-[IntroducedSince(3, 4)]
 [TypeImpl(
 	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators,
 	ToStringBehavior = ToStringBehavior.MakeAbstract,

@@ -5,7 +5,6 @@ namespace Sudoku.Behaviors.Diff.Results;
 /// </summary>
 /// <param name="candidates"><inheritdoc path="/param[@name='candidates']"/></param>
 /// <param name="areCorrect"><inheritdoc path="/param[@name='areCorrect']"/></param>
-[IntroducedSince(3, 4)]
 [method: JsonConstructor]
 public sealed class AddGivenDiffResult(CandidateMap candidates, bool areCorrect) : AddDiffResult(candidates, areCorrect)
 {
