@@ -104,8 +104,8 @@ public sealed record LiteralCoordinateConverter(
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[var (t, c, d)] when (t == Assignment ? AssignmentToken : EliminationToken) is var token
-					=> $"{CellConverter(in c.AsCellMap())}{token}{DigitConverter((Mask)(1 << d))}",
+				[(Assignment, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{AssignmentToken}{DigitConverter((Mask)(1 << d))}",
+				[(Elimination, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{EliminationToken}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
