@@ -6,3 +6,5 @@ description: 'Appendix: Techniques'
 
 排除下面列举的是所有前面介绍过的数独技巧。
 
+<table><thead><tr><th width="172">技巧名</th><th>英文名</th></tr></thead><tbody><tr><td>排除</td><td>Crosshatching</td></tr><tr><td>宫排除</td><td>Crosshatching in Block</td></tr><tr><td>行排除</td><td>Crosshatching in Row</td></tr><tr><td>列排除</td><td>Crosshatching in Column</td></tr><tr><td>唯一余数<br>唯余<br>喂鱼</td><td>Naked Single</td></tr><tr><td>同区域剩余<br>单元唯一法<br>区域唯一法</td><td>Full House</td></tr><tr><td>同数剩余</td><td>Last Digit</td></tr></tbody></table>
+
