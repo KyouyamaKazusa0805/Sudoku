@@ -87,6 +87,12 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var difficultyLevel = (from c in constraints.OfType<DifficultyLevelConstraint>() select c.DifficultyLevel) is [var dl] ? dl : default;
 		var analyzer = Application.Current.AsApp().GetAnalyzerConfigured(BasePage.SudokuPane, difficultyLevel);
 		var ittoryuFinder = new DisorderedIttoryuFinder(TechniqueIttoryuSets.IttoryuTechniques);
+		var analysisPref = Application.Current.AsApp().Preference.AnalysisPreferences;
+		var filters = (BottleneckFilter[])[
+			new(PencilmarkVisibility.Direct, analysisPref.DirectModeBottleneckType),
+			new(PencilmarkVisibility.PartialMarking, analysisPref.PartialMarkingModeBottleneckType),
+			new(PencilmarkVisibility.FullMarking, analysisPref.FullMarkingModeBottleneckType)
+		];
 
 		using var cts = new CancellationTokenSource();
 		BasePage._ctsForAnalyzingRelatedOperations = cts;
@@ -133,38 +139,36 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			gridTextConsumer?.Invoke(grid.ToString("#"));
 		}
 
-		Grid taskEntry()
+		unsafe Grid taskEntry()
 		{
 			var hasFullHouseConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }];
 			var hasNakedSingleConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.NakedSingle }];
 			var hasFullHouseConstraintInTechniqueSet = constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.FullHouse] }];
 			var hasNakedSingleConnstraintInTechniqueSet = constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.NakedSingle] }];
 			var hasIttoryuConstraint = constraints.OfType<IttoryuConstraint>() is [{ Operator: ComparisonOperator.Equality, Rounds: 1 }];
-			unsafe
-			{
-				return coreHandler(
-					constraints,
-					hasFullHouseConstraint || hasFullHouseConstraintInTechniqueSet
-						? &handlerFullHouse
-						: hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
-							? &handlerNakedSingle
-							: hasIttoryuConstraint
-								? &handlerIttoryu
-								: &handlerDefault,
-					progress => DispatcherQueue.TryEnqueue(
-						() =>
-						{
-							BasePage.AnalyzeProgressLabel.Text = processingText;
-							BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
-						}
-					),
-					cts.Token,
-					hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
-						? analyzer.WithUserDefinedOptions(analyzer.Options with { PrimarySingle = SingleTechniqueFlag.NakedSingle })
-						: analyzer,
-					ittoryuFinder
-				);
-			}
+			return coreHandler(
+				constraints,
+				hasFullHouseConstraint || hasFullHouseConstraintInTechniqueSet
+					? &handlerFullHouse
+					: hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
+						? &handlerNakedSingle
+						: hasIttoryuConstraint
+							? &handlerIttoryu
+							: &handlerDefault,
+				progress => DispatcherQueue.TryEnqueue(
+					() =>
+					{
+						BasePage.AnalyzeProgressLabel.Text = processingText;
+						BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
+					}
+				),
+				cts.Token,
+				hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
+					? analyzer.WithUserDefinedOptions(analyzer.Options with { PrimarySingle = SingleTechniqueFlag.NakedSingle })
+					: analyzer,
+				ittoryuFinder,
+				filters
+			);
 
 
 			static Grid handlerFullHouse(int givens, SymmetricType type, CancellationToken ct)
@@ -214,18 +218,13 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			Action<TProgressDataProvider> reporter,
 			CancellationToken cancellationToken,
 			Analyzer analyzer,
-			DisorderedIttoryuFinder finder
+			DisorderedIttoryuFinder finder,
+			BottleneckFilter[] filters
 		)
 		{
 			// Update generating configurations.
 			if (constraints.OfType<BottleneckTechniqueConstraint>() is { Length: not 0 } list)
 			{
-				var analysisPref = Application.Current.AsApp().Preference.AnalysisPreferences;
-				var filters = (BottleneckFilter[])[
-					new(PencilmarkVisibility.Direct, analysisPref.DirectModeBottleneckType),
-					new(PencilmarkVisibility.PartialMarking, analysisPref.PartialMarkingModeBottleneckType),
-					new(PencilmarkVisibility.FullMarking, analysisPref.FullMarkingModeBottleneckType)
-				];
 				foreach (var element in list)
 				{
 					element.Filters = filters;
