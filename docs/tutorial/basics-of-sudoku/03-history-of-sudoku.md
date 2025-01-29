@@ -6,9 +6,9 @@ description: History of Sudoku
 
 数独演变到如今，中间确实存在不少响当当的人物在让数独更加大众化。下面我们来看看数独究竟是如何演变至今的。
 
-## 宫条件的形成：法国Le Siècle日报 <a href="#block-rule-growing" id="block-rule-growing"></a>
+## 宫规则：法国Le Siècle日报 <a href="#block-rule-growing" id="block-rule-growing"></a>
 
-早在19世纪末期，法国的 Le Siècle 日报就发布了一篇填数字的游戏。这种填数字游戏似乎跟 目前的数独差不多，但区别也非常大。
+早在 19 世纪末期，法国的 Le Siècle 日报就发布了一篇填数字的游戏。这种填数字游戏看起来似乎跟目前的数独差不多，但区别也非常大。
 
 <figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption><p>该日报上的题</p></figcaption></figure>
 
@@ -38,7 +38,7 @@ description: History of Sudoku
 
 这便是数独带有宫的、可通过文献找到的最早的记录。
 
-## 不重复规则的形成：欧拉的拉丁方和崔锡鼎的九数略 <a href="#no-dupe-rule-growing" id="no-dupe-rule-growing"></a>
+## 不重复规则：欧拉的拉丁方和崔锡鼎的九数略 <a href="#no-dupe-rule-growing" id="no-dupe-rule-growing"></a>
 
 另一种说法是来自于**拉丁方**（Latin Square）。也有翻译成拉丁方块和拉丁方阵的。这个东西于 1700 年左右就已经出现。
 
@@ -58,12 +58,20 @@ description: History of Sudoku
 
 > 图源：[https://zh.wikipedia.org/zh-hans/%E6%B2%B3%E5%9C%96%E6%B4%9B%E6%9B%B8](https://zh.wikipedia.org/zh-hans/%E6%B2%B3%E5%9C%96%E6%B4%9B%E6%9B%B8)
 
-从图形上来看，中国早已存在对幻方的研究和说明。该图里线条连接的圆点数排布恰为一个 3 阶的幻方：
+从图形上来看，中国早已存在对幻方的研究。该图里线条连接的圆点数排布恰为一个 3 阶的幻方：
 
 $$
-\begin{matrix}4&9&2\\3&5&7\\8&1&6\end{matrix}
+\begin{matrix}
+& & 4 & 9 & 2 & \rightarrow & 15\\
+& & 3 & 5 & 7 & \rightarrow & 15\\
+& & 8 & 1 & 6 & \rightarrow & 15\\
+& \swarrow & \downarrow & \downarrow & \downarrow & \searrow \\
+15 & & 15 & 15 & 15 & & 15
+\end{matrix}
 $$
 
 这是两个广泛被认为是数独的历史文字。
+
+也就是说，崔锡鼎的九数略来自于中国古代的河图洛书，但稍加改良将求和的规则改成了一种不重复的填充规则；而若干年后，欧拉也独立创造出了不重复规则的填充规则。他们互相是没有关系的。
 
 总而言之，数独的宫规则和不重复规则来自于这样两种不同的填数谜题，最终归并到了一起。
