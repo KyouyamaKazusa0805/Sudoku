@@ -437,7 +437,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					in subsetCells,
 					subsetDigitsMask,
 					subsetHouse,
-					[cell],
+					in cell.AsCellMap(),
 					eliminatedDigitsMask,
 					houseType switch
 					{
@@ -603,7 +603,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				in subsetCells,
 				subsetDigitsMask,
 				subsetHouse,
-				[cell],
+				in cell.AsCellMap(),
 				eliminatedDigitsMask,
 				TechniqueNaming.Single.GetNakedSingleSubtype(in grid, cell),
 				Technique.NakedSingle,
@@ -695,7 +695,9 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					[
 						[
 							.. candidateOffsets,
-							new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit),
+							..
+							from elimDigit in eliminatedDigitsMask
+							select new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + elimDigit),
 							new CellViewNode(ColorIdentifier.Auxiliary3, cell),
 							new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
 							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
@@ -707,7 +709,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					in subsetCells,
 					subsetDigitsMask,
 					subsetHouse,
-					[cell],
+					in cell.AsCellMap(),
 					eliminatedDigitsMask,
 					houseType switch
 					{
@@ -867,7 +869,9 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						.. Excluder.GetNakedSingleExcluders(in grid, cell, lastDigit, out _),
 						new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
 						new DiamondViewNode(ColorIdentifier.Auxiliary3, cell),
-						new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit)
+						..
+						from elimDigit in eliminatedDigitsMask
+						select new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + elimDigit)
 					]
 				],
 				context.Options,
@@ -876,7 +880,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				in subsetCells,
 				subsetDigitsMask,
 				subsetHouse,
-				[cell],
+				in cell.AsCellMap(),
 				eliminatedDigitsMask,
 				TechniqueNaming.Single.GetNakedSingleSubtype(in grid, cell),
 				Technique.NakedSingle,
