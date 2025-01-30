@@ -32,13 +32,13 @@ description: Naked Single
 
 观察 `r7`，我们可以看到数字出现得非常多。因为有 2、4、5、7、8、9，因此还缺少的只有 1、3、6 了。随即我们再去看 `r7c9` 的所在列和宫里。正好，`c9` 里还真有 1 和 3 的出现，所以 `r7c9 = 6` 就可以轻松得到了。
 
-## 例子 3
+## 例子 3 <a href="#example-3" id="example-3"></a>
 
 下面我们再来看一个题，不过这个题就留给你自己思考了。
 
 <figure><img src="../.gitbook/assets/image (9).png" alt="" width="375"><figcaption><p>例子 3</p></figcaption></figure>
 
-## 唯一余数的观察
+## 唯一余数的观察 <a href="#spotting-of-naked-single" id="spotting-of-naked-single"></a>
 
 这是一个需要熟能生巧的技巧。我们需要优先聚焦于一些空格较少的行、列、宫，在确保“空格的数字有哪一些”可以快速得出时，然后再去外面找别的数字作为排除项，并最终定位出结果。
 

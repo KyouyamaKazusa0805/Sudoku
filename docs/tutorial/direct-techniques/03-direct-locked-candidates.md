@@ -37,6 +37,8 @@ description: Direct Locked Candidates
 
 这个例子稍微麻烦一些。
 
+> 宫区块在外国也叫**区块类型 1**（Locked Candidates Type 1）。
+
 ## 行列区块（Claiming） <a href="#claiming" id="claiming"></a>
 
 下面我们来看一则利用**行列区块**（Claiming）的例子。
@@ -52,6 +54,8 @@ description: Direct Locked Candidates
 在这个例子里，`r1c23` 的数字 8 就可以被我们称为行列区块。具体一点，它是下在 `r1` 的区块，所以叫**行区块**。
 
 > “`r1c23` 的数字 8”可以简单记作 `r1c23(8)`，使用小括号来表示我们结构里要表达的那个数字。
+>
+> 另外，行列区块在外国也叫**区块类型 2**（Locked Candidates Type 2）。
 
 下面我们再来看另外一个例子。和前面的例子都不同，这次我们不借用排除填数，而是唯一余数。
 
