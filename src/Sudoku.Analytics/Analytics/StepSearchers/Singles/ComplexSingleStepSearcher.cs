@@ -287,7 +287,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 				var flag = true;
 				foreach (var technique in
 					from techniquesGroup in step.IndirectTechniques
-					from technique in techniquesGroup.AsReadOnlySpan()
+					from technique in techniquesGroup
 					select technique)
 				{
 					if (technique.GetGroup() == TechniqueGroup.Subset)
