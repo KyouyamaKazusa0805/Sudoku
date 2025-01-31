@@ -28,7 +28,7 @@ description: Crosshatching
 
 ## 行排除（Crosshatching in Row） <a href="#crosshatching-in-row" id="crosshatching-in-row"></a>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt="" width="375"><figcaption><p>行排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>行排除</p></figcaption></figure>
 
 如图所示，图中除了黑色的提示数外，我们还可以通过才学到的宫排除完整一些蓝色位置的填数。我们把这些蓝色的数字称为**填入数**（Modifiable）。填入数有些时候也可以参与推理过程，并不是说填上之后就放在那里“吃灰”了。当然，填入数最后会因为我们的推理顺畅而变得越来越多，因此部分填入数确实不一定会发挥它的推理的作用，所以这取决于你自己的灵活变通了。
 
@@ -66,7 +66,7 @@ description: Crosshatching
 
 为了更加详细地解释这个问题，我们使用前面行排除的题目给大家解释一下问题问的是什么。这个问题也是经常有朋友询问我的一个问题。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt="" width="375"><figcaption><p>还是那个行排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>还是那个行排除</p></figcaption></figure>
 
 如图所示。这就是刚才的那个行排除的题。有些朋友会问，我们使用了行排除的推演逻辑，用到的是下方 `r9c2` 处的 5。这个 5 虽然可以得到 `r3c8 = 5` 的推演结论，但是凭什么 `r1c8` 就不能是 5 了呢？
 

@@ -8,7 +8,7 @@ description: Law of Leftover
 
 ## 例子 1 <a href="#example-1" id="example-1"></a>
 
-<figure><img src="../.gitbook/assets/image.png" alt="" width="375"><figcaption><p>例子 1 - 割补推导部分</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt="" width="375"><figcaption><p>例子 1 - 割补推导部分</p></figcaption></figure>
 
 如图所示。我们将视角调整到 `b5` 和 `c5` 之中。
 
@@ -22,7 +22,7 @@ description: Law of Leftover
 
 当我们得到这一个结论后，我们继续往后看。
 
-<figure><img src="../.gitbook/assets/image (1).png" alt="" width="375"><figcaption><p>例子 1 - 宫排除部分</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption><p>例子 1 - 宫排除部分</p></figcaption></figure>
 
 如图所示。当我们得到前面的结论后，三角形位置 `r3c5` 就不能填 4 了（因为这个单元格是原本填 1、5、6、9 的部分，它压根没有填 4 的机会了）。而根据宫排除，我们可以得到，`b2` 里填入 4 的位置只剩下了 `r3c4` 了。所以，`r3c4 = 4` 是本题的结论。
 
