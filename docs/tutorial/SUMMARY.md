@@ -18,6 +18,7 @@
   * [直观复杂出数](partial-marking-technique/04-direct-complex-single.md)
 * [全标技巧](full-marking-technique/README.md)
   * [候选数的概念](full-marking-technique/01-concept-of-candidate.md)
+  * [直观技巧在全标下的样子](full-marking-technique/02-looking-of-direct-techniques-in-full-marking-grids.md)
 * [附录](appendix/README.md)
   * [术语索引](appendix/01-terms.md)
   * [技巧索引](appendix/02-techniques.md)
