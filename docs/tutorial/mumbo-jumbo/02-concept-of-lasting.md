@@ -89,9 +89,9 @@ description: Concept of Lasting
 
 为了让我们使用技巧的列表更加饱满，剩余数只有 1 的两种技巧还有单独的名字，我打算放这里说。
 
-### 同数剩余（Full House） <a href="#full-house" id="full-house"></a>
+### 同区剩余（Full House） <a href="#full-house" id="full-house"></a>
 
-**同数剩余**（Full House），也叫**单元唯一法**或**区域唯一法**，有时候也直接用它的英文名 Full House，指的是某个行、列、宫里仅剩下唯一一个空格的技巧。是的，它其实就是剩余数为 1 的特殊情况。
+**同区剩余**（Full House），也叫**单元唯一法**或**区域唯一法**，有时候也直接用它的英文名 Full House，指的是某个行、列、宫里仅剩下唯一一个空格的技巧。是的，它其实就是剩余数为 1 的特殊情况。
 
 我们来看一个例子。
 
