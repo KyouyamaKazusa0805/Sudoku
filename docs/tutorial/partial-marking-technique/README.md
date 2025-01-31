@@ -10,7 +10,7 @@ description: Partial-Marking Technique
 这种局标技巧一共只有三个：
 
 * **割补**（Law of Leftover，简称 LoL）
-* **区块**（Locked Candidates）
+* **区块**（Locked Candidates，国外也简称 LC）
 * **数组**（Subset）
 
 它们的难度并不一样，但一般也可以在做题里起到帮助，因此单独抽出来形成一个板块。
