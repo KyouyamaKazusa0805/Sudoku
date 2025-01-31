@@ -4,13 +4,11 @@ description: Direct Locked Candidates
 
 # 直观区块
 
-今天我们先学习第一个技巧。
-
-> 这里要注意一点是，区块的英文名 Locked Candidates 是自带复数形式的。就是说，它的名字自身就是以复数形式表示。
+接着，我们要学习的技巧是区块。这里需要注意一点。区块的英文名 Locked Candidates 是自带复数形式的。就是说，它的名字自身就是以复数形式表示。
 
 ## 宫区块（Pointing） <a href="#pointing" id="pointing"></a>
 
-<figure><img src="../.gitbook/assets/image.png" alt="" width="375"><figcaption><p>宫区块 + 行排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt="" width="375"><figcaption><p>宫区块 + 行排除</p></figcaption></figure>
 
 如图所示，我们可以看到，`b5` 此时只有两个空格。很明显我们能够知道的是，虽然我们并不能确定 8 究竟是 `r4c5` 填入，还是 `r5c5` 填入，但是由于它们俩同一列，所以 `c5` 填 8 的机会一定给到了 `r4c5` 和 `r5c5` 里的其一。
 
@@ -26,7 +24,7 @@ description: Direct Locked Candidates
 
 可以从结构里发现，它比较容易观察，所以和宫排除一样，我优先讲了宫区块。下面我们来看另外一则宫区块的例子，希望你自己理解它。
 
-<figure><img src="../.gitbook/assets/image (1).png" alt="" width="375"><figcaption><p>宫区块 + 列排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption><p>宫区块 + 列排除</p></figcaption></figure>
 
 这个例子稍微麻烦一些。
 
@@ -36,7 +34,7 @@ description: Direct Locked Candidates
 
 下面我们来看一则利用**行列区块**（Claiming）的例子。
 
-<figure><img src="../.gitbook/assets/image (2).png" alt="" width="375"><figcaption><p>行列区块 + 列排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt="" width="375"><figcaption><p>行列区块 + 列排除</p></figcaption></figure>
 
 这是一则比较难以理解的例子。
 
@@ -52,7 +50,7 @@ description: Direct Locked Candidates
 
 下面我们再来看另外一个例子。和前面的例子都不同，这次我们不借用排除填数，而是唯一余数。
 
-<figure><img src="../.gitbook/assets/image (3).png" alt="" width="375"><figcaption><p>行列区块 + 唯一余数</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt="" width="375"><figcaption><p>行列区块 + 唯一余数</p></figcaption></figure>
 
 如图所示。我们优先可以得到的是 `r1c45(4)` 形成行区块，并得到 `r3c5 <> 4` 的结论。得到这一点后，我们通过唯一余数技巧，针对于 `r3c5` 进行数数操作。最终我们可以发现，2 是唯一一个可以填入的可能，所以 `r3c5 = 2` 便是这个技巧的结论。
 

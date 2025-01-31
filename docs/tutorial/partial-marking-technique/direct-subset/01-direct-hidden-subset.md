@@ -6,7 +6,7 @@ description: Direct Hidden Subset
 
 ## 隐性数对（Hidden Pair） <a href="#hidden-pair" id="hidden-pair"></a>
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt="" width="375"><figcaption><p>隐性数对 + 列排除</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt="" width="375"><figcaption><p>隐性数对 + 列排除</p></figcaption></figure>
 
 如图所示。我们使用排除的逻辑，看 `b1` 的数字 2 和 9，看看有什么说头。
 
@@ -26,13 +26,13 @@ description: Direct Hidden Subset
 
 下面我们再来看一则例子。希望各位这次能自己理解。
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt="" width="375"><figcaption><p>隐性数对 + 列排除</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt="" width="375"><figcaption><p>隐性数对 + 列排除</p></figcaption></figure>
 
 ## 隐性三数组（Hidden Triple） <a href="#hidden-triple" id="hidden-triple"></a>
 
 可能你会问我，文章不是介绍数组吗，为什么名字却是隐性数对而不叫隐性数组什么的。实际上是因为，和区块一样，数组在分了显性数组和隐性数组后，还有规格上的划分。前面我们学到的是数组里规格为 2 的情况，它是数组里最小规格的情况。下面我们来说一下隐性数组在规格为 3 的情况。
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt="" width="375"><figcaption><p>隐性三数组 + 行排除</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt="" width="375"><figcaption><p>隐性三数组 + 行排除</p></figcaption></figure>
 
 如图所示。和前面的解释逻辑相似，只是这次我们要一并用到三个单元格。
 

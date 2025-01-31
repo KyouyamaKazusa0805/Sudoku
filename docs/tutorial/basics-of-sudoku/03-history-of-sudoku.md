@@ -10,7 +10,7 @@ description: History of Sudoku
 
 早在 19 世纪末期，法国的 Le Siècle 日报就发布了一篇填数字的游戏。这种填数字游戏看起来似乎跟目前的数独差不多，但区别也非常大。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption><p>该日报上的题</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption><p>该日报上的题</p></figcaption></figure>
 
 > 图源：[https://en.wikipedia.org/wiki/Sudoku](https://en.wikipedia.org/wiki/Sudoku)
 
@@ -28,7 +28,7 @@ description: History of Sudoku
 
 早在 1892 年 11 月 19 日，该日报就发布了一则带宫的版本：
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption><p>带宫的版本</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption><p>带宫的版本</p></figcaption></figure>
 
 > 图源：[https://web.archive.org/web/20061210103525/http:/cboyer.club.fr/multimagie/SupplAncetresSudoku.pdf](https://web.archive.org/web/20061210103525/http:/cboyer.club.fr/multimagie/SupplAncetresSudoku.pdf)
 
@@ -46,7 +46,7 @@ description: History of Sudoku
 
 然后经考证，似乎这个东西的发明另有其人。一位韩国的数学家**崔锡鼎**（Choi Seok-jeong） 似乎早于欧拉至少 67 年就制作了拉丁方的相似内容。韩国则把这个东西称为**九数略**（Gusuryak）。
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption><p>九数略</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption><p>九数略</p></figcaption></figure>
 
 > 图源：[https://web.archive.org/web/20180814135318/https://kyudb.snu.ac.kr/contents/content\_detail.do?code=A00074\&a\_code=A01\&b\_code=B02\&c\_code=C24\&num=74](https://web.archive.org/web/20180814135318/https://kyudb.snu.ac.kr/contents/content_detail.do?code=A00074\&a_code=A01\&b_code=B02\&c_code=C24\&num=74)
 

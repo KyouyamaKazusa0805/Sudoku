@@ -1,14 +1,15 @@
 ---
-description: Partial-Marking Technique
 icon: '2'
+description: Partial-Marking Technique
 ---
 
 # 局标技巧
 
 下面我们来学习新的技巧类型：**局部标记技巧**（Partial-Marking Technique），也简称为**局标技巧**。局标技巧指的是，在前面学到的技巧里已经无法直接得到结论的时候，就需要使用到辅助信息了。而这些信息无法直接得到结论，而是辅助排除和唯一余数技巧一起才能得到结论，属于是比排除和唯一余数更高一级的技巧类型。
 
-这种局标技巧一共只有两个：
+这种局标技巧一共只有三个：
 
+* **割补**（Law of Leftover，简称 LoL）
 * **区块**（Locked Candidates）
 * **数组**（Subset）
 

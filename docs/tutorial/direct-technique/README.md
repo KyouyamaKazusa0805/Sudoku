@@ -1,6 +1,6 @@
 ---
-description: Direct Techniques
 icon: '1'
+description: Direct Technique
 ---
 
 # 直观技巧
