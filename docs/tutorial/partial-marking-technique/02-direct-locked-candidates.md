@@ -8,7 +8,7 @@ description: Direct Locked Candidates
 
 ## 宫区块（Pointing） <a href="#pointing" id="pointing"></a>
 
-<figure><img src="../.gitbook/assets/image (6).png" alt="" width="375"><figcaption><p>宫区块 + 行排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt="" width="375"><figcaption><p>宫区块 + 行排除</p></figcaption></figure>
 
 如图所示，我们可以看到，`b5` 此时只有两个空格。很明显我们能够知道的是，虽然我们并不能确定 8 究竟是 `r4c5` 填入，还是 `r5c5` 填入，但是由于它们俩同一列，所以 `c5` 填 8 的机会一定给到了 `r4c5` 和 `r5c5` 里的其一。
 
@@ -24,7 +24,7 @@ description: Direct Locked Candidates
 
 可以从结构里发现，它比较容易观察，所以和宫排除一样，我优先讲了宫区块。下面我们来看另外一则宫区块的例子，希望你自己理解它。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt="" width="375"><figcaption><p>宫区块 + 列排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>宫区块 + 列排除</p></figcaption></figure>
 
 这个例子稍微麻烦一些。
 
@@ -34,7 +34,7 @@ description: Direct Locked Candidates
 
 下面我们来看一则利用**行列区块**（Claiming）的例子。
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt="" width="375"><figcaption><p>行列区块 + 列排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt="" width="375"><figcaption><p>行列区块 + 列排除</p></figcaption></figure>
 
 这是一则比较难以理解的例子。
 
@@ -50,8 +50,31 @@ description: Direct Locked Candidates
 
 下面我们再来看另外一个例子。和前面的例子都不同，这次我们不借用排除填数，而是唯一余数。
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt="" width="375"><figcaption><p>行列区块 + 唯一余数</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt="" width="375"><figcaption><p>行列区块 + 唯一余数</p></figcaption></figure>
 
 如图所示。我们优先可以得到的是 `r1c45(4)` 形成行区块，并得到 `r3c5 <> 4` 的结论。得到这一点后，我们通过唯一余数技巧，针对于 `r3c5` 进行数数操作。最终我们可以发现，2 是唯一一个可以填入的可能，所以 `r3c5 = 2` 便是这个技巧的结论。
 
 这是配合唯一余数的使用方式。不论是从推理上来说，还是观察上来说，都会稍微有点难度一些。
+
+## 组合区块（Cascading Locked Candidates）
+
+有些时候，行列区块并不是很容易看到，所以我们可能会使用两个宫区块来代替。下面我们来看一个例子。
+
+<figure><img src="../.gitbook/assets/image (7).png" alt="" width="375"><figcaption><p>引例</p></figcaption></figure>
+
+如图所示。这是一个行区块。我们暂且忽略它后面的逻辑。
+
+我们可以试着看下右边两个宫里数字 7 的分布。使用宫排除的思路看 `b8` 和 `b9` 填入 7 的位置，我们发现它刚好构成了一个这样的形式：
+
+<figure><img src="../.gitbook/assets/image (8).png" alt="" width="375"><figcaption><p>组合区块</p></figcaption></figure>
+
+我们使用排除，可以得到 7 的可填位置在 `b8` 和 `b9` 里只有这四处位置。按照排列组合的思维，我们可以知道的是，7 只有两种排列：
+
+* `r7c5` 和 `r9c7` 同时是 7；
+* `r7c7` 和 `r9c5` 同时是 7。
+
+只有这两种情况。于是我们就知道，在 `r7` 和 `r9` 这两行里，7 的位置一定落在绿色的四个 7 里，所以别处无法填 7，于是这三处位置照样是可以去掉 7 的。
+
+我们把这个图里使用的逻辑称为**组合区块**（Cascading Locked Candidates）。行列排除在部分情况下可以被组合区块所代替。当然，不能代替的情况也是存在的，因为它依赖的是边上的两个宫。如果边上这两个宫不能构成这样的形状的话，理解上就比较棘手了。
+
+这个技巧只提供一种观察视角，专门用来代替找一些复杂的行列区块。当你找不着的时候，可以试试这个技巧；但是一般情况下，这个技巧都并不是很实用，所以只提供给你思维上的拓展。
