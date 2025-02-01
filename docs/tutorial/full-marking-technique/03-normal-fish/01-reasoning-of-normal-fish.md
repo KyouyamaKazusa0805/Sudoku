@@ -8,7 +8,7 @@ description: Reasoning of Normal Fish
 
 ## 二阶鱼（X-Wing） <a href="#x-wing" id="x-wing"></a>
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6).png" alt="" width="375"><figcaption></figcaption></figure>
 
 如图所示，我们可以看到，数字 6 在 `r1` 和 `r8` 里都只有同样两个列的地方填。
 
@@ -33,7 +33,7 @@ description: Reasoning of Normal Fish
 
 我们再来看一个例子，希望这一次你能自己推理它。
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="375"><figcaption><p>二阶鱼 练习题</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt="" width="375"><figcaption><p>二阶鱼 练习题</p></figcaption></figure>
 
 稍微提示一下。刚才我们是横着看的，这回我们得竖着看。
 
@@ -41,7 +41,7 @@ description: Reasoning of Normal Fish
 
 刚才我们学习的是二阶鱼。鱼和数组一样，也有规格一说，所以二阶鱼指的是规格为 2 的鱼。下面我们来看，鱼在规格为 3 的时候，都长啥样。
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="375"><figcaption><p>三阶鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption><p>三阶鱼</p></figcaption></figure>
 
 如图所示。我们可以看到，`r368` 三行里填入 4 的位置刚好在三个不同的列里。这一点和前面二阶鱼的效果一致。
 
@@ -61,13 +61,13 @@ description: Reasoning of Normal Fish
 
 现在我们来看另外一个例子，也是和前面一样，希望你自己推理。
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt="" width="375"><figcaption><p>三阶鱼 练习题</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt="" width="375"><figcaption><p>三阶鱼 练习题</p></figcaption></figure>
 
 ## 四阶鱼（Jellyfish） <a href="#jellyfish" id="jellyfish"></a>
 
 下面我们来看规格为 4 的情况。
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt="" width="375"><figcaption><p>四阶鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt="" width="375"><figcaption><p>四阶鱼</p></figcaption></figure>
 
 这个题是故意构造的。因为平时做题压根就遇不到这种长得非常漂亮的结构。
 
@@ -81,7 +81,7 @@ description: Reasoning of Normal Fish
 
 和前面一样，我们也再来看一个例子。希望这个例子自己推理。
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt="" width="375"><figcaption><p>四阶鱼 练习题</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt="" width="375"><figcaption><p>四阶鱼 练习题</p></figcaption></figure>
 
 这个题仍然是前面那个题，只是四阶鱼的结构它换了个数字。当然，结论肯定也就不一样了。
 
@@ -93,7 +93,7 @@ description: Reasoning of Normal Fish
 
 不过，这里有个小小的问题。
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt="" width="375"><figcaption><p>残缺鱼 例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt="" width="375"><figcaption><p>残缺鱼 例子</p></figcaption></figure>
 
 比如这个例子。假设这个题的 `r5c1`、`r6c5` 和 `r7c7` 都是空格，且包含候选数 1 的话，那么这样的结构就刚好用满 9 个空格，便是所谓鱼的最完整的状态。
 

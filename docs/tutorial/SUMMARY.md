@@ -22,6 +22,7 @@
   * [标准鱼](full-marking-technique/03-normal-fish/README.md)
     * [鱼的基本推理](full-marking-technique/03-normal-fish/01-reasoning-of-normal-fish.md)
     * [鳍鱼](full-marking-technique/03-normal-fish/02-finned-fish.md)
+    * [退化鱼](full-marking-technique/03-normal-fish/03-sashimi-fish.md)
 * [附录](appendix/README.md)
   * [术语索引](appendix/01-terms.md)
   * [技巧索引](appendix/02-techniques.md)
