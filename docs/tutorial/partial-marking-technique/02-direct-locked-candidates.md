@@ -56,7 +56,7 @@ description: Direct Locked Candidates
 
 这是配合唯一余数的使用方式。不论是从推理上来说，还是观察上来说，都会稍微有点难度一些。
 
-## 组合区块（Cascading Locked Candidates）
+## 组合区块（Cascading Locked Candidates） <a href="#cascading-locked-candidates" id="cascading-locked-candidates"></a>
 
 有些时候，行列区块并不是很容易看到，所以我们可能会使用两个宫区块来代替。下面我们来看一个例子。
 
