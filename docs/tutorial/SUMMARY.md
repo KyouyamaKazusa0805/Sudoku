@@ -25,6 +25,7 @@
     * [退化鱼](full-marking-technique/03-normal-fish/03-sashimi-fish.md)
     * [孪生鱼](full-marking-technique/03-normal-fish/04-sashimi-fish.md)
     * [鱼的直观和互补性](full-marking-technique/03-normal-fish/05-direct-view-of-fish-and-law-of-complement-of-fish.md)
+    * [鱼的命名](full-marking-technique/03-normal-fish/06-naming-of-fish.md)
 * [附录](appendix/README.md)
   * [术语索引](appendix/01-terms.md)
   * [技巧索引](appendix/02-techniques.md)
