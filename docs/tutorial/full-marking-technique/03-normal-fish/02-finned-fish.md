@@ -8,7 +8,7 @@ description: Finned Fish
 
 ## 二阶鳍鱼（Finned X-Wing） <a href="#finned-x-wing" id="finned-x-wing"></a>
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt="" width="375"><figcaption><p>二阶鳍鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt="" width="375"><figcaption><p>二阶鳍鱼</p></figcaption></figure>
 
 如图所示。我们发现，配色比二阶鱼都了一个：蓝色。
 
@@ -67,7 +67,7 @@ description: Finned Fish
 
 我们还是拿规格最小的二阶鳍鱼举例。
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt="" width="375"><figcaption><p>还是前面那个二阶鳍鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt="" width="375"><figcaption><p>还是前面那个二阶鳍鱼</p></figcaption></figure>
 
 如图所示。这是刚才那个例子。我拿这个例子给各位解释我刚才说的第二点到底是什么意思。我们先忽略 `r1c6(7)` 的存在，这里是为了说明鱼的形成，所以暂时先不要它，当他不在盘面里。
 
