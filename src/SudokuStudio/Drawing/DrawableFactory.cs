@@ -110,8 +110,6 @@ internal static partial class DrawableFactory
 			return;
 		}
 
-		var pencilmarkMode = Application.Current.AsApp().Preference.UIPreferences.DisplayCandidates;
-		var usedCandidates = CandidateMap.Empty;
 		var (controlAddingActions, overlapped, links) = (new AnimatedResultCollection(), new List<Conclusion>(), new List<ILinkViewNode>());
 
 		// Iterate on each view node, and get their own corresponding controls.
@@ -140,7 +138,6 @@ internal static partial class DrawableFactory
 				{
 					overlapped.Add(currentOverlappedConclusion);
 				}
-				usedCandidates.Add(c.Candidate);
 			}
 		}
 
@@ -148,7 +145,6 @@ internal static partial class DrawableFactory
 		foreach (var conclusion in conclusions)
 		{
 			ForConclusion(context, conclusion, overlapped);
-			usedCandidates.Add(conclusion.Candidate);
 		}
 
 		// Finally, iterate on links.
