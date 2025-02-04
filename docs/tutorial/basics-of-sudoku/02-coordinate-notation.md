@@ -18,7 +18,7 @@ description: Coordinate Notation
 
 RCB 表示是全球作为通用的一种表示。前面的盘面会按第 1 行到第 9 行、第 1 列到第 9 列进行顺次编号。编号次序是从左到右、从上到下。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>RCB 表示下的坐标布局</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>RCB 表示下的坐标布局</p></figcaption></figure>
 
 我们使用行、列、宫的英文单词首字母 row、column 和 box 的 r、c、b 来表示一个坐标。比如说，正中间的单元格是提示数 2，我们将这个说法直接记为 `R5C5 = 2` 或 `r5c5 = 2`。其中，等号 `=` 体现的是诸如“填入”、“是”等等的含义。
 
@@ -30,7 +30,7 @@ RCB 表示是全球作为通用的一种表示。前面的盘面会按第 1 行�
 
 K9 表示是将坐标用一个字母加一个数字的组合形式表达出来。这样的好处在于简化了 RCB 的书写，但与此同时，字母的次序也会增大表示的复杂度。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>K9 表示下的坐标布局</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>K9 表示下的坐标布局</p></figcaption></figure>
 
 例如上面的题目，会按照字母 A - I 的次序编号 9 个行，而仍然使用数字 1 - 9 来编号列。那么这样的话，中心单元格（天元）就会被记作 `E5` 或 `e5`。而单元格的提示数是 2 仍然可以用等号连接：`E5 = 2` 或 `e5 = 2`。
 
@@ -42,7 +42,7 @@ K9 表示是将坐标用一个字母加一个数字的组合形式表达出来�
 
 Excel 表示完全把字母和数字反过来表示，即行用数字，列用字母。
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>Excel 表示下的坐标布局</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>Excel 表示下的坐标布局</p></figcaption></figure>
 
 例如 Excel 坐标表示的天元仍记为 `E5`。但是这一次是反过来的，即先说的列号，后说的行号。那么第 2 行的第 6 个单元格，前面记作 `r2c6`（RCB 表示）或 `B6`（K9 表示），而这里我们记作 `F2`。
 

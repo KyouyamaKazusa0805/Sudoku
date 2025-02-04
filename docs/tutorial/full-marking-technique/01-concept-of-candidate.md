@@ -12,7 +12,7 @@ description: Concept of Candidate
 
 我们拿这个题来举例。
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt="" width="375"><figcaption><p>候选数举例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>候选数举例</p></figcaption></figure>
 
 如图所示。别看着里面密密麻麻的数字就产生了惧怕的感觉。
 
