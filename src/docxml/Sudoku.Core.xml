@@ -9857,42 +9857,52 @@
             Provides a way to calculate empty area of a <see cref="T:Sudoku.Concepts.Grid"/> or a <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.Grid@,System.Int32@)">
             <summary>
             Try to get the maximum empty area exists in the specified grid.
             </summary>
             <param name="this">The grid to be checked.</param>
+            <param name="topLeftCell">
+            <inheritdoc cref="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@,System.Int32@)" path="/param[@name='topLeftCell']"/>
+            </param>
             <returns>A <see cref="T:System.Int32"/> value indicating the result.</returns>
             <remarks>
-            <inheritdoc cref="M:Sudoku.Metric.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.CellMap@)" path="/remarks"/>
+            <inheritdoc cref="M:Sudoku.Metric.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.CellMap@,System.Int32@)" path="/remarks"/>
             </remarks>
         </member>
-        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.Grid@,System.Int32@)">
             <summary>
             Try to get the maximum empty square area exists in the specified grid.
             </summary>
             <param name="this">The grid to be checked.</param>
+            <param name="topLeftCell">
+            <inheritdoc cref="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@,System.Int32@)" path="/param[@name='topLeftCell']"/>
+            </param>
             <returns>A <see cref="T:System.Int32"/> value indicating the result.</returns>
             <remarks>
-            <inheritdoc cref="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@)" path="/remarks"/>
+            <inheritdoc cref="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@,System.Int32@)" path="/remarks"/>
             </remarks>
         </member>
-        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.CellMap@,System.Int32@)">
             <summary>
             Try to get the maximum empty area exists in the specified cells.
             </summary>
             <param name="this">The cells to be checked.</param>
+            <param name="topLeftCell">
+            <inheritdoc cref="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@,System.Int32@)" path="/param[@name='topLeftCell']"/>
+            </param>
             <returns>A <see cref="T:System.Int32"/> value indicating the result.</returns>
             <remarks>
             This algorithm is from the puzzle called
             <see href="https://leetcode.com/problems/maximal-rectangle/"><i>Maximal Rectangle</i></see>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@,System.Int32@)">
             <summary>
             Try to get the maximum empty square area exists in the specified cells.
             </summary>
             <param name="this">The cells to be checked.</param>
+            <param name="topLeftCell">Indicates the cell at the top left index of the square.</param>
             <returns>A <see cref="T:System.Int32"/> value indicating the result.</returns>
             <remarks>
             This algorithm is from the puzzle called
