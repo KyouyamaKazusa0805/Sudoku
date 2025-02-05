@@ -70,7 +70,7 @@ public static class EmptyArea
 		return max;
 
 
-		static (Cell, Cell) getMaxRow(ReadOnlySpan<Cell> height, int row)
+		static (Cell, Cell) getMaxRow(ReadOnlySpan<Cell> height, RowIndex row)
 		{
 			var stack = new Stack<Cell>();
 			var max = 0;
