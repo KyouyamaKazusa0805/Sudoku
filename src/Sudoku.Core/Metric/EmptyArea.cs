@@ -72,10 +72,7 @@ public static class EmptyArea
 
 		static (Cell, Cell) getMaxRow(ReadOnlySpan<Cell> height, RowIndex row)
 		{
-			var stack = new Stack<Cell>();
-			var max = 0;
-			var topLeft = -1;
-
+			var (stack, max, topLeft) = (new Stack<Cell>(), 0, -1);
 			for (var i = 0; i <= 9; i++)
 			{
 				var h = i == 9 ? 0 : height[i];
