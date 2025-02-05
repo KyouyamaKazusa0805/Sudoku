@@ -60,10 +60,7 @@ public static class EmptyArea
 				dp[j] = @this.Contains(i * 9 + j) ? dp[j] + 1 : 0;
 			}
 
-			int currentMax;
-			int currentTopLeft;
-			(currentMax, currentTopLeft) = getMaxRow(dp, i);
-
+			var (currentMax, currentTopLeft) = getMaxRow(dp, i);
 			if (currentMax > max)
 			{
 				max = currentMax;
@@ -73,9 +70,9 @@ public static class EmptyArea
 		return max;
 
 
-		static (int max, int topLeft) getMaxRow(ReadOnlySpan<int> height, int row)
+		static (Cell, Cell) getMaxRow(ReadOnlySpan<Cell> height, int row)
 		{
-			var stack = new Stack<int>();
+			var stack = new Stack<Cell>();
 			var max = 0;
 			var topLeft = -1;
 
@@ -87,7 +84,6 @@ public static class EmptyArea
 					var maxHeight = height[stack.Pop()];
 					var width = stack.Count == 0 ? i : i - 1 - stack.Peek();
 					var area = maxHeight * width;
-
 					if (area > max)
 					{
 						max = area;
