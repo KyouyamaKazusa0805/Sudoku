@@ -18,17 +18,17 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IJustOneCellGenerat
 	/// <summary>
 	/// Represents a seed array for cells that can be used in core methods.
 	/// </summary>
-	protected static readonly Cell[] CellSeed = Enumerable.Range(0, 81).ToArray();
+	protected static readonly Cell[] CellSeed = [.. Enumerable.Range(0, 81)];
 
 	/// <summary>
 	/// Represents a seed array for houses that can be used in core methods.
 	/// </summary>
-	protected static readonly House[] HouseSeed = Enumerable.Range(0, 27).ToArray();
+	protected static readonly House[] HouseSeed = [.. Enumerable.Range(0, 27)];
 
 	/// <summary>
 	/// Represents a seed array for digits that can be used in core methods.
 	/// </summary>
-	protected static readonly Digit[] DigitSeed = Enumerable.Range(0, 9).ToArray();
+	protected static readonly Digit[] DigitSeed = [.. Enumerable.Range(0, 9)];
 
 	/// <summary>
 	/// Represents an analyzer that will be used in generating phased puzzles.
@@ -49,12 +49,7 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IJustOneCellGenerat
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="values">The values to be shuffled.</param>
-	protected static void ShuffleSequence<T>(T[] values)
-	{
-		Rng.Shuffle(values);
-		Rng.Shuffle(values);
-		Rng.Shuffle(values);
-	}
+	protected static void ShuffleSequence<T>(T[] values) => Rng.Shuffle(values);
 
 	/// <summary>
 	/// Randomly select a <see cref="SingleSubtype"/> instance.
