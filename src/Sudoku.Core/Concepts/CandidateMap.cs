@@ -46,12 +46,21 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	/// </summary>
 	/// <param name="segments">The candidate offsets, represented as a RxCy notation.</param>
 	[JsonConstructor]
-	public CandidateMap(string[] segments)
+	public CandidateMap(string[] segments) : this(segments, new RxCyParser())
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="CandidateMap"/> instance via a list of candidate offsets represented as the specified notation.
+	/// </summary>
+	/// <param name="segments">The candidate offsets, represented as a RxCy notation.</param>
+	/// <param name="parser">The parser.</param>
+	internal CandidateMap(ReadOnlySpan<string> segments, CoordinateParser parser)
 	{
 		this = [];
 		foreach (var segment in segments)
 		{
-			this |= Parse(segment, new RxCyParser());
+			this |= Parse(segment, parser);
 		}
 	}
 

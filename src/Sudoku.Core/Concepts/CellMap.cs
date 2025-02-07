@@ -102,12 +102,21 @@ public partial struct CellMap : CellMapBase
 	/// </summary>
 	/// <param name="segments">The cell offsets, represented as a RxCy notation.</param>
 	[JsonConstructor]
-	public CellMap(string[] segments)
+	public CellMap(string[] segments) : this(segments, new RxCyParser())
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="CellMap"/> instance via a list of offsets represented as the specified notation.
+	/// </summary>
+	/// <param name="segments">The cell offsets, represented as a RxCy notation.</param>
+	/// <param name="parser">The parser used.</param>
+	internal CellMap(ReadOnlySpan<string> segments, CoordinateParser parser)
 	{
 		this = [];
 		foreach (var segment in segments)
 		{
-			this |= Parse(segment, new RxCyParser());
+			this |= Parse(segment, parser);
 		}
 	}
 
