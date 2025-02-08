@@ -7119,6 +7119,29 @@
               Looks up a localized string similar to row {0}.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.CommandBasedDrawingPage_Apply">
+            <summary>
+              Looks up a localized string similar to Apply.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.CommandBasedDrawingPage_Description">
+            <summary>
+              Looks up a localized string similar to This page will allow you using command line to draw items into sudoku grid pane. The command line reference page is under construction. Stay tuned..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.CommandBasedDrawingPage_DrawingCommandTextBoxHeader">
+            <summary>
+              Looks up a localized string similar to Command line.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.CommandBasedDrawingPage_DrawingCommandTextBoxPlaceholder">
+             <summary>
+               Looks up a localized string similar to load &lt;+/-&gt;c &lt;puzzle&gt;
+            cell !normal r1c1
+            cell !aux1 r9c789
+            ....
+             </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.DifficultyLevel_Easy">
             <summary>
               Looks up a localized string similar to Easy.
@@ -8252,6 +8275,16 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ChainSettingPageTitle">
             <summary>
               Looks up a localized string similar to Chains &amp; Loops.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_CommandBasedDrawingPage">
+            <summary>
+              Looks up a localized string similar to Painting.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_CommandBasedDrawingPageTitle">
+            <summary>
+              Looks up a localized string similar to Painting.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_CompatibilitySettingPageTitle">
@@ -15055,6 +15088,31 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.CommandBasedDrawingPage">
+            <summary>
+            Represents command-based drawing page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.CommandBasedDrawingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.CommandBasedDrawingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.CommandBasedDrawingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.CommandBasedDrawingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.CommandBasedDrawingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent">
             <summary>

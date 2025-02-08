@@ -2897,4 +2897,25 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="SettingsPage_MakeConclusionAroundBackdoorsGroupedChain" xml:space="preserve">
     <value>Make non-grouped chaining searcher find conclusions around backdoors firstly</value>
   </data>
+  <data name="MainWindow_CommandBasedDrawingPageTitle" xml:space="preserve">
+    <value>Painting</value>
+  </data>
+  <data name="MainWindow_CommandBasedDrawingPage" xml:space="preserve">
+    <value>Painting</value>
+  </data>
+  <data name="CommandBasedDrawingPage_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="CommandBasedDrawingPage_DrawingCommandTextBoxPlaceholder" xml:space="preserve">
+    <value>load &lt;+/-&gt;c &lt;puzzle&gt;
+cell !normal r1c1
+cell !aux1 r9c789
+...</value>
+  </data>
+  <data name="CommandBasedDrawingPage_DrawingCommandTextBoxHeader" xml:space="preserve">
+    <value>Command line</value>
+  </data>
+  <data name="CommandBasedDrawingPage_Description" xml:space="preserve">
+    <value>This page will allow you using command line to draw items into sudoku grid pane. The command line reference page is under construction. Stay tuned.</value>
+  </data>
 </root>

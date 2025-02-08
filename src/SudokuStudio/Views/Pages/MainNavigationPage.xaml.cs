@@ -19,7 +19,8 @@ internal sealed partial class MainNavigationPage : Page
 		(static @this => @this.LibraryPageItem, typeof(LibraryPage)),
 		(static @this => @this.GeneratorPageItem, typeof(PatternBasedPuzzleGeneratingPage)),
 		(static @this => @this.HotkeyCheatTablePageItem, typeof(HotkeyCheatTablePage)),
-		(static @this => @this.TechniqueGalleryPageItem, typeof(TechniqueGalleryPage))
+		(static @this => @this.TechniqueGalleryPageItem, typeof(TechniqueGalleryPage)),
+		(static @this => @this.CommandBasedDrawingPageItem, typeof(CommandBasedDrawingPage))
 	];
 
 	/// <summary>

@@ -1,0 +1,61 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.CommandBasedDrawingPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:CommandBasedDrawingPage}">
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
+			<!--Description-->
+			<TextBlock Text="{m:R Key=CommandBasedDrawingPage_Description}" Margin="0,10,0,0" />
+
+			<Grid ColumnDefinitions="Auto,*">
+				<!--Grid-->
+				<c:SudokuPane
+					x:Name="SudokuPane"
+					Width="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuGridSize,Converter={StaticResource Decimal2DoubleConverter},Mode=OneWay}"
+					Height="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuGridSize,Converter={StaticResource Decimal2DoubleConverter},Mode=OneWay}"
+					Margin="0,20,40,0"
+					CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
+					TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=OneWay}"
+					HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCandidates="False"
+					DisableFlyout="True" PreventConflictingInput="False" EnableUndoRedoStacking="False"
+					HighlightBackgroundOpacity="{m:Decimal ParseString='0.8'}" DisplayCursors="False"
+					EnableRightTapRemoving="False" EnableDoubleTapFilling="False" EnableAnimationFeedback="True"
+					GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+					ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+					CoordinateLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+					GivenFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale,Mode=OneWay}"
+					ModifiableFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale,Mode=OneWay}"
+					CoordinateLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale,Mode=OneWay}"
+					CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ConceptNotationBasedKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
+					CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
+					Loaded="SudokuPane_Loaded" ActualThemeChanged="SudokuPane_ActualThemeChanged"
+				/>
+
+				<!--Text Box-->
+				<Grid Grid.Column="1" RowDefinitions="*,Auto" Margin="0,16,0,0">
+					<TextBox
+						x:Name="DrawingCommandTextBox" AcceptsReturn="True" TextWrapping="NoWrap"
+						Header="{m:R Key=CommandBasedDrawingPage_DrawingCommandTextBoxHeader}"
+						FontSize="20" FontFamily="Cascadia Code" VerticalAlignment="Stretch"
+						PlaceholderText="{m:R Key=CommandBasedDrawingPage_DrawingCommandTextBoxPlaceholder}" />
+					<Button
+						x:Name="ApplyButton" Grid.Row="1" Margin="0,12,0,0"
+						Click="ApplyButton_Click">
+						<StackPanel Orientation="Horizontal">
+							<FontIcon Glyph="&#xE8FB;" />
+							<TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Text="{m:R Key=CommandBasedDrawingPage_Apply}" />
+						</StackPanel>
+					</Button>
+				</Grid>
+			</Grid>
+		</StackPanel>
+	</ScrollViewer>
+</Page>

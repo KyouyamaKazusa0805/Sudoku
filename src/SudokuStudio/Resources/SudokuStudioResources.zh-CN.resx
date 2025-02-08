@@ -2888,4 +2888,25 @@
   <data name="SettingsPage_MakeConclusionAroundBackdoorsGroupedChain" xml:space="preserve">
     <value>优先让后门（魔术格）作为普通链的结论</value>
   </data>
+  <data name="MainWindow_CommandBasedDrawingPageTitle" xml:space="preserve">
+    <value>绘图</value>
+  </data>
+  <data name="MainWindow_CommandBasedDrawingPage" xml:space="preserve">
+    <value>绘图</value>
+  </data>
+  <data name="CommandBasedDrawingPage_Apply" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="CommandBasedDrawingPage_DrawingCommandTextBoxPlaceholder" xml:space="preserve">
+    <value>load &lt;+/-&gt;c &lt;puzzle&gt;
+cell !normal r1c1
+cell !aux1 r9c789
+...</value>
+  </data>
+  <data name="CommandBasedDrawingPage_DrawingCommandTextBoxHeader" xml:space="preserve">
+    <value>命令行</value>
+  </data>
+  <data name="CommandBasedDrawingPage_Description" xml:space="preserve">
+    <value>这个页面允许你使用命令行绘制一些图案到盘面上。命令行参考正在书写中。敬请期待。</value>
+  </data>
 </root>
