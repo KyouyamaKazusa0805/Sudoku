@@ -74,6 +74,17 @@ public readonly ref partial struct DrawingParser
 		var result = View.Empty;
 		foreach (var line in str.SplitBy('\r', '\n'))
 		{
+			if (!line.StartsWith("cell") && !line.StartsWith("candidate") && !line.StartsWith("icon")
+				&& !line.StartsWith("house") && !line.StartsWith("chute") && !line.StartsWith("link")
+				&& !line.StartsWith("baba"))
+			{
+				// Skip for invalid syntax.
+				continue;
+
+				// Other keywords should be ignored in order not to throw exceptions.
+				//throw new InvalidOperationException("Invalid keyword.");
+			}
+
 			if (line.SplitBy(' ') is not [var keyword, ['#' or '!' or '&', ..] colorIdentifierString, .. var args])
 			{
 				throw new InvalidOperationException($"Invalid line string: '{line}'.");
@@ -171,9 +182,6 @@ public readonly ref partial struct DrawingParser
 					i += linkKeyword switch { "cell" => 2, _ => 3 };
 				}
 			}
-
-			// Other keywords will be ignored in order not to throw exceptions.
-			//throw new InvalidOperationException($"Invalid keyword '{keyword}'.");
 		}
 		return result;
 	}
