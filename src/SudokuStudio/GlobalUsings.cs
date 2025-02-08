@@ -75,6 +75,7 @@ global using Sudoku.Concepts.Primitives;
 global using Sudoku.Drawing;
 global using Sudoku.Drawing.Drawing2D;
 global using Sudoku.Drawing.Nodes;
+global using Sudoku.Drawing.Parsing;
 global using Sudoku.Generating;
 global using Sudoku.Generating.Filtering;
 global using Sudoku.Generating.Filtering.Constraints;

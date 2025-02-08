@@ -8510,6 +8510,17 @@
             Indicates the well-known identifiers, and their own key used in parsing.
             </summary>
         </member>
+        <member name="M:Sudoku.Drawing.Parsing.DrawingParser.TryParse(System.String,Sudoku.Drawing.View@,Sudoku.Concepts.Coordinates.CoordinateParser,System.StringComparison)">
+            <summary>
+            Try to parse the string, split by line separator; return <see langword="false"/> if failed to be parsed.
+            This method never throws <see cref="T:System.InvalidOperationException"/>.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="result">The result view.</param>
+            <param name="parser">The parser. By default it's <see langword="new"/> <see cref="T:Sudoku.Concepts.Coordinates.RxCyParser"/>().</param>
+            <param name="comparison">The comparison. By default it's <see cref="F:System.StringComparison.OrdinalIgnoreCase"/>.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the command-line syntax is valid.</returns>
+        </member>
         <member name="M:Sudoku.Drawing.Parsing.DrawingParser.Parse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser,System.StringComparison)">
             <summary>
             Parses the string, split by line separator.

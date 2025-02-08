@@ -15094,10 +15094,56 @@
             Represents command-based drawing page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.CommandBasedDrawingPage.LoadKeyword">
+            <summary>
+            Indicates the load keyword.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.CommandBasedDrawingPage.CandidatesOnSyntax">
+            <summary>
+            Indicates candidates on syntax.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.CommandBasedDrawingPage.CandidatesOffSyntax">
+            <summary>
+            Indicates candidates off syntax.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.CommandBasedDrawingPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.CommandBasedDrawingPage"/> instance.
             </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.CommandBasedDrawingPage.LoadCommandPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>load\\s+([+-]c\\s+)?.+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Ll].<br/>
+            ○ Match a character in the set [Oo].<br/>
+            ○ Match a character in the set [Aa].<br/>
+            ○ Match a character in the set [Dd].<br/>
+            ○ Match a whitespace character greedily at least once.<br/>
+            ○ Optional (greedy).<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a character in the set [+-].<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a whitespace character greedily at least once.<br/>
+            ○ Match a character other than '\n' atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.CommandBasedDrawingPage.TryParseCommandLine(System.Boolean@,System.Nullable{Sudoku.Concepts.Grid}@,System.Nullable{System.Boolean}@)">
+            <summary>
+            Try to parse command line from control <see cref="F:SudokuStudio.Views.Pages.CommandBasedDrawingPage.DrawingCommandTextBox"/>.
+            </summary>
+            <param name="valid">Indicates whether the syntax is valid.</param>
+            <param name="grid">The grid created.</param>
+            <param name="showCandidates">Indicates whether candidates should be displayed.</param>
+            <returns>A <see cref="T:Sudoku.Drawing.View"/> instance created.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.CommandBasedDrawingPage.InitializeComponent">
             <summary>
@@ -18014,6 +18060,62 @@
 					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
 			</target>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.LoadCommandPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the LoadCommandPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.LoadCommandPattern_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.LoadCommandPattern_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.LoadCommandPattern_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.LoadCommandPattern_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.LoadCommandPattern_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.LoadCommandPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.LoadCommandPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.LoadCommandPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPop(System.Int32[],System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Pops 2 values from the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32)">
+            <summary>Pushes 1 value onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
+            <summary>Pushes 2 values onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32,System.Int32)">
+            <summary>Pushes 3 values onto the backtracking stack.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_load_OrdinalIgnoreCase">
+            <summary>Supports searching for the string "load".</summary>
         </member>
         <member name="T:Sudoku.Drawing.Nodes.ChainLinkViewNodeExtensions">
             <summary>

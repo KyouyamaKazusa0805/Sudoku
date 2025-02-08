@@ -33,6 +33,34 @@ public readonly ref partial struct DrawingParser
 
 
 	/// <summary>
+	/// Try to parse the string, split by line separator; return <see langword="false"/> if failed to be parsed.
+	/// This method never throws <see cref="InvalidOperationException"/>.
+	/// </summary>
+	/// <param name="str">The string.</param>
+	/// <param name="result">The result view.</param>
+	/// <param name="parser">The parser. By default it's <see langword="new"/> <see cref="RxCyParser"/>().</param>
+	/// <param name="comparison">The comparison. By default it's <see cref="StringComparison.OrdinalIgnoreCase"/>.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the command-line syntax is valid.</returns>
+	public bool TryParse(
+		string str,
+		[NotNullWhen(true)] out View? result,
+		CoordinateParser? parser = null,
+		StringComparison comparison = StringComparison.OrdinalIgnoreCase
+	)
+	{
+		try
+		{
+			result = Parse(str, parser, comparison);
+			return true;
+		}
+		catch (InvalidOperationException)
+		{
+			result = null;
+			return false;
+		}
+	}
+
+	/// <summary>
 	/// Parses the string, split by line separator.
 	/// </summary>
 	/// <param name="str">The string.</param>
@@ -143,6 +171,9 @@ public readonly ref partial struct DrawingParser
 					i += linkKeyword switch { "cell" => 2, _ => 3 };
 				}
 			}
+
+			// Other keywords will be ignored in order not to throw exceptions.
+			//throw new InvalidOperationException($"Invalid keyword '{keyword}'.");
 		}
 		return result;
 	}
@@ -217,7 +248,7 @@ public readonly ref partial struct DrawingParser
 			{
 				return new WellKnownColorIdentifier(foundKind);
 			}
-			case ['&', var paletteIdChar and (>= 'a' and <= 'f' or >= 'A' or <= 'F')]:
+			case ['&', var paletteIdChar and (>= 'a' and <= 'f' or >= 'A' and <= 'F')]:
 			{
 				return new PaletteIdColorIdentifier(10 + paletteIdChar - (paletteIdChar is >= 'A' and <= 'F' ? 'A' : 'a'));
 			}
