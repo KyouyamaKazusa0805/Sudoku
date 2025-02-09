@@ -10,7 +10,7 @@ description: History of Sudoku
 
 早在 19 世纪末期，法国的 Le Siècle 日报就发布了一篇填数字的游戏。这种填数字游戏看起来似乎跟目前的数独差不多，但区别也非常大。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>该日报上的题</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>该日报上的题</p></figcaption></figure>
 
 > 图源：[https://en.wikipedia.org/wiki/Sudoku](https://en.wikipedia.org/wiki/Sudoku)
 
