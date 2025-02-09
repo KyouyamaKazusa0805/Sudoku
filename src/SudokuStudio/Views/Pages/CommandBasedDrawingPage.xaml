@@ -83,7 +83,7 @@
 					<TextBox
 						x:Name="DrawingCommandTextBox" AcceptsReturn="True" TextWrapping="NoWrap"
 						Header="{m:R Key=CommandBasedDrawingPage_DrawingCommandTextBoxHeader}"
-						FontSize="20" FontFamily="Cascadia Code" VerticalAlignment="Stretch"
+						FontSize="20" FontFamily="Cascadia Code" VerticalAlignment="Stretch" IsSpellCheckEnabled="False"
 						PlaceholderText="{m:R Key=CommandBasedDrawingPage_DrawingCommandTextBoxPlaceholder}" />
 					<StackPanel Orientation="Horizontal" Spacing="6" Grid.Row="1" Margin="0,12,0,0">
 						<Button x:Name="ApplyButton" Click="ApplyButton_Click">
