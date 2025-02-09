@@ -2251,11 +2251,20 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This page will allow you using command line to draw items into sudoku grid pane. The command line reference page is under construction. Stay tuned..
+        ///   Looks up a localized string similar to This page will allow you using command line to draw items into sudoku grid pane..
         /// </summary>
         internal static string CommandBasedDrawingPage_Description {
             get {
                 return ResourceManager.GetString("CommandBasedDrawingPage_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Documentation.
+        /// </summary>
+        internal static string CommandBasedDrawingPage_Documentation {
+            get {
+                return ResourceManager.GetString("CommandBasedDrawingPage_Documentation", resourceCulture);
             }
         }
         

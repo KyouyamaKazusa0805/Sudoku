@@ -7131,7 +7131,12 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.CommandBasedDrawingPage_Description">
             <summary>
-              Looks up a localized string similar to This page will allow you using command line to draw items into sudoku grid pane. The command line reference page is under construction. Stay tuned..
+              Looks up a localized string similar to This page will allow you using command line to draw items into sudoku grid pane..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.CommandBasedDrawingPage_Documentation">
+            <summary>
+              Looks up a localized string similar to Documentation.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.CommandBasedDrawingPage_DrawingCommandTextBoxHeader">

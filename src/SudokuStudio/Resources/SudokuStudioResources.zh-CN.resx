@@ -2907,9 +2907,12 @@ cell !aux1 r9c789
     <value>命令行</value>
   </data>
   <data name="CommandBasedDrawingPage_Description" xml:space="preserve">
-    <value>这个页面允许你使用命令行绘制一些图案到盘面上。命令行参考正在书写中。敬请期待。</value>
+    <value>这个页面允许你使用命令行绘制一些图案到盘面上。</value>
   </data>
   <data name="CommandBasedDrawingPage_CopyPicture" xml:space="preserve">
     <value>复制图片</value>
+  </data>
+  <data name="CommandBasedDrawingPage_Documentation" xml:space="preserve">
+    <value>文档</value>
   </data>
 </root>

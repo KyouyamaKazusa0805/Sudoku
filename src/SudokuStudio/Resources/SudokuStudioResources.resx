@@ -2916,9 +2916,12 @@ cell !aux1 r9c789
     <value>Command line</value>
   </data>
   <data name="CommandBasedDrawingPage_Description" xml:space="preserve">
-    <value>This page will allow you using command line to draw items into sudoku grid pane. The command line reference page is under construction. Stay tuned.</value>
+    <value>This page will allow you using command line to draw items into sudoku grid pane.</value>
   </data>
   <data name="CommandBasedDrawingPage_CopyPicture" xml:space="preserve">
     <value>Copy as picture</value>
+  </data>
+  <data name="CommandBasedDrawingPage_Documentation" xml:space="preserve">
+    <value>Documentation</value>
   </data>
 </root>
