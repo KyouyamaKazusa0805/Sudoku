@@ -97,9 +97,74 @@ public sealed partial class CommandBasedDrawingPage : Page
 		}
 
 		// Parses the command.
+		if (grid is not null && showCandidates is null)
+		{
+			// A rescue: if 'grid' has already parsed, we should set 'showCandidates' to false if the value is unset.
+			showCandidates = false;
+		}
+
 		var coordinateParser = Application.Current.AsApp().Preference.UIPreferences.ConceptNotationBasedKind.GetParser();
 		valid = new DrawingParser().TryParse(text, out var result, coordinateParser);
 		return result;
+	}
+
+	/// <summary>
+	/// Copy the snapshot of the sudoku grid control, to the clipboard.
+	/// </summary>
+	/// <returns>
+	/// The typical <see langword="await"/>able instance that holds the task to copy the snapshot.
+	/// </returns>
+	/// <remarks>
+	/// The code is referenced from
+	/// <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L120">here</see>
+	/// and
+	/// <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L182">here</see>.
+	/// </remarks>
+	private async Task CopySudokuGridControlAsSnapshotAsync()
+	{
+		// Creates the stream to store the output image data.
+		var stream = new InMemoryRandomAccessStream();
+		await OnSavingOrCopyingSudokuPanePictureAsync(stream);
+
+		// Copies the data to the data package.
+		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+		var streamRef = RandomAccessStreamReference.CreateFromStream(stream);
+		dataPackage.SetBitmap(streamRef);
+
+		// Copies to the clipboard.
+		Clipboard.SetContent(dataPackage);
+	}
+
+	/// <summary>
+	/// Produces a copying/saving operation for pictures from sudoku pane <see cref="SudokuPane"/>.
+	/// </summary>
+	/// <typeparam name="T">
+	/// The type of the handling argument. This type should be <see cref="IRandomAccessStream"/> or <see cref="StorageFile"/>.
+	/// </typeparam>
+	/// <param name="obj">The argument.</param>
+	/// <returns>A <see cref="Task"/> instance that contains details for the current asynchronous operation.</returns>
+	/// <seealso cref="IRandomAccessStream"/>
+	/// <seealso cref="StorageFile"/>
+	private async Task OnSavingOrCopyingSudokuPanePictureAsync<T>(T obj) where T : class
+	{
+		if (Application.Current.AsApp().Preference.UIPreferences.TransparentBackground)
+		{
+			var color = App.CurrentTheme switch { ApplicationTheme.Light => Colors.White, _ => Colors.Black };
+			SudokuPane.MainGrid.Background = new SolidColorBrush(color);
+		}
+
+		var desiredSize = Application.Current.AsApp().Preference.UIPreferences.DesiredPictureSizeOnSaving;
+		var (originalWidth, originalHeight) = (SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height);
+		(SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height) = (desiredSize, desiredSize);
+
+		await SudokuPaneOutsideViewBox.RenderToAsync(obj);
+
+		(SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height) = (originalWidth, originalHeight);
+
+		if (Application.Current.AsApp().Preference.UIPreferences.TransparentBackground)
+		{
+			SudokuPane.MainGrid.Background = null;
+		}
 	}
 
 
@@ -134,4 +199,6 @@ public sealed partial class CommandBasedDrawingPage : Page
 		}
 		SudokuPane.ViewUnit = new() { Conclusions = ReadOnlyMemory<Conclusion>.Empty, View = view };
 	}
+
+	private async void CopyPictureButton_ClickAsync(object sender, RoutedEventArgs e) => await CopySudokuGridControlAsSnapshotAsync();
 }

@@ -2242,6 +2242,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy as picture.
+        /// </summary>
+        internal static string CommandBasedDrawingPage_CopyPicture {
+            get {
+                return ResourceManager.GetString("CommandBasedDrawingPage_CopyPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page will allow you using command line to draw items into sudoku grid pane. The command line reference page is under construction. Stay tuned..
         /// </summary>
         internal static string CommandBasedDrawingPage_Description {

@@ -17,65 +17,66 @@
 
 			<Grid ColumnDefinitions="Auto,*">
 				<!--Grid-->
-				<c:SudokuPane
-					x:Name="SudokuPane"
-					Width="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuGridSize,Converter={StaticResource Decimal2DoubleConverter},Mode=OneWay}"
-					Height="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuGridSize,Converter={StaticResource Decimal2DoubleConverter},Mode=OneWay}"
-					Margin="0,20,40,0"
-					CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
-					TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=OneWay}"
-					HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCandidates="False"
-					DisableFlyout="True" PreventConflictingInput="False" EnableUndoRedoStacking="False"
-					EnableRightTapRemoving="False" EnableDoubleTapFilling="False" EnableAnimationFeedback="True"
-					GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
-					ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
-					PencilmarkFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
-					CoordinateLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
-					BabaGroupLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
-					GivenFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale,Mode=OneWay}"
-					ModifiableFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale,Mode=OneWay}"
-					PencilmarkFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontScale,Mode=OneWay}"
-					CoordinateLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale,Mode=OneWay}"
-					BabaGroupLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontScale,Mode=OneWay}"
-					GivenColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontColor,Mode=OneWay}"
-					ModifiableColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontColor,Mode=OneWay}"
-					PencilmarkColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontColor,Mode=OneWay}"
-					CoordinateLabelColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontColor,Mode=OneWay}"
-					BabaGroupLabelColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontColor,Mode=OneWay}"
-					HighlightCandidateCircleScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedPencilmarkBackgroundEllipseScale,Mode=OneWay}"
-					HighlightBackgroundOpacity="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedBackgroundOpacity,Mode=OneWay}"
-					ChainStrokeThickness="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Mode=OneWay}"
-					StrongLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=OneWay}"
-					WeakLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=OneWay}"
-					UseDifferentColorToDisplayDeltaDigits="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DistinctWithDeltaDigits,Mode=OneWay}"
-					DisplayCursors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCursors,Mode=OneWay}"
-					CursorBackgroundColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor,Mode=OneWay}"
-					BorderColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=OneWay}"
-					LinkColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainColor,Mode=OneWay}"
-					NormalColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.NormalColor,Mode=OneWay}"
-					DeltaCellColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaValueColor,Mode=OneWay}"
-					DeltaCandidateColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaPencilmarkColor,Mode=OneWay}"
-					ExofinColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ExofinColor,Mode=OneWay}"
-					EndofinColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EndofinColor,Mode=OneWay}"
-					GroupedNodeStrokeColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GroupedNodeStrokeColor,Mode=OneWay}"
-					GroupedNodeBackgroundColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GroupedNodeBackgroundColor,Mode=OneWay}"
-					AssignmentColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentColor,Mode=OneWay}"
-					OverlappedAssignmentColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OverlappedAssignmentColor,Mode=OneWay}"
-					EliminationColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationColor,Mode=OneWay}"
-					CannibalismColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CannibalismColor,Mode=OneWay}"
-					HouseCompletedFeedbackColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HouseCompletedFeedbackColor,Mode=OneWay}"
-					AuxiliaryColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors,Mode=OneWay}"
-					AlmostLockedSetsColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,Mode=OneWay}"
-					DifficultyLevelForegrounds="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds,Mode=OneWay}"
-					DifficultyLevelBackgrounds="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds,Mode=OneWay}"
-					UserDefinedColorPalette="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.UserDefinedColorPalette,Mode=OneWay}"
-					CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ConceptNotationBasedKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
-					CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
-					CandidateViewNodeDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CandidateViewNodeDisplayMode,Converter={StaticResource CandidateViewNodeDisplayModeConverter},Mode=OneWay}"
-					EliminationDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationDisplayMode,Converter={StaticResource EliminationDisplayModeConverter},Mode=OneWay}"
-					AssignmentDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentDisplayMode,Converter={StaticResource AssignmentDisplayModeConverter},Mode=OneWay}"
-					Loaded="SudokuPane_Loaded" ActualThemeChanged="SudokuPane_ActualThemeChanged"
-				/>
+				<Viewbox x:Name="SudokuPaneOutsideViewBox" Stretch="Uniform" StretchDirection="Both" Margin="0,0,40,0">
+					<c:SudokuPane
+						x:Name="SudokuPane"
+						Width="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuGridSize,Converter={StaticResource Decimal2DoubleConverter},Mode=OneWay}"
+						Height="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuGridSize,Converter={StaticResource Decimal2DoubleConverter},Mode=OneWay}"
+						CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
+						TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=OneWay}"
+						HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCandidates="False"
+						DisableFlyout="True" PreventConflictingInput="False" EnableUndoRedoStacking="False"
+						EnableRightTapRemoving="False" EnableDoubleTapFilling="False" EnableAnimationFeedback="True"
+						GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+						ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+						PencilmarkFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+						CoordinateLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+						BabaGroupLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+						GivenFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale,Mode=OneWay}"
+						ModifiableFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale,Mode=OneWay}"
+						PencilmarkFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontScale,Mode=OneWay}"
+						CoordinateLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale,Mode=OneWay}"
+						BabaGroupLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontScale,Mode=OneWay}"
+						GivenColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontColor,Mode=OneWay}"
+						ModifiableColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontColor,Mode=OneWay}"
+						PencilmarkColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontColor,Mode=OneWay}"
+						CoordinateLabelColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontColor,Mode=OneWay}"
+						BabaGroupLabelColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontColor,Mode=OneWay}"
+						HighlightCandidateCircleScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedPencilmarkBackgroundEllipseScale,Mode=OneWay}"
+						HighlightBackgroundOpacity="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedBackgroundOpacity,Mode=OneWay}"
+						ChainStrokeThickness="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Mode=OneWay}"
+						StrongLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=OneWay}"
+						WeakLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=OneWay}"
+						UseDifferentColorToDisplayDeltaDigits="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DistinctWithDeltaDigits,Mode=OneWay}"
+						DisplayCursors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCursors,Mode=OneWay}"
+						CursorBackgroundColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor,Mode=OneWay}"
+						BorderColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=OneWay}"
+						LinkColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainColor,Mode=OneWay}"
+						NormalColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.NormalColor,Mode=OneWay}"
+						DeltaCellColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaValueColor,Mode=OneWay}"
+						DeltaCandidateColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaPencilmarkColor,Mode=OneWay}"
+						ExofinColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ExofinColor,Mode=OneWay}"
+						EndofinColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EndofinColor,Mode=OneWay}"
+						GroupedNodeStrokeColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GroupedNodeStrokeColor,Mode=OneWay}"
+						GroupedNodeBackgroundColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GroupedNodeBackgroundColor,Mode=OneWay}"
+						AssignmentColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentColor,Mode=OneWay}"
+						OverlappedAssignmentColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OverlappedAssignmentColor,Mode=OneWay}"
+						EliminationColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationColor,Mode=OneWay}"
+						CannibalismColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CannibalismColor,Mode=OneWay}"
+						HouseCompletedFeedbackColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HouseCompletedFeedbackColor,Mode=OneWay}"
+						AuxiliaryColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors,Mode=OneWay}"
+						AlmostLockedSetsColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,Mode=OneWay}"
+						DifficultyLevelForegrounds="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds,Mode=OneWay}"
+						DifficultyLevelBackgrounds="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds,Mode=OneWay}"
+						UserDefinedColorPalette="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.UserDefinedColorPalette,Mode=OneWay}"
+						CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ConceptNotationBasedKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
+						CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
+						CandidateViewNodeDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CandidateViewNodeDisplayMode,Converter={StaticResource CandidateViewNodeDisplayModeConverter},Mode=OneWay}"
+						EliminationDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationDisplayMode,Converter={StaticResource EliminationDisplayModeConverter},Mode=OneWay}"
+						AssignmentDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentDisplayMode,Converter={StaticResource AssignmentDisplayModeConverter},Mode=OneWay}"
+						Loaded="SudokuPane_Loaded" ActualThemeChanged="SudokuPane_ActualThemeChanged"
+					/>
+				</Viewbox>
 
 				<!--Text Box-->
 				<Grid Grid.Column="1" RowDefinitions="*,Auto" Margin="0,16,0,0">
@@ -84,14 +85,20 @@
 						Header="{m:R Key=CommandBasedDrawingPage_DrawingCommandTextBoxHeader}"
 						FontSize="20" FontFamily="Cascadia Code" VerticalAlignment="Stretch"
 						PlaceholderText="{m:R Key=CommandBasedDrawingPage_DrawingCommandTextBoxPlaceholder}" />
-					<Button
-						x:Name="ApplyButton" Grid.Row="1" Margin="0,12,0,0"
-						Click="ApplyButton_Click">
-						<StackPanel Orientation="Horizontal">
-							<FontIcon Glyph="&#xE8FB;" />
-							<TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Text="{m:R Key=CommandBasedDrawingPage_Apply}" />
-						</StackPanel>
-					</Button>
+					<StackPanel Orientation="Horizontal" Spacing="6" Grid.Row="1" Margin="0,12,0,0">
+						<Button x:Name="ApplyButton" Click="ApplyButton_Click">
+							<StackPanel Orientation="Horizontal">
+								<FontIcon Glyph="&#xE8FB;" />
+								<TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Text="{m:R Key=CommandBasedDrawingPage_Apply}" />
+							</StackPanel>
+						</Button>
+						<Button x:Name="CopyPictureButton" Click="CopyPictureButton_ClickAsync">
+							<StackPanel Orientation="Horizontal">
+								<FontIcon Glyph="&#xE8C8;" />
+								<TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Text="{m:R Key=CommandBasedDrawingPage_CopyPicture}" />
+							</StackPanel>
+						</Button>
+					</StackPanel>
 				</Grid>
 			</Grid>
 		</StackPanel>

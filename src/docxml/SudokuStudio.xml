@@ -7124,6 +7124,11 @@
               Looks up a localized string similar to Apply.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.CommandBasedDrawingPage_CopyPicture">
+            <summary>
+              Looks up a localized string similar to Copy as picture.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.CommandBasedDrawingPage_Description">
             <summary>
               Looks up a localized string similar to This page will allow you using command line to draw items into sudoku grid pane. The command line reference page is under construction. Stay tuned..
@@ -15144,6 +15149,32 @@
             <param name="grid">The grid created.</param>
             <param name="showCandidates">Indicates whether candidates should be displayed.</param>
             <returns>A <see cref="T:Sudoku.Drawing.View"/> instance created.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.CommandBasedDrawingPage.CopySudokuGridControlAsSnapshotAsync">
+            <summary>
+            Copy the snapshot of the sudoku grid control, to the clipboard.
+            </summary>
+            <returns>
+            The typical <see langword="await"/>able instance that holds the task to copy the snapshot.
+            </returns>
+            <remarks>
+            The code is referenced from
+            <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L120">here</see>
+            and
+            <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L182">here</see>.
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.CommandBasedDrawingPage.OnSavingOrCopyingSudokuPanePictureAsync``1(``0)">
+            <summary>
+            Produces a copying/saving operation for pictures from sudoku pane <see cref="F:SudokuStudio.Views.Pages.CommandBasedDrawingPage.SudokuPane"/>.
+            </summary>
+            <typeparam name="T">
+            The type of the handling argument. This type should be <see cref="T:Windows.Storage.Streams.IRandomAccessStream"/> or <see cref="T:Windows.Storage.StorageFile"/>.
+            </typeparam>
+            <param name="obj">The argument.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that contains details for the current asynchronous operation.</returns>
+            <seealso cref="T:Windows.Storage.Streams.IRandomAccessStream"/>
+            <seealso cref="T:Windows.Storage.StorageFile"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.CommandBasedDrawingPage.InitializeComponent">
             <summary>
