@@ -38,7 +38,7 @@ public readonly ref partial struct DrawingParser
 
 	/// <summary>
 	/// Try to parse the string, split by line separator; return <see langword="false"/> if failed to be parsed.
-	/// This method never throws <see cref="InvalidOperationException"/>.
+	/// This method never throws <see cref="FormatException"/>.
 	/// </summary>
 	/// <param name="str">The string.</param>
 	/// <param name="result">The result view.</param>
@@ -57,7 +57,7 @@ public readonly ref partial struct DrawingParser
 			result = Parse(str, parser, comparison);
 			return true;
 		}
-		catch (InvalidOperationException)
+		catch (FormatException)
 		{
 			result = null;
 			return false;
@@ -70,7 +70,7 @@ public readonly ref partial struct DrawingParser
 	/// <param name="str">The string.</param>
 	/// <param name="parser">The parser. By default it's <see langword="new"/> <see cref="RxCyParser"/>().</param>
 	/// <param name="comparison">The comparison. By default it's <see cref="StringComparison.OrdinalIgnoreCase"/>.</param>
-	/// <exception cref="InvalidOperationException">Throws when a line is invalid.</exception>
+	/// <exception cref="FormatException">Throws when a line is invalid.</exception>
 	public View Parse(string str, CoordinateParser? parser = null, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
 	{
 		parser ??= new RxCyParser();
@@ -82,16 +82,16 @@ public readonly ref partial struct DrawingParser
 				&& !line.StartsWith("house") && !line.StartsWith("chute") && !line.StartsWith("link")
 				&& !line.StartsWith("baba"))
 			{
-				// Skip for invalid syntax.
+				// Skip for invalid keyword (like 'load').
 				continue;
 
 				// Other keywords should be ignored in order not to throw exceptions.
-				//throw new InvalidOperationException("Invalid keyword.");
+				//throw new FormatException("Invalid keyword.");
 			}
 
 			if (line.SplitBy(' ') is not [var keyword, ['#' or '!' or '&', ..] colorIdentifierString, .. var args])
 			{
-				throw new InvalidOperationException($"Invalid line string: '{line}'.");
+				throw new FormatException($"Invalid line string: '{line}'.");
 			}
 
 			var identifier = ParseColorIdentifier(colorIdentifierString);
@@ -120,7 +120,7 @@ public readonly ref partial struct DrawingParser
 					"square" => cell => new SquareViewNode(identifier, cell),
 					"star" => cell => new StarViewNode(identifier, cell),
 					"triangle" => cell => new TriangleViewNode(identifier, cell),
-					_ => throw new InvalidOperationException($"Invalid icon kind string: '{iconKindString}'.")
+					_ => throw new FormatException($"Invalid icon kind string: '{iconKindString}'.")
 				};
 				foreach (var cell in new CellMap(iconArgs, parser))
 				{
@@ -166,7 +166,7 @@ public readonly ref partial struct DrawingParser
 					"cell" => (start, end, _) => new CellLinkViewNode(identifier, start, end),
 					"chain" => (start, end, isStrongLink) => new ChainLinkViewNode(identifier, start, end, isStrongLink),
 					"conjugate" => (start, end, digit) => new ConjugateLinkViewNode(identifier, start, end, digit),
-					_ => throw new InvalidOperationException($"Invalid link kind string: '{linkKeyword}'.")
+					_ => throw new FormatException($"Invalid link kind string: '{linkKeyword}'.")
 				};
 
 				for (var i = 0; i < linkArgsLength;)
@@ -177,7 +177,7 @@ public readonly ref partial struct DrawingParser
 					var (leftArg, rightArg, extraArg) = linkKeyword switch
 					{
 						"cell" => (parser.CellParser(left), parser.CellParser(right), null),
-						_ when extra is null => throw new InvalidOperationException("Extra argument expected."),
+						_ when extra is null => throw new FormatException("Extra argument expected."),
 						"chain" => (parser.CandidateParser(left), parser.CandidateParser(right), bool.Parse(extra)),
 						_ => ((object, object, object?))(parser.CellParser(left), parser.CellParser(right), Digit.Parse(extra))
 					};
@@ -235,7 +235,7 @@ public readonly ref partial struct DrawingParser
 			}
 			default:
 			{
-				throw new InvalidOperationException($"Invalid identifier string: '{str}'.");
+				throw new FormatException($"Invalid identifier string: '{str}'.");
 			}
 		}
 

@@ -8517,7 +8517,7 @@
         <member name="M:Sudoku.Drawing.Parsing.DrawingParser.TryParse(System.String,Sudoku.Drawing.View@,Sudoku.Concepts.Coordinates.CoordinateParser,System.StringComparison)">
             <summary>
             Try to parse the string, split by line separator; return <see langword="false"/> if failed to be parsed.
-            This method never throws <see cref="T:System.InvalidOperationException"/>.
+            This method never throws <see cref="T:System.FormatException"/>.
             </summary>
             <param name="str">The string.</param>
             <param name="result">The result view.</param>
@@ -8532,7 +8532,7 @@
             <param name="str">The string.</param>
             <param name="parser">The parser. By default it's <see langword="new"/> <see cref="T:Sudoku.Concepts.Coordinates.RxCyParser"/>().</param>
             <param name="comparison">The comparison. By default it's <see cref="F:System.StringComparison.OrdinalIgnoreCase"/>.</param>
-            <exception cref="T:System.InvalidOperationException">Throws when a line is invalid.</exception>
+            <exception cref="T:System.FormatException">Throws when a line is invalid.</exception>
         </member>
         <member name="M:Sudoku.Drawing.Parsing.DrawingParser.ParseColorIdentifier(System.String,System.StringComparison)">
             <summary>
