@@ -8,7 +8,7 @@ namespace Sudoku.Drawing.Parsing;
 /// to learn more information about drawing command syntax.
 /// </remarks>
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
-public readonly ref partial struct DrawingParser
+public readonly ref partial struct DrawingCommandParser
 {
 	/// <summary>
 	/// Indicates the well-known identifiers, and their own key used in parsing.
@@ -161,12 +161,16 @@ public readonly ref partial struct DrawingParser
 			if (keyword.Equals("link", comparison) && args is [var linkKeyword, .. { Length: var linkArgsLength } linkArgs])
 			{
 				linkKeyword = linkKeyword.ToLower();
-				Func<dynamic, dynamic, dynamic?, ILinkViewNode> creator = linkKeyword switch
+				Func<object, object, object?, ILinkViewNode> creator = linkKeyword switch
 				{
-					"cell" => (start, end, _) => new CellLinkViewNode(identifier, start, end),
-					"chain" => (start, end, isStrongLink) => new ChainLinkViewNode(identifier, start, end, isStrongLink),
-					"conjugate" => (start, end, digit) => new ConjugateLinkViewNode(identifier, start, end, digit),
-					_ => throw new FormatException($"Invalid link kind string: '{linkKeyword}'.")
+					"cell"
+						=> (start, end, _) => new CellLinkViewNode(identifier, (Cell)start, (Cell)end),
+					"chain"
+						=> (start, end, isStrong) => new ChainLinkViewNode(identifier, (CandidateMap)start, (CandidateMap)end, (bool)isStrong!),
+					"conjugate"
+						=> (start, end, digit) => new ConjugateLinkViewNode(identifier, (Cell)start, (Cell)end, (Digit)digit!),
+					_
+						=> throw new FormatException($"Invalid link kind string: '{linkKeyword}'.")
 				};
 
 				for (var i = 0; i < linkArgsLength;)
@@ -176,10 +180,14 @@ public readonly ref partial struct DrawingParser
 					var extra = i + 2 < linkArgsLength ? linkArgs[i + 2] : null;
 					var (leftArg, rightArg, extraArg) = linkKeyword switch
 					{
-						"cell" => (parser.CellParser(left), parser.CellParser(right), null),
-						_ when extra is null => throw new FormatException("Extra argument expected."),
-						"chain" => (parser.CandidateParser(left), parser.CandidateParser(right), extra == "="),
-						_ => ((object, object, object?))(parser.CellParser(left), parser.CellParser(right), Digit.Parse(extra))
+						"cell"
+							=> (parser.CellParser(left)[0], parser.CellParser(right)[0], null),
+						_ when extra is null
+							=> throw new FormatException("Extra argument expected."),
+						"chain"
+							=> (parser.CandidateParser(left), parser.CandidateParser(right), extra == "="),
+						_
+							=> ((object, object, object?))(parser.CellParser(left)[0], parser.CellParser(right)[0], Digit.Parse(extra))
 					};
 					result.Add((ViewNode)creator(leftArg, rightArg, extraArg));
 

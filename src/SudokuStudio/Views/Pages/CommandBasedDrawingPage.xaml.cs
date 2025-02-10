@@ -104,7 +104,7 @@ public sealed partial class CommandBasedDrawingPage : Page
 		}
 
 		var coordinateParser = Application.Current.AsApp().Preference.UIPreferences.ConceptNotationBasedKind.GetParser();
-		valid = new DrawingParser().TryParse(text, out var result, coordinateParser);
+		valid = new DrawingCommandParser().TryParse(text, out var result, coordinateParser);
 		return result;
 	}
 
