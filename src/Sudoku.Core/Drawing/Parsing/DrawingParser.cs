@@ -196,12 +196,6 @@ public readonly ref partial struct DrawingParser
 	/// <param name="str">The string to be parsed.</param>
 	/// <param name="comparison">The comparison. By default it's <see cref="StringComparison.OrdinalIgnoreCase"/>.</param>
 	/// <returns>A <see cref="ColorIdentifier"/> value returned.</returns>
-	/// <remarks>
-	/// Identifier Syntax:
-	/// <code><![CDATA[
-	/// 
-	/// ]]></code>
-	/// </remarks>
 	private ColorIdentifier ParseColorIdentifier(string str, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
 	{
 		switch (str)

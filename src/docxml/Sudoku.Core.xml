@@ -8541,12 +8541,6 @@
             <param name="str">The string to be parsed.</param>
             <param name="comparison">The comparison. By default it's <see cref="F:System.StringComparison.OrdinalIgnoreCase"/>.</param>
             <returns>A <see cref="T:Sudoku.Drawing.ColorIdentifier"/> value returned.</returns>
-            <remarks>
-            Identifier Syntax:
-            <code><![CDATA[
-            
-            ]]></code>
-            </remarks>
         </member>
         <member name="M:Sudoku.Drawing.Parsing.DrawingParser.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
