@@ -125,43 +125,26 @@ public readonly ref partial struct DrawingCommandParser
 	/// <returns>A <see cref="ColorIdentifier"/> value returned.</returns>
 	private ColorIdentifier ParseColorIdentifier(string str, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
 	{
-		switch (str)
+		return str switch
 		{
-			case ['#', .. { Length: 6 } hexColorString]:
+			['#', .. { Length: 6 or 8 } hex] => (from s in hex.Chunk(2) select (byte)Convert.ToInt32(s, 16)) switch
 			{
-				var r = (byte)Convert.ToInt32(hexColorString[..2], 16);
-				var g = (byte)Convert.ToInt32(hexColorString[2..4], 16);
-				var b = (byte)Convert.ToInt32(hexColorString[4..], 16);
-				return new ColorColorIdentifier(255, r, g, b);
-			}
-			case ['#', .. { Length: 8 } hexColorString]:
-			{
-				var a = (byte)Convert.ToInt32(hexColorString[..2], 16);
-				var r = (byte)Convert.ToInt32(hexColorString[2..4], 16);
-				var g = (byte)Convert.ToInt32(hexColorString[4..6], 16);
-				var b = (byte)Convert.ToInt32(hexColorString[6..], 16);
-				return new ColorColorIdentifier(a, r, g, b);
-			}
-			case ['!', .. var aliasOrIdString] when getFoundIndex(aliasOrIdString) is var foundKind and not (WellKnownColorIdentifierKind)(-1):
-			{
-				return new WellKnownColorIdentifier(foundKind);
-			}
-			case ['&', var paletteIdChar and (>= 'a' and <= 'f' or >= 'A' and <= 'F')]:
-			{
-				return new PaletteIdColorIdentifier(10 + paletteIdChar - (paletteIdChar is >= 'A' and <= 'F' ? 'A' : 'a'));
-			}
-			case ['&', .. var paletteIdString] when int.TryParse(paletteIdString, out var paletteId) && paletteId is >= 1 and <= 15:
-			{
-				return new PaletteIdColorIdentifier(paletteId);
-			}
-			default:
-			{
-				throw new FormatException($"Invalid identifier string: '{str}'.");
-			}
-		}
+				[var r, var g, var b] => new ColorColorIdentifier(255, r, g, b),
+				[var a, var r, var g, var b] => new ColorColorIdentifier(a, r, g, b),
+				_ => throw new FormatException($"Invalid identifier string: '{str}'.")
+			},
+			['!', .. var aliased] when getFoundIndex(aliased) is { } foundKind
+				=> new WellKnownColorIdentifier(foundKind),
+			['&', var ch and (>= 'a' and <= 'f' or >= 'A' and <= 'F')] when char.ToLower(ch) - 'a' is var offset
+				=> new PaletteIdColorIdentifier(10 + offset),
+			['&', .. var paletteIdString] when int.TryParse(paletteIdString, out var paletteId) && paletteId is >= 1 and <= 15
+				=> new PaletteIdColorIdentifier(paletteId),
+			_
+				=> throw new FormatException($"Invalid identifier string: '{str}'.")
+		};
 
 
-		WellKnownColorIdentifierKind getFoundIndex(string aliasOrIdString)
+		WellKnownColorIdentifierKind? getFoundIndex(string aliasOrIdString)
 		{
 			foreach (var (keys, value) in WellKnownIdentifiers)
 			{
@@ -173,7 +156,7 @@ public readonly ref partial struct DrawingCommandParser
 					}
 				}
 			}
-			return (WellKnownColorIdentifierKind)(-1);
+			return null;
 		}
 	}
 }
