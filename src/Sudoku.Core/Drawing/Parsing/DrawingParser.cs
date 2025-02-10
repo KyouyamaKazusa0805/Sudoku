@@ -178,7 +178,7 @@ public readonly ref partial struct DrawingParser
 					{
 						"cell" => (parser.CellParser(left), parser.CellParser(right), null),
 						_ when extra is null => throw new FormatException("Extra argument expected."),
-						"chain" => (parser.CandidateParser(left), parser.CandidateParser(right), bool.Parse(extra)),
+						"chain" => (parser.CandidateParser(left), parser.CandidateParser(right), extra == "="),
 						_ => ((object, object, object?))(parser.CellParser(left), parser.CellParser(right), Digit.Parse(extra))
 					};
 					result.Add((ViewNode)creator(leftArg, rightArg, extraArg));
