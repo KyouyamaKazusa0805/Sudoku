@@ -35,6 +35,20 @@ public readonly ref partial struct DrawingCommandParser
 		(["rectangle3", "rect3", "r3", "18"], WellKnownColorIdentifierKind.Rectangle3)
 	];
 
+	/// <summary>
+	/// Indicates argument parsers.
+	/// </summary>
+	private static readonly Dictionary<string, Func<ArgumentParser>> ArgumentParsers = new()
+	{
+		{ "cell", static () => new CellArgumentParser() },
+		{ "candidate", static () => new CandidateArgumentParser() },
+		{ "icon", static () => new IconArgumentParser() },
+		{ "house", static () => new HouseArgumentParser() },
+		{ "chute", static () => new ChuteArgumentParser() },
+		{ "baba", static () => new BabaGroupArgumentParser() },
+		{ "link", static () => new LinkArgumentParser() }
+	};
+
 
 	/// <summary>
 	/// Try to parse the string, split by line separator; return <see langword="false"/> if failed to be parsed.
@@ -94,106 +108,11 @@ public readonly ref partial struct DrawingCommandParser
 				throw new FormatException($"Invalid line string: '{line}'.");
 			}
 
-			var identifier = ParseColorIdentifier(colorIdentifierString);
-			if (keyword.Equals("cell", comparison))
-			{
-				foreach (var cell in new CellMap(args, parser))
-				{
-					result.Add(new CellViewNode(identifier, cell));
-				}
-			}
-			if (keyword.Equals("candidate", comparison))
-			{
-				foreach (var candidate in new CandidateMap(args, parser))
-				{
-					result.Add(new CandidateViewNode(identifier, candidate));
-				}
-			}
-			if (keyword.Equals("icon", comparison) && args is [var iconKindString, .. var iconArgs])
-			{
-				Func<Cell, IconViewNode> creator = iconKindString.ToLower() switch
-				{
-					"circle" => cell => new CircleViewNode(identifier, cell),
-					"cross" => cell => new CrossViewNode(identifier, cell),
-					"diamond" => cell => new DiamondViewNode(identifier, cell),
-					"heart" => cell => new HeartViewNode(identifier, cell),
-					"square" => cell => new SquareViewNode(identifier, cell),
-					"star" => cell => new StarViewNode(identifier, cell),
-					"triangle" => cell => new TriangleViewNode(identifier, cell),
-					_ => throw new FormatException($"Invalid icon kind string: '{iconKindString}'.")
-				};
-				foreach (var cell in new CellMap(iconArgs, parser))
-				{
-					result.Add(creator(cell));
-				}
-			}
-			if (keyword.Equals("house", comparison))
-			{
-				var houses = 0;
-				foreach (var arg in args)
-				{
-					houses |= parser.HouseParser(arg);
-				}
-				foreach (var house in houses)
-				{
-					result.Add(new HouseViewNode(identifier, house));
-				}
-			}
-			if (keyword.Equals("chute", comparison))
-			{
-				var chutes = new List<Chute>(6);
-				foreach (var arg in args)
-				{
-					chutes.AddRange(parser.ChuteParser(arg));
-				}
-				foreach (var chute in chutes)
-				{
-					result.Add(new ChuteViewNode(identifier, chute.Index));
-				}
-			}
-			if (keyword.Equals("baba", comparison) && args is [[var babaGroupingChar], .. var babaGroupingArgs])
-			{
-				foreach (var cell in new CellMap(args, parser))
-				{
-					result.Add(new BabaGroupViewNode(identifier, cell, babaGroupingChar, Grid.MaxCandidatesMask));
-				}
-			}
-			if (keyword.Equals("link", comparison) && args is [var linkKeyword, .. { Length: var linkArgsLength } linkArgs])
-			{
-				linkKeyword = linkKeyword.ToLower();
-				Func<object, object, object?, ILinkViewNode> creator = linkKeyword switch
-				{
-					"cell"
-						=> (start, end, _) => new CellLinkViewNode(identifier, (Cell)start, (Cell)end),
-					"chain"
-						=> (start, end, isStrong) => new ChainLinkViewNode(identifier, (CandidateMap)start, (CandidateMap)end, (bool)isStrong!),
-					"conjugate"
-						=> (start, end, digit) => new ConjugateLinkViewNode(identifier, (Cell)start, (Cell)end, (Digit)digit!),
-					_
-						=> throw new FormatException($"Invalid link kind string: '{linkKeyword}'.")
-				};
-
-				for (var i = 0; i < linkArgsLength;)
-				{
-					var left = linkArgs[i];
-					var right = linkArgs[i + 1];
-					var extra = i + 2 < linkArgsLength ? linkArgs[i + 2] : null;
-					var (leftArg, rightArg, extraArg) = linkKeyword switch
-					{
-						"cell"
-							=> (parser.CellParser(left)[0], parser.CellParser(right)[0], null),
-						_ when extra is null
-							=> throw new FormatException("Extra argument expected."),
-						"chain"
-							=> (parser.CandidateParser(left), parser.CandidateParser(right), extra == "="),
-						_
-							=> ((object, object, object?))(parser.CellParser(left)[0], parser.CellParser(right)[0], Digit.Parse(extra))
-					};
-					result.Add((ViewNode)creator(leftArg, rightArg, extraArg));
-
-					i += linkKeyword switch { "cell" => 2, _ => 3 };
-				}
-			}
+			result.AddRange(
+				ArgumentParsers.TryGetValue(keyword, out var parserCreator)
+					? parserCreator().Parse(args, ParseColorIdentifier(colorIdentifierString), parser)
+					: throw new FormatException($"Invalid keyword '{keyword}'.")
+			);
 		}
 		return result;
 	}
