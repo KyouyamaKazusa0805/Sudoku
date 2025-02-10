@@ -8504,6 +8504,10 @@
             <summary>
             Represents a parser that generates a list of drawing items.
             </summary>
+            <remarks>
+            Please visit <see href="https://sudokustudio.kazusa.tech/user-manual/drawing-command-line">this link</see>
+            to learn more information about drawing command syntax.
+            </remarks>
         </member>
         <member name="F:Sudoku.Drawing.Parsing.DrawingParser.WellKnownIdentifiers">
             <summary>
@@ -8531,53 +8535,18 @@
             <exception cref="T:System.InvalidOperationException">Throws when a line is invalid.</exception>
         </member>
         <member name="M:Sudoku.Drawing.Parsing.DrawingParser.ParseColorIdentifier(System.String,System.StringComparison)">
-             <summary>
-             Parses a string and returns the equivalent color identifier.
-             </summary>
-             <param name="str">The string to be parsed.</param>
-             <param name="comparison">The comparison. By default it's <see cref="F:System.StringComparison.OrdinalIgnoreCase"/>.</param>
-             <returns>A <see cref="T:Sudoku.Drawing.ColorIdentifier"/> value returned.</returns>
-             <remarks>
-             Identifier Syntax:
-             <code><![CDATA[
-             identifier_syntax
-               : '#' hex_color_string
-               | '!' alias_string_or_id
-               | '&' palette_id
-               ;
+            <summary>
+            Parses a string and returns the equivalent color identifier.
+            </summary>
+            <param name="str">The string to be parsed.</param>
+            <param name="comparison">The comparison. By default it's <see cref="F:System.StringComparison.OrdinalIgnoreCase"/>.</param>
+            <returns>A <see cref="T:Sudoku.Drawing.ColorIdentifier"/> value returned.</returns>
+            <remarks>
+            Identifier Syntax:
+            <code><![CDATA[
             
-             hex_color_string
-               : hex_text{6}
-               | hex_text{8}
-               ;
-            
-             hex_text
-               : '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-               | 'a' | 'b' | 'c' | 'd' | 'e' | 'f'
-               ;
-            
-             alias_string_or_id
-               : 'normal' | 'n'
-               | ('auxiliary' | 'aux') ('1' | '2' | '3')
-               | 'assignment' | 'a'
-               | 'overlapped_assignment' | 'overlapped' | 'o'
-               | 'elimination' | 'elim' | 'e'
-               | 'cannibalism' | 'cannibal' | 'c'
-               | 'exofin' | 'f'
-               | 'endofin' | 'ef'
-               | 'link' | 'l'
-               | ('almost_locked_set' | 'als') ('1' | '2' | '3' | '4' | '5')
-               | ('rectangle' | 'r') ('1' | '2' | '3')
-               ;
-            
-             palette_id
-               : '1' | '2' | '3' | '4' | '5'
-               | '6' | '7' | '8' | '9' | '10'
-               | '11' | '12' | '13' | '14' | '15'
-               | 'a' | 'b' | 'c' | 'd' | 'e' | 'f'
-               ;
-             ]]></code>
-             </remarks>
+            ]]></code>
+            </remarks>
         </member>
         <member name="M:Sudoku.Drawing.Parsing.DrawingParser.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

@@ -3,6 +3,10 @@ namespace Sudoku.Drawing.Parsing;
 /// <summary>
 /// Represents a parser that generates a list of drawing items.
 /// </summary>
+/// <remarks>
+/// Please visit <see href="https://sudokustudio.kazusa.tech/user-manual/drawing-command-line">this link</see>
+/// to learn more information about drawing command syntax.
+/// </remarks>
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
 public readonly ref partial struct DrawingParser
 {
@@ -195,42 +199,7 @@ public readonly ref partial struct DrawingParser
 	/// <remarks>
 	/// Identifier Syntax:
 	/// <code><![CDATA[
-	/// identifier_syntax
-	///   : '#' hex_color_string
-	///   | '!' alias_string_or_id
-	///   | '&' palette_id
-	///   ;
-	///
-	/// hex_color_string
-	///   : hex_text{6}
-	///   | hex_text{8}
-	///   ;
-	///
-	/// hex_text
-	///   : '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-	///   | 'a' | 'b' | 'c' | 'd' | 'e' | 'f'
-	///   ;
-	///
-	/// alias_string_or_id
-	///   : 'normal' | 'n'
-	///   | ('auxiliary' | 'aux') ('1' | '2' | '3')
-	///   | 'assignment' | 'a'
-	///   | 'overlapped_assignment' | 'overlapped' | 'o'
-	///   | 'elimination' | 'elim' | 'e'
-	///   | 'cannibalism' | 'cannibal' | 'c'
-	///   | 'exofin' | 'f'
-	///   | 'endofin' | 'ef'
-	///   | 'link' | 'l'
-	///   | ('almost_locked_set' | 'als') ('1' | '2' | '3' | '4' | '5')
-	///   | ('rectangle' | 'r') ('1' | '2' | '3')
-	///   ;
-	///
-	/// palette_id
-	///   : '1' | '2' | '3' | '4' | '5'
-	///   | '6' | '7' | '8' | '9' | '10'
-	///   | '11' | '12' | '13' | '14' | '15'
-	///   | 'a' | 'b' | 'c' | 'd' | 'e' | 'f'
-	///   ;
+	/// 
 	/// ]]></code>
 	/// </remarks>
 	private ColorIdentifier ParseColorIdentifier(string str, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
