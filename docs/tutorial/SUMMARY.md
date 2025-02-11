@@ -36,7 +36,6 @@
   * [分支匹配的基本推理](full-marking-technique/04-wings/01-reasoning-of-wings.md)
   * [残缺的分支匹配](full-marking-technique/04-wings/02-incomplete-wings.md)
 
-***
+## 附录 <a href="#appendix" id="appendix"></a>
 
-* [附录](appendix/README.md)
-  * [术语索引](appendix/01-terms.md)
+* [术语索引](appendix/01-terms.md)
