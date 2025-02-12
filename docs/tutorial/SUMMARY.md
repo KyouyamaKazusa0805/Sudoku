@@ -39,3 +39,7 @@
 ## 附录 <a href="#appendix" id="appendix"></a>
 
 * [术语索引](appendix/01-terms.md)
+
+***
+
+* [版权声明](copyright-statement.md)
