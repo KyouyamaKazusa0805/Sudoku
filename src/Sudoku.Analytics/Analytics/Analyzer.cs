@@ -56,9 +56,12 @@ public sealed class Analyzer :
 	[WithProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	public ReadOnlyMemory<StepSearcher> StepSearchers
 	{
-		get => field;
+		get;
 
-		set => ResultStepSearchers = IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>.FilterStepSearchers(field = value, StepSearcherRunningArea.Searching);
+		set => ResultStepSearchers = IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>.FilterStepSearchers(
+			field = value,
+			StepSearcherRunningArea.Searching
+		);
 	}
 
 	/// <inheritdoc/>

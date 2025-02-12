@@ -21,9 +21,12 @@ public sealed class Collector :
 	[WithProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	public ReadOnlyMemory<StepSearcher> StepSearchers
 	{
-		get => field;
+		get;
 
-		set => ResultStepSearchers = ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>.FilterStepSearchers(field = value, StepSearcherRunningArea.Collecting);
+		set => ResultStepSearchers = ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>.FilterStepSearchers(
+			field = value,
+			StepSearcherRunningArea.Collecting
+		);
 	}
 
 	/// <inheritdoc/>
