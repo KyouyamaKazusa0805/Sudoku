@@ -374,7 +374,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 		var candidateOffsets = new List<CandidateViewNode>();
 		var detailViews = new View[branches.Count];
-		detailViews.InitializeArray(([NotNull] ref View? view) => view = [new CellViewNode(ColorIdentifier.Normal, pivot)]);
+		detailViews.InitializeArray(([NotNull] ref view) => view = [new CellViewNode(ColorIdentifier.Normal, pivot)]);
 
 		var indexOfAls = 0;
 		foreach (var digit in grid.GetCandidates(pivot))

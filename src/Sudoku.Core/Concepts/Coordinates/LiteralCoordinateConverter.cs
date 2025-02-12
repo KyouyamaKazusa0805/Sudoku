@@ -18,7 +18,7 @@ public sealed record LiteralCoordinateConverter(
 {
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CellMap, string> CellConverter
-		=> (ref readonly CellMap cells) => cells switch
+		=> (ref readonly cells) => cells switch
 		{
 			[] => string.Empty,
 			[var p] => string.Format(SR.Get("CellLabel", TargetCurrentCulture), [(p / 9 + 1).ToString(), (p % 9 + 1).ToString()]),
@@ -34,7 +34,7 @@ public sealed record LiteralCoordinateConverter(
 
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
-		=> (ref readonly CandidateMap candidates) =>
+		=> (ref readonly candidates) =>
 		{
 			var snippets = new List<string>();
 			foreach (var candidate in candidates)

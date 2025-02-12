@@ -722,7 +722,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 			: pencilmarkMode.HasFlag(PencilmarkVisibility.PartialMarking)
 				? PencilmarkVisibility.PartialMarking
 				: PencilmarkVisibility.Direct;
-		switch (filters.FirstRefOrNullRef((ref readonly BottleneckFilter f) => f.Visibility == filterMode).Type)
+		switch (filters.FirstRefOrNullRef((ref readonly f) => f.Visibility == filterMode).Type)
 		{
 			// Find single-only steps.
 			case BottleneckType.SingleStepOnly when filterMode is PencilmarkVisibility.Direct or PencilmarkVisibility.PartialMarking:

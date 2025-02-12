@@ -25,7 +25,7 @@ public sealed record ExcelCoordinateConverter(
 {
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CellMap, string> CellConverter
-		=> (ref readonly CellMap cells) =>
+		=> (ref readonly cells) =>
 		{
 			switch (cells)
 			{
@@ -52,8 +52,8 @@ public sealed record ExcelCoordinateConverter(
 				}
 				foreach (var (rows, columns) in output)
 				{
-					sb.AppendRange<int>(d => ((char)((MakeLettersUpperCase ? 'A' : 'a') + d)).ToString(), elements: columns);
-					sb.AppendRange<int>(d => DigitConverter((Mask)(1 << d)), elements: rows);
+					sb.AppendRange(d => ((char)((MakeLettersUpperCase ? 'A' : 'a') + d)).ToString(), elements: columns);
+					sb.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: rows);
 					sb.Append(DefaultSeparator);
 				}
 				sb.RemoveFrom(^DefaultSeparator.Length);
@@ -67,7 +67,7 @@ public sealed record ExcelCoordinateConverter(
 
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
-		=> (ref readonly CandidateMap candidates) =>
+		=> (ref readonly candidates) =>
 		{
 			var sb = new StringBuilder(50);
 			foreach (var digitGroup in

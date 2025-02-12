@@ -49,7 +49,7 @@ public sealed record K9Converter(
 {
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CellMap, string> CellConverter
-		=> (ref readonly CellMap cells) =>
+		=> (ref readonly cells) =>
 		{
 			switch (cells)
 			{
@@ -90,7 +90,7 @@ public sealed record K9Converter(
 				}
 				foreach (var (rows, columns) in output)
 				{
-					sb.AppendRange<int>(
+					sb.AppendRange(
 						d => (
 							d == 8
 								? MakeLettersUpperCase ? char.ToUpper(FinalRowLetter) : char.ToLower(FinalRowLetter)
@@ -98,7 +98,7 @@ public sealed record K9Converter(
 						).ToString(),
 						elements: rows
 					);
-					sb.AppendRange<int>(d => DigitConverter((Mask)(1 << d)), elements: columns);
+					sb.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: columns);
 					sb.Append(DefaultSeparator);
 				}
 				sb.RemoveFrom(^DefaultSeparator.Length);
@@ -112,7 +112,7 @@ public sealed record K9Converter(
 
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
-		=> (ref readonly CandidateMap candidates) =>
+		=> (ref readonly candidates) =>
 		{
 			var needAddingBrackets = Enum.IsDefined(DigitBracketInCandidateGroups) && DigitBracketInCandidateGroups != NotationBracket.None;
 			var sb = new StringBuilder(50);

@@ -367,7 +367,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		await HandleGeneratingAsync<FilteredGeneratorProgress>(
 			false,
-			static (ref Grid grid, Analyzer analyzer) =>
+			static (ref grid, analyzer) =>
 			{
 				var analysisResult = analyzer.Analyze(in grid);
 				if (analysisResult is not { IsSolved: true, GridsSpan: var grids, StepsSpan: var steps })
@@ -436,7 +436,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		await HandleGeneratingAsync<FilteredGeneratorProgress>(
 			false,
-			static (ref Grid grid, Analyzer analyzer) =>
+			static (ref grid, analyzer) =>
 			{
 				var analysisResult = analyzer.Analyze(in grid);
 				if (analysisResult is not { IsSolved: true, GridsSpan: var grids, StepsSpan: var steps })

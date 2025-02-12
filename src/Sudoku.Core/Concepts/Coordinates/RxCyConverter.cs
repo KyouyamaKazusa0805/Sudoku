@@ -45,7 +45,7 @@ public sealed record RxCyConverter(
 {
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CellMap, string> CellConverter
-		=> (ref readonly CellMap cells) =>
+		=> (ref readonly cells) =>
 		{
 			return cells switch
 			{
@@ -76,9 +76,9 @@ public sealed record RxCyConverter(
 				foreach (var (rows, columns) in output)
 				{
 					sb.Append(MakeLettersUpperCase ? 'R' : 'r');
-					sb.AppendRange<int>(d => DigitConverter((Mask)(1 << d)), elements: rows);
+					sb.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: rows);
 					sb.Append(MakeLettersUpperCase ? 'C' : 'c');
-					sb.AppendRange<int>(d => DigitConverter((Mask)(1 << d)), elements: columns);
+					sb.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: columns);
 					sb.Append(DefaultSeparator);
 				}
 				sb.RemoveFrom(^DefaultSeparator.Length);
@@ -92,7 +92,7 @@ public sealed record RxCyConverter(
 
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
-		=> (ref readonly CandidateMap candidates) =>
+		=> (ref readonly candidates) =>
 		{
 			if (!candidates)
 			{
