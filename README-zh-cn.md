@@ -206,6 +206,15 @@
 
 该项目比较特殊。该项目的代码使用到了 [EmguCV](https://github.com/emgucv/emgucv) 仓库里的 API 以及部分源代码。根据源仓库的开源协议规则和规范，该项目也需要严格遵守此点。因此它采用的是独立的开源协议。请查看该项目在仓库里的 `LICENSE` 文件。
 
+### 仓库文件夹 docs
+
+仓库里还有一个文件夹 `docs` 放的是文档项目：
+
+* 完整的数独教程（docs/tutorial）
+* Sudoku Studio 软件使用手册（docs/manual）
+
+那两个项目因为是文档项目，所以采用不同的协议 - [CC-BY-4.0 International](https://github.com/KyouyamaKazusa0805/Sudoku/blob/main/LICENSE-WIKI) 协议。
+
 ### 其他项目
 
 本仓库的其他项目都采用 MIT 开源协议。MIT 开源协议意味着**你需要在你的应用程序里声明本项目的作者信息**。

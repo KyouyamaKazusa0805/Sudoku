@@ -199,13 +199,22 @@ This solution supports many kinds of human-friendly techniques. Here I will list
 
 ## Forks & PRs (Pull Requests) for This Repo
 
-Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the [MIT license](https://github.com/KyouyamaKazusa0805/Sudoku/blob/main/LICENSE). However, due to the copy of the GitHub repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms. Please visit the following part "Basic Information" for learning about more details.
+Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the [MIT license](https://github.com/KyouyamaKazusa0805/Sudoku/blob/main/LICENSE-CODE). However, due to the copy of the GitHub repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms. Please visit the following part "Basic Information" for learning about more details.
 
 ## Open source license
 
 ### Special project: `Sudoku.Drawing.Ocr`
 
 This project uses some APIs and source code from repo [EmguCV](https://github.com/emgucv/emgucv). Therefore, the project uses a standalone open-source license. For more information please visit the file `LICENSE` in that project in source code.
+
+### Repository folder `docs`
+
+This folder contains two projects:
+
+* Sudoku Tutorial (docs/tutorial)
+* SudokuStudio Manual (docs/manual)
+
+Two projects uses markdown rendering engine instead of code. Therefore, those two projects will adopt different license - [CC-BY-4.0 International](https://github.com/KyouyamaKazusa0805/Sudoku/blob/main/LICENSE-WIKI).
 
 ### The others
 
