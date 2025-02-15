@@ -1,7 +1,4 @@
----
-description: Index
----
+# Index
 
-# 主页
+This page will help you use program "[Sudoku Studio](https://github.com/KyouyamaKazusa0805/Sudoku/tree/main/src/SudokuStudio)".
 
-这个手册将会帮助你使用软件“[Sudoku Studio](https://github.com/KyouyamaKazusa0805/Sudoku/tree/main/src/SudokuStudio)”。
