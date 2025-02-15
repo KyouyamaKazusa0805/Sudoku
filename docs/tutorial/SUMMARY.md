@@ -35,6 +35,8 @@
 * [分支匹配](full-marking-technique/04-wings/README.md)
   * [分支匹配的基本推理](full-marking-technique/04-wings/01-reasoning-of-wings.md)
   * [残缺的分支匹配](full-marking-technique/04-wings/02-incomplete-wings.md)
+* [唯一矩形](full-marking-technique/05-unique-rectangle/README.md)
+  * [唯一矩形的基本推理](full-marking-technique/05-unique-rectangle/01-reasoning-of-unique-rectangle.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 
