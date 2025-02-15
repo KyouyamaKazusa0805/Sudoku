@@ -2,6 +2,6 @@
 
 * [Index](README.md)
 
-## User manual
+## User Manual
 
 * [Drawing Command Line](user-manual/drawing-command-line.md)
