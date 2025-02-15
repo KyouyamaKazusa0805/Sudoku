@@ -1,7 +1,7 @@
 # Table of contents
 
-* [Index](README.md)
+* [主页](README.md)
 
-## User manual
+## 用户手册 <a href="#user-manual" id="user-manual"></a>
 
-* [Drawing Command Line](user-manual/drawing-command-line.md)
+* [绘图命令行](user-manual/drawing-command-line.md)

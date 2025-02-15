@@ -1,34 +1,36 @@
-# Drawing Command Line
+---
+description: Drawing Command Line
+---
 
-This page will help you use drawing command line.
+# 绘图命令行
 
-## Looking
+显示的部件该页面将帮助你如何使用绘图命令行。
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Page looking</p></figcaption></figure>
+## 外貌 <a href="#looking" id="looking"></a>
 
-This page will allow you using command line to draw pictures.
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>外貌</p></figcaption></figure>
 
-## Command line syntax
+## 命令行语法 <a href="#command-line-syntax" id="command-line-syntax"></a>
 
-As you can see, the right text box will allow you write command line to draw elements.
+可以从图上看出，右侧的文本框是给你输入命令行，以命令行的形式输入绘图指令的。
 
-This program supports the following items to be drawn:
+在这个程序里，支持如下的一些绘图部件：
 
-* Cell highlight
-* Candidate highlight
-* House highlight
-* Chute highlight
-* Icons
-* Links
-* Baba grouping
+* 单元格
+* 候选数
+* 区域
+* 大行列
+* 图标
+* 链
+* 代数
 
-The basic command line syntax is based on normal command line. **However, it's not supported for using quotes `"` to escape whitespaces**.
+这个页面使用的命令行语法基本基于命令行的输入语法规则。**只不过，他暂时还不支持使用引号字符 `"` 来转义空白字符。**
 
-For the detail of commands, I will list them below.
+对于细节，我会马上在下面列举他们。
 
-## Detail
+## 细节 <a href="#detail" id="detail"></a>
 
-For example, the following commands
+例如，下方的命令行
 
 ```bash
 load -c 1...8...4..7..28...2...4.5....3.....7.5...4.8.....6....1.6...4...61..5..3...5...2
@@ -43,172 +45,168 @@ candidate !e r5c5(12)
 candidate !o r5c5(9)
 ```
 
-can produce such output:
+可以产生如下的输出内容：
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-### Load puzzle
+### 载入题目 <a href="#load-puzzle" id="load-puzzle"></a>
 
-You should use `load` command to load a puzzle, with an option to specify candidates displaying:
+你可以使用 `load` 指令来加载一个题目到页面上。他还支持使用额外选项控制候选数是否展示：
 
 ```bash
 load [+c|-c] <puzzle>
 ```
 
-where `+c` will display candidates, and `-c` won't. If omitted, `-c` will be default.
+这里的 `+c` 就表示展示候选数，而 `-c` 就表示不展示。如果省略不写，那么他等于是不显示候选数（和 `-c` 一样的效果）。
 
-### Cell highlight
+### 单元格高亮 <a href="#cell-highlight" id="cell-highlight"></a>
 
-If you want to highlight a cell, you can use `cell` command:
+如果你要高亮一个单元格，请使用 `cell` 指令：
 
 ```bash
 cell <color-identifier> <cell|cell-group>
 ```
 
-For the part `color-identfier`, I will mention it below.
+对于这里的 `color-identfier`，我稍后会介绍。
 
-### Candidate highlight
+### 候选数高亮 <a href="#candidate-highlight" id="candidate-highlight"></a>
 
-If you want to highlight a candidte, you should use `candidate` command:
+如果你要展示候选数的高亮，请使用 `candidate` 指令：
 
 ```bash
 candidate <color-identifier> <candidate|candidate-group>
 ```
 
-### House highlight
+### 区域高亮 <a href="#house-highlight" id="house-highlight"></a>
 
-If you want to highlight a house, you should use `house` command:
+如果你要展示区域的高亮，就使用 `house` 指令：
 
 ```bash
 house <color-identifier> <house|house-group>
 ```
 
-### Chute highlight
+### 大行列高亮 <a href="#chute-highlight" id="chute-highlight"></a>
 
-If you want to highlight a chute, you can use `chute` command:
+如果你要高亮整个并排的三个宫，则使用 `chute` 指令：
 
 ```bash
 chute <color-identifier> <chute|chute-group>
 ```
 
-### Icon
+### 图标 <a href="#icon" id="icon"></a>
 
-Icons are some shapes displayed in a cell. You can use `icon` command to output an icon:
+一个图标是显示在一个单元格里的一个形状。你可以使用 `icon` 指令来显示一个图标：
 
 ```bash
 icon <color-identifier> <icon-shape> <cell|cell-group>
 ```
 
-The supported icon shapes are:
+当前支持的图标有如下的一些：
 
-* circle
-* cross
-* diamond
-* heart
-* square
-* star
-* triangle
+* 圆（用 `circle` 表示）
+* 打叉记号（用 `cross` 表示）
+* 菱形（用 `diamond` 表示）
+* 心形（用 `heart` 表示）
+* 方块（用 `square` 表示）
+* 五角星（用 `star` 表示）
+* 三角形（用 `triangle` 表示）
 
-### Baba grouping
+### 代数 <a href="#baba-group" id="baba-group"></a>
 
-Baba grouping allows you outputting a character into a cell, displaying as a variable indicating the possible candidates can be chosen in the containing cell.
-
-You can use `baba` command:
+代数允许你往单元格里显示一个字母，他用来代指这个单元格最终的填数等于这个字母表示的变量。这个使用的是 `baba` 指令：
 
 ```bash
 baba <color-identifier> <character> <cell|cell-group>
 ```
 
-### Links
+### 链 <a href="#link" id="link"></a>
 
-The program also supports for outputting links. You can use `link` command:
+这个程序还支持往盘面上画链。你可以使用 `link` 来画链：
 
 ```bash
 link <color-identifier> <link-shape> <start-candidates> <end-candidates> [<extra>]
 ```
 
-By the way, the supported link shapes are:
+目前程序支持的链的类型有如下一些：
 
-* cell: a cell link (used by Unique Loop)
-* chain: a chain link
-* conjugate: a conjugate pair link (used by Type 4 of Deadly Patterns)
+* 单元格之间的连线（用在唯一环里，用 `cell` 表示）
+* 强弱链（用 `chain` 表示）
+* 共轭对（用于致命结构的类型 4，用 `conjugate` 表示）
 
-## Coordinate syntax
+## 坐标语法 <a href="#coordinate-syntax" id="coordinate-syntax"></a>
 
-For the coordinates mentioned above, you should use one of RxCy, K9, Excel notation defined in settings page:
+对于上述提及的坐标，你需要使用要么 RxCy 表示、要么 K9 表示，要么 Excel 表示的方式来呈现他们。具体哪一个取决于你在设置页里配置的那个。
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>Coordinate kind in settings page</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>设置页里配置的坐标类型</p></figcaption></figure>
 
-## Color identifier syntax
+## 颜色标识符语法 <a href="#color-identifier-syntax" id="color-identifier-syntax"></a>
 
-For color identifiers, the program supports for 3 kinds of identifiers:
+对于颜色标识符，程序使用了三种不同的方式表示他们：
 
-* Hexadecimal-based color string (e.g. `#FFFFFF` indicating the color white)
-* Aliased string (e.g. `!elimination` indicating the color used by an elimination)
-* Palette ID (e.g. `&5` indicating the 5th color in palette)
+* 十六进制数（如 `#FFFFFF` 表示白色）
+* 涂色名称（如 `!elimination` 表示涂色跟删数的配色一样）
+* 画板配色编号（如 `&5` 表示你在自定义画板设置里配置的第 5 个颜色）
 
-### Hexadecimal-based color
+### 十六进制数 <a href="#hexadecimal-based-color" id="hexadecimal-based-color"></a>
 
-You can declare a color by using 6 or 8 characters to describe a color by obeying RGB or ARGB color representing rule. Casing are ignored.
+你可以使用 6 到 8 个十六进制数表示出一个颜色。其中 6 个十六进制数会被转为 RGB 表示，而 8 个十六进制数则表示的是 ARGB。不区分大小写。
 
-### Aliased string
+### 涂色名称 <a href="#aliased-string" id="aliased-string"></a>
 
-You can also use aliased names to describe a color, meaning what environment the color is used.
+你也可以使用别名来称呼一个颜色，表示这个颜色一般用在软件里充当什么角色的时候才会用到他。
 
-The supported values are:
+支持的值有如下的一些：
 
-* **`normal` or `n`**: a normal color
-* **`auxiliary` or `aux`**: an auxiliary color used. The possible values are `auxiliary1`, `auxiliary2`, `auxiliary3`, `aux1`, `aux2` and `aux3`
-* **`assignment` or `a`**: an assignment
-* **`overlapped_assignmented`, `overlapped` or `o`**: an assignment overlapping with another colored candidate
-* **`elimination`, `elim` or `e`**: an elimination
-* **`cannibalism`, `cannibal` or `c`**: an elimination overlapping with another colored candidate
-* **`exofin` or `f`**: a fin
-* **`endofin` or `ef`**: a fin overlapping with fish body
-* **`link` or `l`**: a link color
-* **`almost_locked_set` or `als`**: an ALS pattern. The possible values are `almost_locked_set1`, `almost_locked_set2`, `almost_locked_set3`, `als1`, `als2` and `als3`
-* **`rectangle` or `r`**: a rectangle pattern. The possible values are `rectangle1`, `rectangle2`, `rectangle3`, `r1`, `r2` and `r3`
+* **`normal` 或 `n`**：表示通常的配色
+* **`auxiliary` 或 `aux`**：表示辅助配色。辅助配色包含三种，所以可以填写的写法有 `auxiliary1`、`auxiliary2`、`auxiliary3`、`aux1`、`aux2` 和 `aux3`
+* **`assignment` 或 `a`**：表示一个出数
+* **`overlapped_assignmented`、`overlapped` 或 `o`**：表示一个出数，并且这个出数也同时被结构所用到（效果就是叠起来了）
+* **`elimination`、`elim` 或 `e`**：表示一个删数
+* **`cannibalism`、`cannibal` 或 `c`**：表示一个删数，但这个删数在结构里也用到（效果也是叠起来了）
+* **`exofin` 或 `f`**：一个（外部）鱼鳍
+* **`endofin` 或 `ef`**：一个内部鱼鳍
+* **`link` 或 `l`**：跟链一样的颜色
+* **`almost_locked_set` 或 `als`**：表示 ALS 结构的配色。这种配色方案一共有 5 个，所以可以用的写法有 `almost_locked_set1`、`almost_locked_set2`、`almost_locked_set3`、`almost_locked_set4`、`almost_locked_set5`、`als1`、`als2`、`als3`、`als4` 和 `als5`
+* **`rectangle` 或 `r`**：一个唯一矩形。这种配色方案下一共支持 3 个不同的配色，所以可以用的写法有 `rectangle1`、`rectangle2`、`rectangle3`、`r1`、`r2` 和 `r3`
 
-### Palette ID
+### 画板配色编号 <a href="#palette-id" id="palette-id"></a>
 
-This program also supports 15 different colors used in palette, which supports customization in settings page. You can change them to different colors in order to rich the looking.
+程序还支持 15 种不同的自定义画板配色。这个配置项可以在设置里自由配置。你可以改变他们，以便自定义出区别于程序的不同的配色。
 
-The supported IDs are from 1 to 15. Hex characters `A` to `F` are also supported to represent IDs 10 to 15.
+因为支持 15 个颜色，所以 ID 的范围就是 1 到 15。你也可以用字母 `A` 到 `F` 来表示编号 10 到 15。
 
-## Explanation of example
+## 对前文命令行的解释 <a href="#explanation-of-example" id="explanation-of-example"></a>
 
-From the above syntax we learnt, the command lines can be easy-comprehended.
+前面讲过了命令行的语法，所以我们再来看命令行就比较好理解了。
 
 ```bash
-# load a puzzle, without candidates shown
+# 载入题目，不显示候选数
 load -c 1...8...4..7..28...2...4.5....3.....7.5...4.8.....6....1.6...4...61..5..3...5...2
 
-# show candidate r23c5(1) with normal color
+# 用普通的配色来高亮 r23c5(1)
 candidate !n r23c5(1)
 
-# show candidate r78c5(2) with normal color
+# 用普通的配色来高亮 r78c5(2)
 candidate !n r78c5(2)
 
-# show block 2 and 8 with normal color
+# 用普通的配色来高亮第 2、8 宫
 house !n b28
 
-# show column 5 with auxiliary color 1
+# 用辅助颜色 #1 来高亮第 5 列
 house !aux1 c5
 
-# display circles with normal color to the following cells
+# 往如下配置的这些单元格上添加一个圆圈图标，并使用普通的配色
 icon !n circle r1c1,r2c6,r4c4,r5c1379,r6c6,r8c4,r9c9
 
-# display a diamond to r5c5, with auxiliary color 3
+# 使用辅助颜色 #3 显示一个菱形图标到 r5c5 上
 icon !aux3 diamond r5c5
 
-# display a cross sign to the following cells with auxiliary color 1
+# 在如下这些单元格上画叉，并使用的是辅助颜色 #1
 icon !aux1 cross r1c6,r123c4,r789c6,r9c4
 
-# show candidate 1 and 2 from cell r5c5 with a color same as elimination
+# 将 r5c5(12) 按删数颜色高亮
 candidate !e r5c5(12)
 
-# show candidate 9 from cell r5c5 with a color same as assignment,
-# with other shown candidates overlapped
+# 将 r5c5(9) 按出数颜色高亮，并暗示它是推理过程中也会用到的候选数，用重叠的配色来强调
 candidate !o r5c5(9)
 ```
-
