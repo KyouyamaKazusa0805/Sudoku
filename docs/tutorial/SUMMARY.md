@@ -21,27 +21,27 @@
   * [直观显性数组](partial-marking-technique/03-direct-subset/02-direct-naked-subset.md)
 * [直观复杂出数](partial-marking-technique/04-direct-complex-single.md)
 
-## 全部标记技巧 <a href="#full-marking-technique" id="full-marking-technique"></a>
+## 基础候选数技巧 <a href="#candidate-technique-basics" id="candidate-technique-basics"></a>
 
-* [候选数的概念](full-marking-technique/01-concept-of-candidate.md)
-* [直观和局标技巧在全标下的样子](full-marking-technique/02-looking-of-direct-and-partial-marking-techniques-in-full-marking-grids.md)
-* [标准鱼](full-marking-technique/03-normal-fish/README.md)
-  * [鱼的基本推理](full-marking-technique/03-normal-fish/01-reasoning-of-normal-fish.md)
-  * [鳍鱼](full-marking-technique/03-normal-fish/02-finned-fish.md)
-  * [退化鱼](full-marking-technique/03-normal-fish/03-sashimi-fish.md)
-  * [孪生鱼](full-marking-technique/03-normal-fish/04-sashimi-fish.md)
-  * [鱼的直观和互补性](full-marking-technique/03-normal-fish/05-direct-view-of-fish-and-law-of-complement-of-fish.md)
-  * [鱼的命名](full-marking-technique/03-normal-fish/06-naming-of-fish.md)
-* [分支匹配](full-marking-technique/04-wings/README.md)
-  * [分支匹配的基本推理](full-marking-technique/04-wings/01-reasoning-of-wings.md)
-  * [残缺的分支匹配](full-marking-technique/04-wings/02-incomplete-wings.md)
-* [唯一矩形](full-marking-technique/05-unique-rectangle/README.md)
-  * [唯一矩形的基本推理](full-marking-technique/05-unique-rectangle/01-reasoning-of-unique-rectangle.md)
+* [候选数的概念](candidate-technique-basics/01-concept-of-candidate.md)
+* [直观和局标技巧在全标下的样子](candidate-technique-basics/02-looking-of-direct-and-partial-marking-techniques-in-full-marking-grids.md)
+* [标准鱼](candidate-technique-basics/03-normal-fish/README.md)
+  * [鱼的基本推理](candidate-technique-basics/03-normal-fish/01-reasoning-of-normal-fish.md)
+  * [鳍鱼](candidate-technique-basics/03-normal-fish/02-finned-fish.md)
+  * [退化鱼](candidate-technique-basics/03-normal-fish/03-sashimi-fish.md)
+  * [孪生鱼](candidate-technique-basics/03-normal-fish/04-sashimi-fish.md)
+  * [鱼的直观和互补性](candidate-technique-basics/03-normal-fish/05-direct-view-of-fish-and-law-of-complement-of-fish.md)
+  * [鱼的命名](candidate-technique-basics/03-normal-fish/06-naming-of-fish.md)
+* [分支匹配](candidate-technique-basics/04-wings/README.md)
+  * [分支匹配的基本推理](candidate-technique-basics/04-wings/01-reasoning-of-wings.md)
+  * [残缺的分支匹配](candidate-technique-basics/04-wings/02-incomplete-wings.md)
+* [唯一矩形](candidate-technique-basics/05-unique-rectangle/README.md)
+  * [唯一矩形的基本推理](candidate-technique-basics/05-unique-rectangle/01-reasoning-of-unique-rectangle.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 
 * [术语索引](appendix/01-terms.md)
 
-***
+## 其他 <a href="#miscellaneous" id="miscellaneous"></a>
 
-* [版权声明](copyright-statement.md)
+* [版权声明](miscellaneous/copyright-statement.md)

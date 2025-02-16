@@ -1,5 +1,5 @@
 ---
-description: Welcome to Sudoku World!
+description: Welcome to Sudoku!
 ---
 
 # 初来乍到
