@@ -3,7 +3,7 @@
 ## 数独概述 <a href="#basics-of-sudoku" id="basics-of-sudoku"></a>
 
 * [初来乍到](README.md)
-* [坐标表示](basics-of-sudoku/02-coordinate-notation.md)
+* [坐标](basics-of-sudoku/02-coordinate.md)
 * [数独历史](basics-of-sudoku/03-history-of-sudoku.md)
 
 ## 直观技巧 <a href="#direct-technique" id="direct-technique"></a>
