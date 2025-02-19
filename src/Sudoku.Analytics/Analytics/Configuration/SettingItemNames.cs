@@ -82,18 +82,6 @@ public static class SettingItemNames
 	/// <inheritdoc cref="BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
 	public const string SearchExtendedBivalueUniversalGraveTypes = nameof(SearchExtendedBivalueUniversalGraveTypes);
 
-	/// <inheritdoc cref="AlmostLockedSetsXzStepSearcher.AllowCollision"/>
-	public const string AllowCollisionOnAlmostLockedSetsXzRule = nameof(AllowCollisionOnAlmostLockedSetsXzRule);
-
-	/// <inheritdoc cref="AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
-	public const string AllowLoopedPatternsOnAlmostLockedSetsXzRule = nameof(AllowLoopedPatternsOnAlmostLockedSetsXzRule);
-
-	/// <inheritdoc cref="AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
-	public const string AllowCollisionOnAlmostLockedSetsXyWing = nameof(AllowCollisionOnAlmostLockedSetsXyWing);
-
-	/// <inheritdoc cref="AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
-	public const string AllowCollisionOnAlmostLockedSetsWWing = nameof(AllowCollisionOnAlmostLockedSetsWWing);
-
 	/// <inheritdoc cref="ChainStepSearcher.MakeConclusionAroundBackdoors"/>
 	public const string MakeConclusionAroundBackdoorsNormalChain = nameof(MakeConclusionAroundBackdoorsNormalChain);
 

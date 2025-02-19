@@ -141,22 +141,6 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	[DependencyProperty(DefaultValue = 3)]
 	public partial int AlignedExclusionMaxSearchingSize { get; set; }
 
-	/// <inheritdoc cref="AlmostLockedSetsXzStepSearcher.AllowCollision"/>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool AllowCollisionOnAlmostLockedSetsXzRule { get; set; }
-
-	/// <inheritdoc cref="AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool AllowLoopedPatternsOnAlmostLockedSetsXzRule { get; set; }
-
-	/// <inheritdoc cref="AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool AllowCollisionOnAlmostLockedSetsXyWing { get; set; }
-
-	/// <inheritdoc cref="AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool AllowCollisionOnAlmostLockedSetsWWing { get; set; }
-
 	/// <inheritdoc cref="ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
 	[DependencyProperty(DefaultValue = true)]
 	public partial bool SearchForReverseBugPartiallyUsedTypes { get; set; }

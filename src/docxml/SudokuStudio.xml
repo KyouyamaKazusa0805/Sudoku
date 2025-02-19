@@ -1192,18 +1192,6 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlignedExclusionMaxSearchingSize">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Permutations.AlignedExclusionStepSearcher.MaxSearchingSize"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsXzRule">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher.AllowCollision"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLoopedPatternsOnAlmostLockedSetsXzRule">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsXyWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsWWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
-        </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForReverseBugPartiallyUsedTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
         </member>
@@ -1446,30 +1434,6 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlignedExclusionMaxSearchingSize"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlignedExclusionMaxSearchingSize"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsXzRuleProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsXzRule"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsXzRule"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLoopedPatternsOnAlmostLockedSetsXzRuleProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLoopedPatternsOnAlmostLockedSetsXzRule"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLoopedPatternsOnAlmostLockedSetsXzRule"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsXyWingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsXyWing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsXyWing"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsWWingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsWWing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetsWWing"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForReverseBugPartiallyUsedTypesProperty">
             <summary>
@@ -11439,18 +11403,6 @@
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChain">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.Chains.GroupedChainStepSearcher.MakeConclusionAroundBackdoors"/>
         </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXzRule">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher.AllowCollision"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlmostLockedSetsXzRule">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXyWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsWWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
-        </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSets.DeathBlossomStepSearcher.SearchExtendedTypes"/>
         </member>
@@ -11695,30 +11647,6 @@
             Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChain"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChain"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXzRuleProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXzRule"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXzRule"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlmostLockedSetsXzRuleProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlmostLockedSetsXzRule"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlmostLockedSetsXzRule"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXyWingProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXyWing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXyWing"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsWWingProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsWWing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsWWing"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypesProperty">
             <summary>
@@ -12263,70 +12191,6 @@
             <param name="obj">The containing object of the property.</param>
             <returns>The value returned.</returns>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.MakeConclusionAroundBackdoorsGroupedChain"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowCollisionOnAlmostLockedSetsXzRule(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXzRule"/> with the specified value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <param name="value">The value to be set.</param>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXzRule"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowCollisionOnAlmostLockedSetsXzRule(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXzRule"/> of its containing value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <returns>The value returned.</returns>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXzRule"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowLoopedPatternsOnAlmostLockedSetsXzRule(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlmostLockedSetsXzRule"/> with the specified value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <param name="value">The value to be set.</param>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlmostLockedSetsXzRule"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowLoopedPatternsOnAlmostLockedSetsXzRule(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlmostLockedSetsXzRule"/> of its containing value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <returns>The value returned.</returns>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlmostLockedSetsXzRule"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowCollisionOnAlmostLockedSetsXyWing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXyWing"/> with the specified value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <param name="value">The value to be set.</param>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXyWing"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowCollisionOnAlmostLockedSetsXyWing(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXyWing"/> of its containing value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <returns>The value returned.</returns>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXyWing"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowCollisionOnAlmostLockedSetsWWing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsWWing"/> with the specified value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <param name="value">The value to be set.</param>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsWWing"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowCollisionOnAlmostLockedSetsWWing(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsWWing"/> of its containing value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <returns>The value returned.</returns>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsWWing"/>
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetSearchExtendedDeathBlossomTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>

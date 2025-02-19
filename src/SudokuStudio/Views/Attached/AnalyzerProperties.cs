@@ -153,22 +153,6 @@ public static partial class AnalyzerProperties
 	[DependencyProperty(DefaultValue = false)]
 	public static partial bool MakeConclusionAroundBackdoorsGroupedChain { get; set; }
 
-	/// <inheritdoc cref="AlmostLockedSetsXzStepSearcher.AllowCollision"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool AllowCollisionOnAlmostLockedSetsXzRule { get; set; }
-
-	/// <inheritdoc cref="AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool AllowLoopedPatternsOnAlmostLockedSetsXzRule { get; set; }
-
-	/// <inheritdoc cref="AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool AllowCollisionOnAlmostLockedSetsXyWing { get; set; }
-
-	/// <inheritdoc cref="AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool AllowCollisionOnAlmostLockedSetsWWing { get; set; }
-
 	/// <inheritdoc cref="DeathBlossomStepSearcher.SearchExtendedTypes"/>
 	[DependencyProperty]
 	public static partial bool SearchExtendedDeathBlossomTypes { get; set; }

@@ -114,8 +114,6 @@ public sealed class Analyzer :
 			.AddStepSearcherSetter<UniqueRectangleStepSearcher>(static s => { s.AllowIncompleteUniqueRectangles = true; s.SearchForExtendedUniqueRectangles = true; })
 			.AddStepSearcherSetter<BivalueUniversalGraveStepSearcher>(static s => s.SearchExtendedTypes = true)
 			.AddStepSearcherSetter<ReverseBivalueUniversalGraveStepSearcher>(static s => { s.MaxSearchingEmptyCellsCount = 2; s.AllowPartiallyUsedTypes = true; })
-			.AddStepSearcherSetter<AlmostLockedSetsXzStepSearcher>(static s => { s.AllowCollision = true; s.AllowLoopedPatterns = true; })
-			.AddStepSearcherSetter<AlmostLockedSetsXyWingStepSearcher>(static s => s.AllowCollision = true)
 			.AddStepSearcherSetter<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 5)
 			.AddStepSearcherSetter<TemplateStepSearcher>(static s => s.TemplateDeleteOnly = false)
 			.AddStepSearcherSetter<ComplexFishStepSearcher>(static s => { s.MaxSize = 5; s.AllowSiamese = false; })
