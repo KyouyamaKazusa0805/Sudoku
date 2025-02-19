@@ -6113,7 +6113,7 @@
             <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
             </item>
             </list>
-            Part (3) is for the reserved bits. Such bits won't be used expect for the array element at index 0 -
+            Part (3) is for the reserved bits. Such bits won't be used except for the array element at index 0 -
             The first element in the array will use (3) to represent the sudoku grid type. There are only two kinds of grid type value:
             <list type="table">
             <listheader>
