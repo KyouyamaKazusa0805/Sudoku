@@ -1,4 +1,4 @@
-namespace Sudoku.Metric;
+namespace Sudoku.Measuring;
 
 /// <summary>
 /// Provides a way to calculate empty area of a <see cref="Grid"/> or a <see cref="CellMap"/>.

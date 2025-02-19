@@ -1,4 +1,4 @@
-namespace Sudoku.Metric.Functions;
+namespace Sudoku.Measuring.Functions;
 
 /// <summary>
 /// Represents a function that calculates for length on chaining rules.

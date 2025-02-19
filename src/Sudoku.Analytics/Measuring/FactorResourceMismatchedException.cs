@@ -1,4 +1,4 @@
-namespace Sudoku.Metric;
+namespace Sudoku.Measuring;
 
 /// <summary>
 /// Represents an exception type that will be thrown if factor resource is mismatched.

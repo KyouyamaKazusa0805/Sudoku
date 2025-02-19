@@ -1,4 +1,4 @@
-namespace Sudoku.Metric;
+namespace Sudoku.Measuring;
 
 /// <summary>
 /// Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
