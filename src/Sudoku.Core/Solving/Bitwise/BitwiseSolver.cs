@@ -12,17 +12,12 @@ namespace Sudoku.Solving.Bitwise;
 /// This type is thread-unsafe. If you want to use this type in multi-threading, please use <see langword="lock"/> statement.
 /// </b></para>
 /// </remarks>
-public sealed unsafe partial class BitwiseSolver : ISolver, IMultipleSolutionSolver
+public sealed unsafe partial class BitwiseSolver : ISolver
 {
 	/// <summary>
 	/// Stack to store current and previous states.
 	/// </summary>
 	private readonly BitwiseSolverState[] _stack = new BitwiseSolverState[50];
-
-	/// <summary>
-	/// Indicates the solutions.
-	/// </summary>
-	private readonly SortedSet<string> _solutions = [];
 
 
 	/// <summary>
@@ -56,6 +51,13 @@ public sealed unsafe partial class BitwiseSolver : ISolver, IMultipleSolutionSol
 
 	/// <inheritdoc/>
 	public static string? UriLink => null;
+
+
+	/// <summary>
+	/// Provide a way to detect event to be triggered when a solution is found;
+	/// no matter whether the puzzle has a unique solution or not (multiple solutions).
+	/// </summary>
+	public event BitwiseSolverSolutionFoundEventHandler? SolutionFound;
 
 
 	/// <inheritdoc/>
@@ -197,24 +199,12 @@ public sealed unsafe partial class BitwiseSolver : ISolver, IMultipleSolutionSol
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid Solve(ref readonly Grid puzzle) => Solve(in puzzle, out var result) is true ? result : Grid.Undefined;
 
-	/// <inheritdoc/>
-	public ReadOnlySpan<Grid> SolveAll(ref readonly Grid grid)
-	{
-		SolveString(grid.ToString("0"), null, int.MaxValue);
-		return from element in _solutions.ToArray() select Grid.Parse(element);
-	}
-
 	/// <summary>
-	/// To clear the field <see cref="_stack"/>, and clear original solution collection <see cref="_solutions"/>.
+	/// To clear the field <see cref="_stack"/>.
 	/// </summary>
 	/// <seealso cref="_stack"/>
-	/// <seealso cref="_solutions"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void ClearStack()
-	{
-		Array.Clear(_stack);
-		_solutions.Clear();
-	}
+	private void ClearStack() => Array.Clear(_stack);
 
 	/// <summary>
 	/// Set a cell as solved - used in <see cref="InitSudoku"/>.
@@ -791,7 +781,7 @@ public sealed unsafe partial class BitwiseSolver : ISolver, IMultipleSolutionSol
 		{
 			var solutionPtr = (stackalloc char[BufferLength]);
 			f(solutionPtr);
-			_solutions.Add(solutionPtr.ToString());
+			SolutionFound?.Invoke(this, new(solutionPtr.ToString()));
 			return;
 		}
 

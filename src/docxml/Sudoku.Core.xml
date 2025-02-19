@@ -11980,11 +11980,6 @@
             Stack to store current and previous states.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._solutions">
-            <summary>
-            Indicates the solutions.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._singleApplied">
             <summary>
             Nasty global flag telling if <see cref="M:Sudoku.Solving.Bitwise.BitwiseSolver.ApplySingleOrEmptyCells"/> found anything.
@@ -12015,6 +12010,12 @@
         </member>
         <member name="P:Sudoku.Solving.Bitwise.BitwiseSolver.UriLink">
             <inheritdoc/>
+        </member>
+        <member name="E:Sudoku.Solving.Bitwise.BitwiseSolver.SolutionFound">
+            <summary>
+            Provide a way to detect event to be triggered when a solution is found;
+            no matter whether the puzzle has a unique solution or not (multiple solutions).
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
@@ -12068,15 +12069,11 @@
             <returns>The solution. If failed to solve, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.</returns>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
-        <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.SolveAll(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.ClearStack">
             <summary>
-            To clear the field <see cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._stack"/>, and clear original solution collection <see cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._solutions"/>.
+            To clear the field <see cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._stack"/>.
             </summary>
             <seealso cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._stack"/>
-            <seealso cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._solutions"/>
         </member>
         <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
             <summary>
@@ -12184,6 +12181,53 @@
             <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
             However, C# not.
             </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Bitwise.BitwiseSolverExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Solving.Bitwise.BitwiseSolver"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Bitwise.BitwiseSolver"/>
+        </member>
+        <member name="M:Sudoku.Solving.Bitwise.BitwiseSolverExtensions.EnumerateSolutions(Sudoku.Solving.Bitwise.BitwiseSolver,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Try to enumerate all possible solutions of the specified grid, by using the current solver.
+            </summary>
+            <param name="this">The solver.</param>
+            <param name="grid">The grid.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>A sequence of <see cref="T:System.String"/> values indicating the raw solution text to the puzzle.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Bitwise.BitwiseSolverSolutionFoundEventArgs">
+            <summary>
+            Provides extra data for event <see cref="E:Sudoku.Solving.Bitwise.BitwiseSolver.SolutionFound"/>.
+            </summary>
+            <param name="solutionString">The solution string.</param>
+            <seealso cref="E:Sudoku.Solving.Bitwise.BitwiseSolver.SolutionFound"/>
+        </member>
+        <member name="M:Sudoku.Solving.Bitwise.BitwiseSolverSolutionFoundEventArgs.#ctor(System.String)">
+            <summary>
+            Provides extra data for event <see cref="E:Sudoku.Solving.Bitwise.BitwiseSolver.SolutionFound"/>.
+            </summary>
+            <param name="solutionString">The solution string.</param>
+            <seealso cref="E:Sudoku.Solving.Bitwise.BitwiseSolver.SolutionFound"/>
+        </member>
+        <member name="P:Sudoku.Solving.Bitwise.BitwiseSolverSolutionFoundEventArgs.Solution">
+            <summary>
+            Indicates the solution.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Bitwise.BitwiseSolverSolutionFoundEventArgs.SolutionString">
+            <summary>
+            The generated property declaration for parameter <c>solutionString</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Bitwise.BitwiseSolverSolutionFoundEventHandler">
+            <summary>
+            Provides a mechanism to declare a callback, to be called when a solution is found in solving operation,
+            by a certain <see cref="T:Sudoku.Solving.Bitwise.BitwiseSolver"/> instance.
+            </summary>
+            <param name="sender">The sender which triggers this event.</param>
+            <param name="e">The event arguments provided.</param>
         </member>
         <member name="T:Sudoku.Solving.Bitwise.BitwiseSolverState">
             <summary>
