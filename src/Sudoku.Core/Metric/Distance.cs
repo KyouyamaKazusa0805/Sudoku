@@ -23,7 +23,7 @@ public readonly ref partial struct Distance(int p, int q)
 	/// </summary>
 	/// <remarks>
 	/// <para>
-	/// The table is grouped with houses. If you want to fetch the smallest or biggest distance value from a cell to a house, you can use
+	/// The table is grouped with houses. If you want to fetch the smallest or largest distance value from a cell to a house, you can use
 	/// <c><see cref="DistanceTable"/>[Cell][House]</c>, where <c>Cell</c> is between 0 and 81, and <c>House</c> is between 0 and 27.
 	/// If the cell is inside the house, the value will be <see langword="null"/>.
 	/// </para>
