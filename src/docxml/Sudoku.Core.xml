@@ -9876,11 +9876,6 @@
             Indicates the default root part specifier.
             </summary>
         </member>
-        <member name="F:Sudoku.Metric.Distance.LatexRootPartSpecifier">
-            <summary>
-            Indicates the LaTeX root part specifier.
-            </summary>
-        </member>
         <member name="F:Sudoku.Metric.Distance.DistanceTable">
             <summary>
             The table that displays the minimal and maximal index of cells that makes the distances least or greatest with the specified cell.

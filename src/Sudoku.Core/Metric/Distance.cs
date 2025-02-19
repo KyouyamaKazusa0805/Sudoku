@@ -17,11 +17,6 @@ public readonly ref partial struct Distance(int p, int q)
 	/// </summary>
 	private const string RootPartSpecifier = "s";
 
-	/// <summary>
-	/// Indicates the LaTeX root part specifier.
-	/// </summary>
-	private const string LatexRootPartSpecifier = @"\sqrt";
-
 
 	/// <summary>
 	/// The table that displays the minimal and maximal index of cells that makes the distances least or greatest with the specified cell.
