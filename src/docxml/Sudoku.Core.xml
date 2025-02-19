@@ -9937,9 +9937,6 @@
             For example, "<c>3s2</c>" means <c>3 * sqrt(2)</c>, i.e. <c>sqrt(18)</c>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Metric.Distance.ToLatexString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Metric.Distance.GetDistance(System.Int32,System.Int32)">
             <summary>
             Try to fetch the distance for the two cells.

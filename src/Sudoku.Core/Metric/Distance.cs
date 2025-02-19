@@ -10,7 +10,7 @@ namespace Sudoku.Metric;
 /// This type is implemented via irrational numbers logic that only takes a square root.
 /// </remarks>
 [TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.AllEqualityComparisonOperators)]
-public readonly ref partial struct Distance(int p, int q) : ILatexFormattable
+public readonly ref partial struct Distance(int p, int q)
 {
 	/// <summary>
 	/// Indicates the default root part specifier.
@@ -181,15 +181,6 @@ public readonly ref partial struct Distance(int p, int q) : ILatexFormattable
 			_ => $"{_p}{RootPartSpecifier}{_q}"
 		};
 
-	/// <inheritdoc/>
-	public string ToLatexString()
-		=> (_p, _q) switch
-		{
-			(_, 1) => _p.ToString(),
-			(1, _) => $$"""{{LatexRootPartSpecifier}}{{{_q}}}""",
-			_ => $$"""{{_p}}{{LatexRootPartSpecifier}}{{{_q}}}"""
-		};
-
 
 	/// <summary>
 	/// Try to fetch the distance for the two cells.
@@ -275,7 +266,6 @@ public readonly ref partial struct Distance(int p, int q) : ILatexFormattable
 				result *= i;
 				continue;
 			}
-
 			i = i == 2 ? 3 : i + 2;
 		}
 
