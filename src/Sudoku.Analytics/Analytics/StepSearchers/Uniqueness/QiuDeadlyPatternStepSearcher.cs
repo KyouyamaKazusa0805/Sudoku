@@ -97,7 +97,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// Handle for case 1.
 		foreach (var pattern in PatternsForCase1)
 		{
-			if (Collect(ref context, in pattern) is { } step)
+			if (Collect(ref context, pattern) is { } step)
 			{
 				return step;
 			}
@@ -106,7 +106,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// Handle for case 2.
 		foreach (var pattern in PatternsForCase2)
 		{
-			if (Collect(ref context, in pattern) is { } step)
+			if (Collect(ref context, pattern) is { } step)
 			{
 				return step;
 			}
@@ -120,7 +120,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="pattern">The target pattern.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
-	private QiuDeadlyPatternStep? Collect(ref StepAnalysisContext context, ref readonly QiuDeadlyPattern1Pattern pattern)
+	private QiuDeadlyPatternStep? Collect(ref StepAnalysisContext context, QiuDeadlyPattern1Pattern pattern)
 	{
 		ref readonly var grid = ref context.Grid;
 
@@ -144,7 +144,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var isRow = l1 is >= 9 and < 18;
-		if (CheckForBaseType(ref context, in grid, in pattern, in valueCellsInBothLines, isRow) is { } type1Step)
+		if (CheckForBaseType(ref context, in grid, pattern, in valueCellsInBothLines, isRow) is { } type1Step)
 		{
 			return type1Step;
 		}
@@ -157,7 +157,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="pattern">The target pattern.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
-	private QiuDeadlyPatternStep? Collect(ref StepAnalysisContext context, ref readonly QiuDeadlyPattern2Pattern pattern)
+	private QiuDeadlyPatternStep? Collect(ref StepAnalysisContext context, QiuDeadlyPattern2Pattern pattern)
 	{
 		// TODO: Re-implement later.
 		return null;
@@ -169,7 +169,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	private QiuDeadlyPatternStep? CheckForBaseType(
 		ref StepAnalysisContext context,
 		ref readonly Grid grid,
-		ref readonly QiuDeadlyPattern1Pattern pattern,
+		QiuDeadlyPattern1Pattern pattern,
 		ref readonly CellMap valueCellsInBothLines,
 		bool isRow
 	)

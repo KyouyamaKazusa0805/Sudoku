@@ -11379,7 +11379,7 @@
         <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.QiuDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.QiuDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1Pattern@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.QiuDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1Pattern)">
             <summary>
             <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/summary"/>
             </summary>
@@ -11387,7 +11387,7 @@
             <param name="pattern">The target pattern.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.QiuDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2Pattern@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.QiuDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2Pattern)">
             <summary>
             <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/summary"/>
             </summary>
@@ -11395,7 +11395,7 @@
             <param name="pattern">The target pattern.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.QiuDeadlyPatternStepSearcher.CheckForBaseType(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1Pattern@,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.QiuDeadlyPatternStepSearcher.CheckForBaseType(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1Pattern,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Check for base type.
             </summary>
