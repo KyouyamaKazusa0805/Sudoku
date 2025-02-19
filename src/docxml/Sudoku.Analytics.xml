@@ -28486,11 +28486,6 @@
             <param name="techniques">The techniques used.</param>
             <returns>The result.</returns>
         </member>
-        <member name="T:Sudoku.Measuring.Functions.IFunctionProvider">
-            <summary>
-            Represents a type that provides with functions. This type will only be used in reflection.
-            </summary>
-        </member>
         <member name="T:Sudoku.Measuring.Functions.OeisSequences">
             <summary>
             Represents a list of methods that calculates for values in OEIS sequences.

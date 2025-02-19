@@ -7,7 +7,7 @@ namespace Sudoku.Measuring.Functions;
 /// <para>The index of the sequence. The index is 0-based.</para>
 /// <para>The index of the sequence. The index is 1-based.</para>
 /// </shared-comments>
-public sealed class OeisSequences : IFunctionProvider
+public sealed class OeisSequences
 {
 	/// <summary>
 	/// Gets the value at the specified index in the sequence <see href="https://oeis.org/A000217">A000217</see>
