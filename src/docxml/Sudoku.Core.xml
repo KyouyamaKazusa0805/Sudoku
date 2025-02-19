@@ -12616,9 +12616,6 @@
         <member name="M:Sudoku.Solving.EnumerableQuery.EnumerableQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.EnumerableQuery.EnumerableQuerySolver.SolveAll(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.EnumerableQuery.EnumerableQuerySolver.SolveCore(System.String)">
             <summary>
             The core method to solve puzzles.

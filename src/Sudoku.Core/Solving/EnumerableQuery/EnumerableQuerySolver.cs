@@ -3,7 +3,7 @@ namespace Sudoku.Solving.EnumerableQuery;
 /// <summary>
 /// Defines a solver that can solve a sudoku puzzle, using LINQ.
 /// </summary>
-public sealed class EnumerableQuerySolver : ISolver, IMultipleSolutionSolver
+public sealed class EnumerableQuerySolver : ISolver
 {
 	/// <summary>
 	/// Indicates the characters for 1 to 9.
@@ -25,13 +25,6 @@ public sealed class EnumerableQuerySolver : ISolver, IMultipleSolutionSolver
 			_ => (Grid.Undefined, false)
 		};
 		return @return;
-	}
-
-	/// <inheritdoc/>
-	public ReadOnlySpan<Grid> SolveAll(ref readonly Grid grid)
-	{
-		var results = SolveCore(grid.ToString());
-		return results.IsEmpty ? [] : from result in results select Grid.Parse(result);
 	}
 
 
