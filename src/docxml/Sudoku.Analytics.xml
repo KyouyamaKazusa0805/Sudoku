@@ -9599,12 +9599,12 @@
         <member name="M:Sudoku.Analytics.StepSearchers.Intersections.FireworkStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Intersections.FireworkStepSearcher.CheckTriple(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Boolean,Sudoku.Analytics.Construction.Patterns.FireworkPattern@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.Intersections.FireworkStepSearcher.CheckTriple(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Boolean,Sudoku.Analytics.Construction.Patterns.FireworkPattern,System.Int16,System.Int32)">
             <summary>
             Checks for firework triple steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Intersections.FireworkStepSearcher.CheckQuadruple(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Boolean,Sudoku.Analytics.Construction.Patterns.FireworkPattern@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.Intersections.FireworkStepSearcher.CheckQuadruple(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Boolean,Sudoku.Analytics.Construction.Patterns.FireworkPattern)">
             <summary>
             Checks for firework quadruple steps.
             </summary>

@@ -127,7 +127,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			{
 				case { } pivot when Mask.PopCount(digitsMask) >= 3:
 				{
-					if (CheckTriple(accumulator, in grid, ref context, onlyFindOne, in pattern, digitsMask, pivot) is { } stepTriple)
+					if (CheckTriple(accumulator, in grid, ref context, onlyFindOne, pattern, digitsMask, pivot) is { } stepTriple)
 					{
 						return stepTriple;
 					}
@@ -135,7 +135,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 				}
 				case null when Mask.PopCount(digitsMask) >= 4:
 				{
-					if (CheckQuadruple(accumulator, in grid, ref context, onlyFindOne, in pattern) is { } step)
+					if (CheckQuadruple(accumulator, in grid, ref context, onlyFindOne, pattern) is { } step)
 					{
 						return step;
 					}
@@ -155,7 +155,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		bool onlyFindOne,
-		ref readonly FireworkPattern pattern,
+		FireworkPattern pattern,
 		Mask digitsMask,
 		Cell pivot
 	)
@@ -268,7 +268,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		bool onlyFindOne,
-		ref readonly FireworkPattern pattern
+		FireworkPattern pattern
 	)
 	{
 		if (pattern is not { Map: [var c1, var c2, var c3, var c4] map })
@@ -489,7 +489,6 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					}
 				}
 			}
-
 			return true;
 		}
 	}
