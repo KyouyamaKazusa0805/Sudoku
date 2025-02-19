@@ -3,7 +3,7 @@ namespace Sudoku.Solving.Dlx;
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.
 /// </summary>
-public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
+public sealed class DancingLinksSolver : ISolver, ISolutionEnumerableSolver<DancingLinksSolver, Grid>
 {
 	/// <summary>
 	/// Indicates the stack that stores the raw data for the solutions.
@@ -22,11 +22,6 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	private Grid _solution;
 
 	/// <summary>
-	/// Indicates the found solutions.
-	/// </summary>
-	private SortedSet<Grid>? _solutions;
-
-	/// <summary>
 	/// Indicates the root node of the full link map.
 	/// </summary>
 	private ColumnNode? _root;
@@ -34,6 +29,10 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 
 	/// <inheritdoc/>
 	public static string UriLink => "https://en.wikipedia.org/wiki/Dancing_Links";
+
+
+	/// <inheritdoc/>
+	public event SolverSolutionFoundEventHandler<DancingLinksSolver, Grid>? SolutionFound;
 
 
 	/// <inheritdoc/>
@@ -70,19 +69,18 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	public bool? Solve(Digit[] grid, out Grid result) => Solve(Grid.Create(grid), out result);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe ReadOnlySpan<Grid> SolveAll(ref readonly Grid grid)
+	unsafe void ISolutionEnumerableSolver<DancingLinksSolver, Grid>.EnumerateSolutionsCore(Grid grid, CancellationToken cancellationToken)
 	{
 		_root = DancingLink.Entry.Create(in grid);
 		Search(&@delegate.DoNothing, &r);
-		return _solutions?.ToArray() ?? [];
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool r(DancingLinksSolver @this, Stack<DancingLinkNode> resultNodes)
 		{
-			@this._solutions ??= [];
-			return @this._solutions.Add(ToGrid(resultNodes));
+			var newFoundGrid = ToGrid(resultNodes);
+			@this.SolutionFound?.Invoke(@this, new(newFoundGrid));
+			return true;
 		}
 	}
 

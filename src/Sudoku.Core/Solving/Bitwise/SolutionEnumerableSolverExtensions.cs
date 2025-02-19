@@ -1,25 +1,26 @@
 namespace Sudoku.Solving.Bitwise;
 
 /// <summary>
-/// Provides with extension methods on <see cref="BitwiseSolver"/>.
+/// Provides with extension methods on <see cref="ISolutionEnumerableSolver{TSelf, TInput}"/>.
 /// </summary>
-/// <seealso cref="BitwiseSolver"/>
-public static class BitwiseSolverExtensions
+/// <seealso cref="ISolutionEnumerableSolver{TSelf, TInput}"/>
+public static class SolutionEnumerableSolverExtensions
 {
 	/// <summary>
 	/// Try to enumerate all possible solutions of the specified grid, by using the current solver.
 	/// </summary>
+	/// <typeparam name="TSolver">The type of solver.</typeparam>
+	/// <typeparam name="TInput">
+	/// The type of input. Generally the type to this argument is <see cref="Grid"/> or <see cref="string"/>.
+	/// </typeparam>
 	/// <param name="this">The solver.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-	/// <returns>A sequence of <see cref="string"/> values indicating the raw solution text to the puzzle.</returns>
-	public static IEnumerable<string> EnumerateSolutions(
-		this BitwiseSolver @this,
-		string grid,
-		CancellationToken cancellationToken = default
-	)
+	/// <returns>A sequence of <typeparamref name="TInput"/> values indicating the raw solution text to the puzzle.</returns>
+	public static IEnumerable<TInput> EnumerateSolutions<TSolver, TInput>(this TSolver @this, TInput grid, CancellationToken cancellationToken = default)
+		where TSolver : ISolutionEnumerableSolver<TSolver, TInput>
 	{
-		using var buffer = new BlockingCollection<string>();
+		using var buffer = new BlockingCollection<TInput>();
 		try
 		{
 			// Temporarily add handler.
@@ -33,10 +34,7 @@ public static class BitwiseSolverExtensions
 				{
 					try
 					{
-						unsafe
-						{
-							@this.SolveString(grid, null, int.MaxValue);
-						}
+						@this.EnumerateSolutionsCore(grid, cancellationToken);
 					}
 					finally
 					{
@@ -59,7 +57,6 @@ public static class BitwiseSolverExtensions
 		}
 
 
-		void this_SolutionFound(BitwiseSolver _, BitwiseSolverSolutionFoundEventArgs e)
-			=> buffer.Add(e.SolutionString, cancellationToken);
+		void this_SolutionFound(TSolver _, SolverSolutionFoundEventArgs<TInput> e) => buffer.Add(e.Solution, cancellationToken);
 	}
 }

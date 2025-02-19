@@ -12012,10 +12012,7 @@
             <inheritdoc/>
         </member>
         <member name="E:Sudoku.Solving.Bitwise.BitwiseSolver.SolutionFound">
-            <summary>
-            Provide a way to detect event to be triggered when a solution is found;
-            no matter whether the puzzle has a unique solution or not (multiple solutions).
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
@@ -12068,6 +12065,9 @@
             <param name="puzzle">The puzzle to solve.</param>
             <returns>The solution. If failed to solve, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.</returns>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.Sudoku#Solving#ISolutionEnumerableSolver{Sudoku#Solving#Bitwise#BitwiseSolver,System#String}#EnumerateSolutionsCore(System.String,System.Threading.CancellationToken)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.ClearStack">
             <summary>
@@ -12182,53 +12182,6 @@
             However, C# not.
             </remarks>
         </member>
-        <member name="T:Sudoku.Solving.Bitwise.BitwiseSolverExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Solving.Bitwise.BitwiseSolver"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Bitwise.BitwiseSolver"/>
-        </member>
-        <member name="M:Sudoku.Solving.Bitwise.BitwiseSolverExtensions.EnumerateSolutions(Sudoku.Solving.Bitwise.BitwiseSolver,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Try to enumerate all possible solutions of the specified grid, by using the current solver.
-            </summary>
-            <param name="this">The solver.</param>
-            <param name="grid">The grid.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-            <returns>A sequence of <see cref="T:System.String"/> values indicating the raw solution text to the puzzle.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Bitwise.BitwiseSolverSolutionFoundEventArgs">
-            <summary>
-            Provides extra data for event <see cref="E:Sudoku.Solving.Bitwise.BitwiseSolver.SolutionFound"/>.
-            </summary>
-            <param name="solutionString">The solution string.</param>
-            <seealso cref="E:Sudoku.Solving.Bitwise.BitwiseSolver.SolutionFound"/>
-        </member>
-        <member name="M:Sudoku.Solving.Bitwise.BitwiseSolverSolutionFoundEventArgs.#ctor(System.String)">
-            <summary>
-            Provides extra data for event <see cref="E:Sudoku.Solving.Bitwise.BitwiseSolver.SolutionFound"/>.
-            </summary>
-            <param name="solutionString">The solution string.</param>
-            <seealso cref="E:Sudoku.Solving.Bitwise.BitwiseSolver.SolutionFound"/>
-        </member>
-        <member name="P:Sudoku.Solving.Bitwise.BitwiseSolverSolutionFoundEventArgs.Solution">
-            <summary>
-            Indicates the solution.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Bitwise.BitwiseSolverSolutionFoundEventArgs.SolutionString">
-            <summary>
-            The generated property declaration for parameter <c>solutionString</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Bitwise.BitwiseSolverSolutionFoundEventHandler">
-            <summary>
-            Provides a mechanism to declare a callback, to be called when a solution is found in solving operation,
-            by a certain <see cref="T:Sudoku.Solving.Bitwise.BitwiseSolver"/> instance.
-            </summary>
-            <param name="sender">The sender which triggers this event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
         <member name="T:Sudoku.Solving.Bitwise.BitwiseSolverState">
             <summary>
             Represents a data structure, used by type <see cref="T:Sudoku.Solving.Bitwise.BitwiseSolver" />, describing state for a current grid using binary values.
@@ -12270,6 +12223,55 @@
             <summary>
             Bit vector of cells with exactly two pencil marks.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Bitwise.SolutionEnumerableSolverExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Solving.ISolutionEnumerableSolver`2"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.ISolutionEnumerableSolver`2"/>
+        </member>
+        <member name="M:Sudoku.Solving.Bitwise.SolutionEnumerableSolverExtensions.EnumerateSolutions``2(``0,``1,System.Threading.CancellationToken)">
+            <summary>
+            Try to enumerate all possible solutions of the specified grid, by using the current solver.
+            </summary>
+            <typeparam name="TSolver">The type of solver.</typeparam>
+            <typeparam name="TInput">
+            The type of input. Generally the type to this argument is <see cref="T:Sudoku.Concepts.Grid"/> or <see cref="T:System.String"/>.
+            </typeparam>
+            <param name="this">The solver.</param>
+            <param name="grid">The grid.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>A sequence of <typeparamref name="TInput"/> values indicating the raw solution text to the puzzle.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Bitwise.SolverSolutionFoundEventArgs`1">
+            <summary>
+            Provides extra data for event <see cref="E:Sudoku.Solving.ISolutionEnumerableSolver`2.SolutionFound"/>.
+            </summary>
+            <param name="solution">Indicates the target solution.</param>
+            <seealso cref="E:Sudoku.Solving.ISolutionEnumerableSolver`2.SolutionFound"/>
+        </member>
+        <member name="M:Sudoku.Solving.Bitwise.SolverSolutionFoundEventArgs`1.#ctor(`0)">
+            <summary>
+            Provides extra data for event <see cref="E:Sudoku.Solving.ISolutionEnumerableSolver`2.SolutionFound"/>.
+            </summary>
+            <param name="solution">Indicates the target solution.</param>
+            <seealso cref="E:Sudoku.Solving.ISolutionEnumerableSolver`2.SolutionFound"/>
+        </member>
+        <member name="P:Sudoku.Solving.Bitwise.SolverSolutionFoundEventArgs`1.Solution">
+            <summary>
+            The generated property declaration for parameter <c>solution</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Bitwise.SolverSolutionFoundEventHandler`2">
+            <summary>
+            Provides a mechanism to declare a callback, to be called when a solution is found in solving operation,
+            by a certain <see cref="T:Sudoku.Solving.ISolutionEnumerableSolver`2"/> instance.
+            </summary>
+            <typeparam name="TSolver">The type of solver.</typeparam>
+            <typeparam name="TInput">The type of input.</typeparam>
+            <param name="sender">The sender which triggers this event.</param>
+            <param name="e">The event arguments provided.</param>
+            <seealso cref="T:Sudoku.Solving.ISolutionEnumerableSolver`2"/>
         </member>
         <member name="T:Sudoku.Solving.DictionaryQuery.DictionaryQuerySolver">
             <summary>
@@ -12535,11 +12537,6 @@
             Indicates the found solution.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Dlx.DancingLinksSolver._solutions">
-            <summary>
-            Indicates the found solutions.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Dlx.DancingLinksSolver._root">
             <summary>
             Indicates the root node of the full link map.
@@ -12548,13 +12545,16 @@
         <member name="P:Sudoku.Solving.Dlx.DancingLinksSolver.UriLink">
             <inheritdoc/>
         </member>
+        <member name="E:Sudoku.Solving.Dlx.DancingLinksSolver.SolutionFound">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Solve(System.Int32[],Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Solving.Dlx.DancingLinksSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
         </member>
-        <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.SolveAll(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Sudoku#Solving#ISolutionEnumerableSolver{Sudoku#Solving#Dlx#DancingLinksSolver,Sudoku#Concepts#Grid}#EnumerateSolutionsCore(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Search(,)">
@@ -12659,17 +12659,36 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
-        <member name="T:Sudoku.Solving.IMultipleSolutionSolver">
+        <member name="T:Sudoku.Solving.ISolutionEnumerableSolver`2">
             <summary>
-            Represents a solver that can find all possible solutions.
+            Represents a solver that can find all possible solutions with detection .
+            </summary>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+            <typeparam name="TInput">
+            The type of input. Generally the type to this parameter is <see cref="T:Sudoku.Concepts.Grid" /> or <see cref="T:System.String" />.
+            </typeparam>
+        </member>
+        <member name="E:Sudoku.Solving.ISolutionEnumerableSolver`2.SolutionFound">
+            <summary>
+            Provide a way to detect event to be triggered when a solution is found;
+            no matter whether the puzzle has a unique solution or not (multiple solutions).
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.IMultipleSolutionSolver.SolveAll(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Solving.ISolutionEnumerableSolver`2.EnumerateSolutionsCore(`1,System.Threading.CancellationToken)">
             <summary>
-            Find all possible solutions of the specified puzzle.
+            Try to perform enumeration on solutions.
             </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A sequence of solutions found.</returns>
+            <param name="grid">The grid to be solved.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
         </member>
         <member name="T:Sudoku.Solving.ISolver">
             <summary>

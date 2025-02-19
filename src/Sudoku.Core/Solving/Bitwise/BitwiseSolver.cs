@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Bitwise;
 /// This type is thread-unsafe. If you want to use this type in multi-threading, please use <see langword="lock"/> statement.
 /// </b></para>
 /// </remarks>
-public sealed unsafe partial class BitwiseSolver : ISolver
+public sealed unsafe partial class BitwiseSolver : ISolver, ISolutionEnumerableSolver<BitwiseSolver, string>
 {
 	/// <summary>
 	/// Stack to store current and previous states.
@@ -53,11 +53,8 @@ public sealed unsafe partial class BitwiseSolver : ISolver
 	public static string? UriLink => null;
 
 
-	/// <summary>
-	/// Provide a way to detect event to be triggered when a solution is found;
-	/// no matter whether the puzzle has a unique solution or not (multiple solutions).
-	/// </summary>
-	public event BitwiseSolverSolutionFoundEventHandler? SolutionFound;
+	/// <inheritdoc/>
+	public event SolverSolutionFoundEventHandler<BitwiseSolver, string>? SolutionFound;
 
 
 	/// <inheritdoc/>
@@ -198,6 +195,10 @@ public sealed unsafe partial class BitwiseSolver : ISolver
 	/// <seealso cref="Grid.Undefined"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid Solve(ref readonly Grid puzzle) => Solve(in puzzle, out var result) is true ? result : Grid.Undefined;
+
+	/// <inheritdoc/>
+	void ISolutionEnumerableSolver<BitwiseSolver, string>.EnumerateSolutionsCore(string grid, CancellationToken cancellationToken)
+		=> SolveString(grid, null, int.MaxValue);
 
 	/// <summary>
 	/// To clear the field <see cref="_stack"/>.
