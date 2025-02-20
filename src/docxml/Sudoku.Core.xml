@@ -12699,6 +12699,15 @@
             <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
             <returns>A sequence of <see cref="T:Sudoku.Concepts.Grid"/> values indicating the raw solution text to the puzzle.</returns>
         </member>
+        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.EnumerateSolutionsAsync(Sudoku.Solving.ISolutionEnumerableSolver,Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+            <summary>
+            Try to enumerate all possible solutions of the specified grid, by using the current solver, in asynchronous way.
+            </summary>
+            <param name="this">The solver.</param>
+            <param name="grid">The grid.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>A sequence of <see cref="T:Sudoku.Concepts.Grid"/> values indicating the raw solution text to the puzzle.</returns>
+        </member>
         <member name="T:Sudoku.Solving.SolverSolutionFoundEventArgs">
             <summary>
             Provides extra data for event <see cref="!:ISolutionEnumerableSolver&lt;TSelf&gt;.SolutionFound"/>.
