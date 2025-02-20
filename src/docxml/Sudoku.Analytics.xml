@@ -796,6 +796,21 @@
             <param name="sender">The object which triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
+        <member name="T:Sudoku.Analytics.AnalyzerExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerExtensions.EnumerateStepsAsync(Sudoku.Analytics.Analyzer,Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+            <summary>
+            Analyzes the specified grid, to find for all possible steps and iterate them in asynchronous way.
+            </summary>
+            <param name="this">The analyzer instance.</param>
+            <param name="grid">Indicates the grid to be analyzed.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>A sequence that allows user iterating on it in asynchronous way.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.AnalyzerFinishedEventArgs">
             <summary>
             Provides extra data for event handler <see cref="T:Sudoku.Analytics.AnalyzerFinishedEventHandler"/>.
