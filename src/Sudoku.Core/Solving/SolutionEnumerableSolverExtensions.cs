@@ -52,8 +52,7 @@ public static class SolutionEnumerableSolverExtensions
 		}
 
 
-		void this_SolutionFound(ISolutionEnumerableSolver _, SolverSolutionFoundEventArgs e)
-			=> buffer.Add(e.Solution, cancellationToken);
+		void this_SolutionFound(object? _, SolverSolutionFoundEventArgs e) => buffer.Add(e.Solution, cancellationToken);
 	}
 
 	/// <summary>
@@ -106,7 +105,6 @@ public static class SolutionEnumerableSolverExtensions
 		}
 
 
-		void this_SolutionFound(ISolutionEnumerableSolver _, SolverSolutionFoundEventArgs e)
-			=> buffer.Add(e.Solution, cancellationToken);
+		void this_SolutionFound(object? _, SolverSolutionFoundEventArgs e) => buffer.Add(e.Solution, cancellationToken);
 	}
 }

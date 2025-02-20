@@ -12612,7 +12612,7 @@
         </member>
         <member name="T:Sudoku.Solving.ISolutionEnumerableSolver">
             <summary>
-            Represents a solver that can find all possible solutions with detection .
+            Represents a solver that can find all possible solutions with detection on every operation of new solution found.
             </summary>
         </member>
         <member name="E:Sudoku.Solving.ISolutionEnumerableSolver.SolutionFound">
@@ -12729,12 +12729,10 @@
         </member>
         <member name="T:Sudoku.Solving.SolverSolutionFoundEventHandler">
             <summary>
-            Provides a mechanism to declare a callback, to be called when a solution is found in solving operation,
-            by a certain <see cref="T:Sudoku.Solving.ISolutionEnumerableSolver"/> instance.
+            Provides a mechanism to declare a callback to be called when a solution is found in solving operation by a solver.
             </summary>
             <param name="sender">The sender which triggers this event.</param>
             <param name="e">The event arguments provided.</param>
-            <seealso cref="T:Sudoku.Solving.ISolutionEnumerableSolver"/>
         </member>
         <member name="T:Sudoku.SudokuType">
             <summary>

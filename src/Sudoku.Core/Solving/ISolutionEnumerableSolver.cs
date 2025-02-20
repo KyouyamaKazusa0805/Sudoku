@@ -1,7 +1,7 @@
 namespace Sudoku.Solving;
 
 /// <summary>
-/// Represents a solver that can find all possible solutions with detection .
+/// Represents a solver that can find all possible solutions with detection on every operation of new solution found.
 /// </summary>
 public interface ISolutionEnumerableSolver
 {
