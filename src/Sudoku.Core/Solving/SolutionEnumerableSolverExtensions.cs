@@ -1,4 +1,4 @@
-namespace Sudoku.Solving.Bitwise;
+namespace Sudoku.Solving;
 
 /// <summary>
 /// Provides with extension methods on <see cref="ISolutionEnumerableSolver{TSelf, TInput}"/>.

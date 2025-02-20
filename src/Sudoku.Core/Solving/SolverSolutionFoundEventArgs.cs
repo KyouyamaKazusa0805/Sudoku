@@ -1,4 +1,4 @@
-namespace Sudoku.Solving.Bitwise;
+namespace Sudoku.Solving;
 
 /// <summary>
 /// Provides extra data for event <see cref="ISolutionEnumerableSolver{TSelf, TInput}.SolutionFound"/>.

@@ -1,4 +1,4 @@
-namespace Sudoku.Solving.Bitwise;
+namespace Sudoku.Solving;
 
 /// <summary>
 /// Provides a mechanism to declare a callback, to be called when a solution is found in solving operation,
