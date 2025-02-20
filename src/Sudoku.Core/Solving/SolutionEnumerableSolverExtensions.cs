@@ -1,21 +1,19 @@
 namespace Sudoku.Solving;
 
 /// <summary>
-/// Provides with extension methods on <see cref="ISolutionEnumerableSolver{TSelf}"/>.
+/// Provides with extension methods on <see cref="ISolutionEnumerableSolver"/>.
 /// </summary>
-/// <seealso cref="ISolutionEnumerableSolver{TSelf}"/>
+/// <seealso cref="ISolutionEnumerableSolver"/>
 public static class SolutionEnumerableSolverExtensions
 {
 	/// <summary>
 	/// Try to enumerate all possible solutions of the specified grid, by using the current solver.
 	/// </summary>
-	/// <typeparam name="TSolver">The type of solver.</typeparam>
 	/// <param name="this">The solver.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	/// <returns>A sequence of <see cref="Grid"/> values indicating the raw solution text to the puzzle.</returns>
-	public static IEnumerable<Grid> EnumerateSolutions<TSolver>(this TSolver @this, Grid grid, CancellationToken cancellationToken = default)
-		where TSolver : ISolutionEnumerableSolver<TSolver>
+	public static IEnumerable<Grid> EnumerateSolutions(this ISolutionEnumerableSolver @this, Grid grid, CancellationToken cancellationToken = default)
 	{
 		using var buffer = new BlockingCollection<Grid>();
 		try
@@ -54,6 +52,7 @@ public static class SolutionEnumerableSolverExtensions
 		}
 
 
-		void this_SolutionFound(TSolver _, SolverSolutionFoundEventArgs e) => buffer.Add(e.Solution, cancellationToken);
+		void this_SolutionFound(ISolutionEnumerableSolver _, SolverSolutionFoundEventArgs e)
+			=> buffer.Add(e.Solution, cancellationToken);
 	}
 }

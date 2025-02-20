@@ -3,14 +3,13 @@ namespace Sudoku.Solving;
 /// <summary>
 /// Represents a solver that can find all possible solutions with detection .
 /// </summary>
-/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
-public interface ISolutionEnumerableSolver<TSelf> where TSelf : ISolutionEnumerableSolver<TSelf>
+public interface ISolutionEnumerableSolver
 {
 	/// <summary>
 	/// Provide a way to detect event to be triggered when a solution is found;
 	/// no matter whether the puzzle has a unique solution or not (multiple solutions).
 	/// </summary>
-	public abstract event SolverSolutionFoundEventHandler<TSelf>? SolutionFound;
+	public abstract event SolverSolutionFoundEventHandler? SolutionFound;
 
 
 	/// <summary>

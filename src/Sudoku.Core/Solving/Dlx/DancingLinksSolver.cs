@@ -3,7 +3,7 @@ namespace Sudoku.Solving.Dlx;
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.
 /// </summary>
-public sealed class DancingLinksSolver : ISolver, ISolutionEnumerableSolver<DancingLinksSolver>
+public sealed class DancingLinksSolver : ISolver, ISolutionEnumerableSolver
 {
 	/// <summary>
 	/// Indicates the stack that stores the raw data for the solutions.
@@ -32,7 +32,7 @@ public sealed class DancingLinksSolver : ISolver, ISolutionEnumerableSolver<Danc
 
 
 	/// <inheritdoc/>
-	public event SolverSolutionFoundEventHandler<DancingLinksSolver>? SolutionFound;
+	public event SolverSolutionFoundEventHandler? SolutionFound;
 
 
 	/// <inheritdoc/>
@@ -69,7 +69,7 @@ public sealed class DancingLinksSolver : ISolver, ISolutionEnumerableSolver<Danc
 	public bool? Solve(Digit[] grid, out Grid result) => Solve(Grid.Create(grid), out result);
 
 	/// <inheritdoc/>
-	unsafe void ISolutionEnumerableSolver<DancingLinksSolver>.EnumerateSolutionsCore(Grid grid, CancellationToken cancellationToken)
+	unsafe void ISolutionEnumerableSolver.EnumerateSolutionsCore(Grid grid, CancellationToken cancellationToken)
 	{
 		_root = DancingLink.Entry.Create(in grid);
 		Search(&@delegate.DoNothing, &r);
