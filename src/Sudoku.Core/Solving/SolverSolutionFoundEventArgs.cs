@@ -1,8 +1,8 @@
 namespace Sudoku.Solving;
 
 /// <summary>
-/// Provides extra data for event <see cref="ISolutionEnumerableSolver{TSelf, TInput}.SolutionFound"/>.
+/// Provides extra data for event <see cref="ISolutionEnumerableSolver{TSelf}.SolutionFound"/>.
 /// </summary>
 /// <param name="solution">Indicates the target solution.</param>
-/// <seealso cref="ISolutionEnumerableSolver{TSelf, TInput}.SolutionFound"/>
-public sealed partial class SolverSolutionFoundEventArgs<TInput>([Property] TInput solution) : EventArgs;
+/// <seealso cref="ISolutionEnumerableSolver{TSelf}.SolutionFound"/>
+public sealed partial class SolverSolutionFoundEventArgs([Property] Grid solution) : EventArgs;

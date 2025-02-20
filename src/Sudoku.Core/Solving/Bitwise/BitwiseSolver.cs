@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Bitwise;
 /// This type is thread-unsafe. If you want to use this type in multi-threading, please use <see langword="lock"/> statement.
 /// </b></para>
 /// </remarks>
-public sealed unsafe partial class BitwiseSolver : ISolver, ISolutionEnumerableSolver<BitwiseSolver, string>
+public sealed unsafe partial class BitwiseSolver : ISolver, ISolutionEnumerableSolver<BitwiseSolver>
 {
 	/// <summary>
 	/// Stack to store current and previous states.
@@ -54,7 +54,7 @@ public sealed unsafe partial class BitwiseSolver : ISolver, ISolutionEnumerableS
 
 
 	/// <inheritdoc/>
-	public event SolverSolutionFoundEventHandler<BitwiseSolver, string>? SolutionFound;
+	public event SolverSolutionFoundEventHandler<BitwiseSolver>? SolutionFound;
 
 
 	/// <inheritdoc/>
@@ -197,8 +197,8 @@ public sealed unsafe partial class BitwiseSolver : ISolver, ISolutionEnumerableS
 	public Grid Solve(ref readonly Grid puzzle) => Solve(in puzzle, out var result) is true ? result : Grid.Undefined;
 
 	/// <inheritdoc/>
-	void ISolutionEnumerableSolver<BitwiseSolver, string>.EnumerateSolutionsCore(string grid, CancellationToken cancellationToken)
-		=> SolveString(grid, null, int.MaxValue);
+	void ISolutionEnumerableSolver<BitwiseSolver>.EnumerateSolutionsCore(Grid grid, CancellationToken cancellationToken)
+		=> SolveString(grid.ToString("0"), null, int.MaxValue);
 
 	/// <summary>
 	/// To clear the field <see cref="_stack"/>.
@@ -780,9 +780,9 @@ public sealed unsafe partial class BitwiseSolver : ISolver, ISolutionEnumerableS
 	{
 		if (_limitSolutions == int.MaxValue)
 		{
-			var solutionPtr = (stackalloc char[BufferLength]);
-			f(solutionPtr);
-			SolutionFound?.Invoke(this, new(solutionPtr.ToString()));
+			var solutionSpan = (stackalloc char[BufferLength]);
+			f(solutionSpan);
+			SolutionFound?.Invoke(this, new(Grid.Parse(solutionSpan)));
 			return;
 		}
 

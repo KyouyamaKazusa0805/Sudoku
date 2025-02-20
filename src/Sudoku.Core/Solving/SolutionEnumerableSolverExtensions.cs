@@ -1,26 +1,23 @@
 namespace Sudoku.Solving;
 
 /// <summary>
-/// Provides with extension methods on <see cref="ISolutionEnumerableSolver{TSelf, TInput}"/>.
+/// Provides with extension methods on <see cref="ISolutionEnumerableSolver{TSelf}"/>.
 /// </summary>
-/// <seealso cref="ISolutionEnumerableSolver{TSelf, TInput}"/>
+/// <seealso cref="ISolutionEnumerableSolver{TSelf}"/>
 public static class SolutionEnumerableSolverExtensions
 {
 	/// <summary>
 	/// Try to enumerate all possible solutions of the specified grid, by using the current solver.
 	/// </summary>
 	/// <typeparam name="TSolver">The type of solver.</typeparam>
-	/// <typeparam name="TInput">
-	/// The type of input. Generally the type to this argument is <see cref="Grid"/> or <see cref="string"/>.
-	/// </typeparam>
 	/// <param name="this">The solver.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-	/// <returns>A sequence of <typeparamref name="TInput"/> values indicating the raw solution text to the puzzle.</returns>
-	public static IEnumerable<TInput> EnumerateSolutions<TSolver, TInput>(this TSolver @this, TInput grid, CancellationToken cancellationToken = default)
-		where TSolver : ISolutionEnumerableSolver<TSolver, TInput>
+	/// <returns>A sequence of <see cref="Grid"/> values indicating the raw solution text to the puzzle.</returns>
+	public static IEnumerable<Grid> EnumerateSolutions<TSolver>(this TSolver @this, Grid grid, CancellationToken cancellationToken = default)
+		where TSolver : ISolutionEnumerableSolver<TSolver>
 	{
-		using var buffer = new BlockingCollection<TInput>();
+		using var buffer = new BlockingCollection<Grid>();
 		try
 		{
 			// Temporarily add handler.
@@ -57,6 +54,6 @@ public static class SolutionEnumerableSolverExtensions
 		}
 
 
-		void this_SolutionFound(TSolver _, SolverSolutionFoundEventArgs<TInput> e) => buffer.Add(e.Solution, cancellationToken);
+		void this_SolutionFound(TSolver _, SolverSolutionFoundEventArgs e) => buffer.Add(e.Solution, cancellationToken);
 	}
 }
