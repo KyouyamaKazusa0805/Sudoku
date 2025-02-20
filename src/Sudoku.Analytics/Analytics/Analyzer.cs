@@ -188,6 +188,23 @@ public sealed class Analyzer :
 			)
 			.WithUserDefinedOptions(new() { IsDirectMode = true });
 
+
+	/// <summary>
+	/// Indicates the event to be triggered when a new step is found.
+	/// </summary>
+	public event AnalyzerStepFoundEventHandler? StepFound;
+
+	/// <summary>
+	/// Indicates the event to be triggered when the whole analysis operation is finished.
+	/// </summary>
+	public event AnalyzerFinishedEventHandler? Finished;
+
+	/// <summary>
+	/// Indicates the event to be triggered when an exception is thrown.
+	/// </summary>
+	public event AnalyzerExceptionThrownEventHandler? ExceptionThrown;
+
+
 	/// <inheritdoc cref="Analyze(ref readonly AnalyzerContext)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public AnalysisResult Analyze(ref readonly Grid grid) => Analyze(new AnalyzerContext(in grid));
@@ -211,51 +228,61 @@ public sealed class Analyzer :
 
 		// #1 Memory usage snapshot
 		var gcSnapshot1 = GC.GetTotalMemory(false);
-
-		if (puzzle.GetUniqueness() != Uniqueness.Bad)
+		try
 		{
-			// We should check whether the puzzle is a GSP firstly.
-			// This method doesn't check for Sukaku puzzles, or ones containing multiple solutions.
-			SymmetryInferrer.TryInfer(in puzzle, out var triplet);
-			var (symmetricType, mappingDigits, selfPairedDigitsMask) = triplet;
+			if (puzzle.GetUniqueness() != Uniqueness.Bad)
+			{
+				// We should check whether the puzzle is a GSP firstly.
+				// This method doesn't check for Sukaku puzzles, or ones containing multiple solutions.
+				SymmetryInferrer.TryInfer(in puzzle, out var triplet);
+				var (symmetricType, mappingDigits, selfPairedDigitsMask) = triplet;
 
-			try
-			{
-				// Here 'puzzle' may contains multiple solutions, so 'solution' may equal to 'Grid.Undefined'.
-				// We will defer the checking inside this method stackframe.
-				return analyzeInternal(
-					in puzzle,
-					in solution,
-					result,
-					symmetricType,
-					mappingDigits,
-					selfPairedDigitsMask,
-					progress,
-					gcSnapshot1,
-					cancellationToken
-				);
-			}
-			catch (Exception ex)
-			{
-				return ex switch
+				try
 				{
-					RuntimeAnalysisException e => e switch
+					// Here 'puzzle' may contains multiple solutions, so 'solution' may equal to 'Grid.Undefined'.
+					// We will defer the checking inside this method stackframe.
+					return result = analyzeInternal(
+						in puzzle,
+						in solution,
+						result,
+						symmetricType,
+						mappingDigits,
+						selfPairedDigitsMask,
+						progress,
+						gcSnapshot1,
+						cancellationToken
+					);
+				}
+				catch (Exception ex)
+				{
+					// Trigger the event.
+					ExceptionThrown?.Invoke(this, new(ex));
+
+					return result = ex switch
 					{
-						WrongStepException
-							=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, UnhandledException = e },
-						PuzzleInvalidException
-							=> result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid }
-					},
-					OperationCanceledException { CancellationToken: var c } when c == cancellationToken
-						=> result with { IsSolved = false, FailedReason = FailedReason.UserCancelled },
-					NotImplementedException or NotSupportedException
-						=> result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
-					_
-						=> result with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown, UnhandledException = ex }
-				};
+						RuntimeAnalysisException e => e switch
+						{
+							WrongStepException
+								=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, UnhandledException = e },
+							PuzzleInvalidException
+								=> result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid }
+						},
+						OperationCanceledException { CancellationToken: var c } when c == cancellationToken
+							=> result with { IsSolved = false, FailedReason = FailedReason.UserCancelled },
+						NotImplementedException or NotSupportedException
+							=> result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
+						_
+							=> result with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown, UnhandledException = ex }
+					};
+				}
 			}
+			return result = result with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution };
 		}
-		return result with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution };
+		finally
+		{
+			// Trigger the event.
+			Finished?.Invoke(this, new(result));
+		}
 
 
 		AnalysisResult analyzeInternal(
@@ -627,7 +654,7 @@ public sealed class Analyzer :
 				return true;
 			}
 
-			static bool onCollectingSteps(
+			bool onCollectingSteps(
 				List<Step> steps,
 				Step step,
 				ref readonly StepAnalysisContext context,
@@ -679,6 +706,9 @@ public sealed class Analyzer :
 					steppingGrids.AddRef(in playground);
 					playground.Apply(step);
 					steps.Add(step);
+
+					// Trigger the event.
+					StepFound?.Invoke(this, new(step));
 
 					if (playground.IsSolved)
 					{

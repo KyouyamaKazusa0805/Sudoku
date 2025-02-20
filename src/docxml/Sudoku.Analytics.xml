@@ -700,6 +700,21 @@
             Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
             </summary>
         </member>
+        <member name="E:Sudoku.Analytics.Analyzer.StepFound">
+            <summary>
+            Indicates the event to be triggered when a new step is found.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Analytics.Analyzer.Finished">
+            <summary>
+            Indicates the event to be triggered when the whole analysis operation is finished.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Analytics.Analyzer.ExceptionThrown">
+            <summary>
+            Indicates the event to be triggered when an exception is thrown.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Analytics.AnalyzerContext@)"/>
         </member>
@@ -754,6 +769,84 @@
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerExceptionThrownEventArgs">
+            <summary>
+            Provides extra data for event handler <see cref="T:Sudoku.Analytics.AnalyzerExceptionThrownEventHandler"/>.
+            </summary>
+            <param name="exception">Indicates the exception thrown.</param>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerExceptionThrownEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerExceptionThrownEventArgs.#ctor(System.Exception)">
+            <summary>
+            Provides extra data for event handler <see cref="T:Sudoku.Analytics.AnalyzerExceptionThrownEventHandler"/>.
+            </summary>
+            <param name="exception">Indicates the exception thrown.</param>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerExceptionThrownEventHandler"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerExceptionThrownEventArgs.Exception">
+            <summary>
+            The generated property declaration for parameter <c>exception</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerExceptionThrownEventHandler">
+            <summary>
+            Provides an event handler that will be called when an exception is thrown in a certain <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            </summary>
+            <param name="sender">The object which triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerFinishedEventArgs">
+            <summary>
+            Provides extra data for event handler <see cref="T:Sudoku.Analytics.AnalyzerFinishedEventHandler"/>.
+            </summary>
+            <param name="result">Indicates the result created.</param>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerFinishedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFinishedEventArgs.#ctor(Sudoku.Analytics.AnalysisResult)">
+            <summary>
+            Provides extra data for event handler <see cref="T:Sudoku.Analytics.AnalyzerFinishedEventHandler"/>.
+            </summary>
+            <param name="result">Indicates the result created.</param>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerFinishedEventHandler"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerFinishedEventArgs.Result">
+            <summary>
+            The generated property declaration for parameter <c>result</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerFinishedEventHandler">
+            <summary>
+            Provides an event handler that will be called when the whole analysis operation is finished in a certain <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            </summary>
+            <param name="sender">The object which triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerStepFoundEventArgs">
+            <summary>
+            Provides extra data for event handler <see cref="T:Sudoku.Analytics.AnalyzerStepFoundEventHandler"/>.
+            </summary>
+            <param name="step">Indicates the found step.</param>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerStepFoundEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerStepFoundEventArgs.#ctor(Sudoku.Analytics.Step)">
+            <summary>
+            Provides extra data for event handler <see cref="T:Sudoku.Analytics.AnalyzerStepFoundEventHandler"/>.
+            </summary>
+            <param name="step">Indicates the found step.</param>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerStepFoundEventHandler"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerStepFoundEventArgs.Step">
+            <summary>
+            The generated property declaration for parameter <c>step</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerStepFoundEventHandler">
+            <summary>
+            Provides an event handler that will be called when a new step is found in a certain <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            </summary>
+            <param name="sender">The object which triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
         </member>
         <member name="T:Sudoku.Analytics.Caching.ChainingComparers">
             <summary>
