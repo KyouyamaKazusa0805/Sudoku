@@ -3,7 +3,7 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one state.
 /// </summary>
-public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta::ICollector<Grid, Step>
+public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_analysis::ICollector<Grid, Step>
 {
 	/// <inheritdoc/>
 	[WithProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]
@@ -144,6 +144,6 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta:
 	}
 
 	/// <inheritdoc/>
-	ReadOnlySpan<Step> meta::ICollector<Grid, Step>.Collect(Grid board, CancellationToken cancellationToken)
+	ReadOnlySpan<Step> meta_analysis::ICollector<Grid, Step>.Collect(Grid board, CancellationToken cancellationToken)
 		=> Collect(in board, cancellationToken: cancellationToken);
 }

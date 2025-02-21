@@ -96,5 +96,5 @@ global using static Sudoku.Analytics.Caching.MemoryCachedData;
 global using static Sudoku.Analytics.Hub;
 global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.SolutionFields;
-global using @meta = Puzzles.Meta.Analytics;
+global using meta_analysis = Puzzles.Meta.Analytics;
 global using StepConclusions = System.ReadOnlyMemory<Sudoku.Concepts.Conclusion>;
