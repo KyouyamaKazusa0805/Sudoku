@@ -1,7 +1,6 @@
 global using System;
 global using System.Buffers;
 global using System.Collections;
-global using System.Collections.Concurrent;
 global using System.Collections.Frozen;
 global using System.Collections.Generic;
 global using System.ComponentModel;
@@ -21,6 +20,7 @@ global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading;
+global using System.Threading.Channels;
 global using System.Threading.Tasks;
 global using Puzzles.Meta.Solving;
 global using Sudoku.Analytics;

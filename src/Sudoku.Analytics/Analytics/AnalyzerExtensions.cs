@@ -19,31 +19,29 @@ public static class AnalyzerExtensions
 		[EnumeratorCancellation] CancellationToken cancellationToken = default
 	)
 	{
-		using var buffer = new BlockingCollection<Step>();
+		var channel = Channel.CreateUnbounded<Step>(new() { SingleReader = true, SingleWriter = true });
 		try
 		{
 			@this.StepFound += this_StepFound;
-
 			_ = Task.Run(
 				() =>
 				{
-					try
-					{
-						var context = new AnalyzerContext(in grid) { CancellationToken = cancellationToken };
-						@this.Analyze(in context);
-					}
-					finally
-					{
-						buffer.CompleteAdding();
-					}
+					@this.Analyze(new AnalyzerContext(in grid) { CancellationToken = cancellationToken });
+					channel.Writer.TryComplete();
 				},
 				cancellationToken
 			);
 
-			await foreach (var step in buffer.GetConsumingEnumerableAsync(cancellationToken))
+			while (await channel.Reader.WaitToReadAsync(cancellationToken))
 			{
-				yield return step;
+				if (channel.Reader.TryRead(out var step))
+				{
+					yield return step;
+				}
 			}
+
+			// Wait for completion.
+			await channel.Reader.Completion;
 		}
 		finally
 		{
@@ -51,6 +49,6 @@ public static class AnalyzerExtensions
 		}
 
 
-		void this_StepFound(Analyzer sender, AnalyzerStepFoundEventArgs e) => buffer.Add(e.Step, cancellationToken);
+		void this_StepFound(Analyzer sender, AnalyzerStepFoundEventArgs e) => channel.Writer.TryWrite(e.Step);
 	}
 }
