@@ -9,7 +9,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="AnalysisResult"/>
 /// <seealso cref="Analyzer"/>
 public sealed class Analyzer :
-	IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>,
+	IAnalyzer<Analyzer, AnalysisResult>,
 	meta::IAnalyzer<Analyzer, AnalysisResult, Grid, Step>
 {
 	/// <summary>
@@ -58,7 +58,7 @@ public sealed class Analyzer :
 	{
 		get;
 
-		set => ResultStepSearchers = IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>.FilterStepSearchers(
+		set => ResultStepSearchers = IAnalyzer<Analyzer, AnalysisResult>.FilterStepSearchers(
 			field = value,
 			StepSearcherRunningArea.Searching
 		);
@@ -79,7 +79,7 @@ public sealed class Analyzer :
 	public ICollection<Action<StepSearcher>> Setters { get; } = [];
 
 	/// <inheritdoc/>
-	Random IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>.RandomNumberGenerator => _random;
+	Random IAnalyzer<Analyzer, AnalysisResult>.RandomNumberGenerator => _random;
 
 
 	/// <summary>
@@ -205,23 +205,20 @@ public sealed class Analyzer :
 	public event AnalyzerExceptionThrownEventHandler? ExceptionThrown;
 
 
-	/// <inheritdoc cref="Analyze(ref readonly AnalyzerContext)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public AnalysisResult Analyze(ref readonly Grid grid) => Analyze(new AnalyzerContext(in grid));
-
 	/// <inheritdoc/>
-	public AnalysisResult Analyze(ref readonly AnalyzerContext context)
+	public AnalysisResult Analyze(
+		ref readonly Grid grid,
+		IProgress<StepGathererProgressPresenter>? progress = null,
+		CancellationToken cancellationToken = default
+	)
 	{
-		ref readonly var puzzle = ref context.Puzzle;
-		var progress = context.ProgressReporter;
-		var cancellationToken = context.CancellationToken;
-
+		ref readonly var puzzle = ref grid;
 		if (puzzle.IsSolved)
 		{
 			throw new InvalidOperationException(SR.ExceptionMessage("GridAlreadySolved"));
 		}
 
-		IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>.ApplySetters(this);
+		IAnalyzer<Analyzer, AnalysisResult>.ApplySetters(this);
 
 		var result = new AnalysisResult(in puzzle) { IsSolved = false };
 		var solution = puzzle.GetSolutionGrid();
@@ -743,7 +740,7 @@ public sealed class Analyzer :
 
 	/// <inheritdoc/>
 	AnalysisResult meta::IAnalyzer<Analyzer, AnalysisResult, Grid, Step>.Analyze(Grid board, CancellationToken cancellationToken)
-		=> Analyze(new AnalyzerContext(in board) { CancellationToken = cancellationToken });
+		=> Analyze(in board, cancellationToken: cancellationToken);
 
 
 	/// <summary>

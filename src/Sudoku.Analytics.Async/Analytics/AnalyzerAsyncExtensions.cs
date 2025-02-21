@@ -28,7 +28,7 @@ public static class AnalyzerAsyncExtensions
 				{
 					try
 					{
-						@this.Analyze(new AnalyzerContext(in grid) { CancellationToken = cancellationToken });
+						@this.Analyze(in grid, cancellationToken: cancellationToken);
 					}
 					finally
 					{

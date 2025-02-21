@@ -37,8 +37,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 				goto NextLoop;
 			}
 
-			if (!AllowsBlockExcluders
-				&& Analyzer.Analyze(new AnalyzerContext(in puzzle) { CancellationToken = cancellationToken }).HasBlockExcluders())
+			if (!AllowsBlockExcluders && Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken).HasBlockExcluders())
 			{
 				goto NextLoop;
 			}
@@ -464,7 +463,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 				return false;
 			}
 
-			switch (Analyzer.Analyze(new AnalyzerContext(in puzzle) { CancellationToken = cancellationToken }))
+			switch (Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{

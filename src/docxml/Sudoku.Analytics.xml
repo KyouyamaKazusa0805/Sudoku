@@ -8,16 +8,16 @@
             <summary>
             Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
             </summary>
-            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.Primitives.IAnalysisResult`3.Puzzle" path="/summary"/></param>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.Primitives.IAnalysisResult`2.Puzzle" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
             Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
             </summary>
-            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.Primitives.IAnalysisResult`3.Puzzle" path="/summary"/></param>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.Primitives.IAnalysisResult`2.Puzzle" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.Puzzle">
-            <summary><inheritdoc cref="P:Sudoku.Analytics.Primitives.IAnalysisResult`3.Puzzle" path="/summary"/></summary>
+            <summary><inheritdoc cref="P:Sudoku.Analytics.Primitives.IAnalysisResult`2.Puzzle" path="/summary"/></summary>
         </member>
         <member name="F:Sudoku.Analytics.AnalysisResult.MaximumRatingValueTheory">
             <summary>
@@ -243,7 +243,7 @@
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.UnhandledException">
             <summary>
-            <inheritdoc cref="P:Sudoku.Analytics.Primitives.IAnalysisResult`3.UnhandledException" path="/summary"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Primitives.IAnalysisResult`2.UnhandledException" path="/summary"/>
             </summary>
             <remarks>
             You can visit the property value if the property <see cref="P:Sudoku.Analytics.AnalysisResult.FailedReason"/>
@@ -657,7 +657,7 @@
         <member name="P:Sudoku.Analytics.Analyzer.Setters">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#Primitives#IAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalyzerContext,Sudoku#Analytics#AnalysisResult}#RandomNumberGenerator">
+        <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#Primitives#IAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalysisResult}#RandomNumberGenerator">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.Default">
@@ -715,10 +715,7 @@
             Indicates the event to be triggered when an exception is thrown.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Analytics.AnalyzerContext@)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Analytics.AnalyzerContext@)">
+        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.StepGathererProgressPresenter},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Analyzer.Puzzles#Meta#Analytics#IAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalysisResult,Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Analyze(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
@@ -728,47 +725,6 @@
             <summary>
             Gets field <c><![CDATA[<Conclusions>k__BackingField]]></c> inside type <see cref="T:Sudoku.Analytics.Step"/>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.AnalyzerContext">
-            <summary>
-            Represents a context consumed by <see cref="T:Sudoku.Analytics.Analyzer"/> to analyze a puzzle.
-            </summary>
-            <param name="puzzle">The puzzle to be analyzed.</param>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerContext.#ctor(Sudoku.Concepts.Grid@)">
-            <summary>
-            Represents a context consumed by <see cref="T:Sudoku.Analytics.Analyzer"/> to analyze a puzzle.
-            </summary>
-            <param name="puzzle">The puzzle to be analyzed.</param>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerContext.CancellationToken">
-            <summary>
-            The cancellation token that can cancel the current analyzing operation.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerContext.ProgressReporter">
-            <summary>
-            An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerContext.Sudoku#Runtime#IContext#Grid">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerContext.Puzzle">
-            <summary>
-            The generated field declaration for parameter <c>puzzle</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerContext.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerContext.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerContext.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerExceptionThrownEventArgs">
             <summary>
@@ -1058,55 +1014,11 @@
         <member name="P:Sudoku.Analytics.Collector.Setters">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Analytics.Collector.Collect(Sudoku.Analytics.CollectorContext@)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Analytics.CollectorContext@)">
+        <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.StepGathererProgressPresenter},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Collector.Puzzles#Meta#Analytics#ICollector{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Collect(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.CollectorContext">
-            <summary>
-            Represents a context consumed by <see cref="T:Sudoku.Analytics.Collector"/> to analyze a puzzle.
-            </summary>
-            <param name="puzzle">The puzzle to be analyzed.</param>
-            <seealso cref="T:Sudoku.Analytics.Collector"/>
-        </member>
-        <member name="M:Sudoku.Analytics.CollectorContext.#ctor(Sudoku.Concepts.Grid@)">
-            <summary>
-            Represents a context consumed by <see cref="T:Sudoku.Analytics.Collector"/> to analyze a puzzle.
-            </summary>
-            <param name="puzzle">The puzzle to be analyzed.</param>
-            <seealso cref="T:Sudoku.Analytics.Collector"/>
-        </member>
-        <member name="P:Sudoku.Analytics.CollectorContext.CancellationToken">
-            <summary>
-            The cancellation token that can cancel the current analyzing operation.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.CollectorContext.ProgressReporter">
-            <summary>
-            An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.CollectorContext.Sudoku#Runtime#IContext#Grid">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.CollectorContext.Puzzle">
-            <summary>
-            The generated field declaration for parameter <c>puzzle</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.CollectorContext.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.CollectorContext.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.CollectorContext.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter">
             <summary>
@@ -1404,7 +1316,7 @@
             <summary>
             <para>
             Represents a type that encapsulates a list of options adjusted by users,
-            consumed by <seealso cref="T:Sudoku.Analytics.Primitives.IStepGatherer`3"/> object
+            consumed by <seealso cref="T:Sudoku.Analytics.Primitives.IStepGatherer`2"/> object
             (especially for types <see cref="T:Sudoku.Analytics.Analyzer"/> and <see cref="T:Sudoku.Analytics.Collector"/>).
             </para>
             <para>
@@ -1413,7 +1325,7 @@
             For example, setting notation to the coordinates.
             </para>
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Primitives.IStepGatherer`3"/>
+            <seealso cref="T:Sudoku.Analytics.Primitives.IStepGatherer`2"/>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
             <seealso cref="T:Sudoku.Analytics.Collector"/>
@@ -7778,10 +7690,10 @@
             <param name="this">The grid to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Primitives.IAnalysisResult`3">
+        <member name="T:Sudoku.Analytics.Primitives.IAnalysisResult`2">
             <summary>
             Represents an instance that describes the result after executed the method
-            <see cref="M:Sudoku.Analytics.Primitives.IAnalyzer`3.Analyze(`1@)" />.
+            <see cref="M:Sudoku.Analytics.Primitives.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.StepGathererProgressPresenter},System.Threading.CancellationToken)" />.
             </summary>
             <typeparam name="TSelf">
             <self-type-constraint>
@@ -7796,15 +7708,14 @@
 	</self-type-constraint>
             </typeparam>
             <typeparam name="TAnalyzer">The solver's type.</typeparam>
-            <typeparam name="TContext">The type of the context.</typeparam>
-            <seealso cref="M:Sudoku.Analytics.Primitives.IAnalyzer`3.Analyze(`1@)" />
+            <seealso cref="M:Sudoku.Analytics.Primitives.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.StepGathererProgressPresenter},System.Threading.CancellationToken)" />
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IAnalysisResult`3.IsSolved">
+        <member name="P:Sudoku.Analytics.Primitives.IAnalysisResult`2.IsSolved">
             <summary>
             Indicates whether the solver has solved the puzzle.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IAnalysisResult`3.ElapsedTime">
+        <member name="P:Sudoku.Analytics.Primitives.IAnalysisResult`2.ElapsedTime">
             <summary>
             Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
             Some case if the puzzle doesn't contain a valid unique solution, the value may be
@@ -7812,24 +7723,24 @@
             </summary>
             <seealso cref="F:System.TimeSpan.Zero"/>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IAnalysisResult`3.Puzzle">
+        <member name="P:Sudoku.Analytics.Primitives.IAnalysisResult`2.Puzzle">
             <summary>
             Indicates the original puzzle to be solved.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IAnalysisResult`3.Solution">
+        <member name="P:Sudoku.Analytics.Primitives.IAnalysisResult`2.Solution">
             <summary>
             Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
             <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IAnalysisResult`3.UnhandledException">
+        <member name="P:Sudoku.Analytics.Primitives.IAnalysisResult`2.UnhandledException">
             <summary>
             Indicates the unhandled exception thrown.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Primitives.IAnalyzer`3">
+        <member name="T:Sudoku.Analytics.Primitives.IAnalyzer`2">
             <summary>
             Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid" />.
             The result is a <typeparamref name="TResult" /> instance that encapsulates all possible information
@@ -7845,33 +7756,33 @@
 			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
 		</para>
 	</self-type-constraint></typeparam>
-            <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TResult">The type of the target result.</typeparam>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IAnalyzer`3.IsFullApplying">
+        <member name="P:Sudoku.Analytics.Primitives.IAnalyzer`2.IsFullApplying">
             <summary>
             Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IAnalyzer`3.RandomizedChoosing">
+        <member name="P:Sudoku.Analytics.Primitives.IAnalyzer`2.RandomizedChoosing">
             <summary>
             Indicates whether the solver will choose a step to be applied after having searched all possible steps, in random.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IAnalyzer`3.RandomNumberGenerator">
+        <member name="P:Sudoku.Analytics.Primitives.IAnalyzer`2.RandomNumberGenerator">
             <summary>
             The internal <see cref="T:System.Random"/> instance to be used.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Primitives.IAnalyzer`3.Analyze(`1@)">
+        <member name="M:Sudoku.Analytics.Primitives.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.StepGathererProgressPresenter},System.Threading.CancellationToken)">
             <summary>
             Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
             </summary>
-            <param name="context">A context instance that can be used for analyzing a puzzle.</param>
+            <param name="grid">Indicates the grid to be checked.</param>
+            <param name="progress">Indicates the progress reporter object.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
             <returns>The result value.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
         </member>
-        <member name="T:Sudoku.Analytics.Primitives.ICollector`3">
+        <member name="T:Sudoku.Analytics.Primitives.ICollector`2">
             <summary>
             Represents a collector type.
             </summary>
@@ -7885,30 +7796,31 @@
 			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
 		</para>
 	</self-type-constraint></typeparam>
-            <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TResult">The type of the result value.</typeparam>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.ICollector`3.MaxStepsCollected">
+        <member name="P:Sudoku.Analytics.Primitives.ICollector`2.MaxStepsCollected">
             <summary>
             Indicates the maximum steps can be collected.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.ICollector`3.DifficultyLevelMode">
+        <member name="P:Sudoku.Analytics.Primitives.ICollector`2.DifficultyLevelMode">
             <summary>
             Indicates whether the solver only displays the techniques with the same displaying level.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Primitives.ICollector`3.Collect(`1@)">
+        <member name="M:Sudoku.Analytics.Primitives.ICollector`2.Collect(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.StepGathererProgressPresenter},System.Threading.CancellationToken)">
             <summary>
             Search for all possible <see cref="T:Sudoku.Analytics.Step"/> instances appeared at the specified grid state.
             </summary>
-            <param name="context">A context instance that can be used for analyzing a puzzle.</param>
+            <param name="grid">Indicates the grid to be checked.</param>
+            <param name="progress">Indicates the progress reporter object.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
             <returns>The result value.</returns>
             <exception cref="T:System.InvalidOperationException">
-            Throws when property <see cref="P:Sudoku.Analytics.Primitives.ICollector`3.DifficultyLevelMode"/> is not defined.
+            Throws when property <see cref="P:Sudoku.Analytics.Primitives.ICollector`2.DifficultyLevelMode"/> is not defined.
             </exception>
         </member>
-        <member name="T:Sudoku.Analytics.Primitives.IStepGatherer`3">
+        <member name="T:Sudoku.Analytics.Primitives.IStepGatherer`2">
             <summary>
             Represents a type that support collecting <see cref="T:Sudoku.Analytics.Step" /> instances from a grid puzzle.
             </summary>
@@ -7922,11 +7834,10 @@
 			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
 		</para>
 	</self-type-constraint></typeparam>
-            <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TResult">The type of the result value.</typeparam>
             <seealso cref="T:Sudoku.Analytics.Step" />
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IStepGatherer`3.StepSearchers">
+        <member name="P:Sudoku.Analytics.Primitives.IStepGatherer`2.StepSearchers">
             <summary>
             <para>
             Indicates the custom <see cref="T:Sudoku.Analytics.StepSearcher"/>s you defined to solve a puzzle.
@@ -7941,19 +7852,19 @@
             </summary>
             <seealso cref="P:Sudoku.Analytics.StepSearcherFactory.StepSearchers"/>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IStepGatherer`3.ResultStepSearchers">
+        <member name="P:Sudoku.Analytics.Primitives.IStepGatherer`2.ResultStepSearchers">
             <summary>
             Indicates the result step searchers used in the current analyzer or collector.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IStepGatherer`3.Options">
+        <member name="P:Sudoku.Analytics.Primitives.IStepGatherer`2.Options">
             <summary>
             Indicates the extra options to be set. The options will be passed into <see cref="T:Sudoku.Analytics.Step"/> instances collected
             in internal method called <c>Collect</c>, and create <see cref="T:Sudoku.Analytics.Step"/> instances and pass into constructor.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="P:Sudoku.Analytics.Primitives.IStepGatherer`3.Setters">
+        <member name="P:Sudoku.Analytics.Primitives.IStepGatherer`2.Setters">
             <summary>
             Represents a list of <see cref="T:System.Action`1"/> of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances
             to assign extra configuration to step searcher instances.
@@ -7961,7 +7872,7 @@
             <seealso cref="T:System.Action`1"/>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.Primitives.IStepGatherer`3.ApplySetters(`0)">
+        <member name="M:Sudoku.Analytics.Primitives.IStepGatherer`2.ApplySetters(`0)">
             <summary>
             Try to apply setters.
             </summary>
@@ -8014,7 +7925,7 @@
 		</feature>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Primitives.IStepGatherer`3.FilterStepSearchers(System.ReadOnlyMemory{Sudoku.Analytics.StepSearcher},Sudoku.Analytics.StepSearchers.StepSearcherRunningArea)">
+        <member name="M:Sudoku.Analytics.Primitives.IStepGatherer`2.FilterStepSearchers(System.ReadOnlyMemory{Sudoku.Analytics.StepSearcher},Sudoku.Analytics.StepSearchers.StepSearcherRunningArea)">
             <summary>
             Try to filter step searchers via the specified running area; removing all step searchers if running area does not match.
             </summary>
@@ -8155,17 +8066,17 @@
         </member>
         <member name="T:Sudoku.Analytics.Primitives.RuntimeAnalysisException">
             <summary>
-            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/> instance.
+            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.Primitives.IAnalyzer`2"/> instance.
             </summary>
             <param name="grid">Indicates the grid to be analyzed.</param>
-            <seealso cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/>
+            <seealso cref="T:Sudoku.Analytics.Primitives.IAnalyzer`2"/>
         </member>
         <member name="M:Sudoku.Analytics.Primitives.RuntimeAnalysisException.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
-            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/> instance.
+            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.Primitives.IAnalyzer`2"/> instance.
             </summary>
             <param name="grid">Indicates the grid to be analyzed.</param>
-            <seealso cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/>
+            <seealso cref="T:Sudoku.Analytics.Primitives.IAnalyzer`2"/>
         </member>
         <member name="P:Sudoku.Analytics.Primitives.RuntimeAnalysisException.Message">
             <inheritdoc/>
@@ -8590,19 +8501,19 @@
         </member>
         <member name="T:Sudoku.Analytics.StepGathererProgressPresenter">
             <summary>
-            Represents a progress used by <see cref="T:Sudoku.Analytics.Primitives.IStepGatherer`3"/> instances.
+            Represents a progress used by <see cref="T:Sudoku.Analytics.Primitives.IStepGatherer`2"/> instances.
             </summary>
             <param name="StepSearcherName">Indicates the currently used step searcher.</param>
             <param name="Percent">The percent value.</param>
-            <seealso cref="T:Sudoku.Analytics.Primitives.IStepGatherer`3"/>
+            <seealso cref="T:Sudoku.Analytics.Primitives.IStepGatherer`2"/>
         </member>
         <member name="M:Sudoku.Analytics.StepGathererProgressPresenter.#ctor(System.String,System.Double)">
             <summary>
-            Represents a progress used by <see cref="T:Sudoku.Analytics.Primitives.IStepGatherer`3"/> instances.
+            Represents a progress used by <see cref="T:Sudoku.Analytics.Primitives.IStepGatherer`2"/> instances.
             </summary>
             <param name="StepSearcherName">Indicates the currently used step searcher.</param>
             <param name="Percent">The percent value.</param>
-            <seealso cref="T:Sudoku.Analytics.Primitives.IStepGatherer`3"/>
+            <seealso cref="T:Sudoku.Analytics.Primitives.IStepGatherer`2"/>
         </member>
         <member name="P:Sudoku.Analytics.StepGathererProgressPresenter.StepSearcherName">
             <summary>Indicates the currently used step searcher.</summary>

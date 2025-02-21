@@ -1,10 +1,10 @@
 namespace Sudoku.Analytics.Primitives;
 
 /// <summary>
-/// Represents an exception type that will be thrown by an <see cref="IAnalyzer{TSelf, TContext, TResult}"/> instance.
+/// Represents an exception type that will be thrown by an <see cref="IAnalyzer{TSelf, TResult}"/> instance.
 /// </summary>
 /// <param name="grid">Indicates the grid to be analyzed.</param>
-/// <seealso cref="IAnalyzer{TSelf, TContext, TResult}"/>
+/// <seealso cref="IAnalyzer{TSelf, TResult}"/>
 public abstract partial class RuntimeAnalysisException([Property(NamingRule = "Invalid>@")] ref readonly Grid grid) : Exception
 {
 	/// <inheritdoc/>

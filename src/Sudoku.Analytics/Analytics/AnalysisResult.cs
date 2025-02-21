@@ -3,10 +3,10 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
-/// <param name="Puzzle"><inheritdoc cref="IAnalysisResult{TSolver, TContext, TSolverResult}.Puzzle" path="/summary"/></param>
+/// <param name="Puzzle"><inheritdoc cref="IAnalysisResult{TSolver, TSolverResult}.Puzzle" path="/summary"/></param>
 [TypeImpl(TypeImplFlags.Equatable)]
 public sealed partial record AnalysisResult([property: EquatableMember] ref readonly Grid Puzzle) :
-	IAnalysisResult<AnalysisResult, Analyzer, AnalyzerContext>,
+	IAnalysisResult<AnalysisResult, Analyzer>,
 	meta::IAnalysisResult<AnalysisResult, Grid, Step>,
 	IAnyAllMethod<AnalysisResult, Step>,
 	ICastMethod<AnalysisResult, Step>,
@@ -279,7 +279,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 	public TechniqueSet TechniquesUsed => [.. from step in StepsSpan select step.Code];
 
 	/// <summary>
-	/// <inheritdoc cref="IAnalysisResult{TSolver, TContext, TSolverResult}.UnhandledException" path="/summary"/>
+	/// <inheritdoc cref="IAnalysisResult{TSolver, TSolverResult}.UnhandledException" path="/summary"/>
 	/// </summary>
 	/// <remarks>
 	/// You can visit the property value if the property <see cref="FailedReason"/>

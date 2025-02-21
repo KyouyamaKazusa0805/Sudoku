@@ -830,26 +830,24 @@ public sealed partial class AnalyzePage : Page
 				lock (AnalyzingRelatedSyncRoot)
 				{
 					return analyzer.Analyze(
-						new AnalyzerContext(in puzzle)
-						{
-							CancellationToken = cts.Token,
-							ProgressReporter = new Progress<StepGathererProgressPresenter>(
-								progress => DispatcherQueue.TryEnqueue(
-									() =>
-									{
-										var (stepSearcherName, percent) = progress;
-										ProgressPercent = progress.Percent * 100;
-										AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
-										AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+						in puzzle,
+						new Progress<StepGathererProgressPresenter>(
+							progress => DispatcherQueue.TryEnqueue(
+								() =>
+								{
+									var (stepSearcherName, percent) = progress;
+									ProgressPercent = progress.Percent * 100;
+									AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+									AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
 
-										if (isSupportedTaskbarProgressChanging)
-										{
-											TaskbarProgress.SetValue(handle, ProgressPercent, 100);
-										}
+									if (isSupportedTaskbarProgressChanging)
+									{
+										TaskbarProgress.SetValue(handle, ProgressPercent, 100);
 									}
-								)
+								}
 							)
-						}
+						),
+						cts.Token
 					);
 				}
 			}))

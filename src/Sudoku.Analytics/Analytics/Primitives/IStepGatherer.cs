@@ -4,12 +4,10 @@ namespace Sudoku.Analytics.Primitives;
 /// Represents a type that support collecting <see cref="Step"/> instances from a grid puzzle.
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
-/// <typeparam name="TContext">The type of the context.</typeparam>
 /// <typeparam name="TResult">The type of the result value.</typeparam>
 /// <seealso cref="Step"/>
-public interface IStepGatherer<in TSelf, TContext, out TResult>
-	where TSelf : IStepGatherer<TSelf, TContext, TResult>, allows ref struct
-	where TContext : allows ref struct
+public interface IStepGatherer<in TSelf, out TResult>
+	where TSelf : IStepGatherer<TSelf, TResult>, allows ref struct
 	where TResult : allows ref struct
 {
 	/// <summary>

@@ -101,7 +101,7 @@ public sealed class NakedSingleGenerator : SingleGenerator
 				return false;
 			}
 
-			switch (Analyzer.Analyze(new AnalyzerContext(in puzzle) { CancellationToken = cancellationToken }))
+			switch (Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{

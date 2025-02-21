@@ -146,7 +146,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			.WithMaxSteps(analysisPref.CollectorMaxStepsCollected)
 			.WithSameLevelConfiguration((CollectorDifficultyLevelMode)analysisPref.DifficultyLevelMode)
 			.WithStepSearchers(Application.Current.AsApp().GetStepSearchers())
-			.WithRuntimeIdentifierSetters<Collector, CollectorContext, ReadOnlySpan<Step>>(BasePage.SudokuPane)
+			.WithRuntimeIdentifierSetters<Collector, ReadOnlySpan<Step>>(BasePage.SudokuPane)
 			.WithUserDefinedOptions(App.CreateStepSearcherOptions());
 		BasePage._ctsForAnalyzingRelatedOperations = cts;
 
@@ -181,26 +181,24 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			lock (AnalyzingRelatedSyncRoot)
 			{
 				return collector.Collect(
-					new CollectorContext(in grid)
-					{
-						CancellationToken = cts.Token,
-						ProgressReporter = new Progress<StepGathererProgressPresenter>(
-							progress => DispatcherQueue.TryEnqueue(
-								() =>
-								{
-									var (stepSearcherName, percent) = progress;
-									BasePage.ProgressPercent = percent * 100;
-									BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
-									BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+					in grid,
+					new Progress<StepGathererProgressPresenter>(
+						progress => DispatcherQueue.TryEnqueue(
+							() =>
+							{
+								var (stepSearcherName, percent) = progress;
+								BasePage.ProgressPercent = percent * 100;
+								BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+								BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
 
-									if (isSupportedTaskbarProgressChanging)
-									{
-										TaskbarProgress.SetValue(handle, BasePage.ProgressPercent, 100);
-									}
+								if (isSupportedTaskbarProgressChanging)
+								{
+									TaskbarProgress.SetValue(handle, BasePage.ProgressPercent, 100);
 								}
-							)
+							}
 						)
-					}
+					),
+					cts.Token
 				).ToArray();
 			}
 		}

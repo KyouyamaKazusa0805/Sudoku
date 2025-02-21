@@ -3,9 +3,7 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one state.
 /// </summary>
-public sealed class Collector :
-	ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>,
-	meta::ICollector<Grid, Step>
+public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta::ICollector<Grid, Step>
 {
 	/// <inheritdoc/>
 	[WithProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]
@@ -23,7 +21,7 @@ public sealed class Collector :
 	{
 		get;
 
-		set => ResultStepSearchers = ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>.FilterStepSearchers(
+		set => ResultStepSearchers = ICollector<Collector, ReadOnlySpan<Step>>.FilterStepSearchers(
 			field = value,
 			StepSearcherRunningArea.Collecting
 		);
@@ -44,28 +42,25 @@ public sealed class Collector :
 	public ICollection<Action<StepSearcher>> Setters { get; } = [];
 
 
-	/// <inheritdoc cref="Collect(ref readonly CollectorContext)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<Step> Collect(ref readonly Grid grid) => Collect(new CollectorContext(in grid));
-
 	/// <inheritdoc/>
-	public ReadOnlySpan<Step> Collect(scoped ref readonly CollectorContext context)
+	public ReadOnlySpan<Step> Collect(
+		scoped ref readonly Grid grid,
+		IProgress<StepGathererProgressPresenter>? progress = null,
+		CancellationToken cancellationToken = default
+	)
 	{
 		if (!Enum.IsDefined(DifficultyLevelMode))
 		{
 			throw new InvalidOperationException(SR.ExceptionMessage("ModeIsUndefined"));
 		}
 
-		ref readonly var puzzle = ref context.Puzzle;
-		var progress = context.ProgressReporter;
-		var cancellationToken = context.CancellationToken;
-
+		ref readonly var puzzle = ref grid;
 		if (puzzle.IsSolved)
 		{
 			return [];
 		}
 
-		ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>.ApplySetters(this);
+		ICollector<Collector, ReadOnlySpan<Step>>.ApplySetters(this);
 
 		try
 		{
@@ -81,7 +76,7 @@ public sealed class Collector :
 		}
 
 
-		ReadOnlySpan<Step> s(IProgress<StepGathererProgressPresenter>? progress, ref readonly Grid puzzle, CancellationToken ct)
+		ReadOnlySpan<Step> s(IProgress<StepGathererProgressPresenter>? progress, scoped ref readonly Grid puzzle, CancellationToken ct)
 		{
 			const int defaultLevel = int.MaxValue;
 
@@ -148,9 +143,7 @@ public sealed class Collector :
 		}
 	}
 
-#pragma warning disable CS9087
 	/// <inheritdoc/>
-	unsafe ReadOnlySpan<Step> meta::ICollector<Grid, Step>.Collect(Grid board, CancellationToken cancellationToken)
-		=> Collect(new CollectorContext(in board) { CancellationToken = cancellationToken });
-#pragma warning restore CS9087
+	ReadOnlySpan<Step> meta::ICollector<Grid, Step>.Collect(Grid board, CancellationToken cancellationToken)
+		=> Collect(in board, cancellationToken: cancellationToken);
 }

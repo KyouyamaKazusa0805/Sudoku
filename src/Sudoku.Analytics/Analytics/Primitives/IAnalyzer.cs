@@ -6,12 +6,10 @@ namespace Sudoku.Analytics.Primitives;
 /// produced in the whole analysis time-cycle.
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
-/// <typeparam name="TContext">The type of the context.</typeparam>
 /// <typeparam name="TResult">The type of the target result.</typeparam>
-public interface IAnalyzer<in TSelf, TContext, out TResult> : IStepGatherer<TSelf, TContext, TResult>
-	where TSelf : IAnalyzer<TSelf, TContext, TResult>, allows ref struct
-	where TContext : allows ref struct
-	where TResult : IAnalysisResult<TResult, TSelf, TContext>, allows ref struct
+public interface IAnalyzer<in TSelf, out TResult> : IStepGatherer<TSelf, TResult>
+	where TSelf : IAnalyzer<TSelf, TResult>, allows ref struct
+	where TResult : IAnalysisResult<TResult, TSelf>, allows ref struct
 {
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
@@ -32,8 +30,9 @@ public interface IAnalyzer<in TSelf, TContext, out TResult> : IStepGatherer<TSel
 	/// <summary>
 	/// Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
 	/// </summary>
-	/// <param name="context">A context instance that can be used for analyzing a puzzle.</param>
+	/// <param name="grid">Indicates the grid to be checked.</param>
+	/// <param name="progress">Indicates the progress reporter object.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	/// <returns>The result value.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-	public abstract TResult Analyze(ref readonly TContext context);
+	public abstract TResult Analyze(ref readonly Grid grid, IProgress<StepGathererProgressPresenter>? progress, CancellationToken cancellationToken);
 }

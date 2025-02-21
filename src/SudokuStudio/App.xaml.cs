@@ -189,7 +189,7 @@ public partial class App : Application
 	internal Analyzer GetAnalyzerConfigured(SudokuPane sudokuPane, DifficultyLevel difficultyLevel = DifficultyLevel.Unknown)
 		=> Analyzer
 			.WithStepSearchers(Current.AsApp().GetStepSearchers(), difficultyLevel)
-			.WithRuntimeIdentifierSetters<Analyzer, AnalyzerContext, AnalysisResult>(sudokuPane)
+			.WithRuntimeIdentifierSetters<Analyzer, AnalysisResult>(sudokuPane)
 			.WithIgnoreHighTimeComplexityStepSearchers(Preference.AnalysisPreferences.AnalyzerIgnoresSlowAlgorithms)
 			.WithIgnoreHighSpaceComplexityStepSearchers(Preference.AnalysisPreferences.AnalyzerIgnoresHighAllocationAlgorithms)
 			.WithUserDefinedOptions(CreateStepSearcherOptions());

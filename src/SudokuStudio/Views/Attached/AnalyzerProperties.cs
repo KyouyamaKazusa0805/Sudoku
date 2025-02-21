@@ -191,9 +191,8 @@ public static partial class AnalyzerProperties
 	/// stored in type <see cref="AnalyzerProperties"/>.
 	/// </summary>
 	/// <typeparam name="TAnalyzerOrCollector">
-	/// The type of the instance. The type must implement <see cref="IStepGatherer{TSelf, TContext, TResult}"/>.
+	/// The type of the instance. The type must implement <see cref="IStepGatherer{TSelf, TResult}"/>.
 	/// </typeparam>
-	/// <typeparam name="TContext">The type of the context.</typeparam>
 	/// <typeparam name="TResult">The type of the result.</typeparam>
 	/// <param name="this">The analyzer instance.</param>
 	/// <param name="attachedPropertyValue">The attached property.</param>
@@ -204,14 +203,13 @@ public static partial class AnalyzerProperties
 	/// </param>
 	/// <returns>The same reference as <paramref name="this"/>.</returns>
 	/// <seealso cref="AnalyzerProperties"/>
-	public static TAnalyzerOrCollector WithRuntimeIdentifierSetter<TAnalyzerOrCollector, TContext, TResult>(
+	public static TAnalyzerOrCollector WithRuntimeIdentifierSetter<TAnalyzerOrCollector, TResult>(
 		this TAnalyzerOrCollector @this,
 		object attachedPropertyValue,
 		string methodName,
 		out bool propertyMatched
 	)
-		where TAnalyzerOrCollector : IStepGatherer<TAnalyzerOrCollector, TContext, TResult>, allows ref struct
-		where TContext : allows ref struct
+		where TAnalyzerOrCollector : IStepGatherer<TAnalyzerOrCollector, TResult>, allows ref struct
 		where TResult : allows ref struct
 	{
 		foreach (var searcher in @this.ResultStepSearchers)
@@ -237,25 +235,23 @@ public static partial class AnalyzerProperties
 	/// Calls the method <see cref="WithRuntimeIdentifierSetter"/> for all properties in type <see cref="AnalyzerProperties"/>.
 	/// </summary>
 	/// <typeparam name="TAnalyzerOrCollector">
-	/// The type of the instance. The type must implement <see cref="IStepGatherer{TSelf, TContext, TResult}"/>.
+	/// The type of the instance. The type must implement <see cref="IStepGatherer{TSelf, TResult}"/>.
 	/// </typeparam>
-	/// <typeparam name="TContext">The type of the context.</typeparam>
 	/// <typeparam name="TResult">The type of the result.</typeparam>
 	/// <param name="this">The analyzer instance.</param>
 	/// <param name="attachedPane">Indicates the <see cref="SudokuPane"/> instance that all properties in this type attached to.</param>
 	/// <returns>The same reference with argument <paramref name="this"/>.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the matched property is invalid.</exception>
 	/// <seealso cref="WithRuntimeIdentifierSetter"/>
-	public static TAnalyzerOrCollector WithRuntimeIdentifierSetters<TAnalyzerOrCollector, TContext, TResult>(this TAnalyzerOrCollector @this, SudokuPane attachedPane)
-		where TAnalyzerOrCollector : IStepGatherer<TAnalyzerOrCollector, TContext, TResult>, allows ref struct
-		where TContext : allows ref struct
+	public static TAnalyzerOrCollector WithRuntimeIdentifierSetters<TAnalyzerOrCollector, TResult>(this TAnalyzerOrCollector @this, SudokuPane attachedPane)
+		where TAnalyzerOrCollector : IStepGatherer<TAnalyzerOrCollector, TResult>, allows ref struct
 		where TResult : allows ref struct
 	{
 		foreach (var methodInfo in typeof(AnalyzerProperties).GetMethods(BindingFlags.Static | BindingFlags.Public))
 		{
 			if (methodInfo.Name.StartsWith(GetSetterName))
 			{
-				@this.WithRuntimeIdentifierSetter<TAnalyzerOrCollector, TContext, TResult>(
+				@this.WithRuntimeIdentifierSetter<TAnalyzerOrCollector, TResult>(
 					methodInfo.Invoke(null, [attachedPane])!,
 					methodInfo.Name,
 					out _
