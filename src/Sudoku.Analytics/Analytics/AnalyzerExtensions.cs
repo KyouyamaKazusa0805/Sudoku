@@ -26,8 +26,14 @@ public static class AnalyzerExtensions
 			_ = Task.Run(
 				() =>
 				{
-					@this.Analyze(new AnalyzerContext(in grid) { CancellationToken = cancellationToken });
-					channel.Writer.TryComplete();
+					try
+					{
+						@this.Analyze(new AnalyzerContext(in grid) { CancellationToken = cancellationToken });
+					}
+					finally
+					{
+						channel.Writer.TryComplete();
+					}
 				},
 				cancellationToken
 			);
