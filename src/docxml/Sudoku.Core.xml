@@ -12684,55 +12684,19 @@
         <member name="P:Sudoku.Solving.MultipleSolutionException.Message">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.SolutionEnumerableSolverExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Solving.ISolutionEnumerableSolver"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.ISolutionEnumerableSolver"/>
-        </member>
-        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.CountSolutionsAsync(Sudoku.Solving.ISolutionEnumerableSolver,Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
-            <summary>
-            Count the number of solutions can be found of a grid.
-            </summary>
-            <param name="this">The solver.</param>
-            <param name="grid">The grid to be solved.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-            <returns>
-            A <see cref="T:System.Threading.Tasks.Task`1"/> instance indicating the asynchronous operation,
-            with an <see cref="T:System.Int32"/> value indicating the result can be produced after the operation executed.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.EnumerateSolutions(Sudoku.Solving.ISolutionEnumerableSolver,Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
-            <summary>
-            Try to enumerate all possible solutions of the specified grid, by using the current solver.
-            </summary>
-            <param name="this">The solver.</param>
-            <param name="grid">The grid.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-            <returns>A sequence of <see cref="T:Sudoku.Concepts.Grid"/> values indicating the raw solution text to the puzzle.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.EnumerateSolutionsAsync(Sudoku.Solving.ISolutionEnumerableSolver,Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
-            <summary>
-            Try to enumerate all possible solutions of the specified grid, by using the current solver, in asynchronous way.
-            </summary>
-            <param name="this">The solver.</param>
-            <param name="grid">The grid.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-            <returns>A sequence of <see cref="T:Sudoku.Concepts.Grid"/> values indicating the raw solution text to the puzzle.</returns>
-        </member>
         <member name="T:Sudoku.Solving.SolverSolutionFoundEventArgs">
             <summary>
-            Provides extra data for event <see cref="!:ISolutionEnumerableSolver&lt;TSelf&gt;.SolutionFound"/>.
+            Provides extra data for event <see cref="E:Sudoku.Solving.ISolutionEnumerableSolver.SolutionFound"/>.
             </summary>
             <param name="solution">Indicates the target solution.</param>
-            <seealso cref="!:ISolutionEnumerableSolver&lt;TSelf&gt;.SolutionFound"/>
+            <seealso cref="E:Sudoku.Solving.ISolutionEnumerableSolver.SolutionFound"/>
         </member>
         <member name="M:Sudoku.Solving.SolverSolutionFoundEventArgs.#ctor(Sudoku.Concepts.Grid)">
             <summary>
-            Provides extra data for event <see cref="!:ISolutionEnumerableSolver&lt;TSelf&gt;.SolutionFound"/>.
+            Provides extra data for event <see cref="E:Sudoku.Solving.ISolutionEnumerableSolver.SolutionFound"/>.
             </summary>
             <param name="solution">Indicates the target solution.</param>
-            <seealso cref="!:ISolutionEnumerableSolver&lt;TSelf&gt;.SolutionFound"/>
+            <seealso cref="E:Sudoku.Solving.ISolutionEnumerableSolver.SolutionFound"/>
         </member>
         <member name="P:Sudoku.Solving.SolverSolutionFoundEventArgs.Solution">
             <summary>

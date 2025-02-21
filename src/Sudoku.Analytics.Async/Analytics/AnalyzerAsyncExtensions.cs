@@ -4,7 +4,7 @@ namespace Sudoku.Analytics;
 /// Provides with extension methods on <see cref="Analyzer"/>.
 /// </summary>
 /// <seealso cref="Analyzer"/>
-public static class AnalyzerExtensions
+public static class AnalyzerAsyncExtensions
 {
 	/// <summary>
 	/// Analyzes the specified grid, to find for all possible steps and iterate them in asynchronous way.

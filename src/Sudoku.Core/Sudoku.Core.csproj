@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
-		<Description>Provides all core implementations of sudokus, such as a grid.</Description>
+		<Description>Provides all core implementations of sudoku API.</Description>
 		<DocumentationFile>..\docxml\Sudoku.Core.xml</DocumentationFile>
 		<!--<DefineConstants>CACHE_CANDIDATE_MAPS</DefineConstants>-->
 	</PropertyGroup>

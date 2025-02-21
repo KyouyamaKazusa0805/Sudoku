@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<RootNamespace>Sudoku</RootNamespace>
+		<Description>Provides analytical APIs used for analysis of a grid, in asynchronous programming.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Analytics.Async.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
+		<ProjectReference Include="..\..\PuzzlesMeta\src\Puzzles.SourceGeneration\Puzzles.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
+</Project>
