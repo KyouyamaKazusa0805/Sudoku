@@ -4,7 +4,7 @@ description: Copyright Statement
 
 # 版权声明
 
-本项目旨在教学数独技巧。其作者为**杏山千纱（Kyouyama Kazusa）**。
+本项目旨在教学数独技巧。其作者为**杏山千纱（Kyōyama Kazusa）**。
 
 该项目采用 [CC-BY-4.0 International 知识共享协议](https://creativecommons.org/licenses/by/4.0/)为公众免费开放阅读。
 
