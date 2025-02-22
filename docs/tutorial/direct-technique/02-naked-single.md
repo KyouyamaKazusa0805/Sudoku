@@ -8,7 +8,7 @@ description: Naked Single
 
 ## 例子 1 <a href="#example-1" id="example-1"></a>
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 1</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 1</p></figcaption></figure>
 
 如图所示。这一次我们思考逻辑从找缺少的数字改成聚焦到单元格本身上。
 
@@ -26,7 +26,7 @@ description: Naked Single
 
 我们再来看一则例子。这个例子观察上比刚才那一个要难一些。
 
-<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 2</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 2</p></figcaption></figure>
 
 这个例子我们就不能再看宫了。这一次我们要看行。
 
@@ -36,7 +36,7 @@ description: Naked Single
 
 下面我们再来看一个题，不过这个题就留给你自己思考了。
 
-<figure><img src="../.gitbook/assets/image (9) (1) (1).png" alt="" width="375"><figcaption><p>例子 3</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 3</p></figcaption></figure>
 
 ## 唯一余数的观察 <a href="#spotting-of-naked-single" id="spotting-of-naked-single"></a>
 

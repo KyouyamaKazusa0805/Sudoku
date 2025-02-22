@@ -12,7 +12,7 @@ description: Incomplete Wings
 
 ## 残缺 WXYZ-Wing（Incomplete WXYZ-Wing） <a href="#incomplete-wxyz-wing" id="incomplete-wxyz-wing"></a>
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="375"><figcaption><p>残缺 WXYZ-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (22).png" alt="" width="375"><figcaption><p>残缺 WXYZ-Wing</p></figcaption></figure>
 
 如图所示。这是一个 WXYZ-Wing 吗？还是 XYZ-Wing 呢？看起来 WXYZ-Wing 的话，好像 `r4c2` 上缺少了一个候选数 3；那是 XYZ-Wing 吗？好像也不是，因为格子已经不止 3 个了。
 
@@ -28,13 +28,13 @@ description: Incomplete Wings
 
 我们再来看一个例子。
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="375"><figcaption><p>另一个残缺 WXYZ-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption><p>另一个残缺 WXYZ-Wing</p></figcaption></figure>
 
 如图所示。这个题希望你自己推理。
 
 ## 残缺 VWXYZ-Wing（Incomplete VWXYZ-Wing） <a href="#incomplete-vwxyz-wing" id="incomplete-vwxyz-wing"></a>
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="375"><figcaption><p>残缺 VWXYZ-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt="" width="375"><figcaption><p>残缺 VWXYZ-Wing</p></figcaption></figure>
 
 如图所示。这次我们从 VWXYZ-Wing 里抠掉一个候选数。
 
@@ -51,7 +51,7 @@ description: Incomplete Wings
 
 我们再来看一个例子。
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt="" width="375"><figcaption><p>另一个残缺 VWXYZ-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt="" width="375"><figcaption><p>另一个残缺 VWXYZ-Wing</p></figcaption></figure>
 
 这个例子也希望你自己推理。
 

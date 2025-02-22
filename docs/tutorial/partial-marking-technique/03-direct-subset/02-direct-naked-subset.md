@@ -8,7 +8,7 @@ description: Direct Naked Subset
 
 ## 显性数对（Naked Pair） <a href="#naked-pair" id="naked-pair"></a>
 
-<figure><img src="../../.gitbook/assets/image (18).png" alt="" width="375"><figcaption><p>显性数对 + 宫排除</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (18) (1).png" alt="" width="375"><figcaption><p>显性数对 + 宫排除</p></figcaption></figure>
 
 如图所示，这一次我们把思路转过来，不用数字作排除的逻辑，而是使用唯一余数的数数的逻辑。
 
@@ -24,7 +24,7 @@ description: Direct Naked Subset
 
 下面我们来看下规格为 3 的逻辑。
 
-<figure><img src="../../.gitbook/assets/image (19).png" alt="" width="375"><figcaption><p>显性三数组 + 唯一余数</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (19) (1).png" alt="" width="375"><figcaption><p>显性三数组 + 唯一余数</p></figcaption></figure>
 
 我们先看 `r1c5`。这个单元格里可以填入的数字只有 1、2、6，别的数字在所在的行、列、宫里都有出现过了。其次再来看 `r3c4`。恰好，`r3c4` 也只能是 1、2、6。`r3c5` 也是如此。
 
@@ -40,7 +40,7 @@ description: Direct Naked Subset
 
 和前面隐性四数组描述的内容一致，**显性四数组**（Naked Quadruple）的规格已经比较大了，所以在平时做题的时候很难能够遇到这样的结构，所以带着大家看一下就行了。
 
-<figure><img src="../../.gitbook/assets/image (20).png" alt="" width="375"><figcaption><p>显性四数组 + 宫排除</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20) (1).png" alt="" width="375"><figcaption><p>显性四数组 + 宫排除</p></figcaption></figure>
 
 如图所示。观察 `b7`，我们通过唯一余数的操作可以依次得到 `r7c3` 只能是 4、6、7、9，`r8c2` 只能是 4、9，`r8c3` 只能是 4、7、9，`r9c3` 只能是 4、6、7。
 
