@@ -37,6 +37,8 @@
   * [残缺的分支匹配](candidate-technique-basics/04-wings/02-incomplete-wings.md)
 * [唯一矩形](candidate-technique-basics/05-unique-rectangle/README.md)
   * [唯一矩形的基本推理](candidate-technique-basics/05-unique-rectangle/01-reasoning-of-unique-rectangle.md)
+  * [唯一矩形的类型](candidate-technique-basics/05-unique-rectangle/02-subtypes-of-unique-rectangle.md)
+  * [残缺唯一矩形](candidate-technique-basics/05-unique-rectangle/03-incomplete-unique-rectangle.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

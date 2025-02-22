@@ -10,7 +10,7 @@ description: Direct Complex Single
 
 ## 例子 1：串行使用 <a href="#example-1" id="example-1"></a>
 
-<figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption><p>宫区块 + 隐性数对 + 宫排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (21) (1).png" alt=""><figcaption><p>宫区块 + 隐性数对 + 宫排除</p></figcaption></figure>
 
 如图所示，我们先看左边的图，然后再看右边的图。左图里展示的是一个宫区块，得到的是 `b5` 的 6 区块结构。于是，我们可以得到 `r4c2 <> 6` 的结论。
 
@@ -22,7 +22,7 @@ description: Direct Complex Single
 
 前面的例子是一步一步这么下来的。下面我们来看一个出数需要同时直接依赖两个区块的例子。
 
-<figure><img src="../.gitbook/assets/image (22).png" alt="" width="375"><figcaption><p>两个宫区块 + 唯一余数</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (22) (1).png" alt="" width="375"><figcaption><p>两个宫区块 + 唯一余数</p></figcaption></figure>
 
 如图所示。`b7` 有个 5 的宫排除。我们先忽略它（实际上也帮不上什么忙）。
 
