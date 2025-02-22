@@ -98,7 +98,7 @@ description: Subtypes of Unique Rectangle
 
 至此，隐性数组的部分也全部讲完了。
 
-### 类型 3 里的显隐性互补
+### 类型 3 里的显隐性互补 <a href="#law-of-complement-in-type-3" id="law-of-complement-in-type-3"></a>
 
 不知道你有没有细看这些例子。在唯一矩形里用到的数组其实也是具备显隐性互补的特征的，不过因为它中间用到的空格有一小块是不定的，所以不如直接的数组看起来互补性那么直观。
 
