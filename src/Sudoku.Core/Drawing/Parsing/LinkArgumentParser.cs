@@ -21,7 +21,7 @@ internal sealed class LinkArgumentParser : ArgumentParser
 			"chain"
 				=> (start, end, isStrong) => new ChainLinkViewNode(colorIdentifier, (CandidateMap)start, (CandidateMap)end, (bool)isStrong!),
 			"conjugate"
-				=> (start, end, digit) => new ConjugateLinkViewNode(colorIdentifier, (Cell)start, (Cell)end, (Digit)digit!),
+				=> (start, end, digit) => new ConjugateLinkViewNode(colorIdentifier, (Cell)start, (Cell)end, (Digit)digit! + 1),
 			_
 				=> throw new FormatException($"Invalid link kind string: '{linkKeyword}'.")
 		};
