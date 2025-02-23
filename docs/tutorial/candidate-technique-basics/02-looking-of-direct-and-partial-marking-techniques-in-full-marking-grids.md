@@ -151,7 +151,7 @@ $$
 
 有些时候，互补过去可能看起来并不是那么正常。下面我们来看一则例子。
 
-<figure><img src="../.gitbook/assets/image (15) (1).png" alt=""><figcaption><p>互补不正常的情况</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15) (1) (1).png" alt=""><figcaption><p>互补不正常的情况</p></figcaption></figure>
 
 如图所示，左边是一个隐性数对。按道理来说，取出其他空格就可以直接转为显性四数组（因为空格就 6 个，2 + 4 = 6）。
 

@@ -39,6 +39,10 @@
   * [唯一矩形的基本推理](candidate-technique-basics/05-unique-rectangle/01-reasoning-of-unique-rectangle.md)
   * [唯一矩形的类型](candidate-technique-basics/05-unique-rectangle/02-subtypes-of-unique-rectangle.md)
   * [残缺唯一矩形](candidate-technique-basics/05-unique-rectangle/03-incomplete-unique-rectangle.md)
+* [可规避矩形（AR）](candidate-technique-basics/06-avoidable-rectangle.md)
+* [唯一环（UL）](candidate-technique-basics/07-unique-loop/README.md)
+  * [唯一环的基本推理](candidate-technique-basics/07-unique-loop/01-reasoning-of-unique-loop.md)
+  * [唯一环的形成条件](candidate-technique-basics/07-unique-loop/wei-yi-huan-de-xing-cheng-tiao-jian.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

@@ -2,7 +2,7 @@
 description: Law of Leftover
 ---
 
-# 割补
+# 割补（LoL）
 
 下面我们来学习新的技巧类型：**局部标记技巧**（Partial-Marking Technique），也简称为**局标技巧**。局标技巧指的是，在前面学到的技巧里已经无法直接得到结论的时候，就需要使用到辅助信息了。而这些信息无法直接得到结论，而是辅助排除和唯一余数技巧一起才能得到结论，属于是比排除和唯一余数更高一级的技巧类型。
 
@@ -18,7 +18,7 @@ description: Law of Leftover
 
 ## 例子 1 <a href="#example-1" id="example-1"></a>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 1 - 割补推导部分</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 1 - 割补推导部分</p></figcaption></figure>
 
 如图所示。我们将视角调整到 `b5` 和 `c5` 之中。
 
@@ -32,7 +32,7 @@ description: Law of Leftover
 
 当我们得到这一个结论后，我们继续往后看。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 1 - 宫排除部分</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 1 - 宫排除部分</p></figcaption></figure>
 
 如图所示。当我们得到前面的结论后，三角形位置 `r3c5` 就不能填 4 了（因为这个单元格是原本填 1、5、6、9 的部分，它压根没有填 4 的机会了）。而根据宫排除，我们可以得到，`b2` 里填入 4 的位置只剩下了 `r3c4` 了。所以，`r3c4 = 4` 是本题的结论。
 
@@ -42,17 +42,17 @@ description: Law of Leftover
 
 下面我们来看另外一则例子。用法也是类似的，所以我觉得你可以自己理解它了。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 2 - 割补部分</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 2 - 割补部分</p></figcaption></figure>
 
 这里我们有这样的割补的结构。然后我们可以得到一个宫排除的结论。
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 2 - 宫排除部分</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 2 - 宫排除部分</p></figcaption></figure>
 
 这个例子就希望你自行推理了。
 
 ## 例子 3 <a href="#example-3" id="example-3"></a>
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 3</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 3</p></figcaption></figure>
 
 这个例子也希望你自己看。不过这一次我加大难度。请找出这个割补后可以得到的填数结论。
 

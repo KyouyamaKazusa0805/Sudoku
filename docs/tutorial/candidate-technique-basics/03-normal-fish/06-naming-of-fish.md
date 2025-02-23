@@ -56,7 +56,7 @@ description: Naming of Fish
 
 叫 X-Wing 的战机是哪里来的呢？它来自于星球大战这部电影。它大概长这样：
 
-<figure><img src="../../.gitbook/assets/image (8) (1).png" alt="" width="375"><figcaption><p>X-Wing 战机</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt="" width="375"><figcaption><p>X-Wing 战机</p></figcaption></figure>
 
 > 图源：[https://static.wikia.nocookie.net/starwars/images/2/22/RedFive\_X-wing\_SWB.png/revision/latest?cb=20160915042221](https://static.wikia.nocookie.net/starwars/images/2/22/RedFive_X-wing_SWB.png/revision/latest?cb=20160915042221)
 
@@ -66,7 +66,7 @@ description: Naming of Fish
 
 三阶鱼的名字 Swordfish 也不是随便取的。不过，它并非来自于海里游的鱼。和 X-Wing 的来源类似，三阶鱼的名字来自于一架叫做 Fairey Swordfish 的飞机。这种飞机在飞行的时候刚好是三层机翼的样子。
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>Fairey Swordfish 飞机</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>Fairey Swordfish 飞机</p></figcaption></figure>
 
 > 图源：[https://underwatermalta.org/discover/fairy-swordfish/](https://underwatermalta.org/discover/fairy-swordfish/)
 

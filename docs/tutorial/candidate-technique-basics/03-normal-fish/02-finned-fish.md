@@ -8,7 +8,7 @@ description: Finned Fish
 
 ## 二阶鳍鱼（Finned X-Wing） <a href="#finned-x-wing" id="finned-x-wing"></a>
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt="" width="375"><figcaption><p>二阶鳍鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1).png" alt="" width="375"><figcaption><p>二阶鳍鱼</p></figcaption></figure>
 
 如图所示。我们发现，配色比二阶鱼都了一个：蓝色。
 
@@ -25,7 +25,7 @@ description: Finned Fish
 
 ## 三阶鳍鱼（Finned Swordfish） <a href="#finned-swordfish" id="finned-swordfish"></a>
 
-<figure><img src="../../.gitbook/assets/image (10) (1).png" alt="" width="375"><figcaption><p>三阶鳍鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1).png" alt="" width="375"><figcaption><p>三阶鳍鱼</p></figcaption></figure>
 
 如图所示。请观察 `r189` 这三行的数字 7。
 
@@ -42,7 +42,7 @@ description: Finned Fish
 
 下面我们来看规格为 4 的情况。
 
-<figure><img src="../../.gitbook/assets/image (11) (1).png" alt="" width="375"><figcaption><p>四阶鳍鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1) (1).png" alt="" width="375"><figcaption><p>四阶鳍鱼</p></figcaption></figure>
 
 如图所示。我们把这个题里的 `r6c7(9)` 视为鱼鳍，假设它的两种情况：
 
@@ -67,7 +67,7 @@ description: Finned Fish
 
 我们还是拿规格最小的二阶鳍鱼举例。
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt="" width="375"><figcaption><p>还是前面那个二阶鳍鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1).png" alt="" width="375"><figcaption><p>还是前面那个二阶鳍鱼</p></figcaption></figure>
 
 如图所示。这是刚才那个例子。我拿这个例子给各位解释我刚才说的第二点到底是什么意思。我们先忽略 `r1c6(7)` 的存在，这里是为了说明鱼的形成，所以暂时先不要它，当他不在盘面里。
 
@@ -90,7 +90,7 @@ description: Finned Fish
 
 显然，鱼鳍在同一个题里不一定非得只有一个。
 
-<figure><img src="../../.gitbook/assets/image (12) (1).png" alt="" width="375"><figcaption><p>两个鱼鳍的二阶鳍鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1) (1).png" alt="" width="375"><figcaption><p>两个鱼鳍的二阶鳍鱼</p></figcaption></figure>
 
 如图所示，这个题就有两个鱼鳍。
 
@@ -119,7 +119,7 @@ description: Finned Fish
 
 另外，看起来似乎鱼鳍最多就只能两个。因为再多就容不下同一个宫了。实际上不是的。鱼鳍最多可以有 4 个。下面就是一则有 4 个鱼鳍的题目：
 
-<figure><img src="../../.gitbook/assets/image (13) (1).png" alt="" width="375"><figcaption><p>有四个鱼鳍的三阶鳍鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1) (1).png" alt="" width="375"><figcaption><p>有四个鱼鳍的三阶鳍鱼</p></figcaption></figure>
 
 如图所示。这是一个三阶鳍鱼，并有四个鱼鳍 `r23c89(1)` 。
 
@@ -129,7 +129,7 @@ description: Finned Fish
 
 我们再来看一则例子。
 
-<figure><img src="../../.gitbook/assets/image (14) (1).png" alt="" width="375"><figcaption><p>这都啥玩意儿啊？</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1) (1).png" alt="" width="375"><figcaption><p>这都啥玩意儿啊？</p></figcaption></figure>
 
 如图所示。和前面的鱼鳍的推理方式完全一样地思考这个题，就会有点奇怪：
 

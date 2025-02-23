@@ -12,7 +12,7 @@ description: Incomplete Unique Rectangle
 
 先来看残缺的类型 1（标准的类型）。这个类型在解释唯一矩形存在残缺为什么推理仍然有效的那一部分内容里已经展示过一个例子了，不过这里还是继续展示一下。
 
-<figure><img src="../../.gitbook/assets/image (15).png" alt="" width="375"><figcaption><p>残缺类型 1</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15) (1).png" alt="" width="375"><figcaption><p>残缺类型 1</p></figcaption></figure>
 
 如图所示。可以明显发现，删数少了一个数。因为唯一矩形的基本推理需要三个格子都有两个候选数，显然他们是不能残缺的（不然就成唯一余数了），所以只能残缺到删数上去。
 
@@ -22,19 +22,19 @@ description: Incomplete Unique Rectangle
 
 ## 类型 2 <a href="#type-2" id="type-2"></a>
 
-<figure><img src="../../.gitbook/assets/image (16).png" alt="" width="375"><figcaption><p>残缺类型 2</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (16) (1).png" alt="" width="375"><figcaption><p>残缺类型 2</p></figcaption></figure>
 
 如图所示。这题残缺的数字是 `r3c8(5)`。
 
 ## 类型 3 <a href="#type-3" id="type-3"></a>
 
-<figure><img src="../../.gitbook/assets/image (17).png" alt="" width="375"><figcaption><p>残缺类型 3（显性数组）</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (17) (1).png" alt="" width="375"><figcaption><p>残缺类型 3（显性数组）</p></figcaption></figure>
 
 如图所示。这题缺少的数字是 `r1c2(6)`。
 
 ## 类型 4 <a href="#type-4" id="type-4"></a>
 
-<figure><img src="../../.gitbook/assets/image (18).png" alt="" width="375"><figcaption><p>残缺类型 4</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (18) (1).png" alt="" width="375"><figcaption><p>残缺类型 4</p></figcaption></figure>
 
 如图所示。这题缺少的候选数是 `r6c6(9)`。和类型 1 一样，也是缺少一个删数。
 
@@ -42,7 +42,7 @@ description: Incomplete Unique Rectangle
 
 ## 类型 5 <a href="#type-5" id="type-5"></a>
 
-<figure><img src="../../.gitbook/assets/image (19).png" alt="" width="375"><figcaption><p>残缺类型 5</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (19) (1).png" alt="" width="375"><figcaption><p>残缺类型 5</p></figcaption></figure>
 
 如图所示。这题缺少的数字是 `r7c3(5)`。
 
@@ -50,7 +50,7 @@ description: Incomplete Unique Rectangle
 
 类型 6 由于主要依赖的是共轭对，所以缺少的数字可以多一个。
 
-<figure><img src="../../.gitbook/assets/image (20).png" alt="" width="375"><figcaption><p>残缺类型 6（面目全非版）</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20) (1).png" alt="" width="375"><figcaption><p>残缺类型 6（面目全非版）</p></figcaption></figure>
 
 如图所示。这题缺少的数字是 `{r3c9, r6c7}(8)`。这题缺了两个数字仍然不影响推理，我们来看看为什么。
 
