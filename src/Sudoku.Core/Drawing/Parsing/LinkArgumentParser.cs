@@ -29,9 +29,14 @@ internal sealed class LinkArgumentParser : ArgumentParser
 		var result = new List<ViewNode>();
 		for (var i = 0; i < linkArgsLength;)
 		{
-			var left = linkArgs[i];
-			var right = linkArgs[i + 1];
+			var left = i < linkArgsLength ? linkArgs[i] : null;
+			var right = i + 1 < linkArgsLength ? linkArgs[i + 1] : null;
 			var extra = i + 2 < linkArgsLength ? linkArgs[i + 2] : null;
+			if (left is null || right is null)
+			{
+				break;
+			}
+
 			var (leftArg, rightArg, extraArg) = linkKeyword switch
 			{
 				"cell"
