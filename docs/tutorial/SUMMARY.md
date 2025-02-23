@@ -14,7 +14,7 @@
 
 ## 局部标记技巧 <a href="#partial-marking-technique" id="partial-marking-technique"></a>
 
-* [割补](partial-marking-technique/01-law-of-leftover.md)
+* [割补（LoL）](partial-marking-technique/01-law-of-leftover.md)
 * [直观区块](partial-marking-technique/02-direct-locked-candidates.md)
 * [直观数组](partial-marking-technique/03-direct-subset/README.md)
   * [直观隐性数组](partial-marking-technique/03-direct-subset/01-direct-hidden-subset.md)
@@ -35,7 +35,7 @@
 * [分支匹配](candidate-technique-basics/04-wings/README.md)
   * [分支匹配的基本推理](candidate-technique-basics/04-wings/01-reasoning-of-wings.md)
   * [残缺的分支匹配](candidate-technique-basics/04-wings/02-incomplete-wings.md)
-* [唯一矩形](candidate-technique-basics/05-unique-rectangle/README.md)
+* [唯一矩形（UR）](candidate-technique-basics/05-unique-rectangle/README.md)
   * [唯一矩形的基本推理](candidate-technique-basics/05-unique-rectangle/01-reasoning-of-unique-rectangle.md)
   * [唯一矩形的类型](candidate-technique-basics/05-unique-rectangle/02-subtypes-of-unique-rectangle.md)
   * [残缺唯一矩形](candidate-technique-basics/05-unique-rectangle/03-incomplete-unique-rectangle.md)
