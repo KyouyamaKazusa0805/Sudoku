@@ -130,6 +130,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		return (UniqueLoopPattern[])[.. result];
 
 
+		// This may raise a bug that type 3 cannot be found. Example:
+		// 0000291000006+1+8+9001+960+4580+2401+500+290500080+40706000+45030084006+29+600007+300+904860+7+5+1:312 318 718 222 322 428 342 253 254 354 356 764 372 282
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool hasBivalueCell(Cell previous, Cell current) => BivalueCells.Contains(previous) || BivalueCells.Contains(current);
 
