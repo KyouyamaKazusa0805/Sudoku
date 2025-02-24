@@ -19,5 +19,169 @@
             <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
             <returns>A sequence that allows user iterating on it in asynchronous way.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.AsyncAnalyzer">
+            <summary>
+            Represents an analyzer that can asynchronously analyze a puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.AsyncAnalyzer.AnalyzeAsync(Sudoku.Analytics.Analyzer,Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.StepGathererProgressPresenter},System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously analyzes the specified puzzle.
+            </summary>
+            <param name="analyzer">The analyzer.</param>
+            <param name="grid">The grid to be analyzed.</param>
+            <param name="progress">The progress reporter.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>An <see cref="T:Sudoku.Analytics.AsyncAnalyzerAwaitable"/> object that can analyze the puzzle asynchronously.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.AsyncAnalyzerAwaitable">
+            <summary>
+            Represents an awaitable rule on analysis for a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaitable._grid">
+            <summary>
+            Indicates the reference to the grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaitable._cancellationToken">
+            <summary>
+            Indicates the cancellation token that can cancel the current operation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaitable._analyzer">
+            <summary>
+            Indicates the backing analyzer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaitable._progress">
+            <summary>
+            Indicates the progress reporter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.AsyncAnalyzerAwaitable.#ctor(Sudoku.Analytics.Analyzer,Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.StepGathererProgressPresenter},System.Threading.CancellationToken)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Analytics.AsyncAnalyzerAwaitable"/> object.
+            </summary>
+            <param name="analyzer">Indicates the analyzer.</param>
+            <param name="grid">Indicates the grid.</param>
+            <param name="progress">The progress reporter.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.AsyncAnalyzerAwaitable.GetAwaiter">
+            <summary>
+            Returns an <see cref="T:Sudoku.Analytics.AsyncAnalyzerAwaiter"/> object that supports the internal awaiting rule of analyzing a puzzle.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Analytics.AsyncAnalyzerAwaiter"/> object.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.AsyncAnalyzerAwaiter">
+            <summary>
+            Represents an awaiter object.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._grid">
+            <summary>
+            Indicates the backing grid to be analyzed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._lock">
+            <summary>
+            Indicates the lock.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._analyzer">
+            <summary>
+            Indicates the backing analyzer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._progress">
+            <summary>
+            Indicates the progress reporter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._isCompleted">
+            <summary>
+            Indicates whether the operation is completed.
+            </summary>
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            <para>
+            The field isn't marked as <see langword="volatile" />,
+            because the writting operation uses <see langword="lock" /> statement.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._cancellationToken">
+            <summary>
+            Indicates the cancellation token that can cancel the current operation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._result">
+            <summary>
+            Indicates the result.
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._isCompleted" path="/remarks"/>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._exception">
+            <summary>
+            Indicates the exception thrown.
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._isCompleted" path="/remarks"/>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._continuation">
+            <summary>
+            Indicates the callback action on analysis operation having been finished.
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._isCompleted" path="/remarks"/>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.AsyncAnalyzerAwaiter.#ctor(Sudoku.Analytics.Analyzer,Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.StepGathererProgressPresenter},System.Threading.CancellationToken)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Analytics.AsyncAnalyzerAwaiter"/> instance via the specified analyzer.
+            </summary>
+            <param name="analyzer">Indicates the analyzer.</param>
+            <param name="grid">Indicates the grid.</param>
+            <param name="progress">Indicates the progress reporter.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.AsyncAnalyzerAwaiter.IsCompleted">
+            <summary>
+            Indicates whether the operation is completed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AsyncAnalyzerAwaiter.Result">
+            <summary>
+            Indicates the result.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AsyncAnalyzerAwaiter.Exception">
+            <summary>
+            Indicates the exception thrown.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.AsyncAnalyzerAwaiter.GetResult">
+            <summary>
+            Returns the result value, or throw the internal exception if unhandled exception is encountered.
+            </summary>
+            <returns>The result value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AsyncAnalyzerAwaiter.OnCompleted(System.Action)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AsyncAnalyzerAwaiter.CoreOperation(System.Object)">
+            <summary>
+            Indicates the backing operation.
+            </summary>
+            <param name="state">An object containing information to be used by the callback method.</param>
+        </member>
     </members>
 </doc>

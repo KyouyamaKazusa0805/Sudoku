@@ -1,0 +1,184 @@
+namespace Sudoku.Analytics;
+
+/// <summary>
+/// Represents an awaiter object.
+/// </summary>
+public struct AsyncAnalyzerAwaiter : INotifyCompletion
+{
+	/// <summary>
+	/// Indicates the backing grid to be analyzed.
+	/// </summary>
+	private readonly Grid _grid;
+
+	/// <summary>
+	/// Indicates the lock.
+	/// </summary>
+	private readonly Lock _lock = new();
+
+	/// <summary>
+	/// Indicates the backing analyzer.
+	/// </summary>
+	private readonly Analyzer _analyzer;
+
+	/// <summary>
+	/// Indicates the progress reporter.
+	/// </summary>
+	private readonly IProgress<StepGathererProgressPresenter>? _progress;
+
+	/// <summary>
+	/// Indicates whether the operation is completed.
+	/// </summary>
+	/// <remarks>
+	/// <include file="../../../global-doc-comments.xml" path="/g/developer-notes"/>
+	/// <para>
+	/// The field isn't marked as <see langword="volatile"/>,
+	/// because the writting operation uses <see langword="lock"/> statement.
+	/// </para>
+	/// </remarks>
+	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
+	private bool _isCompleted;
+
+	/// <summary>
+	/// Indicates the cancellation token that can cancel the current operation.
+	/// </summary>
+	[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
+	private CancellationToken _cancellationToken;
+
+	/// <summary>
+	/// Indicates the result.
+	/// </summary>
+	/// <remarks>
+	/// <inheritdoc cref="_isCompleted" path="/remarks"/>
+	/// </remarks>
+	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
+	private AnalysisResult? _result;
+
+	/// <summary>
+	/// Indicates the exception thrown.
+	/// </summary>
+	/// <remarks>
+	/// <inheritdoc cref="_isCompleted" path="/remarks"/>
+	/// </remarks>
+	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
+	private Exception? _exception;
+
+	/// <summary>
+	/// Indicates the callback action on analysis operation having been finished.
+	/// </summary>
+	/// <remarks>
+	/// <inheritdoc cref="_isCompleted" path="/remarks"/>
+	/// </remarks>
+	private Action? _continuation;
+
+
+	/// <summary>
+	/// Initializes an <see cref="AsyncAnalyzerAwaiter"/> instance via the specified analyzer.
+	/// </summary>
+	/// <param name="analyzer">Indicates the analyzer.</param>
+	/// <param name="grid">Indicates the grid.</param>
+	/// <param name="progress">Indicates the progress reporter.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+	public AsyncAnalyzerAwaiter(
+		Analyzer analyzer,
+		ref readonly Grid grid,
+		IProgress<StepGathererProgressPresenter>? progress,
+		CancellationToken cancellationToken
+	)
+	{
+		(_grid, _analyzer, _progress, _cancellationToken) = (grid, analyzer, progress, cancellationToken);
+
+		// Use thread pool to execute the analysis operation.
+		ThreadPool.QueueUserWorkItem(CoreOperation);
+	}
+
+
+	/// <summary>
+	/// Indicates whether the operation is completed.
+	/// </summary>
+	[MemberNotNullWhen(true, nameof(Result))]
+	public readonly bool IsCompleted
+	{
+		get
+		{
+			lock (_lock)
+			{
+				return _isCompleted;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the result.
+	/// </summary>
+	public readonly AnalysisResult? Result
+	{
+		get
+		{
+			lock (_lock)
+			{
+				return _result;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the exception thrown.
+	/// </summary>
+	public readonly Exception? Exception
+	{
+		get
+		{
+			lock (_lock)
+			{
+				return _exception;
+			}
+		}
+	}
+
+
+	/// <summary>
+	/// Returns the result value, or throw the internal exception if unhandled exception is encountered.
+	/// </summary>
+	/// <returns>The result value.</returns>
+	public readonly AnalysisResult? GetResult() => _exception is null ? _result : throw _exception;
+
+	/// <inheritdoc/>
+	public void OnCompleted(Action continuation)
+	{
+		lock (_lock)
+		{
+			if (IsCompleted)
+			{
+				continuation();
+			}
+			else
+			{
+				_continuation = continuation;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the backing operation.
+	/// </summary>
+	/// <param name="state">An object containing information to be used by the callback method.</param>
+	private void CoreOperation(object? state)
+	{
+		try
+		{
+			_result = _analyzer.Analyze(in _grid, _progress, _cancellationToken);
+		}
+		catch (Exception ex)
+		{
+			_exception = ex;
+		}
+		finally
+		{
+			_isCompleted = true;
+			lock (_lock)
+			{
+				_continuation?.Invoke();
+			}
+		}
+	}
+}
