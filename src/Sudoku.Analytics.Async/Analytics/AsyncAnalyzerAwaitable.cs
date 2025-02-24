@@ -61,22 +61,11 @@ public readonly ref struct AsyncAnalyzerAwaitable
 	/// </summary>
 	/// <param name="original">The original value.</param>
 	/// <param name="continueOnCapturedContext">The new value to be assigned to <see cref="_continueOnCapturedContext"/>.</param>
-	private AsyncAnalyzerAwaitable(scoped ref readonly AsyncAnalyzerAwaitable original, bool continueOnCapturedContext) :
+	internal AsyncAnalyzerAwaitable(scoped ref readonly AsyncAnalyzerAwaitable original, bool continueOnCapturedContext) :
 		this(original._analyzer, in original._grid, original._progress, continueOnCapturedContext, original._cancellationToken)
 	{
 	}
 
-
-	/// <summary>
-	/// Updates the awaiting rule to specify whether the execution context will be back to the previous one,
-	/// instead of just using the current context, to reduce memory allocation.
-	/// </summary>
-	/// <param name="continueOnCapturedContext">
-	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
-	/// </param>
-	/// <returns>A new <see cref="AsyncAnalyzerAwaitable"/> instance, with context switching option updated.</returns>
-	public AsyncAnalyzerAwaitable ConfigureAwait(bool continueOnCapturedContext)
-		=> new(in this, continueOnCapturedContext);
 
 	/// <summary>
 	/// Returns an <see cref="AsyncAnalyzerAwaiter"/> object that supports the internal awaiting rule of analyzing a puzzle.

@@ -34,6 +34,17 @@
             <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
             <returns>An <see cref="T:Sudoku.Analytics.AsyncAnalyzerAwaitable"/> object that can analyze the puzzle asynchronously.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.AsyncAnalyzer.ConfigureAwait(Sudoku.Analytics.AsyncAnalyzerAwaitable@,System.Boolean)">
+            <summary>
+            Updates the awaiting rule to specify whether the execution context will be back to the previous one,
+            instead of just using the current context, to reduce memory allocation.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="continueOnCapturedContext">
+            Indicates whether to continue works on captured context instead of reverting back to previous context.
+            </param>
+            <returns>A new <see cref="T:Sudoku.Analytics.AsyncAnalyzerAwaitable"/> instance, with context switching option updated.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.AsyncAnalyzerAwaitable">
             <summary>
             Represents an awaitable rule on analysis for a puzzle.
@@ -82,16 +93,6 @@
             </summary>
             <param name="original">The original value.</param>
             <param name="continueOnCapturedContext">The new value to be assigned to <see cref="F:Sudoku.Analytics.AsyncAnalyzerAwaitable._continueOnCapturedContext"/>.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.AsyncAnalyzerAwaitable.ConfigureAwait(System.Boolean)">
-            <summary>
-            Updates the awaiting rule to specify whether the execution context will be back to the previous one,
-            instead of just using the current context, to reduce memory allocation.
-            </summary>
-            <param name="continueOnCapturedContext">
-            Indicates whether to continue works on captured context instead of reverting back to previous context.
-            </param>
-            <returns>A new <see cref="T:Sudoku.Analytics.AsyncAnalyzerAwaitable"/> instance, with context switching option updated.</returns>
         </member>
         <member name="M:Sudoku.Analytics.AsyncAnalyzerAwaitable.GetAwaiter">
             <summary>
