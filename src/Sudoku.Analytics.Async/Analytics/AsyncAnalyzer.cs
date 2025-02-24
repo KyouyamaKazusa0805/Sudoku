@@ -18,5 +18,5 @@ public static class AsyncAnalyzer
 		ref readonly Grid grid,
 		IProgress<StepGathererProgressPresenter>? progress = null,
 		CancellationToken cancellationToken = default
-	) => new(analyzer, in grid, progress, cancellationToken);
+	) => new(analyzer, in grid, progress, false, cancellationToken);
 }

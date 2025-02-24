@@ -3,8 +3,13 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Represents an awaiter object that analyzes the specified puzzle.
 /// </summary>
-public sealed class AsyncAnalyzerAwaiter : INotifyCompletion
+public sealed class AsyncAnalyzerAwaiter : ICriticalNotifyCompletion, INotifyCompletion
 {
+	/// <summary>
+	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
+	/// </summary>
+	private readonly bool _continueOnCapturedContext;
+
 	/// <summary>
 	/// Indicates the backing grid to be analyzed.
 	/// </summary>
@@ -75,15 +80,20 @@ public sealed class AsyncAnalyzerAwaiter : INotifyCompletion
 	/// <param name="analyzer">Indicates the analyzer.</param>
 	/// <param name="grid">Indicates the grid.</param>
 	/// <param name="progress">Indicates the progress reporter.</param>
+	/// <param name="continueOnCapturedContext">
+	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
+	/// </param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	public AsyncAnalyzerAwaiter(
 		Analyzer analyzer,
 		ref readonly Grid grid,
 		IProgress<StepGathererProgressPresenter>? progress,
+		bool continueOnCapturedContext,
 		CancellationToken cancellationToken
 	)
 	{
 		(_grid, _analyzer, _progress, _cancellationToken) = (grid, analyzer, progress, cancellationToken);
+		_continueOnCapturedContext = continueOnCapturedContext;
 
 		// Use thread pool to execute the analysis operation.
 		ThreadPool.QueueUserWorkItem(CoreOperation);
@@ -141,13 +151,34 @@ public sealed class AsyncAnalyzerAwaiter : INotifyCompletion
 	public AnalysisResult GetResult() => _exception is null ? _result! : throw _exception;
 
 	/// <inheritdoc/>
-	public void OnCompleted(Action continuation)
+	public void OnCompleted(Action continuation) => OnCompletedInternal(false, continuation);
+
+	/// <inheritdoc/>
+	public void UnsafeOnCompleted(Action continuation) => OnCompletedInternal(true, continuation);
+
+	/// <summary>
+	/// Executes a custom method on work having been completed.
+	/// </summary>
+	/// <param name="continueOnCapturedContext">Indicates whether to capture and marshal back to the current context.</param>
+	/// <param name="continuation">The method to be executed.</param>
+	private void OnCompletedInternal(bool continueOnCapturedContext, Action continuation)
 	{
 		lock (_lock)
 		{
 			if (IsCompleted)
 			{
-				ThreadPool.QueueUserWorkItem(_ => continuation());
+				if (continueOnCapturedContext)
+				{
+					ThreadPool.QueueUserWorkItem(callBack);
+				}
+				else
+				{
+					var context = ExecutionContext.Capture();
+					ThreadPool.QueueUserWorkItem(_ => ExecutionContext.Run(context!, callBack, null));
+				}
+
+
+				void callBack(object? _) => continuation();
 			}
 			else
 			{
@@ -182,7 +213,18 @@ public sealed class AsyncAnalyzerAwaiter : INotifyCompletion
 
 			if (continuation is not null)
 			{
-				ThreadPool.QueueUserWorkItem(_ => continuation());
+				if (_continueOnCapturedContext)
+				{
+					ThreadPool.QueueUserWorkItem(callBack);
+				}
+				else
+				{
+					var context = ExecutionContext.Capture();
+					ThreadPool.QueueUserWorkItem(_ => ExecutionContext.Run(context!, callBack, null));
+				}
+
+
+				void callBack(object? _) => continuation();
 			}
 		}
 	}
