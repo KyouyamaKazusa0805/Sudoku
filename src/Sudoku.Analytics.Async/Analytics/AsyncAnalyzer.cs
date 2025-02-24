@@ -29,6 +29,8 @@ public static class AsyncAnalyzer
 	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
 	/// </param>
 	/// <returns>A new <see cref="AsyncAnalyzerAwaitable"/> instance, with context switching option updated.</returns>
-	public static AsyncAnalyzerAwaitable ConfigureAwait(this scoped ref readonly AsyncAnalyzerAwaitable @this, bool continueOnCapturedContext)
-		=> new(in @this, continueOnCapturedContext);
+	public static AsyncAnalyzerAwaitable ConfigureAwait(
+		this scoped ref readonly AsyncAnalyzerAwaitable @this,
+		bool continueOnCapturedContext
+	) => new(in @this, continueOnCapturedContext);
 }
