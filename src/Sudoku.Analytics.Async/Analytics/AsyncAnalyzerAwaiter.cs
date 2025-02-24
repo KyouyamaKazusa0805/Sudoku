@@ -1,9 +1,9 @@
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Represents an awaiter object.
+/// Represents an awaiter object that analyzes the specified puzzle.
 /// </summary>
-public struct AsyncAnalyzerAwaiter : INotifyCompletion
+public sealed class AsyncAnalyzerAwaiter : INotifyCompletion
 {
 	/// <summary>
 	/// Indicates the backing grid to be analyzed.
@@ -50,7 +50,6 @@ public struct AsyncAnalyzerAwaiter : INotifyCompletion
 	/// <remarks>
 	/// <inheritdoc cref="_isCompleted" path="/remarks"/>
 	/// </remarks>
-	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
 	private AnalysisResult? _result;
 
 	/// <summary>
@@ -59,7 +58,6 @@ public struct AsyncAnalyzerAwaiter : INotifyCompletion
 	/// <remarks>
 	/// <inheritdoc cref="_isCompleted" path="/remarks"/>
 	/// </remarks>
-	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
 	private Exception? _exception;
 
 	/// <summary>
@@ -95,8 +93,8 @@ public struct AsyncAnalyzerAwaiter : INotifyCompletion
 	/// <summary>
 	/// Indicates whether the operation is completed.
 	/// </summary>
-	[MemberNotNullWhen(true, nameof(Result))]
-	public readonly bool IsCompleted
+	[MemberNotNullWhen(true, nameof(Result), nameof(_result))]
+	public bool IsCompleted
 	{
 		get
 		{
@@ -110,7 +108,7 @@ public struct AsyncAnalyzerAwaiter : INotifyCompletion
 	/// <summary>
 	/// Indicates the result.
 	/// </summary>
-	public readonly AnalysisResult? Result
+	public AnalysisResult? Result
 	{
 		get
 		{
@@ -124,7 +122,7 @@ public struct AsyncAnalyzerAwaiter : INotifyCompletion
 	/// <summary>
 	/// Indicates the exception thrown.
 	/// </summary>
-	public readonly Exception? Exception
+	public Exception? Exception
 	{
 		get
 		{
@@ -140,7 +138,7 @@ public struct AsyncAnalyzerAwaiter : INotifyCompletion
 	/// Returns the result value, or throw the internal exception if unhandled exception is encountered.
 	/// </summary>
 	/// <returns>The result value.</returns>
-	public readonly AnalysisResult? GetResult() => _exception is null ? _result : throw _exception;
+	public AnalysisResult GetResult() => _exception is null ? _result! : throw _exception;
 
 	/// <inheritdoc/>
 	public void OnCompleted(Action continuation)
@@ -149,7 +147,7 @@ public struct AsyncAnalyzerAwaiter : INotifyCompletion
 		{
 			if (IsCompleted)
 			{
-				continuation();
+				ThreadPool.QueueUserWorkItem(_ => continuation());
 			}
 			else
 			{
@@ -174,10 +172,17 @@ public struct AsyncAnalyzerAwaiter : INotifyCompletion
 		}
 		finally
 		{
-			_isCompleted = true;
+			var continuation = default(Action);
 			lock (_lock)
 			{
-				_continuation?.Invoke();
+				_isCompleted = true;
+				continuation = _continuation;
+				_continuation = null;
+			}
+
+			if (continuation is not null)
+			{
+				ThreadPool.QueueUserWorkItem(_ => continuation());
 			}
 		}
 	}

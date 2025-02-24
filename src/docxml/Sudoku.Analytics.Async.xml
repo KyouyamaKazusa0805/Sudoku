@@ -76,7 +76,7 @@
         </member>
         <member name="T:Sudoku.Analytics.AsyncAnalyzerAwaiter">
             <summary>
-            Represents an awaiter object.
+            Represents an awaiter object that analyzes the specified puzzle.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.AsyncAnalyzerAwaiter._grid">
