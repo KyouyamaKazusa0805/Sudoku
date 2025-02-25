@@ -167,24 +167,34 @@ public sealed class AsyncAnalyzerAwaiter : ICriticalNotifyCompletion, INotifyCom
 		{
 			if (IsCompleted)
 			{
-				if (continueOnCapturedContext)
-				{
-					ThreadPool.QueueUserWorkItem(callBack);
-				}
-				else
-				{
-					var context = ExecutionContext.Capture();
-					ThreadPool.QueueUserWorkItem(_ => ExecutionContext.Run(context!, callBack, null));
-				}
-
-
-				void callBack(object? _) => continuation();
+				StartContinuation(continueOnCapturedContext, continuation);
 			}
 			else
 			{
 				_continuation = continuation;
 			}
 		}
+	}
+
+	/// <summary>
+	/// Determine whether we should switch execution context, and start continuation in thread pool from the context decided.
+	/// </summary>
+	/// <param name="continueOnCapturedContext">Indicates whether to capture and marshal back to the current context.</param>
+	/// <param name="continuation">The method to be executed.</param>
+	private void StartContinuation(bool continueOnCapturedContext, Action continuation)
+	{
+		if (continueOnCapturedContext)
+		{
+			ThreadPool.QueueUserWorkItem(callback);
+		}
+		else
+		{
+			var context = ExecutionContext.Capture();
+			ThreadPool.QueueUserWorkItem(_ => ExecutionContext.Run(context!, callback, null));
+		}
+
+
+		void callback(object? _) => continuation();
 	}
 
 	/// <summary>
@@ -203,7 +213,7 @@ public sealed class AsyncAnalyzerAwaiter : ICriticalNotifyCompletion, INotifyCom
 		}
 		finally
 		{
-			var continuation = default(Action);
+			Action? continuation;
 			lock (_lock)
 			{
 				_isCompleted = true;
@@ -213,18 +223,7 @@ public sealed class AsyncAnalyzerAwaiter : ICriticalNotifyCompletion, INotifyCom
 
 			if (continuation is not null)
 			{
-				if (_continueOnCapturedContext)
-				{
-					ThreadPool.QueueUserWorkItem(callBack);
-				}
-				else
-				{
-					var context = ExecutionContext.Capture();
-					ThreadPool.QueueUserWorkItem(_ => ExecutionContext.Run(context!, callBack, null));
-				}
-
-
-				void callBack(object? _) => continuation();
+				StartContinuation(_continueOnCapturedContext, continuation);
 			}
 		}
 	}

@@ -221,6 +221,13 @@
             <param name="continueOnCapturedContext">Indicates whether to capture and marshal back to the current context.</param>
             <param name="continuation">The method to be executed.</param>
         </member>
+        <member name="M:Sudoku.Analytics.AsyncAnalyzerAwaiter.StartContinuation(System.Boolean,System.Action)">
+            <summary>
+            Determine whether we should switch execution context, and start continuation in thread pool from the context decided.
+            </summary>
+            <param name="continueOnCapturedContext">Indicates whether to capture and marshal back to the current context.</param>
+            <param name="continuation">The method to be executed.</param>
+        </member>
         <member name="M:Sudoku.Analytics.AsyncAnalyzerAwaiter.CoreOperation(System.Object)">
             <summary>
             Indicates the backing operation.
