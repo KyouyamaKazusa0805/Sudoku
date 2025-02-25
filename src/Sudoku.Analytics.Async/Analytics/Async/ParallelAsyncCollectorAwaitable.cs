@@ -27,11 +27,8 @@ public readonly ref partial struct ParallelAsyncCollectorAwaitable : IStepGather
 	/// </summary>
 	/// <param name="collector">Indicates the collector.</param>
 	/// <param name="grid">Indicates the grid.</param>
-	/// <param name="continueOnCapturedContext">
-	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
-	/// </param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-	public ParallelAsyncCollectorAwaitable(Collector collector, ref readonly Grid grid, bool continueOnCapturedContext, CancellationToken cancellationToken)
+	public ParallelAsyncCollectorAwaitable(Collector collector, ref readonly Grid grid, CancellationToken cancellationToken)
 	{
 		_collector = collector;
 		_grid = ref grid;
