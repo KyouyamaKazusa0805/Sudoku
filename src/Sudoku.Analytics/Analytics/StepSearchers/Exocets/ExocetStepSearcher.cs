@@ -84,6 +84,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
+		return null;
 		ref readonly var grid = ref context.Grid;
 		var chuteIndexBox = (stackalloc int[3]);
 		foreach (var isRow in (true, false))

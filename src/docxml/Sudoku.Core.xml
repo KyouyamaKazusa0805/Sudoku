@@ -1090,32 +1090,6 @@
         <member name="M:Sudoku.Concepts.CandidateMap.System#IEquatable{Sudoku#Concepts#CandidateMap}#Equals(Sudoku.Concepts.CandidateMap)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.CandidateMarshal">
-            <summary>
-            Represents methods that operates with <see cref="T:System.Int32"/> values.
-            </summary>
-            <seealso cref="T:System.Int32"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Int32)">
-            <summary>
-            Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
-            </summary>
-            <param name="this">The cell to be converted.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing only one element of <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Int32[])">
-            <inheritdoc cref="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Span{System.Int32})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Span{System.Int32})">
-            <summary>
-            Converts the specified list of <see cref="T:System.Int32"/> instances into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
-            </summary>
-            <param name="this">The cells to be converted.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing all elements come from <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.ReadOnlySpan{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Span{System.Int32})"/>
-        </member>
         <member name="T:Sudoku.Concepts.CellMap">
             <summary>
             Encapsulates a binary series of cell state table.
@@ -5204,6 +5178,32 @@
             <summary>
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Primitives.CandidateMarshal">
+            <summary>
+            Represents methods that operates with <see cref="T:System.Int32"/> values.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CandidateMarshal.AsCandidateMap(System.Int32)">
+            <summary>
+            Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <param name="this">The cell to be converted.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing only one element of <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CandidateMarshal.AsCandidateMap(System.Int32[])">
+            <inheritdoc cref="M:Sudoku.Concepts.Primitives.CandidateMarshal.AsCandidateMap(System.Span{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CandidateMarshal.AsCandidateMap(System.Span{System.Int32})">
+            <summary>
+            Converts the specified list of <see cref="T:System.Int32"/> instances into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <param name="this">The cells to be converted.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing all elements come from <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CandidateMarshal.AsCandidateMap(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.Primitives.CandidateMarshal.AsCandidateMap(System.Span{System.Int32})"/>
         </member>
         <member name="T:Sudoku.Concepts.Primitives.CellMapOrCandidateMapPredicate`3">
             <summary>

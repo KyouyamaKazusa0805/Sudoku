@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Primitives;
 
 /// <summary>
 /// Represents methods that operates with <see cref="Candidate"/> values.

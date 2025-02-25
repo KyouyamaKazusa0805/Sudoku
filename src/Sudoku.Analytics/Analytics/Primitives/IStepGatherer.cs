@@ -53,7 +53,7 @@ public interface IStepGatherer<in TSelf, out TResult>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/csharp11/feature[@name='static-dim']"/>
 	/// </remarks>
-	protected static sealed void ApplySetters(TSelf instance)
+	public static sealed void ApplySetters(TSelf instance)
 	{
 		foreach (var setter in instance.Setters)
 		{
@@ -73,6 +73,6 @@ public interface IStepGatherer<in TSelf, out TResult>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/csharp11/feature[@name='static-dim']"/>
 	/// </remarks>
-	protected static sealed ReadOnlyMemory<StepSearcher> FilterStepSearchers(ReadOnlyMemory<StepSearcher> @in, StepSearcherRunningArea runningArea)
+	public static sealed ReadOnlyMemory<StepSearcher> FilterStepSearchers(ReadOnlyMemory<StepSearcher> @in, StepSearcherRunningArea runningArea)
 		=> from searcher in @in where searcher.RunningArea.HasFlag(runningArea) select searcher;
 }

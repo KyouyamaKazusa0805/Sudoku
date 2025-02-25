@@ -444,6 +444,12 @@ public sealed partial class WhipStepSearcher : StepSearcher
 								var groupedCells = (parentCandidates.Cells | currentCells).PeerIntersection
 									& HousesMap[currentCells[0].ToHouse(houseType)]
 									& CandidatesMap[currentDigit];
+								if (!groupedCells)
+								{
+									// Invalid case.
+									continue;
+								}
+
 								foreach (var cell in groupedCells)
 								{
 									candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + currentDigit));
