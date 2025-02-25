@@ -1,4 +1,4 @@
-namespace Sudoku.Solving;
+namespace Sudoku.Solving.Async;
 
 /// <summary>
 /// Provides with extension methods on <see cref="ISolutionEnumerableSolver"/>.
@@ -52,8 +52,8 @@ public static class SolutionEnumerableSolverExtensions
 			// Perform adding operation.
 			// Here we must omit 'await' keyword here because here we should make code concurrently executed on purpose,
 			// i.e. making the following code (consuming enumerable method) become available.
-			_ = Task.Run(
-				() =>
+			ThreadPool.QueueUserWorkItem(
+				_ =>
 				{
 					try
 					{
@@ -63,8 +63,7 @@ public static class SolutionEnumerableSolverExtensions
 					{
 						channel.Writer.TryComplete();
 					}
-				},
-				cancellationToken
+				}
 			);
 
 			// Consume the solutions concurrently.
