@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Async;
 /// <summary>
 /// Represents an awaiter object that analyzes the specified puzzle.
 /// </summary>
-public sealed class AsyncAnalyzerAwaiter : ICriticalNotifyCompletion, INotifyCompletion
+public sealed class AsyncAnalyzerAwaiter : IStepGathererAwaiter<AnalysisResult>
 {
 	/// <summary>
 	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
@@ -100,10 +100,9 @@ public sealed class AsyncAnalyzerAwaiter : ICriticalNotifyCompletion, INotifyCom
 	}
 
 
-	/// <summary>
-	/// Indicates whether the operation is completed.
-	/// </summary>
-	[MemberNotNullWhen(true, nameof(Result), nameof(_result))]
+	/// <inheritdoc/>
+	[MemberNotNullWhen(true, nameof(_result))]
+	[MemberNotNullWhen(true, nameof(Result))]
 	public bool IsCompleted
 	{
 		get
@@ -115,9 +114,7 @@ public sealed class AsyncAnalyzerAwaiter : ICriticalNotifyCompletion, INotifyCom
 		}
 	}
 
-	/// <summary>
-	/// Indicates the result.
-	/// </summary>
+	/// <inheritdoc/>
 	public AnalysisResult? Result
 	{
 		get
@@ -129,9 +126,7 @@ public sealed class AsyncAnalyzerAwaiter : ICriticalNotifyCompletion, INotifyCom
 		}
 	}
 
-	/// <summary>
-	/// Indicates the exception thrown.
-	/// </summary>
+	/// <inheritdoc/>
 	public Exception? Exception
 	{
 		get
@@ -143,11 +138,14 @@ public sealed class AsyncAnalyzerAwaiter : ICriticalNotifyCompletion, INotifyCom
 		}
 	}
 
+	/// <inheritdoc/>
+	AnalysisResult? IStepGathererAwaiter<AnalysisResult>.Result => Result;
 
-	/// <summary>
-	/// Returns the result value, or throw the internal exception if unhandled exception is encountered.
-	/// </summary>
-	/// <returns>The result value.</returns>
+	/// <inheritdoc/>
+	Lock IStepGathererAwaiter<AnalysisResult>.Lock => _lock;
+
+
+	/// <inheritdoc/>
 	public AnalysisResult GetResult() => _exception is null ? _result! : throw _exception;
 
 	/// <inheritdoc/>
@@ -155,6 +153,17 @@ public sealed class AsyncAnalyzerAwaiter : ICriticalNotifyCompletion, INotifyCom
 
 	/// <inheritdoc/>
 	public void UnsafeOnCompleted(Action continuation) => OnCompletedInternal(true, continuation);
+
+	/// <inheritdoc/>
+	void IStepGathererAwaiter<AnalysisResult>.OnCompletedInternal(bool continueOnCapturedContext, Action continuation)
+		=> OnCompletedInternal(continueOnCapturedContext, continuation);
+
+	/// <inheritdoc/>
+	void IStepGathererAwaiter<AnalysisResult>.StartContinuation(bool continueOnCapturedContext, Action continuation)
+		=> StartContinuation(continueOnCapturedContext, continuation);
+
+	/// <inheritdoc/>
+	void IStepGathererAwaiter<AnalysisResult>.CoreOperation(object? state) => CoreOperation(state);
 
 	/// <summary>
 	/// Executes a custom method on work having been completed.

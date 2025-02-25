@@ -89,10 +89,7 @@
             <param name="continueOnCapturedContext">The new value to be assigned to <see cref="F:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable._continueOnCapturedContext"/>.</param>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.GetAwaiter">
-            <summary>
-            Returns an <see cref="T:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter"/> object that supports the internal awaiting rule of analyzing a puzzle.
-            </summary>
-            <returns>An <see cref="T:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter"/> object.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -191,30 +188,36 @@
             <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
         </member>
         <member name="P:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.IsCompleted">
-            <summary>
-            Indicates whether the operation is completed.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.Result">
-            <summary>
-            Indicates the result.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.Exception">
-            <summary>
-            Indicates the exception thrown.
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.Sudoku#Analytics#Async#IStepGathererAwaiter{Sudoku#Analytics#AnalysisResult}#Result">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.Sudoku#Analytics#Async#IStepGathererAwaiter{Sudoku#Analytics#AnalysisResult}#Lock">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.GetResult">
-            <summary>
-            Returns the result value, or throw the internal exception if unhandled exception is encountered.
-            </summary>
-            <returns>The result value.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.OnCompleted(System.Action)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.UnsafeOnCompleted(System.Action)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.Sudoku#Analytics#Async#IStepGathererAwaiter{Sudoku#Analytics#AnalysisResult}#OnCompletedInternal(System.Boolean,System.Action)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.Sudoku#Analytics#Async#IStepGathererAwaiter{Sudoku#Analytics#AnalysisResult}#StartContinuation(System.Boolean,System.Action)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.Sudoku#Analytics#Async#IStepGathererAwaiter{Sudoku#Analytics#AnalysisResult}#CoreOperation(System.Object)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter.OnCompletedInternal(System.Boolean,System.Action)">
@@ -313,10 +316,7 @@
             <param name="continueOnCapturedContext">The new value to be assigned to <see cref="F:Sudoku.Analytics.Async.AsyncCollectorAwaitable._continueOnCapturedContext"/>.</param>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.GetAwaiter">
-            <summary>
-            Returns an <see cref="T:Sudoku.Analytics.Async.AsyncCollectorAwaiter"/> object that supports the internal awaiting rule of analyzing a puzzle.
-            </summary>
-            <returns>An <see cref="T:Sudoku.Analytics.Async.AsyncCollectorAwaiter"/> object.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -415,19 +415,16 @@
             <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
         </member>
         <member name="P:Sudoku.Analytics.Async.AsyncCollectorAwaiter.IsCompleted">
-            <summary>
-            Indicates whether the operation is completed.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Async.AsyncCollectorAwaiter.Result">
-            <summary>
-            Indicates the result.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Async.AsyncCollectorAwaiter.Exception">
-            <summary>
-            Indicates the exception thrown.
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Async.AsyncCollectorAwaiter.Sudoku#Analytics#Async#IStepGathererAwaiter{System#ReadOnlySpan{Sudoku#Analytics#Step}}#Lock">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaiter.GetResult">
             <summary>
@@ -439,6 +436,15 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaiter.UnsafeOnCompleted(System.Action)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaiter.Sudoku#Analytics#Async#IStepGathererAwaiter{System#ReadOnlySpan{Sudoku#Analytics#Step}}#OnCompletedInternal(System.Boolean,System.Action)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaiter.Sudoku#Analytics#Async#IStepGathererAwaiter{System#ReadOnlySpan{Sudoku#Analytics#Step}}#StartContinuation(System.Boolean,System.Action)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaiter.Sudoku#Analytics#Async#IStepGathererAwaiter{System#ReadOnlySpan{Sudoku#Analytics#Step}}#CoreOperation(System.Object)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaiter.OnCompletedInternal(System.Boolean,System.Action)">
@@ -456,6 +462,70 @@
             <param name="continuation">The method to be executed.</param>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaiter.CoreOperation(System.Object)">
+            <summary>
+            Indicates the backing operation.
+            </summary>
+            <param name="state">An object containing information to be used by the callback method.</param>
+        </member>
+        <member name="T:Sudoku.Analytics.Async.IStepGathererAwaitable`1">
+            <summary>
+            Represents an awaitable object that runs for step gathering rule (analysis or collecting operation).
+            </summary>
+            <typeparam name="TAwaiter">The type of awaiter.</typeparam>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.IStepGathererAwaitable`1.GetAwaiter">
+            <summary>
+            Returns an object of type <typeparamref name="TAwaiter"/> that supports the internal awaiting rule of analyzing a puzzle.
+            </summary>
+            <returns>An object of type <typeparamref name="TAwaiter"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Async.IStepGathererAwaiter`1">
+            <summary>
+            Represents an awaiter object that handles the backing logic on asynchronous programming.
+            </summary>
+            <typeparam name="TResult">The type of result.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.Async.IStepGathererAwaiter`1.IsCompleted">
+            <summary>
+            Indicates whether the operation is completed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Async.IStepGathererAwaiter`1.Result">
+            <summary>
+            Indicates the result.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Async.IStepGathererAwaiter`1.Exception">
+            <summary>
+            Indicates the exception thrown.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Async.IStepGathererAwaiter`1.Lock">
+            <summary>
+            Indicates the backing lock.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.IStepGathererAwaiter`1.GetResult">
+            <summary>
+            Returns the result value, or throw the internal exception if unhandled exception is encountered.
+            </summary>
+            <returns>The result value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.IStepGathererAwaiter`1.OnCompletedInternal(System.Boolean,System.Action)">
+            <summary>
+            Executes a custom method on work having been completed.
+            </summary>
+            <param name="continueOnCapturedContext">Indicates whether to capture and marshal back to the current context.</param>
+            <param name="continuation">The method to be executed.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.IStepGathererAwaiter`1.StartContinuation(System.Boolean,System.Action)">
+            <summary>
+            Determine whether we should switch execution context, and start continuation in thread pool from the context decided.
+            </summary>
+            <param name="continueOnCapturedContext">Indicates whether to capture and marshal back to the current context.</param>
+            <param name="continuation">The method to be executed.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.IStepGathererAwaiter`1.CoreOperation(System.Object)">
             <summary>
             Indicates the backing operation.
             </summary>

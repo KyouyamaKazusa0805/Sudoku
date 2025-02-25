@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Async;
 /// <summary>
 /// Represents an awaiter object that collects steps for the specified puzzle.
 /// </summary>
-public sealed class AsyncCollectorAwaiter : ICriticalNotifyCompletion, INotifyCompletion
+public sealed class AsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnlySpan<Step>>
 {
 	/// <summary>
 	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
@@ -100,10 +100,9 @@ public sealed class AsyncCollectorAwaiter : ICriticalNotifyCompletion, INotifyCo
 	}
 
 
-	/// <summary>
-	/// Indicates whether the operation is completed.
-	/// </summary>
-	[MemberNotNullWhen(true, nameof(Result), nameof(_result))]
+	/// <inheritdoc/>
+	[MemberNotNullWhen(true, nameof(_result))]
+	[MemberNotNullWhen(true, nameof(Result))]
 	public bool IsCompleted
 	{
 		get
@@ -115,9 +114,7 @@ public sealed class AsyncCollectorAwaiter : ICriticalNotifyCompletion, INotifyCo
 		}
 	}
 
-	/// <summary>
-	/// Indicates the result.
-	/// </summary>
+	/// <inheritdoc/>
 	public ReadOnlySpan<Step> Result
 	{
 		get
@@ -129,9 +126,7 @@ public sealed class AsyncCollectorAwaiter : ICriticalNotifyCompletion, INotifyCo
 		}
 	}
 
-	/// <summary>
-	/// Indicates the exception thrown.
-	/// </summary>
+	/// <inheritdoc/>
 	public Exception? Exception
 	{
 		get
@@ -142,6 +137,9 @@ public sealed class AsyncCollectorAwaiter : ICriticalNotifyCompletion, INotifyCo
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	Lock IStepGathererAwaiter<ReadOnlySpan<Step>>.Lock => _lock;
 
 
 	/// <summary>
@@ -155,6 +153,17 @@ public sealed class AsyncCollectorAwaiter : ICriticalNotifyCompletion, INotifyCo
 
 	/// <inheritdoc/>
 	public void UnsafeOnCompleted(Action continuation) => OnCompletedInternal(true, continuation);
+
+	/// <inheritdoc/>
+	void IStepGathererAwaiter<ReadOnlySpan<Step>>.OnCompletedInternal(bool continueOnCapturedContext, Action continuation)
+		=> OnCompletedInternal(continueOnCapturedContext, continuation);
+
+	/// <inheritdoc/>
+	void IStepGathererAwaiter<ReadOnlySpan<Step>>.StartContinuation(bool continueOnCapturedContext, Action continuation)
+		=> StartContinuation(continueOnCapturedContext, continuation);
+
+	/// <inheritdoc/>
+	void IStepGathererAwaiter<ReadOnlySpan<Step>>.CoreOperation(object? state) => CoreOperation(state);
 
 	/// <summary>
 	/// Executes a custom method on work having been completed.
