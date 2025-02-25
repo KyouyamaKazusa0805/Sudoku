@@ -6,12 +6,12 @@ namespace Sudoku.Analytics.Async;
 public static class AsyncCollector
 {
 	/// <summary>
-	/// Asynchronously collects steps from a puzzle.
+	/// Asynchronously collects steps from a puzzle, with parallel checking on all <see cref="StepSearcher"/> instances.
 	/// </summary>
 	/// <param name="collector">The collector.</param>
 	/// <param name="grid">The grid to be analyzed.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-	/// <returns>An <see cref="AsyncCollectorAwaitable"/> object that can analyze the puzzle asynchronously.</returns>
-	public static AsyncCollectorAwaitable CollectAsync(this Collector collector, ref readonly Grid grid, CancellationToken cancellationToken = default)
+	/// <returns>An <see cref="ParallelAsyncCollectorAwaitable"/> object that can analyze the puzzle asynchronously.</returns>
+	public static ParallelAsyncCollectorAwaitable ParallelCollectAsync(this Collector collector, ref readonly Grid grid, CancellationToken cancellationToken = default)
 		=> new(collector, in grid, false, cancellationToken);
 }

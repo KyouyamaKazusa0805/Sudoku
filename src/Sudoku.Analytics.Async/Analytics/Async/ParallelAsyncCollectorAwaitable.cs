@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Async;
 /// Represents an awaitable rule on collecting steps from a puzzle.
 /// </summary>
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
-public readonly ref partial struct AsyncCollectorAwaitable : IStepGathererAwaitable<AsyncCollectorAwaiter>
+public readonly ref partial struct ParallelAsyncCollectorAwaitable : IStepGathererAwaitable<ParallelAsyncCollectorAwaiter>
 {
 	/// <summary>
 	/// Indicates the reference to the grid.
@@ -23,7 +23,7 @@ public readonly ref partial struct AsyncCollectorAwaitable : IStepGathererAwaita
 
 
 	/// <summary>
-	/// Initializes an <see cref="AsyncCollectorAwaitable"/> object.
+	/// Initializes an <see cref="ParallelAsyncCollectorAwaitable"/> object.
 	/// </summary>
 	/// <param name="collector">Indicates the collector.</param>
 	/// <param name="grid">Indicates the grid.</param>
@@ -31,7 +31,7 @@ public readonly ref partial struct AsyncCollectorAwaitable : IStepGathererAwaita
 	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
 	/// </param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-	public AsyncCollectorAwaitable(Collector collector, ref readonly Grid grid, bool continueOnCapturedContext, CancellationToken cancellationToken)
+	public ParallelAsyncCollectorAwaitable(Collector collector, ref readonly Grid grid, bool continueOnCapturedContext, CancellationToken cancellationToken)
 	{
 		_collector = collector;
 		_grid = ref grid;
@@ -40,5 +40,5 @@ public readonly ref partial struct AsyncCollectorAwaitable : IStepGathererAwaita
 
 
 	/// <inheritdoc/>
-	public AsyncCollectorAwaiter GetAwaiter() => new(_collector, in _grid, _cancellationToken);
+	public ParallelAsyncCollectorAwaiter GetAwaiter() => new(_collector, in _grid, _cancellationToken);
 }

@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Async;
 /// <summary>
 /// Represents an awaiter object that collects steps for the specified puzzle.
 /// </summary>
-public sealed class AsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnlySpan<Step>>
+public sealed class ParallelAsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnlySpan<Step>>
 {
 	/// <summary>
 	/// Indicates the backing grid to be analyzed.
@@ -48,12 +48,12 @@ public sealed class AsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnlySpan<St
 
 
 	/// <summary>
-	/// Initializes an <see cref="AsyncCollectorAwaiter"/> instance via the specified analyzer.
+	/// Initializes an <see cref="ParallelAsyncCollectorAwaiter"/> instance via the specified analyzer.
 	/// </summary>
 	/// <param name="collector">Indicates the collector.</param>
 	/// <param name="grid">Indicates the grid.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-	public AsyncCollectorAwaiter(Collector collector, ref readonly Grid grid, CancellationToken cancellationToken)
+	public ParallelAsyncCollectorAwaiter(Collector collector, ref readonly Grid grid, CancellationToken cancellationToken)
 	{
 		(_grid, _collector, _cancellationToken) = (grid, collector, cancellationToken);
 
