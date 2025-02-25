@@ -76,7 +76,11 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_
 		}
 
 
-		ReadOnlySpan<Step> s(IProgress<StepGathererProgressPresenter>? progress, scoped ref readonly Grid puzzle, CancellationToken ct)
+		ReadOnlySpan<Step> s(
+			IProgress<StepGathererProgressPresenter>? progress,
+			scoped ref readonly Grid puzzle,
+			CancellationToken ct
+		)
 		{
 			const int defaultLevel = int.MaxValue;
 
