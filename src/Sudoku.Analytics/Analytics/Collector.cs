@@ -21,7 +21,7 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_
 	{
 		get;
 
-		set => ResultStepSearchers = ICollector<Collector, ReadOnlySpan<Step>>.FilterStepSearchers(
+		set => ResultStepSearchers = IStepGatherer<Collector, ReadOnlySpan<Step>>.FilterStepSearchers(
 			field = value,
 			StepSearcherRunningArea.Collecting
 		);
@@ -60,7 +60,7 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_
 			return [];
 		}
 
-		ICollector<Collector, ReadOnlySpan<Step>>.ApplySetters(this);
+		IStepGatherer<Collector, ReadOnlySpan<Step>>.ApplySetters(this);
 
 		try
 		{

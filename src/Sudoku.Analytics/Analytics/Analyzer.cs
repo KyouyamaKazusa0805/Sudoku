@@ -58,7 +58,7 @@ public sealed class Analyzer :
 	{
 		get;
 
-		set => ResultStepSearchers = IAnalyzer<Analyzer, AnalysisResult>.FilterStepSearchers(
+		set => ResultStepSearchers = IStepGatherer<Analyzer, AnalysisResult>.FilterStepSearchers(
 			field = value,
 			StepSearcherRunningArea.Searching
 		);
@@ -218,7 +218,7 @@ public sealed class Analyzer :
 			throw new InvalidOperationException(SR.ExceptionMessage("GridAlreadySolved"));
 		}
 
-		IAnalyzer<Analyzer, AnalysisResult>.ApplySetters(this);
+		IStepGatherer<Analyzer, AnalysisResult>.ApplySetters(this);
 
 		var result = new AnalysisResult(in puzzle) { IsSolved = false };
 		var solution = puzzle.GetSolutionGrid();
