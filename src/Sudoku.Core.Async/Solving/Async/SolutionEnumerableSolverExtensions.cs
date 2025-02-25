@@ -50,8 +50,6 @@ public static class SolutionEnumerableSolverExtensions
 			@this.SolutionFound += this_SolutionFound;
 
 			// Perform adding operation.
-			// Here we must omit 'await' keyword here because here we should make code concurrently executed on purpose,
-			// i.e. making the following code (consuming enumerable method) become available.
 			ThreadPool.QueueUserWorkItem(
 				_ =>
 				{
