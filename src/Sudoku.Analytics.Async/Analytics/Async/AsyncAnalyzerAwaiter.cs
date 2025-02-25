@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.Async;
 
 /// <summary>
 /// Represents an awaiter object that analyzes the specified puzzle.
@@ -34,7 +34,7 @@ public sealed class AsyncAnalyzerAwaiter : ICriticalNotifyCompletion, INotifyCom
 	/// Indicates whether the operation is completed.
 	/// </summary>
 	/// <remarks>
-	/// <include file="../../../global-doc-comments.xml" path="/g/developer-notes"/>
+	/// <include file="../../../../global-doc-comments.xml" path="/g/developer-notes"/>
 	/// <para>
 	/// The field isn't marked as <see langword="volatile"/>,
 	/// because the writting operation uses <see langword="lock"/> statement.

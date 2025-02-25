@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.Async;
 
 /// <summary>
 /// Represents an awaitable rule on analysis for a puzzle.
