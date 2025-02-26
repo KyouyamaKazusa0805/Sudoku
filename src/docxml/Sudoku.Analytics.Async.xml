@@ -9,17 +9,6 @@
             Represents an analyzer that can asynchronously analyze a puzzle.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Async.AsyncAnalyzer.ConfigureAwait(Sudoku.Analytics.Async.AsyncAnalyzerAwaitable@,System.Boolean)">
-            <summary>
-            Updates the awaiting rule to specify whether the execution context will be back to the previous one,
-            instead of just using the current context, to reduce memory allocation.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="continueOnCapturedContext">
-            Indicates whether to continue works on captured context instead of reverting back to previous context.
-            </param>
-            <returns>A new <see cref="T:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable"/> instance, with context switching option updated.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.Async.AsyncAnalyzer.AnalyzeAsync(Sudoku.Analytics.Analyzer,Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.StepGathererProgressPresenter},System.Threading.CancellationToken)">
             <summary>
             Asynchronously analyzes the specified puzzle.
@@ -87,6 +76,16 @@
             </summary>
             <param name="original">The original value.</param>
             <param name="continueOnCapturedContext">The new value to be assigned to <see cref="F:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable._continueOnCapturedContext"/>.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.ConfigureAwait(System.Boolean)">
+            <summary>
+            Updates the awaiting rule to specify whether the execution context will be back to the previous one,
+            instead of just using the current context, to reduce memory allocation.
+            </summary>
+            <param name="continueOnCapturedContext">
+            Indicates whether to continue works on captured context instead of reverting back to previous context.
+            </param>
+            <returns>A new <see cref="T:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable"/> instance, with context switching option updated.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.GetAwaiter">
             <inheritdoc/>
@@ -245,17 +244,6 @@
             Represents a collector that can find for all possible steps from a grid, in asynchronous way.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Async.AsyncCollector.ConfigureAwait(Sudoku.Analytics.Async.AsyncCollectorAwaitable@,System.Boolean)">
-            <summary>
-            Updates the awaiting rule to specify whether the execution context will be back to the previous one,
-            instead of just using the current context, to reduce memory allocation.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="continueOnCapturedContext">
-            Indicates whether to continue works on captured context instead of reverting back to previous context.
-            </param>
-            <returns>A new <see cref="T:Sudoku.Analytics.Async.AsyncCollectorAwaitable"/> instance, with context switching option updated.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.Async.AsyncCollector.CollectAsync(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.StepGathererProgressPresenter},System.Threading.CancellationToken)">
             <summary>
             Asynchronously collects steps from a puzzle.
@@ -323,6 +311,16 @@
             </summary>
             <param name="original">The original value.</param>
             <param name="continueOnCapturedContext">The new value to be assigned to <see cref="F:Sudoku.Analytics.Async.AsyncCollectorAwaitable._continueOnCapturedContext"/>.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.ConfigureAwait(System.Boolean)">
+            <summary>
+            Updates the awaiting rule to specify whether the execution context will be back to the previous one,
+            instead of just using the current context, to reduce memory allocation.
+            </summary>
+            <param name="continueOnCapturedContext">
+            Indicates whether to continue works on captured context instead of reverting back to previous context.
+            </param>
+            <returns>A new <see cref="T:Sudoku.Analytics.Async.AsyncCollectorAwaitable"/> instance, with context switching option updated.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.GetAwaiter">
             <inheritdoc/>

@@ -68,6 +68,16 @@ public readonly ref partial struct AsyncAnalyzerAwaitable : IStepGathererAwaitab
 	}
 
 
+	/// <summary>
+	/// Updates the awaiting rule to specify whether the execution context will be back to the previous one,
+	/// instead of just using the current context, to reduce memory allocation.
+	/// </summary>
+	/// <param name="continueOnCapturedContext">
+	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
+	/// </param>
+	/// <returns>A new <see cref="AsyncAnalyzerAwaitable"/> instance, with context switching option updated.</returns>
+	public AsyncAnalyzerAwaitable ConfigureAwait(bool continueOnCapturedContext) => new(in this, continueOnCapturedContext);
+
 	/// <inheritdoc/>
 	public AsyncAnalyzerAwaiter GetAwaiter() => new(_analyzer, in _grid, _progress, _continueOnCapturedContext, _cancellationToken);
 }

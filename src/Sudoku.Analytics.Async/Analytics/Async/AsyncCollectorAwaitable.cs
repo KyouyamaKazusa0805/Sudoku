@@ -68,6 +68,16 @@ public readonly ref partial struct AsyncCollectorAwaitable : IStepGathererAwaita
 	}
 
 
+	/// <summary>
+	/// Updates the awaiting rule to specify whether the execution context will be back to the previous one,
+	/// instead of just using the current context, to reduce memory allocation.
+	/// </summary>
+	/// <param name="continueOnCapturedContext">
+	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
+	/// </param>
+	/// <returns>A new <see cref="AsyncCollectorAwaitable"/> instance, with context switching option updated.</returns>
+	public AsyncCollectorAwaitable ConfigureAwait(bool continueOnCapturedContext) => new(in this, continueOnCapturedContext);
+
 	/// <inheritdoc/>
 	public AsyncCollectorAwaiter GetAwaiter() => new(_collector, in _grid, _progress, _continueOnCapturedContext, _cancellationToken);
 }
