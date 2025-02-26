@@ -1090,7 +1090,7 @@ public partial struct Grid : GridBase
 	/// <param name="comparison">Indicates the comparison rule.</param>
 	/// <returns>An <see cref="IEqualityComparer{T}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IEqualityComparer<Grid> CreateEqualityComparer(GridComparison comparison)
+	public static IEqualityComparer<Grid> CreateEqualityComparer(BoardComparison comparison)
 		=> EqualityComparer<Grid>.Create((a, b) => a.Equals(in b, comparison), obj => obj.GetHashCode(comparison));
 
 	/// <inheritdoc/>

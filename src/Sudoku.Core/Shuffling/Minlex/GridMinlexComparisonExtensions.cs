@@ -16,11 +16,11 @@ public static class GridMinlexComparisonExtensions
 	/// <returns>A <see cref="bool"/> result.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool Equals(this ref readonly Grid @this, ref readonly Grid other, GridComparison comparisonType)
+	public static bool Equals(this ref readonly Grid @this, ref readonly Grid other, BoardComparison comparisonType)
 		=> comparisonType switch
 		{
-			GridComparison.Default => @this.Equals(in other),
-			GridComparison.IncludingTransforms => @this.GetMinLexGrid() == other.GetMinLexGrid(),
+			BoardComparison.Default => @this.Equals(in other),
+			BoardComparison.IncludingTransforms => @this.GetMinLexGrid() == other.GetMinLexGrid(),
 			_ => throw new ArgumentOutOfRangeException(nameof(comparisonType))
 		};
 
@@ -33,12 +33,12 @@ public static class GridMinlexComparisonExtensions
 	/// Throws when the argument <paramref name="comparisonType"/> isn't defined.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetHashCode(this ref readonly Grid @this, GridComparison comparisonType)
+	public static int GetHashCode(this ref readonly Grid @this, BoardComparison comparisonType)
 	{
 		var grid = comparisonType switch
 		{
-			GridComparison.Default => @this,
-			GridComparison.IncludingTransforms => @this.GetMinLexGrid(),
+			BoardComparison.Default => @this,
+			BoardComparison.IncludingTransforms => @this.GetMinLexGrid(),
 			_ => throw new ArgumentOutOfRangeException(nameof(comparisonType))
 		};
 		return grid.GetHashCode();
@@ -55,13 +55,13 @@ public static class GridMinlexComparisonExtensions
 	/// <exception cref="InvalidOperationException">Throws when one of the grids to be compared is a Sukaku puzzle.</exception>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int CompareTo(this ref readonly Grid @this, ref readonly Grid other, GridComparison comparisonType)
+	public static int CompareTo(this ref readonly Grid @this, ref readonly Grid other, BoardComparison comparisonType)
 		=> (@this.PuzzleType, other.PuzzleType) switch
 		{
 			(not SudokuType.Sukaku, not SudokuType.Sukaku) => comparisonType switch
 			{
-				GridComparison.Default => @this.ToString("#").CompareTo(other.ToString("#")),
-				GridComparison.IncludingTransforms => @this.GetMinLexGrid().ToString("#").CompareTo(other.GetMinLexGrid().ToString("#")),
+				BoardComparison.Default => @this.ToString("#").CompareTo(other.ToString("#")),
+				BoardComparison.IncludingTransforms => @this.GetMinLexGrid().ToString("#").CompareTo(other.GetMinLexGrid().ToString("#")),
 				_ => throw new ArgumentOutOfRangeException(nameof(comparisonType))
 			},
 			_ => throw new InvalidOperationException(SR.ExceptionMessage("ComparableGridMustBeStandard"))
