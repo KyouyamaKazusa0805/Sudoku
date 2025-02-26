@@ -752,6 +752,97 @@
             <param name="sender">The object which triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
+        <member name="T:Sudoku.Analytics.AnalyzerFactory">
+            <summary>
+            Provides a list of methods that can be used for construct chaining method invocations for configuration,
+            applying to an <see cref="T:Sudoku.Analytics.Analyzer"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithRandomizedChoosing(Sudoku.Analytics.Analyzer,System.Boolean)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.RandomizedChoosing"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="randomizedChoosing">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithApplyAll(Sudoku.Analytics.Analyzer,System.Boolean)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="applyAll">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithIgnoreHighTimeComplexityStepSearchers(Sudoku.Analytics.Analyzer,System.Boolean)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="ignore">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithIgnoreHighSpaceComplexityStepSearchers(Sudoku.Analytics.Analyzer,System.Boolean)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="ignore">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[])">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="stepSearchers">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithUserDefinedOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.Configuration.StepGathererOptions)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.Options"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="options">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Primitives.DifficultyLevel)">
+            <summary>
+            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the specified value.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="stepSearchers">The custom collection of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.</param>
+            <param name="level">Indicates the difficulty level preserved.</param>
+            <returns>The result.</returns>
+            <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.AddStepSearcherSetter``1(Sudoku.Analytics.Analyzer,System.Action{``0})">
+            <summary>
+            Appends an element into the property <see cref="P:Sudoku.Analytics.Analyzer.Setters"/>.
+            </summary>
+            <typeparam name="TStepSearcher">The type of step searcher.</typeparam>
+            <param name="instance">The instance to be updated.</param>
+            <param name="setter">The value to be added.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.AddStepSearcherSetter(Sudoku.Analytics.Analyzer,System.Action{Sudoku.Analytics.StepSearcher})">
+            <summary>
+            Appends an element into the property <see cref="P:Sudoku.Analytics.Analyzer.Setters"/>.
+            </summary>
+            <param name="instance">The instance to be updated.</param>
+            <param name="setters">The value to be added.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.AddStepSearcherSetter(Sudoku.Analytics.Analyzer,System.ReadOnlySpan{System.Action{Sudoku.Analytics.StepSearcher}})">
+            <summary>
+            Appends an element into the property <see cref="P:Sudoku.Analytics.Analyzer.Setters"/>.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="setters">A list of values to be added.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.AnalyzerFinishedEventArgs">
             <summary>
             Provides extra data for event handler <see cref="T:Sudoku.Analytics.AnalyzerFinishedEventHandler"/>.
@@ -1019,6 +1110,70 @@
         </member>
         <member name="M:Sudoku.Analytics.Collector.Puzzles#Meta#Analytics#ICollector{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Collect(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.CollectorFactory">
+            <summary>
+            Provides a list of methods that can be used for construct chaining method invocations for configuration,
+            applying to a <see cref="T:Sudoku.Analytics.Collector"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Collector"/>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithMaxSteps(Sudoku.Analytics.Collector,System.Int32)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Collector.MaxStepsCollected"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="count">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithSameLevelConfiguration(Sudoku.Analytics.Collector,Sudoku.Analytics.Configuration.CollectorDifficultyLevelMode)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="collectingMode">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithStepSearchers(Sudoku.Analytics.Collector,Sudoku.Analytics.StepSearcher[])">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Collector.StepSearchers"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="stepSearchers">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithUserDefinedOptions(Sudoku.Analytics.Collector,Sudoku.Analytics.Configuration.StepGathererOptions)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Collector.Options"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="options">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.AddStepSearcherSetter``1(Sudoku.Analytics.Collector,System.Action{``0})">
+            <summary>
+            Appends an element into the property <see cref="P:Sudoku.Analytics.Collector.Setters"/>.
+            </summary>
+            <typeparam name="TStepSearcher">The type of step searcher.</typeparam>
+            <param name="instance">The instance to be updated.</param>
+            <param name="setter">The value to be added.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.AddStepSearcherSetter(Sudoku.Analytics.Collector,System.Action{Sudoku.Analytics.StepSearcher})">
+            <summary>
+            Appends an element into the property <see cref="P:Sudoku.Analytics.Collector.Setters"/>.
+            </summary>
+            <param name="instance">The instance to be updated.</param>
+            <param name="setters">The value to be added.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.AddStepSearcherSetter(Sudoku.Analytics.Collector,System.ReadOnlySpan{System.Action{Sudoku.Analytics.StepSearcher}})">
+            <summary>
+            Appends an element into the property <see cref="P:Sudoku.Analytics.Collector.Setters"/>.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="setters">A list of values to be added.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter">
             <summary>
@@ -21797,195 +21952,6 @@
             <summary>
             Indicates the true candidates used.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.__AnalyzerFactoryMethods_Add">
-            <summary>
-            Provides with a list of methods that are used as factory methods on modifying properties with multiple method invocations:
-            <code><![CDATA[
-            var instance = new Instance()
-                .WithBaz(1, 3, 2, 4, 5)
-                .AddFoo(42)
-                .AddBar(string.Empty);
-            ]]></code>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_Add.AddStepSearcherSetter``1(Sudoku.Analytics.Analyzer,System.Action{``0})">
-            <summary>
-            Appends an element into the property <see cref="P:Sudoku.Analytics.Analyzer.Setters"/>.
-            </summary>
-            <typeparam name="TStepSearcher">The type of step searcher.</typeparam>
-            <param name="instance">The instance to be updated.</param>
-            <param name="setter">The value to be added.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_Add.AddStepSearcherSetter(Sudoku.Analytics.Analyzer,System.Action{Sudoku.Analytics.StepSearcher})">
-            <summary>
-            Appends an element into the property <see cref="P:Sudoku.Analytics.Analyzer.Setters"/>.
-            </summary>
-            <param name="instance">The instance to be updated.</param>
-            <param name="setters">The value to be added.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_Add.AddStepSearcherSetter(Sudoku.Analytics.Analyzer,System.ReadOnlySpan{System.Action{Sudoku.Analytics.StepSearcher}})">
-            <summary>
-            Appends an element into the property <see cref="P:Sudoku.Analytics.Analyzer.Setters"/>.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="setters">A list of values to be added.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.__AnalyzerFactoryMethods_With">
-            <summary>
-            Provides with a list of methods that are used as factory methods on modifying properties with multiple method invocations:
-            <code><![CDATA[
-            var instance = new Instance()
-                .WithProperty1(42)
-                .WithProperty2(100)
-                .WithFoo(static () => { })
-                .WithBar(null)
-                .WithBaz(1, 2, 3);
-            ]]></code>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Primitives.DifficultyLevel)">
-            <summary>
-            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the specified value.
-            </summary>
-            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
-            <param name="stepSearchers">The custom collection of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.</param>
-            <param name="level">Indicates the difficulty level preserved.</param>
-            <returns>The result.</returns>
-            <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithRandomizedChoosing(Sudoku.Analytics.Analyzer,System.Boolean)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.RandomizedChoosing"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="randomizedChoosing">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithApplyAll(Sudoku.Analytics.Analyzer,System.Boolean)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="applyAll">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithIgnoreHighTimeComplexityStepSearchers(Sudoku.Analytics.Analyzer,System.Boolean)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="ignore">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithIgnoreHighSpaceComplexityStepSearchers(Sudoku.Analytics.Analyzer,System.Boolean)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="ignore">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[])">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="stepSearchers">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithUserDefinedOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.Configuration.StepGathererOptions)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.Options"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="options">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.__CollectorFactoryMethods_Add">
-            <summary>
-            Provides with a list of methods that are used as factory methods on modifying properties with multiple method invocations:
-            <code><![CDATA[
-            var instance = new Instance()
-                .WithBaz(1, 3, 2, 4, 5)
-                .AddFoo(42)
-                .AddBar(string.Empty);
-            ]]></code>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods_Add.AddStepSearcherSetter``1(Sudoku.Analytics.Collector,System.Action{``0})">
-            <summary>
-            Appends an element into the property <see cref="P:Sudoku.Analytics.Collector.Setters"/>.
-            </summary>
-            <typeparam name="TStepSearcher">The type of step searcher.</typeparam>
-            <param name="instance">The instance to be updated.</param>
-            <param name="setter">The value to be added.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods_Add.AddStepSearcherSetter(Sudoku.Analytics.Collector,System.Action{Sudoku.Analytics.StepSearcher})">
-            <summary>
-            Appends an element into the property <see cref="P:Sudoku.Analytics.Collector.Setters"/>.
-            </summary>
-            <param name="instance">The instance to be updated.</param>
-            <param name="setters">The value to be added.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods_Add.AddStepSearcherSetter(Sudoku.Analytics.Collector,System.ReadOnlySpan{System.Action{Sudoku.Analytics.StepSearcher}})">
-            <summary>
-            Appends an element into the property <see cref="P:Sudoku.Analytics.Collector.Setters"/>.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="setters">A list of values to be added.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.__CollectorFactoryMethods_With">
-            <summary>
-            Provides with a list of methods that are used as factory methods on modifying properties with multiple method invocations:
-            <code><![CDATA[
-            var instance = new Instance()
-                .WithProperty1(42)
-                .WithProperty2(100)
-                .WithFoo(static () => { })
-                .WithBar(null)
-                .WithBaz(1, 2, 3);
-            ]]></code>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods_With.WithMaxSteps(Sudoku.Analytics.Collector,System.Int32)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Collector.MaxStepsCollected"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="count">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods_With.WithSameLevelConfiguration(Sudoku.Analytics.Collector,Sudoku.Analytics.Configuration.CollectorDifficultyLevelMode)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="collectingMode">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods_With.WithStepSearchers(Sudoku.Analytics.Collector,Sudoku.Analytics.StepSearcher[])">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Collector.StepSearchers"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="stepSearchers">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods_With.WithUserDefinedOptions(Sudoku.Analytics.Collector,Sudoku.Analytics.Configuration.StepGathererOptions)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Collector.Options"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="options">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
         <member name="T:Sudoku.Behaviors.BlockFirst">
             <summary>

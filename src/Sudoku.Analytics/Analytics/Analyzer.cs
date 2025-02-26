@@ -25,11 +25,9 @@ public sealed class Analyzer :
 
 
 	/// <inheritdoc/>
-	[WithProperty]
 	public bool RandomizedChoosing { get; set; }
 
 	/// <inheritdoc/>
-	[WithProperty(MethodSuffixName = "ApplyAll", ParameterName = "applyAll")]
 	public bool IsFullApplying { get; set; }
 
 	/// <summary>
@@ -39,7 +37,6 @@ public sealed class Analyzer :
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="StepSearcherRuntimeFlags.TimeComplexity"/>
-	[WithProperty(MethodSuffixName = "IgnoreHighTimeComplexityStepSearchers", ParameterName = "ignore")]
 	public bool IgnoreSlowAlgorithms { get; set; }
 
 	/// <summary>
@@ -49,11 +46,9 @@ public sealed class Analyzer :
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="StepSearcherRuntimeFlags.SpaceComplexity"/>
-	[WithProperty(MethodSuffixName = "IgnoreHighSpaceComplexityStepSearchers", ParameterName = "ignore")]
 	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <inheritdoc/>
-	[WithProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	public ReadOnlyMemory<StepSearcher> StepSearchers
 	{
 		get;
@@ -71,11 +66,9 @@ public sealed class Analyzer :
 		select searcher;
 
 	/// <inheritdoc/>
-	[WithProperty(MethodSuffixName = "UserDefinedOptions")]
 	public StepGathererOptions Options { get; set; } = StepGathererOptions.Default;
 
 	/// <inheritdoc/>
-	[AddProperty(AllowsMultipleAdding = true, MethodSuffixName = "StepSearcherSetter")]
 	public ICollection<Action<StepSearcher>> Setters { get; } = [];
 
 	/// <inheritdoc/>

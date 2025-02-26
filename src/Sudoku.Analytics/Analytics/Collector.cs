@@ -6,17 +6,14 @@ namespace Sudoku.Analytics;
 public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_analysis::ICollector<Grid, Step>
 {
 	/// <inheritdoc/>
-	[WithProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]
 	public int MaxStepsCollected { get; set; } = 1000;
 
 	/// <summary>
 	/// Indicates the difficulty level mode that the step searcher will be called and checked.
 	/// </summary>
-	[WithProperty(MethodSuffixName = "SameLevelConfiguration", ParameterName = "collectingMode")]
 	public CollectorDifficultyLevelMode DifficultyLevelMode { get; set; } = CollectorDifficultyLevelMode.OnlySame;
 
 	/// <inheritdoc/>
-	[WithProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	public ReadOnlyMemory<StepSearcher> StepSearchers
 	{
 		get;
@@ -34,11 +31,9 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_
 		select searcher;
 
 	/// <inheritdoc/>
-	[WithProperty(MethodSuffixName = "UserDefinedOptions", ParameterName = "options")]
 	public StepGathererOptions Options { get; set; } = StepGathererOptions.Default;
 
 	/// <inheritdoc/>
-	[AddProperty(AllowsMultipleAdding = true, MethodSuffixName = "StepSearcherSetter")]
 	public ICollection<Action<StepSearcher>> Setters { get; } = [];
 
 
