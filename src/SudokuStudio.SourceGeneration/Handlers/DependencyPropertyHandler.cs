@@ -23,7 +23,7 @@ internal static class DependencyPropertyHandler
 					continue;
 				}
 
-				var accessibilityModifier = accessibility.GetName();
+				var accessibilityModifier = Regex.Replace(accessibility.ToString(), "[A-Z]", static match => $" {match.Value.ToLower()}");
 				var nullableToken = isNullable ? "?" : string.Empty;
 				dependencyProperties.Add(
 					$"""
