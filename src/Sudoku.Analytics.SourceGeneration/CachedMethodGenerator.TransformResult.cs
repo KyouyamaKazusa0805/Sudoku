@@ -21,38 +21,4 @@ public partial class CachedMethodGenerator
 		public static implicit operator TransformResult(SuccessTransformResult[] results)
 			=> new AggregateSuccessTransformResult(results);
 	}
-
-	/// <summary>
-	/// Represents a transform result that creates a list of <see cref="SuccessTransformResult"/> instances to be generated once.
-	/// </summary>
-	/// <param name="Results">Indicates the results created.</param>
-	private sealed record AggregateSuccessTransformResult(SuccessTransformResult[] Results) : TransformResult(true), IEnumerable<SuccessTransformResult>
-	{
-		/// <inheritdoc/>
-		public IEnumerator<SuccessTransformResult> GetEnumerator() => Results.AsEnumerable().GetEnumerator();
-
-		/// <inheritdoc/>
-		IEnumerator IEnumerable.GetEnumerator() => Results.GetEnumerator();
-	}
-
-	/// <summary>
-	/// Represents a transform result after successfully to be handled.
-	/// </summary>
-	/// <param name="Text">Indicates the source text generated.</param>
-	/// <param name="Location">Indicates the location information.</param>
-	private sealed record SuccessTransformResult(string Text, InterceptedLocation Location) : TransformResult(true);
-
-	/// <summary>
-	/// Represents a transform result after failed to be handled.
-	/// </summary>
-	/// <param name="Diagnostic">The diagnostic result.</param>
-	private sealed record FailedTransformResult(Diagnostic Diagnostic) : TransformResult(false);
-
-	/// <summary>
-	/// Represents location information for an intercepted method.
-	/// </summary>
-	/// <param name="FilePath">Indicates the file path of the target method.</param>
-	/// <param name="Line">Indicates the line number.</param>
-	/// <param name="Character">Indicates the character position.</param>
-	private readonly record struct InterceptedLocation(string FilePath, int Line, int Character);
 }
