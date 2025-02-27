@@ -23,6 +23,7 @@ public abstract partial class AddDiffResult(CandidateMap candidates, [Property] 
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
 		var areCorrectedString = AreCorrect ? string.Empty : ", incorrect";
-		return $"{CellTypeString} digits added: {converter.CandidateConverter(Candidates)}{areCorrectedString}";
+		var candidates = Candidates;
+		return $"{CellTypeString} digits added: {converter.CandidateConverter(in candidates)}{areCorrectedString}";
 	}
 }

@@ -31,7 +31,7 @@ public sealed class BacktrackingSolver : ISolver
 
 
 	/// <inheritdoc/>
-	public bool? Solve(ref readonly Grid grid, out Grid result)
+	public bool? Solve(in Grid grid, out Grid result)
 	{
 		var resultArray = default(Digit[]);
 		try

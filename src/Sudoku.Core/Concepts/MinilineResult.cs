@@ -11,5 +11,5 @@ namespace Sudoku.Concepts;
 /// Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
 /// </param>
 /// <seealso cref="Miniline.Map"/>
-public readonly record struct MinilineResult(ref readonly CellMap LineMap, ref readonly CellMap BlockMap, ref readonly CellMap IntersectionMap, byte[] OtherBlocks) :
+public readonly record struct MinilineResult(in CellMap LineMap, in CellMap BlockMap, in CellMap IntersectionMap, byte[] OtherBlocks) :
 	IEqualityOperators<MinilineResult, MinilineResult, bool>;

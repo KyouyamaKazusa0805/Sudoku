@@ -59,7 +59,7 @@ public sealed unsafe partial class BitwiseSolver : ISolver, ISolutionEnumerableS
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool? Solve(ref readonly Grid grid, out Grid result)
+	public bool? Solve(in Grid grid, out Grid result)
 	{
 		ClearStack();
 

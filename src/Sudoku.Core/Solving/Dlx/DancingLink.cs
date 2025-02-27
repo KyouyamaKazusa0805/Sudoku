@@ -49,7 +49,7 @@ public sealed class DancingLink(ColumnNode _root)
 	/// <param name="grid">The grid.</param>
 	/// <returns>The column node for the root node.</returns>
 	/// <seealso cref="ColumnNode"/>
-	public ColumnNode Create(ref readonly Grid grid)
+	public ColumnNode Create(in Grid grid)
 	{
 		var columns = RawColumns;
 		for (var cell = 0; cell < 81; cell++)
@@ -107,7 +107,7 @@ public sealed class DancingLink(ColumnNode _root)
 		}
 	}
 
-	/// <inheritdoc cref="Create(ref readonly Grid)"/>
+	/// <inheritdoc cref="Create(in Grid)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ColumnNode Create(Digit[] grid) => Create(Grid.Create(grid));
 }

@@ -849,7 +849,7 @@ public partial struct Grid : GridBase
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The result grid.</returns>
-	private readonly Grid Preserve(ref readonly CellMap pattern)
+	private readonly Grid Preserve(in CellMap pattern)
 	{
 		if (PuzzleType != SudokuType.Standard)
 		{

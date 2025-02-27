@@ -36,7 +36,7 @@ public sealed class DancingLinksSolver : ISolver, ISolutionEnumerableSolver
 
 
 	/// <inheritdoc/>
-	public unsafe bool? Solve(ref readonly Grid grid, out Grid result)
+	public unsafe bool? Solve(in Grid grid, out Grid result)
 	{
 		try
 		{
@@ -64,7 +64,7 @@ public sealed class DancingLinksSolver : ISolver, ISolutionEnumerableSolver
 		}
 	}
 
-	/// <inheritdoc cref="Solve(ref readonly Grid, out Grid)"/>
+	/// <inheritdoc cref="Solve(in Grid, out Grid)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool? Solve(Digit[] grid, out Grid result) => Solve(Grid.Create(grid), out result);
 

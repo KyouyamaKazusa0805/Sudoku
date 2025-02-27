@@ -81,22 +81,8 @@ public sealed class DictionaryQuerySolver : ISolver
 	public static string? UriLink => "http://aspadvice.com/blogs/rbirkby/attachment/34077.ashx";
 
 
-	/// <summary>
-	/// To solve the puzzle.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="result">The result.</param>
-	/// <returns>
-	/// <para>
-	/// The method will return <see langword="false"/> if the puzzle has more than one solution,
-	/// or <see langword="null"/> if the puzzle cannot be solved.
-	/// </para>
-	/// <para>
-	/// Please note that the method cannot return <see langword="true"/>
-	/// due to not being aware of the uniqueness of the puzzle.
-	/// </para>
-	/// </returns>
-	public bool? Solve(ref readonly Grid grid, out Grid result)
+	/// <inheritdoc/>
+	public bool? Solve(in Grid grid, out Grid result)
 	{
 		var rawResult = Search(ParseGrid(grid.ToString("0")));
 		if (rawResult is null)

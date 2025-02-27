@@ -14,7 +14,7 @@ public static class CellMapEnumerable
 	/// <param name="this">Indicates the current instance.</param>
 	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found cell or -1 if none found.</returns>
-	public static Cell First(this ref readonly CellMap @this, Func<Cell, bool> match)
+	public static Cell First(this in CellMap @this, Func<Cell, bool> match)
 	{
 		foreach (var cell in @this.Offsets)
 		{
@@ -33,7 +33,7 @@ public static class CellMapEnumerable
 	/// <param name="grid">The grid to be used.</param>
 	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found cell or -1 if none found.</returns>
-	public static Cell First(this ref readonly CellMap @this, ref readonly Grid grid, CellMapPredicate match)
+	public static Cell First(this in CellMap @this, ref readonly Grid grid, CellMapPredicate match)
 	{
 		foreach (var cell in @this.Offsets)
 		{
@@ -53,7 +53,7 @@ public static class CellMapEnumerable
 	/// <param name="this">The current instance.</param>
 	/// <param name="selector">The selector.</param>
 	/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
-	public static ReadOnlySpan<TResult> Select<TResult>(this scoped ref readonly CellMap @this, Func<Cell, TResult> selector)
+	public static ReadOnlySpan<TResult> Select<TResult>(this scoped in CellMap @this, Func<Cell, TResult> selector)
 	{
 		var (result, i) = (new TResult[@this.Count], 0);
 		foreach (var cell in @this.Offsets)
@@ -71,7 +71,7 @@ public static class CellMapEnumerable
 	/// <returns>
 	/// A <see cref="CellMap"/> that contains elements from the input <see cref="CellMap"/> satisfying the condition.
 	/// </returns>
-	public static CellMap Where(this ref readonly CellMap @this, Func<Cell, bool> predicate)
+	public static CellMap Where(this in CellMap @this, Func<Cell, bool> predicate)
 	{
 		var result = @this;
 		foreach (var cell in @this.Offsets)
@@ -99,7 +99,7 @@ public static class CellMapEnumerable
 	/// </returns>
 	/// <seealso cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/>
 	public static ReadOnlySpan<CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>> GroupBy<TKey>(
-		this ref readonly CellMap @this,
+		this scoped in CellMap @this,
 		Func<Cell, TKey> keySelector
 	) where TKey : notnull
 	{
@@ -140,7 +140,7 @@ public static class CellMapEnumerable
 	/// and then mapping each of those sequences and their corresponding source element to a result element.
 	/// </returns>
 	public static ReadOnlySpan<TResult> SelectMany<TResult>(
-		this ref readonly CellMap @this,
+		this in CellMap @this,
 		Func<Cell, Mask> collectionSelector,
 		Func<Cell, Digit, TResult> resultSelector
 	)
@@ -162,7 +162,7 @@ public static class CellMapEnumerable
 	/// <param name="this">The cell to be checked.</param>
 	/// <param name="match">The match method.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether at least one element satisfies the specified condition.</returns>
-	public static bool Any(this ref readonly CellMap @this, Func<Cell, bool> match)
+	public static bool Any(this in CellMap @this, Func<Cell, bool> match)
 	{
 		foreach (var cell in @this)
 		{
@@ -180,7 +180,7 @@ public static class CellMapEnumerable
 	/// <param name="this">The candidate to be checked.</param>
 	/// <param name="match">The match method.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether all elements satisfy the specified condition.</returns>
-	public static bool All(this ref readonly CellMap @this, Func<Cell, bool> match)
+	public static bool All(this in CellMap @this, Func<Cell, bool> match)
 	{
 		foreach (var cell in @this)
 		{

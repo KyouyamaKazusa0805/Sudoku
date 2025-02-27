@@ -10,29 +10,28 @@ public static class EmptyArea
 	/// </summary>
 	/// <param name="this">The grid to be checked.</param>
 	/// <param name="topLeftCell">
-	/// <inheritdoc cref="GetMaxEmptySquareArea(ref readonly CellMap, out Cell)" path="/param[@name='topLeftCell']"/>
+	/// <inheritdoc cref="GetMaxEmptySquareArea(in CellMap, out Cell)" path="/param[@name='topLeftCell']"/>
 	/// </param>
 	/// <returns>A <see cref="Cell"/> value indicating the result.</returns>
 	/// <remarks>
-	/// <inheritdoc cref="GetMaxEmptyArea(ref readonly CellMap, out Cell)" path="/remarks"/>
+	/// <inheritdoc cref="GetMaxEmptyArea(in CellMap, out Cell)" path="/remarks"/>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cell GetMaxEmptyArea(this ref readonly Grid @this, out Cell topLeftCell)
-		=> @this.EmptyCells.GetMaxEmptyArea(out topLeftCell);
+	public static Cell GetMaxEmptyArea(this in Grid @this, out Cell topLeftCell) => @this.EmptyCells.GetMaxEmptyArea(out topLeftCell);
 
 	/// <summary>
 	/// Try to get the maximum empty square area exists in the specified grid.
 	/// </summary>
 	/// <param name="this">The grid to be checked.</param>
 	/// <param name="topLeftCell">
-	/// <inheritdoc cref="GetMaxEmptySquareArea(ref readonly CellMap, out Cell)" path="/param[@name='topLeftCell']"/>
+	/// <inheritdoc cref="GetMaxEmptySquareArea(in CellMap, out Cell)" path="/param[@name='topLeftCell']"/>
 	/// </param>
 	/// <returns>A <see cref="Cell"/> value indicating the result.</returns>
 	/// <remarks>
-	/// <inheritdoc cref="GetMaxEmptySquareArea(ref readonly CellMap, out Cell)" path="/remarks"/>
+	/// <inheritdoc cref="GetMaxEmptySquareArea(in CellMap, out Cell)" path="/remarks"/>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cell GetMaxEmptySquareArea(this ref readonly Grid @this, out Cell topLeftCell)
+	public static Cell GetMaxEmptySquareArea(this in Grid @this, out Cell topLeftCell)
 		=> @this.EmptyCells.GetMaxEmptySquareArea(out topLeftCell);
 
 	/// <summary>
@@ -40,14 +39,14 @@ public static class EmptyArea
 	/// </summary>
 	/// <param name="this">The cells to be checked.</param>
 	/// <param name="topLeftCell">
-	/// <inheritdoc cref="GetMaxEmptySquareArea(ref readonly CellMap, out Cell)" path="/param[@name='topLeftCell']"/>
+	/// <inheritdoc cref="GetMaxEmptySquareArea(in CellMap, out Cell)" path="/param[@name='topLeftCell']"/>
 	/// </param>
 	/// <returns>A <see cref="Cell"/> value indicating the result.</returns>
 	/// <remarks>
 	/// This algorithm is from the puzzle called
 	/// <see href="https://leetcode.com/problems/maximal-rectangle/"><i>Maximal Rectangle</i></see>.
 	/// </remarks>
-	public static Cell GetMaxEmptyArea(this ref readonly CellMap @this, out Cell topLeftCell)
+	public static Cell GetMaxEmptyArea(this in CellMap @this, out Cell topLeftCell)
 	{
 		var dp = (stackalloc Cell[9]);
 		dp.Clear();
@@ -103,7 +102,7 @@ public static class EmptyArea
 	/// This algorithm is from the puzzle called
 	/// <see href="https://leetcode.com/problems/maximal-square/"><i>Maximal Square</i></see>.
 	/// </remarks>
-	public static Cell GetMaxEmptySquareArea(this ref readonly CellMap @this, out Cell topLeftCell)
+	public static Cell GetMaxEmptySquareArea(this in CellMap @this, out Cell topLeftCell)
 	{
 		(topLeftCell, var maxSide) = (-1, 0);
 		var dp = (stackalloc Cell[81]);

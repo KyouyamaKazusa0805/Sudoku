@@ -12271,21 +12271,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.DictionaryQuery.DictionaryQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <summary>
-            To solve the puzzle.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="result">The result.</param>
-            <returns>
-            <para>
-            The method will return <see langword="false"/> if the puzzle has more than one solution,
-            or <see langword="null"/> if the puzzle cannot be solved.
-            </para>
-            <para>
-            Please note that the method cannot return <see langword="true"/>
-            due to not being aware of the uniqueness of the puzzle.
-            </para>
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.DictionaryQuery.DictionaryQuerySolver.AllNotNull``1(System.ReadOnlySpan{``0})">
             <summary>

@@ -248,9 +248,9 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 	/// <param name="cells">The cells.</param>
 	/// <returns>An <see cref="CellGraph"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellGraph Create(ref readonly CellMap cells) => new(in cells, in CellMap.Empty);
+	public static CellGraph Create(in CellMap cells) => new(in cells, in CellMap.Empty);
 
-	/// <inheritdoc cref="Create(ref readonly CellMap)"/>
+	/// <inheritdoc cref="Create(in CellMap)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellGraph Create(scoped ReadOnlySpan<Cell> cells) => Create(cells.AsCellMap());
 

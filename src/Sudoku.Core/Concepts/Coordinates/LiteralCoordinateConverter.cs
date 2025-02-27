@@ -128,7 +128,8 @@ public sealed record LiteralCoordinateConverter(
 					var token = typeGroup.Key == Assignment ? AssignmentToken : EliminationToken;
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						sb.Append(CellConverter([.. from conclusion in digitGroup select conclusion.Cell]));
+						CellMap cells = [.. from conclusion in digitGroup select conclusion.Cell];
+						sb.Append(CellConverter(in cells));
 						sb.Append(token);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);

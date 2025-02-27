@@ -17,6 +17,7 @@ public abstract class ChangedDiffResult(CandidateMap candidates) : UpdatedDiffRe
 	public sealed override string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
-		return $"{CellTypeString} digits changed: {converter.CandidateConverter(Candidates)}";
+		var candidates = Candidates;
+		return $"{CellTypeString} digits changed: {converter.CandidateConverter(in candidates)}";
 	}
 }

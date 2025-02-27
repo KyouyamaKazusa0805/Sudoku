@@ -662,11 +662,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	/// <param name="e2">The higher 256 bits.</param>
 	/// <returns>A <see cref="CandidateMap"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap CreateByVectors(
-		ref readonly Vector256<ulong> e0,
-		ref readonly Vector256<ulong> e1,
-		ref readonly Vector256<ulong> e2
-	)
+	public static CandidateMap CreateByVectors(in Vector256<ulong> e0, in Vector256<ulong> e1, in Vector256<ulong> e2)
 	{
 		Unsafe.SkipInit(out CandidateMap result);
 		e0.CopyTo(result._bits[..4]);
