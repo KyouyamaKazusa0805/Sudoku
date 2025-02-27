@@ -137,7 +137,7 @@
             <param name="Text">Indicates the source text generated.</param>
             <param name="Location">Indicates the location information.</param>
         </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult.#ctor(System.String,Sudoku.SourceGeneration.InterceptedLocation)">
+        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult.#ctor(System.String,Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation)">
             <summary>
             Represents a transform result after successfully to be handled.
             </summary>
@@ -165,6 +165,31 @@
         <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.FailedTransformResult.Diagnostic">
             <summary>The diagnostic result.</summary>
         </member>
+        <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation">
+            <summary>
+            Represents location information for an intercepted method.
+            </summary>
+            <param name="FilePath">Indicates the file path of the target method.</param>
+            <param name="Line">Indicates the line number.</param>
+            <param name="Character">Indicates the character position.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Represents location information for an intercepted method.
+            </summary>
+            <param name="FilePath">Indicates the file path of the target method.</param>
+            <param name="Line">Indicates the line number.</param>
+            <param name="Character">Indicates the character position.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation.FilePath">
+            <summary>Indicates the file path of the target method.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation.Line">
+            <summary>Indicates the line number.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation.Character">
+            <summary>Indicates the character position.</summary>
+        </member>
         <member name="T:Sudoku.SourceGeneration.InterceptorInstanceRoutingDefaultBehavior">
             <summary>
             Indicates the default behavior on routing for interceptor instance type checking.
@@ -179,31 +204,6 @@
             <summary>
             Indicates the default behavior is to throw a <see cref="T:System.NotSupportedException"/>.
             </summary>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.InterceptedLocation">
-            <summary>
-            Represents location information for an intercepted method.
-            </summary>
-            <param name="FilePath">Indicates the file path of the target method.</param>
-            <param name="Line">Indicates the line number.</param>
-            <param name="Character">Indicates the character position.</param>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.InterceptedLocation.#ctor(System.String,System.Int32,System.Int32)">
-            <summary>
-            Represents location information for an intercepted method.
-            </summary>
-            <param name="FilePath">Indicates the file path of the target method.</param>
-            <param name="Line">Indicates the line number.</param>
-            <param name="Character">Indicates the character position.</param>
-        </member>
-        <member name="P:Sudoku.SourceGeneration.InterceptedLocation.FilePath">
-            <summary>Indicates the file path of the target method.</summary>
-        </member>
-        <member name="P:Sudoku.SourceGeneration.InterceptedLocation.Line">
-            <summary>Indicates the line number.</summary>
-        </member>
-        <member name="P:Sudoku.SourceGeneration.InterceptedLocation.Character">
-            <summary>Indicates the character position.</summary>
         </member>
         <member name="T:Sudoku.SourceGeneration.StepSearcherDefaultImportingGenerator">
             <summary>
