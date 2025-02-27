@@ -18,10 +18,10 @@ public sealed partial class ExocetLockedMemberStep(
 	StepGathererOptions options,
 	Mask digitsMask,
 	[Property] Mask lockedMemberDigitsMask,
-	ref readonly CellMap baseCells,
-	ref readonly CellMap targetCells,
-	ref readonly CellMap endoTargetCells,
-	ref readonly CellMap crosslineCells
+	in CellMap baseCells,
+	in CellMap targetCells,
+	in CellMap endoTargetCells,
+	in CellMap crosslineCells
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
 {
 	/// <inheritdoc/>

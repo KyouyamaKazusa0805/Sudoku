@@ -21,7 +21,7 @@ public abstract class FormatInfo<T> : IFormatProvider where T : allows ref struc
 	/// </summary>
 	/// <param name="obj">An object to be formatted.</param>
 	/// <returns>The <see cref="string"/> representation of the argument <paramref name="obj"/>.</returns>
-	protected internal abstract string FormatCore(ref readonly T obj);
+	protected internal abstract string FormatCore(in T obj);
 
 	/// <summary>
 	/// Try to parse the specified <see cref="string"/> instance into a valid instance of type <typeparamref name="T"/>.

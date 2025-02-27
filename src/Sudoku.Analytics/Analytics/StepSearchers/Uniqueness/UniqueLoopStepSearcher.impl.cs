@@ -400,7 +400,7 @@ public partial class UniqueLoopStepSearcher
 					context.Options,
 					d1,
 					d2,
-					in loop,
+					loop,
 					new(first, second, digit),
 					path
 				);

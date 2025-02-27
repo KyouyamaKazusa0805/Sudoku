@@ -21,7 +21,7 @@ public sealed partial class MultipleLineGridFormatInfo : GridFormatInfo
 		=> new() { SubtleGridLines = SubtleGridLines, TreatValueAsGiven = TreatValueAsGiven };
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(ref readonly Grid grid)
+	protected internal override string FormatCore(in Grid grid)
 	{
 		var t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
 		return new StringBuilder()

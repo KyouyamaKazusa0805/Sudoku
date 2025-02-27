@@ -1484,11 +1484,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	private static NormalExocetStep? CheckJuniorOrSeniorBase(
 		ref StepAnalysisContext context,
 		Grid grid,
-		ref readonly CellMap baseCells,
-		ref readonly CellMap targetCells,
+		in CellMap baseCells,
+		in CellMap targetCells,
 		Cell endoTargetCell,
-		ref readonly CellMap crossline,
-		ref readonly CellMap crosslineIncludingTarget,
+		in CellMap crossline,
+		in CellMap crosslineIncludingTarget,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
 		out ReadOnlySpan<Conjugate> inferredTargetConjugatePairs
@@ -1658,10 +1658,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			],
 			context.Options,
 			baseCellsDigitsMask,
-			in baseCells,
-			in targetCells,
+			baseCells,
+			targetCells,
 			endoTargetCell != -1 ? [endoTargetCell] : [],
-			in crossline,
+			crossline,
 			[.. conjugatePairs]
 		);
 		if (context.OnlyFindOne)
@@ -1877,10 +1877,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			],
 			context.Options,
 			baseCellsDigitsMask,
-			in baseCells,
-			in targetCells,
-			[],
-			in crossline,
+			baseCells,
+			targetCells,
+			CellMap.Empty,
+			crossline,
 			[.. conjugatePairs]
 		);
 		if (context.OnlyFindOne)
@@ -1996,11 +1996,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			],
 			context.Options,
 			baseCellsDigitsMask,
-			in baseCells,
-			in targetCells,
-			[],
-			in crossline,
-			in singleMirrors
+			baseCells,
+			targetCells,
+			CellMap.Empty,
+			crossline,
+			singleMirrors
 		);
 		if (context.OnlyFindOne)
 		{
@@ -2938,8 +2938,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			baseCellsDigitsMask,
 			trueBaseDigit,
 			in baseCells,
-			[targetCell],
-			[endoTargetCell],
+			targetCell.AsCellMap(),
+			endoTargetCell.AsCellMap(),
 			in crossline
 		);
 		if (context.OnlyFindOne)
@@ -2956,11 +2956,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	private static ExocetLockedMemberStep? CheckSeniorLockedMember(
 		ref StepAnalysisContext context,
 		Grid grid,
-		ref readonly CellMap baseCells,
+		in CellMap baseCells,
 		Cell targetCell,
 		Cell endoTargetCell,
-		ref readonly CellMap crossline,
-		ref readonly CellMap crosslineIncludingTarget,
+		in CellMap crossline,
+		in CellMap crosslineIncludingTarget,
 		Mask baseCellsDigitsMask,
 		scoped ReadOnlySpan<LockedMember?> lockedMembers,
 		int chuteIndex,
@@ -3056,8 +3056,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			baseCellsDigitsMask,
 			lockedDigitsMask,
 			in baseCells,
-			[targetCell],
-			[endoTargetCell],
+			targetCell.AsCellMap(),
+			endoTargetCell.AsCellMap(),
 			in crossline
 		);
 		if (context.OnlyFindOne)
@@ -4038,7 +4038,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
-			[targetCell],
+			targetCell.AsCellMap(),
 			in endoTargetCells,
 			in crossline,
 			housesMask,
@@ -4062,14 +4062,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	private static NormalComplexExocetStep? CheckComplexJuniorBase(
 		ref StepAnalysisContext context,
 		Grid grid,
-		ref readonly CellMap baseCells,
-		ref readonly CellMap targetCells,
-		ref readonly CellMap crossline,
+		in CellMap baseCells,
+		in CellMap targetCells,
+		in CellMap crossline,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
 		HouseMask extraHousesMask,
 		int size,
-		ref readonly CellMap expandedCrosslineIncludingTarget
+		in CellMap expandedCrosslineIncludingTarget
 	)
 	{
 		// Check whether the number of digits appeared in base cells should be satisfied (size) rule.
@@ -4213,8 +4213,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
-			[targetCell],
-			[endoTargetCell],
+			targetCell.AsCellMap(),
+			endoTargetCell.AsCellMap(),
 			in crossline,
 			housesMask,
 			extraHousesMask
@@ -4295,7 +4295,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
-			[targetCell],
+			targetCell.AsCellMap(),
 			in endoTargetCellsGroup,
 			in crossline,
 			housesMask,
@@ -4575,11 +4575,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="lockedMemberDigitsMask">The found digits as locked members.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the pattern is valid.</returns>
 	private static bool CheckValidityAndLockedMembersExistence(
-		ref readonly Grid grid,
+		in Grid grid,
 		Mask baseCellsDigitsMask,
-		ref readonly CellMap baseCells,
-		ref readonly CellMap targetCells,
-		scoped ref readonly CellMap fullCrossline,
+		in CellMap baseCells,
+		in CellMap targetCells,
+		scoped in CellMap fullCrossline,
 		int times,
 		out Mask digitsMaskExactlySizeMinusOneTimes,
 		out Mask digitsMaskAppearedInCrossline,
@@ -4709,7 +4709,7 @@ file static class Extensions
 	/// <param name="digit">The digit to be checked.</param>
 	/// <param name="cells">The cells to be checked.</param>
 	/// <returns>The maximum possible times of the appearing.</returns>
-	public static int AppearingTimesOf(this ref readonly Grid @this, Digit digit, ref readonly CellMap cells)
+	public static int AppearingTimesOf(this in Grid @this, Digit digit, in CellMap cells)
 	{
 		var (activeCells, inactiveCells) = (CandidatesMap[digit] & cells, ValuesMap[digit] & cells);
 		for (var i = Math.Min(9, activeCells.Count); i >= 1; i--)
@@ -4733,12 +4733,7 @@ file static class Extensions
 	/// <param name="cells">The cells to be checked.</param>
 	/// <param name="limitCount">The number of times that the digit can be filled with the specified cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the argument <paramref name="limitCount"/> is exactly correct.</returns>
-	public static bool IsExactAppearingTimesOf(
-		this ref readonly Grid @this,
-		Digit digit,
-		ref readonly CellMap cells,
-		int limitCount
-	)
+	public static bool IsExactAppearingTimesOf(this in Grid @this, Digit digit, in CellMap cells, int limitCount)
 	{
 		var (activeCells, inactiveCells) = (CandidatesMap[digit] & cells, ValuesMap[digit] & cells);
 		if (!activeCells && limitCount == inactiveCells.Count)
@@ -4768,7 +4763,7 @@ file static class Extensions
 	/// A list of <see cref="CellMap"/> grouped, representing as a <see cref="TargetCellsGroup"/>.
 	/// </returns>
 	/// <seealso cref="TargetCellsGroup"/>
-	public static ReadOnlySpan<TargetCellsGroup> GroupTargets(this ref readonly CellMap @this, HouseMask houses)
+	public static ReadOnlySpan<TargetCellsGroup> GroupTargets(this in CellMap @this, HouseMask houses)
 	{
 		var (result, i) = (new TargetCellsGroup[HouseMask.PopCount(houses)], 0);
 		foreach (var house in houses)

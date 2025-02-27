@@ -13,8 +13,8 @@ public sealed partial class FishPattern(
 	[Property, HashCodeMember] Digit digit,
 	[Property, HashCodeMember] HouseMask baseSets,
 	[Property, HashCodeMember] HouseMask coverSets,
-	[Property, HashCodeMember] ref readonly CellMap exofins,
-	[Property, HashCodeMember] ref readonly CellMap endofins
+	[Property, HashCodeMember] in CellMap exofins,
+	[Property, HashCodeMember] in CellMap endofins
 ) :
 	Pattern,
 	IFormattable

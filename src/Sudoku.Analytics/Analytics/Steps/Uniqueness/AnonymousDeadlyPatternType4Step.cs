@@ -14,7 +14,7 @@ public sealed partial class AnonymousDeadlyPatternType4Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CandidateMap patternCandidates,
+	[Property] in CandidateMap patternCandidates,
 	[Property] House conjugateHouse,
 	[Property] Mask extraDigitsMask,
 	Technique technique

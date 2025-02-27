@@ -18,8 +18,8 @@ namespace Sudoku.Analytics.Construction.Patterns;
 [TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString | TypeImplFlags.ComparisonOperators)]
 public sealed partial class AlmostLockedSetPattern(
 	[Property, HashCodeMember] Mask digitsMask,
-	[Property, HashCodeMember] ref readonly CellMap cells,
-	[Property] ref readonly CellMap possibleEliminationMap,
+	[Property, HashCodeMember] in CellMap cells,
+	[Property] in CellMap possibleEliminationMap,
 	[Property] CellMap[] eliminationMap
 ) :
 	Pattern,

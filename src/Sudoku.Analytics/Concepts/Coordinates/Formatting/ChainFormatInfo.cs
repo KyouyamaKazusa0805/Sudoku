@@ -244,7 +244,7 @@ public sealed class ChainFormatInfo : FormatInfo<Chain>
 
 
 	/// <inheritdoc/>
-	protected override string FormatCore(ref readonly Chain obj)
+	protected override string FormatCore(in Chain obj)
 	{
 		var candidateConverter = NodeFormatType.GetConverter() switch
 		{
@@ -362,7 +362,7 @@ public sealed class ChainFormatInfo : FormatInfo<Chain>
 	protected override Chain ParseCore(string str) => throw new NotSupportedException();
 
 
-	/// <inheritdoc cref="FormatCore(ref readonly Chain)"/>
+	/// <inheritdoc cref="FormatCore(in Chain)"/>
 	[UnsafeAccessor(UnsafeAccessorKind.Method, Name = nameof(FormatCore))]
-	internal static extern string FormatCoreUnsafeAccessor(ChainFormatInfo @this, ref readonly Chain obj);
+	internal static extern string FormatCoreUnsafeAccessor(ChainFormatInfo @this, in Chain obj);
 }

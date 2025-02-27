@@ -17,8 +17,8 @@ public sealed record LiteralCoordinateConverter(
 ) : CoordinateConverter(DefaultSeparator, DigitsSeparator, AssignmentToken, EliminationToken, NotationBracket.None, CurrentCulture)
 {
 	/// <inheritdoc/>
-	public override FuncRefReadOnly<CellMap, string> CellConverter
-		=> (ref readonly cells) => cells switch
+	public override CellMapFormatter CellConverter
+		=> (in cells) => cells switch
 		{
 			[] => string.Empty,
 			[var p] => string.Format(SR.Get("CellLabel", TargetCurrentCulture), [(p / 9 + 1).ToString(), (p % 9 + 1).ToString()]),
@@ -33,8 +33,8 @@ public sealed record LiteralCoordinateConverter(
 		};
 
 	/// <inheritdoc/>
-	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
-		=> (ref readonly candidates) =>
+	public override CandidateMapFormatter CandidateConverter
+		=> (in candidates) =>
 		{
 			var snippets = new List<string>();
 			foreach (var candidate in candidates)

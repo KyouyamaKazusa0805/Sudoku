@@ -348,7 +348,7 @@ internal partial class ChainingDriver
 	private static ConclusionSet CollectBlossomConclusions(
 		ref readonly Grid grid,
 		List<Link> patternLinks,
-		ref readonly CandidateMap exits,
+		in CandidateMap exits,
 		ChainingRuleCollection supportedRules
 	)
 	{

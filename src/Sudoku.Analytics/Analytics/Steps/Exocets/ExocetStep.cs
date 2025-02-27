@@ -16,10 +16,10 @@ public abstract partial class ExocetStep(
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Mask digitsMask,
-	[Property] ref readonly CellMap baseCells,
-	[Property] ref readonly CellMap targetCells,
-	[Property] ref readonly CellMap endoTargetCells,
-	[Property] ref readonly CellMap crosslineCells
+	[Property] in CellMap baseCells,
+	[Property] in CellMap targetCells,
+	[Property] in CellMap endoTargetCells,
+	[Property] in CellMap crosslineCells
 ) : FullPencilmarkingStep(conclusions, views, options)
 {
 	/// <summary>

@@ -12,7 +12,7 @@ public sealed class FireworkTripleStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask
 ) : FireworkStep(conclusions, views, options, in cells, digitsMask)
 {

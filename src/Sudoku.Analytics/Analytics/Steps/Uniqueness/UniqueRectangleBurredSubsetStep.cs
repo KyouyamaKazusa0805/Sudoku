@@ -19,9 +19,9 @@ public sealed partial class UniqueRectangleBurredSubsetStep(
 	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	int absoluteOffset,
-	[Property] ref readonly CellMap extraCells,
+	[Property] in CellMap extraCells,
 	[Property] Cell subsetIncludedCorner,
 	[Property] Mask extraDigitsMask
 ) :

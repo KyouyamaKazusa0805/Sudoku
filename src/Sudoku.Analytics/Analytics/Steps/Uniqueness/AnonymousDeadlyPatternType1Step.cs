@@ -16,7 +16,7 @@ public sealed partial class AnonymousDeadlyPatternType1Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CandidateMap patternCandidates,
+	[Property] in CandidateMap patternCandidates,
 	[Property] Cell targetCell,
 	[Property] Mask targetDigitsMask,
 	Technique technique

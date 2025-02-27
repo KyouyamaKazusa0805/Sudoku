@@ -455,7 +455,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					],
 					context.Options,
 					MaskOperations.Create(digits),
-					in cells,
+					cells,
 					new(cell1, cell2, conjugatePairDigit)
 				);
 				if (context.OnlyFindOne)
@@ -594,7 +594,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				],
 				context.Options,
 				mask,
-				[c1, c2],
+				c1.AsCellMap() + c2,
 				cell
 			);
 			if (context.OnlyFindOne)

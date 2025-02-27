@@ -8,9 +8,9 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="valuesMap">Indicates the value cells.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class AvoidableRectanglePattern(
-	[Property, HashCodeMember] ref readonly CellMap cells,
+	[Property, HashCodeMember] in CellMap cells,
 	[Property, HashCodeMember] Mask digitsMask,
-	[Property, HashCodeMember] ref readonly CellMap valuesMap
+	[Property, HashCodeMember] in CellMap valuesMap
 ) : Pattern
 {
 	/// <inheritdoc/>

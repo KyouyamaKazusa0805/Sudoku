@@ -21,10 +21,8 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="map">Indicates the full map of all cells used.</param>
 /// <param name="pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class FireworkPattern(
-	[Property, HashCodeMember] ref readonly CellMap map,
-	[Property, HashCodeMember] Cell? pivot
-) : Pattern
+public sealed partial class FireworkPattern([Property, HashCodeMember] in CellMap map, [Property, HashCodeMember] Cell? pivot) :
+	Pattern
 {
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;

@@ -17,7 +17,7 @@ public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
 	public override OpenSudokuGridFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(ref readonly Grid grid)
+	protected internal override string FormatCore(in Grid grid)
 	{
 		// Calculates the length of the result string.
 		const int length = 1 + (81 * 3 - 1 << 1);

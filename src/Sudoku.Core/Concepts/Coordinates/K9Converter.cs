@@ -48,8 +48,8 @@ public sealed record K9Converter(
 ) : CoordinateConverter(DefaultSeparator, DigitsSeparator, AssignmentToken, EliminationToken, NotationBracket, CurrentCulture)
 {
 	/// <inheritdoc/>
-	public override FuncRefReadOnly<CellMap, string> CellConverter
-		=> (ref readonly cells) =>
+	public override CellMapFormatter CellConverter
+		=> (in cells) =>
 		{
 			switch (cells)
 			{
@@ -111,8 +111,8 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
-		=> (ref readonly candidates) =>
+	public override CandidateMapFormatter CandidateConverter
+		=> (in candidates) =>
 		{
 			var needAddingBrackets = Enum.IsDefined(DigitBracketInCandidateGroups) && DigitBracketInCandidateGroups != NotationBracket.None;
 			var sb = new StringBuilder(50);

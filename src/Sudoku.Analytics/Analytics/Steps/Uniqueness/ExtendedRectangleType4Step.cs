@@ -13,9 +13,9 @@ public sealed partial class ExtendedRectangleType4Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask,
-	[Property] ref readonly Conjugate conjugatePair
+	[Property] in Conjugate conjugatePair
 ) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>

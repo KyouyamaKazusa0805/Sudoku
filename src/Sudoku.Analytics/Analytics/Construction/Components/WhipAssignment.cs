@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <param name="Map">Indicates all candidates used.</param>
 /// <param name="Reason">Indicates the reason why the target candidate becomes available.</param>
-public abstract record WhipAssignment(ref readonly CandidateMap Map, Technique Reason) :
+public abstract record WhipAssignment(in CandidateMap Map, Technique Reason) :
 	IComponent,
 	IEqualityOperators<WhipAssignment, WhipAssignment, bool>
 {

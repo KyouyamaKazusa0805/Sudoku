@@ -16,11 +16,11 @@ public sealed partial class JuniorExocetIncompatiblePairStep(
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,
-	[Property] ref readonly CandidateMap incompatibleCandidates,
-	ref readonly CellMap baseCells,
-	ref readonly CellMap targetCells,
-	ref readonly CellMap crosslineCells
-) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
+	[Property] in CandidateMap incompatibleCandidates,
+	in CellMap baseCells,
+	in CellMap targetCells,
+	in CellMap crosslineCells
+) : ExocetStep(conclusions, views, options, digitsMask, baseCells, targetCells, CellMap.Empty, crosslineCells)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 3;

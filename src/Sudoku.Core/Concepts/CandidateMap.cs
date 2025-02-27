@@ -330,7 +330,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly int CompareTo(ref readonly CandidateMap other)
+	public readonly int CompareTo(in CandidateMap other)
 	{
 		return Count > other.Count ? 1 : Count < other.Count ? -1 : -Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
 

@@ -523,9 +523,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				context.Options,
 				d1,
 				d2,
-				in completePattern,
-				in cellsChosen,
-				new(in possibleConjugatePairCells, selectedDigit)
+				completePattern,
+				cellsChosen,
+				new(possibleConjugatePairCells, selectedDigit)
 			);
 			if (context.OnlyFindOne)
 			{

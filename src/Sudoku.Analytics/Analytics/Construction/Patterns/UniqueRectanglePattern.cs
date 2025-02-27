@@ -7,11 +7,8 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="digitsMask">The digits mask.</param>
 /// <param name="otherDigitsMask">The other digits mask.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class UniqueRectanglePattern(
-	[Property] ref readonly CellMap cells,
-	[Property] Mask digitsMask,
-	[Property] Mask otherDigitsMask
-) : Pattern
+public sealed partial class UniqueRectanglePattern([Property] in CellMap cells, [Property] Mask digitsMask, [Property] Mask otherDigitsMask) :
+	Pattern
 {
 	/// <summary>
 	/// The table of all possible pattern cells.

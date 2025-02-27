@@ -479,7 +479,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 							continue;
 						}
 
-						if (ExcluderInfo.TryCreate(in currentGrid, digit, house, [cell]) is not var (baseCells, _, _))
+						if (ExcluderInfo.TryCreate(currentGrid, digit, house, cell.AsCellMap()) is not var (baseCells, _, _))
 						{
 							continue;
 						}

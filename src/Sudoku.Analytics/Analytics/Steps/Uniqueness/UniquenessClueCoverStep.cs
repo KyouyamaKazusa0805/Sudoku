@@ -13,7 +13,7 @@ public sealed partial class UniquenessClueCoverStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CellMap extraCells,
+	[Property] in CellMap extraCells,
 	[Property] Mask extraDigits,
 	[Property] int chuteIndex
 ) : UnconditionalDeadlyPatternStep(conclusions, views, options), IExtraCellListTrait

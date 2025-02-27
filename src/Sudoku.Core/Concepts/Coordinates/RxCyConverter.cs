@@ -44,8 +44,8 @@ public sealed record RxCyConverter(
 ) : CoordinateConverter(DefaultSeparator, DigitsSeparator, AssignmentToken, EliminationToken, NotationBracket, CurrentCulture)
 {
 	/// <inheritdoc/>
-	public override FuncRefReadOnly<CellMap, string> CellConverter
-		=> (ref readonly cells) =>
+	public override CellMapFormatter CellConverter
+		=> (in cells) =>
 		{
 			return cells switch
 			{
@@ -91,8 +91,8 @@ public sealed record RxCyConverter(
 		};
 
 	/// <inheritdoc/>
-	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
-		=> (ref readonly candidates) =>
+	public override CandidateMapFormatter CandidateConverter
+		=> (in candidates) =>
 		{
 			if (!candidates)
 			{

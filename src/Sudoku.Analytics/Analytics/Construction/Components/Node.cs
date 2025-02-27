@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </param>
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.AllEqualityComparisonOperators)]
 public sealed partial class Node(
-	[Field, HashCodeMember] ref readonly CandidateMap map,
+	[Field, HashCodeMember] in CandidateMap map,
 	[Property, HashCodeMember] bool isOn,
 	[Property(Setter = PropertySetters.Set)] NodeSet? parents = null
 ) :

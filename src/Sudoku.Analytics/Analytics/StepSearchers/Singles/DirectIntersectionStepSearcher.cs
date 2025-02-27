@@ -174,7 +174,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				lastDigit,
 				HousesMap[baseSet] & HousesMap[coverSet] & emptyCells,
 				baseSet,
-				[lastCell],
+				lastCell.AsCellMap(),
 				digit,
 				house switch
 				{

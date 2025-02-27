@@ -20,9 +20,9 @@ public sealed partial class UniqueRectangleExternalWWingStep(
 	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap cells,
-	[Property] ref readonly CellMap guardianCells,
-	[Property] ref readonly CellMap cellPair,
+	in CellMap cells,
+	[Property] in CellMap guardianCells,
+	[Property] in CellMap cellPair,
 	[Property] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset

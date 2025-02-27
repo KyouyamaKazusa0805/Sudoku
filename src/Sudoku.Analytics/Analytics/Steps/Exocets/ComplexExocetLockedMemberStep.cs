@@ -18,10 +18,10 @@ public sealed partial class ComplexExocetLockedMemberStep(
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,
-	ref readonly CellMap baseCells,
-	ref readonly CellMap targetCells,
-	ref readonly CellMap endoTargetCells,
-	ref readonly CellMap crosslineCells,
+	in CellMap baseCells,
+	in CellMap targetCells,
+	in CellMap endoTargetCells,
+	in CellMap crosslineCells,
 	[Property] HouseMask crosslineHousesMask,
 	[Property] HouseMask extraHousesMask
 ) :

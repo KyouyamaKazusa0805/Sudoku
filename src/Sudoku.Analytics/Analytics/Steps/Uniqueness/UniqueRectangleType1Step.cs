@@ -17,7 +17,7 @@ public sealed class UniqueRectangleType1Step(
 	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	bool isAvoidable,
 	int absoluteOffset
 ) : UniqueRectangleStep(

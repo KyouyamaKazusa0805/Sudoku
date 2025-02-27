@@ -38,7 +38,7 @@ public abstract partial class FishStep(
 	[Property] Digit digit,
 	[Property] HouseMask baseSetsMask,
 	[Property] HouseMask coverSetsMask,
-	[Property] ref readonly CellMap fins,
+	[Property] in CellMap fins,
 	[Property] bool? isSashimi,
 	[Property] bool isSiamese = false
 ) : FullPencilmarkingStep(conclusions, views, options), ISizeTrait

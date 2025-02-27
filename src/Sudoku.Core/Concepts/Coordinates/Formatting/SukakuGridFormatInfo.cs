@@ -17,7 +17,7 @@ public sealed partial class SukakuGridFormatInfo : GridFormatInfo
 	public override SukakuGridFormatInfo Clone() => new() { Placeholder = Placeholder, Multiline = Multiline };
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(ref readonly Grid grid)
+	protected internal override string FormatCore(in Grid grid)
 	{
 		if (Multiline)
 		{

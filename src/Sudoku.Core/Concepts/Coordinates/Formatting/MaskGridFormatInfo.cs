@@ -23,7 +23,7 @@ public sealed class MaskGridFormatInfo : GridFormatInfo
 	public override MaskGridFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(ref readonly Grid grid)
+	protected internal override string FormatCore(in Grid grid)
 	{
 		var sb = new StringBuilder(400);
 		foreach (var mask in grid)

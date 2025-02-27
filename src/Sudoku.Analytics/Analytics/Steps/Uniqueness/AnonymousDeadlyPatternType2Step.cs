@@ -14,8 +14,8 @@ public sealed partial class AnonymousDeadlyPatternType2Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CandidateMap patternCandidates,
-	[Property] ref readonly CellMap targetCells,
+	[Property] in CandidateMap patternCandidates,
+	[Property] in CellMap targetCells,
 	[Property] Digit extraDigit,
 	Technique technique
 ) : AnonymousDeadlyPatternStep(conclusions, views, options, patternCandidates.Digits, patternCandidates.Cells, technique)

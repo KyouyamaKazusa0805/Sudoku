@@ -15,9 +15,9 @@ public sealed partial class AnonymousDeadlyPatternType3Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CandidateMap patternCandidates,
-	[Property] ref readonly CellMap targetCells,
-	[Property] ref readonly CellMap subsetCells,
+	[Property] in CandidateMap patternCandidates,
+	[Property] in CellMap targetCells,
+	[Property] in CellMap subsetCells,
 	[Property] Mask subsetDigitsMask,
 	Technique technique
 ) :

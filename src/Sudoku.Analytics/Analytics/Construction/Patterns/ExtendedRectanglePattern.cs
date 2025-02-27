@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class ExtendedRectanglePattern(
 	[Property] bool isFat,
-	[Property, HashCodeMember] ref readonly CellMap patternCells,
+	[Property, HashCodeMember] in CellMap patternCells,
 	[Property] (Cell Left, Cell Right)[] pairCells,
 	[Property] int size
 ) : Pattern

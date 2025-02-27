@@ -8,8 +8,8 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="digitsMask">Indicates the mask of digits that the loop used.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class BivalueOddagonPattern(
-	[Property, HashCodeMember] ref readonly CellMap loopCells,
-	[Property] ref readonly CellMap extraCells,
+	[Property, HashCodeMember] in CellMap loopCells,
+	[Property] in CellMap extraCells,
 	[Property] Mask digitsMask
 ) : Pattern
 {

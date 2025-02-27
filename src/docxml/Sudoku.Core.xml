@@ -2694,6 +2694,22 @@
         <member name="M:Sudoku.Concepts.Conjugate.Equals(Sudoku.Concepts.Conjugate)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Coordinates.CandidateMapFormatter">
+            <summary>
+            Provides with a formatter object that convert the current <see cref="T:Sudoku.Concepts.CandidateMap"/> instance
+            into a <see cref="T:System.String"/> representation equivalent to the current object.
+            </summary>
+            <param name="candidates">The candidates to be converted.</param>
+            <returns>The string result.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Coordinates.CellMapFormatter">
+            <summary>
+            Provides with a formatter object that convert the current <see cref="T:Sudoku.Concepts.CellMap"/> instance
+            into a <see cref="T:System.String"/> representation equivalent to the current object.
+            </summary>
+            <param name="cells">The cells to be converted.</param>
+            <returns>The string result.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Coordinates.CoordinateConverter">
             <summary>
             Represents an option provider for coordinates.

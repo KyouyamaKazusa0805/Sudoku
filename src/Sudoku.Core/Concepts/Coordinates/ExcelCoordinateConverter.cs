@@ -24,8 +24,8 @@ public sealed record ExcelCoordinateConverter(
 ) : CoordinateConverter(DefaultSeparator, DigitsSeparator, AssignmentToken, EliminationToken, NotationBracket, CurrentCulture)
 {
 	/// <inheritdoc/>
-	public override FuncRefReadOnly<CellMap, string> CellConverter
-		=> (ref readonly cells) =>
+	public override CellMapFormatter CellConverter
+		=> (in cells) =>
 		{
 			switch (cells)
 			{
@@ -66,8 +66,8 @@ public sealed record ExcelCoordinateConverter(
 		};
 
 	/// <inheritdoc/>
-	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
-		=> (ref readonly candidates) =>
+	public override CandidateMapFormatter CandidateConverter
+		=> (in candidates) =>
 		{
 			var sb = new StringBuilder(50);
 			foreach (var digitGroup in

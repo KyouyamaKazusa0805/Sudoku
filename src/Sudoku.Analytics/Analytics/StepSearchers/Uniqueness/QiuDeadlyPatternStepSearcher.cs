@@ -753,7 +753,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 						1 << l1 | 1 << l2,
 						corner[0],
 						corner[1],
-						new(in corner, digit)
+						new(corner, digit)
 					);
 					if (context.OnlyFindOne)
 					{

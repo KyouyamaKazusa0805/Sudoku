@@ -14,11 +14,11 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </remarks>
 [TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.ComparisonOperators)]
 public sealed partial class AlmostHiddenSetPattern(
-	[Property, HashCodeMember] ref readonly CellMap cells,
+	[Property, HashCodeMember] in CellMap cells,
 	[Property, HashCodeMember] House house,
 	[Property, HashCodeMember] Mask digitsMask,
 	[Property, HashCodeMember] Mask subsetDigitsMask,
-	[Property, HashCodeMember] ref readonly CandidateMap candidatesCanFormWeakLink
+	[Property, HashCodeMember] in CandidateMap candidatesCanFormWeakLink
 ) :
 	Pattern,
 	IComparable<AlmostHiddenSetPattern>,

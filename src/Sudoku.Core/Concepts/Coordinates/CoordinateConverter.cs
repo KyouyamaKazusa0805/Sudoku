@@ -48,12 +48,12 @@ public abstract record CoordinateConverter(
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of cells.
 	/// </summary>
-	public abstract FuncRefReadOnly<CellMap, string> CellConverter { get; }
+	public abstract CellMapFormatter CellConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of candidates.
 	/// </summary>
-	public abstract FuncRefReadOnly<CandidateMap, string> CandidateConverter { get; }
+	public abstract CandidateMapFormatter CandidateConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of houses.

@@ -18,14 +18,14 @@ public sealed partial class ComplexJuniorExocetAdjacentTargetStep(
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,
-	ref readonly CellMap baseCells,
-	ref readonly CellMap targetCells,
-	ref readonly CellMap crosslineCells,
+	in CellMap baseCells,
+	in CellMap targetCells,
+	in CellMap crosslineCells,
 	[Property] HouseMask crosslineHousesMask,
 	[Property] HouseMask extraHousesMask,
-	[Property] ref readonly CellMap singleMirrors
+	[Property] in CellMap singleMirrors
 ) :
-	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells),
+	ExocetStep(conclusions, views, options, digitsMask, baseCells, targetCells, CellMap.Empty, crosslineCells),
 	IComplexSeniorExocet
 {
 	/// <inheritdoc/>

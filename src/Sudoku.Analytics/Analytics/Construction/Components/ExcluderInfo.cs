@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="BaseCells">The base cells to be used.</param>
 /// <param name="EmptyCells">The empty cells in the final.</param>
 /// <param name="ExcludedCells">The excluded cells to be used.</param>
-public sealed record ExcluderInfo(ref readonly CellMap BaseCells, ref readonly CellMap EmptyCells, ref readonly CellMap ExcludedCells) :
+public sealed record ExcluderInfo(in CellMap BaseCells, in CellMap EmptyCells, in CellMap ExcludedCells) :
 	IComponent,
 	IEqualityOperators<ExcluderInfo, ExcluderInfo, bool>
 {
@@ -24,7 +24,7 @@ public sealed record ExcluderInfo(ref readonly CellMap BaseCells, ref readonly C
 	/// <param name="house">The house to be checked.</param>
 	/// <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
 	/// <returns>The result pair.</returns>
-	public static ExcluderInfo? TryCreate(ref readonly Grid grid, Digit digit, House house, ref readonly CellMap cells)
+	public static ExcluderInfo? TryCreate(in Grid grid, Digit digit, House house, in CellMap cells)
 	{
 		var (houseCells, valueCells, emptyCells) = (HousesMap[house], grid.ValuesMap[digit], grid.EmptyCells);
 		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells & ~cells & emptyCells, CellMap.Empty, CellMap.Empty);

@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.StepSearchers.Invalidity;
 
-using unsafe CollectorPredicateFuncPtr = delegate*<ref readonly CellMap, bool>;
-
 /// <summary>
 /// Provides with a <b>Guardian</b> step searcher.
 /// The step searcher will include the following techniques:
@@ -114,11 +112,11 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 	/// </returns>
 	private static unsafe GuardianPattern[] CollectGuardianLoops(Digit digit)
 	{
-		static bool predicate(ref readonly CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
+		static bool predicate(in CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
 		var result = new HashSet<GuardianPattern>();
 		foreach (var cell in CandidatesMap[digit])
 		{
-			dfs(cell, cell, 0, [cell], [], digit, &predicate, result);
+			dfs(cell, cell, 0, cell.AsCellMap(), CellMap.Empty, digit, &predicate, result);
 		}
 		return [.. result];
 
@@ -127,10 +125,10 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			Cell startCell,
 			Cell lastCell,
 			House lastHouse,
-			ref readonly CellMap currentLoop,
-			ref readonly CellMap currentGuardians,
+			in CellMap currentLoop,
+			in CellMap currentGuardians,
 			Digit digit,
-			CollectorPredicateFuncPtr condition,
+			delegate*<in CellMap, bool> condition,
 			HashSet<GuardianPattern> result
 		)
 		{

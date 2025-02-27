@@ -18,7 +18,7 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 		=> new() { SubtleGridLines = SubtleGridLines, TreatValueAsGiven = TreatValueAsGiven, IsCompatibleMode = IsCompatibleMode };
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(ref readonly Grid grid)
+	protected internal override string FormatCore(in Grid grid)
 	{
 		// Step 1: gets the candidates information grouped by columns.
 		var valuesByColumn = createTempDictionary();

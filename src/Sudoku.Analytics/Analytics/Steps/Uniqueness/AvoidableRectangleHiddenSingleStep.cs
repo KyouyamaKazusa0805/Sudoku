@@ -19,7 +19,7 @@ public sealed partial class AvoidableRectangleHiddenSingleStep(
 	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	[Property] Cell baseCell,
 	[Property] Cell targetCell,
 	[Property] House house,

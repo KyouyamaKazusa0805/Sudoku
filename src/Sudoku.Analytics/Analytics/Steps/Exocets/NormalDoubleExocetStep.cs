@@ -17,12 +17,14 @@ public sealed partial class NormalDoubleExocetStep(
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,
-	ref readonly CellMap baseCells,
-	ref readonly CellMap targetCells,
-	ref readonly CellMap crosslineCells,
-	[Property] ref readonly CellMap baseCellsTheOther,
-	[Property] ref readonly CellMap targetCellsTheOther
-) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells), IDoubleExocet
+	in CellMap baseCells,
+	in CellMap targetCells,
+	in CellMap crosslineCells,
+	[Property] in CellMap baseCellsTheOther,
+	[Property] in CellMap targetCellsTheOther
+) :
+	ExocetStep(conclusions, views, options, digitsMask, baseCells, targetCells, CellMap.Empty, crosslineCells),
+	IDoubleExocet
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.DoubleExocet;

@@ -7,11 +7,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="path">Indicates the detail path of the loop.</param>
 /// <param name="digitsMask">Indicates the digits used, represented as a mask.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
-public sealed partial class UniqueLoopPattern(
-	[Property] ref readonly CellMap loop,
-	[Property] Cell[] path,
-	[Property] Mask digitsMask
-) : Pattern
+public sealed partial class UniqueLoopPattern([Property] in CellMap loop, [Property] Cell[] path, [Property] Mask digitsMask) : Pattern
 {
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;

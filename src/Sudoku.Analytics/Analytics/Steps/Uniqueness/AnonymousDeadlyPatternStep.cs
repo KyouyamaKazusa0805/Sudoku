@@ -14,7 +14,7 @@ public abstract partial class AnonymousDeadlyPatternStep(
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Mask digitsMask,
-	[Property] ref readonly CellMap cells,
+	[Property] in CellMap cells,
 	[Property(Accessibility = "public sealed override", NamingRule = "Code", EmitPropertyStyle = EmitPropertyStyle.ReturnParameter)] Technique technique
 ) : ConditionalDeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {

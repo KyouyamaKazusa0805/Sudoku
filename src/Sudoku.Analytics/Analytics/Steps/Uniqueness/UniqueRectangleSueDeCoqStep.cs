@@ -29,7 +29,7 @@ public sealed partial class UniqueRectangleSueDeCoqStep(
 	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	bool isAvoidable,
 	[Property] House block,
 	[Property] House line,
@@ -38,9 +38,9 @@ public sealed partial class UniqueRectangleSueDeCoqStep(
 	[Property] Mask intersectionMask,
 	[Property] bool isCannibalistic,
 	[Property] Mask isolatedDigitsMask,
-	[Property] ref readonly CellMap blockCells,
-	[Property] ref readonly CellMap lineCells,
-	[Property] ref readonly CellMap intersectionCells,
+	[Property] in CellMap blockCells,
+	[Property] in CellMap lineCells,
+	[Property] in CellMap intersectionCells,
 	int absoluteOffset
 ) :
 	UniqueRectangleStep(

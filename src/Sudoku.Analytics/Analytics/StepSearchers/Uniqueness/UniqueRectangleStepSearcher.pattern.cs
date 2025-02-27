@@ -145,7 +145,7 @@ public partial class UniqueRectangleStepSearcher
 								d2,
 								urCells.AsCellMap(),
 								index,
-								in subsetCells,
+								subsetCells,
 								thisCorner,
 								subsetDigitsMask
 							)
@@ -528,11 +528,11 @@ public partial class UniqueRectangleStepSearcher
 						isAvoidable ? Technique.AvoidableRectangleWWing : Technique.UniqueRectangleWWing,
 						d1,
 						d2,
-						in cells,
+						cells,
 						isAvoidable,
 						wDigit,
-						in otherCellsMap,
-						[endCell1, endCell2],
+						otherCellsMap,
+						endCell1.AsCellMap() + endCell2,
 						index
 					)
 				);
@@ -846,9 +846,9 @@ public partial class UniqueRectangleStepSearcher
 						selectedInterMask,
 						cannibalMode,
 						maskIsolated,
-						in currentBlockMap,
-						in currentLineMap,
-						in currentInterMap,
+						currentBlockMap,
+						currentLineMap,
+						currentInterMap,
 						index
 					)
 				);

@@ -599,7 +599,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						context.Options,
 						in patternCells,
 						normalDigits,
-						new(in extraCells, conjugateDigit)
+						new(extraCells, conjugateDigit)
 					);
 					if (onlyFindOne)
 					{

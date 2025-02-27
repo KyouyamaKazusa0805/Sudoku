@@ -17,10 +17,10 @@ public sealed partial class ExocetMirrorConjugatePairStep(
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,
-	ref readonly CellMap baseCells,
-	ref readonly CellMap targetCells,
-	ref readonly CellMap endoTargetCells,
-	ref readonly CellMap crosslineCells,
+	in CellMap baseCells,
+	in CellMap targetCells,
+	in CellMap endoTargetCells,
+	in CellMap crosslineCells,
 	[Property] Conjugate[] conjugatePairs
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
 {

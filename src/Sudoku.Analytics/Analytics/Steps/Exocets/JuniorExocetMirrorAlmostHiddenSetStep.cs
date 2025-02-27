@@ -17,13 +17,13 @@ public sealed partial class JuniorExocetMirrorAlmostHiddenSetStep(
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,
-	ref readonly CellMap baseCells,
-	ref readonly CellMap targetCells,
-	ref readonly CellMap crosslineCells,
-	[Property] ref readonly CellMap extraCells,
+	in CellMap baseCells,
+	in CellMap targetCells,
+	in CellMap crosslineCells,
+	[Property] in CellMap extraCells,
 	[Property] Mask extraDigitsMask
 ) :
-	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells),
+	ExocetStep(conclusions, views, options, digitsMask, baseCells, targetCells, CellMap.Empty, crosslineCells),
 	IPatternType3StepTrait<JuniorExocetMirrorAlmostHiddenSetStep>
 {
 	/// <inheritdoc/>

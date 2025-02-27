@@ -31,7 +31,7 @@ public readonly partial struct Conjugate(ConjugateMask _mask) :
 	/// </summary>
 	/// <param name="map">The map.</param>
 	/// <param name="digit">The digit.</param>
-	public Conjugate(ref readonly CellMap map, Digit digit) : this(map[0], map[1], digit)
+	public Conjugate(in CellMap map, Digit digit) : this(map[0], map[1], digit)
 	{
 	}
 

@@ -15,19 +15,10 @@ public sealed class JuniorExocetMirrorSyncStep(
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,
-	ref readonly CellMap baseCells,
-	ref readonly CellMap targetCells,
-	ref readonly CellMap crosslineCells
-) : ExocetStep(
-	conclusions,
-	views,
-	options,
-	digitsMask,
-	in baseCells,
-	in targetCells,
-	[],
-	in crosslineCells
-)
+	in CellMap baseCells,
+	in CellMap targetCells,
+	in CellMap crosslineCells
+) : ExocetStep(conclusions, views, options, digitsMask, baseCells, targetCells, CellMap.Empty, crosslineCells)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 1;

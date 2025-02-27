@@ -194,10 +194,10 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 	/// If all rules are compared, but they are still considered equal, then return 0.
 	/// </para>
 	/// </returns>
-	public abstract int CompareTo(ref readonly TSelf other);
+	public abstract int CompareTo(in TSelf other);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	public abstract bool Equals(ref readonly TSelf other);
+	public abstract bool Equals(in TSelf other);
 
 	/// <inheritdoc cref="object.ToString"/>
 	public virtual string ToString() => ToString(null);

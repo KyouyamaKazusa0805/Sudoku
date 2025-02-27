@@ -13,7 +13,7 @@ public sealed class BitmapCellMapFormatInfo : CellMapFormatInfo
 	public override BitmapCellMapFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(ref readonly CellMap obj)
+	protected internal override string FormatCore(in CellMap obj)
 	{
 		var result = (stackalloc char[81]);
 		result.Fill('0');

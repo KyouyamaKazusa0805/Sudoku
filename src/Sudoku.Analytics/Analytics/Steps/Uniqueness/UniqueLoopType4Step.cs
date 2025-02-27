@@ -17,8 +17,8 @@ public sealed partial class UniqueLoopType4Step(
 	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap loop,
-	[Property] ref readonly Conjugate conjugatePair,
+	in CellMap loop,
+	[Property] in Conjugate conjugatePair,
 	Cell[] loopPath
 ) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop, loopPath)
 {

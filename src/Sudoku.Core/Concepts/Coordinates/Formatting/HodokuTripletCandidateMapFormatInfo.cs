@@ -13,7 +13,7 @@ public sealed class HodokuTripletCandidateMapFormatInfo : CandidateMapFormatInfo
 	public override HodokuTripletCandidateMapFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(ref readonly CandidateMap obj)
+	protected internal override string FormatCore(in CandidateMap obj)
 	{
 		return obj switch { [] => string.Empty, [var p] => $"{p % 9 + 1}{p / 9 / 9 + 1}{p / 9 % 9 + 1}", _ => f(in obj) };
 

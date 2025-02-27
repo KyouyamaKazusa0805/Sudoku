@@ -55,7 +55,7 @@ public partial class UniqueRectangleStepSearcher
 					for (var digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						var digit = digits[digitIndex];
-						if (!IsConjugatePair(digit, [cell, otherCell], house))
+						if (!IsConjugatePair(digit, cell.AsCellMap() + otherCell, house))
 						{
 							continue;
 						}

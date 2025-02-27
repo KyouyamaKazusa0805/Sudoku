@@ -310,7 +310,7 @@ public partial class UniqueRectangleStepSearcher
 							d1,
 							d2,
 							[.. urCells],
-							in iteratedCells,
+							iteratedCells,
 							otherDigitsMask,
 							houseIndex,
 							arMode,

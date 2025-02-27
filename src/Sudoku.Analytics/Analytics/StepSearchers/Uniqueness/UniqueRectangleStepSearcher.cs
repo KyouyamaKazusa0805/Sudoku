@@ -420,7 +420,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsConjugatePair(Digit digit, ref readonly CellMap map, House houseIndex)
+	private static bool IsConjugatePair(Digit digit, in CellMap map, House houseIndex)
 		=> (HousesMap[houseIndex] & CandidatesMap[digit]) == map;
 
 	/// <summary>

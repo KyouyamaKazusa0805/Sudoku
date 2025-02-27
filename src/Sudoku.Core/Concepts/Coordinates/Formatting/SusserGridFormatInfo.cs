@@ -64,7 +64,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 		};
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(ref readonly Grid grid)
+	protected internal override string FormatCore(in Grid grid)
 	{
 		return b(in grid) is var r && IsCompatibleMode
 			? $":0000:x:{r}{new(':', 3)}"

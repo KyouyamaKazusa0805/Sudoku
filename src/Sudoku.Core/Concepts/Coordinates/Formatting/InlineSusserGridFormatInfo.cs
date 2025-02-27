@@ -28,7 +28,7 @@ public sealed partial class InlineSusserGridFormatInfo : GridFormatInfo
 	public override InlineSusserGridFormatInfo Clone() => new() { NegateEliminationsTripletRule = NegateEliminationsTripletRule };
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(ref readonly Grid grid)
+	protected internal override string FormatCore(in Grid grid)
 	{
 		var sb = new StringBuilder();
 		for (var cell = 0; cell < 81; cell++)
