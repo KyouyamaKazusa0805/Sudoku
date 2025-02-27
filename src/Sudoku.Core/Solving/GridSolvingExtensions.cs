@@ -100,7 +100,7 @@ public static class GridSolvingExtensions
 #if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
 	[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
 #endif
-	public static Grid GetSolutionGrid(this ref readonly Grid @this)
+	public static Grid GetSolutionGrid(this in Grid @this)
 	{
 #if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
 		lock (PuzzleSolvingSynchronizer)

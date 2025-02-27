@@ -432,7 +432,7 @@ public interface IGrid<TSelf> :
 	/// </summary>
 	/// <param name="other">The other instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public abstract bool Equals(ref readonly TSelf other);
+	public abstract bool Equals(in TSelf other);
 
 	/// <summary>
 	/// Determine whether the digit in the target cell is conflict with a certain cell in the peers of the current cell,
@@ -498,7 +498,7 @@ public interface IGrid<TSelf> :
 	public abstract int GetHashCode();
 
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
-	public abstract int CompareTo(ref readonly TSelf other);
+	public abstract int CompareTo(in TSelf other);
 
 	/// <inheritdoc cref="object.ToString"/>
 	public abstract string ToString();

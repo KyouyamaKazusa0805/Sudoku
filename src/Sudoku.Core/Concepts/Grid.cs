@@ -502,7 +502,7 @@ public partial struct Grid : GridBase
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle type is Sukaku.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly int CompareTo(ref readonly Grid other)
+	public readonly int CompareTo(in Grid other)
 		=> PuzzleType != SudokuType.Sukaku && other.PuzzleType != SudokuType.Sukaku
 			? ToString("#").CompareTo(other.ToString("#"))
 			: throw new InvalidOperationException(SR.ExceptionMessage("ComparableGridMustBeStandard"));
