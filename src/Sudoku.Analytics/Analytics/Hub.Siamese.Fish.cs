@@ -98,15 +98,15 @@ public partial class Hub
 					// Normal fish contains a direct view, which will not be useful here.
 					var fish1ViewNodes = fish1.Views![0];
 					var fish2ViewNodes = fish2.Views![0];
-					var view = (View)([
+					View view = [
 						.. collectViewNodes(fish1ViewNodes, fish2ViewNodes),
-				.. collectViewNodes(fish2ViewNodes, fish1ViewNodes),
-				.. from house in fish1.BaseSetsMask select new HouseViewNode(ColorIdentifier.Normal, house),
-				.. from house in siameseCoverSetsMask select new HouseViewNode(ColorIdentifier.Auxiliary3, house),
-				..
-				from house in coveredSetsMask & ~siameseCoverSetsMask
-				select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
-					]);
+						.. collectViewNodes(fish2ViewNodes, fish1ViewNodes),
+						.. from house in fish1.BaseSetsMask select new HouseViewNode(ColorIdentifier.Normal, house),
+						.. from house in siameseCoverSetsMask select new HouseViewNode(ColorIdentifier.Auxiliary3, house),
+						..
+						from house in coveredSetsMask & ~siameseCoverSetsMask
+						select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
+					];
 
 					siameseStep = fish1 switch
 					{

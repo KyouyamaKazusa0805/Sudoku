@@ -3168,7 +3168,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		var conclusions = new List<Conclusion>();
 		var cellOffsets = new List<CellViewNode>();
-		var targetCells = (CellMap)([groupsOfTargetCells[0][0], groupsOfTargetCells[1][0]]);
+		var targetCells = groupsOfTargetCells[0][0].AsCellMap() + groupsOfTargetCells[1][0];
 		foreach (var (thisTargetCell, theOtherTargetCell) in ((groupsOfTargetCells[0][0], groupsOfTargetCells[1][0]), (groupsOfTargetCells[1][0], groupsOfTargetCells[0][0])))
 		{
 			var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
