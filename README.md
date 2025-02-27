@@ -205,7 +205,7 @@ Of course you can fork my repo and do whatever you want. You can do whatever you
 
 ### Special project: `Sudoku.Drawing.Ocr`
 
-This project uses some APIs and source code from repo [EmguCV](https://github.com/emgucv/emgucv). Therefore, the project uses a standalone open-source license. For more information please visit the file `LICENSE` in that project in source code.
+This project uses some APIs and source code from repo [EmguCV](https://github.com/emgucv/emgucv). Therefore, the project uses a standalone open-source license. For more information please visit the file `LICENSE-OCR` in that project in source code.
 
 ### Repository folder `docs`
 

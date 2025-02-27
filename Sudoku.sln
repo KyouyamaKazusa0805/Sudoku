@@ -25,12 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Items", "Global Item
 		CONTACTS.md = CONTACTS.md
 		Directory.Build.props = Directory.Build.props
 		global-doc-comments.xml = global-doc-comments.xml
-		LICENSE-CODE.txt = LICENSE-CODE.txt
-		LICENSE-WIKI.txt = LICENSE-WIKI.txt
 		misspelling-exclusion.dic = misspelling-exclusion.dic
 		NuGet.config = NuGet.config
-		README-zh-cn.md = README-zh-cn.md
-		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source Generators", "Source Generators", "{7FC47D29-3020-56EC-3809-DEA51B6DCE3C}"
@@ -54,6 +50,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Analytics.Async", "src\Sudoku.Analytics.Async\Sudoku.Analytics.Async.csproj", "{5EB7DBD3-42DF-47B0-8FCC-A5673024DF43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Core.Async", "src\Sudoku.Core.Async\Sudoku.Core.Async.csproj", "{6A437673-E882-494E-A75D-5C8F65372803}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Licenses", "Licenses", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE-CODE.txt = LICENSE-CODE.txt
+		src\Sudoku.Drawing.Ocr\LICENSE-OCR.txt = src\Sudoku.Drawing.Ocr\LICENSE-OCR.txt
+		LICENSE-WIKI.txt = LICENSE-WIKI.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReadMe Files", "ReadMe Files", "{07EDD535-D33E-4F95-B809-8FE4D8FA24CD}"
+	ProjectSection(SolutionItems) = preProject
+		README-zh-cn.md = README-zh-cn.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -565,6 +574,8 @@ Global
 		{82908C5F-2D56-F76B-1396-7AD508F268B1} = {1B5D364F-3923-4B11-0B17-BDE292349469}
 		{59B8D09A-A736-470C-95AB-1FB3A6D7A32C} = {1B5D364F-3923-4B11-0B17-BDE292349469}
 		{528070A9-4234-9B01-E17E-9F2DFFF74F9C} = {1B5D364F-3923-4B11-0B17-BDE292349469}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {C92EF998-DA2A-70E0-4887-9BF7E08C0D73}
+		{07EDD535-D33E-4F95-B809-8FE4D8FA24CD} = {C92EF998-DA2A-70E0-4887-9BF7E08C0D73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1BD1DD5-2490-4BF0-B5D4-D07C134BD14D}
