@@ -15,7 +15,7 @@ namespace Sudoku.Runtime.InterceptorServices;
 /// <code><![CDATA[
 /// [InterceptorMethodCaller]
 /// [InterceptorInstanceTypes(typeof(XChainingRule), typeof(YChainingRule))]
-/// public static void InitializeLinks(ref readonly Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)
+/// public static void InitializeLinks(in Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)
 /// {
 ///     rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;
 ///     if (!StrongLinkTypesCollected.HasFlag(linkTypes) || !WeakLinkTypesCollected.HasFlag(linkTypes))

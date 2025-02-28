@@ -11,7 +11,7 @@ public sealed class XyzWingPatternSearcher : PatternSearcher<XyzWingPattern>
 
 	/// <inheritdoc/>
 	/// <remarks><i>This method cannot be used as caching because most of callers have already been cached.</i></remarks>
-	public override ReadOnlySpan<XyzWingPattern> Search(ref readonly Grid grid)
+	public override ReadOnlySpan<XyzWingPattern> Search(in Grid grid)
 	{
 		_ = grid is { BivalueCells: var bivalueCells, EmptyCells: var emptyCells };
 

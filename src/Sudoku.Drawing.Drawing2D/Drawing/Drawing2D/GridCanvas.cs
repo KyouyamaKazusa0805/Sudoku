@@ -241,7 +241,7 @@ public sealed partial class GridCanvas : IDisposable
 	public partial void DrawBackground();
 	public partial void DrawBorderLines();
 	public partial void DrawFooterText(string footerText);
-	public partial void DrawGrid(ref readonly Grid grid);
+	public partial void DrawGrid(in Grid grid);
 	public partial void DrawCellViewNodes(ReadOnlySpan<CellViewNode> nodes);
 	public partial void DrawCandidateViewNodes(ReadOnlySpan<CandidateViewNode> nodes, ReadOnlySpan<Conclusion> conclusions);
 	public partial void DrawHouseViewNodes(ReadOnlySpan<HouseViewNode> nodes);

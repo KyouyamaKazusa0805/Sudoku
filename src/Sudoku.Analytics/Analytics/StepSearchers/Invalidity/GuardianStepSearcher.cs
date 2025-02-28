@@ -29,7 +29,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 
 		var pomSteps = new List<Step>();
 		var playground = grid;
-		var pomContext = new StepAnalysisContext(in playground)
+		var pomContext = new StepAnalysisContext(playground)
 		{
 			Accumulator = pomSteps,
 			OnlyFindOne = false,

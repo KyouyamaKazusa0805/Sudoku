@@ -15,5 +15,5 @@ public abstract class PatternSearcher<TPattern> : IConstructible<PatternSearcher
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
 	/// <returns>The found patterns.</returns>
-	public abstract ReadOnlySpan<TPattern> Search(ref readonly Grid grid);
+	public abstract ReadOnlySpan<TPattern> Search(in Grid grid);
 }

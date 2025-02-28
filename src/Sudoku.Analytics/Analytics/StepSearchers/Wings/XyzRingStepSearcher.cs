@@ -51,7 +51,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 	{
 		ref readonly var grid = ref context.Grid;
 		var accumulator = new HashSet<XyzRingStep>();
-		CollectCore(accumulator, grid, in context);
+		CollectCore(accumulator, grid, context);
 
 		if (accumulator.Count == 0)
 		{
@@ -82,7 +82,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 	/// <param name="accumulator">The accumulator.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
-	private void CollectCore(HashSet<XyzRingStep> accumulator, in Grid grid, ref readonly StepAnalysisContext context)
+	private void CollectCore(HashSet<XyzRingStep> accumulator, in Grid grid, in StepAnalysisContext context)
 	{
 		// The pattern starts with a tri-value cell, so check for it.
 		var trivalueCells = CellMap.Empty;

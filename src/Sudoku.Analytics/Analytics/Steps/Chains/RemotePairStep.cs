@@ -13,7 +13,7 @@ public sealed partial class RemotePairStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CellMap cells,
+	[Property] in CellMap cells,
 	[Property] bool isComplex,
 	[Property] Mask digitsMask
 ) : SpecializedChainStep(conclusions, views, options)

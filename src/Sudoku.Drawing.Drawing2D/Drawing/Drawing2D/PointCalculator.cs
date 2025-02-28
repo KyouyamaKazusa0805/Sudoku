@@ -189,7 +189,7 @@ public sealed class PointCalculator : IPointCalculator
 	/// <returns>The rectangle.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public RectangleF GetMouseRectangle(ref readonly CandidateMap map)
+	public RectangleF GetMouseRectangle(in CandidateMap map)
 	{
 		switch (map, CandidateSize)
 		{

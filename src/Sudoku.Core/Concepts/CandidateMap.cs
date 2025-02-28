@@ -332,11 +332,11 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int CompareTo(in CandidateMap other)
 	{
-		return Count > other.Count ? 1 : Count < other.Count ? -1 : -Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
+		return Count > other.Count ? 1 : Count < other.Count ? -1 : -Math.Sign($"{b(this)}".CompareTo($"{b(in other)}"));
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string b(ref readonly CandidateMap f) => f.ToString(new BitmapCandidateMapFormatInfo());
+		static string b(in CandidateMap f) => f.ToString(new BitmapCandidateMapFormatInfo());
 	}
 
 	/// <inheritdoc/>

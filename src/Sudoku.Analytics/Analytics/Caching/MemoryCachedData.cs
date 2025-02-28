@@ -76,11 +76,11 @@ internal static class MemoryCachedData
 	/// <inheritdoc cref="Grid.EmptyCells"/>
 	/// </summary>
 	/// <remarks>
-	/// This map <b>should</b> be used after <see cref="Initialize(ref readonly Grid, in Grid)"/> called,
+	/// This map <b>should</b> be used after <see cref="Initialize(in Grid, in Grid)"/> called,
 	/// and you<b>'d better</b> not use this field on instances which are set <see langword="true"/>
 	/// for property <see cref="StepSearcherAttribute.IsCachingSafe"/>.
 	/// </remarks>
-	/// <seealso cref="Initialize(ref readonly Grid, in Grid)"/>
+	/// <seealso cref="Initialize(in Grid, in Grid)"/>
 	/// <seealso cref="StepSearcherAttribute.IsCachingSafe"/>
 	public static ref readonly CellMap EmptyCells => ref _cachedEmptyCells;
 
@@ -122,7 +122,7 @@ internal static class MemoryCachedData
 
 	/// <inheritdoc cref="Initialize(Analyzer, in Grid, in Grid)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Initialize(ref readonly Grid g, in Grid s) => Initialize(null, g, s);
+	public static void Initialize(in Grid g, in Grid s) => Initialize(null, g, s);
 
 	/// <summary>
 	/// Initialize the maps that used later.
@@ -187,7 +187,7 @@ internal static class MemoryCachedData
 		if (!StrongLinkTypesCollected.HasFlag(linkTypes) || !WeakLinkTypesCollected.HasFlag(linkTypes))
 		{
 			var (strongDic, weakDic) = (new LinkDictionary(), new LinkDictionary());
-			var context = new ChainingRuleLinkContext(in grid, strongDic, weakDic, options);
+			var context = new ChainingRuleLinkContext(grid, strongDic, weakDic, options);
 			foreach (var rule in rules)
 			{
 				rule.GetLinks(ref context);

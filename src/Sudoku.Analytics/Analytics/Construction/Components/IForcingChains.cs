@@ -56,7 +56,7 @@ internal interface IForcingChains : IChainOrForcingChains, IFormattable
 		var (viewIndex, cachedAlsIndex) = (1, 0);
 		foreach (var branch in Branches)
 		{
-			var context = new ChainingRuleViewNodeContext(in grid, branch, result[viewIndex++]) { CurrentAlmostLockedSetIndex = cachedAlsIndex };
+			var context = new ChainingRuleViewNodeContext(grid, branch, result[viewIndex++]) { CurrentAlmostLockedSetIndex = cachedAlsIndex };
 			foreach (var supportedRule in supportedRules)
 			{
 				supportedRule.GetViewNodes(ref context);

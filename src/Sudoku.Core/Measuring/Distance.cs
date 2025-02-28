@@ -197,7 +197,7 @@ public readonly ref partial struct Distance(int p, int q)
 	/// <param name="cells">The <see cref="CellMap"/> instance storing two cells.</param>
 	/// <returns>The distance result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Distance GetDistance(ref readonly CellMap cells)
+	public static Distance GetDistance(in CellMap cells)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(cells.Count, 2);
 		return GetDistance(cells[0], cells[1]);

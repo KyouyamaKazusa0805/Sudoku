@@ -32,7 +32,7 @@ public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 
 	/// <inheritdoc/>
 	protected override InterimCellsCreator InterimCellsCreator
-		=> static (ref readonly g, s) =>
+		=> static (in g, s) =>
 		{
 			var step = (DirectSubsetStep)s;
 			var result = CellMap.Empty;

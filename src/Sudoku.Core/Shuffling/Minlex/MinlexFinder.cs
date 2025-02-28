@@ -21,7 +21,7 @@ public sealed unsafe class MinlexFinder
 
 	/// <inheritdoc cref="Find(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid Find(ref readonly Grid grid) => Grid.Parse(Find(grid.ToString("0")));
+	public Grid Find(in Grid grid) => Grid.Parse(Find(grid.ToString("0")));
 
 	/// <summary>
 	/// Finds the minimal lexicographical form of the source grid code.
@@ -33,7 +33,7 @@ public sealed unsafe class MinlexFinder
 		_mappers.Clear();
 
 		var givensCount = GridPattern.FromString(grid, out var pair);
-		var minTopRowScores = (int[])[GridPattern.BestTopRowScore(in pair[0]), GridPattern.BestTopRowScore(in pair[1])];
+		var minTopRowScores = (int[])[GridPattern.BestTopRowScore(pair[0]), GridPattern.BestTopRowScore(pair[1])];
 		var minTopRowScore = minTopRowScores[0] <= minTopRowScores[1] ? minTopRowScores[0] : minTopRowScores[1];
 
 		var result = (stackalloc char[81]);

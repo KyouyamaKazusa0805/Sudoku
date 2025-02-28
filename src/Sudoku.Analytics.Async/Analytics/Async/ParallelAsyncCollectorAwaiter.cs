@@ -53,7 +53,7 @@ public sealed class ParallelAsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnl
 	/// <param name="collector">Indicates the collector.</param>
 	/// <param name="grid">Indicates the grid.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-	public ParallelAsyncCollectorAwaiter(Collector collector, ref readonly Grid grid, CancellationToken cancellationToken)
+	public ParallelAsyncCollectorAwaiter(Collector collector, in Grid grid, CancellationToken cancellationToken)
 	{
 		(_grid, _collector, _cancellationToken) = (grid, collector, cancellationToken);
 
@@ -232,7 +232,7 @@ public sealed class ParallelAsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnl
 		IStepGatherer<Collector, ReadOnlySpan<Step>>.ApplySetters(_collector);
 
 		// Initialize values.
-		MemoryCachedData.Initialize(in _grid, _grid.GetSolutionGrid());
+		MemoryCachedData.Initialize(_grid, _grid.GetSolutionGrid());
 
 		// Create a list of tasks by the searchers to be checked.
 		foreach (var searcher in _collector.ResultStepSearchers)
@@ -245,7 +245,7 @@ public sealed class ParallelAsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnl
 			void stepsCreator()
 			{
 				var accumulator = new List<Step>();
-				var context = new StepAnalysisContext(in _grid, in _grid)
+				var context = new StepAnalysisContext(_grid, _grid)
 				{
 					Accumulator = accumulator,
 					OnlyFindOne = false,

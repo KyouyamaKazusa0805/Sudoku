@@ -10,8 +10,8 @@ internal partial class ChainingDriver
 	/// <param name="chainingRules">Indicates the chaining rules used.</param>
 	/// <returns>All possible dynamic forcing chains instances.</returns>
 	public static ReadOnlySpan<IDynamicForcingChains> CollectDynamicForcingChains(
-		ref readonly Grid grid,
-		ref readonly StepAnalysisContext context,
+		in Grid grid,
+		in StepAnalysisContext context,
 		ChainingRuleCollection chainingRules
 	)
 	{
@@ -25,13 +25,13 @@ internal partial class ChainingDriver
 			var digitsMask = grid.GetCandidates(cell);
 			foreach (var digit in digitsMask)
 			{
-				if (chainingOnBinary(cell, digit, grid, in context, chainingRules, out var nodesSupposedOn, out var nodesSupposedOff)
+				if (chainingOnBinary(cell, digit, grid, context, chainingRules, out var nodesSupposedOn, out var nodesSupposedOff)
 					is var binaryForcingChainsFound and not [])
 				{
 					return binaryForcingChainsFound;
 				}
 
-				if (chainingOnRegion(cell, digit, grid, in context, nodesSupposedOn, nodesSupposedOff)
+				if (chainingOnRegion(cell, digit, grid, context, nodesSupposedOn, nodesSupposedOff)
 					is var regionForcingChainsFound and not [])
 				{
 					return regionForcingChainsFound;
@@ -55,7 +55,7 @@ internal partial class ChainingDriver
 			}
 
 			if (chainingOnCell(
-				cell, digitsMask, grid, in context, nodesSupposedOn_GroupedByDigit, nodesSupposedOff_GroupedByDigit,
+				cell, digitsMask, grid, context, nodesSupposedOn_GroupedByDigit, nodesSupposedOff_GroupedByDigit,
 				nodesSupposedOn_InCell, nodesSupposedOff_InCell)
 				is var cellForcingChainsFound and not [])
 			{
@@ -69,7 +69,7 @@ internal partial class ChainingDriver
 			Cell cell,
 			Digit digit,
 			in Grid grid,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			ChainingRuleCollection chainingRules,
 			out HashSet<Node> nodesSupposedOn,
 			out HashSet<Node> nodesSupposedOff
@@ -90,7 +90,7 @@ internal partial class ChainingDriver
 			);
 			if (contradiction is var (onNode_OnState, offNode_OnState))
 			{
-				if (bfcOn(grid, in context, currentNodeOn, onNode_OnState, offNode_OnState, true)
+				if (bfcOn(grid, context, currentNodeOn, onNode_OnState, offNode_OnState, true)
 					is var contradictionForcingChains and not [])
 				{
 					return contradictionForcingChains;
@@ -108,7 +108,7 @@ internal partial class ChainingDriver
 			);
 			if (contradiction is var (onNode_OffState, offNode_OffState))
 			{
-				if (bfcOff(grid, in context, currentNodeOff, onNode_OffState, offNode_OffState, true)
+				if (bfcOff(grid, context, currentNodeOff, onNode_OffState, offNode_OffState, true)
 					is var contradictionForcingChains and not [])
 				{
 					return contradictionForcingChains;
@@ -123,7 +123,7 @@ internal partial class ChainingDriver
 				var conflictedNode = nodesSupposedOn_OffCase.FirstOrDefault(n => n == node);
 				if (conflictedNode is not null)
 				{
-					if (bfcOff(grid, in context, node, node, conflictedNode, false) is var doubleForcingChains and not [])
+					if (bfcOff(grid, context, node, node, conflictedNode, false) is var doubleForcingChains and not [])
 					{
 						return doubleForcingChains;
 					}
@@ -134,7 +134,7 @@ internal partial class ChainingDriver
 				var conflictedNode = nodesSupposedOff_OffCase.FirstOrDefault(n => n == node);
 				if (conflictedNode is not null)
 				{
-					if (bfcOn(grid, in context, node, node, conflictedNode, false) is var doubleForcingChains and not [])
+					if (bfcOn(grid, context, node, node, conflictedNode, false) is var doubleForcingChains and not [])
 					{
 						return doubleForcingChains;
 					}
@@ -147,7 +147,7 @@ internal partial class ChainingDriver
 			Cell cell,
 			Mask digitsMask,
 			in Grid grid,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			Dictionary<Cell, HashSet<Node>> nodesSupposedOn_GroupedByDigit,
 			Dictionary<Cell, HashSet<Node>> nodesSupposedOff_GroupedByDigit,
 			HashSet<Node>? nodesSupposedOn_InCell,
@@ -157,12 +157,12 @@ internal partial class ChainingDriver
 			//////////////////////////////////////
 			// Collect with cell forcing chains //
 			//////////////////////////////////////
-			var cellOn = cfcOn(grid, cell, in context, nodesSupposedOn_GroupedByDigit, nodesSupposedOn_InCell, digitsMask);
+			var cellOn = cfcOn(grid, cell, context, nodesSupposedOn_GroupedByDigit, nodesSupposedOn_InCell, digitsMask);
 			if (!cellOn.IsEmpty)
 			{
 				return cellOn;
 			}
-			var cellOff = cfcOff(grid, cell, in context, nodesSupposedOff_GroupedByDigit, nodesSupposedOff_InCell, digitsMask);
+			var cellOff = cfcOff(grid, cell, context, nodesSupposedOff_GroupedByDigit, nodesSupposedOff_InCell, digitsMask);
 			if (!cellOff.IsEmpty)
 			{
 				return cellOff;
@@ -174,7 +174,7 @@ internal partial class ChainingDriver
 			Cell cell,
 			Digit digit,
 			in Grid grid,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			HashSet<Node> nodesSupposedOn,
 			HashSet<Node> nodesSupposedOff
 		)
@@ -225,12 +225,12 @@ internal partial class ChainingDriver
 				////////////////////////////////////////
 				// Collect with region forcing chains //
 				////////////////////////////////////////
-				var regionOn = rfcOn(grid, digit, cellsInHouse, in context, nodesSupposedOn_GroupedByHouse, nodesSupposedOn_InHouse);
+				var regionOn = rfcOn(grid, digit, cellsInHouse, context, nodesSupposedOn_GroupedByHouse, nodesSupposedOn_InHouse);
 				if (!regionOn.IsEmpty)
 				{
 					return regionOn;
 				}
-				var regionOff = rfcOff(grid, digit, cellsInHouse, in context, nodesSupposedOff_GroupedByHouse, nodesSupposedOff_InHouse);
+				var regionOff = rfcOff(grid, digit, cellsInHouse, context, nodesSupposedOff_GroupedByHouse, nodesSupposedOff_InHouse);
 				if (!regionOff.IsEmpty)
 				{
 					return regionOff;
@@ -242,7 +242,7 @@ internal partial class ChainingDriver
 		ReadOnlySpan<MultipleForcingChains> cfcOn(
 			in Grid grid,
 			Cell cell,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			Dictionary<Candidate, HashSet<Node>> onNodes,
 			HashSet<Node>? resultOnNodes,
 			Mask digitsMask
@@ -280,7 +280,7 @@ internal partial class ChainingDriver
 		ReadOnlySpan<MultipleForcingChains> cfcOff(
 			in Grid grid,
 			Cell cell,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			Dictionary<Candidate, HashSet<Node>> offNodes,
 			HashSet<Node>? resultOffNodes,
 			Mask digitsMask
@@ -325,7 +325,7 @@ internal partial class ChainingDriver
 			in Grid grid,
 			Digit digit,
 			scoped in CellMap cellsInHouse,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			Dictionary<Candidate, HashSet<Node>> onNodes,
 			HashSet<Node> houseOnNodes
 		)
@@ -363,7 +363,7 @@ internal partial class ChainingDriver
 			in Grid grid,
 			Digit digit,
 			scoped in CellMap cellsInHouse,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			Dictionary<Candidate, HashSet<Node>> offNodes,
 			HashSet<Node> houseOffNodes
 		)
@@ -405,7 +405,7 @@ internal partial class ChainingDriver
 
 		ReadOnlySpan<BinaryForcingChains> bfcOn(
 			in Grid grid,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			Node targetNode,
 			Node onNode_OnState,
 			Node offNode_OnState,
@@ -445,7 +445,7 @@ internal partial class ChainingDriver
 
 		ReadOnlySpan<BinaryForcingChains> bfcOff(
 			in Grid grid,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			Node targetNode,
 			Node onNode_OffState,
 			Node offNode_OffState,
@@ -597,14 +597,9 @@ internal partial class ChainingDriver
 	/// <see cref="InterceptorMethodCallerAttribute"/>.
 	/// </i></remarks>
 	/// <seealso cref="InterceptorMethodCallerAttribute"/>
-	private static ReadOnlySpan<Node> GetNodesFromOnToOff(
-		Node node,
-		ChainingRuleCollection chainingRules,
-		StepGathererOptions options,
-		in Grid grid
-	)
+	private static ReadOnlySpan<Node> GetNodesFromOnToOff(Node node, ChainingRuleCollection chainingRules, StepGathererOptions options, in Grid grid)
 	{
-		var context = new ChainingRuleNextOffNodeContext(node, in grid, options);
+		var context = new ChainingRuleNextOffNodeContext(node, grid, options);
 		foreach (var chainingRule in chainingRules)
 		{
 			chainingRule.CollectOffNodes(ref context);
@@ -636,7 +631,7 @@ internal partial class ChainingDriver
 		in Grid originalGrid
 	)
 	{
-		var context = new ChainingRuleNextOnNodeContext(node, in grid, in originalGrid, nodesSupposedOff, options);
+		var context = new ChainingRuleNextOnNodeContext(node, grid, originalGrid, nodesSupposedOff, options);
 		foreach (var chainingRule in chainingRules)
 		{
 			chainingRule.CollectOnNodes(ref context);

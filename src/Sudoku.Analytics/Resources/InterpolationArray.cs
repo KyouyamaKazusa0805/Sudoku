@@ -108,7 +108,7 @@ public readonly ref partial struct InterpolationArray(ReadOnlyMemory<Interpolati
 	{
 		get
 		{
-			var enumerator = new Enumerator(in this);
+			var enumerator = new Enumerator(this);
 			while (enumerator.MoveNext())
 			{
 				var element = enumerator.Current;
@@ -160,7 +160,7 @@ public readonly ref partial struct InterpolationArray(ReadOnlyMemory<Interpolati
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[UnscopedRef]
-	public Enumerator GetEnumerator() => new(in this);
+	public Enumerator GetEnumerator() => new(this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

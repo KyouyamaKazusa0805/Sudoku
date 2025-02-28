@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Construction.Chaining;
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
 public ref partial struct ChainingRuleLoopConclusionContext(
-	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] ref readonly Grid grid,
+	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] in Grid grid,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] ReadOnlySpan<Link> links
 ) : IContext
 {

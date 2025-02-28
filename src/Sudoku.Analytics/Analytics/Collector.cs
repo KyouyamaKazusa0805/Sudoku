@@ -79,10 +79,10 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_
 			var totalSearchersCount = possibleStepSearchers.Length;
 
 			var playground = puzzle;
-			Initialize(in playground, playground.GetSolutionGrid());
+			Initialize(playground, playground.GetSolutionGrid());
 
 			var accumulator = new List<Step>();
-			var context = new StepAnalysisContext(in playground, in puzzle)
+			var context = new StepAnalysisContext(playground, puzzle)
 			{
 				Accumulator = accumulator,
 				OnlyFindOne = false,

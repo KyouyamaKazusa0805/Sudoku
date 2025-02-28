@@ -19,7 +19,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
-		var templates = GetInvalidPos(in context.Grid);
+		var templates = GetInvalidPos(context.Grid);
 		for (var digit = 0; digit < 9; digit++)
 		{
 			if (templates[digit] is not (var template and not []))
@@ -48,7 +48,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The 9 maps for invalid positions of each digit.</returns>
-	private static CellMap[] GetInvalidPos(ref readonly Grid grid)
+	private static CellMap[] GetInvalidPos(in Grid grid)
 	{
 		var result = new CellMap[9];
 		var invalidPos = (stackalloc CellMap[9]);

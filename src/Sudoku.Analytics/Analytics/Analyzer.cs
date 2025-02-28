@@ -294,7 +294,7 @@ public sealed class Analyzer :
 			var accumulator = IsFullApplying || RandomizedChoosing || Options.PrimarySingle != SingleTechniqueFlag.None
 				? []
 				: default(List<Step>);
-			var context = new StepAnalysisContext(in playground, in puzzle)
+			var context = new StepAnalysisContext(playground, puzzle)
 			{
 				Accumulator = accumulator,
 				Options = Options,
@@ -312,7 +312,7 @@ public sealed class Analyzer :
 					if (verifyConclusionValidity(null, solution, step))
 					{
 						if (onCollectingSteps(
-							collectedSteps, step, in context, ref playground, timestampOriginal,
+							collectedSteps, step, context, ref playground, timestampOriginal,
 							stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 						{
 							return result;
@@ -423,7 +423,7 @@ public sealed class Analyzer :
 								}
 
 								if (onCollectingSteps(
-									collectedSteps, step, in context, ref playground,
+									collectedSteps, step, context, ref playground,
 									timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 								{
 									return result;
@@ -439,7 +439,7 @@ public sealed class Analyzer :
 							}
 
 							if (onCollectingSteps(
-								collectedSteps, chosenStep, in context, ref playground,
+								collectedSteps, chosenStep, context, ref playground,
 								timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 							{
 								return result;
@@ -466,7 +466,7 @@ public sealed class Analyzer :
 						}
 
 						if (onCollectingSteps(
-							collectedSteps, chosenStep, in context, ref playground,
+							collectedSteps, chosenStep, context, ref playground,
 							timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 						{
 							return result;
@@ -512,7 +512,7 @@ public sealed class Analyzer :
 						}
 
 						if (onCollectingSteps(
-							collectedSteps, chosenStep, in context, ref playground,
+							collectedSteps, chosenStep, context, ref playground,
 							timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 						{
 							return result;
@@ -540,7 +540,7 @@ public sealed class Analyzer :
 							}
 
 							if (onCollectingSteps(
-								collectedSteps, chosenStep, in context, ref playground,
+								collectedSteps, chosenStep, context, ref playground,
 								timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 							{
 								return result;
@@ -556,7 +556,7 @@ public sealed class Analyzer :
 								}
 
 								if (onCollectingSteps(
-									collectedSteps, foundStep, in context, ref playground, timestampOriginal, stepGrids,
+									collectedSteps, foundStep, context, ref playground, timestampOriginal, stepGrids,
 									resultBase, gcSnapshot1, cancellationToken, out var result))
 								{
 									return result;
@@ -581,7 +581,7 @@ public sealed class Analyzer :
 								if (verifyConclusionValidity(searcher, solution, foundStep))
 								{
 									if (onCollectingSteps(
-										collectedSteps, foundStep, in context, ref playground, timestampOriginal, stepGrids,
+										collectedSteps, foundStep, context, ref playground, timestampOriginal, stepGrids,
 										resultBase, gcSnapshot1, cancellationToken, out var result))
 									{
 										return result;
@@ -647,7 +647,7 @@ public sealed class Analyzer :
 			bool onCollectingSteps(
 				List<Step> steps,
 				Step step,
-				ref readonly StepAnalysisContext context,
+				in StepAnalysisContext context,
 				ref Grid playground,
 				long timestampOriginal,
 				List<Grid> steppingGrids,

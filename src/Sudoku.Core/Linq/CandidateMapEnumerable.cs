@@ -33,7 +33,7 @@ public static class CandidateMapEnumerable
 	/// <param name="grid">The grid to be used.</param>
 	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found candidate or -1 if none found.</returns>
-	public static Candidate First(this in CandidateMap @this, ref readonly Grid grid, CandidateMapPredicate match)
+	public static Candidate First(this in CandidateMap @this, in Grid grid, CandidateMapPredicate match)
 	{
 		foreach (var candidate in @this.Offsets)
 		{

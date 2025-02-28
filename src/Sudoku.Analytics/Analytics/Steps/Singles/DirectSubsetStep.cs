@@ -45,7 +45,7 @@ public sealed partial class DirectSubsetStep(
 
 	/// <summary>
 	/// <inheritdoc
-	///     cref="NakedSubsetStep(StepConclusions, View[], StepGathererOptions, int, ref readonly CellMap, short, bool?)"
+	///     cref="NakedSubsetStep(StepConclusions, View[], StepGathererOptions, int, in CellMap, short, bool?)"
 	///     path="/param[@name='isLocked']"/>
 	/// </summary>
 	public bool? IsLocked

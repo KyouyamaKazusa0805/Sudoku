@@ -117,7 +117,7 @@ public sealed partial class FishPattern(
 	/// </summary>
 	/// <param name="grid">The grid to be used.</param>
 	/// <returns>The fin kind.</returns>
-	public FishFinKind GetFinKind(ref readonly Grid grid)
+	public FishFinKind GetFinKind(in Grid grid)
 	{
 		var fins = Fins;
 		if (!fins)

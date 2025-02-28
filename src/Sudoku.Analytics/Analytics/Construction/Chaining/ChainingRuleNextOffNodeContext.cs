@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Construction.Chaining;
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
 public ref partial struct ChainingRuleNextOffNodeContext(
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] Node currentNode,
-	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] ref readonly Grid grid,
+	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] in Grid grid,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] StepGathererOptions options
 ) : IChainingRuleNextNodeContext
 {

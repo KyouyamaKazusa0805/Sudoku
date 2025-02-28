@@ -7,7 +7,7 @@ public partial struct InterpolationArray
 	/// </summary>
 	/// <param name="values">The internal values.</param>
 	/// <seealso cref="InterpolationArray"/>
-	public ref struct Enumerator(ref readonly InterpolationArray values) : IEnumerator<Interpolation>
+	public ref struct Enumerator(in InterpolationArray values) : IEnumerator<Interpolation>
 	{
 		/// <summary>
 		/// Indicates the backing span.

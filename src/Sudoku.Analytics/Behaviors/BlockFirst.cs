@@ -12,7 +12,7 @@ public sealed class BlockFirst : IBehaviorMetric
 	/// <inheritdoc/>
 	public static ReadOnlySpan<int> GetDistanceArray(
 		Collector collector,
-		ref readonly Grid grid,
+		in Grid grid,
 		out ReadOnlySpan<KeyValuePair<SingleStep, Grid>> steps,
 		out ReadOnlySpan<KeyValuePair<Step, Grid>> stepsAll
 	)

@@ -36,7 +36,7 @@ public static class GridPartialMarkingExtensions
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="techniques"/> is greater than the maximum value of enumeration field defined.
 	/// </exception>
-	public static bool IsMissingCandidates(this ref readonly Grid @this, PartialMarkingTechniques techniques)
+	public static bool IsMissingCandidates(this in Grid @this, PartialMarkingTechniques techniques)
 	{
 		switch (techniques)
 		{

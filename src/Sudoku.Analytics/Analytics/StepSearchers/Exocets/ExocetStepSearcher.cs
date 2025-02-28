@@ -4770,7 +4770,7 @@ file static class Extensions
 		{
 			if ((@this & HousesMap[house]) is var map and not [])
 			{
-				result[i++] = new(house, in map);
+				result[i++] = new(house, map);
 			}
 		}
 		return result.AsReadOnlySpan()[..i];

@@ -27,7 +27,7 @@ internal static partial class ChainingDriver
 		InitializeLinks(grid, linkTypes.Aggregate(@delegate.EnumFlagMerger), context.Options, out var supportedRules);
 
 		var cachedAlsIndex = 0;
-		foreach (var chain in CollectChains(in context.Grid, allowsAdvancedLinks, context.OnlyFindOne, makeConclusionAroundBackdoors))
+		foreach (var chain in CollectChains(context.Grid, allowsAdvancedLinks, context.OnlyFindOne, makeConclusionAroundBackdoors))
 		{
 			var step = new NormalChainStep(
 				CollectChainConclusions(chain, grid, supportedRules),
@@ -82,7 +82,7 @@ internal static partial class ChainingDriver
 		static MultipleForcingChainsStep stepCreator(
 			MultipleForcingChains chain,
 			in Grid grid,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
 		) => new(chain.Conclusions, chain.Cast().GetViews(grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
@@ -118,7 +118,7 @@ internal static partial class ChainingDriver
 		static RectangleForcingChainsStep stepCreator(
 			RectangleForcingChains chain,
 			in Grid grid,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
 		) => new(chain.Conclusions, chain.Cast().GetViews(grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
@@ -154,7 +154,7 @@ internal static partial class ChainingDriver
 		static BivalueUniversalGraveForcingChainsStep stepCreator(
 			BivalueUniversalGraveForcingChains chain,
 			in Grid grid,
-			ref readonly StepAnalysisContext context,
+			in StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
 		) => new(chain.Conclusions, chain.Cast().GetViews(grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
@@ -171,7 +171,7 @@ internal static partial class ChainingDriver
 		ref readonly var grid = ref context.Grid;
 		InitializeLinks(grid, linkTypes.Aggregate(@delegate.EnumFlagMerger), context.Options, out var supportedRules);
 
-		foreach (var blossomLoop in CollectBlossomLoops(in context.Grid, context.OnlyFindOne, supportedRules))
+		foreach (var blossomLoop in CollectBlossomLoops(context.Grid, context.OnlyFindOne, supportedRules))
 		{
 			var step = new BlossomLoopStep(
 				blossomLoop.Conclusions.ToArray(),
@@ -239,7 +239,7 @@ internal static partial class ChainingDriver
 		ref readonly var grid = ref context.Grid;
 		InitializeLinks(grid, linkTypes, context.Options, out var supportedRules);
 
-		foreach (var forcingChains in CollectDynamicForcingChains(in grid, in context, supportedRules))
+		foreach (var forcingChains in CollectDynamicForcingChains(grid, in context, supportedRules))
 		{
 			PatternBasedChainStep step = forcingChains switch
 			{
@@ -288,7 +288,7 @@ internal static partial class ChainingDriver
 		bool onlyFindFinnedChain,
 		delegate*<TMultipleForcingChains, MultipleChainBasedComponent> componentCreator,
 		delegate*<in Grid, bool, ReadOnlySpan<TMultipleForcingChains>> chainsCollector,
-		delegate*<TMultipleForcingChains, in Grid, ref readonly StepAnalysisContext, ChainingRuleCollection, TMultipleForcingChainsStep> stepCreator
+		delegate*<TMultipleForcingChains, in Grid, in StepAnalysisContext, ChainingRuleCollection, TMultipleForcingChainsStep> stepCreator
 	)
 		where TMultipleForcingChains : MultipleForcingChains
 		where TMultipleForcingChainsStep : PatternBasedChainStep
@@ -330,7 +330,7 @@ internal static partial class ChainingDriver
 
 			if (!onlyFindFinnedChain)
 			{
-				var rfcStep = stepCreator(chain, grid, in context, supportedRules);
+				var rfcStep = stepCreator(chain, grid, context, supportedRules);
 				if (context.OnlyFindOne)
 				{
 					return rfcStep;
@@ -358,7 +358,7 @@ internal static partial class ChainingDriver
 		var conclusions = pattern.GetConclusions(grid);
 		if (pattern is ContinuousNiceLoop { Links: var links })
 		{
-			var context = new ChainingRuleLoopConclusionContext(in grid, links);
+			var context = new ChainingRuleLoopConclusionContext(grid, links);
 			foreach (var rule in supportedRules)
 			{
 				rule.GetLoopConclusions(ref context);

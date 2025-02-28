@@ -15,10 +15,10 @@ public static class AsyncAnalyzer
 	/// <returns>An <see cref="AsyncAnalyzerAwaitable"/> object that can analyze the puzzle asynchronously.</returns>
 	public static AsyncAnalyzerAwaitable AnalyzeAsync(
 		this Analyzer analyzer,
-		ref readonly Grid grid,
+		in Grid grid,
 		IProgress<StepGathererProgressPresenter>? progress = null,
 		CancellationToken cancellationToken = default
-	) => new(analyzer, in grid, progress, false, cancellationToken);
+	) => new(analyzer, grid, progress, false, cancellationToken);
 
 	/// <summary>
 	/// Analyzes the specified grid, to find for all possible steps and iterate them in asynchronous way.

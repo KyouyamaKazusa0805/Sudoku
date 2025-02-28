@@ -48,7 +48,7 @@ internal partial class ChainingDriver
 	/// </list>
 	/// </remarks>
 	public static ReadOnlySpan<NamedChain> CollectChains(
-		ref readonly Grid grid,
+		in Grid grid,
 		bool allowsAdvancedLinks,
 		bool onlyFindOne,
 		bool makeConclusionAroundBackdoors

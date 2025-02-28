@@ -60,7 +60,7 @@ public ref partial struct Generator() : IGenerator<Grid>
 	/// Initializes a <see cref="Generator"/> instance via the specified template.
 	/// </summary>
 	/// <param name="template">The template.</param>
-	public Generator(ref readonly Grid template) : this()
+	public Generator(in Grid template) : this()
 	{
 		// 2024/10/25: Add this constructor as template initialization.
 		// 2024/10/28: Add '_useCustomizedSolution = true;'.

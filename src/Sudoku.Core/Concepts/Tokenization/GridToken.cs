@@ -36,7 +36,7 @@ public static class GridToken
 	/// ]]></code>
 	/// </remarks>
 	/// <exception cref="NotSupportedException">Throws when the puzzle type is Sukaku.</exception>
-	public static string GetToken(this ref readonly Grid @this)
+	public static string GetToken(this in Grid @this)
 	{
 		if (@this.PuzzleType == SudokuType.Sukaku)
 		{

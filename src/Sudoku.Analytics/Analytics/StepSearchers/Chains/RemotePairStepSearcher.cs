@@ -125,7 +125,7 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 						conclusions.AsMemory(),
 						[[.. candidateOffsets], [.. cellOffsets, .. babaGroupingOffsets]],
 						context.Options,
-						in component.Map,
+						component.Map,
 						parity1.Count != parity2.Count,
 						pairMask
 					);

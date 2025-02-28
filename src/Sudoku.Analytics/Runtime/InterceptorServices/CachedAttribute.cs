@@ -9,7 +9,7 @@ namespace Sudoku.Runtime.InterceptorServices;
 /// Usage:
 /// <code><![CDATA[
 /// [Cached]
-/// public static ReadOnlySpan<AlmostLockedSetPattern> Collect(ref readonly Grid grid)
+/// public static ReadOnlySpan<AlmostLockedSetPattern> Collect(in Grid grid)
 /// {
 ///	    // VARIABLE_DECLARATION_BEGIN
 ///     _ = grid is { EmptyCells: var __EmptyCells, BivalueCells: var __BivalueCells, CandidatesMap: var __CandidatesMap };
@@ -22,7 +22,7 @@ namespace Sudoku.Runtime.InterceptorServices;
 ///         var eliminationMap = new CellMap[9];
 ///         foreach (var digit in grid.GetCandidates(cell))
 ///             eliminationMap[digit] = PeersMap[cell] & __CandidatesMap[digit];
-///         result.Add(new(grid.GetCandidates(cell), in cell.AsCellMap(), PeersMap[cell] & __EmptyCells, eliminationMap));
+///         result.Add(new(grid.GetCandidates(cell), cell.AsCellMap(), PeersMap[cell] & __EmptyCells, eliminationMap));
 ///     }
 ///
 ///     // ...
@@ -38,7 +38,7 @@ namespace Sudoku.Runtime.InterceptorServices;
 ///     var eliminationMap = new CellMap[9];
 ///     foreach (var digit in grid.GetCandidates(cell))
 ///         eliminationMap[digit] = PeersMap[cell] & MemoryCachedData.CandidatesMap[digit];
-///     result.Add(new(grid.GetCandidates(cell), in cell.AsCellMap(), PeersMap[cell] & MemoryCachedData.EmptyCells, eliminationMap));
+///     result.Add(new(grid.GetCandidates(cell), cell.AsCellMap(), PeersMap[cell] & MemoryCachedData.EmptyCells, eliminationMap));
 /// }
 /// ]]></code>
 /// </remarks>

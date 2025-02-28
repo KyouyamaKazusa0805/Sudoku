@@ -42,14 +42,14 @@ public sealed class KrakenNormalFishChainingRule : ChainingRule
 		{
 			for (var digit = 0; digit < 9; digit++)
 			{
-				collect(in context, true, size, digit, sets, __CandidatesMap);
-				collect(in context, false, size, digit, sets, __CandidatesMap);
+				collect(context, true, size, digit, sets, __CandidatesMap);
+				collect(context, false, size, digit, sets, __CandidatesMap);
 			}
 		}
 
 
 		static void collect(
-			ref readonly ChainingRuleLinkContext context,
+			in ChainingRuleLinkContext context,
 			bool isRow,
 			Digit size,
 			Digit digit,

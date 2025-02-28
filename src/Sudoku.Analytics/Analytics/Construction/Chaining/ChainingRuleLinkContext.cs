@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Construction.Chaining;
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
 [SuppressMessage("Style", "IDE0250:Make struct 'readonly'", Justification = "<Pending>")]
 public ref partial struct ChainingRuleLinkContext(
-	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] ref readonly Grid grid,
+	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] in Grid grid,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] LinkDictionary strongLinks,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] LinkDictionary weakLinks,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] StepGathererOptions options

@@ -12,7 +12,7 @@ internal partial class ChainingDriver
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
 	/// <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
-	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(ref readonly Grid grid, bool onlyFindOne, ChainingRuleCollection supportedRules)
+	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(in Grid grid, bool onlyFindOne, ChainingRuleCollection supportedRules)
 	{
 		var result = new List<BlossomLoop>();
 
@@ -364,7 +364,7 @@ internal partial class ChainingDriver
 		}
 
 		// Collect on patterns (like ALSes).
-		var context = new ChainingRuleLoopConclusionContext(in grid, patternLinks.AsSpan());
+		var context = new ChainingRuleLoopConclusionContext(grid, patternLinks.AsSpan());
 		foreach (var rule in supportedRules)
 		{
 			rule.GetLoopConclusions(ref context);

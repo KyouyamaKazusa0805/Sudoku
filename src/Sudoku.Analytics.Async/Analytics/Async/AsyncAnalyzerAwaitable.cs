@@ -44,7 +44,7 @@ public readonly ref partial struct AsyncAnalyzerAwaitable : IStepGathererAwaitab
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	public AsyncAnalyzerAwaitable(
 		Analyzer analyzer,
-		ref readonly Grid grid,
+		in Grid grid,
 		IProgress<StepGathererProgressPresenter>? progress,
 		bool continueOnCapturedContext,
 		CancellationToken cancellationToken
@@ -62,7 +62,7 @@ public readonly ref partial struct AsyncAnalyzerAwaitable : IStepGathererAwaitab
 	/// </summary>
 	/// <param name="original">The original value.</param>
 	/// <param name="continueOnCapturedContext">The new value to be assigned to <see cref="_continueOnCapturedContext"/>.</param>
-	internal AsyncAnalyzerAwaitable(scoped ref readonly AsyncAnalyzerAwaitable original, bool continueOnCapturedContext) :
+	internal AsyncAnalyzerAwaitable(scoped in AsyncAnalyzerAwaitable original, bool continueOnCapturedContext) :
 		this(original._analyzer, in original._grid, original._progress, continueOnCapturedContext, original._cancellationToken)
 	{
 	}
@@ -76,8 +76,8 @@ public readonly ref partial struct AsyncAnalyzerAwaitable : IStepGathererAwaitab
 	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
 	/// </param>
 	/// <returns>A new <see cref="AsyncAnalyzerAwaitable"/> instance, with context switching option updated.</returns>
-	public AsyncAnalyzerAwaitable ConfigureAwait(bool continueOnCapturedContext) => new(in this, continueOnCapturedContext);
+	public AsyncAnalyzerAwaitable ConfigureAwait(bool continueOnCapturedContext) => new(this, continueOnCapturedContext);
 
 	/// <inheritdoc/>
-	public AsyncAnalyzerAwaiter GetAwaiter() => new(_analyzer, in _grid, _progress, _continueOnCapturedContext, _cancellationToken);
+	public AsyncAnalyzerAwaiter GetAwaiter() => new(_analyzer, _grid, _progress, _continueOnCapturedContext, _cancellationToken);
 }

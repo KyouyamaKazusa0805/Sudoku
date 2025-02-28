@@ -63,7 +63,7 @@ public partial class GridCanvas
 	/// Draw grid onto the canvas.
 	/// </summary>
 	/// <param name="grid">The grid to be drawn.</param>
-	public partial void DrawGrid(ref readonly Grid grid)
+	public partial void DrawGrid(in Grid grid)
 	{
 		if (Settings is not
 			{

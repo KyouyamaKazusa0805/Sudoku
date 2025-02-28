@@ -86,7 +86,7 @@ public sealed class AsyncAnalyzerAwaiter : IStepGathererAwaiter<AnalysisResult>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	public AsyncAnalyzerAwaiter(
 		Analyzer analyzer,
-		ref readonly Grid grid,
+		in Grid grid,
 		IProgress<StepGathererProgressPresenter>? progress,
 		bool continueOnCapturedContext,
 		CancellationToken cancellationToken

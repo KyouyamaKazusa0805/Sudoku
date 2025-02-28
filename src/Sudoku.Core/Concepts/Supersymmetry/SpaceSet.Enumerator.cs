@@ -6,7 +6,7 @@ public partial struct SpaceSet
 	/// Represents an enumerator type that can iterate on each <see cref="Space"/> of the current type.
 	/// </summary>
 	/// <param name="set">The set instance.</param>
-	public ref struct Enumerator(ref readonly SpaceSet set) : IEnumerator<Space>
+	public ref struct Enumerator(in SpaceSet set) : IEnumerator<Space>
 	{
 		/// <summary>
 		/// Indicates the set.

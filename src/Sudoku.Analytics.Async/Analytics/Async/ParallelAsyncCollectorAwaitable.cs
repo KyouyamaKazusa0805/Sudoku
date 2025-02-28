@@ -28,7 +28,7 @@ public readonly ref partial struct ParallelAsyncCollectorAwaitable : IStepGather
 	/// <param name="collector">Indicates the collector.</param>
 	/// <param name="grid">Indicates the grid.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-	public ParallelAsyncCollectorAwaitable(Collector collector, ref readonly Grid grid, CancellationToken cancellationToken)
+	public ParallelAsyncCollectorAwaitable(Collector collector, in Grid grid, CancellationToken cancellationToken)
 	{
 		_collector = collector;
 		_grid = ref grid;
@@ -37,5 +37,5 @@ public readonly ref partial struct ParallelAsyncCollectorAwaitable : IStepGather
 
 
 	/// <inheritdoc/>
-	public ParallelAsyncCollectorAwaiter GetAwaiter() => new(_collector, in _grid, _cancellationToken);
+	public ParallelAsyncCollectorAwaiter GetAwaiter() => new(_collector, _grid, _cancellationToken);
 }

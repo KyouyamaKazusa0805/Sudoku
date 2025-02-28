@@ -74,7 +74,7 @@ public partial struct SpaceSet :
 	/// <returns>A <see cref="BitmapEnumerator"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[UnscopedRef]
-	public readonly BitmapEnumerator EnumerateBitStates() => new(in this);
+	public readonly BitmapEnumerator EnumerateBitStates() => new(this);
 
 	/// <summary>
 	/// Converts the current object into an array of <see cref="Space"/> instances.

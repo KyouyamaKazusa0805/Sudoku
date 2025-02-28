@@ -86,7 +86,7 @@ public sealed class AsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnlySpan<St
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	public AsyncCollectorAwaiter(
 		Collector collector,
-		ref readonly Grid grid,
+		in Grid grid,
 		IProgress<StepGathererProgressPresenter>? progress,
 		bool continueOnCapturedContext,
 		CancellationToken cancellationToken

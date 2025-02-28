@@ -1,12 +1,12 @@
 namespace Sudoku.Inferring;
 
 /// <summary>
-/// Indicates the result value after <see cref="SymmetryInferrer.TryInfer(ref readonly Grid, out SymmetryInferredResult)"/> called.
+/// Indicates the result value after <see cref="SymmetryInferrer.TryInfer(in Grid, out SymmetryInferredResult)"/> called.
 /// </summary>
 /// <param name="symmetricType">The symmetric type returned.</param>
 /// <param name="mappingDigits">The mapping digits returned.</param>
 /// <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
-/// <seealso cref="SymmetryInferrer.TryInfer(ref readonly Grid, out SymmetryInferredResult)"/>
+/// <seealso cref="SymmetryInferrer.TryInfer(in Grid, out SymmetryInferredResult)"/>
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
 public readonly ref partial struct SymmetryInferredResult(
 	[Property] SymmetricType symmetricType,

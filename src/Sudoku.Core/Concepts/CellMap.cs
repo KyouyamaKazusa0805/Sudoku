@@ -551,11 +551,11 @@ public partial struct CellMap : CellMapBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int CompareTo(in CellMap other)
 	{
-		return Count > other.Count ? 1 : Count < other.Count ? -1 : -Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
+		return Count > other.Count ? 1 : Count < other.Count ? -1 : -Math.Sign($"{b(this)}".CompareTo($"{b(in other)}"));
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string b(ref readonly CellMap f) => f.ToString(new BitmapCellMapFormatInfo());
+		static string b(in CellMap f) => f.ToString(new BitmapCellMapFormatInfo());
 	}
 
 	/// <inheritdoc/>

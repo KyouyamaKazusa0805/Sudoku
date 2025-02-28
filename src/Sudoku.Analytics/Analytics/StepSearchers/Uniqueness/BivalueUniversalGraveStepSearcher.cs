@@ -254,7 +254,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			[[.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate)]],
 			context.Options,
 			digit,
-			in cellsMap
+			cellsMap
 		);
 		if (context.OnlyFindOne)
 		{
@@ -536,7 +536,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[[.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate)]],
 			context.Options,
-			in trueCandidates
+			trueCandidates
 		);
 		if (context.OnlyFindOne)
 		{

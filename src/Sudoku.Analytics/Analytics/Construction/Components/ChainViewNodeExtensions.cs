@@ -29,7 +29,7 @@ internal static class ChainViewNodeExtensions
 
 		foreach (var supportedRule in supportedRules)
 		{
-			var context = new ChainingRuleViewNodeContext(in grid, @this, result[0]) { CurrentAlmostLockedSetIndex = alsIndex };
+			var context = new ChainingRuleViewNodeContext(grid, @this, result[0]) { CurrentAlmostLockedSetIndex = alsIndex };
 			supportedRule.GetViewNodes(ref context);
 			alsIndex = context.CurrentAlmostLockedSetIndex;
 		}

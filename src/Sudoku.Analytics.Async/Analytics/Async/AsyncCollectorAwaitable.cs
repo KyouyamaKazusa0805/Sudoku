@@ -44,7 +44,7 @@ public readonly ref partial struct AsyncCollectorAwaitable : IStepGathererAwaita
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	public AsyncCollectorAwaitable(
 		Collector collector,
-		ref readonly Grid grid,
+		in Grid grid,
 		IProgress<StepGathererProgressPresenter>? progress,
 		bool continueOnCapturedContext,
 		CancellationToken cancellationToken
@@ -62,7 +62,7 @@ public readonly ref partial struct AsyncCollectorAwaitable : IStepGathererAwaita
 	/// </summary>
 	/// <param name="original">The original value.</param>
 	/// <param name="continueOnCapturedContext">The new value to be assigned to <see cref="_continueOnCapturedContext"/>.</param>
-	internal AsyncCollectorAwaitable(scoped ref readonly AsyncCollectorAwaitable original, bool continueOnCapturedContext) :
+	internal AsyncCollectorAwaitable(scoped in AsyncCollectorAwaitable original, bool continueOnCapturedContext) :
 		this(original._collector, in original._grid, original._progress, continueOnCapturedContext, original._cancellationToken)
 	{
 	}
@@ -76,8 +76,8 @@ public readonly ref partial struct AsyncCollectorAwaitable : IStepGathererAwaita
 	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
 	/// </param>
 	/// <returns>A new <see cref="AsyncCollectorAwaitable"/> instance, with context switching option updated.</returns>
-	public AsyncCollectorAwaitable ConfigureAwait(bool continueOnCapturedContext) => new(in this, continueOnCapturedContext);
+	public AsyncCollectorAwaitable ConfigureAwait(bool continueOnCapturedContext) => new(this, continueOnCapturedContext);
 
 	/// <inheritdoc/>
-	public AsyncCollectorAwaiter GetAwaiter() => new(_collector, in _grid, _progress, _continueOnCapturedContext, _cancellationToken);
+	public AsyncCollectorAwaiter GetAwaiter() => new(_collector, _grid, _progress, _continueOnCapturedContext, _cancellationToken);
 }

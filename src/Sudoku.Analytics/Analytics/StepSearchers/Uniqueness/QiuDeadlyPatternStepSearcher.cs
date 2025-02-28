@@ -862,7 +862,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			1 << l1 | 1 << l2,
 			corner[0],
 			corner[1],
-			in lockedMap
+			lockedMap
 		);
 		if (context.OnlyFindOne)
 		{

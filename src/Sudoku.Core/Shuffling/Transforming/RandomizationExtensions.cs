@@ -44,7 +44,7 @@ public static class RandomizationExtensions
 	/// <param name="count">The desired number of elements.</param>
 	/// <returns>The specified number of elements returned, represented as a <see cref="CellMap"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap RandomlySelect(this Random random, ref readonly CellMap cells, int count)
+	public static CellMap RandomlySelect(this Random random, in CellMap cells, int count)
 	{
 		var result = cells.Offsets[..];
 		random.Shuffle(result);
@@ -59,7 +59,7 @@ public static class RandomizationExtensions
 	/// <param name="count">The desired number of elements.</param>
 	/// <returns>The specified number of elements returned, represented as a <see cref="CandidateMap"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap RandomlySelect(this Random random, ref readonly CandidateMap cells, int count)
+	public static CandidateMap RandomlySelect(this Random random, in CandidateMap cells, int count)
 	{
 		var result = cells.Offsets[..];
 		random.Shuffle(result);
@@ -73,7 +73,7 @@ public static class RandomizationExtensions
 	/// <param name="count">The desired number of elements.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap CreateCellMap(this Random random, int count) => random.RandomlySelect(in CellMap.Full, count);
+	public static CellMap CreateCellMap(this Random random, int count) => random.RandomlySelect(CellMap.Full, count);
 
 	/// <summary>
 	/// Creates a <see cref="CandidateMap"/> instance, with the specified number of <see cref="Candidate"/>s stored in the collection.
@@ -82,5 +82,5 @@ public static class RandomizationExtensions
 	/// <param name="count">The desired number of elements.</param>
 	/// <returns>A <see cref="CandidateMap"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap CreateCandidateMap(this Random random, int count) => random.RandomlySelect(in CandidateMap.Full, count);
+	public static CandidateMap CreateCandidateMap(this Random random, int count) => random.RandomlySelect(CandidateMap.Full, count);
 }

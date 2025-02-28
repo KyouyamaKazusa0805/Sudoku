@@ -11,7 +11,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CandidateMap trueCandidates
+	[Property] in CandidateMap trueCandidates
 ) : BivalueUniversalGraveStep(conclusions, views, options), ITrueCandidatesTrait, ICandidateListTrait
 {
 	/// <inheritdoc/>

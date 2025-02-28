@@ -16,7 +16,7 @@ public sealed class DirectIntersectionGenerator : ComplexSingleGenerator
 
 	/// <inheritdoc/>
 	protected override InterimCellsCreator InterimCellsCreator
-		=> static (ref readonly g, s) =>
+		=> static (in g, s) =>
 		{
 			var step = (DirectIntersectionStep)s;
 			var result = CellMap.Empty;

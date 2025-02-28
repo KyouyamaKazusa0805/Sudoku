@@ -13,12 +13,7 @@ public static class DiffTechniqueAnalysis
 	/// <param name="collector">The collector instance that is used for collecting found steps.</param>
 	/// <param name="step">The step.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether such step can be inferred.</returns>
-	public static bool TryAnalyzeTechnique(
-		ref readonly Grid left,
-		ref readonly Grid right,
-		Collector collector,
-		[NotNullWhen(true)] out Step? step
-	)
+	public static bool TryAnalyzeTechnique(in Grid left, in Grid right, Collector collector, [NotNullWhen(true)] out Step? step)
 	{
 		if (!DiffAnalysis.TryAnalyzeDiff(left, right, out var result)
 			|| result.Type is not (DiffType.AddModifiable or DiffType.RemoveCandidate)

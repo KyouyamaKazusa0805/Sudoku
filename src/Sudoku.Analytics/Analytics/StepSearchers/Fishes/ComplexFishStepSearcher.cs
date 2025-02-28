@@ -72,7 +72,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 
 		// Gather the POM eliminations to get all possible fish eliminations.
 		var pomElims = GetPomEliminationsFirstly(grid, ref context);
-		if (pomElims.All(@delegate.False))
+		if (pomElims.All(static (ref readonly p) => !p))
 		{
 			return null;
 		}
@@ -487,7 +487,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	{
 		var tempList = new List<Step>();
 		var playground = grid;
-		var context2 = new StepAnalysisContext(in playground)
+		var context2 = new StepAnalysisContext(playground)
 		{
 			Accumulator = tempList,
 			OnlyFindOne = false,

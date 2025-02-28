@@ -11,7 +11,7 @@ public static class CellMapToken
 	/// </summary>
 	/// <param name="this">The instance.</param>
 	/// <returns>The string token.</returns>
-	public static string GetToken(this ref readonly CellMap @this)
+	public static string GetToken(this in CellMap @this)
 	{
 		var convertedString = @this.ToString(new BitmapCellMapFormatInfo());
 		var bits = convertedString.Chunk(27);
