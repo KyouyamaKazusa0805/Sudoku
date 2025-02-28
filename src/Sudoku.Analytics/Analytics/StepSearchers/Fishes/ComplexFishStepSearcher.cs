@@ -71,7 +71,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		ref readonly var grid = ref context.Grid;
 
 		// Gather the POM eliminations to get all possible fish eliminations.
-		var pomElims = GetPomEliminationsFirstly(in grid, ref context);
+		var pomElims = GetPomEliminationsFirstly(grid, ref context);
 		if (pomElims.All(@delegate.False))
 		{
 			return null;
@@ -89,12 +89,12 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 			// Create a background thread to work on searching for fishes of this digit.
 			if (pomElimsOfThisDigit)
 			{
-				Collect(tempList, in tempGrid, ref context, in pomElimsOfThisDigit, digit, context.OnlyFindOne);
+				Collect(tempList, tempGrid, ref context, pomElimsOfThisDigit, digit, context.OnlyFindOne);
 			}
 		}
 
 		var accumulator = tempList.ToList();
-		var siameses = AllowSiamese ? Siamese.Fish.GetSiamese(accumulator.ConvertAll(static p => (FishStep)p), in grid) : [];
+		var siameses = AllowSiamese ? Siamese.Fish.GetSiamese(accumulator.ConvertAll(static p => (FishStep)p), grid) : [];
 		if (context.OnlyFindOne)
 		{
 			return siameses is [var siamese, ..] ? siamese : accumulator.FirstOrDefault() is { } normal ? normal : null;
@@ -126,9 +126,9 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
 	private void Collect(
 		HashSet<ComplexFishStep> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
-		ref readonly CellMap pomElimsOfThisDigit,
+		in CellMap pomElimsOfThisDigit,
 		Digit digit,
 		bool onlyFindOne
 	)
@@ -457,10 +457,10 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 										digit,
 										baseSetsMask,
 										coverSetsMask,
-										in exofins,
-										in endofins,
+										exofins,
+										endofins,
 										!checkMutant,
-										Sashimi.IsSashimi(baseSets, in fins, digit),
+										Sashimi.IsSashimi(baseSets, fins, digit),
 										cannibal
 									)
 								);
@@ -483,11 +483,16 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-	private static ReadOnlySpan<CellMap> GetPomEliminationsFirstly(ref readonly Grid grid, ref StepAnalysisContext context)
+	private static ReadOnlySpan<CellMap> GetPomEliminationsFirstly(in Grid grid, ref StepAnalysisContext context)
 	{
 		var tempList = new List<Step>();
 		var playground = grid;
-		var context2 = new StepAnalysisContext(in playground) { Accumulator = tempList, OnlyFindOne = false, Options = context.Options };
+		var context2 = new StepAnalysisContext(in playground)
+		{
+			Accumulator = tempList,
+			OnlyFindOne = false,
+			Options = context.Options
+		};
 		ElimsSearcher.Collect(ref context2);
 
 		var result = new CellMap[9];

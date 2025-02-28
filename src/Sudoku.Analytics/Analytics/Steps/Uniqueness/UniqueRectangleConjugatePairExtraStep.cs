@@ -23,10 +23,10 @@ public sealed partial class UniqueRectangleConjugatePairExtraStep(
 	Technique code,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	bool isAvoidable,
 	Conjugate[] conjugatePairs,
-	[Property] ref readonly CellMap extraCells,
+	[Property] in CellMap extraCells,
 	[Property] Mask extraDigitsMask,
 	int absoluteOffset
 ) :
@@ -37,7 +37,7 @@ public sealed partial class UniqueRectangleConjugatePairExtraStep(
 		code,
 		digit1,
 		digit2,
-		in cells,
+		cells,
 		isAvoidable,
 		conjugatePairs,
 		absoluteOffset

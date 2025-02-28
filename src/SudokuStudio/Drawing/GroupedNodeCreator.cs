@@ -21,14 +21,14 @@ internal sealed class GroupedNodeCreator(SudokuPane pane, SudokuPanePositionConv
 			var node = n.Map;
 			if (node.Count != 1 && !drawnGroupedNodes.Contains(node))
 			{
-				drawnGroupedNodes.AddRef(in node);
-				result.Add(drawRectangle(n, in node));
+				drawnGroupedNodes.AddRef(node);
+				result.Add(drawRectangle(n, node));
 			}
 		}
 		return result.AsSpan();
 
 
-		Rectangle drawRectangle(GroupedNodeInfo n, ref readonly CandidateMap nodeCandidates)
+		Rectangle drawRectangle(GroupedNodeInfo n, in CandidateMap nodeCandidates)
 		{
 			var fill = new SolidColorBrush(Pane.GroupedNodeBackgroundColor);
 			var stroke = new SolidColorBrush(Pane.GroupedNodeStrokeColor);

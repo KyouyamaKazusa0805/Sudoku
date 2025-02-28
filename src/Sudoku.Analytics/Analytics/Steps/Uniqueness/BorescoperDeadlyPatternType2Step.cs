@@ -13,10 +13,10 @@ public sealed partial class BorescoperDeadlyPatternType2Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask,
 	[Property] Digit extraDigit
-) : BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask)
+) : BorescoperDeadlyPatternStep(conclusions, views, options, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 2;

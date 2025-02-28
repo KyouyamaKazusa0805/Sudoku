@@ -8,7 +8,7 @@ internal partial class ChainingDriver
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
-	public static ReadOnlySpan<RectangleForcingChains> CollectRectangleMultipleForcingChains(ref readonly Grid grid, bool onlyFindOne)
+	public static ReadOnlySpan<RectangleForcingChains> CollectRectangleMultipleForcingChains(in Grid grid, bool onlyFindOne)
 	{
 		var result = new SortedSet<RectangleForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
 		foreach (var urCells in UniqueRectanglePattern.AllPatterns)
@@ -36,7 +36,7 @@ internal partial class ChainingDriver
 				// Determine whether such digits can be filled in diagonal cells.
 				// If a rectangle is correct, we should guarantee both digits can be filled twice in rectangle pattern,
 				// in order to make a valid deadly pattern (i.e. guarantee having at least one possible unavoidable set).
-				if (!UniqueRectanglePattern.CanMakeDeadlyPattern(in grid, d1, d2, urCells))
+				if (!UniqueRectanglePattern.CanMakeDeadlyPattern(grid, d1, d2, urCells))
 				{
 					continue;
 				}
@@ -79,13 +79,13 @@ internal partial class ChainingDriver
 					}
 				}
 
-				var step1 = rfcOn(urCells, in grid, d1, d2, in branchStartCandidates, nodesSupposedOnGrouped, resultNodesSupposedOn);
+				var step1 = rfcOn(urCells, grid, d1, d2, branchStartCandidates, nodesSupposedOnGrouped, resultNodesSupposedOn);
 				if (!step1.IsEmpty)
 				{
 					return step1;
 				}
 
-				var step2 = rfcOff(urCells, in grid, d1, d2, in branchStartCandidates, nodesSupposedOffGrouped, resultNodesSupposedOff);
+				var step2 = rfcOff(urCells, grid, d1, d2, branchStartCandidates, nodesSupposedOffGrouped, resultNodesSupposedOff);
 				if (!step2.IsEmpty)
 				{
 					return step2;
@@ -97,10 +97,10 @@ internal partial class ChainingDriver
 
 		ReadOnlySpan<RectangleForcingChains> rfcOn(
 			Cell[] urCells,
-			ref readonly Grid grid,
+			in Grid grid,
 			Digit d1,
 			Digit d2,
-			scoped ref readonly CandidateMap branchStartCandidates,
+			scoped in CandidateMap branchStartCandidates,
 			Dictionary<Candidate, HashSet<Node>> onNodes,
 			HashSet<Node>? resultOnNodes
 		)
@@ -136,10 +136,10 @@ internal partial class ChainingDriver
 
 		ReadOnlySpan<RectangleForcingChains> rfcOff(
 			Cell[] urCells,
-			ref readonly Grid grid,
+			in Grid grid,
 			Digit d1,
 			Digit d2,
-			scoped ref readonly CandidateMap branchStartCandidates,
+			scoped in CandidateMap branchStartCandidates,
 			Dictionary<Candidate, HashSet<Node>> offNodes,
 			HashSet<Node>? resultOffNodes
 		)
@@ -164,7 +164,7 @@ internal partial class ChainingDriver
 					var branchNode = offNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					rfc.Add(candidate, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
-				if (rfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
+				if (rfc.GetThoroughConclusions(grid) is not { Length: not 0 } conclusions)
 				{
 					continue;
 				}

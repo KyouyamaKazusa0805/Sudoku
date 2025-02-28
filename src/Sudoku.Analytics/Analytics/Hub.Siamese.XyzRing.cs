@@ -15,7 +15,7 @@ public partial class Hub
 			/// <param name="accumulator">The accumulator.</param>
 			/// <param name="grid">The grid.</param>
 			/// <returns>All Siamese steps of type <see cref="XyzRingStep"/>.</returns>
-			public static ReadOnlySpan<XyzRingStep> GetSiamese(HashSet<XyzRingStep> accumulator, ref readonly Grid grid)
+			public static ReadOnlySpan<XyzRingStep> GetSiamese(HashSet<XyzRingStep> accumulator, in Grid grid)
 			{
 				var result = new List<XyzRingStep>();
 				var stepsSpan = accumulator.AsReadOnlySpan();
@@ -25,7 +25,7 @@ public partial class Hub
 					for (var index2 = index1 + 1; index2 < accumulator.Count; index2++)
 					{
 						var xyz2 = stepsSpan[index2];
-						if (check(in grid, xyz1, xyz2, out var siameseStep))
+						if (check(grid, xyz1, xyz2, out var siameseStep))
 						{
 							result.Add(siameseStep);
 						}
@@ -34,7 +34,7 @@ public partial class Hub
 				return result.AsSpan();
 
 
-				static bool check(ref readonly Grid grid, XyzRingStep xyz1, XyzRingStep xyz2, [NotNullWhen(true)] out XyzRingStep? siameseStep)
+				static bool check(in Grid grid, XyzRingStep xyz1, XyzRingStep xyz2, [NotNullWhen(true)] out XyzRingStep? siameseStep)
 				{
 					if ((xyz1.Pivot, xyz1.LeafCell1, xyz1.LeafCell2) != (xyz2.Pivot, xyz2.LeafCell1, xyz2.LeafCell2))
 					{

@@ -73,15 +73,15 @@ public sealed record K9Converter(
 				}
 				default:
 				{
-					return r(in cells);
+					return r(cells);
 				}
 			}
 
 
-			string r(ref readonly CellMap cells)
+			string r(in CellMap cells)
 			{
 				var sb = new StringBuilder(18);
-				var output = CoordinateSimplifier.Simplify(in cells);
+				var output = CoordinateSimplifier.Simplify(cells);
 				var needAddingBrackets = AlwaysOutputBracket
 					|| output.Length != 1 && Enum.IsDefined(NotationBracket) && NotationBracket != NotationBracket.None;
 				if (needAddingBrackets)
@@ -135,11 +135,11 @@ public sealed record K9Converter(
 						sb.Append(DigitBracketInCandidateGroups.GetClosedBracket());
 					}
 
-					sb.Append(CellConverter(in cells));
+					sb.Append(CellConverter(cells));
 				}
 				else
 				{
-					sb.Append(CellConverter(in cells));
+					sb.Append(CellConverter(cells));
 					sb.Append(needAddingBrackets ? DigitBracketInCandidateGroups.GetOpenBracket() : "(");
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(needAddingBrackets ? DigitBracketInCandidateGroups.GetClosedBracket() : ")");
@@ -242,8 +242,7 @@ public sealed record K9Converter(
 					var token = typeGroup.Key == Assignment ? AssignmentToken : EliminationToken;
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						CellMap cells = [.. from conclusion in digitGroup select conclusion.Cell];
-						sb.Append(CellConverter(in cells));
+						sb.Append(CellConverter([.. from conclusion in digitGroup select conclusion.Cell]));
 						sb.Append(token);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);

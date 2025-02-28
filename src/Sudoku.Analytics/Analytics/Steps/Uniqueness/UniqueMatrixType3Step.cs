@@ -14,11 +14,11 @@ public sealed partial class UniqueMatrixType3Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask,
-	[Property] ref readonly CellMap subsetCells,
+	[Property] in CellMap subsetCells,
 	[Property] Mask subsetDigitsMask
-) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask), IPatternType3StepTrait<UniqueMatrixType3Step>
+) : UniqueMatrixStep(conclusions, views, options, cells, digitsMask), IPatternType3StepTrait<UniqueMatrixType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

@@ -67,7 +67,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	private Step? CheckForTrueCandidateTypes(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		switch (TrueCandidate.GetAllTrueCandidates(in grid))
+		switch (TrueCandidate.GetAllTrueCandidates(grid))
 		{
 			case []:
 			{
@@ -91,9 +91,9 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			}
 			case var trueCandidates:
 			{
-				if (checkForSingleDigit(in trueCandidates))
+				if (checkForSingleDigit(trueCandidates))
 				{
-					if (CheckType2(ref context, in trueCandidates) is { } type2Step)
+					if (CheckType2(ref context, trueCandidates) is { } type2Step)
 					{
 						return type2Step;
 					}
@@ -102,21 +102,21 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				{
 					if (SearchExtendedTypes)
 					{
-						if (CheckMultiple(ref context, in trueCandidates) is { } typeMultipleStep)
+						if (CheckMultiple(ref context, trueCandidates) is { } typeMultipleStep)
 						{
 							return typeMultipleStep;
 						}
-						if (CheckXz(ref context, in trueCandidates) is { } typeXzStep)
+						if (CheckXz(ref context, trueCandidates) is { } typeXzStep)
 						{
 							return typeXzStep;
 						}
 					}
 
-					if (CheckType3Naked(ref context, in trueCandidates) is { } type3Step)
+					if (CheckType3Naked(ref context, trueCandidates) is { } type3Step)
 					{
 						return type3Step;
 					}
-					if (CheckType4(ref context, in trueCandidates) is { } type4Step)
+					if (CheckType4(ref context, trueCandidates) is { } type4Step)
 					{
 						return type4Step;
 					}
@@ -127,7 +127,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		return null;
 
 
-		static bool checkForSingleDigit(ref readonly CandidateMap trueCandidates)
+		static bool checkForSingleDigit(in CandidateMap trueCandidates)
 		{
 			var i = 0;
 			Unsafe.SkipInit<Digit>(out var comparer);
@@ -172,7 +172,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				var copied = grid;
 				copied.SetDigit(cell, digit);
 
-				if (!formsDeadlyPattern(in copied))
+				if (!formsDeadlyPattern(copied))
 				{
 					continue;
 				}
@@ -195,7 +195,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		return null;
 
 
-		static bool formsDeadlyPattern(ref readonly Grid grid)
+		static bool formsDeadlyPattern(in Grid grid)
 		{
 			_ = grid is { BivalueCells: var bivalueCells, EmptyCells: var emptyCells, CandidatesMap: var candidatesMap };
 			if (bivalueCells != emptyCells)
@@ -227,7 +227,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 2.
 	/// </summary>
-	private BivalueUniversalGraveType2Step? CheckType2(ref StepAnalysisContext context, ref readonly CandidateMap trueCandidates)
+	private BivalueUniversalGraveType2Step? CheckType2(ref StepAnalysisContext context, in CandidateMap trueCandidates)
 	{
 		var cells = (stackalloc Cell[trueCandidates.Count]);
 		var i = 0;
@@ -268,7 +268,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 3 with naked subsets.
 	/// </summary>
-	private BivalueUniversalGraveType3Step? CheckType3Naked(ref StepAnalysisContext context, ref readonly CandidateMap trueCandidates)
+	private BivalueUniversalGraveType3Step? CheckType3Naked(ref StepAnalysisContext context, in CandidateMap trueCandidates)
 	{
 		ref readonly var grid = ref context.Grid;
 
@@ -342,9 +342,9 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					conclusions.AsMemory(),
 					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.Options,
-					in trueCandidates,
+					trueCandidates,
 					digitsMask,
-					in cells,
+					cells,
 					true
 				);
 				if (context.OnlyFindOne)
@@ -361,7 +361,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 4.
 	/// </summary>
-	private BivalueUniversalGraveType4Step? CheckType4(ref StepAnalysisContext context, ref readonly CandidateMap trueCandidates)
+	private BivalueUniversalGraveType4Step? CheckType4(ref StepAnalysisContext context, in CandidateMap trueCandidates)
 	{
 		// Conjugate pairs should lie in two cells.
 		var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
@@ -472,7 +472,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for BUG + n.
 	/// </summary>
-	private BivalueUniversalGraveMultipleStep? CheckMultiple(ref StepAnalysisContext context, ref readonly CandidateMap trueCandidates)
+	private BivalueUniversalGraveMultipleStep? CheckMultiple(ref StepAnalysisContext context, in CandidateMap trueCandidates)
 	{
 		// Test examples:
 		// BUG + 2
@@ -550,7 +550,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for BUG-XZ.
 	/// </summary>
-	private BivalueUniversalGraveXzStep? CheckXz(ref StepAnalysisContext context, ref readonly CandidateMap trueCandidates)
+	private BivalueUniversalGraveXzStep? CheckXz(ref StepAnalysisContext context, in CandidateMap trueCandidates)
 	{
 		if (trueCandidates is not [var cand1, var cand2])
 		{

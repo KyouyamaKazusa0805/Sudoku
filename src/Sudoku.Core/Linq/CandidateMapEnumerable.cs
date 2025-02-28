@@ -37,7 +37,7 @@ public static class CandidateMapEnumerable
 	{
 		foreach (var candidate in @this.Offsets)
 		{
-			if (match(candidate, in grid))
+			if (match(candidate, grid))
 			{
 				return candidate;
 			}
@@ -102,7 +102,7 @@ public static class CandidateMapEnumerable
 		{
 			ref readonly var key = ref kvp.KeyRef();
 			ref readonly var value = ref kvp.ValueRef();
-			result[i++] = new(key, in value);
+			result[i++] = new(key, value);
 		}
 		return result;
 	}

@@ -236,25 +236,25 @@ public partial struct Grid : GridBase
 	}
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap GivenCells => GridBase.GetMap(in this, &GridPredicates.GivenCells);
+	public readonly unsafe CellMap GivenCells => GridBase.GetMap(this, &GridPredicates.GivenCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap ModifiableCells => GridBase.GetMap(in this, &GridPredicates.ModifiableCells);
+	public readonly unsafe CellMap ModifiableCells => GridBase.GetMap(this, &GridPredicates.ModifiableCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap EmptyCells => GridBase.GetMap(in this, &GridPredicates.EmptyCells);
+	public readonly unsafe CellMap EmptyCells => GridBase.GetMap(this, &GridPredicates.EmptyCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap BivalueCells => GridBase.GetMap(in this, &GridPredicates.BivalueCells);
+	public readonly unsafe CellMap BivalueCells => GridBase.GetMap(this, &GridPredicates.BivalueCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => GridBase.GetMaps(in this, &GridPredicates.CandidatesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => GridBase.GetMaps(this, &GridPredicates.CandidatesMap);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => GridBase.GetMaps(in this, &GridPredicates.DigitsMap);
+	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => GridBase.GetMaps(this, &GridPredicates.DigitsMap);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => GridBase.GetMaps(in this, &GridPredicates.ValuesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => GridBase.GetMaps(this, &GridPredicates.ValuesMap);
 
 	/// <inheritdoc/>
 	public readonly ReadOnlySpan<Candidate> Candidates
@@ -290,7 +290,7 @@ public partial struct Grid : GridBase
 				{
 					if ((houseMap & cellsMap) is { Count: 2 } temp)
 					{
-						conjugatePairs.Add(new(in temp, digit));
+						conjugatePairs.Add(new(temp, digit));
 					}
 				}
 			}
@@ -394,7 +394,7 @@ public partial struct Grid : GridBase
 				MaskAggregator.Or => (Mask)0,
 				_ => throw new ArgumentOutOfRangeException(nameof(aggregator))
 			};
-			delegate*<ref Mask, ref readonly Grid, Cell, void> mergingFunctionPtr = aggregator switch
+			delegate*<ref Mask, in Grid, Cell, void> mergingFunctionPtr = aggregator switch
 			{
 				MaskAggregator.AndNot => &andNot,
 				MaskAggregator.And => &and,
@@ -404,17 +404,17 @@ public partial struct Grid : GridBase
 			{
 				if (withValueCells || GetState(cell) == CellState.Empty)
 				{
-					mergingFunctionPtr(ref result, in this, cell);
+					mergingFunctionPtr(ref result, this, cell);
 				}
 			}
 			return (Mask)(result & MaxCandidatesMask);
 
 
-			static void andNot(ref Mask result, ref readonly Grid grid, Cell cell) => result &= (Mask)~grid[cell];
+			static void andNot(ref Mask result, in Grid grid, Cell cell) => result &= (Mask)~grid[cell];
 
-			static void and(ref Mask result, ref readonly Grid grid, Cell cell) => result &= grid[cell];
+			static void and(ref Mask result, in Grid grid, Cell cell) => result &= grid[cell];
 
-			static void or(ref Mask result, ref readonly Grid grid, Cell cell) => result |= grid[cell];
+			static void or(ref Mask result, in Grid grid, Cell cell) => result |= grid[cell];
 		}
 	}
 
@@ -519,8 +519,8 @@ public partial struct Grid : GridBase
 	public readonly string ToString(IFormatProvider? formatProvider)
 		=> formatProvider switch
 		{
-			GridFormatInfo f => f.FormatCore(in this),
-			CultureInfo c => (GridFormatInfo.GetInstance(c) ?? new SusserGridFormatInfo()).FormatCore(in this),
+			GridFormatInfo f => f.FormatCore(this),
+			CultureInfo c => (GridFormatInfo.GetInstance(c) ?? new SusserGridFormatInfo()).FormatCore(this),
 			_ => throw new FormatException()
 		};
 
@@ -531,10 +531,10 @@ public partial struct Grid : GridBase
 		{
 			({ IsEmpty: true }, _) => $"<{nameof(Empty)}>",
 			({ IsUndefined: true }, _) => $"<{nameof(Undefined)}>",
-			(_, GridFormatInfo f) => f.FormatCore(in this),
+			(_, GridFormatInfo f) => f.FormatCore(this),
 			(_, CultureInfo c) => ToString(c),
-			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatCore(in this),
-			_ => GridFormatInfo.GetInstance(format)!.FormatCore(in this)
+			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatCore(this),
+			_ => GridFormatInfo.GetInstance(format)!.FormatCore(this)
 		};
 
 	/// <inheritdoc/>
@@ -1189,7 +1189,7 @@ public partial struct Grid : GridBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DiffResult? operator -(in Grid left, in Grid right)
 	{
-		DiffAnalysis.TryAnalyzeDiff(in left, in right, out var result);
+		DiffAnalysis.TryAnalyzeDiff(left, right, out var result);
 		return result;
 	}
 

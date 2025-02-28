@@ -1,7 +1,5 @@
 namespace Sudoku.Inferring;
 
-using unsafe SymmetricalPlacementCheckerFuncPtr = delegate*<ref readonly Grid, out SymmetricType, out ReadOnlySpan<Digit?>, out Mask, bool>;
-
 /// <summary>
 /// Represents an inferrer that can checks for symmetrical placements.
 /// </summary>
@@ -10,11 +8,11 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <summary>
 	/// The internal methods.
 	/// </summary>
-	private static readonly SymmetricalPlacementCheckerFuncPtr[] Checkers = [&Diagonal, &AntiDiagonal, &Central];
+	private static readonly delegate*<in Grid, out SymmetricType, out ReadOnlySpan<Digit?>, out Mask, bool>[] Checkers = [&Diagonal, &AntiDiagonal, &Central];
 
 
 	/// <inheritdoc/>
-	public static bool TryInfer(ref readonly Grid grid, out SymmetryInferredResult result)
+	public static bool TryInfer(in Grid grid, out SymmetryInferredResult result)
 	{
 		if (grid.PuzzleType != SudokuType.Standard || grid.GetUniqueness() != Uniqueness.Unique)
 		{
@@ -23,7 +21,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 
 		foreach (var functionPointer in Checkers)
 		{
-			if (functionPointer(in grid, out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask))
+			if (functionPointer(grid, out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask))
 			{
 				result = new(symmetricType, mappingDigits, selfPairedDigitsMask);
 				return true;
@@ -49,7 +47,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsSymmetricalPlacement(
-		ref readonly Grid grid,
+		in Grid grid,
 		SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -61,7 +59,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 		}
 
 		var index = symmetricType switch { SymmetricType.Diagonal => 0, SymmetricType.AntiDiagonal => 1, _ => 2 };
-		return Checkers[index](in grid, out _, out mappingDigits, out selfPairedDigitsMask);
+		return Checkers[index](grid, out _, out mappingDigits, out selfPairedDigitsMask);
 	}
 
 	/// <summary>
@@ -70,21 +68,20 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>The found step.</returns>
-	internal static GurthSymmetricalPlacementStep? GetStep(ref readonly Grid grid, StepGathererOptions options)
+	internal static GurthSymmetricalPlacementStep? GetStep(in Grid grid, StepGathererOptions options)
 	{
-		if (CheckDiagonal(in grid, options) is { } diagonalTypeStep)
+		if (CheckDiagonal(grid, options) is { } diagonalTypeStep)
 		{
 			return diagonalTypeStep;
 		}
-		if (CheckAntiDiagonal(in grid, options) is { } antiDiagonalTypeStep)
+		if (CheckAntiDiagonal(grid, options) is { } antiDiagonalTypeStep)
 		{
 			return antiDiagonalTypeStep;
 		}
-		if (CheckCentral(in grid, options) is { } centralTypeStep)
+		if (CheckCentral(grid, options) is { } centralTypeStep)
 		{
 			return centralTypeStep;
 		}
-
 		return null;
 	}
 
@@ -94,7 +91,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="grid">The grid as reference.</param>
 	/// <param name="cellOffsets">The target collection.</param>
 	/// <param name="mapping">The mapping relation.</param>
-	private static void GetHighlightCells(ref readonly Grid grid, List<CellViewNode> cellOffsets, ReadOnlySpan<Digit?> mapping)
+	private static void GetHighlightCells(in Grid grid, List<CellViewNode> cellOffsets, ReadOnlySpan<Digit?> mapping)
 	{
 		var colorIndices = (stackalloc Digit[9]);
 		for (var (digit, colorIndexCurrent, digitsMaskBucket) = (0, 0, (Mask)0); digit < 9; digit++)
@@ -130,7 +127,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="symmetricType">The symmetric type.</param>
 	/// <param name="nonselfPairedDigitsMask">The mask that holds a list of digits that is non-self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool CheckAxesOrCenterPointForSymmetry(ref readonly Grid grid, SymmetricType symmetricType, Mask nonselfPairedDigitsMask)
+	private static bool CheckAxesOrCenterPointForSymmetry(in Grid grid, SymmetricType symmetricType, Mask nonselfPairedDigitsMask)
 	{
 		foreach (var cell in symmetricType.GetCellsInSymmetryAxis())
 		{
@@ -174,7 +171,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid is diagonal symmetrical placement.</returns>
 	private static bool Diagonal(
-		ref readonly Grid grid,
+		in Grid grid,
 		out SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -252,7 +249,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 		}
 
 		// Check behavior on axes.
-		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Diagonal, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
+		if (!CheckAxesOrCenterPointForSymmetry(grid, SymmetricType.Diagonal, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
 		{
 			goto ReturnFalse;
 		}
@@ -277,7 +274,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid is anti-diagonal symmetrical placement.</returns>
 	private static bool AntiDiagonal(
-		ref readonly Grid grid,
+		in Grid grid,
 		out SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -355,7 +352,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 		}
 
 		// Check behavior on axes.
-		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.AntiDiagonal, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
+		if (!CheckAxesOrCenterPointForSymmetry(grid, SymmetricType.AntiDiagonal, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
 		{
 			goto ReturnFalse;
 		}
@@ -380,7 +377,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid is central symmetrical placement.</returns>
 	private static bool Central(
-		ref readonly Grid grid,
+		in Grid grid,
 		out SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -454,7 +451,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 		}
 
 		// Check behavior on center point (r5c5).
-		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Central, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
+		if (!CheckAxesOrCenterPointForSymmetry(grid, SymmetricType.Central, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
 		{
 			goto ReturnFalse;
 		}
@@ -474,7 +471,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="grid">The grid.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckDiagonal(ref readonly Grid grid, StepGathererOptions options)
+	private static GurthSymmetricalPlacementStep? CheckDiagonal(in Grid grid, StepGathererOptions options)
 	{
 		var diagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
@@ -491,7 +488,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 			return null;
 		}
 
-		if (!IsSymmetricalPlacement(in grid, SymmetricType.Diagonal, out var mapping, out var selfPairedDigitsMask))
+		if (!IsSymmetricalPlacement(grid, SymmetricType.Diagonal, out var mapping, out var selfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -508,7 +505,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 		}
 
 		// Check whether the diagonal line contains non-self-paired digit.
-		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Diagonal, nonselfPairedDigitsMask))
+		if (!CheckAxesOrCenterPointForSymmetry(grid, SymmetricType.Diagonal, nonselfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -535,7 +532,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 		}
-		GetHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(grid, cellOffsets, mapping);
 
 		return conclusions.Count == 0
 			? null
@@ -554,7 +551,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="grid">The grid.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckAntiDiagonal(ref readonly Grid grid, StepGathererOptions options)
+	private static GurthSymmetricalPlacementStep? CheckAntiDiagonal(in Grid grid, StepGathererOptions options)
 	{
 		var antiDiagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
@@ -571,7 +568,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 			return null;
 		}
 
-		if (!IsSymmetricalPlacement(in grid, SymmetricType.AntiDiagonal, out var mapping, out var selfPairedDigitsMask))
+		if (!IsSymmetricalPlacement(grid, SymmetricType.AntiDiagonal, out var mapping, out var selfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -588,7 +585,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 		}
 
 		// Check whether the diagonal line contains non-self-paired digit.
-		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.AntiDiagonal, nonselfPairedDigitsMask))
+		if (!CheckAxesOrCenterPointForSymmetry(grid, SymmetricType.AntiDiagonal, nonselfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -615,7 +612,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 		}
-		GetHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(grid, cellOffsets, mapping);
 
 		return conclusions.Count == 0
 			? null
@@ -628,9 +625,9 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="grid">The grid.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckCentral(ref readonly Grid grid, StepGathererOptions options)
+	private static GurthSymmetricalPlacementStep? CheckCentral(in Grid grid, StepGathererOptions options)
 	{
-		if (!IsSymmetricalPlacement(in grid, SymmetricType.Central, out var mapping, out var selfPairedDigitsMask))
+		if (!IsSymmetricalPlacement(grid, SymmetricType.Central, out var mapping, out var selfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -647,7 +644,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 		}
 
 		// Check whether the diagonal line contains non-self-paired digit.
-		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Central, nonselfPairedDigitsMask))
+		if (!CheckAxesOrCenterPointForSymmetry(grid, SymmetricType.Central, nonselfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -659,7 +656,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 		}
 
 		var cellOffsets = new List<CellViewNode>();
-		GetHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(grid, cellOffsets, mapping);
 
 		return new(
 			(from digit in nonselfPairedDigitsMask select new Conclusion(Elimination, 40, digit)).ToArray(),

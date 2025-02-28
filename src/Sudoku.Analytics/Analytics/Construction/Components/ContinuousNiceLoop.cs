@@ -248,7 +248,7 @@ public sealed partial class ContinuousNiceLoop(Node lastNode) : NamedChain(lastN
 	public override int CompareTo(Chain? other) => CompareTo(other as ContinuousNiceLoop);
 
 	/// <inheritdoc/>
-	public override ConclusionSet GetConclusions(ref readonly Grid grid)
+	public override ConclusionSet GetConclusions(in Grid grid)
 	{
 		var result = new ConclusionSet();
 		for (var i = 0; i < Length; i += 2)

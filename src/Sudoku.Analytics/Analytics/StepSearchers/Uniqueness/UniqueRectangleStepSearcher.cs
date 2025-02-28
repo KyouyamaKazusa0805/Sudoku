@@ -130,8 +130,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		// Iterate on mode (whether use AR or UR mode to search).
 		var list = new SortedSet<UniqueRectangleStep>();
-		Collect(list, in grid, ref context, false);
-		Collect(list, in grid, ref context, true);
+		Collect(list, grid, ref context, false);
+		Collect(list, grid, ref context, true);
 
 		if (list.Count == 0)
 		{
@@ -206,10 +206,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
 	[InterceptorMethodCaller]
-	private void Collect(SortedSet<UniqueRectangleStep> collected, ref readonly Grid grid, ref StepAnalysisContext context, bool arMode)
+	private void Collect(SortedSet<UniqueRectangleStep> collected, in Grid grid, ref StepAnalysisContext context, bool arMode)
 	{
 		// Search for ALSes. This result will be used by UR External ALS-XZ structures.
-		var alses = AlmostLockedSetPattern.Collect(in grid);
+		var alses = AlmostLockedSetPattern.Collect(grid);
 
 		// Iterate on each possible UR pattern.
 		for (var index = 0; index < UniqueRectanglePattern.AllPatterns.Length; index++)
@@ -217,7 +217,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var urCells = UniqueRectanglePattern.AllPatterns[index];
 
 			// Check preconditions.
-			if (!CheckPreconditions(in grid, urCells, arMode))
+			if (!CheckPreconditions(grid, urCells, arMode))
 			{
 				continue;
 			}
@@ -235,7 +235,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					var d2 = allDigitsInThem[j];
 
 					// Check validity of UR.
-					if (!UniqueRectanglePattern.CanMakeDeadlyPattern(in grid, d1, d2, urCells))
+					if (!UniqueRectanglePattern.CanMakeDeadlyPattern(grid, d1, d2, urCells))
 					{
 						continue;
 					}
@@ -258,17 +258,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 					if (SearchForExtendedUniqueRectangles)
 					{
-						CheckAlmostLockedSetsXz(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, alses, index);
-						CheckExternalType1Or2(collected, in grid, ref context, urCells, d1, d2, index, arMode);
-						CheckExternalType3(collected, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalType4(collected, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalXyWing(collected, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalAlmostLockedSetsXz(collected, in grid, ref context, urCells, alses, comparer, d1, d2, index, arMode);
+						CheckAlmostLockedSetsXz(collected, grid, ref context, urCells, arMode, comparer, d1, d2, alses, index);
+						CheckExternalType1Or2(collected, grid, ref context, urCells, d1, d2, index, arMode);
+						CheckExternalType3(collected, grid, ref context, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalType4(collected, grid, ref context, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalXyWing(collected, grid, ref context, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalAlmostLockedSetsXz(collected, grid, ref context, urCells, alses, comparer, d1, d2, index, arMode);
 
 						if (!arMode)
 						{
-							CheckExternalTurbotFish(collected, in grid, ref context, urCells, comparer, d1, d2, index);
-							CheckExternalWWing(collected, in grid, ref context, urCells, comparer, d1, d2, index);
+							CheckExternalTurbotFish(collected, grid, ref context, urCells, comparer, d1, d2, index);
+							CheckExternalWWing(collected, grid, ref context, urCells, comparer, d1, d2, index);
 						}
 					}
 
@@ -278,22 +278,22 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						var corner1 = urCells[c1];
 						var cellsExcluding1CornerCell = urCells.AsCellMap() - corner1;
 
-						CheckType1(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
-						CheckType5(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
-						CheckHidden(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
+						CheckType1(collected, grid, ref context, urCells, arMode, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
+						CheckType5(collected, grid, ref context, urCells, arMode, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
+						CheckHidden(collected, grid, ref context, urCells, arMode, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
 
 						if (!arMode && SearchForExtendedUniqueRectangles)
 						{
-							Check3X2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
-							Check3N2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
-							Check3U2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
-							Check3E2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
-							Check3X1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
-							Check3X1SLL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
-							Check3X1SLU(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
-							Check4X1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
-							Check4X1SLL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
-							Check4X1SLU(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
+							Check3X2SL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
+							Check3N2SL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
+							Check3U2SL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
+							Check3E2SL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
+							Check3X1SL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
+							Check3X1SLL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
+							Check3X1SLU(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
+							Check4X1SL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
+							Check4X1SLL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
+							Check4X1SLU(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, cellsExcluding1CornerCell, index);
 						}
 
 						if (c1 == 3)
@@ -311,11 +311,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							var cellsExcluding2CornerCells = cellsExcluding1CornerCell - corner2;
 
 							// Both diagonal and non-diagonal.
-							CheckType2(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+							CheckType2(collected, grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
 							if (SearchForExtendedUniqueRectangles)
 							{
-								CheckRegularWing(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index, (c1, c2) is (0, 3) or (1, 2));
-								//CheckWWing(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+								CheckRegularWing(collected, grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index, (c1, c2) is (0, 3) or (1, 2));
+								//CheckWWing(collected, grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
 							}
 
 							switch (c1, c2)
@@ -327,15 +327,15 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									{
 										if (SearchForExtendedUniqueRectangles)
 										{
-											CheckHiddenSingleAvoidable(collected, in grid, ref context, urCells, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+											CheckHiddenSingleAvoidable(collected, grid, ref context, urCells, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
 										}
 									}
 									else
 									{
-										CheckType6(collected, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+										CheckType6(collected, grid, ref context, urCells, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2D1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+											Check2D1SL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
 										}
 									}
 									break;
@@ -344,25 +344,25 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								// Non-diagonal type.
 								default:
 								{
-									CheckType3(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+									CheckType3(collected, grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
 									if (!arMode)
 									{
-										CheckType4(collected, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+										CheckType4(collected, grid, ref context, urCells, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2B1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
-											Check4X3SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
-											Check4C3SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
-											CheckBurredSubset(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
-											Check4X2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
-											Check4X2SLL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
-											Check4X2SLU(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+											Check2B1SL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
+											Check4X3SL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
+											Check4C3SL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
+											CheckBurredSubset(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
+											Check4X2SL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
+											Check4X2SLL(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
+											Check4X2SLU(collected, grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
 										}
 									}
 
 									if (SearchForExtendedUniqueRectangles)
 									{
-										CheckSueDeCoq(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+										CheckSueDeCoq(collected, grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, cellsExcluding2CornerCells, index);
 									}
 									break;
 								}
@@ -382,7 +382,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
 	/// <returns>Indicates whether the UR is passed to check.</returns>
-	private static bool CheckPreconditions(ref readonly Grid grid, Cell[] urCells, bool arMode)
+	private static bool CheckPreconditions(in Grid grid, Cell[] urCells, bool arMode)
 	{
 		var (emptyCountWhenArMode, modifiableCount) = ((byte)0, (byte)0);
 		foreach (var urCell in urCells)
@@ -490,58 +490,58 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	//
 	// Basic Types
 	//
-	private partial void CheckType1(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckType2(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckType3(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckType4(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckType5(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckType6(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckHidden(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckType1(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	private partial void CheckType2(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	private partial void CheckType3(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	private partial void CheckType4(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	private partial void CheckType5(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	private partial void CheckType6(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	private partial void CheckHidden(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
 
 	//
 	// Strong Link Types
 	//
-	private partial void Check2B1SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	private partial void Check2D1SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	private partial void Check3X1SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	private partial void Check3X2SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	private partial void Check3N2SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	private partial void Check3U2SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	private partial void Check3E2SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	private partial void Check4X1SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	private partial void Check4X2SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	private partial void Check4X3SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	private partial void Check4C3SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void Check2B1SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	private partial void Check2D1SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	private partial void Check3X1SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	private partial void Check3X2SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	private partial void Check3N2SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	private partial void Check3U2SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	private partial void Check3E2SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	private partial void Check4X1SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	private partial void Check4X2SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	private partial void Check4X3SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	private partial void Check4C3SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
 
 	//
 	// Pattern-Based Types
 	//
-	private partial void CheckBurredSubset(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckRegularWing(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index, bool areCornerCellsAligned);
-	private partial void CheckSueDeCoq(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, int index);
-	private partial void CheckHiddenSingleAvoidable(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckBurredSubset(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	private partial void CheckRegularWing(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index, bool areCornerCellsAligned);
+	private partial void CheckSueDeCoq(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	private partial void CheckAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, int index);
+	private partial void CheckHiddenSingleAvoidable(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
 
 	//
 	// External Types
 	//
-	private partial void CheckExternalType1Or2(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Digit d1, Digit d2, int index, bool arMode);
-	private partial void CheckExternalType3(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
-	private partial void CheckExternalType4(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
-	private partial void CheckExternalTurbotFish(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
-	private partial void CheckExternalWWing(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
-	private partial void CheckExternalXyWing(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
-	private partial void CheckExternalAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	private partial void CheckExternalType1Or2(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Digit d1, Digit d2, int index, bool arMode);
+	private partial void CheckExternalType3(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	private partial void CheckExternalType4(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	private partial void CheckExternalTurbotFish(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
+	private partial void CheckExternalWWing(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
+	private partial void CheckExternalXyWing(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	private partial void CheckExternalAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
 
 	//
 	// Unsupported types
 	// Such types will be replaced with other types of UR/AR, and won't be implemented in the future, just for a placeholder.
 	//
-	partial void Check3X1SLL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	partial void Check3X1SLU(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	partial void Check4X1SLL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	partial void Check4X1SLU(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
-	partial void Check4X2SLL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	partial void Check4X2SLU(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	partial void CheckWWing(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	partial void Check3X1SLL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	partial void Check3X1SLU(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	partial void Check4X1SLL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	partial void Check4X1SLU(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index);
+	partial void Check4X2SLL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	partial void Check4X2SLU(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
+	partial void CheckWWing(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index);
 }

@@ -12,9 +12,9 @@ public sealed class ExtendedRectangleType1Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask
-) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask)
+) : ExtendedRectangleStep(conclusions, views, options, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

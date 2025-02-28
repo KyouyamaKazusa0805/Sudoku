@@ -31,8 +31,8 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 				continue;
 			}
 
-			reinitializeList(rbList, in rbEmptyMap);
-			reinitializeList(cbList, in cbEmptyMap);
+			reinitializeList(rbList, rbEmptyMap);
+			reinitializeList(cbList, cbEmptyMap);
 
 			foreach (ref readonly var rbCurrentMap in rbList.AsSpan())
 			{
@@ -224,14 +224,14 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void reinitializeList(List<CellMap> list, ref readonly CellMap emptyMap)
+		static void reinitializeList(List<CellMap> list, in CellMap emptyMap)
 		{
 			list.Clear();
 			switch (emptyMap)
 			{
 				case { Count: 2 }:
 				{
-					list.AddRef(in emptyMap);
+					list.AddRef(emptyMap);
 					break;
 				}
 				case [var i, var j, var k]:

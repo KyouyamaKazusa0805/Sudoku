@@ -295,7 +295,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 						conclusions.AsMemory(),
 						[[.. candidateOffsets]],
 						context.Options,
-						in cellsMap,
+						cellsMap,
 						grid[cellsMap],
 						[.. lockedCombinations]
 					);

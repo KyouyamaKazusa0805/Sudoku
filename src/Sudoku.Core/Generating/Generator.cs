@@ -283,7 +283,7 @@ public ref partial struct Generator() : IGenerator<Grid>
 				ref var targetGrid = ref _stack[level].SudokuGrid;
 				targetGrid = _stack[level - 1].SudokuGrid;
 				targetGrid.SetDigit(_stack[level].Cell, nextCandidate);
-				if (!checkValidityOnDuplicate(in targetGrid, _stack[level].Cell))
+				if (!checkValidityOnDuplicate(targetGrid, _stack[level].Cell))
 				{
 					// Invalid -> try next candidate.
 					continue;
@@ -303,7 +303,7 @@ public ref partial struct Generator() : IGenerator<Grid>
 		return false;
 
 
-		static bool checkValidityOnDuplicate(ref readonly Grid grid, Cell cell)
+		static bool checkValidityOnDuplicate(in Grid grid, Cell cell)
 		{
 			foreach (var peer in PeersMap[cell])
 			{
@@ -340,7 +340,7 @@ public ref partial struct Generator() : IGenerator<Grid>
 						// Hidden single.
 						var cell = HousesCells[house][HouseMask.TrailingZeroCount(houseMask)];
 						grid.SetDigit(cell, digit);
-						if (!checkValidityOnDuplicate(in grid, cell))
+						if (!checkValidityOnDuplicate(grid, cell))
 						{
 							// Invalid.
 							return false;
@@ -356,7 +356,7 @@ public ref partial struct Generator() : IGenerator<Grid>
 				if (Mask.IsPow2(mask))
 				{
 					grid.SetDigit(cell, Mask.TrailingZeroCount(mask));
-					if (!checkValidityOnDuplicate(in grid, cell))
+					if (!checkValidityOnDuplicate(grid, cell))
 					{
 						// Invalid.
 						return false;

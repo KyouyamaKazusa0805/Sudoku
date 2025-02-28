@@ -6,7 +6,7 @@ namespace Sudoku.Behaviors.Ittoryu;
 /// <param name="Grid">Indicates the currently-used grid.</param>
 /// <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
 /// <param name="Candidate">Indicates the target candidate.</param>
-internal sealed record IttoryuPathNode(ref readonly Grid Grid, House House, Candidate Candidate) : IFormattable
+internal sealed record IttoryuPathNode(in Grid Grid, House House, Candidate Candidate) : IFormattable
 {
 	/// <summary>
 	/// Indicates the target digit.

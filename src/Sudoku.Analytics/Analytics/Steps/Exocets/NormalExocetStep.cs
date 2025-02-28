@@ -23,7 +23,7 @@ public sealed partial class NormalExocetStep(
 	in CellMap crosslineCells,
 	[Property] Conjugate[] conjugatePairs
 ) :
-	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells),
+	ExocetStep(conclusions, views, options, digitsMask, baseCells, targetCells, endoTargetCells, crosslineCells),
 	IConjugatePairTrait
 {
 	/// <inheritdoc/>

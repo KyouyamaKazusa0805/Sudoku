@@ -576,8 +576,8 @@ public partial struct CellMap : CellMapBase
 	public readonly string ToString(IFormatProvider? formatProvider)
 		=> formatProvider switch
 		{
-			CellMapFormatInfo i => i.FormatCore(in this),
-			_ => CoordinateConverter.GetInstance(formatProvider).CellConverter(in this)
+			CellMapFormatInfo i => i.FormatCore(this),
+			_ => CoordinateConverter.GetInstance(formatProvider).CellConverter(this)
 		};
 
 	/// <inheritdoc/>

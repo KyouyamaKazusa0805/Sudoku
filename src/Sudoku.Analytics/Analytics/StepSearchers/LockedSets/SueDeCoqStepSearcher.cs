@@ -42,7 +42,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 				{
 					case { Count: 2 }:
 					{
-						list.AddRef(in emptyCellsInInterMap);
+						list.AddRef(emptyCellsInInterMap);
 						break;
 					}
 					case [var i, var j, var k]:
@@ -50,7 +50,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 						list.AddRef([i, j]);
 						list.AddRef([j, k]);
 						list.AddRef([i, k]);
-						list.AddRef(in emptyCellsInInterMap);
+						list.AddRef(emptyCellsInInterMap);
 						break;
 					}
 				}
@@ -217,9 +217,9 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 										selectedInterMask,
 										cannibalMode,
 										maskIsolated,
-										in currentBlockMap,
-										in currentLineMap,
-										in currentInterMap
+										currentBlockMap,
+										currentLineMap,
+										currentInterMap
 									);
 									if (context.OnlyFindOne)
 									{

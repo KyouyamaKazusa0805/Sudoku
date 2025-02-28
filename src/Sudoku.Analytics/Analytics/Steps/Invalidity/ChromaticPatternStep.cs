@@ -14,7 +14,7 @@ public abstract partial class ChromaticPatternStep(
 	View[]? views,
 	StepGathererOptions options,
 	[Property] House[] blocks,
-	[Property] ref readonly CellMap pattern,
+	[Property] in CellMap pattern,
 	[Property] Mask digitsMask
 ) : NegativeRankStep(conclusions, views, options)
 {

@@ -14,12 +14,12 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask,
-	[Property] ref readonly CellMap subsetCells,
+	[Property] in CellMap subsetCells,
 	[Property] Mask subsetDigitsMask
 ) :
-	BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask),
+	BorescoperDeadlyPatternStep(conclusions, views, options, cells, digitsMask),
 	IPatternType3StepTrait<BorescoperDeadlyPatternType3Step>
 {
 	/// <inheritdoc/>

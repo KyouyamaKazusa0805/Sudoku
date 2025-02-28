@@ -15,10 +15,10 @@ public sealed partial class ChromaticPatternType1Step(
 	View[]? views,
 	StepGathererOptions options,
 	House[] blocks,
-	ref readonly CellMap pattern,
+	in CellMap pattern,
 	[Property] Cell extraCell,
 	Mask digitsMask
-) : ChromaticPatternStep(conclusions, views, options, blocks, in pattern, digitsMask)
+) : ChromaticPatternStep(conclusions, views, options, blocks, pattern, digitsMask)
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.ChromaticPatternType1;

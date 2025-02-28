@@ -323,7 +323,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		}
 
 
-		static bool checkGrid(ref Grid grid, ref readonly CandidateMap fixedCandidates)
+		static bool checkGrid(ref Grid grid, in CandidateMap fixedCandidates)
 		{
 			if (!fixedCandidates)
 			{
@@ -345,11 +345,11 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 			return true;
 		}
 
-		static AnalysisResult getAnalyzedResult(Analyzer analyzer, ref readonly Grid grid, CancellationToken cancellationToken)
+		static AnalysisResult getAnalyzedResult(Analyzer analyzer, in Grid grid, CancellationToken cancellationToken)
 		{
 			lock (AnalyzingRelatedSyncRoot)
 			{
-				return analyzer.Analyze(in grid, cancellationToken: cancellationToken);
+				return analyzer.Analyze(grid, cancellationToken: cancellationToken);
 			}
 		}
 
@@ -379,9 +379,9 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 			while (true)
 			{
 				var grid = generator.Generate(cancellationToken: cancellationToken);
-				if (checkGrid(ref grid, in fixedCandidates))
+				if (checkGrid(ref grid, fixedCandidates))
 				{
-					return (grid, getAnalyzedResult(analyzer, in grid, cancellationToken));
+					return (grid, getAnalyzedResult(analyzer, grid, cancellationToken));
 				}
 
 				progress.Report(createProgress<GeneratorProgress>(ref _generatingCount, _generatingFilteredCount));

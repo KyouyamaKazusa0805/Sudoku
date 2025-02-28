@@ -61,10 +61,10 @@ internal partial class ChainingDriver
 			// Find backdoors of the puzzle.
 			// If the puzzle is invalid (multiple solutions found), we won't call this inferring method to find backdoors,
 			// in order to prevent potential exceptions.
-			if (!BackdoorInferrer.TryInfer(in grid, out var backdoorResult))
+			if (!BackdoorInferrer.TryInfer(grid, out var backdoorResult))
 			{
 				throw new PuzzleInvalidException(
-					in grid,
+					grid,
 					allowsAdvancedLinks ? typeof(ChainStepSearcher) : typeof(GroupedChainStepSearcher)
 				);
 			}
@@ -74,7 +74,7 @@ internal partial class ChainingDriver
 				if (type == Elimination)
 				{
 					var node = new Node((cell * 9 + digit).AsCandidateMap(), true);
-					if (FindChains(node, in grid, onlyFindOne, result) is { } chain1)
+					if (FindChains(node, grid, onlyFindOne, result) is { } chain1)
 					{
 						return new SingletonArray<NamedChain>(chain1);
 					}
@@ -82,7 +82,7 @@ internal partial class ChainingDriver
 				else
 				{
 					var node = new Node((cell * 9 + digit).AsCandidateMap(), false);
-					if (FindChains(node, in grid, onlyFindOne, result) is { } chain1)
+					if (FindChains(node, grid, onlyFindOne, result) is { } chain1)
 					{
 						return new SingletonArray<NamedChain>(chain1);
 					}
@@ -108,7 +108,7 @@ internal partial class ChainingDriver
 				// Obviously, only incorrect digits can be formed a contradiction.
 				// Therefore, we only need to check such incorrect digits.
 				if ((trueDigit != -1 && digit != trueDigit || trueDigit == -1)
-					&& FindChains(node, in grid, onlyFindOne, result) is { } chain1)
+					&& FindChains(node, grid, onlyFindOne, result) is { } chain1)
 				{
 					return new SingletonArray<NamedChain>(chain1);
 				}
@@ -123,7 +123,7 @@ internal partial class ChainingDriver
 				}
 #endif
 				// Same reason as above - only correct digits can be formed a chain that makes an assignment.
-				if ((digit == trueDigit || trueDigit == -1) && FindChains(~node, in grid, onlyFindOne, result) is { } chain2)
+				if ((digit == trueDigit || trueDigit == -1) && FindChains(~node, grid, onlyFindOne, result) is { } chain2)
 				{
 					return new SingletonArray<NamedChain>(chain2);
 				}
@@ -155,7 +155,7 @@ internal partial class ChainingDriver
 #pragma warning disable IDE0079
 #pragma warning disable CA1859
 #endif
-	private static NamedChain? FindChains(Node startNode, ref readonly Grid grid, bool onlyFindOne, SortedSet<NamedChain> result)
+	private static NamedChain? FindChains(Node startNode, in Grid grid, bool onlyFindOne, SortedSet<NamedChain> result)
 	{
 		var pendingNodesSupposedOn = new LinkedList<Node>();
 		var pendingNodesSupposedOff = new LinkedList<Node>();
@@ -182,7 +182,7 @@ internal partial class ChainingDriver
 						if (nodeSupposedOff == startNode && ((IParentLinkedNode<Node>)nextNode).AncestorsLength >= 4)
 						{
 							var loop = new ContinuousNiceLoop(nextNode);
-							if (!loop.GetConclusions(in grid).IsWorthFor(in grid))
+							if (!loop.GetConclusions(grid).IsWorthFor(grid))
 							{
 								goto Next;
 							}
@@ -207,7 +207,7 @@ internal partial class ChainingDriver
 						if (nodeSupposedOff == ~startNode)
 						{
 							var chain = new AlternatingInferenceChain(nextNode);
-							if (chain.IsImplicitLoop || !chain.GetConclusions(in grid).IsWorthFor(in grid))
+							if (chain.IsImplicitLoop || !chain.GetConclusions(grid).IsWorthFor(grid))
 							{
 								goto Next;
 							}
@@ -255,7 +255,7 @@ internal partial class ChainingDriver
 						if (nodeSupposedOn == ~startNode)
 						{
 							var chain = new AlternatingInferenceChain(nextNode);
-							if (chain.IsImplicitLoop || !chain.GetConclusions(in grid).IsWorthFor(in grid))
+							if (chain.IsImplicitLoop || !chain.GetConclusions(grid).IsWorthFor(grid))
 							{
 								goto Next;
 							}

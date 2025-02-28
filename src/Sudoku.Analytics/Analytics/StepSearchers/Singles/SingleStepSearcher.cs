@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers.Singles;
 
-using unsafe SingleModuleSearcherFuncPtr = delegate*<SingleStepSearcher, ref StepAnalysisContext, ref readonly Grid, Step?>;
+using unsafe SingleModuleSearcherFuncPtr = delegate*<SingleStepSearcher, ref StepAnalysisContext, in Grid, Step?>;
 
 /// <summary>
 /// Provides with a <b>Single</b> step searcher.
@@ -208,7 +208,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					house,
 					resultCell,
 					digit,
-					Lasting.GetLasting(in grid, resultCell, house)
+					Lasting.GetLasting(grid, resultCell, house)
 				);
 
 				if (context.OnlyFindOne)
@@ -223,7 +223,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		CheckForHiddenSingle:
 			for (var house = 0; house < 27; house++)
 			{
-				if (CheckForHiddenSingleAndLastDigit(this, in grid, ref context, digit, house) is not { } step)
+				if (CheckForHiddenSingleAndLastDigit(this, grid, ref context, digit, house) is not { } step)
 				{
 					continue;
 				}
@@ -254,7 +254,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (TechniqueNaming.Single.GetNakedSingleSubtype(in grid, cell) is var subtype && subtype.IsUnnecessary()
+				if (TechniqueNaming.Single.GetNakedSingleSubtype(grid, cell) is var subtype && subtype.IsUnnecessary()
 					&& grid.PuzzleType != SudokuType.Sukaku)
 				{
 					continue;
@@ -262,12 +262,12 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 				var step = new NakedSingleStep(
 					new SingletonArray<Conclusion>(new(Assignment, cell, digit)),
-					[[.. Excluder.GetNakedSingleExcluders(in grid, cell, digit, out _)]],
+					[[.. Excluder.GetNakedSingleExcluders(grid, cell, digit, out _)]],
 					context.Options,
 					cell,
 					digit,
 					subtype,
-					Lasting.GetLastingAllHouses(in grid, cell, out var lastingHouse),
+					Lasting.GetLastingAllHouses(grid, cell, out var lastingHouse),
 					lastingHouse.ToHouseType()
 				);
 				if (context.OnlyFindOne)
@@ -306,7 +306,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		};
 		for (var i = 0; i < (searchers == p || searchers == q ? 3 : 2); i++)
 		{
-			if (searchers[i](this, ref context, in grid) is { } step)
+			if (searchers[i](this, ref context, grid) is { } step)
 			{
 				return step;
 			}
@@ -318,7 +318,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for full houses.
 	/// </summary>
-	private static FullHouseStep? CheckFullHouse(SingleStepSearcher @this, ref StepAnalysisContext context, ref readonly Grid grid)
+	private static FullHouseStep? CheckFullHouse(SingleStepSearcher @this, ref StepAnalysisContext context, in Grid grid)
 	{
 		for (var house = 0; house < 27; house++)
 		{
@@ -348,7 +348,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				house,
 				resultCell,
 				digit,
-				Lasting.GetLasting(in grid, resultCell, house)
+				Lasting.GetLasting(grid, resultCell, house)
 			);
 			if (context.OnlyFindOne)
 			{
@@ -364,7 +364,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for hidden singles.
 	/// </summary>
-	private static HiddenSingleStep? CheckHiddenSingle(SingleStepSearcher @this, ref StepAnalysisContext context, ref readonly Grid grid)
+	private static HiddenSingleStep? CheckHiddenSingle(SingleStepSearcher @this, ref StepAnalysisContext context, in Grid grid)
 	{
 		if (@this.HiddenSinglesInBlockFirst)
 		{
@@ -373,7 +373,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				for (var digit = 0; digit < 9; digit++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(@this, in grid, ref context, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(@this, grid, ref context, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -392,7 +392,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				for (var digit = 0; digit < 9; digit++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(@this, in grid, ref context, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(@this, grid, ref context, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -415,7 +415,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				for (var house = 0; house < 27; house++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(@this, in grid, ref context, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(@this, grid, ref context, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -436,7 +436,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for naked singles.
 	/// </summary>
-	private static NakedSingleStep? CheckNakedSingle(SingleStepSearcher @this, ref StepAnalysisContext context, ref readonly Grid grid)
+	private static NakedSingleStep? CheckNakedSingle(SingleStepSearcher @this, ref StepAnalysisContext context, in Grid grid)
 	{
 		for (var cell = 0; cell < 81; cell++)
 		{
@@ -454,12 +454,12 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			var digit = Mask.TrailingZeroCount(mask);
 			var step = new NakedSingleStep(
 				new SingletonArray<Conclusion>(new(Assignment, cell, digit)),
-				[[.. Excluder.GetNakedSingleExcluders(in grid, cell, digit, out _)]],
+				[[.. Excluder.GetNakedSingleExcluders(grid, cell, digit, out _)]],
 				context.Options,
 				cell,
 				digit,
-				TechniqueNaming.Single.GetNakedSingleSubtype(in grid, cell),
-				Lasting.GetLastingAllHouses(in grid, cell, out var lastingHouse),
+				TechniqueNaming.Single.GetNakedSingleSubtype(grid, cell),
+				Lasting.GetLastingAllHouses(grid, cell, out var lastingHouse),
 				lastingHouse.ToHouseType()
 			);
 			if (context.OnlyFindOne)
@@ -490,7 +490,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// that only appears once indeed.
 	/// </para>
 	/// </remarks>
-	private static HiddenSingleStep? CheckForHiddenSingleAndLastDigit(SingleStepSearcher @this, ref readonly Grid grid, ref StepAnalysisContext context, Digit digit, House house)
+	private static HiddenSingleStep? CheckForHiddenSingleAndLastDigit(SingleStepSearcher @this, in Grid grid, ref StepAnalysisContext context, Digit digit, House house)
 	{
 		var (count, resultCell, flag) = (0, -1, true);
 		foreach (var cell in HousesMap[house])
@@ -541,11 +541,11 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				resultCell,
 				digit,
 				house,
-				Lasting.GetLastingAllHouses(in grid, resultCell, out _)
+				Lasting.GetLastingAllHouses(grid, resultCell, out _)
 			),
-			_ => Excluder.GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells, out var excluderInfo) switch
+			_ => Excluder.GetHiddenSingleExcluders(grid, digit, house, resultCell, out var chosenCells, out var excluderInfo) switch
 			{
-				var cellOffsets2 => TechniqueNaming.Single.GetHiddenSingleSubtype(in grid, resultCell, house, in chosenCells) switch
+				var cellOffsets2 => TechniqueNaming.Single.GetHiddenSingleSubtype(grid, resultCell, house, chosenCells) switch
 				{
 					var subtype when subtype.IsUnnecessary() && grid.PuzzleType != SudokuType.Sukaku => null,
 					var subtype => new HiddenSingleStep(
@@ -556,7 +556,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 						digit,
 						house,
 						enableAndIsLastDigit,
-						Lasting.GetLasting(in grid, resultCell, house),
+						Lasting.GetLasting(grid, resultCell, house),
 						subtype,
 						excluderInfo
 					)

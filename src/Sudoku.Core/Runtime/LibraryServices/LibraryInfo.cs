@@ -345,7 +345,7 @@ public readonly partial struct LibraryInfo(
 
 	/// <inheritdoc cref="AppendPuzzleAsync(string, CancellationToken)"/>
 	public async Task AppendPuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
-		=> await AppendPuzzleAsync(GetSingleLineGridString(in grid), cancellationToken);
+		=> await AppendPuzzleAsync(GetSingleLineGridString(grid), cancellationToken);
 
 	/// <summary>
 	/// <para>
@@ -443,7 +443,7 @@ public readonly partial struct LibraryInfo(
 
 		foreach (var grid in grids)
 		{
-			sb.AppendLine(GetSingleLineGridString(in grid));
+			sb.AppendLine(GetSingleLineGridString(grid));
 		}
 
 		await using var sw = new StreamWriter(LibraryFilePath, true);
@@ -481,7 +481,7 @@ public readonly partial struct LibraryInfo(
 
 	/// <inheritdoc cref="RemovePuzzleAsync(string, CancellationToken)"/>
 	public async Task RemovePuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
-		=> await RemovePuzzleAsync(GetSingleLineGridString(in grid), cancellationToken);
+		=> await RemovePuzzleAsync(GetSingleLineGridString(grid), cancellationToken);
 
 	/// <summary>
 	/// Removes a list of duplicate puzzles stored in the current library.
@@ -538,7 +538,7 @@ public readonly partial struct LibraryInfo(
 
 	/// <inheritdoc cref="WriteAsync(string, CancellationToken)"/>
 	public async Task WriteAsync(Grid grid, CancellationToken cancellationToken = default)
-		=> await WriteAsync(GetSingleLineGridString(in grid), cancellationToken);
+		=> await WriteAsync(GetSingleLineGridString(grid), cancellationToken);
 
 	/// <summary>
 	/// Calculates how many puzzles in this file.
@@ -709,5 +709,5 @@ public readonly partial struct LibraryInfo(
 	/// Returns <c>grid.ToString("#")</c>.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string GetSingleLineGridString(ref readonly Grid grid) => grid.ToString("#");
+	private static string GetSingleLineGridString(in Grid grid) => grid.ToString("#");
 }

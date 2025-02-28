@@ -17,8 +17,8 @@ public sealed partial class LawOfLeftoverStep(
 	StepGathererOptions options,
 	[Property] House set1House,
 	[Property] House set2House,
-	[Property] ref readonly CellMap set1,
-	[Property] ref readonly CellMap set2,
+	[Property] in CellMap set1,
+	[Property] in CellMap set2,
 	[Property] Mask digitsMask
 ) : IntersectionStep(conclusions, views, options)
 {

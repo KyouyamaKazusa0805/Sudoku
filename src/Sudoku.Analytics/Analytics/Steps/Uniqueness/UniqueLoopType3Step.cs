@@ -18,11 +18,11 @@ public sealed partial class UniqueLoopType3Step(
 	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap loop,
-	[Property] ref readonly CellMap subsetCells,
+	in CellMap loop,
+	[Property] in CellMap subsetCells,
 	[Property] Mask subsetDigitsMask,
 	Cell[] loopPath
-) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop, loopPath), IPatternType3StepTrait<UniqueLoopType3Step>
+) : UniqueLoopStep(conclusions, views, options, digit1, digit2, loop, loopPath), IPatternType3StepTrait<UniqueLoopType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

@@ -16963,7 +16963,7 @@
         <member name="P:Sudoku.Analytics.Steps.Singles.DirectSubsetStep.IsLocked">
             <summary>
             <inheritdoc
-                cref="M:Sudoku.Analytics.Steps.Subsets.NakedSubsetStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})"
+                cref="!:NakedSubsetStep(StepConclusions, View[], StepGathererOptions, int, ref readonly CellMap, short, bool?)"
                 path="/param[@name='isLocked']"/>
             </summary>
         </member>
@@ -27817,17 +27817,17 @@
         </member>
         <member name="T:Sudoku.Inferring.BackdoorInferredResult">
             <summary>
-            Indicates the result value after <see cref="M:Sudoku.Inferring.BackdoorInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.BackdoorInferredResult@)"/> called.
+            Indicates the result value after <see cref="!:BackdoorInferrer.TryInfer(ref readonly Grid, out BackdoorInferredResult)"/> called.
             </summary>
             <param name="candidates">Indicates the found candidates.</param>
-            <seealso cref="M:Sudoku.Inferring.BackdoorInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.BackdoorInferredResult@)"/>
+            <seealso cref="!:BackdoorInferrer.TryInfer(ref readonly Grid, out BackdoorInferredResult)"/>
         </member>
         <member name="M:Sudoku.Inferring.BackdoorInferredResult.#ctor(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
             <summary>
-            Indicates the result value after <see cref="M:Sudoku.Inferring.BackdoorInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.BackdoorInferredResult@)"/> called.
+            Indicates the result value after <see cref="!:BackdoorInferrer.TryInfer(ref readonly Grid, out BackdoorInferredResult)"/> called.
             </summary>
             <param name="candidates">Indicates the found candidates.</param>
-            <seealso cref="M:Sudoku.Inferring.BackdoorInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.BackdoorInferredResult@)"/>
+            <seealso cref="!:BackdoorInferrer.TryInfer(ref readonly Grid, out BackdoorInferredResult)"/>
         </member>
         <member name="P:Sudoku.Inferring.BackdoorInferredResult.Candidates">
             <summary>
@@ -27959,21 +27959,21 @@
         </member>
         <member name="T:Sudoku.Inferring.SymmetryInferredResult">
             <summary>
-            Indicates the result value after <see cref="M:Sudoku.Inferring.SymmetryInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.SymmetryInferredResult@)"/> called.
+            Indicates the result value after <see cref="!:SymmetryInferrer.TryInfer(ref readonly Grid, out SymmetryInferredResult)"/> called.
             </summary>
             <param name="symmetricType">The symmetric type returned.</param>
             <param name="mappingDigits">The mapping digits returned.</param>
             <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
-            <seealso cref="M:Sudoku.Inferring.SymmetryInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.SymmetryInferredResult@)"/>
+            <seealso cref="!:SymmetryInferrer.TryInfer(ref readonly Grid, out SymmetryInferredResult)"/>
         </member>
         <member name="M:Sudoku.Inferring.SymmetryInferredResult.#ctor(Sudoku.SymmetricType,System.ReadOnlySpan{System.Nullable{System.Int32}},System.Int16)">
             <summary>
-            Indicates the result value after <see cref="M:Sudoku.Inferring.SymmetryInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.SymmetryInferredResult@)"/> called.
+            Indicates the result value after <see cref="!:SymmetryInferrer.TryInfer(ref readonly Grid, out SymmetryInferredResult)"/> called.
             </summary>
             <param name="symmetricType">The symmetric type returned.</param>
             <param name="mappingDigits">The mapping digits returned.</param>
             <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
-            <seealso cref="M:Sudoku.Inferring.SymmetryInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.SymmetryInferredResult@)"/>
+            <seealso cref="!:SymmetryInferrer.TryInfer(ref readonly Grid, out SymmetryInferredResult)"/>
         </member>
         <member name="M:Sudoku.Inferring.SymmetryInferredResult.Deconstruct(Sudoku.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
             <target name="method">

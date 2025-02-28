@@ -20,7 +20,7 @@ public sealed partial class ReverseBivalueUniversalGraveType4Step(
 	in CellMap pattern,
 	in CellMap emptyCells,
 	[Property] in Conjugate conjugatePair
-) : ReverseBivalueUniversalGraveStep(conclusions, views, options, digit1, digit2, in pattern, in emptyCells)
+) : ReverseBivalueUniversalGraveStep(conclusions, views, options, digit1, digit2, pattern, emptyCells)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;

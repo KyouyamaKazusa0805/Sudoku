@@ -50,7 +50,7 @@ public sealed partial class UniqueRectangleSueDeCoqStep(
 		isAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,
 		digit1,
 		digit2,
-		in cells,
+		cells,
 		isAvoidable,
 		absoluteOffset
 	),

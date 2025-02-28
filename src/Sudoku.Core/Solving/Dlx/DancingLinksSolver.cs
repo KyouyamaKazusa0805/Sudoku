@@ -40,7 +40,7 @@ public sealed class DancingLinksSolver : ISolver, ISolutionEnumerableSolver
 	{
 		try
 		{
-			_root = DancingLink.Entry.Create(in grid);
+			_root = DancingLink.Entry.Create(grid);
 			Search(&g, &r);
 
 			(result, var @return) = _solutionCount == 0 ? (Grid.Undefined, (bool?)null) : (_solution, true);
@@ -71,7 +71,7 @@ public sealed class DancingLinksSolver : ISolver, ISolutionEnumerableSolver
 	/// <inheritdoc/>
 	unsafe void ISolutionEnumerableSolver.EnumerateSolutionsCore(Grid grid, CancellationToken cancellationToken)
 	{
-		_root = DancingLink.Entry.Create(in grid);
+		_root = DancingLink.Entry.Create(grid);
 		Search(&@delegate.DoNothing, &r);
 
 

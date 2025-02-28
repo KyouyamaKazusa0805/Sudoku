@@ -20,7 +20,7 @@ public sealed partial class QiuDeadlyPatternExternalType2Step(
 	HouseMask houses,
 	Cell? corner1,
 	Cell? corner2,
-	[Property] ref readonly CellMap mirrorCells,
+	[Property] in CellMap mirrorCells,
 	[Property] Digit targetDigit
 ) : QiuDeadlyPatternExternalTypeStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2)
 {

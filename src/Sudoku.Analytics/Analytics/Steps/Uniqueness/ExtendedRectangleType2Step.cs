@@ -13,10 +13,10 @@ public sealed partial class ExtendedRectangleType2Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask,
 	[Property] Digit extraDigit
-) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask)
+) : ExtendedRectangleStep(conclusions, views, options, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;

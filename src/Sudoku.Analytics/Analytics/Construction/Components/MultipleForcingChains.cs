@@ -130,7 +130,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 		}
 
 		var (map1, map2) = (Candidates, other.Candidates);
-		if (map1.CompareTo(in map2) is var r2 and not 0)
+		if (map1.CompareTo(map2) is var r2 and not 0)
 		{
 			return r2;
 		}
@@ -313,7 +313,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	/// </summary>
 	/// <param name="grid">Indicates the current grid to be checked.</param>
 	/// <returns>A list of conclusions found.</returns>
-	public Conclusion[] GetThoroughConclusions(ref readonly Grid grid)
+	public Conclusion[] GetThoroughConclusions(in Grid grid)
 	{
 		var map = CandidateMap.Empty;
 		foreach (var branch in Values)
@@ -363,15 +363,15 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 		NamedChain finnedChain,
 		ref int cachedAlsIndex,
 		ChainingRuleCollection supportedRules,
-		ref readonly Grid grid,
-		ref readonly CandidateMap fins,
+		in Grid grid,
+		in CandidateMap fins,
 		out View[] views
 	)
 	{
 		views = [
 			[
 				.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
-				.. finnedChain.GetViews_Monoparental(in grid, supportedRules, ref cachedAlsIndex)[0]
+				.. finnedChain.GetViews_Monoparental(grid, supportedRules, ref cachedAlsIndex)[0]
 			]
 		];
 
@@ -391,7 +391,7 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>A list of initial view nodes.</returns>
-	protected virtual ReadOnlySpan<ViewNode> GetInitialViewNodes(ref readonly Grid grid)
+	protected virtual ReadOnlySpan<ViewNode> GetInitialViewNodes(in Grid grid)
 		=> (ViewNode[])[
 			IsCellMultiple
 				? new CellViewNode(ColorIdentifier.Normal, this.First().Key / 9)
@@ -428,10 +428,10 @@ public partial class MultipleForcingChains([Property(Setter = PropertySetters.In
 	}
 
 	/// <inheritdoc/>
-	ReadOnlySpan<ViewNode[]> IForcingChains.GetViewsCore(ref readonly Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions)
+	ReadOnlySpan<ViewNode[]> IForcingChains.GetViewsCore(in Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions)
 	{
 		var result = new ViewNode[Count + 1][];
-		var initialViewNodes = GetInitialViewNodes(in grid);
+		var initialViewNodes = GetInitialViewNodes(grid);
 		var i = 0;
 		var isDynamicChaining = IsDynamic;
 		var globalView = new List<ViewNode>();

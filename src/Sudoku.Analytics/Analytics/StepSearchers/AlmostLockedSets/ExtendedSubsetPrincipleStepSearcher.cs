@@ -104,7 +104,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 										(from cell in elimMap select new Conclusion(Elimination, cell, zDigit)).ToArray(),
 										[[.. candidateOffsets]],
 										context.Options,
-										in pattern,
+										pattern,
 										(Mask)(blockMask | lineMask),
 										zDigit
 									);

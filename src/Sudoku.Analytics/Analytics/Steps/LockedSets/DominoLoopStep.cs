@@ -12,7 +12,7 @@ public sealed partial class DominoLoopStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CellMap cells,
+	[Property] in CellMap cells,
 	[Property] Mask digitsMask
 ) : LockedSetStep(conclusions, views, options)
 {

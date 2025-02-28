@@ -49,7 +49,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 	/// but sometimes it can be useful for calculation of confliction on conjugate pair parity checks.
 	/// </para>
 	/// </param>
-	public CellGraph(ref readonly CellMap cells, ref readonly CellMap invalidCells)
+	public CellGraph(in CellMap cells, in CellMap invalidCells)
 	{
 		_cells = cells;
 		_invalidCells = invalidCells;
@@ -114,7 +114,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 					}
 
 					lastCells &= ~currentGraph;
-					result.Add(new(in currentGraph, in _invalidCells));
+					result.Add(new(currentGraph, _invalidCells));
 					break;
 				}
 			}
@@ -143,7 +143,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 					result.Add(cell);
 				}
 			}
-			return new(in result, in _invalidCells);
+			return new(result, _invalidCells);
 		}
 	}
 
@@ -226,7 +226,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 		}
 
 		depths = depthValues.AsSpan();
-		return new(in currentGraph, in _invalidCells);
+		return new(currentGraph, _invalidCells);
 	}
 
 	/// <inheritdoc/>
@@ -248,7 +248,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 	/// <param name="cells">The cells.</param>
 	/// <returns>An <see cref="CellGraph"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellGraph Create(in CellMap cells) => new(in cells, in CellMap.Empty);
+	public static CellGraph Create(in CellMap cells) => new(cells, CellMap.Empty);
 
 	/// <inheritdoc cref="Create(in CellMap)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -261,7 +261,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 	/// <param name="digit">The digit to be used.</param>
 	/// <param name="cells">The cells to be used.</param>
 	/// <returns>An <see cref="CellGraph"/> instance.</returns>
-	public static CellGraph CreateFromConjugatePair(ref readonly Grid grid, Digit digit, ref readonly CellMap cells)
+	public static CellGraph CreateFromConjugatePair(in  Grid grid, Digit digit, in CellMap cells)
 	{
 		var globalCells = grid.CandidatesMap[digit];
 		var invalidCells = CellMap.Empty;
@@ -273,6 +273,6 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 				invalidCells |= tempCells & ~(cells & HousesMap[house]);
 			}
 		}
-		return new(in cells, in invalidCells);
+		return new(cells, invalidCells);
 	}
 }

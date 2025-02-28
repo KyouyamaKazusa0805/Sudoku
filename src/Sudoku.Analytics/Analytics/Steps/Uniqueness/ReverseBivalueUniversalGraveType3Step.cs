@@ -20,9 +20,9 @@ public sealed partial class ReverseBivalueUniversalGraveType3Step(
 	Digit digit2,
 	[Property] House subsetHouse,
 	[Property] Mask subsetMask,
-	ref readonly CellMap pattern,
-	ref readonly CellMap emptyCells
-) : ReverseBivalueUniversalGraveStep(conclusions, views, options, digit1, digit2, in pattern, in emptyCells)
+	in CellMap pattern,
+	in CellMap emptyCells
+) : ReverseBivalueUniversalGraveStep(conclusions, views, options, digit1, digit2, pattern, emptyCells)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

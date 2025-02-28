@@ -155,7 +155,7 @@ public sealed partial class AlmostLockedSetPattern(
 	/// <param name="grid">The grid.</param>
 	/// <returns>All possible found <see cref="AlmostLockedSetPattern"/> instances.</returns>
 	[Cached]
-	public static ReadOnlySpan<AlmostLockedSetPattern> Collect(ref readonly Grid grid)
+	public static ReadOnlySpan<AlmostLockedSetPattern> Collect(in Grid grid)
 	{
 		// INTERCEPTOR_VARIABLE_DECLARATION_BEGIN
 		_ = grid is { EmptyCells: var __EmptyCells, BivalueCells: var __BivalueCells, CandidatesMap: var __CandidatesMap };
@@ -211,7 +211,7 @@ public sealed partial class AlmostLockedSetPattern(
 					result.Add(
 						new(
 							digitsMask,
-							in map,
+							map,
 							house < 9 && coveredLine is >= 9 and not 32
 								? (HousesMap[house] | HousesMap[coveredLine]) & __EmptyCells & ~map
 								: tempMap & ~map,

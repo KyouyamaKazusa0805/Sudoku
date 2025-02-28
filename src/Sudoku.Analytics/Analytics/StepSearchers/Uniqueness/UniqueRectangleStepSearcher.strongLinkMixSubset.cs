@@ -39,7 +39,7 @@ public partial class UniqueRectangleStepSearcher
 	/// and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 3X/1SL (where <c>S</c> is a subset of digits).
 	/// </para>
 	/// </remarks>
-	private partial void Check3X1SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void Check3X1SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index)
 	{
 		// Test examples:
 		// UR + 3x/1SL
@@ -93,7 +93,7 @@ public partial class UniqueRectangleStepSearcher
 
 			var pairMap = targetCell.AsCellMap() + lastCell;
 			var conjugatePairHouse = pairMap.FirstSharedHouse;
-			if (!IsConjugatePair(conjugatePairDigit, in pairMap, conjugatePairHouse))
+			if (!IsConjugatePair(conjugatePairDigit, pairMap, conjugatePairHouse))
 			{
 				// :( Strong link of digit 'a' is required.
 				continue;
@@ -201,10 +201,10 @@ public partial class UniqueRectangleStepSearcher
 						outsideCells.Count == 1 ? Technique.UniqueRectangle3X1L : Technique.UniqueRectangle3X1U,
 						d1,
 						d2,
-						in cells,
+						cells,
 						arMode,
-						[new(in pairMap, conjugatePairDigit)],
-						in outsideCells,
+						[new(pairMap, conjugatePairDigit)],
+						outsideCells,
 						extraDigitsMaskInOutsideCell,
 						index
 					)
@@ -259,7 +259,7 @@ public partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// Then <c>b</c> can be removed from cell <c>abX</c>.
 	/// </remarks>
-	private partial void Check4X1SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void Check4X1SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index)
 	{
 		// Test examples:
 		// UR + 4x/1SL
@@ -295,7 +295,7 @@ public partial class UniqueRectangleStepSearcher
 		var pairMap = cornerCell.AsCellMap() + targetCell;
 		foreach (var (conjugatePairDigit, elimDigit) in ((d1, d2), (d2, d1)))
 		{
-			if (!IsConjugatePair(conjugatePairDigit, in pairMap, pairMap.SharedLine))
+			if (!IsConjugatePair(conjugatePairDigit, pairMap, pairMap.SharedLine))
 			{
 				// :( There should be a conjugate pair between 'cornerCell' and 'targetCell'.
 				continue;
@@ -407,10 +407,10 @@ public partial class UniqueRectangleStepSearcher
 							: Technique.UniqueRectangle4X1U,
 						d1,
 						d2,
-						in cells,
+						cells,
 						arMode,
-						[new(in pairMap, conjugatePairDigit)],
-						in outsideCells,
+						[new(pairMap, conjugatePairDigit)],
+						outsideCells,
 						extraDigitsMask,
 						index
 					)
@@ -458,7 +458,7 @@ public partial class UniqueRectangleStepSearcher
 	/// and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 4X/2SL (where <c>S</c> is a subset of digits).
 	/// </para>
 	/// </remarks>
-	private partial void Check4X2SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void Check4X2SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		// Test examples:
 		// UR + 4x/2SL
@@ -508,8 +508,8 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				// Determine whether there're two conjugate pairs, with both connected with cell 'targetCell', of same digit.
-				if (!IsConjugatePair(conjugatePairDigit, in pairMap1, pairMap1.SharedLine)
-					|| !IsConjugatePair(conjugatePairDigit, in pairMap2, HouseMask.TrailingZeroCount(pairMap2.SharedHouses)))
+				if (!IsConjugatePair(conjugatePairDigit, pairMap1, pairMap1.SharedLine)
+					|| !IsConjugatePair(conjugatePairDigit, pairMap2, HouseMask.TrailingZeroCount(pairMap2.SharedHouses)))
 				{
 					continue;
 				}
@@ -618,10 +618,10 @@ public partial class UniqueRectangleStepSearcher
 							outsideCells.Count == 1 ? Technique.UniqueRectangle4X2L : Technique.UniqueRectangle4X2U,
 							d1,
 							d2,
-							in cells,
+							cells,
 							arMode,
-							[new(in pairMap1, conjugatePairDigit), new(in pairMap2, conjugatePairDigit)],
-							in outsideCells,
+							[new(pairMap1, conjugatePairDigit), new(pairMap2, conjugatePairDigit)],
+							outsideCells,
 							extraDigitsMaskInOutsideCell,
 							index
 						)

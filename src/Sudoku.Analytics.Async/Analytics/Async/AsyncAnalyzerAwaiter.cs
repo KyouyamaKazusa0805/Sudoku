@@ -214,7 +214,7 @@ public sealed class AsyncAnalyzerAwaiter : IStepGathererAwaiter<AnalysisResult>
 	{
 		try
 		{
-			_result = _analyzer.Analyze(in _grid, _progress, _cancellationToken);
+			_result = _analyzer.Analyze(_grid, _progress, _cancellationToken);
 		}
 		catch (Exception ex)
 		{

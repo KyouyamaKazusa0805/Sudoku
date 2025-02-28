@@ -15,10 +15,10 @@ public sealed class HodokuTripletCandidateMapFormatInfo : CandidateMapFormatInfo
 	/// <inheritdoc/>
 	protected internal override string FormatCore(in CandidateMap obj)
 	{
-		return obj switch { [] => string.Empty, [var p] => $"{p % 9 + 1}{p / 9 / 9 + 1}{p / 9 % 9 + 1}", _ => f(in obj) };
+		return obj switch { [] => string.Empty, [var p] => $"{p % 9 + 1}{p / 9 / 9 + 1}{p / 9 % 9 + 1}", _ => f(obj) };
 
 
-		static string f(ref readonly CandidateMap map)
+		static string f(in CandidateMap map)
 		{
 			var sb = new StringBuilder();
 			foreach (var candidate in map)
@@ -26,7 +26,6 @@ public sealed class HodokuTripletCandidateMapFormatInfo : CandidateMapFormatInfo
 				var (cell, digit) = (candidate / 9, candidate % 9);
 				sb.Append($"{digit + 1}{cell / 9 + 1}{cell % 9 + 1} ");
 			}
-
 			return sb.RemoveFrom(^1).ToString();
 		}
 	}
@@ -48,7 +47,6 @@ public sealed class HodokuTripletCandidateMapFormatInfo : CandidateMapFormatInfo
 				result.Add(((r - '1') * 9 + c - '1') * 9 + d - '1');
 				continue;
 			}
-
 			throw new FormatException(SR.ExceptionMessage("StringValueInvalidToBeParsed"));
 		}
 		return result;

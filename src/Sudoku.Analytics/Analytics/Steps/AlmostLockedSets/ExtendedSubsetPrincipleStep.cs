@@ -13,7 +13,7 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CellMap cells,
+	[Property] in CellMap cells,
 	[Property] Mask digitsMask,
 	[Property] Digit extraDigit
 ) : AlmostLockedSetsStep(conclusions, views, options), ICellListTrait

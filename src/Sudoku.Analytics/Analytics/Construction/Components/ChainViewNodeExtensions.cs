@@ -14,7 +14,7 @@ internal static class ChainViewNodeExtensions
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <param name="alsIndex">Indicates the currently operated ALS index.</param>
 	/// <returns>The views.</returns>
-	public static View[] GetViews_Monoparental(this Chain @this, ref readonly Grid grid, ChainingRuleCollection supportedRules, ref int alsIndex)
+	public static View[] GetViews_Monoparental(this Chain @this, in Grid grid, ChainingRuleCollection supportedRules, ref int alsIndex)
 	{
 		var result = (View[])[
 			[

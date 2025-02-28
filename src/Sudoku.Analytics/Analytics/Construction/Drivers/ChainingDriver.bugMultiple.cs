@@ -9,10 +9,10 @@ internal partial class ChainingDriver
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
 	[InterceptorMethodCaller]
-	public static ReadOnlySpan<BivalueUniversalGraveForcingChains> CollectBivalueUniversalGraveMultipleForcingChains(ref readonly Grid grid, bool onlyFindOne)
+	public static ReadOnlySpan<BivalueUniversalGraveForcingChains> CollectBivalueUniversalGraveMultipleForcingChains(in Grid grid, bool onlyFindOne)
 	{
 		var result = new SortedSet<BivalueUniversalGraveForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
-		var trueCandidates = TrueCandidate.GetAllTrueCandidates(in grid);
+		var trueCandidates = TrueCandidate.GetAllTrueCandidates(grid);
 		if (!trueCandidates)
 		{
 			return [];
@@ -46,13 +46,13 @@ internal partial class ChainingDriver
 			}
 		}
 
-		var step1 = rfcOn(in trueCandidates, in grid, nodesSupposedOnGrouped, resultNodesSupposedOn);
+		var step1 = rfcOn(trueCandidates, grid, nodesSupposedOnGrouped, resultNodesSupposedOn);
 		if (!step1.IsEmpty)
 		{
 			return step1;
 		}
 
-		var step2 = rfcOff(in trueCandidates, in grid, nodesSupposedOffGrouped, resultNodesSupposedOff);
+		var step2 = rfcOff(trueCandidates, grid, nodesSupposedOffGrouped, resultNodesSupposedOff);
 		if (!step2.IsEmpty)
 		{
 			return step2;
@@ -62,8 +62,8 @@ internal partial class ChainingDriver
 
 
 		ReadOnlySpan<BivalueUniversalGraveForcingChains> rfcOn(
-			scoped ref readonly CandidateMap trueCandidates,
-			ref readonly Grid grid,
+			scoped in CandidateMap trueCandidates,
+			in Grid grid,
 			Dictionary<Candidate, HashSet<Node>> onNodes,
 			HashSet<Node>? resultOnNodes
 		)
@@ -82,7 +82,7 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var rfc = new BivalueUniversalGraveForcingChains(in trueCandidates, conclusion);
+				var rfc = new BivalueUniversalGraveForcingChains(trueCandidates, conclusion);
 				foreach (var candidate in trueCandidates)
 				{
 					var branchNode = onNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
@@ -98,8 +98,8 @@ internal partial class ChainingDriver
 		}
 
 		ReadOnlySpan<BivalueUniversalGraveForcingChains> rfcOff(
-			scoped ref readonly CandidateMap trueCandidates,
-			ref readonly Grid grid,
+			scoped in CandidateMap trueCandidates,
+			in Grid grid,
 			Dictionary<Candidate, HashSet<Node>> offNodes,
 			HashSet<Node>? resultOffNodes
 		)
@@ -118,13 +118,13 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var rfc = new BivalueUniversalGraveForcingChains(in trueCandidates);
+				var rfc = new BivalueUniversalGraveForcingChains(trueCandidates);
 				foreach (var candidate in trueCandidates)
 				{
 					var branchNode = offNodes[candidate].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					rfc.Add(candidate, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
-				if (rfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
+				if (rfc.GetThoroughConclusions(grid) is not { Length: not 0 } conclusions)
 				{
 					continue;
 				}

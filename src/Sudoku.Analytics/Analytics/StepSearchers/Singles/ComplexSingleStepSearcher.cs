@@ -99,7 +99,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void pushStep(out Grid playground, ref readonly Grid baseGrid, Step[] indirectStepGroup, LinkedList<Step[]> interimSteps)
+		static void pushStep(out Grid playground, in Grid baseGrid, Step[] indirectStepGroup, LinkedList<Step[]> interimSteps)
 		{
 			interimSteps.AddLast(indirectStepGroup);
 			playground = baseGrid;
@@ -110,7 +110,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void popStep(ref Grid playground, ref readonly Grid baseGrid, LinkedList<Step[]> interimSteps)
+		static void popStep(ref Grid playground, in Grid baseGrid, LinkedList<Step[]> interimSteps)
 		{
 			interimSteps.RemoveLast();
 			playground = baseGrid;
@@ -119,7 +119,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 		void dfs(
 			ref StepAnalysisContext context,
 			SortedSet<NormalComplexSingleStep> accumulator,
-			ref readonly Grid grid,
+			in Grid grid,
 			LinkedList<Step[]> interimSteps,
 			List<Step> previousIndirectFoundSteps
 		)
@@ -192,7 +192,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 						continue;
 					}
 
-					pushStep(out var playground, in grid, indirectSteps, interimSteps);
+					pushStep(out var playground, grid, indirectSteps, interimSteps);
 
 					// Check whether the puzzle can be solved via a direct single.
 					var directStepsFound = new List<Step>();
@@ -271,10 +271,10 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 					// If code goes to here, the puzzle won't be solved with the current step.
 					// We should continue the searching from the current state.
 					// Use this puzzle to check for the next elimination step by recursion.
-					dfs(ref context, accumulator, in playground, interimSteps, previousIndirectFoundSteps);
+					dfs(ref context, accumulator, playground, interimSteps, previousIndirectFoundSteps);
 
 				PopStep:
-					popStep(ref playground, in grid, interimSteps);
+					popStep(ref playground, grid, interimSteps);
 				}
 			}
 		}

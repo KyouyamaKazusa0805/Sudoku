@@ -7,12 +7,12 @@ public partial class UniqueLoopStepSearcher
 	/// </summary>
 	private static partial UniqueLoopStep? CheckType1(
 		SortedSet<UniqueLoopStep> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
-		ref readonly CellMap loop,
-		ref readonly CellMap extraCellsMap,
+		in CellMap loop,
+		in CellMap extraCellsMap,
 		Mask comparer,
 		Cell[] path
 	)
@@ -49,7 +49,7 @@ public partial class UniqueLoopStepSearcher
 			context.Options,
 			d1,
 			d2,
-			in loop,
+			loop,
 			path
 		);
 		if (context.OnlyFindOne)
@@ -68,12 +68,12 @@ public partial class UniqueLoopStepSearcher
 	/// </summary>
 	private static partial UniqueLoopStep? CheckType2(
 		SortedSet<UniqueLoopStep> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
-		ref readonly CellMap loop,
-		ref readonly CellMap extraCellsMap,
+		in CellMap loop,
+		in CellMap extraCellsMap,
 		Mask comparer,
 		Cell[] path
 	)
@@ -106,7 +106,7 @@ public partial class UniqueLoopStepSearcher
 			context.Options,
 			d1,
 			d2,
-			in loop,
+			loop,
 			extraDigit,
 			path
 		);
@@ -126,12 +126,12 @@ public partial class UniqueLoopStepSearcher
 	/// </summary>
 	private static partial UniqueLoopStep? CheckType3(
 		SortedSet<UniqueLoopStep> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
-		ref readonly CellMap loop,
-		ref readonly CellMap extraCellsMap,
+		in CellMap loop,
+		in CellMap extraCellsMap,
 		Mask comparer,
 		Cell[] path
 	)
@@ -234,8 +234,8 @@ public partial class UniqueLoopStepSearcher
 							context.Options,
 							d1,
 							d2,
-							in loop,
-							in cells,
+							loop,
+							cells,
 							mask,
 							path
 						);
@@ -314,8 +314,8 @@ public partial class UniqueLoopStepSearcher
 					context.Options,
 					d1,
 					d2,
-					in loop,
-					in cells,
+					loop,
+					cells,
 					mask,
 					path
 				);
@@ -336,12 +336,12 @@ public partial class UniqueLoopStepSearcher
 	/// </summary>
 	private static partial UniqueLoopStep? CheckType4(
 		SortedSet<UniqueLoopStep> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
-		ref readonly CellMap loop,
-		ref readonly CellMap extraCellsMap,
+		in CellMap loop,
+		in CellMap extraCellsMap,
 		Mask comparer,
 		Cell[] path
 	)
@@ -421,12 +421,12 @@ public partial class UniqueLoopStepSearcher
 	/// </summary>
 	private static partial UniqueLoopStep? CheckStrongLinkType(
 		SortedSet<UniqueLoopStep> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
-		ref readonly CellMap loop,
-		ref readonly CellMap extraCellsMap,
+		in CellMap loop,
+		in CellMap extraCellsMap,
 		Mask comparer,
 		Cell[] path
 	)
@@ -503,7 +503,7 @@ public partial class UniqueLoopStepSearcher
 						var house = twoCellsMap.FirstSharedHouse;
 						if ((HousesMap[house] & CandidatesMap[nextDigit]) == twoCellsMap)
 						{
-							conjugatePairsUsed.Add(new(in twoCellsMap, nextDigit));
+							conjugatePairsUsed.Add(new(twoCellsMap, nextDigit));
 							case1 = true;
 						}
 						if (case1)
@@ -562,7 +562,7 @@ public partial class UniqueLoopStepSearcher
 						context.Options,
 						d1,
 						d2,
-						in loop,
+						loop,
 						path,
 						extraCellsMap.Count,
 						[.. conjugatePairsUsed]

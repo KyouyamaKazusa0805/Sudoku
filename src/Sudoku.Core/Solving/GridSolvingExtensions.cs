@@ -110,11 +110,11 @@ public static class GridSolvingExtensions
 #if SYNC_ROOT_VIA_THREAD_LOCAL
 				.Value!
 #endif
-				.Solve(in @this) is { IsUndefined: false } solution ? unfix(in solution, @this.GivenCells) : Grid.Undefined;
+				.Solve(in @this) is { IsUndefined: false } solution ? unfix(solution, @this.GivenCells) : Grid.Undefined;
 		}
 
 
-		static Grid unfix(ref readonly Grid solution, in CellMap pattern)
+		static Grid unfix(in Grid solution, in CellMap pattern)
 		{
 			var result = solution;
 			foreach (var cell in ~pattern)

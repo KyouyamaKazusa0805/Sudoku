@@ -16,13 +16,13 @@ public sealed partial class ExtendedRectangleType3Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask,
-	[Property] ref readonly CellMap subsetCells,
+	[Property] in CellMap subsetCells,
 	[Property] Mask subsetDigitsMask,
 	[Property] House house,
 	[Property] bool isCannibalism
-) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask), IPatternType3StepTrait<ExtendedRectangleType3Step>
+) : ExtendedRectangleStep(conclusions, views, options, cells, digitsMask), IPatternType3StepTrait<ExtendedRectangleType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

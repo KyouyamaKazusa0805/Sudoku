@@ -20,7 +20,7 @@ public sealed partial class UniqueLoopType4Step(
 	in CellMap loop,
 	[Property] in Conjugate conjugatePair,
 	Cell[] loopPath
-) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop, loopPath)
+) : UniqueLoopStep(conclusions, views, options, digit1, digit2, loop, loopPath)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;

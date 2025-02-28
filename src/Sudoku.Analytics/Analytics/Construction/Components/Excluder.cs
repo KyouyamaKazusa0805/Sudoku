@@ -14,8 +14,8 @@ public static class Excluder
 	/// <param name="excluderHouses">The excluder houses.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap GetNakedSingleExcluderCells(ref readonly Grid grid, Cell cell, Digit digit, out ReadOnlySpan<House> excluderHouses)
-		=> [.. from node in GetNakedSingleExcluders(in grid, cell, digit, out excluderHouses) select node.Cell];
+	public static CellMap GetNakedSingleExcluderCells(in Grid grid, Cell cell, Digit digit, out ReadOnlySpan<House> excluderHouses)
+		=> [.. from node in GetNakedSingleExcluders(grid, cell, digit, out excluderHouses) select node.Cell];
 
 	/// <summary>
 	/// Try to create a list of <see cref="IconViewNode"/>s indicating the crosshatching base cells.
@@ -28,7 +28,7 @@ public static class Excluder
 	/// <param name="excluderInfo">The excluder information.</param>
 	/// <returns>A list of <see cref="IconViewNode"/> instances.</returns>
 	public static ReadOnlySpan<IconViewNode> GetHiddenSingleExcluders(
-		ref readonly Grid grid,
+		in Grid grid,
 		Digit digit,
 		House house,
 		Cell cell,
@@ -36,7 +36,7 @@ public static class Excluder
 		out ExcluderInfo excluderInfo
 	)
 	{
-		excluderInfo = ExcluderInfo.TryCreate(in grid, digit, house, in cell.AsCellMap())!;
+		excluderInfo = ExcluderInfo.TryCreate(grid, digit, house, cell.AsCellMap())!;
 		if (excluderInfo is var (cc, covered, excluded))
 		{
 			chosenCells = cc;
@@ -61,7 +61,7 @@ public static class Excluder
 	/// <param name="digit">The digit.</param>
 	/// <param name="excluderHouses">The excluder houses.</param>
 	/// <returns>A list of <see cref="IconViewNode"/> instances.</returns>
-	public static ReadOnlySpan<IconViewNode> GetNakedSingleExcluders(ref readonly Grid grid, Cell cell, Digit digit, out ReadOnlySpan<House> excluderHouses)
+	public static ReadOnlySpan<IconViewNode> GetNakedSingleExcluders(in Grid grid, Cell cell, Digit digit, out ReadOnlySpan<House> excluderHouses)
 	{
 		var (block, row, column) = (
 			HousesMap[cell.ToHouse(HouseType.Block)] & ~grid.EmptyCells,
@@ -108,9 +108,9 @@ public static class Excluder
 	/// <param name="house">The house.</param>
 	/// <param name="cells">The cells.</param>
 	/// <returns>A list of <see cref="IconViewNode"/> instances.</returns>
-	public static ReadOnlySpan<IconViewNode> GetLockedCandidatesExcluders(ref readonly Grid grid, Digit digit, House house, ref readonly CellMap cells)
+	public static ReadOnlySpan<IconViewNode> GetLockedCandidatesExcluders(in Grid grid, Digit digit, House house, in CellMap cells)
 	{
-		var info = ExcluderInfo.TryCreate(in grid, digit, house, in cells);
+		var info = ExcluderInfo.TryCreate(grid, digit, house, cells);
 		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
 		{
 			return [];
@@ -137,9 +137,9 @@ public static class Excluder
 	/// <param name="house">The house.</param>
 	/// <param name="cells">The cells.</param>
 	/// <returns>A list of <see cref="IconViewNode"/> instances.</returns>
-	public static ReadOnlySpan<IconViewNode> GetSubsetExcluders(ref readonly Grid grid, Digit digit, House house, ref readonly CellMap cells)
+	public static ReadOnlySpan<IconViewNode> GetSubsetExcluders(in Grid grid, Digit digit, House house, in CellMap cells)
 	{
-		var info = ExcluderInfo.TryCreate(in grid, digit, house, in cells);
+		var info = ExcluderInfo.TryCreate(grid, digit, house, cells);
 		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
 		{
 			return [];

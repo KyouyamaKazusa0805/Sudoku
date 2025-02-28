@@ -6,10 +6,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="lockedCells">Indicates the locked cells.</param>
 /// <param name="lockedBlock">Indicates the locked block.</param>
 [TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.EqualityOperators)]
-public sealed partial class LockedMember(
-	[Property, HashCodeMember] ref readonly CellMap lockedCells,
-	[Property, HashCodeMember] House lockedBlock
-) :
+public sealed partial class LockedMember([Property, HashCodeMember] in CellMap lockedCells, [Property, HashCodeMember] House lockedBlock) :
 	IComponent,
 	IEquatable<LockedMember>,
 	IEqualityOperators<LockedMember, LockedMember, bool>

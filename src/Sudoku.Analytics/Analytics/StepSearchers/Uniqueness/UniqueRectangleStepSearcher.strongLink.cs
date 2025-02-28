@@ -28,7 +28,7 @@ public partial class UniqueRectangleStepSearcher
 	///  abx    aby
 	/// ]]></code>
 	/// </remarks>
-	private partial void Check2B1SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void Check2B1SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -194,7 +194,7 @@ public partial class UniqueRectangleStepSearcher
 	///          ↑ corner2
 	/// ]]></code>
 	/// </remarks>
-	private partial void Check2D1SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void Check2D1SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -358,7 +358,7 @@ public partial class UniqueRectangleStepSearcher
 	///  aby-----abz
 	/// ]]></code>
 	/// </remarks>
-	private partial void Check3X2SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void Check3X2SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -373,7 +373,7 @@ public partial class UniqueRectangleStepSearcher
 			var abyCell = adjacentCellsMap[1];
 			var map1 = abzCell.AsCellMap() + abxCell;
 			var map2 = abzCell.AsCellMap() + abyCell;
-			if (!IsConjugatePair(b, in map1, map1.SharedLine) || !IsConjugatePair(a, in map2, map2.SharedLine))
+			if (!IsConjugatePair(b, map1, map1.SharedLine) || !IsConjugatePair(a, map2, map2.SharedLine))
 			{
 				continue;
 			}
@@ -472,7 +472,7 @@ public partial class UniqueRectangleStepSearcher
 	///  aby      abz
 	/// ]]></code>
 	/// </remarks>
-	private partial void Check3N2SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void Check3N2SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -491,14 +491,14 @@ public partial class UniqueRectangleStepSearcher
 			var linkMap = begin.AsCellMap() + abzCell;
 			foreach (var (a, b) in digitPairs)
 			{
-				if (!IsConjugatePair(b, in linkMap, linkMap.SharedLine))
+				if (!IsConjugatePair(b, linkMap, linkMap.SharedLine))
 				{
 					continue;
 				}
 
 				// Step 2: Get the link cell that is adjacent to 'cornerCell' and check the strong link.
 				var secondLinkMap = cornerCell.AsCellMap() + begin;
-				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.SharedLine))
+				if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.SharedLine))
 				{
 					continue;
 				}
@@ -592,7 +592,7 @@ public partial class UniqueRectangleStepSearcher
 	///  aby -----abz
 	/// ]]></code>
 	/// </remarks>
-	private partial void Check3U2SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void Check3U2SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -608,13 +608,13 @@ public partial class UniqueRectangleStepSearcher
 			var linkMap = begin.AsCellMap() + abzCell;
 			foreach (var (a, b) in ((d1, d2), (d2, d1)))
 			{
-				if (!IsConjugatePair(b, in linkMap, linkMap.SharedLine))
+				if (!IsConjugatePair(b, linkMap, linkMap.SharedLine))
 				{
 					continue;
 				}
 
 				var secondLinkMap = cornerCell.AsCellMap() + end;
-				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.SharedLine))
+				if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.SharedLine))
 				{
 					continue;
 				}
@@ -706,7 +706,7 @@ public partial class UniqueRectangleStepSearcher
 	///  aby -----abz
 	/// ]]></code>
 	/// </remarks>
-	private partial void Check3E2SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void Check3E2SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -722,13 +722,13 @@ public partial class UniqueRectangleStepSearcher
 			var linkMap = begin.AsCellMap() + abzCell;
 			foreach (var (a, b) in ((d1, d2), (d2, d1)))
 			{
-				if (!IsConjugatePair(a, in linkMap, linkMap.SharedLine))
+				if (!IsConjugatePair(a, linkMap, linkMap.SharedLine))
 				{
 					continue;
 				}
 
 				var secondLinkMap = cornerCell.AsCellMap() + end;
-				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.SharedLine))
+				if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.SharedLine))
 				{
 					continue;
 				}
@@ -821,12 +821,12 @@ public partial class UniqueRectangleStepSearcher
 	///  abz ----- abw
 	/// ]]></code>
 	/// </remarks>
-	private partial void Check4X3SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void Check4X3SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		var link1Map = corner1.AsCellMap() + corner2;
 		foreach (var (a, b) in ((d1, d2), (d2, d1)))
 		{
-			if (!IsConjugatePair(a, in link1Map, link1Map.SharedLine))
+			if (!IsConjugatePair(a, link1Map, link1Map.SharedLine))
 			{
 				continue;
 			}
@@ -836,13 +836,13 @@ public partial class UniqueRectangleStepSearcher
 			foreach (var (head, begin, end, extra) in ((corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell)))
 			{
 				var link2Map = begin.AsCellMap() + end;
-				if (!IsConjugatePair(b, in link2Map, link2Map.SharedLine))
+				if (!IsConjugatePair(b, link2Map, link2Map.SharedLine))
 				{
 					continue;
 				}
 
 				var link3Map = end.AsCellMap() + extra;
-				if (!IsConjugatePair(a, in link3Map, link3Map.SharedLine))
+				if (!IsConjugatePair(a, link3Map, link3Map.SharedLine))
 				{
 					continue;
 				}
@@ -962,13 +962,13 @@ public partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	private partial void Check4C3SL(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void Check4C3SL(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		var link1Map = corner1.AsCellMap() + corner2;
 		var innerMaps = (stackalloc CellMap[2]);
 		foreach (var (a, b) in ((d1, d2), (d2, d1)))
 		{
-			if (!IsConjugatePair(a, in link1Map, link1Map.SharedLine))
+			if (!IsConjugatePair(a, link1Map, link1Map.SharedLine))
 			{
 				continue;
 			}
@@ -978,7 +978,7 @@ public partial class UniqueRectangleStepSearcher
 			foreach (var (abx, aby, abw, abz) in ((corner2, corner1, extra, end), (corner1, corner2, end, extra)))
 			{
 				var link2Map = aby.AsCellMap() + abw;
-				if (!IsConjugatePair(a, in link2Map, link2Map.SharedLine))
+				if (!IsConjugatePair(a, link2Map, link2Map.SharedLine))
 				{
 					continue;
 				}
@@ -990,7 +990,7 @@ public partial class UniqueRectangleStepSearcher
 				for (var i = 0; i < 2; i++)
 				{
 					var linkMap = innerMaps[i];
-					if (!IsConjugatePair(b, in link3Map1, link3Map1.SharedLine))
+					if (!IsConjugatePair(b, link3Map1, link3Map1.SharedLine))
 					{
 						continue;
 					}

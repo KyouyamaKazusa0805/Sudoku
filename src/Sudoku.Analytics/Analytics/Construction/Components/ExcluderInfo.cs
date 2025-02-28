@@ -53,8 +53,8 @@ public sealed record ExcluderInfo(in CellMap BaseCells, in CellMap EmptyCells, i
 
 		return (nullableCombination, emptyCellsNotNeedToBeCovered) switch
 		{
-			(null, not []) => new([], in emptyCellsShouldBeCovered, in emptyCellsNotNeedToBeCovered),
-			({ } combination, _) => new(in combination, in emptyCellsShouldBeCovered, in emptyCellsNotNeedToBeCovered),
+			(null, not []) => new([], emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered),
+			({ } combination, _) => new(combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered),
 			_ => null
 		};
 	}

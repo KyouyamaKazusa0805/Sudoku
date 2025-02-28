@@ -17,12 +17,7 @@ public partial class Hub
 			/// <param name="house">Indicates the house.</param>
 			/// <param name="chosenCells">The chosen cells.</param>
 			/// <returns>The subtype of the hidden single.</returns>
-			public static SingleSubtype GetHiddenSingleSubtype(
-				ref readonly Grid grid,
-				Cell cell,
-				House house,
-				ref readonly CellMap chosenCells
-			)
+			public static SingleSubtype GetHiddenSingleSubtype(in Grid grid, Cell cell, House house, in CellMap chosenCells)
 			{
 				ref readonly var houseCells = ref HousesMap[house];
 				var (b, r, c) = (0, 0, 0);
@@ -54,7 +49,7 @@ public partial class Hub
 			/// <param name="grid">The grid.</param>
 			/// <param name="cell">The cell.</param>
 			/// <returns>The subtype of the naked single.</returns>
-			public static SingleSubtype GetNakedSingleSubtype(ref readonly Grid grid, Cell cell)
+			public static SingleSubtype GetNakedSingleSubtype(in Grid grid, Cell cell)
 			{
 				var (valuesCountInBlock, valuesCountInRow, valuesCountInColumn) = (0, 0, 0);
 				foreach (var houseType in HouseTypes)

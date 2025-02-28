@@ -43,7 +43,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		// making it the start point to execute the recursion.
 		ref readonly var grid = ref context.Grid;
 		var onlyFindOne = context.OnlyFindOne;
-		if (collect(in grid) is not { Count: not 0 } oddagonInfoList)
+		if (collect(grid) is not { Count: not 0 } oddagonInfoList)
 		{
 			return null;
 		}
@@ -57,19 +57,19 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 				case 0:
 				{
 					// This puzzle has no puzzle solutions.
-					throw new PuzzleInvalidException(in grid, typeof(BivalueOddagonStepSearcher));
+					throw new PuzzleInvalidException(grid, typeof(BivalueOddagonStepSearcher));
 				}
 				case not 1:
 				{
 					// Type 2, 3.
 					// Here use default label to ensure the order of the handling will be 1->2->3.
-					if (CheckType2(resultAccumulator, in grid, ref context, d1, d2, in currentLoop, in extraCells, comparer, onlyFindOne) is { } step2)
+					if (CheckType2(resultAccumulator, grid, ref context, d1, d2, currentLoop, extraCells, comparer, onlyFindOne) is { } step2)
 					{
 						return step2;
 					}
 
 					if (extraCells.Count == 2
-						&& CheckType3(resultAccumulator, in grid, ref context, d1, d2, in currentLoop, in extraCells, comparer, onlyFindOne) is { } step3)
+						&& CheckType3(resultAccumulator, grid, ref context, d1, d2, currentLoop, extraCells, comparer, onlyFindOne) is { } step3)
 					{
 						return step3;
 					}
@@ -89,7 +89,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		return null;
 
 
-		static HashSet<BivalueOddagonPattern> collect(ref readonly Grid grid)
+		static HashSet<BivalueOddagonPattern> collect(in Grid grid)
 		{
 			var (foundLoopsCount, result) = (-1, new HashSet<BivalueOddagonPattern>(MaximumCount));
 			for (var d1 = 0; d1 < 8; d1++)
@@ -101,7 +101,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					foreach (var cell in cellsContainingBothTwoDigits)
 					{
 						dfs(
-							in grid,
+							grid,
 							cell,
 							cell,
 							-1,
@@ -120,7 +120,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		}
 
 		static void dfs(
-			ref readonly Grid grid,
+			in Grid grid,
 			Cell startCell,
 			Cell previousCell,
 			House previousHouse,
@@ -178,7 +178,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 							// The pattern is found.
 							if (++loopsCount < MaximumCount)
 							{
-								result.Add(new(in loop, in extraCells, comparer));
+								result.Add(new(loop, extraCells, comparer));
 							}
 
 							return;
@@ -194,13 +194,13 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 							|| newExtraCells.Count < 3)
 						{
 							dfs(
-								in grid,
+								grid,
 								startCell,
 								cell,
 								nextHouse,
-								in cellsContainingBothDigits,
+								cellsContainingBothDigits,
 								loop + cell,
-								in newExtraCells,
+								newExtraCells,
 								result,
 								ref loopsCount,
 								comparer,
@@ -218,12 +218,12 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// </summary>
 	private BivalueOddagonType2Step? CheckType2(
 		SortedSet<BivalueOddagonStep> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
-		ref readonly CellMap loop,
-		ref readonly CellMap extraCellsMap,
+		in CellMap loop,
+		in CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne
 	)
@@ -253,7 +253,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			(from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)).ToArray(),
 			[[.. candidateOffsets]],
 			context.Options,
-			in loop,
+			loop,
 			d1,
 			d2,
 			extraDigit
@@ -275,12 +275,12 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// </summary>
 	private BivalueOddagonType3Step? CheckType3(
 		SortedSet<BivalueOddagonStep> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
-		ref readonly CellMap loop,
-		ref readonly CellMap extraCellsMap,
+		in CellMap loop,
+		in CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne
 	)
@@ -372,10 +372,10 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 						conclusions.AsMemory(),
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 						context.Options,
-						in loop,
+						loop,
 						d1,
 						d2,
-						in cells,
+						cells,
 						mask
 					);
 

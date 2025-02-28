@@ -127,7 +127,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			{
 				case { } pivot when Mask.PopCount(digitsMask) >= 3:
 				{
-					if (CheckTriple(accumulator, in grid, ref context, onlyFindOne, pattern, digitsMask, pivot) is { } stepTriple)
+					if (CheckTriple(accumulator, grid, ref context, onlyFindOne, pattern, digitsMask, pivot) is { } stepTriple)
 					{
 						return stepTriple;
 					}
@@ -135,7 +135,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 				}
 				case null when Mask.PopCount(digitsMask) >= 4:
 				{
-					if (CheckQuadruple(accumulator, in grid, ref context, onlyFindOne, pattern) is { } step)
+					if (CheckQuadruple(accumulator, grid, ref context, onlyFindOne, pattern) is { } step)
 					{
 						return step;
 					}
@@ -152,7 +152,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// </summary>
 	private FireworkTripleStep? CheckTriple(
 		List<Step> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		bool onlyFindOne,
 		FireworkPattern pattern,
@@ -165,7 +165,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		var nonPivotCells = pattern.Map - pivot;
 		var cell1 = nonPivotCells[0];
 		var cell2 = nonPivotCells[1];
-		var satisfiedDigitsMask = GetFireworkDigits(cell1, cell2, pivot, in grid, out var house1CellsExcluded, out var house2CellsExcluded);
+		var satisfiedDigitsMask = GetFireworkDigits(cell1, cell2, pivot, grid, out var house1CellsExcluded, out var house2CellsExcluded);
 		if (satisfiedDigitsMask == 0)
 		{
 			// No possible digits found as a firework digit.
@@ -265,7 +265,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// </summary>
 	private FireworkQuadrupleStep? CheckQuadruple(
 		List<Step> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		bool onlyFindOne,
 		FireworkPattern pattern
@@ -306,10 +306,12 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var pair1DigitsMask = (Mask)(1 << d1 | 1 << d2);
 					var pair2DigitsMask = (Mask)(1 << d3 | 1 << d4);
 					var satisfiedDigitsMaskPivot1 = GetFireworkDigits(
-						cell1Pivot1, cell2Pivot1, pivot1, in grid, out var house1CellsExcludedPivot1, out var house2CellsExcludedPivot1
+						cell1Pivot1, cell2Pivot1, pivot1, grid, out var house1CellsExcludedPivot1,
+						out var house2CellsExcludedPivot1
 					);
 					var satisfiedDigitsMaskPivot2 = GetFireworkDigits(
-						cell1Pivot2, cell2Pivot2, pivot2, in grid, out var house1CellsExcludedPivot2, out var house2CellsExcludedPivot2
+						cell1Pivot2, cell2Pivot2, pivot2, grid, out var house1CellsExcludedPivot2,
+						out var house2CellsExcludedPivot2
 					);
 					if ((satisfiedDigitsMaskPivot1 & pair1DigitsMask) != pair1DigitsMask
 						|| (satisfiedDigitsMaskPivot2 & pair2DigitsMask) != pair2DigitsMask)
@@ -416,7 +418,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 							[.. cellOffsets2, .. candidateOffsetsView3]
 						],
 						context.Options,
-						in map,
+						map,
 						fourDigitsMask
 					);
 					if (onlyFindOne)
@@ -455,7 +457,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		Cell c1,
 		Cell c2,
 		Cell pivot,
-		ref readonly Grid grid,
+		in Grid grid,
 		out CellMap house1CellsExcluded,
 		out CellMap house2CellsExcluded
 	)
@@ -466,7 +468,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		var finalMask = (Mask)0;
 		foreach (var digit in grid[[c1, c2, pivot]])
 		{
-			if (isFireworkFor(digit, in excluded1, in grid) && isFireworkFor(digit, in excluded2, in grid))
+			if (isFireworkFor(digit, excluded1, grid) && isFireworkFor(digit, excluded2, grid))
 			{
 				finalMask |= (Mask)(1 << digit);
 			}
@@ -476,7 +478,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		return finalMask;
 
 
-		static bool isFireworkFor(Digit digit, ref readonly CellMap houseCellsExcluded, ref readonly Grid grid)
+		static bool isFireworkFor(Digit digit, in CellMap houseCellsExcluded, in Grid grid)
 		{
 			foreach (var cell in houseCellsExcluded)
 			{

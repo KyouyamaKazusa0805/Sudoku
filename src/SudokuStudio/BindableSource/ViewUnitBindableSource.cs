@@ -91,11 +91,11 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 			{
 				if (node.Start is { Count: > 1 } s)
 				{
-					result.Add(new GroupedNodeInfo(in s));
+					result.Add(new GroupedNodeInfo(s));
 				}
 				if (node.End is { Count: > 1 } e)
 				{
-					result.Add(new GroupedNodeInfo(in e));
+					result.Add(new GroupedNodeInfo(e));
 				}
 			}
 			return result.AsSpan();

@@ -17,7 +17,7 @@ public partial class Hub
 			/// <param name="node2">The second node.</param>
 			/// <returns>A sequence of <see cref="Conclusion"/> instances.</returns>
 			/// <seealso cref="Conclusion"/>
-			public static ReadOnlySpan<Conclusion> GetConclusions(ref readonly Grid grid, Node node1, Node node2)
+			public static ReadOnlySpan<Conclusion> GetConclusions(in Grid grid, Node node1, Node node2)
 			{
 				var candidatesMap = grid.CandidatesMap;
 				if (node1 == ~node2)

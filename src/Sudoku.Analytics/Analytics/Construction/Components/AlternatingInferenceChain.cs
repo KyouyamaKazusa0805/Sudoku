@@ -307,6 +307,5 @@ public sealed partial class AlternatingInferenceChain(Node lastNode) : NamedChai
 	}
 
 	/// <inheritdoc/>
-	public override ConclusionSet GetConclusions(ref readonly Grid grid)
-		=> [.. EliminationCalculator.Chain.GetConclusions(in grid, First, Last)];
+	public override ConclusionSet GetConclusions(in Grid grid) => [.. EliminationCalculator.Chain.GetConclusions(grid, First, Last)];
 }

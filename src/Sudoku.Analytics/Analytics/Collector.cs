@@ -39,7 +39,7 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_
 
 	/// <inheritdoc/>
 	public ReadOnlySpan<Step> Collect(
-		scoped ref readonly Grid grid,
+		scoped in Grid grid,
 		IProgress<StepGathererProgressPresenter>? progress = null,
 		CancellationToken cancellationToken = default
 	)
@@ -59,7 +59,7 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_
 
 		try
 		{
-			return s(progress, in puzzle, cancellationToken);
+			return s(progress, puzzle, cancellationToken);
 		}
 		catch (OperationCanceledException ex) when (ex.CancellationToken == cancellationToken)
 		{
@@ -71,11 +71,7 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_
 		}
 
 
-		ReadOnlySpan<Step> s(
-			IProgress<StepGathererProgressPresenter>? progress,
-			scoped ref readonly Grid puzzle,
-			CancellationToken ct
-		)
+		ReadOnlySpan<Step> s(IProgress<StepGathererProgressPresenter>? progress, scoped in Grid puzzle, CancellationToken ct)
 		{
 			const int defaultLevel = int.MaxValue;
 
@@ -86,7 +82,12 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_
 			Initialize(in playground, playground.GetSolutionGrid());
 
 			var accumulator = new List<Step>();
-			var context = new StepAnalysisContext(in playground, in puzzle) { Accumulator = accumulator, OnlyFindOne = false, Options = Options };
+			var context = new StepAnalysisContext(in playground, in puzzle)
+			{
+				Accumulator = accumulator,
+				OnlyFindOne = false,
+				Options = Options
+			};
 			var (l, bag, currentSearcherIndex) = (defaultLevel, new List<Step>(), 0);
 			foreach (var searcher in possibleStepSearchers)
 			{
@@ -144,5 +145,5 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_
 
 	/// <inheritdoc/>
 	ReadOnlySpan<Step> meta_analysis::ICollector<Grid, Step>.Collect(Grid board, CancellationToken cancellationToken)
-		=> Collect(in board, cancellationToken: cancellationToken);
+		=> Collect(board, cancellationToken: cancellationToken);
 }

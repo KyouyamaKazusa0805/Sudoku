@@ -15,7 +15,7 @@ public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Mask nTimesAlmostLockedSetsDigitsMask,
-	[Property] ref readonly CellMap nTimesAlmostLockedSetsCells,
+	[Property] in CellMap nTimesAlmostLockedSetsCells,
 	[Property] NTimesAlmostLockedSetsBlossomBranchCollection branches,
 	[Property] int freedomDegree
 ) :

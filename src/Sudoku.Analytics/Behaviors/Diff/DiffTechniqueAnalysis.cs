@@ -20,7 +20,7 @@ public static class DiffTechniqueAnalysis
 		[NotNullWhen(true)] out Step? step
 	)
 	{
-		if (!DiffAnalysis.TryAnalyzeDiff(in left, in right, out var result)
+		if (!DiffAnalysis.TryAnalyzeDiff(left, right, out var result)
 			|| result.Type is not (DiffType.AddModifiable or DiffType.RemoveCandidate)
 			|| left.GetUniqueness() == Uniqueness.Bad || right.GetUniqueness() == Uniqueness.Bad)
 		{
@@ -28,7 +28,7 @@ public static class DiffTechniqueAnalysis
 			return false;
 		}
 
-		var foundSteps = collector.Collect(in left);
+		var foundSteps = collector.Collect(left);
 		switch (result)
 		{
 			case AddModifiableDiffResult { Candidates: [var assignment] }:

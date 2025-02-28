@@ -13,7 +13,7 @@ public sealed partial class AlignedExclusionStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CellMap cells,
+	[Property] in CellMap cells,
 	[Property] Mask digitsMask,
 	[Property] (Digit[], Cell)[] lockedCombinations
 ) : PermutationStep(conclusions, views, options), ISizeTrait

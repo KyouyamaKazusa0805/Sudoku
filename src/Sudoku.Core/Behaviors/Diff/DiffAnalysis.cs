@@ -17,7 +17,7 @@ public static class DiffAnalysis
 	/// but it might be failed to check in some difference cases; no exceptions will be thrown in this method,
 	/// except for some severe errors should be reported.
 	/// </remarks>
-	public static bool TryAnalyzeDiff(ref readonly Grid left, ref readonly Grid right, [NotNullWhen(true)] out DiffResult? result)
+	public static bool TryAnalyzeDiff(in Grid left, in Grid right, [NotNullWhen(true)] out DiffResult? result)
 	{
 		// Determine whether they are totally same.
 		if (Unsafe.AreSame(in left, in right) || left == right)

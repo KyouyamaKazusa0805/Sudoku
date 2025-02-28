@@ -32,7 +32,7 @@ public sealed partial class UniqueRectangleBurredSubsetStep(
 		Technique.UniqueRectangleBurredSubset,
 		digit1,
 		digit2,
-		in cells,
+		cells,
 		false,
 		absoluteOffset
 	),

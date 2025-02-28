@@ -84,8 +84,8 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 						],
 						context.Options,
 						digit,
-						in loop,
-						in guardians
+						loop,
+						guardians
 					)
 				);
 			}
@@ -163,10 +163,10 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 					}
 
 					var tempGuardians = (CandidatesMap[digit] & HousesMap[house]) - tempCell - lastCell;
-					if (tempCell == startCell && condition(in currentLoop)
+					if (tempCell == startCell && condition(currentLoop)
 						&& !!((currentGuardians | tempGuardians).PeerIntersection & CandidatesMap[digit]))
 					{
-						result.Add(new(in currentLoop, currentGuardians | tempGuardians, digit));
+						result.Add(new(currentLoop, currentGuardians | tempGuardians, digit));
 
 						// Exit the current of this recursion frame.
 						return;

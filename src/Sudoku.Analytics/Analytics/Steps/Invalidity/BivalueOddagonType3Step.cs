@@ -15,12 +15,12 @@ public sealed partial class BivalueOddagonType3Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap loopCells,
+	in CellMap loopCells,
 	Digit digit1,
 	Digit digit2,
-	[Property] ref readonly CellMap extraCells,
+	[Property] in CellMap extraCells,
 	[Property] Mask extraDigitsMask
-) : BivalueOddagonStep(conclusions, views, options, in loopCells, digit1, digit2), IExtraCellListTrait
+) : BivalueOddagonStep(conclusions, views, options, loopCells, digit1, digit2), IExtraCellListTrait
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

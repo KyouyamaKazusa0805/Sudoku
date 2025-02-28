@@ -31,7 +31,7 @@ public sealed partial class UniqueRectangleType2Or5Step(
 	code,
 	digit1,
 	digit2,
-	in cells,
+	cells,
 	isAvoidable,
 	absoluteOffset
 )

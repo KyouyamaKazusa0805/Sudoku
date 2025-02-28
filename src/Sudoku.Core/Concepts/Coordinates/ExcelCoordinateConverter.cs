@@ -37,14 +37,14 @@ public sealed record ExcelCoordinateConverter(
 					var columnCharacter = (char)((MakeLettersUpperCase ? 'A' : 'a') + column);
 					return $"{DigitConverter((Mask)(1 << row))}{columnCharacter}";
 				}
-				default: { return r(in cells); }
+				default: { return r(cells); }
 			}
 
 
-			string r(ref readonly CellMap cells)
+			string r(in CellMap cells)
 			{
 				var sb = new StringBuilder(18);
-				var output = CoordinateSimplifier.Simplify(in cells);
+				var output = CoordinateSimplifier.Simplify(cells);
 				var needAddingBrackets = output.Length != 1 && Enum.IsDefined(NotationBracket) && NotationBracket != NotationBracket.None;
 				if (needAddingBrackets)
 				{
@@ -76,8 +76,7 @@ public sealed record ExcelCoordinateConverter(
 				orderby digitGroups.Key
 				select digitGroups)
 			{
-				CellMap cells = [.. from candidate in digitGroup select candidate / 9];
-				sb.Append(CellConverter(in cells));
+				sb.Append(CellConverter([.. from candidate in digitGroup select candidate / 9]));
 				sb.Append('.');
 				sb.Append(digitGroup.Key + 1);
 				sb.Append(DefaultSeparator);
@@ -121,8 +120,7 @@ public sealed record ExcelCoordinateConverter(
 					var token = typeGroup.Key == Assignment ? AssignmentToken : EliminationToken;
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						CellMap cells = [.. from conclusion in digitGroup select conclusion.Cell];
-						sb.Append(CellConverter(in cells));
+						sb.Append(CellConverter([.. from conclusion in digitGroup select conclusion.Cell]));
 						sb.Append(token);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);

@@ -84,5 +84,5 @@ public abstract class NamedChain(Node lastNode, bool isLoop) : Chain(lastNode, i
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
 	/// <returns>A <see cref="ConclusionSet"/> instance. By default the method returns an empty conclusion set.</returns>
-	public virtual ConclusionSet GetConclusions(ref readonly Grid grid) => ConclusionSet.Empty;
+	public virtual ConclusionSet GetConclusions(in Grid grid) => ConclusionSet.Empty;
 }

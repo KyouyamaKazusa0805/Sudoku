@@ -8,7 +8,7 @@ internal partial class ChainingDriver
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
 	/// <returns>All possible multiple forcing chains instances.</returns>
-	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleForcingChains(ref readonly Grid grid, bool onlyFindOne)
+	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleForcingChains(in Grid grid, bool onlyFindOne)
 	{
 		var result = new SortedSet<MultipleForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
 		foreach (var cell in EmptyCells & ~BivalueCells)
@@ -24,8 +24,7 @@ internal partial class ChainingDriver
 				var (nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
 
 				// Iterate on three house types, to collect with region forcing chains.
-				if (chaining_Region(cell, digit, in grid, nodesSupposedOn, nodesSupposedOff)
-					is var regionForcingChainsFound and not [])
+				if (chaining_Region(cell, digit, grid, nodesSupposedOn, nodesSupposedOff) is var regionForcingChainsFound and not [])
 				{
 					return regionForcingChainsFound;
 				}
@@ -48,7 +47,7 @@ internal partial class ChainingDriver
 			}
 
 			if (chaining_Cell(
-				cell, digitsMask, in grid, nodesSupposedOn_GroupedByDigit, nodesSupposedOff_GroupedByDigit,
+				cell, digitsMask, grid, nodesSupposedOn_GroupedByDigit, nodesSupposedOff_GroupedByDigit,
 				nodesSupposedOn_InCell, nodesSupposedOff_InCell)
 				is var cellForcingChainsFound and not [])
 			{
@@ -61,7 +60,7 @@ internal partial class ChainingDriver
 		ReadOnlySpan<MultipleForcingChains> chaining_Cell(
 			Cell cell,
 			Mask digitsMask,
-			ref readonly Grid grid,
+			in Grid grid,
 			Dictionary<Cell, HashSet<Node>> nodesSupposedOn_GroupedByDigit,
 			Dictionary<Cell, HashSet<Node>> nodesSupposedOff_GroupedByDigit,
 			HashSet<Node>? nodesSupposedOn_InCell,
@@ -71,12 +70,12 @@ internal partial class ChainingDriver
 			//////////////////////////////////////
 			// Collect with cell forcing chains //
 			//////////////////////////////////////
-			var cellOn = cfcOn(in grid, cell, nodesSupposedOn_GroupedByDigit, nodesSupposedOn_InCell, digitsMask);
+			var cellOn = cfcOn(grid, cell, nodesSupposedOn_GroupedByDigit, nodesSupposedOn_InCell, digitsMask);
 			if (!cellOn.IsEmpty)
 			{
 				return cellOn;
 			}
-			var cellOff = cfcOff(in grid, cell, nodesSupposedOff_GroupedByDigit, nodesSupposedOff_InCell, digitsMask);
+			var cellOff = cfcOff(grid, cell, nodesSupposedOff_GroupedByDigit, nodesSupposedOff_InCell, digitsMask);
 			if (!cellOff.IsEmpty)
 			{
 				return cellOff;
@@ -87,7 +86,7 @@ internal partial class ChainingDriver
 		ReadOnlySpan<MultipleForcingChains> chaining_Region(
 			Cell cell,
 			Digit digit,
-			ref readonly Grid grid,
+			in Grid grid,
 			HashSet<Node> nodesSupposedOn,
 			HashSet<Node> nodesSupposedOff
 		)
@@ -138,12 +137,12 @@ internal partial class ChainingDriver
 				////////////////////////////////////////
 				// Collect with region forcing chains //
 				////////////////////////////////////////
-				var regionOn = rfcOn(in grid, digit, in cellsInHouse, nodesSupposedOn_GroupedByHouse, nodesSupposedOn_InHouse);
+				var regionOn = rfcOn(grid, digit, cellsInHouse, nodesSupposedOn_GroupedByHouse, nodesSupposedOn_InHouse);
 				if (!regionOn.IsEmpty)
 				{
 					return regionOn;
 				}
-				var regionOff = rfcOff(in grid, digit, in cellsInHouse, nodesSupposedOff_GroupedByHouse, nodesSupposedOff_InHouse);
+				var regionOff = rfcOff(grid, digit, cellsInHouse, nodesSupposedOff_GroupedByHouse, nodesSupposedOff_InHouse);
 				if (!regionOff.IsEmpty)
 				{
 					return regionOff;
@@ -153,7 +152,7 @@ internal partial class ChainingDriver
 		}
 
 		ReadOnlySpan<MultipleForcingChains> cfcOn(
-			ref readonly Grid grid,
+			in Grid grid,
 			Cell cell,
 			Dictionary<Candidate, HashSet<Node>> onNodes,
 			HashSet<Node>? resultOnNodes,
@@ -190,7 +189,7 @@ internal partial class ChainingDriver
 		}
 
 		ReadOnlySpan<MultipleForcingChains> cfcOff(
-			ref readonly Grid grid,
+			in Grid grid,
 			Cell cell,
 			Dictionary<Candidate, HashSet<Node>> offNodes,
 			HashSet<Node>? resultOffNodes,
@@ -217,7 +216,7 @@ internal partial class ChainingDriver
 					var branchNode = offNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
-				if (cfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
+				if (cfc.GetThoroughConclusions(grid) is not { Length: not 0 } conclusions)
 				{
 					continue;
 				}
@@ -233,9 +232,9 @@ internal partial class ChainingDriver
 		}
 
 		ReadOnlySpan<MultipleForcingChains> rfcOn(
-			ref readonly Grid grid,
+			in Grid grid,
 			Digit digit,
-			scoped ref readonly CellMap cellsInHouse,
+			scoped in CellMap cellsInHouse,
 			Dictionary<Candidate, HashSet<Node>> onNodes,
 			HashSet<Node> houseOnNodes
 		)
@@ -270,9 +269,9 @@ internal partial class ChainingDriver
 		}
 
 		ReadOnlySpan<MultipleForcingChains> rfcOff(
-			ref readonly Grid grid,
+			in Grid grid,
 			Digit digit,
-			scoped ref readonly CellMap cellsInHouse,
+			scoped in CellMap cellsInHouse,
 			Dictionary<Candidate, HashSet<Node>> offNodes,
 			HashSet<Node> houseOffNodes
 		)
@@ -297,7 +296,7 @@ internal partial class ChainingDriver
 					var branchNode = offNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					rfc.Add(c * 9 + digit, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
-				if (rfc.GetThoroughConclusions(in grid) is not { Length: not 0 } conclusions)
+				if (rfc.GetThoroughConclusions(grid) is not { Length: not 0 } conclusions)
 				{
 					continue;
 				}

@@ -19,14 +19,7 @@ public sealed partial class CandidateViewNode(ColorIdentifier identifier, [Prope
 	/// Indicates the candidate string.
 	/// </summary>
 	[StringMember(nameof(Candidate))]
-	private string CandidateString
-	{
-		get
-		{
-			var candidates = Candidate.AsCandidateMap();
-			return CoordinateConverter.InvariantCultureInstance.CandidateConverter(in candidates);
-		}
-	}
+	private string CandidateString => CoordinateConverter.InvariantCultureInstance.CandidateConverter(Candidate.AsCandidateMap());
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

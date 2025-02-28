@@ -154,7 +154,7 @@ public sealed class BacktrackingSolver : ISolver
 	/// <param name="r">The row index.</param>
 	/// <param name="c">The column index.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool IsValid(ref readonly Grid grid, RowIndex r, ColumnIndex c)
+	public static bool IsValid(in Grid grid, RowIndex r, ColumnIndex c)
 	{
 		var number = grid.GetDigit(r * 9 + c);
 		for (var i = 0; i < 9; i++)
@@ -177,7 +177,7 @@ public sealed class BacktrackingSolver : ISolver
 		return true;
 	}
 
-	/// <inheritdoc cref="IsValid(ref readonly Grid, RowIndex, ColumnIndex)"/>
+	/// <inheritdoc cref="IsValid(in Grid, RowIndex, ColumnIndex)"/>
 	public static bool IsValid(Digit[] grid, RowIndex r, ColumnIndex c)
 	{
 		var number = grid[r * 9 + c];

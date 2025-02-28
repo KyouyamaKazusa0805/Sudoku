@@ -29,7 +29,7 @@ public abstract partial class UniqueRectangleStep(
 	[Property(Accessibility = "public sealed override")] Technique code,
 	[Property] Digit digit1,
 	[Property] Digit digit2,
-	[Property] ref readonly CellMap cells,
+	[Property] in CellMap cells,
 	[Property] bool isAvoidable,
 	[Property] int absoluteOffset
 ) : UnconditionalDeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait

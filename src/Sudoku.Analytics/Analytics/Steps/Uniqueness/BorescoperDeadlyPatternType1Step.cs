@@ -12,9 +12,9 @@ public sealed class BorescoperDeadlyPatternType1Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask
-) : BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask)
+) : BorescoperDeadlyPatternStep(conclusions, views, options, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

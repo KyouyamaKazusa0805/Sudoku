@@ -12,9 +12,9 @@ public sealed class FireworkQuadrupleStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask
-) : FireworkStep(conclusions, views, options, in cells, digitsMask)
+) : FireworkStep(conclusions, views, options, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 4;

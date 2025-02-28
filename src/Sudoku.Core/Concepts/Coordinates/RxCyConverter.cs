@@ -59,14 +59,14 @@ public sealed record RxCyConverter(
 					true => $"{NotationBracket.GetOpenBracket()}{result}{NotationBracket.GetClosedBracket()}",
 					_ => result
 				},
-				_ => r(in cells)
+				_ => r(cells)
 			};
 
 
-			string r(ref readonly CellMap cells)
+			string r(in CellMap cells)
 			{
 				var sb = new StringBuilder(50);
-				var output = CoordinateSimplifier.Simplify(in cells);
+				var output = CoordinateSimplifier.Simplify(cells);
 				var needAddingBrackets = AlwaysOutputBracket
 					|| output.Length != 1 && Enum.IsDefined(NotationBracket) && NotationBracket != NotationBracket.None;
 				if (needAddingBrackets)
@@ -120,11 +120,11 @@ public sealed record RxCyConverter(
 						sb.Append(DigitBracketInCandidateGroups.GetClosedBracket());
 					}
 
-					sb.Append(CellConverter(in cells));
+					sb.Append(CellConverter(cells));
 				}
 				else
 				{
-					sb.Append(CellConverter(in cells));
+					sb.Append(CellConverter(cells));
 					sb.Append(needAddingBrackets ? DigitBracketInCandidateGroups.GetOpenBracket() : "(");
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(needAddingBrackets ? DigitBracketInCandidateGroups.GetClosedBracket() : ")");
@@ -225,8 +225,7 @@ public sealed record RxCyConverter(
 					var token = typeGroup.Key == Assignment ? AssignmentToken : EliminationToken;
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						CellMap cells = [.. from conclusion in digitGroup select conclusion.Cell];
-						sb.Append(CellConverter(in cells));
+						sb.Append(CellConverter([.. from conclusion in digitGroup select conclusion.Cell]));
 						sb.Append(token);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);

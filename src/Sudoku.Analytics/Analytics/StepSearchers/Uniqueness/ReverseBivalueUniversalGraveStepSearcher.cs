@@ -145,25 +145,25 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 					foreach (ref readonly var cellsChosen in emptyCells & incrementStep)
 					{
 						var completePattern = valuesMap | cellsChosen;
-						if (!IsGeneralizedUniqueLoop(in completePattern))
+						if (!IsGeneralizedUniqueLoop(completePattern))
 						{
 							// This pattern is invalid.
 							continue;
 						}
 
-						if (CheckType1(accumulator, ref context, d1, d2, comparer, in completePattern, in cellsChosen) is { } type1Step)
+						if (CheckType1(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type1Step)
 						{
 							return type1Step;
 						}
-						if (CheckType2(accumulator, ref context, d1, d2, comparer, in completePattern, in cellsChosen) is { } type2Step)
+						if (CheckType2(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type2Step)
 						{
 							return type2Step;
 						}
-						if (CheckType3(accumulator, ref context, d1, d2, comparer, in completePattern, in cellsChosen) is { } type3Step)
+						if (CheckType3(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type3Step)
 						{
 							return type3Step;
 						}
-						if (CheckType4(accumulator, ref context, d1, d2, comparer, in completePattern, in cellsChosen) is { } type4Step)
+						if (CheckType4(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type4Step)
 						{
 							return type4Step;
 						}
@@ -196,8 +196,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		ref readonly CellMap completePattern,
-		ref readonly CellMap cellsChosen
+		in CellMap completePattern,
+		in CellMap cellsChosen
 	)
 	{
 		if (cellsChosen is not [var extraCell])
@@ -223,8 +223,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			context.Options,
 			d1,
 			d2,
-			in completePattern,
-			in cellsChosen
+			completePattern,
+			cellsChosen
 		);
 		if (context.OnlyFindOne)
 		{
@@ -252,8 +252,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		ref readonly CellMap completePattern,
-		ref readonly CellMap cellsChosen
+		in CellMap completePattern,
+		in CellMap cellsChosen
 	)
 	{
 		var lastDigitsMask = (Mask)(context.Grid[cellsChosen] & ~comparer);
@@ -282,8 +282,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			d1,
 			d2,
 			extraDigit,
-			in completePattern,
-			in cellsChosen
+			completePattern,
+			cellsChosen
 		);
 		if (context.OnlyFindOne)
 		{
@@ -312,8 +312,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		ref readonly CellMap completePattern,
-		ref readonly CellMap cellsChosen
+		in CellMap completePattern,
+		in CellMap cellsChosen
 	)
 	{
 		// Test examples:
@@ -409,8 +409,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 					d2,
 					house,
 					otherDigitsMask,
-					in completePattern,
-					in cellsChosen
+					completePattern,
+					cellsChosen
 				);
 				if (context.OnlyFindOne)
 				{
@@ -441,8 +441,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		ref readonly CellMap completePattern,
-		ref readonly CellMap cellsChosen
+		in CellMap completePattern,
+		in CellMap cellsChosen
 	)
 	{
 		if (cellsChosen is not [var cell1, var cell2])
@@ -581,7 +581,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <para><inheritdoc cref="UniqueLoopPattern.IsValid{T}(T)" path="//remarks/para[2]"/></para>
 	/// </remarks>
 	/// <seealso cref="UniqueLoopPattern.IsValid{T}(T)"/>
-	private static bool IsGeneralizedUniqueLoop(ref readonly CellMap loop)
+	private static bool IsGeneralizedUniqueLoop(in CellMap loop)
 	{
 		// The length of the loop pattern must be at least 4, and an even.
 		_ = loop is { Count: var length, Houses: var houses, RowMask: var r, ColumnMask: var c, BlockMask: var b };

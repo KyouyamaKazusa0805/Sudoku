@@ -180,11 +180,11 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 				}
 
 				// Gather steps.
-				if (CheckType1(ref context, in pattern, blocks) is { } type1Step)
+				if (CheckType1(ref context, pattern, blocks) is { } type1Step)
 				{
 					return type1Step;
 				}
-				if (CheckXz(ref context, in pattern, blocks) is { } typeXzStep)
+				if (CheckXz(ref context, pattern, blocks) is { } typeXzStep)
 				{
 					return typeXzStep;
 				}
@@ -210,7 +210,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// </item>
 	/// </list>
 	/// </summary>
-	private ChromaticPatternType1Step? CheckType1(ref StepAnalysisContext context, ref readonly CellMap pattern, House[] blocks)
+	private ChromaticPatternType1Step? CheckType1(ref StepAnalysisContext context, in CellMap pattern, House[] blocks)
 	{
 		ref readonly var grid = ref context.Grid;
 		foreach (var extraCell in pattern)
@@ -243,7 +243,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 				[[.. candidateOffsets, .. from house in blocks select new HouseViewNode(ColorIdentifier.Normal, house)]],
 				context.Options,
 				blocks,
-				in pattern,
+				pattern,
 				extraCell,
 				digitsMask
 			);
@@ -269,7 +269,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// </item>
 	/// </list>
 	/// </summary>
-	private ChromaticPatternXzStep? CheckXz(ref StepAnalysisContext context, ref readonly CellMap pattern, House[] blocks)
+	private ChromaticPatternXzStep? CheckXz(ref StepAnalysisContext context, in CellMap pattern, House[] blocks)
 	{
 		ref readonly var grid = ref context.Grid;
 		var allDigitsMask = grid[pattern];
@@ -344,8 +344,8 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 					],
 					context.Options,
 					blocks,
-					in pattern,
-					in otherDigitsCells,
+					pattern,
+					otherDigitsCells,
 					extraCell,
 					patternDigitsMask,
 					otherDigitsMask

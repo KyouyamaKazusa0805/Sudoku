@@ -21,9 +21,9 @@ using ConflictedInfo = ((Cell Left, Cell Right), CellMap InfluencedRange);
 	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable,
 	ToStringBehavior = ToStringBehavior.RecordLike)]
 public readonly ref partial struct Cluster(
-	[Field, HashCodeMember, StringMember] ref readonly Grid grid,
+	[Field, HashCodeMember, StringMember] in Grid grid,
 	[Property, HashCodeMember, StringMember] Digit digit,
-	[Field(RefKind = null), HashCodeMember, StringMember] scoped ref readonly CellMap map
+	[Field(RefKind = null), HashCodeMember, StringMember] scoped in CellMap map
 ) :
 	IEquatable<Cluster>
 {
@@ -42,10 +42,10 @@ public readonly ref partial struct Cluster(
 		get
 		{
 			var result = CellMap.Empty;
-			var graph = CellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
+			var graph = CellGraph.CreateFromConjugatePair(_grid, Digit, Map);
 			foreach (ref readonly var component in graph.Components)
 			{
-				var parities = Parity.Create(in component);
+				var parities = Parity.Create(component);
 				if (parities.Length == 0)
 				{
 					continue;
@@ -85,10 +85,10 @@ public readonly ref partial struct Cluster(
 		{
 			var candsMap = _grid.CandidatesMap[Digit];
 			var result = CellMap.Empty;
-			var graph = CellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
+			var graph = CellGraph.CreateFromConjugatePair(_grid, Digit, Map);
 			foreach (ref readonly var component in graph.Components)
 			{
-				var parities = Parity.Create(in component);
+				var parities = Parity.Create(component);
 				if (parities.Length == 0)
 				{
 					continue;
@@ -127,7 +127,7 @@ public readonly ref partial struct Cluster(
 	/// <param name="grid">The grid to be used.</param>
 	/// <param name="digit">Indicates the digits used.</param>
 	/// <returns>A <see cref="Cluster"/> instance.</returns>
-	public static Cluster Create(ref readonly Grid grid, Digit digit)
+	public static Cluster Create(in Grid grid, Digit digit)
 	{
 		var result = CellMap.Empty;
 		foreach (var cp in grid.ConjugatePairs)
@@ -137,6 +137,6 @@ public readonly ref partial struct Cluster(
 				result |= cp.Map;
 			}
 		}
-		return new(in grid, digit, in result);
+		return new(grid, digit, result);
 	}
 }

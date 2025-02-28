@@ -16,7 +16,7 @@ namespace Sudoku.Linq;
 	IsLargeStructure = true)]
 public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>(
 	[Property] TKey key,
-	[Property, HashCodeMember] ref readonly TMap values
+	[Property, HashCodeMember] in TMap values
 ) :
 	IEnumerable<TElement>,
 	IEquatable<CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>>,

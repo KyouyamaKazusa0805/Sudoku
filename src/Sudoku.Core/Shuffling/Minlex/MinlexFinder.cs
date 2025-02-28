@@ -282,7 +282,7 @@ public sealed unsafe class MinlexFinder
 									}
 
 									map.Label[0] = 0;
-									_mappers.AddRef(in map); // Will automatically ignore duplicates.
+									_mappers.AddRef(map); // Will automatically ignore duplicates.
 								}
 							}
 						}

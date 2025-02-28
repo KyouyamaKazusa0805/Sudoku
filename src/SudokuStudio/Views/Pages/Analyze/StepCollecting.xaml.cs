@@ -181,7 +181,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			lock (AnalyzingRelatedSyncRoot)
 			{
 				return collector.Collect(
-					in grid,
+					grid,
 					new Progress<StepGathererProgressPresenter>(
 						progress => DispatcherQueue.TryEnqueue(
 							() =>

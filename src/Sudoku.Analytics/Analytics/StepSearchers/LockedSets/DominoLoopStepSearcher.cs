@@ -249,13 +249,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 
 				// Collect the result.
 				var cellsMap = cells.AsCellMap();
-				var step = new DominoLoopStep(
-					conclusions.AsMemory(),
-					[[.. candidateOffsets]],
-					context.Options,
-					in cellsMap,
-					grid[cellsMap]
-				);
+				var step = new DominoLoopStep(conclusions.AsMemory(), [[.. candidateOffsets]], context.Options, cellsMap, grid[cellsMap]);
 				if (context.OnlyFindOne)
 				{
 					return step;

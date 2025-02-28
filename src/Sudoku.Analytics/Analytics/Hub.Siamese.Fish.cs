@@ -15,7 +15,7 @@ public partial class Hub
 			/// <param name="accumulator">The accumulator.</param>
 			/// <param name="grid">The grid.</param>
 			/// <returns>All Siamese steps of type <see cref="FishStep"/>.</returns>
-			public static ReadOnlySpan<FishStep> GetSiamese(List<FishStep> accumulator, ref readonly Grid grid)
+			public static ReadOnlySpan<FishStep> GetSiamese(List<FishStep> accumulator, in Grid grid)
 			{
 				var result = new List<FishStep>();
 				var stepsSpan = accumulator.AsSpan();
@@ -25,7 +25,7 @@ public partial class Hub
 					for (var index2 = index1 + 1; index2 < accumulator.Count; index2++)
 					{
 						var fish2 = stepsSpan[index2];
-						if (check(in grid, fish1, fish2, out var siameseStep))
+						if (check(grid, fish1, fish2, out var siameseStep))
 						{
 							// Siamese fish contain more eliminations, we should insert them into the first place.
 							result.Add(siameseStep);
@@ -35,7 +35,7 @@ public partial class Hub
 				return result.AsSpan();
 
 
-				static bool check(ref readonly Grid puzzle, FishStep fish1, FishStep fish2, [NotNullWhen(true)] out FishStep? siameseStep)
+				static bool check(in Grid puzzle, FishStep fish1, FishStep fish2, [NotNullWhen(true)] out FishStep? siameseStep)
 				{
 					if (fish1.BaseSetsMask != fish2.BaseSetsMask || fish1.Digit != fish2.Digit)
 					{
@@ -117,7 +117,7 @@ public partial class Hub
 							fish1.Digit,
 							fish1.BaseSetsMask,
 							coveredSetsMask,
-							in mergedFins,
+							mergedFins,
 							isSashimi,
 							true
 						),

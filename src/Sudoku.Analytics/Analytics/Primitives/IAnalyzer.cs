@@ -34,5 +34,5 @@ public interface IAnalyzer<in TSelf, out TResult> : IStepGatherer<TSelf, TResult
 	/// <param name="progress">Indicates the progress reporter object.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	/// <returns>The result value.</returns>
-	public abstract TResult Analyze(ref readonly Grid grid, IProgress<StepGathererProgressPresenter>? progress, CancellationToken cancellationToken);
+	public abstract TResult Analyze(in Grid grid, IProgress<StepGathererProgressPresenter>? progress, CancellationToken cancellationToken);
 }

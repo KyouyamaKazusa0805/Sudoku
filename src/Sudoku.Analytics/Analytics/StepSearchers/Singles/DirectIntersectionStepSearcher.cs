@@ -64,7 +64,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 		var candidatesMap = grid.CandidatesMap;
 		foreach (var ((bs, cs), (a, b, c, _)) in Miniline.Map)
 		{
-			if (!LockedCandidates.IsLockedCandidates(in grid, in a, in b, in c, in emptyCells, out var m))
+			if (!LockedCandidates.IsLockedCandidates(grid, a, b, c, emptyCells, out var m))
 			{
 				continue;
 			}
@@ -95,20 +95,17 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				// We should check any possible assignments after such eliminations applied -
 				// such assignments are the real conclusions of this technique.
 				if (CheckFullHouse(
-					ref context, in grid, realBaseSet, realCoverSet, in intersection,
-					in emptyCells, in elimMap, digit) is { } fullHouse)
+					ref context, grid, realBaseSet, realCoverSet, intersection, emptyCells, elimMap, digit) is { } fullHouse)
 				{
 					return fullHouse;
 				}
 				if (CheckHiddenSingle(
-					ref context, in grid, realBaseSet, realCoverSet, in intersection,
-					in elimMap, candidatesMap, in emptyCells, digit) is { } hiddenSingle)
+					ref context, grid, realBaseSet, realCoverSet, intersection, elimMap, candidatesMap, emptyCells, digit) is { } hiddenSingle)
 				{
 					return hiddenSingle;
 				}
 				if (CheckNakedSingle(
-					ref context, in grid, realBaseSet, realCoverSet, in intersection,
-					in elimMap, in emptyCells, digit) is { } nakedSingle)
+					ref context, grid, realBaseSet, realCoverSet, intersection, elimMap, emptyCells, digit) is { } nakedSingle)
 				{
 					return nakedSingle;
 				}
@@ -132,12 +129,12 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <returns>The result step found.</returns>
 	private DirectIntersectionStep? CheckFullHouse(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
+		in Grid grid,
 		House baseSet,
 		House coverSet,
-		ref readonly CellMap intersection,
-		ref readonly CellMap emptyCells,
-		ref readonly CellMap elimMap,
+		in CellMap intersection,
+		in CellMap emptyCells,
+		in CellMap elimMap,
 		Digit digit
 	)
 	{
@@ -162,7 +159,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				[
 					[
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
-						.. Excluder.GetLockedCandidatesExcluders(in grid, digit, baseSet, in intersection),
+						.. Excluder.GetLockedCandidatesExcluders(grid, digit, baseSet, intersection),
 						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),
 						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet),
@@ -211,13 +208,13 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <returns>The result step found.</returns>
 	private DirectIntersectionStep? CheckHiddenSingle(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
+		in Grid grid,
 		House baseSet,
 		House coverSet,
-		ref readonly CellMap intersection,
-		ref readonly CellMap elimMap,
+		in CellMap intersection,
+		in CellMap elimMap,
 		ReadOnlySpan<CellMap> candidatesMap,
-		ref readonly CellMap emptyCells,
+		in CellMap emptyCells,
 		Digit digit
 	)
 	{
@@ -233,9 +230,9 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				new SingletonArray<Conclusion>(new(Assignment, lastCell, digit)),
 				[
 					[
-						.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells, out _),
+						.. Excluder.GetHiddenSingleExcluders(grid, digit, house, lastCell, out var chosenCells, out _),
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
-						.. Excluder.GetLockedCandidatesExcluders(in grid, digit, baseSet, in intersection),
+						.. Excluder.GetLockedCandidatesExcluders(grid, digit, baseSet, intersection),
 						..
 						from cell in HousesMap[house] & elimMap
 						select new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit),
@@ -253,7 +250,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				baseSet,
 				(HousesMap[house] & candidatesMap[digit]) - lastCell,
 				digit,
-				TechniqueNaming.Single.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
+				TechniqueNaming.Single.GetHiddenSingleSubtype(grid, lastCell, house, chosenCells),
 				house switch
 				{
 					< 9 => Technique.CrosshatchingBlock,
@@ -287,12 +284,12 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <returns>The result step found.</returns>
 	private DirectIntersectionStep? CheckNakedSingle(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
+		in Grid grid,
 		House baseSet,
 		House coverSet,
-		ref readonly CellMap intersection,
-		ref readonly CellMap elimMap,
-		ref readonly CellMap emptyCells,
+		in CellMap intersection,
+		in CellMap elimMap,
+		in CellMap emptyCells,
 		Digit digit
 	)
 	{
@@ -309,8 +306,8 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				[
 					[
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
-						.. Excluder.GetNakedSingleExcluders(in grid, lastCell, lastDigit, out _),
-						.. Excluder.GetLockedCandidatesExcluders(in grid, digit, baseSet, in intersection),
+						.. Excluder.GetNakedSingleExcluders(grid, lastCell, lastDigit, out _),
+						.. Excluder.GetLockedCandidatesExcluders(grid, digit, baseSet, intersection),
 						new DiamondViewNode(ColorIdentifier.Auxiliary3, lastCell),
 						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),
@@ -322,9 +319,9 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				lastDigit,
 				HousesMap[baseSet] & HousesMap[coverSet] & emptyCells,
 				baseSet,
-				in lastCell.AsCellMap(),
+				lastCell.AsCellMap(),
 				digit,
-				TechniqueNaming.Single.GetNakedSingleSubtype(in grid, lastCell),
+				TechniqueNaming.Single.GetNakedSingleSubtype(grid, lastCell),
 				Technique.NakedSingle,
 				baseSet < 9
 			);

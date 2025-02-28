@@ -136,7 +136,7 @@ public sealed partial class ExtendedRectanglePattern(
 						map.Add(cell2);
 						pairs.Add((cell1, cell2));
 					}
-					result.Add(new(true, in map, [.. pairs], size));
+					result.Add(new(true, map, [.. pairs], size));
 				}
 			}
 		}

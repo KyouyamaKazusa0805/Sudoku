@@ -30,5 +30,5 @@ public interface ICollector<in TSelf, out TResult> : IStepGatherer<TSelf, TResul
 	/// <exception cref="InvalidOperationException">
 	/// Throws when property <see cref="DifficultyLevelMode"/> is not defined.
 	/// </exception>
-	public abstract ReadOnlySpan<Step> Collect(scoped ref readonly Grid grid, IProgress<StepGathererProgressPresenter>? progress, CancellationToken cancellationToken);
+	public abstract ReadOnlySpan<Step> Collect(scoped in Grid grid, IProgress<StepGathererProgressPresenter>? progress, CancellationToken cancellationToken);
 }

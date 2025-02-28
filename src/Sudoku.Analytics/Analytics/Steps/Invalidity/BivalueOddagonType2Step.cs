@@ -14,11 +14,11 @@ public sealed partial class BivalueOddagonType2Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap loopCells,
+	in CellMap loopCells,
 	Digit digit1,
 	Digit digit2,
 	[Property] Digit extraDigit
-) : BivalueOddagonStep(conclusions, views, options, in loopCells, digit1, digit2)
+) : BivalueOddagonStep(conclusions, views, options, loopCells, digit1, digit2)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;

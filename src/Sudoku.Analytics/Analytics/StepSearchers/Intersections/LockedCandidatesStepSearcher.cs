@@ -52,7 +52,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 		var candidatesMapForGrid = grid.CandidatesMap;
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in Miniline.Map)
 		{
-			if (!LockedCandidates.IsLockedCandidates(in grid, in a, in b, in c, in emptyCellsForGrid, out var m))
+			if (!LockedCandidates.IsLockedCandidates(grid, a, b, c, emptyCellsForGrid, out var m))
 			{
 				continue;
 			}
@@ -85,7 +85,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 							.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
 							new HouseViewNode(ColorIdentifier.Normal, realBaseSet),
 							new HouseViewNode(ColorIdentifier.Auxiliary1, realCoverSet),
-							.. Excluder.GetLockedCandidatesExcluders(in grid, digit, realBaseSet, in intersection)
+							.. Excluder.GetLockedCandidatesExcluders(grid, digit, realBaseSet, intersection)
 						]
 					],
 					context.Options,

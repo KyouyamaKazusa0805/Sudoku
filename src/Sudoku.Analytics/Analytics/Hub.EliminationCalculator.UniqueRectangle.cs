@@ -58,7 +58,7 @@ public partial class Hub
 			/// All the other cases can be handled by supposing positions of digits <c>a</c> and <c>b</c>.
 			/// </para>
 			/// </remarks>
-			public static ReadOnlySpan<Conclusion> GetConclusions(ref readonly CellMap cells, Mask comparer, ref readonly Grid grid)
+			public static ReadOnlySpan<Conclusion> GetConclusions(in CellMap cells, Mask comparer, in Grid grid)
 			{
 				var candidatesMap = grid.CandidatesMap;
 				var extraDigitsMask = (Mask)(grid[cells] & ~comparer);

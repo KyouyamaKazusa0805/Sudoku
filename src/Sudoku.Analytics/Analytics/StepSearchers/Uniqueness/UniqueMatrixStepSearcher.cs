@@ -80,19 +80,19 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			}
 
 			var mask = grid[pattern];
-			if (CheckType1(in grid, ref context, in pattern, mask) is { } type1Step)
+			if (CheckType1(grid, ref context, pattern, mask) is { } type1Step)
 			{
 				return type1Step;
 			}
-			if (CheckType2(ref context, in pattern, mask) is { } type2Step)
+			if (CheckType2(ref context, pattern, mask) is { } type2Step)
 			{
 				return type2Step;
 			}
-			if (CheckType3(in grid, ref context, in pattern, mask) is { } type3Step)
+			if (CheckType3(grid, ref context, pattern, mask) is { } type3Step)
 			{
 				return type3Step;
 			}
-			if (CheckType4(in grid, ref context, in pattern, mask) is { } type4Step)
+			if (CheckType4(grid, ref context, pattern, mask) is { } type4Step)
 			{
 				return type4Step;
 			}
@@ -103,7 +103,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 1.
 	/// </summary>
-	private UniqueMatrixType1Step? CheckType1(ref readonly Grid grid, ref StepAnalysisContext context, ref readonly CellMap pattern, Mask mask)
+	private UniqueMatrixType1Step? CheckType1(in Grid grid, ref StepAnalysisContext context, in CellMap pattern, Mask mask)
 	{
 		if (Mask.PopCount(mask) != 5)
 		{
@@ -142,7 +142,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				}
 			}
 
-			var step = new UniqueMatrixType1Step(conclusions.AsMemory(), [[.. candidateOffsets]], context.Options, in pattern, digitsMask, elimCell * 9 + extraDigit);
+			var step = new UniqueMatrixType1Step(conclusions.AsMemory(), [[.. candidateOffsets]], context.Options, pattern, digitsMask, elimCell * 9 + extraDigit);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -158,7 +158,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 2.
 	/// </summary>
-	private UniqueMatrixType2Step? CheckType2(ref StepAnalysisContext context, ref readonly CellMap pattern, Mask mask)
+	private UniqueMatrixType2Step? CheckType2(ref StepAnalysisContext context, in CellMap pattern, Mask mask)
 	{
 		if (Mask.PopCount(mask) != 5)
 		{
@@ -193,7 +193,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + extraDigit));
 			}
 
-			var step = new UniqueMatrixType2Step(conclusions.AsMemory(), [[.. candidateOffsets]], context.Options, in pattern, digitsMask, extraDigit);
+			var step = new UniqueMatrixType2Step(conclusions.AsMemory(), [[.. candidateOffsets]], context.Options, pattern, digitsMask, extraDigit);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -209,7 +209,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 3.
 	/// </summary>
-	private UniqueMatrixType3Step? CheckType3(ref readonly Grid grid, ref StepAnalysisContext context, ref readonly CellMap pattern, Mask mask)
+	private UniqueMatrixType3Step? CheckType3(in Grid grid, ref StepAnalysisContext context, in CellMap pattern, Mask mask)
 	{
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
@@ -276,9 +276,9 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 							conclusions.AsMemory(),
 							[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 							context.Options,
-							in pattern,
+							pattern,
 							digitsMask,
-							in cells,
+							cells,
 							extraDigitsMask
 						);
 						if (context.OnlyFindOne)
@@ -298,7 +298,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 4.
 	/// </summary>
-	private UniqueMatrixType4Step? CheckType4(ref readonly Grid grid, ref StepAnalysisContext context, ref readonly CellMap pattern, Mask mask)
+	private UniqueMatrixType4Step? CheckType4(in Grid grid, ref StepAnalysisContext context, in CellMap pattern, Mask mask)
 	{
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
@@ -372,11 +372,11 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				conclusions.AsMemory(),
 				[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 				context.Options,
-				in pattern,
+				pattern,
 				digitsMask,
 				d1,
 				d2,
-				in conjugateMap
+				conjugateMap
 			);
 			if (context.OnlyFindOne)
 			{

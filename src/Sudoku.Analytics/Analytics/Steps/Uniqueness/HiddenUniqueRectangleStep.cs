@@ -29,7 +29,7 @@ public sealed class HiddenUniqueRectangleStep(
 	isAvoidable ? Technique.HiddenAvoidableRectangle : Technique.HiddenUniqueRectangle,
 	digit1,
 	digit2,
-	in cells,
+	cells,
 	isAvoidable,
 	conjugatePairs,
 	absoluteOffset

@@ -38,9 +38,9 @@ internal interface IForcingChains : IChainOrForcingChains, IFormattable
 	/// <param name="newConclusions">The conclusions.</param>
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <returns>The views.</returns>
-	public sealed View[] GetViews(ref readonly Grid grid, Conclusion[] newConclusions, ChainingRuleCollection supportedRules)
+	public sealed View[] GetViews(in Grid grid, Conclusion[] newConclusions, ChainingRuleCollection supportedRules)
 	{
-		var viewNodes = GetViewsCore(in grid, supportedRules, newConclusions);
+		var viewNodes = GetViewsCore(grid, supportedRules, newConclusions);
 		var result = new View[viewNodes.Length];
 		for (var i = 0; i < viewNodes.Length; i++)
 		{
@@ -74,7 +74,7 @@ internal interface IForcingChains : IChainOrForcingChains, IFormattable
 	/// <param name="rules">The rules used.</param>
 	/// <param name="newConclusions">The conclusions used.</param>
 	/// <returns>A list of nodes.</returns>
-	protected abstract ReadOnlySpan<ViewNode[]> GetViewsCore(ref readonly Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions);
+	protected abstract ReadOnlySpan<ViewNode[]> GetViewsCore(in Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

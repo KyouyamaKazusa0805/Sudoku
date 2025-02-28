@@ -226,7 +226,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (!VerifyPattern(in grid, in pattern, extraDigitsMask, out var p))
+				if (!VerifyPattern(grid, pattern, extraDigitsMask, out var p))
 				{
 					// The pattern cannot be passed to be verified.
 					continue;
@@ -236,16 +236,17 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				{
 					case 0:
 					{
-						throw new PuzzleInvalidException(in grid, typeof(AnonymousDeadlyPatternStep));
+						throw new PuzzleInvalidException(grid, typeof(AnonymousDeadlyPatternStep));
 					}
 					case 1:
 					{
 						var extraDigit = Mask.Log2(extraDigitsMask);
 						if (CheckType1Or2(
-							ref context, in grid, in pattern, currentCombinationDigitsMask, extraDigit, in p,
+							ref context, grid, pattern, currentCombinationDigitsMask, extraDigit, p,
 							(pattern & CandidatesMap[extraDigit]).Count == 1
 								? Technique.AnonymousDeadlyPatternType1
-								: Technique.AnonymousDeadlyPatternType2) is { } type1Or2Step)
+								: Technique.AnonymousDeadlyPatternType2
+						) is { } type1Or2Step)
 						{
 							return type1Or2Step;
 						}
@@ -254,8 +255,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					case 2:
 					{
 						if (CheckType3(
-							ref context, in grid, in pattern, currentCombinationDigitsMask,
-							extraDigitsMask, in extraCells, in p, Technique.AnonymousDeadlyPatternType3) is { } type3Step)
+							ref context, grid, pattern, currentCombinationDigitsMask,
+							extraDigitsMask, extraCells, p, Technique.AnonymousDeadlyPatternType3) is { } type3Step)
 						{
 							return type3Step;
 						}
@@ -264,8 +265,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					default:
 					{
 						if (CheckType4(
-							ref context, in grid, in pattern, currentCombinationDigitsMask,
-							extraDigitsMask, in extraCells, in p, Technique.AnonymousDeadlyPatternType4) is { } type4Step)
+							ref context, grid, pattern, currentCombinationDigitsMask,
+							extraDigitsMask, extraCells, p, Technique.AnonymousDeadlyPatternType4) is { } type4Step)
 						{
 							return type4Step;
 						}
@@ -369,7 +370,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						continue;
 					}
 
-					if (!VerifyPattern(in grid, in pattern, extraDigitsMask, out var p))
+					if (!VerifyPattern(grid, pattern, extraDigitsMask, out var p))
 					{
 						// The pattern cannot be passed to be verified.
 						continue;
@@ -379,16 +380,17 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					{
 						case 0:
 						{
-							throw new PuzzleInvalidException(in grid, typeof(AnonymousDeadlyPatternStep));
+							throw new PuzzleInvalidException(grid, typeof(AnonymousDeadlyPatternStep));
 						}
 						case 1:
 						{
 							var extraDigit = Mask.Log2(extraDigitsMask);
 							if (CheckType1Or2(
-								ref context, in grid, in pattern, currentCombinationDigitsMask, extraDigit, in p,
+								ref context, grid, pattern, currentCombinationDigitsMask, extraDigit, p,
 								(pattern & CandidatesMap[extraDigit]).Count == 1
 									? Technique.RotatingDeadlyPatternType1
-									: Technique.RotatingDeadlyPatternType2) is { } type1Or2Step)
+									: Technique.RotatingDeadlyPatternType2
+							) is { } type1Or2Step)
 							{
 								return type1Or2Step;
 							}
@@ -397,8 +399,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						case 2:
 						{
 							if (CheckType3(
-								ref context, in grid, in pattern, currentCombinationDigitsMask,
-								extraDigitsMask, in extraCells, in p, Technique.RotatingDeadlyPatternType3) is { } type3Step)
+								ref context, grid, pattern, currentCombinationDigitsMask,
+								extraDigitsMask, extraCells, p, Technique.RotatingDeadlyPatternType3) is { } type3Step)
 							{
 								return type3Step;
 							}
@@ -407,8 +409,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						default:
 						{
 							if (CheckType4(
-								ref context, in grid, in pattern, currentCombinationDigitsMask,
-								extraDigitsMask, in extraCells, in p, Technique.RotatingDeadlyPatternType4) is { } type4Step)
+								ref context, grid, pattern, currentCombinationDigitsMask,
+								extraDigitsMask, extraCells, p, Technique.RotatingDeadlyPatternType4) is { } type4Step)
 							{
 								return type4Step;
 							}
@@ -470,11 +472,11 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// <returns>The found step.</returns>
 	private AnonymousDeadlyPatternStep? CheckType1Or2(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
-		ref readonly CellMap pattern,
+		in Grid grid,
+		in CellMap pattern,
 		Mask digitsMask,
 		Digit targetDigit,
-		ref readonly CandidateMap p,
+		in CandidateMap p,
 		Technique technique
 	)
 	{
@@ -505,7 +507,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				eliminations.ToArray(),
 				[[.. candidateOffsets]],
 				context.Options,
-				in p,
+				p,
 				extraCells[0],
 				digitsMask,
 				technique
@@ -536,8 +538,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				eliminations.ToArray(),
 				[[.. candidateOffsets]],
 				context.Options,
-				in p,
-				in extraCells,
+				p,
+				extraCells,
 				targetDigit,
 				technique
 			);
@@ -564,12 +566,12 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// <returns>The found step.</returns>
 	private AnonymousDeadlyPatternType3Step? CheckType3(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
-		ref readonly CellMap pattern,
+		in Grid grid,
+		in CellMap pattern,
 		Mask digitsMask,
 		Mask extraDigitsMask,
-		ref readonly CellMap extraCells,
-		ref readonly CandidateMap p,
+		in CellMap extraCells,
+		in CandidateMap p,
 		Technique technique
 	)
 	{
@@ -633,9 +635,9 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					eliminations.AsMemory(),
 					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.Options,
-					in p,
-					in pattern,
-					in subsetCells,
+					p,
+					pattern,
+					subsetCells,
 					subsetDigitsMask,
 					technique
 				);
@@ -663,12 +665,12 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// <returns>The found step.</returns>
 	private AnonymousDeadlyPatternType4Step? CheckType4(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
-		ref readonly CellMap pattern,
+		in Grid grid,
+		in CellMap pattern,
 		Mask digitsMask,
 		Mask extraDigitsMask,
-		ref readonly CellMap extraCells,
-		ref readonly CandidateMap p,
+		in CellMap extraCells,
+		in CandidateMap p,
 		Technique technique
 	)
 	{
@@ -732,7 +734,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[[.. candidateOffsets, .. conjugatePairs]],
 			context.Options,
-			in p,
+			p,
 			house,
 			conjugatePairDigitsMask,
 			technique
@@ -754,7 +756,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="digits">The digits.</param>
 	/// <param name="c">Indicates all candidates used.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool VerifyPattern(ref readonly Grid grid, ref readonly CellMap pattern, Mask digits, out CandidateMap c)
+	private static bool VerifyPattern(in Grid grid, in CellMap pattern, Mask digits, out CandidateMap c)
 	{
 		var emptyGrid = Grid.Empty;
 		foreach (var cell in pattern)
@@ -762,7 +764,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 			emptyGrid.SetCandidates(cell, (Mask)(grid.GetCandidates(cell) & ~digits));
 		}
 
-		var flag = DeadlyPatternInferrer.TryInfer(in emptyGrid, in pattern, out var result);
+		var flag = DeadlyPatternInferrer.TryInfer(emptyGrid, pattern, out var result);
 		c = result.PatternCandidates;
 		return flag && result.IsDeadlyPattern;
 	}

@@ -27,12 +27,12 @@ public sealed partial class RectangleForcingChains(
 		NamedChain finnedChain,
 		ref int cachedAlsIndex,
 		ChainingRuleCollection supportedRules,
-		ref readonly Grid grid,
-		ref readonly CandidateMap fins,
+		in Grid grid,
+		in CandidateMap fins,
 		out View[] views
 	)
 	{
-		base.PrepareFinnedChainViewNodes(finnedChain, ref cachedAlsIndex, supportedRules, in grid, in fins, out views);
+		base.PrepareFinnedChainViewNodes(finnedChain, ref cachedAlsIndex, supportedRules, grid, fins, out views);
 		foreach (var cell in Cells)
 		{
 			var node = new CellViewNode(ColorIdentifier.Rectangle1, cell);
@@ -52,7 +52,7 @@ public sealed partial class RectangleForcingChains(
 	}
 
 	/// <inheritdoc/>
-	protected override ReadOnlySpan<ViewNode> GetInitialViewNodes(ref readonly Grid grid)
+	protected override ReadOnlySpan<ViewNode> GetInitialViewNodes(in Grid grid)
 	{
 		var result = new List<ViewNode>();
 		foreach (var cell in Cells)

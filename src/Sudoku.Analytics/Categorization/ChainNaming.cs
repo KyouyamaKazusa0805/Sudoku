@@ -12,8 +12,8 @@ public static class ChainNaming
 	/// <param name="grid">The grid to calculate on conclusions for the pattern.</param>
 	/// <returns>The <see cref="Technique"/> field categorized.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Technique GetTechnique(this NamedChain @this, ref readonly Grid grid)
-		=> @this.GetTechnique(@this.GetConclusions(in grid));
+	public static Technique GetTechnique(this NamedChain @this, in Grid grid)
+		=> @this.GetTechnique(@this.GetConclusions(grid));
 
 	/// <summary>
 	/// Try to categorize the pattern and return an equivalent <see cref="Technique"/> field representing such patterns.

@@ -16,9 +16,9 @@ public sealed class UniqueLoopType1Step(
 	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap loop,
+	in CellMap loop,
 	Cell[] loopPath
-) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop, loopPath)
+) : UniqueLoopStep(conclusions, views, options, digit1, digit2, loop, loopPath)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

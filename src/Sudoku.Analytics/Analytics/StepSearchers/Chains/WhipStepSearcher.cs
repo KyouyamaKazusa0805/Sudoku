@@ -78,7 +78,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 							&& IsGroupedWhip(currentNode) is var isGroupedWhip && !(groupedWhip ^ isGroupedWhip))
 						{
 							// Contradiction is found. Now we can construct a step instance and return.
-							var step = CreateStep(in context, currentNode, startCandidate, in grid, failedSpace, isGroupedWhip);
+							var step = CreateStep(context, currentNode, startCandidate, grid, failedSpace, isGroupedWhip);
 							if (context.OnlyFindOne)
 							{
 								return step;
@@ -338,7 +338,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					case { Count: 2 or 3 }
 					when hiddenSingleCells.IsInIntersection && groupedWhip && concludedLockedCandidates.Add(hiddenSingleCells):
 					{
-						result.Add(new GroupedWhipAssignment(digit, in hiddenSingleCells, houseType));
+						result.Add(new GroupedWhipAssignment(digit, hiddenSingleCells, houseType));
 						break;
 					}
 				}
@@ -374,17 +374,17 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	/// <param name="isGrouped">Indicates whether the pattern is grouped.</param>
 	/// <returns>The final <see cref="WhipStep"/> instance.</returns>
 	private static WhipStep CreateStep(
-		ref readonly StepAnalysisContext context,
+		in StepAnalysisContext context,
 		WhipNode contradictionNode,
 		Candidate startCandidate,
-		ref readonly Grid initialGrid,
+		in Grid initialGrid,
 		Space failedSpace,
 		bool isGrouped
 	)
 	{
 		return new(
 			new SingletonArray<Conclusion>(new(Elimination, startCandidate)),
-			getViews(in initialGrid, out var burredCandidates, out var truths, out var links),
+			getViews(initialGrid, out var burredCandidates, out var truths, out var links),
 			context.Options,
 			truths,
 			links,
@@ -393,7 +393,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 
 		View[] getViews(
-			ref readonly Grid initialGrid,
+			in Grid initialGrid,
 			out CandidateMap burredCandidates,
 			out ReadOnlyMemory<Space> truths,
 			out ReadOnlyMemory<Space> links
@@ -514,7 +514,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					: ReadOnlySpan<ViewNode>.Empty
 			];
 
-			burredCandidates = analyzeBurredCandidates(linkOffsets, in initialGrid, out truths, out links);
+			burredCandidates = analyzeBurredCandidates(linkOffsets, initialGrid, out truths, out links);
 			var missingCandidateOffsets = new List<CandidateViewNode>();
 			foreach (var candidate in burredCandidates)
 			{
@@ -529,7 +529,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 		static CandidateMap analyzeBurredCandidates(
 			List<ChainLinkViewNode> linkOffsets,
-			ref readonly Grid initialGrid,
+			in Grid initialGrid,
 			out ReadOnlyMemory<Space> truths,
 			out ReadOnlyMemory<Space> links
 		)

@@ -161,7 +161,7 @@ public sealed class PointCalculator : IPointCalculator
 	/// <returns>The center mouse point.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PointF GetMouseCenter(ref readonly CandidateMap map)
+	public PointF GetMouseCenter(in CandidateMap map)
 	{
 		switch (map)
 		{

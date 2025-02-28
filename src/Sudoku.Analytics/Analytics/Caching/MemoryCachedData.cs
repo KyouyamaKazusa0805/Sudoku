@@ -120,9 +120,9 @@ internal static class MemoryCachedData
 	public static ReadOnlySpan<CellMap> ValuesMap => _cachedValuesMap;
 
 
-	/// <inheritdoc cref="Initialize(Analyzer, ref readonly Grid, ref readonly Grid)"/>
+	/// <inheritdoc cref="Initialize(Analyzer, in Grid, in Grid)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Initialize(ref readonly Grid g, in Grid s) => Initialize(null, in g, in s);
+	public static void Initialize(ref readonly Grid g, in Grid s) => Initialize(null, g, s);
 
 	/// <summary>
 	/// Initialize the maps that used later.
@@ -131,7 +131,7 @@ internal static class MemoryCachedData
 	/// <param name="g">The grid.</param>
 	/// <param name="s">The solution of <paramref name="g"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Initialize(Analyzer? analyzer, ref readonly Grid g, ref readonly Grid s)
+	public static void Initialize(Analyzer? analyzer, in Grid g, in Grid s)
 	{
 		(CandidatesCount, StrongLinkTypesCollected, WeakLinkTypesCollected) = (g.CandidatesCount, LinkType.Unknown, LinkType.Unknown);
 		(_cachedEmptyCells, _cachedBivalueCells, _cachedSolution) = (g.EmptyCells, g.BivalueCells, s);
@@ -181,7 +181,7 @@ internal static class MemoryCachedData
 		typeof(AvoidableRectangleChainingRule),
 		typeof(KrakenNormalFishChainingRule),
 		typeof(XyzWingChainingRule))]
-	public static void InitializeLinks(ref readonly Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)
+	public static void InitializeLinks(in Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)
 	{
 		rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;
 		if (!StrongLinkTypesCollected.HasFlag(linkTypes) || !WeakLinkTypesCollected.HasFlag(linkTypes))

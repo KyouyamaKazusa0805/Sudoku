@@ -172,7 +172,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 							context.Options,
 							c1,
 							c2,
-							in bridge,
+							bridge,
 							(Mask)(1 << digit | 1 << anotherDigit)
 						);
 						if (context.OnlyFindOne)
@@ -284,8 +284,8 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 									conclusions.AsMemory(),
 									[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Auxiliary1, house)]],
 									context.Options,
-									in cells,
-									in emptyCellsInThisHouse,
+									cells,
+									emptyCellsInThisHouse,
 									emptyCellsInThisHouse.SharedLine,
 									(Mask)(1 << xDigit | 1 << wDigit)
 								);
@@ -357,11 +357,11 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 						{
 							// Check for validity of (grouped) strong links.
 							var (cells1, cells2) = (HousesMap[h1] & CandidatesMap[d1], HousesMap[h2] & CandidatesMap[d2]);
-							if (!Grouped.IsGroupedStrongLink(in cells1, h1, out var spannedHousesList1))
+							if (!Grouped.IsGroupedStrongLink(cells1, h1, out var spannedHousesList1))
 							{
 								continue;
 							}
-							if (!Grouped.IsGroupedStrongLink(in cells2, h2, out var spannedHousesList2))
+							if (!Grouped.IsGroupedStrongLink(cells2, h2, out var spannedHousesList2))
 							{
 								continue;
 							}
@@ -477,8 +477,8 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 																]
 															],
 															context.Options,
-															in node,
-															in theOtherNode,
+															node,
+															theOtherNode,
 															strongXyCell,
 															weakXyCell,
 															(Mask)(1 << d1 | 1 << d2)

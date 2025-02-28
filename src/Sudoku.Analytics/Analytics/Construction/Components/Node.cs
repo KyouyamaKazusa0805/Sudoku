@@ -165,7 +165,7 @@ public sealed partial class Node(
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
-		return $"{converter.CandidateConverter(in _map)}: {IsOn}";
+		return $"{converter.CandidateConverter(_map)}: {IsOn}";
 	}
 
 	/// <inheritdoc/>
@@ -197,7 +197,7 @@ public sealed partial class Node(
 
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node Clone() => new(in _map, IsOn) { Parents = Parents };
+	public Node Clone() => new(_map, IsOn) { Parents = Parents };
 
 	/// <inheritdoc/>
 	object ICloneable.Clone() => Clone();
@@ -209,7 +209,7 @@ public sealed partial class Node(
 	/// <param name="value">The current node.</param>
 	/// <returns>The node negated.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Node operator ~(Node value) => new(in value._map, !value.IsOn) { Parents = value.Parents };
+	public static Node operator ~(Node value) => new(value._map, !value.IsOn) { Parents = value.Parents };
 
 	/// <summary>
 	/// Creates a <see cref="Node"/> instance with parent node.

@@ -14,9 +14,9 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CandidateMap trueCandidates,
+	[Property] in CandidateMap trueCandidates,
 	[Property] Mask subsetDigitsMask,
-	[Property] ref readonly CellMap cells,
+	[Property] in CellMap cells,
 	[Property] bool isNaked
 ) : BivalueUniversalGraveStep(conclusions, views, options), IPatternType3StepTrait<BivalueUniversalGraveType3Step>
 {

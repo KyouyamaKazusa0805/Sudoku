@@ -13,10 +13,10 @@ public sealed partial class UniqueMatrixType1Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask,
 	[Property] Candidate candidate
-) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask)
+) : UniqueMatrixStep(conclusions, views, options, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

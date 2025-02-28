@@ -10,7 +10,7 @@ public static class CoordinateSimplifier
 	/// </summary>
 	/// <param name="cells">The cells to be simplified.</param>
 	/// <returns>A list of parts grouped by rows and its matched columns.</returns>
-	public static ReadOnlySpan<CoordinateSplit> Simplify(ref readonly CellMap cells)
+	public static ReadOnlySpan<CoordinateSplit> Simplify(in CellMap cells)
 	{
 		return
 			from pair in simplifyCoordinates(from cell in cells select (cell / 9, cell % 9))

@@ -25,7 +25,7 @@ public sealed partial class ComplexExocetLockedMemberStep(
 	[Property] HouseMask crosslineHousesMask,
 	[Property] HouseMask extraHousesMask
 ) :
-	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells),
+	ExocetStep(conclusions, views, options, digitsMask, baseCells, targetCells, endoTargetCells, crosslineCells),
 	IComplexSeniorExocet
 {
 	/// <inheritdoc/>

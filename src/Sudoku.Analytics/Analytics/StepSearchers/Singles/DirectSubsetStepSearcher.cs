@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers.Singles;
 
-using unsafe DirectSubsetHandlerFuncPtr = delegate*<DirectSubsetStepSearcher, HashSet<DirectSubsetStep>, ref StepAnalysisContext, ref readonly Grid, int, bool, ref readonly CellMap, ReadOnlySpan<CellMap>, DirectSubsetStep?>;
+using unsafe DirectSubsetHandlerFuncPtr = delegate*<DirectSubsetStepSearcher, HashSet<DirectSubsetStep>, ref StepAnalysisContext, in Grid, int, bool, in CellMap, ReadOnlySpan<CellMap>, DirectSubsetStep?>;
 
 /// <summary>
 /// Provides with a <b>Direct Subset</b> step searcher.
@@ -119,11 +119,11 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		{
 			for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
 			{
-				if (searchers[0](this, accumulator, ref context, in grid, size, searchingForLocked, in emptyCells, candidatesMap) is { } step1)
+				if (searchers[0](this, accumulator, ref context, grid, size, searchingForLocked, emptyCells, candidatesMap) is { } step1)
 				{
 					return step1;
 				}
-				if (searchers[1](this, accumulator, ref context, in grid, size, searchingForLocked, in emptyCells, candidatesMap) is { } step2)
+				if (searchers[1](this, accumulator, ref context, grid, size, searchingForLocked, emptyCells, candidatesMap) is { } step2)
 				{
 					return step2;
 				}
@@ -145,10 +145,10 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		DirectSubsetStepSearcher @this,
 		HashSet<DirectSubsetStep> accumulator,
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
+		in Grid grid,
 		int size,
 		bool searchingForLocked,
-		ref readonly CellMap emptyCells,
+		in CellMap emptyCells,
 		ReadOnlySpan<CellMap> candidatesMap
 	)
 	{
@@ -199,7 +199,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 					}
 
-					cellOffsets.AddRange(Excluder.GetSubsetExcluders(in grid, digit, house, in cells));
+					cellOffsets.AddRange(Excluder.GetSubsetExcluders(grid, digit, house, cells));
 				}
 
 				var isLocked = cells.IsInIntersection;
@@ -233,17 +233,17 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 					// Check whether such conclusions will raise a single.
 					if (CheckHiddenSubsetFullHouse(
-						@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house, cellOffsets, candidateOffsets, in emptyCells) is { } fullHouse)
+						@this, accumulator, ref context, grid, conclusions, cells, digitsMask, house, cellOffsets, candidateOffsets, emptyCells) is { } fullHouse)
 					{
 						return fullHouse;
 					}
 					if (CheckHiddenSubsetHiddenSingle(
-						@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house, cellOffsets, candidateOffsets, candidatesMap) is { } hiddenSingle)
+						@this, accumulator, ref context, grid, conclusions, cells, digitsMask, house, cellOffsets, candidateOffsets, candidatesMap) is { } hiddenSingle)
 					{
 						return hiddenSingle;
 					}
 					if (CheckHiddenSubsetNakedSingle(
-						@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house, cellOffsets, candidateOffsets) is { } nakedSingle)
+						@this, accumulator, ref context, grid, conclusions, cells, digitsMask, house, cellOffsets, candidateOffsets) is { } nakedSingle)
 					{
 						return nakedSingle;
 					}
@@ -261,10 +261,10 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		DirectSubsetStepSearcher @this,
 		HashSet<DirectSubsetStep> accumulator,
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
+		in Grid grid,
 		int size,
 		bool searchingForLocked,
-		ref readonly CellMap emptyCells,
+		in CellMap emptyCells,
 		ReadOnlySpan<CellMap> candidatesMap
 	)
 	{
@@ -332,17 +332,17 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 				// Check whether such conclusions will raise a single.
 				if (CheckNakedSubsetFullHouse(
-					@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house, isLocked, candidateOffsets, in emptyCells) is { } fullHouse)
+					@this, accumulator, ref context, grid, conclusions, cells, digitsMask, house, isLocked, candidateOffsets, emptyCells) is { } fullHouse)
 				{
 					return fullHouse;
 				}
 				if (CheckNakedSubsetHiddenSingle(
-					@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house, isLocked, candidateOffsets, candidatesMap) is { } hiddenSingle)
+					@this, accumulator, ref context, grid, conclusions, cells, digitsMask, house, isLocked, candidateOffsets, candidatesMap) is { } hiddenSingle)
 				{
 					return hiddenSingle;
 				}
 				if (CheckNakedSubsetNakedSingle(
-					@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house, isLocked, candidateOffsets) is { } nakedSingle)
+					@this, accumulator, ref context, grid, conclusions, cells, digitsMask, house, isLocked, candidateOffsets) is { } nakedSingle)
 				{
 					return nakedSingle;
 				}
@@ -371,14 +371,14 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		DirectSubsetStepSearcher @this,
 		HashSet<DirectSubsetStep> accumulator,
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
-		ref readonly CandidateMap conclusions,
-		ref readonly CellMap subsetCells,
+		in Grid grid,
+		in CandidateMap conclusions,
+		in CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		List<IconViewNode> cellOffsets,
 		List<CandidateViewNode> candidateOffsets,
-		ref readonly CellMap emptyCells
+		in CellMap emptyCells
 	)
 	{
 		foreach (var cell in conclusions.Cells)
@@ -408,7 +408,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					continue;
 				}
 
-				var subsetTechnique = GetSubsetTechnique_Hidden(in subsetCells);
+				var subsetTechnique = GetSubsetTechnique_Hidden(subsetCells);
 				switch (subsetTechnique)
 				{
 					case Technique.LockedHiddenPair or Technique.LockedHiddenTriple
@@ -434,10 +434,10 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					context.Options,
 					cell,
 					lastDigit,
-					in subsetCells,
+					subsetCells,
 					subsetDigitsMask,
 					subsetHouse,
-					in cell.AsCellMap(),
+					cell.AsCellMap(),
 					eliminatedDigitsMask,
 					houseType switch
 					{
@@ -463,14 +463,14 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for hidden single produced on hidden subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, HashSet{DirectSubsetStep}, ref StepAnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, HashSet{DirectSubsetStep}, ref StepAnalysisContext, in Grid, in CandidateMap, in CellMap, Mask, House, List{IconViewNode}, List{CandidateViewNode}, in CellMap)"/>
 	private static DirectSubsetStep? CheckHiddenSubsetHiddenSingle(
 		DirectSubsetStepSearcher @this,
 		HashSet<DirectSubsetStep> accumulator,
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
-		ref readonly CandidateMap conclusions,
-		ref readonly CellMap subsetCells,
+		in Grid grid,
+		in CandidateMap conclusions,
+		in CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		List<IconViewNode> cellOffsets,
@@ -490,7 +490,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					continue;
 				}
 
-				var subsetTechnique = GetSubsetTechnique_Hidden(in subsetCells);
+				var subsetTechnique = GetSubsetTechnique_Hidden(subsetCells);
 				switch (subsetTechnique)
 				{
 					case Technique.LockedHiddenPair or Technique.LockedHiddenTriple
@@ -508,7 +508,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						[
 							.. candidateOffsets,
 							.. cellOffsets,
-							.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells, out _),
+							.. Excluder.GetHiddenSingleExcluders(grid, digit, house, lastCell, out var chosenCells, out _),
 							..
 							from c in HousesMap[house] & eliminatedCells
 							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),
@@ -521,12 +521,12 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					context.Options,
 					lastCell,
 					digit,
-					in subsetCells,
+					subsetCells,
 					subsetDigitsMask,
 					subsetHouse,
-					in eliminatedCells,
+					eliminatedCells,
 					(Mask)(1 << digit),
-					TechniqueNaming.Single.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
+					TechniqueNaming.Single.GetHiddenSingleSubtype(grid, lastCell, house, chosenCells),
 					houseType switch
 					{
 						HouseType.Block => Technique.CrosshatchingBlock,
@@ -550,14 +550,14 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for naked single produced on hidden subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, HashSet{DirectSubsetStep}, ref StepAnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, HashSet{DirectSubsetStep}, ref StepAnalysisContext, in Grid, in CandidateMap, in CellMap, Mask, House, List{IconViewNode}, List{CandidateViewNode}, in CellMap)"/>
 	private static DirectSubsetStep? CheckHiddenSubsetNakedSingle(
 		DirectSubsetStepSearcher @this,
 		HashSet<DirectSubsetStep> accumulator,
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
-		ref readonly CandidateMap conclusions,
-		ref readonly CellMap subsetCells,
+		in Grid grid,
+		in CandidateMap conclusions,
+		in CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		List<IconViewNode> cellOffsets,
@@ -573,7 +573,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				continue;
 			}
 
-			var subsetTechnique = GetSubsetTechnique_Hidden(in subsetCells);
+			var subsetTechnique = GetSubsetTechnique_Hidden(subsetCells);
 			switch (subsetTechnique)
 			{
 				case Technique.LockedHiddenPair or Technique.LockedHiddenTriple
@@ -592,7 +592,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					[
 						.. candidateOffsets,
 						.. cellOffsets,
-						.. Excluder.GetNakedSingleExcluders(in grid, cell, lastDigit, out _),
+						.. Excluder.GetNakedSingleExcluders(grid, cell, lastDigit, out _),
 						new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
 						new CellViewNode(ColorIdentifier.Auxiliary3, cell)
 					]
@@ -600,12 +600,12 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				context.Options,
 				cell,
 				lastDigit,
-				in subsetCells,
+				subsetCells,
 				subsetDigitsMask,
 				subsetHouse,
-				in cell.AsCellMap(),
+				cell.AsCellMap(),
 				eliminatedDigitsMask,
-				TechniqueNaming.Single.GetNakedSingleSubtype(in grid, cell),
+				TechniqueNaming.Single.GetNakedSingleSubtype(grid, cell),
 				Technique.NakedSingle,
 				subsetTechnique
 			);
@@ -639,14 +639,14 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		DirectSubsetStepSearcher @this,
 		HashSet<DirectSubsetStep> accumulator,
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
-		ref readonly CandidateMap conclusions,
-		ref readonly CellMap subsetCells,
+		in Grid grid,
+		in CandidateMap conclusions,
+		in CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		bool? isLocked,
 		List<CandidateViewNode> candidateOffsets,
-		ref readonly CellMap emptyCells
+		in CellMap emptyCells
 	)
 	{
 		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
@@ -676,7 +676,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					continue;
 				}
 
-				var subsetTechnique = GetSubsetTechnique_Naked(in subsetCells, isLocked);
+				var subsetTechnique = GetSubsetTechnique_Naked(subsetCells, isLocked);
 				switch (subsetTechnique)
 				{
 					case Technique.LockedPair or Technique.LockedTriple
@@ -706,10 +706,10 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					context.Options,
 					cell,
 					lastDigit,
-					in subsetCells,
+					subsetCells,
 					subsetDigitsMask,
 					subsetHouse,
-					in cell.AsCellMap(),
+					cell.AsCellMap(),
 					eliminatedDigitsMask,
 					houseType switch
 					{
@@ -735,14 +735,14 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for hidden single produced on naked subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, HashSet{DirectSubsetStep}, ref StepAnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, HashSet{DirectSubsetStep}, ref StepAnalysisContext, in Grid, in CandidateMap, in CellMap, short, int, bool?, List{CandidateViewNode}, in CellMap)"/>
 	private static DirectSubsetStep? CheckNakedSubsetHiddenSingle(
 		DirectSubsetStepSearcher @this,
 		HashSet<DirectSubsetStep> accumulator,
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
-		ref readonly CandidateMap conclusions,
-		ref readonly CellMap subsetCells,
+		in Grid grid,
+		in CandidateMap conclusions,
+		in CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		bool? isLocked,
@@ -762,7 +762,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					continue;
 				}
 
-				var subsetTechnique = GetSubsetTechnique_Naked(in subsetCells, isLocked);
+				var subsetTechnique = GetSubsetTechnique_Naked(subsetCells, isLocked);
 				switch (subsetTechnique)
 				{
 					case Technique.LockedPair or Technique.LockedTriple
@@ -781,7 +781,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					[
 						[
 							.. candidateOffsets,
-							.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells, out _),
+							.. Excluder.GetHiddenSingleExcluders(grid, digit, house, lastCell, out var chosenCells, out _),
 							..
 							from c in HousesMap[house] & eliminatedCells
 							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),
@@ -794,12 +794,12 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					context.Options,
 					lastCell,
 					digit,
-					in subsetCells,
+					subsetCells,
 					subsetDigitsMask,
 					subsetHouse,
-					in eliminatedCells,
+					eliminatedCells,
 					(Mask)(1 << digit),
-					TechniqueNaming.Single.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
+					TechniqueNaming.Single.GetHiddenSingleSubtype(grid, lastCell, house, chosenCells),
 					houseType switch
 					{
 						HouseType.Block => Technique.CrosshatchingBlock,
@@ -823,14 +823,14 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for naked single produced on naked subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, HashSet{DirectSubsetStep}, ref StepAnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, HashSet{DirectSubsetStep}, ref StepAnalysisContext, in Grid, in CandidateMap, in CellMap, short, int, bool?, List{CandidateViewNode}, in CellMap)"/>
 	private static DirectSubsetStep? CheckNakedSubsetNakedSingle(
 		DirectSubsetStepSearcher @this,
 		HashSet<DirectSubsetStep> accumulator,
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
-		ref readonly CandidateMap conclusions,
-		ref readonly CellMap subsetCells,
+		in Grid grid,
+		in CandidateMap conclusions,
+		in CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		bool? isLocked,
@@ -846,7 +846,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				continue;
 			}
 
-			var subsetTechnique = GetSubsetTechnique_Naked(in subsetCells, isLocked);
+			var subsetTechnique = GetSubsetTechnique_Naked(subsetCells, isLocked);
 			switch (subsetTechnique)
 			{
 				case Technique.LockedPair or Technique.LockedTriple
@@ -866,7 +866,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				[
 					[
 						.. candidateOffsets,
-						.. Excluder.GetNakedSingleExcluders(in grid, cell, lastDigit, out _),
+						.. Excluder.GetNakedSingleExcluders(grid, cell, lastDigit, out _),
 						new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
 						new DiamondViewNode(ColorIdentifier.Auxiliary3, cell),
 						..
@@ -877,12 +877,12 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				context.Options,
 				cell,
 				lastDigit,
-				in subsetCells,
+				subsetCells,
 				subsetDigitsMask,
 				subsetHouse,
-				in cell.AsCellMap(),
+				cell.AsCellMap(),
 				eliminatedDigitsMask,
-				TechniqueNaming.Single.GetNakedSingleSubtype(in grid, cell),
+				TechniqueNaming.Single.GetNakedSingleSubtype(grid, cell),
 				Technique.NakedSingle,
 				subsetTechnique
 			);
@@ -904,7 +904,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <param name="subsetCells">The subset cells used.</param>
 	/// <returns>The final result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Technique GetSubsetTechnique_Hidden(ref readonly CellMap subsetCells)
+	private static Technique GetSubsetTechnique_Hidden(in CellMap subsetCells)
 		=> (subsetCells.IsInIntersection, subsetCells.Count) switch
 		{
 			(true, 2) => Technique.LockedHiddenPair,
@@ -921,7 +921,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <param name="isLocked">Indicates whether the subset is locked in logic.</param>
 	/// <returns>The final result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Technique GetSubsetTechnique_Naked(ref readonly CellMap subsetCells, bool? isLocked)
+	private static Technique GetSubsetTechnique_Naked(in CellMap subsetCells, bool? isLocked)
 		=> (isLocked, subsetCells.Count) switch
 		{
 			(true, 2) => Technique.LockedPair,

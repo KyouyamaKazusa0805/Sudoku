@@ -21,7 +21,7 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	HouseMask houses,
 	Cell? corner1,
 	Cell? corner2,
-	[Property] ref readonly CellMap subsetCells,
+	[Property] in CellMap subsetCells,
 	[Property] Mask subsetDigitsMask,
 	[Property] bool isNaked
 ) :

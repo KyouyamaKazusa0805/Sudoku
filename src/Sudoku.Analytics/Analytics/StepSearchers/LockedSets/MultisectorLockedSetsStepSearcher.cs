@@ -203,7 +203,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 					conclusions.AsMemory(),
 					[[.. candidateOffsets]],
 					context.Options,
-					in map,
+					map,
 					rows,
 					columns,
 					grid[map]

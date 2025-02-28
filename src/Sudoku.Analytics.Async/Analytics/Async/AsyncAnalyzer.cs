@@ -42,7 +42,7 @@ public static class AsyncAnalyzer
 				{
 					try
 					{
-						@this.Analyze(in grid, cancellationToken: cancellationToken);
+						@this.Analyze(grid, cancellationToken: cancellationToken);
 					}
 					finally
 					{

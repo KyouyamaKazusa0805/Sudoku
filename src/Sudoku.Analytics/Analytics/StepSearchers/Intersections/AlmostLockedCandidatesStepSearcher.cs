@@ -56,11 +56,11 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 				{
 					if (c && EmptyCells)
 					{
-						if (Collect(ref context, size, baseSet, coverSet, in a, in b, in c, checkValueCells) is { } step1)
+						if (Collect(ref context, size, baseSet, coverSet, a, b, c, checkValueCells) is { } step1)
 						{
 							return step1;
 						}
-						if (Collect(ref context, size, coverSet, baseSet, in b, in a, in c, checkValueCells) is { } step2)
+						if (Collect(ref context, size, coverSet, baseSet, b, a, c, checkValueCells) is { } step2)
 						{
 							return step2;
 						}
@@ -113,9 +113,9 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 		int size,
 		House baseSet,
 		House coverSet,
-		ref readonly CellMap a,
-		ref readonly CellMap b,
-		ref readonly CellMap c,
+		in CellMap a,
+		in CellMap b,
+		in CellMap c,
 		bool checkValueCells
 	)
 	{
@@ -260,8 +260,8 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 				],
 				context.Options,
 				mask,
-				in alsCells,
-				in ahsCells,
+				alsCells,
+				ahsCells,
 				valueCellNodes.Length != 0
 			);
 

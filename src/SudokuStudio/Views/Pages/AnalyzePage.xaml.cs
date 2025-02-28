@@ -830,7 +830,7 @@ public sealed partial class AnalyzePage : Page
 				lock (AnalyzingRelatedSyncRoot)
 				{
 					return analyzer.Analyze(
-						in puzzle,
+						puzzle,
 						new Progress<StepGathererProgressPresenter>(
 							progress => DispatcherQueue.TryEnqueue(
 								() =>
@@ -1033,7 +1033,7 @@ public sealed partial class AnalyzePage : Page
 		dataPackage.SetText(
 			flag != SudokuFormatFlags.HodokuCompatibleFormat
 				? puzzle.ToString(flag.GetConverter())
-				: HodokuCompatibility.GetHodokuLibraryFormat(in puzzle, VisualUnit as Step)
+				: HodokuCompatibility.GetHodokuLibraryFormat(puzzle, VisualUnit as Step)
 		);
 		Clipboard.SetContent(dataPackage);
 	}

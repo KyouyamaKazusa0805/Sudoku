@@ -33,11 +33,11 @@ public static class CellMapEnumerable
 	/// <param name="grid">The grid to be used.</param>
 	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found cell or -1 if none found.</returns>
-	public static Cell First(this in CellMap @this, ref readonly Grid grid, CellMapPredicate match)
+	public static Cell First(this in CellMap @this, in Grid grid, CellMapPredicate match)
 	{
 		foreach (var cell in @this.Offsets)
 		{
-			if (match(cell, in grid))
+			if (match(cell, grid))
 			{
 				return cell;
 			}
@@ -121,7 +121,7 @@ public static class CellMapEnumerable
 		{
 			ref readonly var key = ref kvp.KeyRef();
 			ref readonly var value = ref kvp.ValueRef();
-			result[i++] = new(key, in value);
+			result[i++] = new(key, value);
 		}
 		return result;
 	}

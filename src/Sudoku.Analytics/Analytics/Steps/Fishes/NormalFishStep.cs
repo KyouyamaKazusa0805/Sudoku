@@ -19,10 +19,10 @@ public sealed class NormalFishStep(
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
-	ref readonly CellMap fins,
+	in CellMap fins,
 	bool? isSashimi,
 	bool isSiamese = false
-) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, in fins, isSashimi, isSiamese)
+) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, fins, isSashimi, isSiamese)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 32;

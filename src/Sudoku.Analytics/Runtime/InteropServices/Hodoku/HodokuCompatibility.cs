@@ -23,7 +23,7 @@ public static class HodokuCompatibility
 	/// <param name="grid">The grid.</param>
 	/// <param name="step">The corresponding step.</param>
 	/// <returns>The library format.</returns>
-	public static string GetHodokuLibraryFormat(ref readonly Grid grid, Step? step)
+	public static string GetHodokuLibraryFormat(in Grid grid, Step? step)
 	{
 		if (step is null)
 		{

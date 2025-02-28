@@ -24,7 +24,7 @@ public partial class UniqueRectangleStepSearcher
 	///  ab   ab
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType1(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType1(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index)
 	{
 		// Get the summary mask.
 		var mask = grid[otherCellsMap];
@@ -106,7 +106,7 @@ public partial class UniqueRectangleStepSearcher
 	///  ab    ab
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType2(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType2(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		// Get the summary mask.
 		var mask = grid[otherCellsMap];
@@ -207,7 +207,7 @@ public partial class UniqueRectangleStepSearcher
 	///  abx   aby
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType3(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType3(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		var notSatisfiedType3 = false;
 		foreach (var cell in otherCellsMap)
@@ -346,7 +346,7 @@ public partial class UniqueRectangleStepSearcher
 	///  abx  aby
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType4(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType4(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -356,7 +356,7 @@ public partial class UniqueRectangleStepSearcher
 		var house = otherCellsMap.FirstSharedHouse;
 		foreach (var digit in (d1, d2))
 		{
-			if (!IsConjugatePair(digit, in otherCellsMap, house))
+			if (!IsConjugatePair(digit, otherCellsMap, house))
 			{
 				continue;
 			}
@@ -448,7 +448,7 @@ public partial class UniqueRectangleStepSearcher
 	///  abc  abc
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType5(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType5(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -544,7 +544,7 @@ public partial class UniqueRectangleStepSearcher
 	///        ↑corner2
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType6(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType6(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -561,15 +561,15 @@ public partial class UniqueRectangleStepSearcher
 		{
 			foreach (var (h1, h2) in ((r1, r2), (c1, c2)))
 			{
-				collectCore(in grid, ref context, in otherCellsMap, h1 is >= 9 and < 18, digit, h1, h2);
+				collectCore(grid, ref context, otherCellsMap, h1 is >= 9 and < 18, digit, h1, h2);
 			}
 		}
 
 
 		void collectCore(
-			ref readonly Grid grid,
+			in Grid grid,
 			ref StepAnalysisContext context,
-			ref readonly CellMap otherCellsMap,
+			in CellMap otherCellsMap,
 			bool isRow,
 			Digit digit,
 			House house1,
@@ -664,7 +664,7 @@ public partial class UniqueRectangleStepSearcher
 	///  aby  abz
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckHidden(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckHidden(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, in CellMap otherCellsMap, int index)
 	{
 		var cells = urCells.AsCellMap();
 		if (!arMode && grid.GetCandidates(cornerCell) != comparer || arMode && (EmptyCells & cells) != otherCellsMap)
@@ -686,7 +686,7 @@ public partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			if (!IsConjugatePair(digit, in map1, m1cl) || !IsConjugatePair(digit, in map2, m2cl))
+			if (!IsConjugatePair(digit, map1, m1cl) || !IsConjugatePair(digit, map2, m2cl))
 			{
 				continue;
 			}

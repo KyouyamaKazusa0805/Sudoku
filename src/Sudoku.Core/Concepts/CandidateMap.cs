@@ -369,8 +369,8 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	public readonly string ToString(IFormatProvider? formatProvider)
 		=> formatProvider switch
 		{
-			CandidateMapFormatInfo i => i.FormatCore(in this),
-			_ => CoordinateConverter.GetInstance(formatProvider).CandidateConverter(in this)
+			CandidateMapFormatInfo i => i.FormatCore(this),
+			_ => CoordinateConverter.GetInstance(formatProvider).CandidateConverter(this)
 		};
 
 	/// <inheritdoc/>

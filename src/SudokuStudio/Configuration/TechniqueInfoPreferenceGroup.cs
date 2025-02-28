@@ -42,7 +42,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 			return new(value, directRating, technique.GetDifficultyLevel());
 		}
 
-		static TechniqueData dataModifier(ref readonly TechniqueData data, int value) => data with { Rating = value };
+		static TechniqueData dataModifier(in TechniqueData data, int value) => data with { Rating = value };
 	}
 
 	/// <summary>
@@ -58,7 +58,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 		static TechniqueData dataCreator(Technique technique, int value)
 			=> new(technique.GetDefaultRating(out _), value, technique.GetDifficultyLevel());
 
-		static TechniqueData dataModifier(ref readonly TechniqueData data, int value) => data with { DirectRating = value };
+		static TechniqueData dataModifier(in TechniqueData data, int value) => data with { DirectRating = value };
 	}
 
 	/// <summary>
@@ -77,7 +77,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 			return new(rating, directRating, value);
 		}
 
-		static TechniqueData dataModifier(ref readonly TechniqueData data, DifficultyLevel value) => data with { Level = value };
+		static TechniqueData dataModifier(in TechniqueData data, DifficultyLevel value) => data with { Level = value };
 	}
 
 
@@ -93,14 +93,14 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 		Technique technique,
 		T value,
 		delegate*<Technique, T, TechniqueData> dataCreator,
-		delegate*<ref readonly TechniqueData, T, TechniqueData> dataModifier
+		delegate*<in TechniqueData, T, TechniqueData> dataModifier
 	) where T : allows ref struct
 	{
-		ref var data = ref CustomizedTechniqueData.GetValueRef(in technique);
+		ref var data = ref CustomizedTechniqueData.GetValueRef(technique);
 		var isNullRef = Unsafe.IsNullRef(in data);
 		var a = valueUpdaterWhenNullRef;
 		var b = valueUpdaterWhenNotNullRef;
-		(isNullRef ? a : b)(ref data, isNullRef ? dataCreator(technique, value) : dataModifier(in data, value));
+		(isNullRef ? a : b)(ref data, isNullRef ? dataCreator(technique, value) : dataModifier(data, value));
 
 
 		void valueUpdaterWhenNullRef(ref TechniqueData data, TechniqueData newData) => CustomizedTechniqueData.Add(technique, newData);

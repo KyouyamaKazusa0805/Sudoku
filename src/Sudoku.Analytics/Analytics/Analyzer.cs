@@ -200,7 +200,7 @@ public sealed class Analyzer :
 
 	/// <inheritdoc/>
 	public AnalysisResult Analyze(
-		ref readonly Grid grid,
+		in Grid grid,
 		IProgress<StepGathererProgressPresenter>? progress = null,
 		CancellationToken cancellationToken = default
 	)
@@ -213,7 +213,7 @@ public sealed class Analyzer :
 
 		IStepGatherer<Analyzer, AnalysisResult>.ApplySetters(this);
 
-		var result = new AnalysisResult(in puzzle) { IsSolved = false };
+		var result = new AnalysisResult(puzzle) { IsSolved = false };
 		var solution = puzzle.GetSolutionGrid();
 
 		// #1 Memory usage snapshot
@@ -224,7 +224,7 @@ public sealed class Analyzer :
 			{
 				// We should check whether the puzzle is a GSP firstly.
 				// This method doesn't check for Sukaku puzzles, or ones containing multiple solutions.
-				SymmetryInferrer.TryInfer(in puzzle, out var triplet);
+				SymmetryInferrer.TryInfer(puzzle, out var triplet);
 				var (symmetricType, mappingDigits, selfPairedDigitsMask) = triplet;
 
 				try
@@ -232,8 +232,8 @@ public sealed class Analyzer :
 					// Here 'puzzle' may contains multiple solutions, so 'solution' may equal to 'Grid.Undefined'.
 					// We will defer the checking inside this method stackframe.
 					return result = analyzeInternal(
-						in puzzle,
-						in solution,
+						puzzle,
+						solution,
 						result,
 						symmetricType,
 						mappingDigits,
@@ -276,8 +276,8 @@ public sealed class Analyzer :
 
 
 		AnalysisResult analyzeInternal(
-			ref readonly Grid puzzle,
-			ref readonly Grid solution,
+			in Grid puzzle,
+			in Grid solution,
 			AnalysisResult resultBase,
 			SymmetricType symmetricType,
 			ReadOnlySpan<Digit?> mappingDigits,
@@ -307,9 +307,9 @@ public sealed class Analyzer :
 				context.GspPatternInferred = symmetricType;
 				context.MappingRelations = mappingDigits;
 
-				if (SymmetryInferrer.GetStep(in playground, Options) is { } step)
+				if (SymmetryInferrer.GetStep(playground, Options) is { } step)
 				{
-					if (verifyConclusionValidity(null, in solution, step))
+					if (verifyConclusionValidity(null, solution, step))
 					{
 						if (onCollectingSteps(
 							collectedSteps, step, in context, ref playground, timestampOriginal,
@@ -320,13 +320,13 @@ public sealed class Analyzer :
 					}
 					else
 					{
-						throw new WrongStepException(in playground, step);
+						throw new WrongStepException(playground, step);
 					}
 				}
 			}
 
 		FindNextStep:
-			Initialize(this, in playground, in solution);
+			Initialize(this, playground, solution);
 
 			string progressedStepSearcherName;
 			foreach (var searcher in stepSearchers)
@@ -417,9 +417,9 @@ public sealed class Analyzer :
 						{
 							foreach (var step in chosenSteps)
 							{
-								if (!verifyConclusionValidity(searcher, in solution, step))
+								if (!verifyConclusionValidity(searcher, solution, step))
 								{
-									throw new WrongStepException(in playground, step);
+									throw new WrongStepException(playground, step);
 								}
 
 								if (onCollectingSteps(
@@ -433,9 +433,9 @@ public sealed class Analyzer :
 						else
 						{
 							var chosenStep = RandomizedChoosing ? chosenSteps[_random.Next(0, chosenSteps.Count)] : chosenSteps[0];
-							if (!verifyConclusionValidity(searcher, in solution, chosenStep))
+							if (!verifyConclusionValidity(searcher, solution, chosenStep))
 							{
-								throw new WrongStepException(in playground, chosenStep);
+								throw new WrongStepException(playground, chosenStep);
 							}
 
 							if (onCollectingSteps(
@@ -460,9 +460,9 @@ public sealed class Analyzer :
 
 						// Here will fetch a correct step to be applied.
 						var chosenStep = accumulator[_random.Next(0, accumulator.Count)];
-						if (!verifyConclusionValidity(searcher, in solution, chosenStep))
+						if (!verifyConclusionValidity(searcher, solution, chosenStep))
 						{
-							throw new WrongStepException(in playground, chosenStep);
+							throw new WrongStepException(playground, chosenStep);
 						}
 
 						if (onCollectingSteps(
@@ -506,9 +506,9 @@ public sealed class Analyzer :
 
 						// Here will fetch a correct step to be applied.
 						var chosenStep = temp[_random.Next(0, temp.Count)];
-						if (!verifyConclusionValidity(searcher, in solution, chosenStep))
+						if (!verifyConclusionValidity(searcher, solution, chosenStep))
 						{
-							throw new WrongStepException(in playground, chosenStep);
+							throw new WrongStepException(playground, chosenStep);
 						}
 
 						if (onCollectingSteps(
@@ -534,9 +534,9 @@ public sealed class Analyzer :
 						{
 							// Here will fetch a correct step to be applied.
 							var chosenStep = accumulator[_random.Next(0, accumulator.Count)];
-							if (!verifyConclusionValidity(searcher, in solution, chosenStep))
+							if (!verifyConclusionValidity(searcher, solution, chosenStep))
 							{
-								throw new WrongStepException(in playground, chosenStep);
+								throw new WrongStepException(playground, chosenStep);
 							}
 
 							if (onCollectingSteps(
@@ -550,9 +550,9 @@ public sealed class Analyzer :
 						{
 							foreach (var foundStep in accumulator)
 							{
-								if (!verifyConclusionValidity(searcher, in solution, foundStep))
+								if (!verifyConclusionValidity(searcher, solution, foundStep))
 								{
-									throw new WrongStepException(in playground, foundStep);
+									throw new WrongStepException(playground, foundStep);
 								}
 
 								if (onCollectingSteps(
@@ -578,7 +578,7 @@ public sealed class Analyzer :
 							}
 							case var foundStep:
 							{
-								if (verifyConclusionValidity(searcher, in solution, foundStep))
+								if (verifyConclusionValidity(searcher, solution, foundStep))
 								{
 									if (onCollectingSteps(
 										collectedSteps, foundStep, in context, ref playground, timestampOriginal, stepGrids,
@@ -589,7 +589,7 @@ public sealed class Analyzer :
 								}
 								else
 								{
-									throw new WrongStepException(in playground, foundStep);
+									throw new WrongStepException(playground, foundStep);
 								}
 
 								// The puzzle has not been finished, we should turn to the first step finder
@@ -619,7 +619,7 @@ public sealed class Analyzer :
 			goto FindNextStep;
 
 
-			static bool verifyConclusionValidity(StepSearcher? searcher, ref readonly Grid solution, Step step)
+			static bool verifyConclusionValidity(StepSearcher? searcher, in Grid solution, Step step)
 			{
 				if (searcher?.Metadata.SkipVerificationOnConclusions ?? false)
 				{
@@ -693,7 +693,7 @@ public sealed class Analyzer :
 			FinalCheck:
 				if (atLeastOneConclusionIsWorth)
 				{
-					steppingGrids.AddRef(in playground);
+					steppingGrids.AddRef(playground);
 					playground.Apply(step);
 					steps.Add(step);
 
@@ -733,7 +733,7 @@ public sealed class Analyzer :
 
 	/// <inheritdoc/>
 	AnalysisResult meta_analysis::IAnalyzer<Analyzer, AnalysisResult, Grid, Step>.Analyze(Grid board, CancellationToken cancellationToken)
-		=> Analyze(in board, cancellationToken: cancellationToken);
+		=> Analyze(board, cancellationToken: cancellationToken);
 
 
 	/// <summary>

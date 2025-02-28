@@ -38,7 +38,7 @@ public sealed class UniqueRectangleSameDigitChainingRule : UniqueRectangleChaini
 			foreach (var digitPair in grid[urCells].GetAllSets().GetSubsets(2))
 			{
 				var (d1, d2) = (digitPair[0], digitPair[1]);
-				if (!UniqueRectanglePattern.CanMakeDeadlyPattern(in grid, d1, d2, pattern))
+				if (!UniqueRectanglePattern.CanMakeDeadlyPattern(grid, d1, d2, pattern))
 				{
 					continue;
 				}
@@ -50,7 +50,7 @@ public sealed class UniqueRectangleSameDigitChainingRule : UniqueRectangleChaini
 					continue;
 				}
 
-				var ur = new UniqueRectanglePattern(in urCells, urDigitsMask, otherDigitsMask);
+				var ur = new UniqueRectanglePattern(urCells, urDigitsMask, otherDigitsMask);
 
 				var otherOnlyDigit = Mask.Log2(otherDigitsMask);
 				var cellsContainingThisDigit = __CandidatesMap[otherOnlyDigit] & urCells;

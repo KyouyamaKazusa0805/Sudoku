@@ -49,7 +49,7 @@ public abstract class ComplexSingleGenerator : TechniqueGenerator, IJustOneCellG
 				return false;
 			}
 
-			switch (Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken))
+			switch (Analyzer.Analyze(puzzle, cancellationToken: cancellationToken))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{
@@ -85,7 +85,7 @@ public abstract class ComplexSingleGenerator : TechniqueGenerator, IJustOneCellG
 		while (true)
 		{
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
-			switch (Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken))
+			switch (Analyzer.Analyze(puzzle, cancellationToken: cancellationToken))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{
@@ -99,7 +99,7 @@ public abstract class ComplexSingleGenerator : TechniqueGenerator, IJustOneCellG
 						if (StepFilter(s))
 						{
 							// Reserves the given cells that are used in the pattern.
-							var reservedCells = InterimCellsCreator(in g, s);
+							var reservedCells = InterimCellsCreator(g, s);
 							var r = Grid.Empty;
 							foreach (var cell in reservedCells)
 							{

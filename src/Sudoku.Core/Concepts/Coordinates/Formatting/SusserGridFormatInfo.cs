@@ -66,14 +66,14 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 	/// <inheritdoc/>
 	protected internal override string FormatCore(in Grid grid)
 	{
-		return b(in grid) is var r && IsCompatibleMode
+		return b(grid) is var r && IsCompatibleMode
 			? $":0000:x:{r}{new(':', 3)}"
 			: OnlyEliminations
 				? EliminationPattern.Match(r) is { Success: true, Value: var value } ? value : string.Empty
 				: r;
 
 
-		string b(ref readonly Grid grid)
+		string b(in Grid grid)
 		{
 			var thisCopied = Clone();
 			thisCopied.WithCandidates = false;
@@ -81,7 +81,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 			var sb = new StringBuilder(162);
 			var originalGrid = this switch
 			{
-				{ WithCandidates: true, ShortenSusser: false } => Grid.Parse(thisCopied.FormatCore(in grid)),
+				{ WithCandidates: true, ShortenSusser: false } => Grid.Parse(thisCopied.FormatCore(grid)),
 				_ => Grid.Undefined
 			};
 
@@ -141,7 +141,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 			}
 
 			var elimsStr = (
-				NegateEliminationsTripletRule ? eliminatedCandidates : negateElims(in grid, in eliminatedCandidates)
+				NegateEliminationsTripletRule ? eliminatedCandidates : negateElims(grid, eliminatedCandidates)
 			).ToString(new HodokuTripletCandidateMapFormatInfo());
 			var @base = sb.ToString();
 			var final = ShortenSusser
@@ -150,7 +150,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 			return TreatValueAsGiven ? final.RemoveAll('+') : final;
 		}
 
-		static CandidateMap negateElims(ref readonly Grid grid, ref readonly CandidateMap eliminatedCandidates)
+		static CandidateMap negateElims(in Grid grid, in CandidateMap eliminatedCandidates)
 		{
 			var eliminatedCandidatesCellDistribution = eliminatedCandidates.CellDistribution;
 			var result = CandidateMap.Empty;

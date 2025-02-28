@@ -24,10 +24,10 @@ public partial struct CandidateMap
 
 
 		/// <inheritdoc cref="object.ToString"/>
-		public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is BackingBuffer comparer && Equals(in comparer);
+		public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is BackingBuffer comparer && Equals(comparer);
 
 		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-		public readonly bool Equals(ref readonly BackingBuffer other)
+		public readonly bool Equals(in BackingBuffer other)
 		{
 			var thisVectors = Vectors;
 			var otherVectors = other.Vectors;
@@ -52,7 +52,7 @@ public partial struct CandidateMap
 
 		/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(in BackingBuffer left, in BackingBuffer right) => left.Equals(in right);
+		public static bool operator ==(in BackingBuffer left, in BackingBuffer right) => left.Equals(right);
 
 		/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

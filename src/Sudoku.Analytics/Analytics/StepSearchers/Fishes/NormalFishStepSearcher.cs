@@ -123,14 +123,14 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		// Core invocation.
 		for (var size = 2; size <= 4; size++)
 		{
-			Collect(accumulator, in grid, ref context, size, r, c, false, true);
-			Collect(accumulator, in grid, ref context, size, r, c, false, false);
-			Collect(accumulator, in grid, ref context, size, r, c, true, true);
-			Collect(accumulator, in grid, ref context, size, r, c, true, false);
+			Collect(accumulator, grid, ref context, size, r, c, false, true);
+			Collect(accumulator, grid, ref context, size, r, c, false, false);
+			Collect(accumulator, grid, ref context, size, r, c, true, true);
+			Collect(accumulator, grid, ref context, size, r, c, true, false);
 		}
 
 		// For Siamese fish, we should manually deal with them.
-		var siameses = AllowSiamese ? Siamese.Fish.GetSiamese(accumulator, in grid) : [];
+		var siameses = AllowSiamese ? Siamese.Fish.GetSiamese(accumulator, grid) : [];
 		if (context.OnlyFindOne)
 		{
 			return siameses is [var siamese, ..] ? siamese : accumulator is [var normal, ..] ? normal : null;
@@ -166,7 +166,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// <returns>The first found step.</returns>
 	private unsafe void Collect(
 		List<FishStep> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		int size,
 		House** r,
@@ -275,14 +275,14 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 									.. from baseSet in bs select new HouseViewNode(ColorIdentifier.Normal, baseSet),
 									.. from coverSet in cs select new HouseViewNode(ColorIdentifier.Auxiliary2, coverSet),
 								],
-								GetDirectView(digit, bs, cs, in fins, searchRow)
+								GetDirectView(digit, bs, cs, fins, searchRow)
 							],
 							context.Options,
 							digit,
 							HouseMaskOperations.Create(bs),
 							HouseMaskOperations.Create(cs),
-							in fins,
-							Sashimi.IsSashimi(bs, in fins, digit)
+							fins,
+							Sashimi.IsSashimi(bs, fins, digit)
 						)
 					);
 				}
@@ -299,7 +299,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// <param name="fins">The cells of the fin in the current fish.</param>
 	/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 	/// <returns>The view.</returns>
-	private static View GetDirectView(Digit digit, House[] baseSets, House[] coverSets, ref readonly CellMap fins, bool searchRow)
+	private static View GetDirectView(Digit digit, House[] baseSets, House[] coverSets, in CellMap fins, bool searchRow)
 	{
 		var cellOffsets = new List<CellViewNode>();
 		foreach (var baseSet in baseSets)

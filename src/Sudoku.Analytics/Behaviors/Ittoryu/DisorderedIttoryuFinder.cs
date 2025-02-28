@@ -32,7 +32,7 @@ public sealed partial class DisorderedIttoryuFinder([Property] params TechniqueS
 	/// <returns>
 	/// The target digit path. If none found, a longest path will be returned.
 	/// </returns>
-	public DisorderedIttoryuDigitPath FindPath(ref readonly Grid grid, CancellationToken cancellationToken = default)
+	public DisorderedIttoryuDigitPath FindPath(in Grid grid, CancellationToken cancellationToken = default)
 	{
 		var digitsStack = new Stack<Digit>();
 		try
@@ -86,9 +86,9 @@ public sealed partial class DisorderedIttoryuFinder([Property] params TechniqueS
 			{
 				// If the current digit is not completed, we should continue searching for this digit.
 				var tempNodes = new List<IttoryuPathNode>(16);
-				fullHouses(in grid, tempNodes, digit);
-				hiddenSingles(in grid, tempNodes, digit);
-				nakedSingles(in grid, tempNodes, digit);
+				fullHouses(grid, tempNodes, digit);
+				hiddenSingles(grid, tempNodes, digit);
+				nakedSingles(grid, tempNodes, digit);
 
 				dfs(grid, digit, digitsStack, [.. tempNodes], finishedDigits);
 			}
@@ -110,9 +110,9 @@ public sealed partial class DisorderedIttoryuFinder([Property] params TechniqueS
 				var tempNodes = new List<IttoryuPathNode>(16);
 				foreach (var anotherDigit in (Mask)(Grid.MaxCandidatesMask & ~finishedDigits))
 				{
-					fullHouses(in grid, tempNodes, anotherDigit);
-					hiddenSingles(in grid, tempNodes, anotherDigit);
-					nakedSingles(in grid, tempNodes, anotherDigit);
+					fullHouses(grid, tempNodes, anotherDigit);
+					hiddenSingles(grid, tempNodes, anotherDigit);
+					nakedSingles(grid, tempNodes, anotherDigit);
 				}
 
 				// Iterate on found path nodes.
@@ -134,7 +134,7 @@ public sealed partial class DisorderedIttoryuFinder([Property] params TechniqueS
 			cancellationToken.ThrowIfCancellationRequested();
 		}
 
-		void fullHouses(ref readonly Grid grid, List<IttoryuPathNode> foundNodes, Digit digit)
+		void fullHouses(in Grid grid, List<IttoryuPathNode> foundNodes, Digit digit)
 		{
 			if (!SupportedTechniques.Contains(Technique.FullHouse))
 			{
@@ -147,12 +147,12 @@ public sealed partial class DisorderedIttoryuFinder([Property] params TechniqueS
 				if ((emptyCells & HousesMap[house]) is [var fullHouseCell]
 					&& Mask.TrailingZeroCount(grid.GetCandidates(fullHouseCell)) == digit)
 				{
-					foundNodes.Add(new(in grid, house, fullHouseCell * 9 + digit));
+					foundNodes.Add(new(grid, house, fullHouseCell * 9 + digit));
 				}
 			}
 		}
 
-		void hiddenSingles(ref readonly Grid grid, List<IttoryuPathNode> foundNodes, Digit digit)
+		void hiddenSingles(in Grid grid, List<IttoryuPathNode> foundNodes, Digit digit)
 		{
 			var candidatesMap = grid.CandidatesMap;
 			for (var house = 0; house < 27; house++)
@@ -170,12 +170,12 @@ public sealed partial class DisorderedIttoryuFinder([Property] params TechniqueS
 
 				if ((HousesMap[house] & candidatesMap[digit]) / house is var mask && Mask.IsPow2(mask))
 				{
-					foundNodes.Add(new(in grid, house, HousesCells[house][Mask.Log2(mask)] * 9 + digit));
+					foundNodes.Add(new(grid, house, HousesCells[house][Mask.Log2(mask)] * 9 + digit));
 				}
 			}
 		}
 
-		void nakedSingles(ref readonly Grid grid, List<IttoryuPathNode> foundNodes, Digit digit)
+		void nakedSingles(in Grid grid, List<IttoryuPathNode> foundNodes, Digit digit)
 		{
 			if (!SupportedTechniques.Contains(Technique.NakedSingle))
 			{
@@ -186,7 +186,7 @@ public sealed partial class DisorderedIttoryuFinder([Property] params TechniqueS
 			{
 				if (grid.GetCandidates(cell) == 1 << digit)
 				{
-					foundNodes.Add(new(in grid, -1, cell * 9 + digit));
+					foundNodes.Add(new(grid, -1, cell * 9 + digit));
 				}
 			}
 		}

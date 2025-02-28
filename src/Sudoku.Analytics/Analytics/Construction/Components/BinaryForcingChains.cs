@@ -73,7 +73,7 @@ public sealed partial class BinaryForcingChains(
 	}
 
 	/// <inheritdoc/>
-	ReadOnlySpan<ViewNode[]> IForcingChains.GetViewsCore(ref readonly Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions)
+	ReadOnlySpan<ViewNode[]> IForcingChains.GetViewsCore(in Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions)
 	{
 		var result = new ViewNode[3][];
 		var i = 0;

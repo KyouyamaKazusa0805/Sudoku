@@ -20,9 +20,9 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap cells,
-	[Property] ref readonly CellMap guardianCells,
-	[Property] ref readonly CellMap cellPair,
+	in CellMap cells,
+	[Property] in CellMap guardianCells,
+	[Property] in CellMap cellPair,
 	[Property] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
@@ -34,7 +34,7 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 		isAvoidable ? Technique.AvoidableRectangleExternalXyWing : Technique.UniqueRectangleExternalXyWing,
 		digit1,
 		digit2,
-		in cells,
+		cells,
 		isAvoidable,
 		absoluteOffset
 	),

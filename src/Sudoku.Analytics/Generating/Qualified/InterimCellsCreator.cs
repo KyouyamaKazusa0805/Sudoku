@@ -6,4 +6,4 @@ namespace Sudoku.Generating.Qualified;
 /// <param name="grid">The grid to be used.</param>
 /// <param name="step">The step.</param>
 /// <returns>A <see cref="CellMap"/> indicating the result.</returns>
-public delegate CellMap InterimCellsCreator(ref readonly Grid grid, Step step);
+public delegate CellMap InterimCellsCreator(in Grid grid, Step step);

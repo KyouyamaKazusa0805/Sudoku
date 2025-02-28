@@ -219,7 +219,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		_puzzle = Grid.Empty;
 
-		UpdateCellData(in _puzzle);
+		UpdateCellData(_puzzle);
 		InitializeEvents();
 	}
 
@@ -392,7 +392,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		set
 		{
-			SetPuzzleInternal(in value, PuzzleUpdatingMethod.Programmatic, true);
+			SetPuzzleInternal(value, PuzzleUpdatingMethod.Programmatic, true);
 			GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Replacing, value));
 		}
 	}
@@ -704,7 +704,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		var target = _undoStack.Pop();
 
-		SetPuzzleCore(in target, new(PuzzleUpdatingMethod.UserUpdating, false, true));
+		SetPuzzleCore(target, new(PuzzleUpdatingMethod.UserUpdating, false, true));
 
 		GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Undoing, target));
 	}
@@ -732,7 +732,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		var target = _redoStack.Pop();
 
-		SetPuzzleCore(in target, new(PuzzleUpdatingMethod.UserUpdating, false, true));
+		SetPuzzleCore(target, new(PuzzleUpdatingMethod.UserUpdating, false, true));
 
 		GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Redoing, target));
 	}
@@ -749,7 +749,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		var conclusion = (Conclusion)(isSet ? new(Assignment, cell, digit) : new(Elimination, cell, digit));
 		puzzle.Apply(conclusion);
 
-		SetPuzzleInternal(in puzzle, PuzzleUpdatingMethod.UserUpdating);
+		SetPuzzleInternal(puzzle, PuzzleUpdatingMethod.UserUpdating);
 		GridUpdated?.Invoke(this, new(isSet ? GridUpdatedBehavior.Assignment : GridUpdatedBehavior.Elimination, cell * 9 + digit));
 	}
 
@@ -757,7 +757,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Try to update grid state.
 	/// </summary>
 	/// <param name="newGrid">The new grid to be used for assigning to the target.</param>
-	public void UpdateGrid(in Grid newGrid) => SetPuzzleInternal(in newGrid, PuzzleUpdatingMethod.Programmatic);
+	public void UpdateGrid(in Grid newGrid) => SetPuzzleInternal(newGrid, PuzzleUpdatingMethod.Programmatic);
 
 	/// <summary>
 	/// <para>Triggers <see cref="GridUpdated"/> event.</para>
@@ -786,8 +786,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Indicates whether undoing and redoing stacks should be cleared. The default value is <see langword="false"/>.
 	/// </param>
 	/// <seealso cref="SudokuPaneCell"/>
-	internal void SetPuzzleInternal(ref readonly Grid value, PuzzleUpdatingMethod method, bool clearStack = false)
-		=> SetPuzzleCore(in value, new(method, clearStack, false));
+	internal void SetPuzzleInternal(in Grid value, PuzzleUpdatingMethod method, bool clearStack = false)
+		=> SetPuzzleCore(value, new(method, clearStack, false));
 
 	/// <summary>
 	/// To initialize children controls for <see cref="_children"/>.
@@ -922,7 +922,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <seealso cref="_children"/>
-	private void UpdateCellData(ref readonly Grid grid)
+	private void UpdateCellData(in Grid grid)
 	{
 		for (var i = 0; i < 81; i++)
 		{
@@ -937,10 +937,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// and two parameters indicating the details of the current updating operation.
 	/// </summary>
 	/// <param name="value">
-	/// <inheritdoc cref="SetPuzzleInternal(ref readonly Grid, PuzzleUpdatingMethod, bool)" path="/param[@name='value']"/>
+	/// <inheritdoc cref="SetPuzzleInternal(in Grid, PuzzleUpdatingMethod, bool)" path="/param[@name='value']"/>
 	/// </param>
 	/// <param name="data">The details of updating.</param>
-	private void SetPuzzleCore(ref readonly Grid value, GridUpdatingDetails data)
+	private void SetPuzzleCore(in Grid value, GridUpdatingDetails data)
 	{
 		var (method, clearStack, whileUndoingOrRedoing) = data;
 
@@ -968,7 +968,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		// Assigns the puzzle.
 		_puzzle = value;
 
-		UpdateCellData(in value);
+		UpdateCellData(value);
 		switch (clearStack, whileUndoingOrRedoing)
 		{
 			case (true, _) when EnableUndoRedoStacking:
@@ -1001,7 +1001,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		if (value.IsSolved)
 		{
-			PuzzleCompleted?.Invoke(this, new(in value));
+			PuzzleCompleted?.Invoke(this, new(value));
 		}
 	}
 
@@ -1234,7 +1234,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 						{
 							Action eventHandler = SudokuFileHandler.Read(filePath) switch
 							{
-							[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
+								[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
 								_ => () => ReceivedDroppedFileFailed?.Invoke(this, new(ReceivedDroppedFileFailedReason.FileCannotBeParsed))
 							};
 							eventHandler();
@@ -1286,7 +1286,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				var modified = Puzzle;
 				modified.SetDigit(cell, -1);
 				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Clear, cell));
-				SetPuzzleInternal(in modified, PuzzleUpdatingMethod.UserUpdating);
+				SetPuzzleInternal(modified, PuzzleUpdatingMethod.UserUpdating);
 				break;
 			}
 
@@ -1295,7 +1295,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			{
 				var modified = Puzzle;
 				modified.SetExistence(cell, digit, false);
-				SetPuzzleInternal(in modified, PuzzleUpdatingMethod.UserUpdating);
+				SetPuzzleInternal(modified, PuzzleUpdatingMethod.UserUpdating);
 				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Elimination, cell * 9 + digit));
 				break;
 			}
@@ -1319,7 +1319,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				}
 
 				modified.SetDigit(cell, digit);
-				SetPuzzleInternal(in modified, PuzzleUpdatingMethod.UserUpdating);
+				SetPuzzleInternal(modified, PuzzleUpdatingMethod.UserUpdating);
 				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Assignment, cell * 9 + digit));
 				break;
 			}
@@ -1353,7 +1353,7 @@ file static class Extensions
 
 					if (map)
 					{
-						result.AddRef(in map);
+						result.AddRef(map);
 						continue;
 					}
 					break;
@@ -1378,7 +1378,7 @@ file static class Extensions
 
 					if (map)
 					{
-						result.AddRef(in map);
+						result.AddRef(map);
 						continue;
 					}
 					break;

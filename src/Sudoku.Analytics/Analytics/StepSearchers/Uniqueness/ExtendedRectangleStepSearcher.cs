@@ -91,13 +91,13 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 				if (extraCellsMap.Count == 1)
 				{
-					if (CheckType1(accumulator, in grid, ref context, in patternCells, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step1)
+					if (CheckType1(accumulator, grid, ref context, patternCells, extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step1)
 					{
 						return step1;
 					}
 				}
 
-				if (CheckType2(accumulator, in grid, ref context, in patternCells, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step2)
+				if (CheckType2(accumulator, grid, ref context, patternCells, extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step2)
 				{
 					return step2;
 				}
@@ -123,14 +123,14 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				}
 
 				if (CheckType3Naked(
-					accumulator, in grid, ref context, in patternCells, normalDigits,
-					extraDigits, in extraCellsMap, isFatType, onlyFindOne
+					accumulator, grid, ref context, patternCells, normalDigits,
+					extraDigits, extraCellsMap, isFatType, onlyFindOne
 				) is { } step3)
 				{
 					return step3;
 				}
 
-				if (CheckType14(accumulator, in grid, ref context, in patternCells, normalDigits, in extraCellsMap, onlyFindOne) is { } step14)
+				if (CheckType14(accumulator, grid, ref context, patternCells, normalDigits, extraCellsMap, onlyFindOne) is { } step14)
 				{
 					return step14;
 				}
@@ -154,10 +154,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private ExtendedRectangleType1Step? CheckType1(
 		List<Step> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
-		ref readonly CellMap patternCells,
-		ref readonly CellMap extraCells,
+		in CellMap patternCells,
+		in CellMap extraCells,
 		Mask normalDigits,
 		Digit extraDigit,
 		bool onlyFindOne
@@ -194,7 +194,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[[.. candidateOffsets]],
 			context.Options,
-			in patternCells,
+			patternCells,
 			normalDigits
 		);
 		if (onlyFindOne)
@@ -222,10 +222,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private ExtendedRectangleType2Step? CheckType2(
 		List<Step> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
-		ref readonly CellMap patternCells,
-		ref readonly CellMap extraCells,
+		in CellMap patternCells,
+		in CellMap extraCells,
 		Mask normalDigits,
 		Digit extraDigit,
 		bool onlyFindOne
@@ -249,7 +249,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			(from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)).ToArray(),
 			[[.. candidateOffsets]],
 			context.Options,
-			in patternCells,
+			patternCells,
 			normalDigits,
 			extraDigit
 		);
@@ -279,12 +279,12 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private ExtendedRectangleType3Step? CheckType3Naked(
 		List<Step> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
-		ref readonly CellMap patternCells,
+		in CellMap patternCells,
 		Mask normalDigits,
 		Mask extraDigits,
-		ref readonly CellMap extraCells,
+		in CellMap extraCells,
 		bool isFatType,
 		bool onlyFindOne
 	)
@@ -345,15 +345,15 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 								continue;
 							}
 
-							g(in patternCells, in cells, in extraCells, in grid, mask, out var candidateOffsets);
+							g(patternCells, cells, extraCells, grid, mask, out var candidateOffsets);
 
 							var step = new ExtendedRectangleType3Step(
 								conclusions.AsMemory(),
 								[[.. candidateOffsets, new HouseViewNode(0, house)]],
 								context.Options,
-								in patternCells,
+								patternCells,
 								normalDigits,
-								in cells,
+								cells,
 								mask,
 								house,
 								isCannibalism
@@ -402,15 +402,15 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 								continue;
 							}
 
-							g(in patternCells, in cells, in extraCells, in grid, mask, out var candidateOffsets);
+							g(patternCells, cells, extraCells, grid, mask, out var candidateOffsets);
 
 							var step = new ExtendedRectangleType3Step(
 								(from cell in elimMap select new Conclusion(Elimination, cell * 9 + intersectedDigit)).ToArray(),
 								[[.. candidateOffsets, new HouseViewNode(0, house)]],
 								context.Options,
-								in patternCells,
+								patternCells,
 								normalDigits,
-								in cells,
+								cells,
 								mask,
 								house,
 								isCannibalism
@@ -431,10 +431,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 
 		static void g(
-			ref readonly CellMap patternCells,
-			ref readonly CellMap cells,
-			ref readonly CellMap extraCells,
-			ref readonly Grid grid,
+			in CellMap patternCells,
+			in CellMap cells,
+			in CellMap extraCells,
+			in Grid grid,
 			Mask mask,
 			out List<CandidateViewNode> candidateOffsets
 		)
@@ -482,11 +482,11 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType14(
 		List<Step> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
-		ref readonly CellMap patternCells,
+		in CellMap patternCells,
 		Mask normalDigits,
-		ref readonly CellMap extraCells,
+		in CellMap extraCells,
 		bool onlyFindOne
 	)
 	{
@@ -529,7 +529,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					conclusions.AsMemory(),
 					[[.. candidateOffsets]],
 					context.Options,
-					in patternCells,
+					patternCells,
 					normalDigits
 				);
 				if (onlyFindOne)
@@ -597,7 +597,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 							]
 						],
 						context.Options,
-						in patternCells,
+						patternCells,
 						normalDigits,
 						new(extraCells, conjugateDigit)
 					);

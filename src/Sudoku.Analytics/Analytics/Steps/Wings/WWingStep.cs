@@ -16,7 +16,7 @@ public sealed partial class WWingStep(
 	StepGathererOptions options,
 	[Property] Cell startCell,
 	[Property] Cell endCell,
-	[Property] ref readonly CellMap bridge,
+	[Property] in CellMap bridge,
 	[Property] Mask digitsMask
 ) : IrregularWingStep(conclusions, views, options)
 {

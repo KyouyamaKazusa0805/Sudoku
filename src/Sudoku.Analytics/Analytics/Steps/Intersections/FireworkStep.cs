@@ -12,7 +12,7 @@ public abstract partial class FireworkStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CellMap cells,
+	[Property] in CellMap cells,
 	[Property] Mask digitsMask
 ) : IntersectionStep(conclusions, views, options)
 {

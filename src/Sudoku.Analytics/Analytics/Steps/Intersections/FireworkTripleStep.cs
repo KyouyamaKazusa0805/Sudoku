@@ -14,7 +14,7 @@ public sealed class FireworkTripleStep(
 	StepGathererOptions options,
 	in CellMap cells,
 	Mask digitsMask
-) : FireworkStep(conclusions, views, options, in cells, digitsMask)
+) : FireworkStep(conclusions, views, options, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 1;

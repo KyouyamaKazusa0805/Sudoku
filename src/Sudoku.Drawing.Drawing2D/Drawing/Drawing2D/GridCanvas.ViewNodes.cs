@@ -160,8 +160,8 @@ public partial class GridCanvas
 				{
 					var startCandidates = linkNode.Start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
 					var endCandidates = linkNode.End switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
-					points.Add(_calculator.GetMouseCenter(in startCandidates));
-					points.Add(_calculator.GetMouseCenter(in endCandidates));
+					points.Add(_calculator.GetMouseCenter(startCandidates));
+					points.Add(_calculator.GetMouseCenter(endCandidates));
 					break;
 				}
 				case LinkShape.Cell:
@@ -195,11 +195,11 @@ public partial class GridCanvas
 
 			var pt1 = node.Shape is LinkShape.Chain or LinkShape.ConjugatePair
 				&& start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() } is var startCandidates
-				? _calculator.GetMouseCenter(in startCandidates)
+				? _calculator.GetMouseCenter(startCandidates)
 				: _calculator.GetMousePointInCenter((Cell)start);
 			var pt2 = node.Shape is LinkShape.Chain or LinkShape.ConjugatePair
 				&& end switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() } is var endCandidates
-				? _calculator.GetMouseCenter(in endCandidates)
+				? _calculator.GetMouseCenter(endCandidates)
 				: _calculator.GetMousePointInCenter((Cell)end);
 			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
 

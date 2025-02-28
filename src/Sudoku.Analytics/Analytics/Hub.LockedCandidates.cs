@@ -19,11 +19,11 @@ public partial class Hub
 		/// <returns>A <see cref="bool"/> result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsLockedCandidates(
-			ref readonly Grid grid,
-			ref readonly CellMap a,
-			ref readonly CellMap b,
-			ref readonly CellMap c,
-			ref readonly CellMap emptyCells,
+			in Grid grid,
+			in CellMap a,
+			in CellMap b,
+			in CellMap c,
+			in CellMap emptyCells,
 			out Mask digitsMask
 		)
 		{

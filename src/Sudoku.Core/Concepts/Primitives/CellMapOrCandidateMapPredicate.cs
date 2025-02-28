@@ -13,7 +13,7 @@ namespace Sudoku.Concepts.Primitives;
 /// <param name="offset">The <typeparamref name="TElement"/> offset value to be checked.</param>
 /// <param name="grid">The grid as candidate reference.</param>
 /// <returns>A <see cref="bool"/> result indicating that.</returns>
-public delegate bool CellMapOrCandidateMapPredicate<TSelf, TElement, TEnumerator>(TElement offset, ref readonly Grid grid)
+public delegate bool CellMapOrCandidateMapPredicate<TSelf, TElement, TEnumerator>(TElement offset, in Grid grid)
 	where TSelf : unmanaged, ICellMapOrCandidateMap<TSelf, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TEnumerator : struct, IEnumerator<TElement>, allows ref struct;

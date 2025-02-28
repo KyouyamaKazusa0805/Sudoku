@@ -25,7 +25,7 @@ public partial class UniqueRectangleConjugatePairStep(
 	[Property] Conjugate[] conjugatePairs,
 	int absoluteOffset
 ) :
-	UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset),
+	UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, cells, isAvoidable, absoluteOffset),
 	IConjugatePairTrait
 {
 	/// <inheritdoc/>

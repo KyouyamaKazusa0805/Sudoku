@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.StepSearchers.Uniqueness;
 
-using unsafe SearcherSubtypeCheckerFuncPtr = delegate*<SortedSet<UniqueLoopStep>, ref readonly Grid, ref StepAnalysisContext, Digit, Digit, ref readonly CellMap, ref readonly CellMap, Mask, Cell[], UniqueLoopStep?>;
-
 /// <summary>
 /// Provides with a <b>Unique Loop</b> step searcher.
 /// The step searcher will include the following techniques:
@@ -25,7 +23,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the type checkers.
 	/// </summary>
-	private static readonly unsafe SearcherSubtypeCheckerFuncPtr[] TypeCheckers = [
+	private static readonly unsafe delegate*<SortedSet<UniqueLoopStep>, in Grid, ref StepAnalysisContext, Digit, Digit, in CellMap, in CellMap, Mask, Cell[], UniqueLoopStep?>[] TypeCheckers = [
 		&CheckType1,
 		&CheckType2,
 		&CheckType3,
@@ -53,7 +51,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			if ((loop & ~BivalueCells) is not (var extraCellsMap and not []))
 			{
 				// The current puzzle has multiple solutions.
-				throw new PuzzleInvalidException(in grid, typeof(UniqueLoopStepSearcher));
+				throw new PuzzleInvalidException(grid, typeof(UniqueLoopStepSearcher));
 			}
 
 			var d1 = Mask.TrailingZeroCount(comparer);
@@ -65,7 +63,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (TypeCheckers[i](tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, path) is { } step)
+				if (TypeCheckers[i](tempAccumulator, grid, ref context, d1, d2, loop, extraCellsMap, comparer, path) is { } step)
 				{
 					return step;
 				}
@@ -92,7 +90,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="grid">The grid to be used.</param>
 	/// <returns>A list of <see cref="UniqueLoopPattern"/> instances.</returns>
-	private ReadOnlySpan<UniqueLoopPattern> FindLoops(ref readonly Grid grid)
+	private ReadOnlySpan<UniqueLoopPattern> FindLoops(in Grid grid)
 	{
 		var result = new HashSet<UniqueLoopPattern>();
 		foreach (var cell in BivalueCells)
@@ -161,11 +159,11 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	}
 
 
-	private static partial UniqueLoopStep? CheckType1(SortedSet<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
-	private static partial UniqueLoopStep? CheckType2(SortedSet<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
-	private static partial UniqueLoopStep? CheckType3(SortedSet<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
-	private static partial UniqueLoopStep? CheckType4(SortedSet<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
-	private static partial UniqueLoopStep? CheckStrongLinkType(SortedSet<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
+	private static partial UniqueLoopStep? CheckType1(SortedSet<UniqueLoopStep> accumulator, in Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, in CellMap loop, in CellMap extraCellsMap, Mask comparer, Cell[] path);
+	private static partial UniqueLoopStep? CheckType2(SortedSet<UniqueLoopStep> accumulator, in Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, in CellMap loop, in CellMap extraCellsMap, Mask comparer, Cell[] path);
+	private static partial UniqueLoopStep? CheckType3(SortedSet<UniqueLoopStep> accumulator, in Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, in CellMap loop, in CellMap extraCellsMap, Mask comparer, Cell[] path);
+	private static partial UniqueLoopStep? CheckType4(SortedSet<UniqueLoopStep> accumulator, in Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, in CellMap loop, in CellMap extraCellsMap, Mask comparer, Cell[] path);
+	private static partial UniqueLoopStep? CheckStrongLinkType(SortedSet<UniqueLoopStep> accumulator, in Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, in CellMap loop, in CellMap extraCellsMap, Mask comparer, Cell[] path);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

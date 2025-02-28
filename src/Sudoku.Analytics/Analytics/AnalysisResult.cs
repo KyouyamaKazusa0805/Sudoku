@@ -5,7 +5,7 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <param name="Puzzle"><inheritdoc cref="IAnalysisResult{TSolver, TSolverResult}.Puzzle" path="/summary"/></param>
 [TypeImpl(TypeImplFlags.Equatable)]
-public sealed partial record AnalysisResult([property: EquatableMember] ref readonly Grid Puzzle) :
+public sealed partial record AnalysisResult([property: EquatableMember] in Grid Puzzle) :
 	IAnalysisResult<AnalysisResult, Analyzer>,
 	meta_analysis::IAnalysisResult<AnalysisResult, Grid, Step>,
 	IAnyAllMethod<AnalysisResult, Step>,
@@ -374,7 +374,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public bool HasGrid(ref readonly Grid grid)
+	public bool HasGrid(in Grid grid)
 	{
 		foreach (ref readonly var g in GridsSpan)
 		{
@@ -732,7 +732,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 				foreach (var (g, s) in StepMarshal.Combine(GridsSpan, StepsSpan))
 				{
 					if ((
-						from step in collector.Collect(in g)
+						from step in collector.Collect(g)
 						select (SingleStep)step into step
 						select step.Cell * 9 + step.Digit
 					).AsCandidateMap().Count == 1)
@@ -752,7 +752,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 				{
 					var currentStepPencilmarkVisibility = s.PencilmarkType;
 					if ((
-						from step in collector.Collect(in g)
+						from step in collector.Collect(g)
 						select ((SingleStep)step) into step
 						where step.PencilmarkType <= currentStepPencilmarkVisibility
 						select step.Cell * 9 + step.Digit
@@ -849,7 +849,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 	bool IAnyAllMethod<AnalysisResult, Step>.All(Func<Step, bool> predicate) => this.All(predicate);
 
 	/// <inheritdoc/>
-	bool IReadOnlyDictionary<Grid, Step>.ContainsKey(Grid key) => HasGrid(in key);
+	bool IReadOnlyDictionary<Grid, Step>.ContainsKey(Grid key) => HasGrid(key);
 
 	/// <inheritdoc/>
 	bool IReadOnlyDictionary<Grid, Step>.TryGetValue(Grid key, [NotNullWhen(true)] out Step? value)

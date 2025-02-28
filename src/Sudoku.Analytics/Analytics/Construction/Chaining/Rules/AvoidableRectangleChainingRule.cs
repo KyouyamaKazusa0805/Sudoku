@@ -70,7 +70,7 @@ public sealed class AvoidableRectangleChainingRule : ChainingRule
 
 				var node1 = new Node(cells1 * digit1, true);
 				var node2 = new Node(cells2 * digit2, false);
-				var ar = new AvoidableRectanglePattern(in urCells, digitsMask, in modifiableCellsInPattern);
+				var ar = new AvoidableRectanglePattern(urCells, digitsMask, modifiableCellsInPattern);
 				context.WeakLinks.AddEntry(node1, node2, false, ar);
 			}
 			else if (digit1 == digit2)
@@ -93,7 +93,7 @@ public sealed class AvoidableRectangleChainingRule : ChainingRule
 				{
 					var node1 = new Node((emptyCellsInPattern[0] * 9 + digit).AsCandidateMap(), true);
 					var node2 = new Node((emptyCellsInPattern[1] * 9 + digit).AsCandidateMap(), false);
-					var ar = new AvoidableRectanglePattern(in urCells, (Mask)(1 << digit1 | 1 << digit), urCells & ~emptyCellsInPattern);
+					var ar = new AvoidableRectanglePattern(urCells, (Mask)(1 << digit1 | 1 << digit), urCells & ~emptyCellsInPattern);
 					context.WeakLinks.AddEntry(node1, node2, false, ar);
 				}
 			}

@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers.SymmetricalPlacements;
 
-using unsafe AntiGurthSymmetricalPlacementModuleSearcherFuncPtr = delegate*<ref readonly Grid, ref StepAnalysisContext, AntiGurthSymmetricalPlacementStep?>;
+using unsafe AntiGurthSymmetricalPlacementModuleSearcherFuncPtr = delegate*<in Grid, ref StepAnalysisContext, AntiGurthSymmetricalPlacementStep?>;
 
 /// <summary>
 /// Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
@@ -43,7 +43,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		// Anti types.
 		foreach (var checker in AntiTypeCheckers)
 		{
-			if (checker(in grid, ref context) is not { } antiTypeStep)
+			if (checker(grid, ref context) is not { } antiTypeStep)
 			{
 				continue;
 			}
@@ -66,7 +66,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <param name="grid">The grid as reference.</param>
 	/// <param name="cellOffsets">The target collection.</param>
 	/// <param name="mapping">The mapping relation.</param>
-	private static void GetHighlightCells(ref readonly Grid grid, List<CellViewNode> cellOffsets, Span<Digit?> mapping)
+	private static void GetHighlightCells(in Grid grid, List<CellViewNode> cellOffsets, Span<Digit?> mapping)
 	{
 		var colorIndices = (stackalloc Digit[9]);
 		for (var (digit, colorIndexCurrent, digitsMaskBucket) = (0, 0, (Mask)0); digit < 9; digit++)
@@ -99,7 +99,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static AntiGurthSymmetricalPlacementStep? CheckDiagonal_Anti(ref readonly Grid grid, ref StepAnalysisContext context)
+	private static AntiGurthSymmetricalPlacementStep? CheckDiagonal_Anti(in Grid grid, ref StepAnalysisContext context)
 	{
 		var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
@@ -204,7 +204,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			return null;
 		}
 
-		var elimCell = cellsNotSymmetrical.First(in grid, static (Cell cell, ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty);
+		var elimCell = cellsNotSymmetrical.First(grid, static (cell, ref readonly grid) => grid.GetState(cell) == CellState.Empty);
 		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
 		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
 		{
@@ -214,7 +214,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
-		GetHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(grid, cellOffsets, mapping);
 
 		return new(
 			new SingletonArray<Conclusion>(new(Elimination, elimCell, elimDigit)),
@@ -231,7 +231,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static AntiGurthSymmetricalPlacementStep? CheckAntiDiagonal_Anti(ref readonly Grid grid, ref StepAnalysisContext context)
+	private static AntiGurthSymmetricalPlacementStep? CheckAntiDiagonal_Anti(in Grid grid, ref StepAnalysisContext context)
 	{
 		var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
@@ -336,7 +336,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			return null;
 		}
 
-		var elimCell = cellsNotSymmetrical.First(in grid, static (Cell cell, ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty);
+		var elimCell = cellsNotSymmetrical.First(grid, static (cell, ref readonly grid) => grid.GetState(cell) == CellState.Empty);
 		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
 		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
 		{
@@ -346,7 +346,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
-		GetHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(grid, cellOffsets, mapping);
 
 		return new(
 			new SingletonArray<Conclusion>(new(Elimination, elimCell, elimDigit)),
@@ -363,7 +363,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static AntiGurthSymmetricalPlacementStep? CheckXAxis_Anti(ref readonly Grid grid, ref StepAnalysisContext context)
+	private static AntiGurthSymmetricalPlacementStep? CheckXAxis_Anti(in Grid grid, ref StepAnalysisContext context)
 	{
 		var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
@@ -438,8 +438,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			return null;
 		}
 
-		static bool elimCellMatcher(Cell cell, ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty;
-		var elimCell = cellsNotSymmetrical.First(in grid, elimCellMatcher);
+		var elimCell = cellsNotSymmetrical.First(grid, static (cell, ref readonly grid) => grid.GetState(cell) == CellState.Empty);
 		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
 		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
 		{
@@ -449,7 +448,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
-		GetHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(grid, cellOffsets, mapping);
 
 		return new(
 			new SingletonArray<Conclusion>(new(Elimination, elimCell, elimDigit)),
@@ -466,7 +465,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static AntiGurthSymmetricalPlacementStep? CheckYAxis_Anti(ref readonly Grid grid, ref StepAnalysisContext context)
+	private static AntiGurthSymmetricalPlacementStep? CheckYAxis_Anti(in Grid grid, ref StepAnalysisContext context)
 	{
 		var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
@@ -541,7 +540,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			return null;
 		}
 
-		var elimCell = cellsNotSymmetrical.First(in grid, static (Cell cell, ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty);
+		var elimCell = cellsNotSymmetrical.First(grid, static (cell, ref readonly grid) => grid.GetState(cell) == CellState.Empty);
 		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
 		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
 		{
@@ -551,7 +550,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
-		GetHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(grid, cellOffsets, mapping);
 
 		return new(
 			new SingletonArray<Conclusion>(new(Elimination, elimCell, elimDigit)),
@@ -568,7 +567,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static AntiGurthSymmetricalPlacementStep? CheckCentral_Anti(ref readonly Grid grid, ref StepAnalysisContext context)
+	private static AntiGurthSymmetricalPlacementStep? CheckCentral_Anti(in Grid grid, ref StepAnalysisContext context)
 	{
 		var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
@@ -659,7 +658,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			return null;
 		}
 
-		var elimCell = cellsNotSymmetrical.First(in grid, static (Cell cell, ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty);
+		var elimCell = cellsNotSymmetrical.First(grid, static (cell, ref readonly grid) => grid.GetState(cell) == CellState.Empty);
 		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
 		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
 		{
@@ -669,7 +668,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
-		GetHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(grid, cellOffsets, mapping);
 
 		return new(
 			new SingletonArray<Conclusion>(new(Elimination, elimCell, elimDigit)),

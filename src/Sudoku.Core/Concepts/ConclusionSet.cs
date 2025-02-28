@@ -263,7 +263,7 @@ public sealed partial class ConclusionSet :
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool IsWorthFor(ref readonly Grid grid)
+	public bool IsWorthFor(in Grid grid)
 	{
 		foreach (var element in this)
 		{

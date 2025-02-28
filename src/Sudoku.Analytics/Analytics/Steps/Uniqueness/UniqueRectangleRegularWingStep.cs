@@ -22,13 +22,13 @@ public sealed partial class UniqueRectangleRegularWingStep(
 	Technique code,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	bool isAvoidable,
-	[Property] ref readonly CellMap branches,
-	[Property] ref readonly CellMap petals,
+	[Property] in CellMap branches,
+	[Property] in CellMap petals,
 	[Property] Mask extraDigitsMask,
 	int absoluteOffset
-) : UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
+) : UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, cells, isAvoidable, absoluteOffset)
 {
 	/// <inheritdoc/>
 	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | ExtraDigitsMask);

@@ -203,7 +203,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						throw new OperationCanceledException();
 					}
 
-					if (finder.FindPath(in puzzle, ct) is { IsComplete: true } path)
+					if (finder.FindPath(puzzle, ct) is { IsComplete: true } path)
 					{
 						puzzle.MakeIttoryu(path);
 						return puzzle;
@@ -261,12 +261,12 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			{
 				var chosenSymmetricType = symmetries[rng.Next(0, symmetries.Length)];
 				var grid = gridCreator(givensCount, chosenSymmetricType, cancellationToken);
-				if (grid.IsEmpty || analyzer.Analyze(in grid) is var analysisResult && !analysisResult.IsSolved)
+				if (grid.IsEmpty || analyzer.Analyze(grid) is var analysisResult && !analysisResult.IsSolved)
 				{
 					goto ReportState;
 				}
 
-				if (constraints.IsValidFor(new(in grid, analysisResult)))
+				if (constraints.IsValidFor(new(grid, analysisResult)))
 				{
 					return grid;
 				}
@@ -369,7 +369,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			false,
 			static (ref grid, analyzer) =>
 			{
-				var analysisResult = analyzer.Analyze(in grid);
+				var analysisResult = analyzer.Analyze(grid);
 				if (analysisResult is not { IsSolved: true, GridsSpan: var grids, StepsSpan: var steps })
 				{
 					return;
@@ -438,7 +438,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			false,
 			static (ref grid, analyzer) =>
 			{
-				var analysisResult = analyzer.Analyze(in grid);
+				var analysisResult = analyzer.Analyze(grid);
 				if (analysisResult is not { IsSolved: true, GridsSpan: var grids, StepsSpan: var steps })
 				{
 					return;

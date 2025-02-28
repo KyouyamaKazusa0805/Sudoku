@@ -14,7 +14,7 @@ public sealed partial class MultisectorLockedSetsStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ref readonly CellMap cells,
+	[Property] in CellMap cells,
 	[Property] int rowsCount,
 	[Property] int columnsCount,
 	[Property] Mask digitsMask

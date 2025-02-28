@@ -17,12 +17,12 @@ public sealed partial class ChromaticPatternXzStep(
 	View[]? views,
 	StepGathererOptions options,
 	House[] blocks,
-	ref readonly CellMap pattern,
-	[Property] ref readonly CellMap cells,
+	in CellMap pattern,
+	[Property] in CellMap cells,
 	[Property] Cell extraCell,
 	Mask digitsMask,
 	[Property] Mask extraDigitsMask
-) : ChromaticPatternStep(conclusions, views, options, blocks, in pattern, digitsMask)
+) : ChromaticPatternStep(conclusions, views, options, blocks, pattern, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 2;

@@ -144,7 +144,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var isRow = l1 is >= 9 and < 18;
-		if (CheckForBaseType(ref context, in grid, pattern, in valueCellsInBothLines, isRow) is { } type1Step)
+		if (CheckForBaseType(ref context, grid, pattern, valueCellsInBothLines, isRow) is { } type1Step)
 		{
 			return type1Step;
 		}
@@ -168,9 +168,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	private QiuDeadlyPatternStep? CheckForBaseType(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
+		in Grid grid,
 		QiuDeadlyPattern1Pattern pattern,
-		ref readonly CellMap valueCellsInBothLines,
+		in CellMap valueCellsInBothLines,
 		bool isRow
 	)
 	{
@@ -307,36 +307,35 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			cornerContainingExtraDigit &= tempMap;
 
 			if (BaseType_Type1(
-				ref context, in corner, in crossline, in grid, l1, l2,
-				cornerDigitsMaskIntersected, in cornerContainingExtraDigit) is { } type1Step)
+				ref context, corner, crossline, grid, l1, l2,
+				cornerDigitsMaskIntersected, cornerContainingExtraDigit) is { } type1Step)
 			{
 				return type1Step;
 			}
 
 			if (BaseType_Type2(
-				ref context, in corner, in crossline, in grid, l1, l2, cornerDigitsMaskIntersected,
-				cornerExtraDigitsMask, in cornerContainingExtraDigit) is { } type2Step)
+				ref context, corner, crossline, grid, l1, l2, cornerDigitsMaskIntersected,
+				cornerExtraDigitsMask, cornerContainingExtraDigit) is { } type2Step)
 			{
 				return type2Step;
 			}
 
 			if (BaseType_Type3(
-				ref context, in corner, in crossline, in grid, l1, l2, cornerDigitsMaskIntersected,
-				cornerExtraDigitsMask, in cornerContainingExtraDigit) is { } type3Step)
+				ref context, corner, crossline, grid, l1, l2, cornerDigitsMaskIntersected,
+				cornerExtraDigitsMask, cornerContainingExtraDigit) is { } type3Step)
 			{
 				return type3Step;
 			}
 
-			if (BaseType_Type4(
-				ref context, in corner, in crossline, l1, l2,
-				cornerDigitsMaskIntersected, in cornerContainingExtraDigit) is { } type4Step)
+			if (BaseType_Type4(ref context, corner, crossline, l1, l2, cornerDigitsMaskIntersected, cornerContainingExtraDigit)
+				is { } type4Step)
 			{
 				return type4Step;
 			}
 		}
 		else if (maskIntersected != 0)
 		{
-			if (BaseType_TypeLocked(ref context, in corner, in crossline, in grid, l1, l2, cornerLockedDigitsMask) is { } typeLockedStep)
+			if (BaseType_TypeLocked(ref context, corner, crossline, grid, l1, l2, cornerLockedDigitsMask) is { } typeLockedStep)
 			{
 				return typeLockedStep;
 			}
@@ -357,12 +356,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 
 			// Now check for subtypes.
 			var mirror = pattern.Mirror;
-			if (BaseType_ExternalType1(ref context, in corner, in crossline, in mirror, in grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
+			if (BaseType_ExternalType1(ref context, corner, crossline, mirror, grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
 			{
 				return externalType1Step;
 			}
 
-			if (BaseType_ExternalType2(ref context, in corner, in crossline, in mirror, in grid, l1, l2, cornerDigitsMask) is { } externalType2Step)
+			if (BaseType_ExternalType2(ref context, corner, crossline, mirror, grid, l1, l2, cornerDigitsMask) is { } externalType2Step)
 			{
 				return externalType2Step;
 			}
@@ -386,13 +385,13 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternType1Step? BaseType_Type1(
 		ref StepAnalysisContext context,
-		ref readonly CellMap corner,
-		ref readonly CellMap crossline,
-		ref readonly Grid grid,
+		in CellMap corner,
+		in CellMap crossline,
+		in Grid grid,
 		House l1,
 		House l2,
 		Mask digitsMaskAppearedInCorner,
-		ref readonly CellMap cornerContainingExtraDigit
+		in CellMap cornerContainingExtraDigit
 	)
 	{
 		// Test examples:
@@ -472,14 +471,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternType2Step? BaseType_Type2(
 		ref StepAnalysisContext context,
-		ref readonly CellMap corner,
-		ref readonly CellMap crossline,
-		ref readonly Grid grid,
+		in CellMap corner,
+		in CellMap crossline,
+		in Grid grid,
 		House l1,
 		House l2,
 		Mask digitsMaskAppearedInCorner,
 		Mask extraDigitsMask,
-		ref readonly CellMap cornerContainingExtraDigit
+		in CellMap cornerContainingExtraDigit
 	)
 	{
 		if (!Mask.IsPow2(extraDigitsMask))
@@ -557,14 +556,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternType3Step? BaseType_Type3(
 		ref StepAnalysisContext context,
-		ref readonly CellMap corner,
-		ref readonly CellMap crossline,
-		ref readonly Grid grid,
+		in CellMap corner,
+		in CellMap crossline,
+		in Grid grid,
 		House l1,
 		House l2,
 		Mask digitsMaskAppearedInCorner,
 		Mask extraDigitsMask,
-		ref readonly CellMap cornerContainingExtraDigit
+		in CellMap cornerContainingExtraDigit
 	)
 	{
 		// Test examples:
@@ -663,7 +662,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					1 << l1 | 1 << l2,
 					corner[0],
 					corner[1],
-					in extraCells,
+					extraCells,
 					extraDigitsMask,
 					true
 				);
@@ -692,12 +691,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternType4Step? BaseType_Type4(
 		ref StepAnalysisContext context,
-		ref readonly CellMap corner,
-		ref readonly CellMap crossline,
+		in CellMap corner,
+		in CellMap crossline,
 		House l1,
 		House l2,
 		Mask digitsMaskAppearedInCorner,
-		ref readonly CellMap cornerContainingExtraDigit
+		in CellMap cornerContainingExtraDigit
 	)
 	{
 		// Test examples:
@@ -781,9 +780,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternLockedTypeStep? BaseType_TypeLocked(
 		ref StepAnalysisContext context,
-		ref readonly CellMap corner,
-		ref readonly CellMap crossline,
-		ref readonly Grid grid,
+		in CellMap corner,
+		in CellMap crossline,
+		in Grid grid,
 		House l1,
 		House l2,
 		Mask cornerLockedDigitsMask
@@ -888,10 +887,10 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternExternalType1Step? BaseType_ExternalType1(
 		ref StepAnalysisContext context,
-		ref readonly CellMap corner,
-		ref readonly CellMap crossline,
-		ref readonly CellMap mirror,
-		ref readonly Grid grid,
+		in CellMap corner,
+		in CellMap crossline,
+		in CellMap mirror,
+		in Grid grid,
 		House l1,
 		House l2,
 		Mask externalDigitsMaskToBeChecked
@@ -979,10 +978,10 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternExternalType2Step? BaseType_ExternalType2(
 		ref StepAnalysisContext context,
-		ref readonly CellMap corner,
-		ref readonly CellMap crossline,
-		ref readonly CellMap mirror,
-		ref readonly Grid grid,
+		in CellMap corner,
+		in CellMap crossline,
+		in CellMap mirror,
+		in Grid grid,
 		House l1,
 		House l2,
 		Mask externalDigitsMaskToBeChecked
@@ -1068,7 +1067,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			1 << l1 | 1 << l2,
 			corner[0],
 			corner[1],
-			in mirror,
+			mirror,
 			elimDigit
 		);
 		if (context.OnlyFindOne)

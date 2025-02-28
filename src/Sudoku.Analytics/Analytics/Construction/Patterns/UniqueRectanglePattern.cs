@@ -97,7 +97,7 @@ public sealed partial class UniqueRectanglePattern([Property] in CellMap cells, 
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All candidates.</returns>
-	public CandidateMap GetAllCandidates(ref readonly Grid grid)
+	public CandidateMap GetAllCandidates(in Grid grid)
 	{
 		var result = CandidateMap.Empty;
 		foreach (var cell in Cells)
@@ -129,7 +129,7 @@ public sealed partial class UniqueRectanglePattern([Property] in CellMap cells, 
 	/// <param name="cells">All four cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool CanMakeDeadlyPattern(ref readonly Grid grid, Digit d1, Digit d2, Cell[] cells)
+	public static bool CanMakeDeadlyPattern(in Grid grid, Digit d1, Digit d2, Cell[] cells)
 		// Labeling of four cells:
 		// c1 c2
 		// c3 c4

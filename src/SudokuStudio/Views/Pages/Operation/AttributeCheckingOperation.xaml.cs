@@ -36,7 +36,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		{
 			lock (AnalyzingRelatedSyncRoot)
 			{
-				BackdoorInferrer.TryInfer(in puzzle, out var result);
+				BackdoorInferrer.TryInfer(puzzle, out var result);
 				return result.Candidates.ToArray();
 			}
 		});
@@ -71,7 +71,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		{
 			lock (AnalyzingRelatedSyncRoot)
 			{
-				return TrueCandidate.GetAllTrueCandidates(in puzzle);
+				return TrueCandidate.GetAllTrueCandidates(puzzle);
 			}
 		});
 		if (trueCandidates.Count == 0)
@@ -107,7 +107,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		TechniqueSet techniqueSet = [.. Application.Current.AsApp().Preference.AnalysisPreferences.IttoryuSupportedTechniques];
 		var finder = new DisorderedIttoryuFinder(techniqueSet);
 		(InfoDialog_DisorderedIttoryuDigitSequence.Subtitle, InfoDialog_DisorderedIttoryuDigitSequence.IsOpen) =
-			finder.FindPath(in puzzle) is { Digits.Length: not 0 } path
+			finder.FindPath(puzzle) is { Digits.Length: not 0 } path
 				? (string.Format(SR.Get("AnalyzePage_DisorderedIttoryuOrderIs", App.CurrentCulture), path.ToString()), true)
 				: (SR.Get("AnalyzePage_DisorderedIttoryuDoesNotExist", App.CurrentCulture), true);
 	}

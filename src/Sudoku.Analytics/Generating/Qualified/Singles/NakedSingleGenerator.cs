@@ -80,8 +80,8 @@ public sealed class NakedSingleGenerator : SingleGenerator
 			null!,
 			targetCell,
 			targetDigit,
-			TechniqueNaming.Single.GetNakedSingleSubtype(in puzzle, targetCell),
-			Lasting.GetLastingAllHouses(in puzzle, targetCell, out var lastingHouse),
+			TechniqueNaming.Single.GetNakedSingleSubtype(puzzle, targetCell),
+			Lasting.GetLastingAllHouses(puzzle, targetCell, out var lastingHouse),
 			lastingHouse.ToHouseType()
 		);
 		result = puzzle.FixedGrid;
@@ -101,7 +101,7 @@ public sealed class NakedSingleGenerator : SingleGenerator
 				return false;
 			}
 
-			switch (Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken))
+			switch (Analyzer.Analyze(puzzle, cancellationToken: cancellationToken))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{
@@ -117,7 +117,7 @@ public sealed class NakedSingleGenerator : SingleGenerator
 							continue;
 						}
 
-						var excluderCells = Excluder.GetNakedSingleExcluderCells(in currentGrid, cell, digit, out _);
+						var excluderCells = Excluder.GetNakedSingleExcluderCells(currentGrid, cell, digit, out _);
 						var extractedGrid = currentGrid;
 						extractedGrid.Unfix();
 

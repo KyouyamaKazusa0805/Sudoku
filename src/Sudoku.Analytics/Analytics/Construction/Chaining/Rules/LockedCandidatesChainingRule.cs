@@ -24,7 +24,7 @@ public sealed class LockedCandidatesChainingRule : ChainingRule
 			for (var digit = 0; digit < 9; digit++)
 			{
 				var cells = HousesMap[house] & __CandidatesMap[digit];
-				if (!Grouped.IsGroupedStrongLink(in cells, house, out var pairHouse))
+				if (!Grouped.IsGroupedStrongLink(cells, house, out var pairHouse))
 				{
 					continue;
 				}

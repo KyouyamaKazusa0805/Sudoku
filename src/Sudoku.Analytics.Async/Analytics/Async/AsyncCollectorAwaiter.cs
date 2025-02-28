@@ -214,7 +214,7 @@ public sealed class AsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnlySpan<St
 	{
 		try
 		{
-			_result = _collector.Collect(in _grid, _progress, _cancellationToken).ToArray();
+			_result = _collector.Collect(_grid, _progress, _cancellationToken).ToArray();
 		}
 		catch (Exception ex)
 		{

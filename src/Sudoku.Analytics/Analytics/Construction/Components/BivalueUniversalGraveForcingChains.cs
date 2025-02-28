@@ -5,10 +5,8 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <param name="trueCandidates">Indicates all true candidates.</param>
 /// <param name="conclusions"><inheritdoc cref="MultipleForcingChains(Conclusion[])" path="/param[@name='conclusions']"/></param>
-public sealed partial class BivalueUniversalGraveForcingChains(
-	[Property] ref readonly CandidateMap trueCandidates,
-	params Conclusion[] conclusions
-) : MultipleForcingChains(conclusions)
+public sealed partial class BivalueUniversalGraveForcingChains([Property] in CandidateMap trueCandidates, params Conclusion[] conclusions) :
+	MultipleForcingChains(conclusions)
 {
 	/// <inheritdoc/>
 	public override bool IsCellMultiple => false;
@@ -25,12 +23,12 @@ public sealed partial class BivalueUniversalGraveForcingChains(
 		NamedChain finnedChain,
 		ref int cachedAlsIndex,
 		ChainingRuleCollection supportedRules,
-		ref readonly Grid grid,
-		ref readonly CandidateMap fins,
+		in Grid grid,
+		in CandidateMap fins,
 		out View[] views
 	)
 	{
-		base.PrepareFinnedChainViewNodes(finnedChain, ref cachedAlsIndex, supportedRules, in grid, in fins, out views);
+		base.PrepareFinnedChainViewNodes(finnedChain, ref cachedAlsIndex, supportedRules, grid, fins, out views);
 		foreach (var candidate in Candidates)
 		{
 			var node = new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate);
@@ -42,6 +40,6 @@ public sealed partial class BivalueUniversalGraveForcingChains(
 	}
 
 	/// <inheritdoc/>
-	protected override ReadOnlySpan<ViewNode> GetInitialViewNodes(ref readonly Grid grid)
+	protected override ReadOnlySpan<ViewNode> GetInitialViewNodes(in Grid grid)
 		=> from candidate in TrueCandidates select (ViewNode)new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate);
 }

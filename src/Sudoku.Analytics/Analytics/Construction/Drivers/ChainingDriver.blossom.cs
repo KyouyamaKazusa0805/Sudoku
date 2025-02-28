@@ -42,9 +42,9 @@ internal partial class ChainingDriver
 		// For cell.
 		foreach (var startCell in EmptyCells & ~BivalueCells)
 		{
-			var (cellsDistribution, housesDistribution) = distributionsCell(in grid, startCell);
-			cellToCell(in grid, cellsDistribution, startCell, supportedRules);
-			cellToHouse(in grid, housesDistribution, startCell, supportedRules);
+			var (cellsDistribution, housesDistribution) = distributionsCell(grid, startCell);
+			cellToCell(grid, cellsDistribution, startCell, supportedRules);
+			cellToHouse(grid, housesDistribution, startCell, supportedRules);
 		}
 
 		// For house.
@@ -57,8 +57,8 @@ internal partial class ChainingDriver
 				if ((CandidatesMap[startDigit] & HousesMap[startHouse]).Count >= 3)
 				{
 					var (cellsDistribution, housesDistribution) = distributionsHouse(startHouse, startDigit);
-					houseToCell(in grid, cellsDistribution, startHouse, startDigit, supportedRules);
-					houseToHouse(in grid, housesDistribution, startHouse, startDigit, supportedRules);
+					houseToCell(grid, cellsDistribution, startHouse, startDigit, supportedRules);
+					houseToHouse(grid, housesDistribution, startHouse, startDigit, supportedRules);
 				}
 			}
 		}
@@ -79,7 +79,7 @@ internal partial class ChainingDriver
 			return rootMap;
 		}
 
-		void cellToCell(ref readonly Grid grid, CellsDistribution cellsDistribution, Cell startCell, ChainingRuleCollection supportedRules)
+		void cellToCell(in Grid grid, CellsDistribution cellsDistribution, Cell startCell, ChainingRuleCollection supportedRules)
 		{
 			// Iterate on cells' distribution.
 			foreach (var (currentStartCell, cellDistribution) in cellsDistribution)
@@ -108,7 +108,7 @@ internal partial class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = CollectBlossomConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
+				var conclusions = CollectBlossomConclusions(grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -125,7 +125,7 @@ internal partial class ChainingDriver
 			}
 		}
 
-		void cellToHouse(ref readonly Grid grid, HousesDistribution housesDistribution, Cell startCell, ChainingRuleCollection supportedRules)
+		void cellToHouse(in Grid grid, HousesDistribution housesDistribution, Cell startCell, ChainingRuleCollection supportedRules)
 		{
 			// Iterate on houses' distribution.
 			foreach (var ((startCurrentHouse, _), houseDistribution) in housesDistribution)
@@ -156,7 +156,7 @@ internal partial class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = CollectBlossomConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
+				var conclusions = CollectBlossomConclusions(grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -173,7 +173,7 @@ internal partial class ChainingDriver
 			}
 		}
 
-		void houseToCell(ref readonly Grid grid, CellsDistribution cellsDistribution, House startHouse, Digit startDigit, ChainingRuleCollection supportedRules)
+		void houseToCell(in Grid grid, CellsDistribution cellsDistribution, House startHouse, Digit startDigit, ChainingRuleCollection supportedRules)
 		{
 			// Iterate on cells' distribution.
 			foreach (var (currentStartCell, cellDistribution) in cellsDistribution)
@@ -204,7 +204,7 @@ internal partial class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = CollectBlossomConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
+				var conclusions = CollectBlossomConclusions(grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -221,7 +221,7 @@ internal partial class ChainingDriver
 			}
 		}
 
-		void houseToHouse(ref readonly Grid grid, HousesDistribution housesDistribution, House startHouse, Digit startDigit, ChainingRuleCollection supportedRules)
+		void houseToHouse(in Grid grid, HousesDistribution housesDistribution, House startHouse, Digit startDigit, ChainingRuleCollection supportedRules)
 		{
 			// Iterate on houses' distribution.
 			foreach (var ((startCurrentHouse, _), houseDistribution) in housesDistribution)
@@ -250,7 +250,7 @@ internal partial class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = CollectBlossomConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
+				var conclusions = CollectBlossomConclusions(grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -267,7 +267,7 @@ internal partial class ChainingDriver
 			}
 		}
 
-		(CellsDistribution, HousesDistribution) distributionsCell(ref readonly Grid grid, Cell startCell)
+		(CellsDistribution, HousesDistribution) distributionsCell(in Grid grid, Cell startCell)
 		{
 			var cellsDistribution = new CellsDistribution();
 			var housesDistribution = new HousesDistribution();
@@ -346,7 +346,7 @@ internal partial class ChainingDriver
 		typeof(LockedCandidatesChainingRule),
 		DefaultBehavior = InterceptorInstanceRoutingDefaultBehavior.DoNothingOrReturnDefault)]
 	private static ConclusionSet CollectBlossomConclusions(
-		ref readonly Grid grid,
+		in Grid grid,
 		List<Link> patternLinks,
 		in CandidateMap exits,
 		ChainingRuleCollection supportedRules
@@ -357,7 +357,7 @@ internal partial class ChainingDriver
 		// Collect on eliminations from weak links.
 		foreach (var link in patternLinks)
 		{
-			foreach (var conclusion in EliminationCalculator.Chain.GetConclusions(in grid, link.FirstNode, link.SecondNode))
+			foreach (var conclusion in EliminationCalculator.Chain.GetConclusions(grid, link.FirstNode, link.SecondNode))
 			{
 				result.Add(conclusion);
 			}

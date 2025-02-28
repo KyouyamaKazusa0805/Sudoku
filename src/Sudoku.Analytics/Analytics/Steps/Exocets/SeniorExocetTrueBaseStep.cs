@@ -22,7 +22,7 @@ public sealed partial class SeniorExocetTrueBaseStep(
 	in CellMap targetCells,
 	in CellMap endoTargetCells,
 	in CellMap crosslineCells
-) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
+) : ExocetStep(conclusions, views, options, digitsMask, baseCells, targetCells, endoTargetCells, crosslineCells)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 2;

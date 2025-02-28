@@ -27,14 +27,14 @@ public readonly ref partial struct AdjacentCellGraph :
 	/// </exception>
 	public AdjacentCellGraph(ref readonly CellMap cells)
 	{
-		if (!verify(in cells))
+		if (!verify(cells))
 		{
 			throw new ArgumentException(SR.ExceptionMessage("AllCellsMustBeConnectedWithAdjacentPositions"), nameof(cells));
 		}
 		Cells = ref cells;
 
 
-		static bool verify(ref readonly CellMap cells)
+		static bool verify(in CellMap cells)
 		{
 			// If the collection has no elements, return true to tell the runtime that it is expected and valid.
 			if (!cells)
@@ -49,7 +49,7 @@ public readonly ref partial struct AdjacentCellGraph :
 				foreach (var cell in cells)
 				{
 					lastCells &= ~PeersMap[cell];
-					if (!verify(in lastCells))
+					if (!verify(lastCells))
 					{
 						return false;
 					}

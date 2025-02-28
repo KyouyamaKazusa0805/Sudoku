@@ -22,7 +22,7 @@ public sealed class BlockFirst : IBehaviorMetric
 		var resultStepsAll = (List<KeyValuePair<Step, Grid>>)[];
 		while (!playground.IsSolved)
 		{
-			var possibleSteps = collector.Collect(in playground);
+			var possibleSteps = collector.Collect(playground);
 			if (possibleSteps.Length == 0)
 			{
 				// The puzzle cannot be solved.
@@ -40,7 +40,7 @@ public sealed class BlockFirst : IBehaviorMetric
 					group step by step.Code into stepGroup
 					orderby stepGroup.Key
 					select stepGroup;
-				var (z, s) = findNearestStep(in grid, in playground, lastStep, validSteps);
+				var (z, s) = findNearestStep(grid, playground, lastStep, validSteps);
 
 				lastStep = z;
 				var kvp = KeyValuePair.Create(lastStep, playground);
@@ -63,8 +63,8 @@ public sealed class BlockFirst : IBehaviorMetric
 
 
 		(SingleStep Step, int Score) findNearestStep(
-			ref readonly Grid grid,
-			ref readonly Grid playground,
+			in Grid grid,
+			in Grid playground,
 			SingleStep lastStep,
 			SpanOrderedEnumerable<SpanGrouping<SingleStep, Technique>> stepGroups
 		)
@@ -84,7 +84,7 @@ public sealed class BlockFirst : IBehaviorMetric
 					continue;
 				}
 
-				var newScore = getScore(in grid, in playground, lastStep?.Cell ?? -1, step.Cell);
+				var newScore = getScore(grid, playground, lastStep?.Cell ?? -1, step.Cell);
 				if (newScore <= minScore)
 				{
 					minScore = newScore;
@@ -99,7 +99,7 @@ public sealed class BlockFirst : IBehaviorMetric
 				minStep = default!;
 				foreach (var step in stepGroups[0])
 				{
-					var s = getBottomingScore(step, in playground);
+					var s = getBottomingScore(step, playground);
 					if (s <= minScore)
 					{
 						minScore = s;
@@ -109,7 +109,7 @@ public sealed class BlockFirst : IBehaviorMetric
 				return (minStep, minScore);
 
 
-				int getBottomingScore(SingleStep step, ref readonly Grid playground)
+				int getBottomingScore(SingleStep step, in Grid playground)
 				{
 					var lastDigit = solution.GetDigit(lastStep!.Cell);
 					var currentDigit = solution.GetDigit(step.Cell);
@@ -134,7 +134,7 @@ public sealed class BlockFirst : IBehaviorMetric
 			return (minStep, minScore);
 		}
 
-		static int getScore(ref readonly Grid grid, ref readonly Grid playground, Cell lastCell, Cell currentCell)
+		static int getScore(in Grid grid, in Grid playground, Cell lastCell, Cell currentCell)
 		{
 			var solution = grid.GetSolutionGrid();
 

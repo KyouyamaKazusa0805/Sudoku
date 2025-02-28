@@ -11,14 +11,14 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 	/// <exception cref="DeadlyPatternInferrerLimitReachedException">
 	/// Throws when the pattern contains more than 10000 solutions.
 	/// </exception>
-	public static bool TryInfer(ref readonly Grid grid, out DeadlyPatternInferredResult result)
-		=> TryInfer(in grid, in Unsafe.NullRef<CellMap>(), out result);
+	public static bool TryInfer(in Grid grid, out DeadlyPatternInferredResult result)
+		=> TryInfer(grid, Unsafe.NullRef<CellMap>(), out result);
 
-	/// <inheritdoc cref="TryInfer(ref readonly Grid, out DeadlyPatternInferredResult)"/>
+	/// <inheritdoc cref="TryInfer(in Grid, out DeadlyPatternInferredResult)"/>
 	/// <exception cref="DeadlyPatternInferrerLimitReachedException">
 	/// Throws when the pattern contains more than 10000 solutions.
 	/// </exception>
-	public static bool TryInfer(ref readonly Grid grid, [AllowNull] ref readonly CellMap cells, out DeadlyPatternInferredResult result)
+	public static bool TryInfer(in Grid grid, [AllowNull] in CellMap cells, out DeadlyPatternInferredResult result)
 	{
 		var patternCandidates = CandidateMap.Empty;
 		if (grid.GetIsValid() || grid.EmptyCellsCount != 81 || grid.PuzzleType != SudokuType.Standard)
@@ -73,7 +73,7 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 		// Step 1: Get all solutions for that pattern.
 		var playground = grid;
 		var solutions = new List<Grid>();
-		dfs(ref playground, in cellsUsed, solutions, 0);
+		dfs(ref playground, cellsUsed, solutions, 0);
 		if (solutions.Count == 0)
 		{
 			goto FastFail;
@@ -107,7 +107,7 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 				}
 				if (flag)
 				{
-					tempSolutions.AddRef(in tempGrid);
+					tempSolutions.AddRef(tempGrid);
 				}
 			}
 
@@ -115,21 +115,21 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 			// If failed to check, we should collect the case into the result, as an item in failed cases set.
 			if (tempSolutions.Count == 0)
 			{
-				failedCases.AddRef(in solution);
+				failedCases.AddRef(solution);
 			}
 		}
 
 		// If all possible solutions has exchangable patterns, the pattern will be a real deadly pattern;
 		// otherwise, not a deadly pattern.
-		result = new(in grid, failedCases.Count == 0, failedCases.AsSpan(), in patternCandidates);
+		result = new(grid, failedCases.Count == 0, failedCases.AsSpan(), patternCandidates);
 		return true;
 
 	FastFail:
-		result = new(in grid, false, [], in patternCandidates);
+		result = new(grid, false, [], patternCandidates);
 		return true;
 
 
-		static void dfs(ref Grid grid, ref readonly CellMap cellsRange, List<Grid> solutions, Cell currentCell)
+		static void dfs(ref Grid grid, in CellMap cellsRange, List<Grid> solutions, Cell currentCell)
 		{
 			if (currentCell == 81)
 			{
@@ -138,13 +138,13 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 					throw new DeadlyPatternInferrerLimitReachedException();
 				}
 
-				solutions.AddRef(in grid);
+				solutions.AddRef(grid);
 				return;
 			}
 
 			if (!cellsRange.Contains(currentCell))
 			{
-				dfs(ref grid, in cellsRange, solutions, currentCell + 1);
+				dfs(ref grid, cellsRange, solutions, currentCell + 1);
 			}
 			else
 			{
@@ -152,9 +152,9 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 				foreach (var digit in digits)
 				{
 					grid[currentCell] = (Mask)(Grid.ModifiableMask | 1 << digit);
-					if (BacktrackingSolver.IsValid(in grid, r, c))
+					if (BacktrackingSolver.IsValid(grid, r, c))
 					{
-						dfs(ref grid, in cellsRange, solutions, currentCell + 1);
+						dfs(ref grid, cellsRange, solutions, currentCell + 1);
 					}
 				}
 				grid[currentCell] = (Mask)(Grid.EmptyMask | digits);

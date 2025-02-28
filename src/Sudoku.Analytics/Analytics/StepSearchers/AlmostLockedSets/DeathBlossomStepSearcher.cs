@@ -56,7 +56,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		}
 
 		ref readonly var grid = ref context.Grid;
-		var alses = AlmostLockedSetPattern.Collect(in grid);
+		var alses = AlmostLockedSetPattern.Collect(grid);
 		var alsesUsed = (stackalloc CellMap[90]); // First 10 elements are not used.
 		var usedIndex = (stackalloc int[729]);
 		var finalCells = (stackalloc Cell[9]);
@@ -119,7 +119,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 							// Check for normal type.
 							if (playground[pivot] == 0
-								&& CreateStep_NormalType(ref context, in grid, pivot, alsReferenceTable, alses, playgroundCached, accumulatorNormal) is { } normalTypeStep)
+								&& CreateStep_NormalType(ref context, grid, pivot, alsReferenceTable, alses, playgroundCached, accumulatorNormal) is { } normalTypeStep)
 							{
 								return normalTypeStep;
 							}
@@ -140,7 +140,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								}
 
 								if (disappearedDigitsMask != 0
-									&& CreateStep_HouseType(ref context, in grid, house, disappearedDigitsMask, alsReferenceTable, alses, playgroundCached, accumulatorHouse) is { } houseTypeStep)
+									&& CreateStep_HouseType(ref context, grid, house, disappearedDigitsMask, alsReferenceTable, alses, playgroundCached, accumulatorHouse) is { } houseTypeStep)
 								{
 									return houseTypeStep;
 								}
@@ -274,7 +274,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 			AlmostAlmostLockedSetDeletion:
 				if (CreateStep_NTimesAlsType(
-					ref context, in grid, alses, alsesUsed, usedIndex, selectedAlsEntryCell, satisfiedSize,
+					ref context, grid, alses, alsesUsed, usedIndex, selectedAlsEntryCell, satisfiedSize,
 					selectedCellDigitsMask, wrongDigit, alsReferenceTable, accumulatorNTimesAls
 				) is { } anlsBloomingTypeStep)
 				{
@@ -306,7 +306,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// </summary>
 	private NormalDeathBlossomStep? CreateStep_NormalType(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
+		in Grid grid,
 		Cell pivot,
 		scoped Span<int> alsReferenceTable,
 		ReadOnlySpan<AlmostLockedSetPattern> alses,
@@ -433,7 +433,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// </summary>
 	private HouseDeathBlossomStep? CreateStep_HouseType(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
+		in Grid grid,
 		House house,
 		Mask disappearedDigitsMask,
 		scoped Span<int> alsReferenceTable,
@@ -566,7 +566,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// </summary>
 	private NTimesAlmostLockedSetsDeathBlossomStep? CreateStep_NTimesAlsType(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
+		in Grid grid,
 		ReadOnlySpan<AlmostLockedSetPattern> alses,
 		scoped Span<CellMap> alsesUsed,
 		scoped Span<Cell> usedIndex,
@@ -722,7 +722,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
 			context.Options,
 			nTimesAlsDigitsMask,
-			in nTimesAlsCells,
+			nTimesAlsCells,
 			branches,
 			Mask.PopCount(grid[nTimesAlsCells]) - nTimesAlsCells.Count
 		);

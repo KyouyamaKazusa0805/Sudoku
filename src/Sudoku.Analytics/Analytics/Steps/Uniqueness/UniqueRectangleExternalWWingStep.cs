@@ -34,7 +34,7 @@ public sealed partial class UniqueRectangleExternalWWingStep(
 		isAvoidable ? Technique.AvoidableRectangleExternalWWing : Technique.UniqueRectangleExternalWWing,
 		digit1,
 		digit2,
-		in cells,
+		cells,
 		isAvoidable,
 		absoluteOffset
 	),

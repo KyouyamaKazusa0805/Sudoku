@@ -69,11 +69,11 @@ internal static partial class DrawableFactory
 			{
 				if (node.Start is { Count: > 1 } s)
 				{
-					groupedNodes.Add(new(in s));
+					groupedNodes.Add(new(s));
 				}
 				if (node.End is { Count: > 1 } e)
 				{
-					groupedNodes.Add(new(in e));
+					groupedNodes.Add(new(e));
 				}
 			}
 

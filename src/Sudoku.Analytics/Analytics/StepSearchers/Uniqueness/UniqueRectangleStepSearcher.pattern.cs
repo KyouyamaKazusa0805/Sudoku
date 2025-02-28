@@ -32,7 +32,7 @@ public partial class UniqueRectangleStepSearcher
 	/// the UR pattern will be degenerated into type 1, and the normal subset with digits <c>c</c> and <c>d</c> will be formed.
 	/// </para>
 	/// </remarks>
-	private partial void CheckBurredSubset(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckBurredSubset(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		// Deconstruct the other cells, determining whether they holds a same two digits.
 		if (otherCellsMap is not [var c1, var c2]
@@ -194,7 +194,7 @@ public partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	private partial void CheckRegularWing(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index, bool areCornerCellsAligned)
+	private partial void CheckRegularWing(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index, bool areCornerCellsAligned)
 	{
 		// Test examples:
 		// UR-XY-Wing
@@ -377,10 +377,10 @@ public partial class UniqueRectangleStepSearcher
 						},
 						d1,
 						d2,
-						in cells,
+						cells,
 						arMode,
-						in combination,
-						in otherCellsMap,
+						combination,
+						otherCellsMap,
 						otherDigitsMask,
 						index
 					)
@@ -429,7 +429,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <i>Also, this method is useless because it may be replaced with another techniques such as UR-XY-Wing and UR External Type 2.</i>
 	/// </para>
 	/// </remarks>
-	partial void CheckWWing(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	partial void CheckWWing(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		// Firstly, we should check whether the 2 corner cells should contain both a and b, and only contain a and b.
 		// This expression only uses candidates to check digits appearing, so it doesn't determine whether the pattern is a UR or not.
@@ -566,7 +566,7 @@ public partial class UniqueRectangleStepSearcher
 	///  ↑ corner1, corner2
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckSueDeCoq(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckSueDeCoq(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		var notSatisfiedType3 = false;
 		var mergedMaskInOtherCells = (Mask)0;
@@ -619,7 +619,7 @@ public partial class UniqueRectangleStepSearcher
 				{
 					case { Count: 2 }:
 					{
-						list.AddRef(in emptyCellsInInterMap);
+						list.AddRef(emptyCellsInInterMap);
 						break;
 					}
 					case [var i, var j, var k]:
@@ -627,7 +627,7 @@ public partial class UniqueRectangleStepSearcher
 						list.AddRef([i, j]);
 						list.AddRef([j, k]);
 						list.AddRef([i, k]);
-						list.AddRef(in emptyCellsInInterMap);
+						list.AddRef(emptyCellsInInterMap);
 						break;
 					}
 				}
@@ -688,10 +688,10 @@ public partial class UniqueRectangleStepSearcher
 							elimMapLine &= lineMap & ~currentInterMap;
 
 							checkGeneralizedSdc(
-								accumulator, in grid, ref context, arMode, cannibalMode, d1, d2, urCells,
+								accumulator, grid, ref context, arMode, cannibalMode, d1, d2, urCells,
 								line, otherBlock, otherDigitsMask, blockMask, selectedInterMask,
-								otherDigitsMask, in elimMapLine, in elimMapBlock, in otherCellsMap, in currentBlockMap,
-								in currentInterMap, i, 0, index
+								otherDigitsMask, elimMapLine, elimMapBlock, otherCellsMap, currentBlockMap,
+								currentInterMap, i, 0, index
 							);
 						}
 					}
@@ -702,7 +702,7 @@ public partial class UniqueRectangleStepSearcher
 
 		static void checkGeneralizedSdc(
 			SortedSet<UniqueRectangleStep> accumulator,
-			ref readonly Grid grid,
+			in Grid grid,
 			ref StepAnalysisContext context,
 			bool arMode,
 			bool cannibalMode,
@@ -715,11 +715,11 @@ public partial class UniqueRectangleStepSearcher
 			Mask blockMask,
 			Mask selectedInterMask,
 			Mask otherDigitsMask,
-			ref readonly CellMap elimMapLine,
-			ref readonly CellMap elimMapBlock,
-			ref readonly CellMap currentLineMap,
-			ref readonly CellMap currentBlockMap,
-			ref readonly CellMap currentInterMap,
+			in CellMap elimMapLine,
+			in CellMap elimMapBlock,
+			in CellMap currentLineMap,
+			in CellMap currentBlockMap,
+			in CellMap currentInterMap,
 			int i,
 			int j,
 			int index
@@ -911,7 +911,7 @@ public partial class UniqueRectangleStepSearcher
 	/// In addition, this pattern will cover all possible cases of UR + 2D and UR + 3X.
 	/// </para>
 	/// </remarks>
-	private partial void CheckAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, int index)
+	private partial void CheckAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, int index)
 	{
 		var cells = urCells.AsCellMap();
 		if (!arMode && (EmptyCells & cells) != cells)
@@ -1052,7 +1052,7 @@ public partial class UniqueRectangleStepSearcher
 							context.Options,
 							d1,
 							d2,
-							in cells,
+							cells,
 							isIncomplete,
 							arMode,
 							false,
@@ -1082,7 +1082,7 @@ public partial class UniqueRectangleStepSearcher
 					..
 					from elimCell in (cells1 | alsCells1).PeerIntersection & CandidatesMap[digit1]
 					select new Conclusion(Elimination, elimCell, digit1),
-					.. EliminationCalculator.UniqueRectangle.GetConclusions(in cells, comparer, in grid)
+					.. EliminationCalculator.UniqueRectangle.GetConclusions(cells, comparer, grid)
 				];
 				foreach (var cell in HousesMap[als.House] & ~alsCells)
 				{
@@ -1123,7 +1123,7 @@ public partial class UniqueRectangleStepSearcher
 						context.Options,
 						d1,
 						d2,
-						in cells,
+						cells,
 						isIncomplete,
 						arMode,
 						true,
@@ -1164,7 +1164,7 @@ public partial class UniqueRectangleStepSearcher
 	/// There's only one cell can be filled with the digit 'b' besides the cell 'aby'.
 	/// </para>
 	/// </remarks>
-	private partial void CheckHiddenSingleAvoidable(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckHiddenSingleAvoidable(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Digit d1, Digit d2, Cell corner1, Cell corner2, in CellMap otherCellsMap, int index)
 	{
 		if (grid.GetState(corner1) != CellState.Modifiable || grid.GetState(corner2) != CellState.Modifiable
 			|| grid.GetDigit(corner1) != grid.GetDigit(corner2) || grid.GetDigit(corner1) != d1 && grid.GetDigit(corner1) != d2)

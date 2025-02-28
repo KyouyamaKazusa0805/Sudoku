@@ -80,12 +80,12 @@ public sealed partial class FishPattern(
 				var cs = c.HouseConverter(CoverSets);
 				var exofins = this switch
 				{
-					{ Exofins: var f and not [] } => $" f{c.CellConverter(in f)}",
+					{ Exofins: var f and not [] } => $" f{c.CellConverter(f)}",
 					_ => string.Empty
 				};
 				var endofins = this switch
 				{
-					{ Endofins: var e and not [] } => $"ef{c.CellConverter(in e)}",
+					{ Endofins: var e and not [] } => $"ef{c.CellConverter(e)}",
 					_ => string.Empty
 				};
 				return $@"{c.DigitConverter((Mask)(1 << Digit))} {bs}\{cs}{(string.IsNullOrEmpty(endofins) ? exofins : $"{exofins} ")}{endofins}";
@@ -99,12 +99,12 @@ public sealed partial class FishPattern(
 				var cs = c.HouseConverter(CoverSets);
 				var exofins = this switch
 				{
-					{ Exofins: var f and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(in f))}",
+					{ Exofins: var f and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(f))}",
 					_ => string.Empty
 				};
 				var endofins = this switch
 				{
-					{ Endofins: var e and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(in e))}",
+					{ Endofins: var e and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(e))}",
 					_ => string.Empty
 				};
 				return $@"{c.DigitConverter((Mask)(1 << Digit))}{comma}{bs}\{cs}{exofins}{endofins}";

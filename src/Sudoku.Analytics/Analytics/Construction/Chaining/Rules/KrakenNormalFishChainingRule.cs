@@ -102,7 +102,7 @@ public sealed class KrakenNormalFishChainingRule : ChainingRule
 					}
 
 					var coverSetsMask = HouseMaskOperations.Create(cs);
-					var fish = new FishPattern(digit, baseSetsMask, coverSetsMask, in fins, in CellMap.Empty);
+					var fish = new FishPattern(digit, baseSetsMask, coverSetsMask, fins, CellMap.Empty);
 					if (linkOption == LinkOption.Intersection && !fins.IsInIntersection
 						|| linkOption == LinkOption.House && fins.FirstSharedHouse == 32)
 					{

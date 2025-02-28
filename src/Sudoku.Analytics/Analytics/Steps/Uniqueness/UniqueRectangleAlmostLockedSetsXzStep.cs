@@ -21,7 +21,7 @@ public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	[Property] bool isIncomplete,
 	bool isAvoidable,
 	[Property] bool isDoublyLinked,
@@ -45,7 +45,7 @@ public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 	},
 	digit1,
 	digit2,
-	in cells,
+	cells,
 	isAvoidable,
 	absoluteOffset
 )

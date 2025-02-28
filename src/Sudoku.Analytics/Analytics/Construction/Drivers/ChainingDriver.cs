@@ -24,14 +24,14 @@ internal static partial class ChainingDriver
 	{
 		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
 		ref readonly var grid = ref context.Grid;
-		InitializeLinks(in grid, linkTypes.Aggregate(@delegate.EnumFlagMerger), context.Options, out var supportedRules);
+		InitializeLinks(grid, linkTypes.Aggregate(@delegate.EnumFlagMerger), context.Options, out var supportedRules);
 
 		var cachedAlsIndex = 0;
 		foreach (var chain in CollectChains(in context.Grid, allowsAdvancedLinks, context.OnlyFindOne, makeConclusionAroundBackdoors))
 		{
 			var step = new NormalChainStep(
-				CollectChainConclusions(chain, in grid, supportedRules),
-				chain.GetViews_Monoparental(in grid, supportedRules, ref cachedAlsIndex),
+				CollectChainConclusions(chain, grid, supportedRules),
+				chain.GetViews_Monoparental(grid, supportedRules, ref cachedAlsIndex),
 				context.Options,
 				chain
 			);
@@ -81,10 +81,10 @@ internal static partial class ChainingDriver
 
 		static MultipleForcingChainsStep stepCreator(
 			MultipleForcingChains chain,
-			ref readonly Grid grid,
+			in Grid grid,
 			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
-		) => new(chain.Conclusions, chain.Cast().GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
+		) => new(chain.Conclusions, chain.Cast().GetViews(grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
 
 	/// <summary>
@@ -117,10 +117,10 @@ internal static partial class ChainingDriver
 
 		static RectangleForcingChainsStep stepCreator(
 			RectangleForcingChains chain,
-			ref readonly Grid grid,
+			in Grid grid,
 			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
-		) => new(chain.Conclusions, chain.Cast().GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
+		) => new(chain.Conclusions, chain.Cast().GetViews(grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
 
 	/// <summary>
@@ -153,10 +153,10 @@ internal static partial class ChainingDriver
 
 		static BivalueUniversalGraveForcingChainsStep stepCreator(
 			BivalueUniversalGraveForcingChains chain,
-			ref readonly Grid grid,
+			in Grid grid,
 			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
-		) => new(chain.Conclusions, chain.Cast().GetViews(in grid, chain.Conclusions, supportedRules), context.Options, chain);
+		) => new(chain.Conclusions, chain.Cast().GetViews(grid, chain.Conclusions, supportedRules), context.Options, chain);
 	}
 
 	/// <summary>
@@ -169,13 +169,13 @@ internal static partial class ChainingDriver
 	{
 		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. ChainingRule.AdvancedLinkTypes];
 		ref readonly var grid = ref context.Grid;
-		InitializeLinks(in grid, linkTypes.Aggregate(@delegate.EnumFlagMerger), context.Options, out var supportedRules);
+		InitializeLinks(grid, linkTypes.Aggregate(@delegate.EnumFlagMerger), context.Options, out var supportedRules);
 
 		foreach (var blossomLoop in CollectBlossomLoops(in context.Grid, context.OnlyFindOne, supportedRules))
 		{
 			var step = new BlossomLoopStep(
 				blossomLoop.Conclusions.ToArray(),
-				getViews(blossomLoop, in grid, supportedRules),
+				getViews(blossomLoop, grid, supportedRules),
 				context.Options,
 				blossomLoop
 			);
@@ -189,16 +189,16 @@ internal static partial class ChainingDriver
 		return null;
 
 
-		static View[] getViews(BlossomLoop blossomLoop, ref readonly Grid grid, ChainingRuleCollection supportedRules)
+		static View[] getViews(BlossomLoop blossomLoop, in Grid grid, ChainingRuleCollection supportedRules)
 		{
 			var globalView = View.Empty;
 			var otherViews = new View[blossomLoop.Count];
-			otherViews.InitializeArray(static ([NotNull] ref View? view) => view = View.Empty);
+			otherViews.InitializeArray(static ([NotNull] ref view) => view = View.Empty);
 
 			var (i, cachedAlsIndex) = (0, 0);
 			foreach (var (startCandidate, branch) in blossomLoop)
 			{
-				var viewNodes = branch.GetViews_Monoparental(in grid, supportedRules, ref cachedAlsIndex)[0];
+				var viewNodes = branch.GetViews_Monoparental(grid, supportedRules, ref cachedAlsIndex)[0];
 				globalView |= viewNodes;
 				otherViews[i] |= viewNodes;
 				globalView.Add(new CandidateViewNode(ColorIdentifier.Normal, startCandidate));
@@ -237,7 +237,7 @@ internal static partial class ChainingDriver
 	{
 		var linkTypes = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
 		ref readonly var grid = ref context.Grid;
-		InitializeLinks(in grid, linkTypes, context.Options, out var supportedRules);
+		InitializeLinks(grid, linkTypes, context.Options, out var supportedRules);
 
 		foreach (var forcingChains in CollectDynamicForcingChains(in grid, in context, supportedRules))
 		{
@@ -245,13 +245,13 @@ internal static partial class ChainingDriver
 			{
 				BinaryForcingChains b => new BinaryForcingChainsStep(
 					new SingletonArray<Conclusion>(b.Conclusion),
-					b.Cast().GetViews(in grid, [b.Conclusion], supportedRules),
+					b.Cast().GetViews(grid, [b.Conclusion], supportedRules),
 					context.Options,
 					b
 				),
 				MultipleForcingChains m => new MultipleForcingChainsStep(
 					m.Conclusions,
-					m.Cast().GetViews(in grid, m.Conclusions, supportedRules),
+					m.Cast().GetViews(grid, m.Conclusions, supportedRules),
 					context.Options,
 					m
 				)
@@ -287,8 +287,8 @@ internal static partial class ChainingDriver
 		bool allowsAdvancedLinks,
 		bool onlyFindFinnedChain,
 		delegate*<TMultipleForcingChains, MultipleChainBasedComponent> componentCreator,
-		delegate*<ref readonly Grid, bool, ReadOnlySpan<TMultipleForcingChains>> chainsCollector,
-		delegate*<TMultipleForcingChains, ref readonly Grid, ref readonly StepAnalysisContext, ChainingRuleCollection, TMultipleForcingChainsStep> stepCreator
+		delegate*<in Grid, bool, ReadOnlySpan<TMultipleForcingChains>> chainsCollector,
+		delegate*<TMultipleForcingChains, in Grid, ref readonly StepAnalysisContext, ChainingRuleCollection, TMultipleForcingChainsStep> stepCreator
 	)
 		where TMultipleForcingChains : MultipleForcingChains
 		where TMultipleForcingChainsStep : PatternBasedChainStep
@@ -296,22 +296,22 @@ internal static partial class ChainingDriver
 		LinkType[] l = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
 		var linkTypes = l.Aggregate(@delegate.EnumFlagMerger);
 		ref readonly var grid = ref context.Grid;
-		InitializeLinks(in grid, linkTypes, context.Options, out var supportedRules);
+		InitializeLinks(grid, linkTypes, context.Options, out var supportedRules);
 
-		foreach (var chain in chainsCollector(in context.Grid, context.OnlyFindOne))
+		foreach (var chain in chainsCollector(context.Grid, context.OnlyFindOne))
 		{
 			var cachedAlsIndex = 0;
 			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
 			{
 				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
-				chain.PrepareFinnedChainViewNodes(finnedChain, ref cachedAlsIndex, supportedRules, in grid, in fins, out var views);
+				chain.PrepareFinnedChainViewNodes(finnedChain, ref cachedAlsIndex, supportedRules, grid, fins, out var views);
 
 				var finnedChainStep = new FinnedChainStep(
 					chain.Conclusions,
 					views,
 					context.Options,
 					finnedChain,
-					in fins,
+					fins,
 					componentCreator(chain)
 				);
 				if (finnedChain.IsStrictlyGrouped ^ allowsAdvancedLinks)
@@ -330,7 +330,7 @@ internal static partial class ChainingDriver
 
 			if (!onlyFindFinnedChain)
 			{
-				var rfcStep = stepCreator(chain, in grid, in context, supportedRules);
+				var rfcStep = stepCreator(chain, grid, in context, supportedRules);
 				if (context.OnlyFindOne)
 				{
 					return rfcStep;
@@ -353,9 +353,9 @@ internal static partial class ChainingDriver
 	[InterceptorInstanceTypes(
 		typeof(AlmostLockedSetsChainingRule), typeof(KrakenNormalFishChainingRule), typeof(LockedCandidatesChainingRule),
 		DefaultBehavior = InterceptorInstanceRoutingDefaultBehavior.DoNothingOrReturnDefault)]
-	private static Conclusion[] CollectChainConclusions(NamedChain pattern, ref readonly Grid grid, ChainingRuleCollection supportedRules)
+	private static Conclusion[] CollectChainConclusions(NamedChain pattern, in Grid grid, ChainingRuleCollection supportedRules)
 	{
-		var conclusions = pattern.GetConclusions(in grid);
+		var conclusions = pattern.GetConclusions(grid);
 		if (pattern is ContinuousNiceLoop { Links: var links })
 		{
 			var context = new ChainingRuleLoopConclusionContext(in grid, links);

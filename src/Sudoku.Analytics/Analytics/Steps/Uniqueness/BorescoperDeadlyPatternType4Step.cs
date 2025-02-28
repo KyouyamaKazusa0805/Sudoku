@@ -14,11 +14,11 @@ public sealed partial class BorescoperDeadlyPatternType4Step(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	ref readonly CellMap cells,
+	in CellMap cells,
 	Mask digitsMask,
-	[Property] ref readonly CellMap conjugateHouse,
+	[Property] in CellMap conjugateHouse,
 	[Property] Mask extraDigitsMask
-) : BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask)
+) : BorescoperDeadlyPatternStep(conclusions, views, options, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 2;

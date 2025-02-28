@@ -13,7 +13,7 @@ public static class TrueCandidate
 	/// <returns>All true candidates.</returns>
 	/// <exception cref="ArgumentException">Throws when the puzzle is invalid.</exception>
 	[Cached]
-	public static CandidateMap GetAllTrueCandidates(ref readonly Grid grid, CancellationToken cancellationToken = default)
+	public static CandidateMap GetAllTrueCandidates(in Grid grid, CancellationToken cancellationToken = default)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.GetIsValid(), true);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.PuzzleType == SudokuType.Standard, true);

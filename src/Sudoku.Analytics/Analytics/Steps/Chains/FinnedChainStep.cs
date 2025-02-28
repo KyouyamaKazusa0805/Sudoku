@@ -14,7 +14,7 @@ public sealed partial class FinnedChainStep(
 	View[]? views,
 	StepGathererOptions options,
 	NamedChain pattern,
-	[Property] ref readonly CandidateMap fins,
+	[Property] in CandidateMap fins,
 	[Property] MultipleChainBasedComponent basedComponent
 ) : NormalChainStep(conclusions, views, options, pattern)
 {

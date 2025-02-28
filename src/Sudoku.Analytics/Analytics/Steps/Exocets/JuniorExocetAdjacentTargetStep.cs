@@ -22,16 +22,7 @@ public sealed partial class JuniorExocetAdjacentTargetStep(
 	in CellMap endoTargetCells,
 	in CellMap crosslineCells,
 	[Property] in CellMap singleMirrors
-) : ExocetStep(
-	conclusions,
-	views,
-	options,
-	digitsMask,
-	in baseCells,
-	in targetCells,
-	in endoTargetCells,
-	in crosslineCells
-)
+) : ExocetStep(conclusions, views, options, digitsMask, baseCells, targetCells, endoTargetCells, crosslineCells)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 1;

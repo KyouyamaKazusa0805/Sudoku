@@ -6,5 +6,4 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="Digit">Indicates the target digit.</param>
 /// <param name="Cells">Indicates the target cells.</param>
 /// <param name="Reason"><inheritdoc cref="WhipAssignment.Reason" path="/summary"/></param>
-public sealed record GroupedWhipAssignment(Digit Digit, in CellMap Cells, Technique Reason) :
-	WhipAssignment(Cells * Digit, Reason);
+public sealed record GroupedWhipAssignment(Digit Digit, in CellMap Cells, Technique Reason) : WhipAssignment(Cells * Digit, Reason);

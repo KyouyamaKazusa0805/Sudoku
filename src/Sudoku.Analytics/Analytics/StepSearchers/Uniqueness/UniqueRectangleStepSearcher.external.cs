@@ -16,7 +16,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
 	/// <param name="arMode"></param>
-	private partial void CheckExternalType1Or2(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Digit d1, Digit d2, int index, bool arMode)
+	private partial void CheckExternalType1Or2(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Digit d1, Digit d2, int index, bool arMode)
 	{
 		var cells = urCells.AsCellMap();
 		if (!arMode && (EmptyCells & cells) != cells)
@@ -125,7 +125,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
 	/// <param name="arMode"></param>
-	private partial void CheckExternalType3(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
+	private partial void CheckExternalType3(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
 		var cells = urCells.AsCellMap();
 		if (!arMode && (EmptyCells & cells) != cells)
@@ -263,9 +263,9 @@ public partial class UniqueRectangleStepSearcher
 									context.Options,
 									d1,
 									d2,
-									in cells,
-									in guardianCellPair,
-									in otherCells,
+									cells,
+									guardianCellPair,
+									otherCells,
 									subsetDigitsMask,
 									isIncomplete,
 									arMode,
@@ -291,7 +291,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
 	/// <param name="arMode"></param>
-	private partial void CheckExternalType4(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
+	private partial void CheckExternalType4(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
 		var cells = urCells.AsCellMap();
 		if (!arMode && (EmptyCells & cells) != cells)
@@ -429,9 +429,9 @@ public partial class UniqueRectangleStepSearcher
 								context.Options,
 								d1,
 								d2,
-								in cells,
-								in guardianCellPair,
-								new(in guardianCellPair, conjugatePairDigit),
+								cells,
+								guardianCellPair,
+								new(guardianCellPair, conjugatePairDigit),
 								isIncomplete,
 								arMode,
 								index
@@ -454,7 +454,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The mask index.</param>
-	private partial void CheckExternalTurbotFish(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index)
+	private partial void CheckExternalTurbotFish(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index)
 	{
 		var cells = urCells.AsCellMap();
 
@@ -531,7 +531,7 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				// Check whether guardian cells cannot create links to form a turbot fish.
-				var (a, b) = (getAvailableHouses(houses[0], in guardianCells), getAvailableHouses(houses[1], in guardianCells));
+				var (a, b) = (getAvailableHouses(houses[0], guardianCells), getAvailableHouses(houses[1], guardianCells));
 				if (a == 0 && b == 0)
 				{
 					continue;
@@ -597,8 +597,8 @@ public partial class UniqueRectangleStepSearcher
 									context.Options,
 									d1,
 									d2,
-									in cells,
-									in guardianCells,
+									cells,
+									guardianCells,
 									isIncomplete,
 									index
 								)
@@ -611,7 +611,7 @@ public partial class UniqueRectangleStepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static HouseMask getAvailableHouses(House house, ref readonly CellMap guardianCells)
+		static HouseMask getAvailableHouses(House house, in CellMap guardianCells)
 		{
 			var intersection = guardianCells & HousesMap[house];
 			return house switch
@@ -643,7 +643,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The mask index.</param>
-	private partial void CheckExternalWWing(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index)
+	private partial void CheckExternalWWing(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index)
 	{
 		// Collect all digits that all bi-value cells in the current grid used.
 		// W-Wing should contain a pair of cells which contain same 2 digits.
@@ -730,7 +730,7 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				// Check whether guardian cells cannot create links to form a W-Wing.
-				var (a, b) = (getAvailableHouses(houses[0], in guardianCells), getAvailableHouses(houses[1], in guardianCells));
+				var (a, b) = (getAvailableHouses(houses[0], guardianCells), getAvailableHouses(houses[1], guardianCells));
 				if (a == 0 || b == 0)
 				{
 					continue;
@@ -818,7 +818,7 @@ public partial class UniqueRectangleStepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static HouseMask getAvailableHouses(House house, ref readonly CellMap guardianCells)
+		static HouseMask getAvailableHouses(House house, in CellMap guardianCells)
 		{
 			var intersection = guardianCells & HousesMap[house];
 			return house switch
@@ -851,7 +851,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The mask index.</param>
 	/// <param name="arMode"></param>
-	private partial void CheckExternalXyWing(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
+	private partial void CheckExternalXyWing(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
 		var cells = urCells.AsCellMap();
 		if (!arMode && (EmptyCells & cells) != cells)
@@ -883,17 +883,17 @@ public partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			//forOneEndoLeaf(in grid, ref context, in cellsToEnumerate, in guardianCells, houseCombination);
-			forBothExoLeaves(in grid, ref context, in cellsToEnumerate, in guardianCells, houseCombination);
+			//forOneEndoLeaf(grid, ref context, cellsToEnumerate, guardianCells, houseCombination);
+			forBothExoLeaves(grid, ref context, cellsToEnumerate, guardianCells, houseCombination);
 		}
 
 
 #pragma warning disable CS8321
 		void forOneEndoLeaf(
-			ref readonly Grid grid,
+			in Grid grid,
 			ref StepAnalysisContext context,
-			ref readonly CellMap cellsToEnumerate,
-			ref readonly CellMap guardianCells,
+			in CellMap cellsToEnumerate,
+			in CellMap guardianCells,
 			House[] houseCombination
 		)
 		{
@@ -996,9 +996,9 @@ public partial class UniqueRectangleStepSearcher
 							context.Options,
 							d1,
 							d2,
-							in cells,
-							in guardianCells,
-							in cellPair,
+							cells,
+							guardianCells,
+							cellPair,
 							isIncomplete,
 							arMode,
 							index
@@ -1010,10 +1010,10 @@ public partial class UniqueRectangleStepSearcher
 #pragma warning restore CS8321
 
 		void forBothExoLeaves(
-			ref readonly Grid grid,
+			in Grid grid,
 			ref StepAnalysisContext context,
-			ref readonly CellMap cellsToEnumerate,
-			ref readonly CellMap guardianCells,
+			in CellMap cellsToEnumerate,
+			in CellMap guardianCells,
 			House[] houseCombination
 		)
 		{
@@ -1123,9 +1123,9 @@ public partial class UniqueRectangleStepSearcher
 						context.Options,
 						d1,
 						d2,
-						in cells,
-						in guardianCells,
-						in cellPair,
+						cells,
+						guardianCells,
+						cellPair,
 						isIncomplete,
 						arMode,
 						index
@@ -1148,7 +1148,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The mask index.</param>
 	/// <param name="arMode"></param>
-	private partial void CheckExternalAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
+	private partial void CheckExternalAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, in Grid grid, ref StepAnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
 		var cells = urCells.AsCellMap();
 		if (!arMode && (EmptyCells & cells) != cells)
@@ -1287,8 +1287,8 @@ public partial class UniqueRectangleStepSearcher
 							context.Options,
 							d1,
 							d2,
-							in cells,
-							in guardianCells,
+							cells,
+							guardianCells,
 							als,
 							isIncomplete,
 							arMode,

@@ -219,19 +219,19 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				centerMask |= grid.GetCandidates(c4);
 			}
 
-			if (CheckType1(accumulator, in grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type1Step)
+			if (CheckType1(accumulator, grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, map) is { } type1Step)
 			{
 				return type1Step;
 			}
-			if (CheckType2(accumulator, in grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type2Step)
+			if (CheckType2(accumulator, grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, map) is { } type2Step)
 			{
 				return type2Step;
 			}
-			if (CheckType3(accumulator, in grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type3Step)
+			if (CheckType3(accumulator, grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, map) is { } type3Step)
 			{
 				return type3Step;
 			}
-			if (CheckType4(accumulator, in grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type4Step)
+			if (CheckType4(accumulator, grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, map) is { } type4Step)
 			{
 				return type4Step;
 			}
@@ -245,14 +245,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	private BorescoperDeadlyPatternType1Step? CheckType1(
 		List<Step> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		BorescoperDeadlyPatternPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,
 		Mask centerMask,
-		ref readonly CellMap map
+		in CellMap map
 	)
 	{
 		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
@@ -294,7 +294,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				(from digit in elimMask select new Conclusion(Elimination, elimCell, digit)).ToArray(),
 				[[.. candidateOffsets]],
 				context.Options,
-				in map,
+				map,
 				tempMask
 			);
 			if (findOnlyOne)
@@ -314,14 +314,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	private BorescoperDeadlyPatternType2Step? CheckType2(
 		List<Step> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		BorescoperDeadlyPatternPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,
 		Mask centerMask,
-		ref readonly CellMap map
+		in CellMap map
 	)
 	{
 		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
@@ -355,7 +355,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				(from cell in elimMap select new Conclusion(Elimination, cell, otherDigit)).ToArray(),
 				[[.. candidateOffsets]],
 				context.Options,
-				in map,
+				map,
 				tempMask,
 				otherDigit
 			);
@@ -376,14 +376,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	private BorescoperDeadlyPatternType3Step? CheckType3(
 		List<Step> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		BorescoperDeadlyPatternPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,
 		Mask centerMask,
-		ref readonly CellMap map
+		in CellMap map
 	)
 	{
 		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
@@ -464,9 +464,9 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 							conclusions.AsMemory(),
 							[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
 							context.Options,
-							in map,
+							map,
 							tempMask,
-							in combination,
+							combination,
 							otherDigitsMask
 						);
 						if (findOnlyOne)
@@ -488,14 +488,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	private BorescoperDeadlyPatternType4Step? CheckType4(
 		List<Step> accumulator,
-		ref readonly Grid grid,
+		in Grid grid,
 		ref StepAnalysisContext context,
 		BorescoperDeadlyPatternPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,
 		Mask centerMask,
-		ref readonly CellMap map
+		in CellMap map
 	)
 	{
 		// The type 4 may be complex and terrible to process.
@@ -594,9 +594,9 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 						conclusions.AsMemory(),
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
 						context.Options,
-						in map,
+						map,
 						otherMask,
-						in currentMap,
+						currentMap,
 						combinationMask
 					);
 					if (findOnlyOne)

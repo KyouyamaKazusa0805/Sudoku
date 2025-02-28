@@ -37,7 +37,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 				goto NextLoop;
 			}
 
-			if (!AllowsBlockExcluders && Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken).HasBlockExcluders())
+			if (!AllowsBlockExcluders && Analyzer.Analyze(puzzle, cancellationToken: cancellationToken).HasBlockExcluders())
 			{
 				goto NextLoop;
 			}
@@ -165,7 +165,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 					targetDigit,
 					house,
 					false,
-					Lasting.GetLasting(in puzzle, targetCell, house),
+					Lasting.GetLasting(puzzle, targetCell, house),
 					subtype,
 					null
 				);
@@ -354,7 +354,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 					targetDigit,
 					house,
 					false,
-					Lasting.GetLasting(in puzzle, targetCell, house),
+					Lasting.GetLasting(puzzle, targetCell, house),
 					subtype,
 					null
 				);
@@ -463,7 +463,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 				return false;
 			}
 
-			switch (Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken))
+			switch (Analyzer.Analyze(puzzle, cancellationToken: cancellationToken))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{

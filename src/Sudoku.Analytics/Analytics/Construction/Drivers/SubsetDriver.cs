@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.Construction.Drivers;
 
-using unsafe SubsetModuleSearcherFuncPtr = delegate*<ref StepAnalysisContext, ref readonly Grid, ref readonly CellMap, ReadOnlySpan<CellMap>, int, bool, Step?>;
-
 /// <summary>
 /// Represents a subset searching driver.
 /// </summary>
@@ -15,8 +13,8 @@ internal static class SubsetDriver
 	/// <returns>The collected steps.</returns>
 	public static unsafe Step? CollectCore(bool searchingForLocked, ref StepAnalysisContext context)
 	{
-		var p = stackalloc SubsetModuleSearcherFuncPtr[] { &HiddenSubset, &NakedSubset };
-		var q = stackalloc SubsetModuleSearcherFuncPtr[] { &NakedSubset, &HiddenSubset };
+		var p = stackalloc delegate*<ref StepAnalysisContext, in Grid, in CellMap, ReadOnlySpan<CellMap>, int, bool, Step?>[] { &HiddenSubset, &NakedSubset };
+		var q = stackalloc delegate*<ref StepAnalysisContext, in Grid, in CellMap, ReadOnlySpan<CellMap>, int, bool, Step?>[] { &NakedSubset, &HiddenSubset };
 		var searchers = context.Options is { IsDirectMode: true } ? p : q;
 
 		ref readonly var grid = ref context.Grid;
@@ -36,13 +34,12 @@ internal static class SubsetDriver
 		{
 			for (var i = 0; i < 2; i++)
 			{
-				if (searchers[i](ref context, in grid, in emptyCellsForGrid, candidatesMapForGrid, size, searchingForLocked) is { } step)
+				if (searchers[i](ref context, grid, emptyCellsForGrid, candidatesMapForGrid, size, searchingForLocked) is { } step)
 				{
 					return step;
 				}
 			}
 		}
-
 		return null;
 	}
 
@@ -51,8 +48,8 @@ internal static class SubsetDriver
 	/// </summary>
 	private static HiddenSubsetStep? HiddenSubset(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
-		ref readonly CellMap emptyCellsForGrid,
+		in Grid grid,
+		in CellMap emptyCellsForGrid,
 		ReadOnlySpan<CellMap> candidatesMapForGrid,
 		int size,
 		bool searchingForLocked
@@ -100,7 +97,7 @@ internal static class SubsetDriver
 						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 					}
 
-					cellOffsets.AddRange(Excluder.GetSubsetExcluders(in grid, digit, house, in cells));
+					cellOffsets.AddRange(Excluder.GetSubsetExcluders(grid, digit, house, cells));
 				}
 
 				var isLocked = cells.IsInIntersection;
@@ -137,7 +134,7 @@ internal static class SubsetDriver
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house), .. cellOffsets]],
 						context.Options,
 						house,
-						in cells,
+						cells,
 						digitsMask,
 						isLocked && containsExtraEliminations
 					);
@@ -159,8 +156,8 @@ internal static class SubsetDriver
 	/// </summary>
 	private static NakedSubsetStep? NakedSubset(
 		ref StepAnalysisContext context,
-		ref readonly Grid grid,
-		ref readonly CellMap emptyCellsForGrid,
+		in Grid grid,
+		in CellMap emptyCellsForGrid,
 		ReadOnlySpan<CellMap> candidatesMapForGrid,
 		int size,
 		bool searchingForLocked
@@ -229,7 +226,7 @@ internal static class SubsetDriver
 					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.Options,
 					house,
-					in cells,
+					cells,
 					digitsMask,
 					isLocked
 				);

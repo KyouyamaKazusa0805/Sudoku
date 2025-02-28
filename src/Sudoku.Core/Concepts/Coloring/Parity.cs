@@ -17,14 +17,14 @@ namespace Sudoku.Concepts.Coloring;
 /// <param name="Cells">Indicates the cells used.</param>
 /// <seealso cref="Cluster"/>
 /// <seealso href="http://sudopedia.enjoysudoku.com/Parity.html">Sudopedia Mirror - Parity</seealso>
-public readonly record struct Parity(bool ParityFlag, ref readonly CellMap Cells) : IEqualityOperators<Parity, Parity, bool>
+public readonly record struct Parity(bool ParityFlag, in CellMap Cells) : IEqualityOperators<Parity, Parity, bool>
 {
 	/// <summary>
 	/// Try to get all pairs of parities of all components of the specified graph.
 	/// </summary>
 	/// <param name="graph">The graph.</param>
 	/// <returns>A list of pairs of parities of components of the specified graph.</returns>
-	public static ReadOnlySpan<(Parity On, Parity Off)> Create(ref readonly CellGraph graph)
+	public static ReadOnlySpan<(Parity On, Parity Off)> Create(in CellGraph graph)
 	{
 		var result = new List<(Parity, Parity)>();
 		foreach (var component in graph.Components)
@@ -38,7 +38,7 @@ public readonly record struct Parity(bool ParityFlag, ref readonly CellMap Cells
 					group depth by depthKey into depthGroup
 					let depthCells = (from depth in depthGroup select depth.Cell).AsCellMap()
 					select (DepthValueIsOdd: depthGroup.Key, Cells: depthCells);
-				result.Add((new(true, in group[0].Cells), new(false, in group[1].Cells)));
+				result.Add((new(true, group[0].Cells), new(false, group[1].Cells)));
 				break;
 			}
 		}

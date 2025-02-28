@@ -19,7 +19,7 @@ public partial class Hub
 		/// <inheritdoc cref="FishStep.IsSashimi" path="/remarks"/>
 		/// </para>
 		/// </returns>
-		public static bool? IsSashimi(House[] baseSets, ref readonly CellMap fins, Digit digit)
+		public static bool? IsSashimi(House[] baseSets, in CellMap fins, Digit digit)
 		{
 			if (!fins)
 			{

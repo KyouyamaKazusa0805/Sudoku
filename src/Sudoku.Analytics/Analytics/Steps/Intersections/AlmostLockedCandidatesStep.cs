@@ -15,8 +15,8 @@ public sealed partial class AlmostLockedCandidatesStep(
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Mask digitsMask,
-	[Property] ref readonly CellMap baseCells,
-	[Property] ref readonly CellMap coverCells,
+	[Property] in CellMap baseCells,
+	[Property] in CellMap coverCells,
 	[Property] bool hasValueCell
 ) : IntersectionStep(conclusions, views, options), ISizeTrait
 {

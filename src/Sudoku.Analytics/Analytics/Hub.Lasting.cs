@@ -14,7 +14,7 @@ public partial class Hub
 		/// <param name="cell">The cell.</param>
 		/// <param name="house">The house.</param>
 		/// <returns>The lasting value.</returns>
-		public static int GetLasting(ref readonly Grid grid, Cell cell, House house)
+		public static int GetLasting(in Grid grid, Cell cell, House house)
 		{
 			var result = 0;
 			foreach (var c in HousesMap[house])
@@ -34,7 +34,7 @@ public partial class Hub
 		/// <param name="cell">The cell.</param>
 		/// <param name="house">The house.</param>
 		/// <returns>The lasting value.</returns>
-		public static int GetLastingAllHouses(ref readonly Grid grid, Cell cell, out House house)
+		public static int GetLastingAllHouses(in Grid grid, Cell cell, out House house)
 		{
 			var (resultCount, resultHouse) = (9, 0);
 			foreach (var houseType in HouseTypes)
