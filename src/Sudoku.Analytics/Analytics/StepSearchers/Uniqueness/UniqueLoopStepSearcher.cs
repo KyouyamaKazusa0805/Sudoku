@@ -112,7 +112,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					// If so, check whether the loop is of length greater than 6, and validity of the loop.
 					if (currentCell == cell && currentBranch.Count is 6 or 8 or 10 or 12 or 14 && UniqueLoopPattern.IsValid(currentBranch))
 					{
-						result.Add(new(currentBranch.AsCellMap(), [.. currentBranch], comparer));
+						result.Add(new([.. currentBranch], [.. currentBranch], comparer));
 						break;
 					}
 
