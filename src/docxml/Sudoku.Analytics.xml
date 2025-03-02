@@ -11850,20 +11850,6 @@
             Check strong link type.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.Uniqueness.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.Extensions.AsCellMap(System.Collections.Generic.LinkedList{System.Int32})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance via a linked list.
-            </summary>
-            <param name="this">A linked list to be used.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance created.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.Uniqueness.UniqueMatrixStepSearcher">
             <summary>
             Provides with a <b>Unique Matrix</b> step searcher.
