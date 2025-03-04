@@ -4780,13 +4780,6 @@
             <param name="gridValues">The array of grid values.</param>
             <param name="creatingOption">The grid creating option.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Create(System.Int16[])">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance with the specified mask array.
-            </summary>
-            <param name="masks">The masks.</param>
-            <exception cref="T:System.ArgumentException">Throws when <see cref="P:System.Array.Length"/> is out of valid range.</exception>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.ReadOnlySpan{System.Int32},Sudoku.Concepts.GridCreatingOption)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance via the array of cell digits
@@ -4851,23 +4844,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_CheckedSubtraction(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid">
-            <summary>
-            Converts the specified array elements into the target <see cref="T:Sudoku.Concepts.Grid"/> instance, without any value boundary checking.
-            </summary>
-            <param name="maskArray">An array of the target mask. The array must be of a valid length.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.op_CheckedExplicit(System.Int16[])~Sudoku.Concepts.Grid">
-            <summary>
-            Converts the specified array elements into the target <see cref="T:Sudoku.Concepts.Grid"/> instance, with value boundary checking.
-            </summary>
-            <param name="maskArray">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid" path="/param[@name='maskArray']"/>
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when at least one element in the mask array is greater than 0b100__111_111_111 (i.e. 2559) or less than 0.
-            </exception>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -6596,24 +6572,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Primitives.IGrid`1.System#Numerics#ISubtractionOperators{TSelf,TSelf,Sudoku#Behaviors#Diff#DiffResult}#op_CheckedSubtraction(`0,`0)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitives.IGrid`1.op_Explicit(System.Int16[])~`0">
-            <summary>
-            Converts the specified array elements into the target <typeparamref name="TSelf"/> instance,
-            without any value boundary checking.
-            </summary>
-            <param name="maskArray">An array of the target mask. The array must be of a valid length.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitives.IGrid`1.op_CheckedExplicit(System.Int16[])~`0">
-            <summary>
-            Converts the specified array elements into the target <typeparamref name="TSelf"/> instance, with value boundary checking.
-            </summary>
-            <param name="maskArray">
-            <inheritdoc cref="M:Sudoku.Concepts.Primitives.IGrid`1.op_Explicit(System.Int16[])~`0" path="/param[@name='maskArray']"/>
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when at least one element in the mask array is greater than 0b100__111_111_111 (i.e. 2559) or less than 0.
-            </exception>
         </member>
         <member name="T:Sudoku.Concepts.Primitives.MaskOperations">
             <summary>

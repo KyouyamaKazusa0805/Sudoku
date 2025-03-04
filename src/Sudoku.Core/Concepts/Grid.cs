@@ -929,14 +929,6 @@ public partial struct Grid : GridBase
 	public static Grid Create(Digit[] gridValues, GridCreatingOption creatingOption = 0) => new(in gridValues[0], creatingOption);
 
 	/// <summary>
-	/// Creates a <see cref="Grid"/> instance with the specified mask array.
-	/// </summary>
-	/// <param name="masks">The masks.</param>
-	/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is out of valid range.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(Mask[] masks) => checked((Grid)masks);
-
-	/// <summary>
 	/// Creates a <see cref="Grid"/> instance via the array of cell digits
 	/// of type <see cref="ReadOnlySpan{T}"/> of <see cref="Digit"/>.
 	/// </summary>
@@ -1197,39 +1189,4 @@ public partial struct Grid : GridBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DiffResult operator checked -(in Grid left, in Grid right)
 		=> left - right ?? throw new GridDiffTooMuchException();
-
-
-	/// <summary>
-	/// Converts the specified array elements into the target <see cref="Grid"/> instance, without any value boundary checking.
-	/// </summary>
-	/// <param name="maskArray">An array of the target mask. The array must be of a valid length.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Grid(Mask[] maskArray) => Create(maskArray.AsReadOnlySpan());
-
-	/// <summary>
-	/// Converts the specified array elements into the target <see cref="Grid"/> instance, with value boundary checking.
-	/// </summary>
-	/// <param name="maskArray">
-	/// <inheritdoc cref="op_Explicit(Mask[])" path="/param[@name='maskArray']"/>
-	/// </param>
-	/// <exception cref="ArgumentException">
-	/// Throws when at least one element in the mask array is greater than 0b100__111_111_111 (i.e. 2559) or less than 0.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator checked Grid(Mask[] maskArray)
-	{
-		ArgumentOutOfRangeException.ThrowIfNotEqual(maskArray.Length, 81);
-		ArgumentOutOfRangeException.ThrowIfNotEqual(Array.TrueForAll(maskArray, maskMatcher), true);
-
-		var result = Empty;
-		Unsafe.CopyBlock(
-			ref @ref.ByteRef(ref result[0]),
-			in @ref.ReadOnlyByteRef(in maskArray[0]),
-			sizeof(Mask) * 81
-		);
-		return result;
-
-
-		static bool maskMatcher(Mask element) => element >> 9 is 0 or 1 or 2 or 4;
-	}
 }

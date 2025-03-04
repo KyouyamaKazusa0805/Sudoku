@@ -758,23 +758,4 @@ public interface IGrid<TSelf> :
 	/// <inheritdoc/>
 	static DiffResult? ISubtractionOperators<TSelf, TSelf, DiffResult?>.operator checked -(TSelf left, TSelf right)
 		=> checked(left - right);
-
-
-	/// <summary>
-	/// Converts the specified array elements into the target <typeparamref name="TSelf"/> instance,
-	/// without any value boundary checking.
-	/// </summary>
-	/// <param name="maskArray">An array of the target mask. The array must be of a valid length.</param>
-	public static abstract explicit operator TSelf(Mask[] maskArray);
-
-	/// <summary>
-	/// Converts the specified array elements into the target <typeparamref name="TSelf"/> instance, with value boundary checking.
-	/// </summary>
-	/// <param name="maskArray">
-	/// <inheritdoc cref="op_Explicit(Mask[])" path="/param[@name='maskArray']"/>
-	/// </param>
-	/// <exception cref="ArgumentException">
-	/// Throws when at least one element in the mask array is greater than 0b100__111_111_111 (i.e. 2559) or less than 0.
-	/// </exception>
-	public static abstract explicit operator checked TSelf(Mask[] maskArray);
 }
