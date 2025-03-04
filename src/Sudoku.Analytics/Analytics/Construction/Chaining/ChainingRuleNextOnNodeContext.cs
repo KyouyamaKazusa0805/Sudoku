@@ -16,17 +16,8 @@ public ref partial struct ChainingRuleNextOnNodeContext(
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] in Grid originalGrid,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] HashSet<Node> nodesSupposedOff,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] StepGathererOptions options
-) : IChainingRuleNextNodeContext
+)
 {
 	/// <inheritdoc/>
 	public HashSet<Node> Nodes { get; set; } = [];
-
-	/// <inheritdoc/>
-	readonly ref readonly Grid IContext.Grid => ref Grid;
-
-	/// <inheritdoc/>
-	readonly Node IChainingRuleNextNodeContext.CurrentNode => CurrentNode;
-
-	/// <inheritdoc/>
-	readonly StepGathererOptions IChainingRuleNextNodeContext.Options => Options;
 }

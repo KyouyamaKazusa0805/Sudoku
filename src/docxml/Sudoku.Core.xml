@@ -10429,16 +10429,6 @@
             <param name="otherName">The other name to be compared.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Runtime.IContext">
-            <summary>
-            Represents a type that is a context.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.IContext.Grid">
-            <summary>
-            Indicates the grid to be used.
-            </summary>
-        </member>
         <member name="T:Sudoku.Runtime.InterceptorServices.InterceptorInstanceRoutingDefaultBehavior">
             <summary>
             Indicates the default behavior on routing for interceptor instance type checking.

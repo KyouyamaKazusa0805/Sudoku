@@ -12,7 +12,7 @@ public ref partial struct ChainingRuleViewNodeContext(
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] in Grid grid,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] Chain pattern,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] View view
-) : IContext
+)
 {
 	/// <summary>
 	/// Indicates the currently used almost locked set index.
@@ -23,7 +23,4 @@ public ref partial struct ChainingRuleViewNodeContext(
 	/// Indicates the view nodes produced.
 	/// </summary>
 	public ReadOnlySpan<ViewNode> ProducedViewNodes { get; set; }
-
-	/// <inheritdoc/>
-	readonly ref readonly Grid IContext.Grid => ref Grid;
 }

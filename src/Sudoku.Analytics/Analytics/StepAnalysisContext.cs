@@ -12,7 +12,7 @@ namespace Sudoku.Analytics;
 public ref partial struct StepAnalysisContext(
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] in Grid grid,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] in Grid initialGrid
-) : IContext
+)
 {
 	/// <summary>
 	/// Initializes an <see cref="StepAnalysisContext"/> instance via the specified grid.
@@ -84,7 +84,4 @@ public ref partial struct StepAnalysisContext(
 	/// Indicates the accumulator to store each step while searching.
 	/// </summary>
 	public List<Step>? Accumulator { get; internal set; }
-
-	/// <inheritdoc/>
-	readonly ref readonly Grid IContext.Grid => ref Grid;
 }

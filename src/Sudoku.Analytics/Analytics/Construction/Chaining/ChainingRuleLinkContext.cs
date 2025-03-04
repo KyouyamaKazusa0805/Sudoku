@@ -14,12 +14,8 @@ public ref partial struct ChainingRuleLinkContext(
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] LinkDictionary strongLinks,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] LinkDictionary weakLinks,
 	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] StepGathererOptions options
-) : IContext
+)
 {
-	/// <inheritdoc/>
-	readonly ref readonly Grid IContext.Grid => ref Grid;
-
-
 	/// <summary>
 	/// Try to get the link option for the specified link type.
 	/// </summary>
