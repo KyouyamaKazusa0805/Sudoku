@@ -261,7 +261,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 	/// <param name="digit">The digit to be used.</param>
 	/// <param name="cells">The cells to be used.</param>
 	/// <returns>An <see cref="CellGraph"/> instance.</returns>
-	public static CellGraph CreateFromConjugatePair(in  Grid grid, Digit digit, in CellMap cells)
+	public static CellGraph CreateFromConjugatePair(in Grid grid, Digit digit, in CellMap cells)
 	{
 		var globalCells = grid.CandidatesMap[digit];
 		var invalidCells = CellMap.Empty;
