@@ -208,14 +208,15 @@ public sealed class DictionaryQuerySolver : ISolver
 	}
 
 	/// <summary>
-	/// Eliminate all the other values (except d) from <c>values[s]</c> and propagate.
+	/// Eliminate all the other values (except <paramref name="d"/>)
+	/// from <c><paramref name="values"/>[<paramref name="s"/>]</c> and propagate.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private Dictionary<string, string>? Assign(Dictionary<string, string> values, string s, string d)
 		=> AllNotNull(from d2 in values[s] where d2.ToString() != d select Eliminate(values, s, d2.ToString())) ? values : null;
 
 	/// <summary>
-	/// Eliminate d from <c>values[s]</c>; propagate when values or places <![CDATA[<=]]> 2.
+	/// Eliminate d from <c><paramref name="values"/>[<paramref name="s"/>]</c>; propagate when values or places &lt;= 2.
 	/// </summary>
 	private Dictionary<string, string>? Eliminate(Dictionary<string, string> values, string s, string d)
 	{

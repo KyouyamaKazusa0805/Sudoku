@@ -12315,12 +12315,13 @@
         </member>
         <member name="M:Sudoku.Solving.DictionaryQuery.DictionaryQuerySolver.Assign(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
             <summary>
-            Eliminate all the other values (except d) from <c>values[s]</c> and propagate.
+            Eliminate all the other values (except <paramref name="d"/>)
+            from <c><paramref name="values"/>[<paramref name="s"/>]</c> and propagate.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.DictionaryQuery.DictionaryQuerySolver.Eliminate(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
             <summary>
-            Eliminate d from <c>values[s]</c>; propagate when values or places <![CDATA[<=]]> 2.
+            Eliminate d from <c><paramref name="values"/>[<paramref name="s"/>]</c>; propagate when values or places &lt;= 2.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Dlx.ColumnNode">
