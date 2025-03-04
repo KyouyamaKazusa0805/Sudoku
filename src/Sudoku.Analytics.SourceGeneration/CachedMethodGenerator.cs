@@ -1,7 +1,5 @@
 namespace Sudoku.SourceGeneration;
 
-using NullableResultTriplet = (Location? Location, MethodDeclarationSyntax? RefMethodDeclarationSyntaxNode, IMethodSymbol RefMethodSymbol)?;
-
 /// <summary>
 /// Represents a source generator that copies the whole method, and replaces some variables with cached fields.
 /// </summary>
@@ -213,15 +211,15 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 		{
 			// Try to check referenced method data.
 			// If the method cannot be found, we should skip code generation for the current method.
-			var resultTriplet = default(NullableResultTriplet);
+			var resultTriplet = default(LocationResult?);
 			var invocationExpression = invocation.Expression;
 			switch (semanticModel.GetSymbolInfo(invocation, cancellationToken))
 			{
 				case { CandidateSymbols: [IMethodSymbol { DeclaringSyntaxReferences: var syntaxRefs } methodSymbol] }
 				when methodSymbol.GetAttributes().Any(cachedAttributeChecker):
 				{
-					if ((resultTriplet = g(methodSymbol, invocationExpression, syntaxRefs, out var diagnostic, cancellationToken)) is null
-						&& diagnostic is not null)
+					resultTriplet = g(methodSymbol, invocationExpression, syntaxRefs, out var diagnostic, cancellationToken);
+					if (resultTriplet is null && diagnostic is not null)
 					{
 						return diagnostic;
 					}
@@ -230,8 +228,8 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				case { Symbol: IMethodSymbol { DeclaringSyntaxReferences: var syntaxRefs } methodSymbol }
 				when methodSymbol.GetAttributes().Any(cachedAttributeChecker):
 				{
-					if ((resultTriplet = g(methodSymbol, invocationExpression, syntaxRefs, out var diagnostic, cancellationToken)) is null
-						&& diagnostic is not null)
+					resultTriplet = g(methodSymbol, invocationExpression, syntaxRefs, out var diagnostic, cancellationToken);
+					if (resultTriplet is null && diagnostic is not null)
 					{
 						return diagnostic;
 					}
@@ -240,21 +238,22 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			}
 
 			// Verify the triplet data.
-#pragma warning disable format
-			if (resultTriplet is not (
-				{ SourceTree.FilePath: var filePath } invocationLocation,
+			if (resultTriplet is not
 				{
-					Body: var referencedMethodBody,
-					Modifiers: var referencedMethodModifiers
-				} referencedMethodDeclaration,
-				{
-					ReturnType: var referencedMethodReturnType,
-					Parameters: var referencedMethodParameters,
-					Name: var referencedMethodName,
-					IsGenericMethod: var referencedMethodIsGenericMethod
-				} referencedMethodSymbol
-			))
-#pragma warning restore format
+					Location: { SourceTree.FilePath: var filePath } invocationLocation,
+					RefMethodDeclarationSyntaxNode:
+					{
+						Body: var referencedMethodBody,
+						Modifiers: var referencedMethodModifiers
+					} referencedMethodDeclaration,
+					RefMethodSymbol:
+					{
+						ReturnType: var referencedMethodReturnType,
+						Parameters: var referencedMethodParameters,
+						Name: var referencedMethodName,
+						IsGenericMethod: var referencedMethodIsGenericMethod
+					} referencedMethodSymbol
+				})
 			{
 				continue;
 			}
@@ -331,7 +330,6 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				if (hasThisMemberAccessing)
 				{
 					// Today I won't handle this because it is too complex to be checked...
-					// I'll implement a 'SyntaxRewriter' to replace nodes, to change this code.
 					return Diagnostic.Create(IC0106, identifierToken.GetLocation(), messageArgs: null);
 				}
 			}
@@ -352,7 +350,6 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					select (Type: targetType, TypeString: targetTypeString)
 				).ToArray();
 				var defaultBehavior = (InterceptorInstanceRoutingDefaultBehavior)instanceTypesAttributeMarked.GetNamedArgument(DefaultBehaviorPropertyName, 0);
-
 				var parametersInvocationString = string.Join(
 					", ",
 					from parameterSymbol in referencedMethodSymbol.Parameters
@@ -360,7 +357,8 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					{
 						RefKind.Ref => "ref ",
 						RefKind.Out => "out ",
-						RefKind.RefReadOnlyParameter or RefKind.In => "in ",
+						RefKind.RefReadOnlyParameter => "in ",
+						RefKind.In => string.Empty, // in parameters may not pass with explicitly-declared 'in' keywords.
 						_ => string.Empty
 					}
 					select $"{parameterRefKind}{parameterSymbol.Name}"
@@ -444,10 +442,17 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 						{
 							DeclaringSyntaxReferences: [var syntaxRef],
 							Parameters: var referencedMethodParametersA,
-							ReturnType: var referencedMethodReturnTypeA
+							ReturnType: var referencedMethodReturnTypeA,
+							IsGenericMethod: var isGenericMethodA
 						} referencedMethodSymbolA)
 					{
 						continue;
+					}
+
+					if (isGenericMethodA)
+					{
+						// Generic methods are not supported at present.
+						return Diagnostic.Create(IC0109, identifierToken.GetLocation(), messageArgs: null);
 					}
 
 					var invocationLocationA = (invocationExpression as MemberAccessExpressionSyntax)?.Name.GetLocation();
@@ -460,7 +465,6 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 						{
 							Body.Statements: var statementsA,
 							SyntaxTree.FilePath: var filePathA
-							// ,ConstraintClauses: var constraintsA
 						})
 					{
 						continue;
@@ -562,24 +566,33 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				=> parameter.HasExplicitDefaultValue
 					? parameter.ExplicitDefaultValue switch
 					{
+						// No default value
 						null => "default",
-						string and [.. var s, '"']
-							=> $""""
+
+						// String with quotes => multi-line raw string
+						string and [.. var s, '"'] =>
+							$""""
 							"""
 							{s}"
 							"""
 							"""",
-						string s
-							=> $""""
+
+						// String => single-line raw string
+						string s =>
+							$""""
 							"""{s}"""
 							"""",
+
+						// Character => 'c'
 						char c => $"'{c}'",
+
+						// The other values
 						var value => value.ToString()
 					}
 					: null;
 		}
 
-		static NullableResultTriplet g(
+		static LocationResult? g(
 			IMethodSymbol methodSymbol,
 			ExpressionSyntax invocationExpression,
 			ImmutableArray<SyntaxReference> syntaxRefs,
@@ -601,7 +614,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			var referencedMethodDeclaration = syntaxRef.GetSyntax(cancellationToken) as MethodDeclarationSyntax;
 			var referencedMethodSymbol = methodSymbol;
 			diagnostic = null;
-			return (invocationLocation, referencedMethodDeclaration, referencedMethodSymbol);
+			return new(invocationLocation, referencedMethodDeclaration, referencedMethodSymbol);
 		}
 
 		static List<StatementSyntax> getStatements(
@@ -686,8 +699,6 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			var parametersString = getParametersString(referencedMethodParameters);
 			var xmlDocCommentsStr = getXmlDocComments(referencedMethodSymbol, cancellationToken);
 			var returnTypeStr = getReturnTypeString(referencedMethodReturnType, referencedMethodSymbol);
-			// var genericTypesStr = getGenericTypeParametersString(referencedMethodSymbol);
-			// var constraintsStr = getConstraintsString(constraints);
 			return new(
 				$$"""
 				/// <summary>
@@ -698,7 +709,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 				public static class __{{referencedMethodSymbol.ContainingType.Name}}_{{referencedMethodSymbol.Name}}_Intercepted
 				{
 					{{xmlDocCommentsStr}}
-					{{(emitInterceptsLocationAttribute ? AttributeInsertionMatchString : string.Empty)}}
+					{{(emitInterceptsLocationAttribute ? AttributeInsertionMatchString : "/// <!-- Nothing inserts here -->")}}
 					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(CachedMethodGenerator)}}", "{{Value}}")]
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 					public static {{returnTypeStr}} {{referencedMethodSymbol.Name}}({{instanceParameter}}{{parametersString}})
@@ -739,16 +750,6 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 					: string.Join("\r\n\t", xmlDocCommentLines);
 			}
 
-			// static string getGenericTypeParametersString(IMethodSymbol referencedMethodSymbol)
-			// 	=> referencedMethodSymbol.IsGenericMethod
-			// 		&& (from typeParameter in referencedMethodSymbol.TypeParameters select typeParameter.ToDisplayString()) is var p
-			// 		&& string.Join(", ", p) is var typeParametersString
-			// 		? $"<{typeParametersString}>"
-			// 		: string.Empty;
-
-			// static string getConstraintsString(SyntaxList<TypeParameterConstraintClauseSyntax>? constraints)
-			// 	=> (constraints?.Count ?? 0) != 0 ? $"\r\n\t\t{constraints}" : string.Empty;
-
 			static List<string> getTargetStringAppendIndenting(List<StatementSyntax> statements)
 			{
 				// Replace reserved identifiers with cached properties.
@@ -788,3 +789,15 @@ file enum InterceptorInstanceRoutingDefaultBehavior
 	/// </summary>
 	ThrowNotSupportedException
 }
+
+/// <summary>
+/// Represents a triplet of values as the location result.
+/// </summary>
+/// <param name="Location">Indicates the location.</param>
+/// <param name="RefMethodDeclarationSyntaxNode">Indicates the referenced method declaration (syntax node).</param>
+/// <param name="RefMethodSymbol">Indicates the referenced method symbol.</param>
+file readonly record struct LocationResult(
+	Location? Location,
+	MethodDeclarationSyntax? RefMethodDeclarationSyntaxNode,
+	IMethodSymbol RefMethodSymbol
+);

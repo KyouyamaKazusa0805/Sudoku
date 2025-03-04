@@ -113,4 +113,17 @@ public partial class CachedMethodGenerator
 		DiagnosticSeverity.Error,
 		true
 	);
+
+	/// <summary>
+	/// Represents message "The method is unsupported because it is generic method at present,
+	/// no matter whether it has type parameter constraints".
+	/// </summary>
+	private static readonly DiagnosticDescriptor IC0109 = new(
+		nameof(IC0109),
+		"The method is unsupported because it is generic method at present, no matter whether it has type parameter constraints",
+		"The method is unsupported because it is generic method at present, no matter whether it has type parameter constraints",
+		"Interceptor.Design",
+		DiagnosticSeverity.Error,
+		true
+	);
 }

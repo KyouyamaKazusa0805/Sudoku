@@ -103,6 +103,12 @@
             Represents message "Method cannot be local function, lambda and the other functions that cannot be referenced by name".
             </summary>
         </member>
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.IC0109">
+            <summary>
+            Represents message "The method is unsupported because it is generic method at present,
+            no matter whether it has type parameter constraints".
+            </summary>
+        </member>
         <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.FailedTransformResult">
             <summary>
             Represents a transform result after failed to be handled.
@@ -204,6 +210,31 @@
             <summary>
             Indicates the default behavior is to throw a <see cref="T:System.NotSupportedException"/>.
             </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.LocationResult">
+            <summary>
+            Represents a triplet of values as the location result.
+            </summary>
+            <param name="Location">Indicates the location.</param>
+            <param name="RefMethodDeclarationSyntaxNode">Indicates the referenced method declaration (syntax node).</param>
+            <param name="RefMethodSymbol">Indicates the referenced method symbol.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.LocationResult.#ctor(Microsoft.CodeAnalysis.Location,Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax,Microsoft.CodeAnalysis.IMethodSymbol)">
+            <summary>
+            Represents a triplet of values as the location result.
+            </summary>
+            <param name="Location">Indicates the location.</param>
+            <param name="RefMethodDeclarationSyntaxNode">Indicates the referenced method declaration (syntax node).</param>
+            <param name="RefMethodSymbol">Indicates the referenced method symbol.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.LocationResult.Location">
+            <summary>Indicates the location.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.LocationResult.RefMethodDeclarationSyntaxNode">
+            <summary>Indicates the referenced method declaration (syntax node).</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.LocationResult.RefMethodSymbol">
+            <summary>Indicates the referenced method symbol.</summary>
         </member>
         <member name="T:Sudoku.SourceGeneration.StepSearcherDefaultImportingGenerator">
             <summary>
