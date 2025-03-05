@@ -81,6 +81,60 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 	public bool IsEmpty => _cells.Count == 0;
 
 	/// <summary>
+	/// Indicates whether the graph is bipartite graph.
+	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// In general, a bipartite graph is a graph that can color with only 2 colors in a cyclic path,
+	/// through alternating coloring rule. If the graph is of an odd length, it may not be a bipartite graph
+	/// because we can find at least one pair of adjacent cells in a same color.
+	/// </para>
+	/// <para>
+	/// For more information about "Bipartite Graph", please visit
+	/// <see href="https://en.wikipedia.org/wiki/Bipartite_graph">this link</see>.
+	/// </para>
+	/// </remarks>
+	public bool IsBipartite
+	{
+		get
+		{
+			// A bipartite graph in this pattern must include at least one hamiltonian cycle.
+			if (GetHamiltonianCycles() is not [var loop, ..])
+			{
+				return false;
+			}
+
+			// Verify 2-coloring.
+			var coloringDictionary = new Dictionary<bool, CellMap>();
+			var isFirst = false;
+			foreach (var cell in loop)
+			{
+				if (!coloringDictionary.TryAdd(isFirst, cell.AsCellMap()))
+				{
+					coloringDictionary.GetValueRef(isFirst).Add(cell);
+				}
+				isFirst = !isFirst;
+			}
+
+			// Determine whether at least one cell contains same color with its peers.
+			foreach (var @switch in (false, true))
+			{
+				foreach (var cell in coloringDictionary[@switch])
+				{
+					foreach (var peer in PeersMap[cell] & _cells)
+					{
+						if (coloringDictionary[@switch].Contains(peer))
+						{
+							return false;
+						}
+					}
+				}
+			}
+			return true;
+		}
+	}
+
+	/// <summary>
 	/// Indicates the vertices count, i.e. the number of cells in the graph.
 	/// </summary>
 	public int VerticesCount => _cells.Count;

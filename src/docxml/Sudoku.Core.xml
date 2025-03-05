@@ -4155,6 +4155,22 @@
             Indicates whether the current graph is an empty graph, i.e. there's no cells inside the current graph.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Graphs.CellGraph.IsBipartite">
+            <summary>
+            Indicates whether the graph is bipartite graph.
+            </summary>
+            <remarks>
+            <para>
+            In general, a bipartite graph is a graph that can color with only 2 colors in a cyclic path,
+            through alternating coloring rule. If the graph is of an odd length, it may not be a bipartite graph
+            because we can find at least one pair of adjacent cells in a same color.
+            </para>
+            <para>
+            For more information about "Bipartite Graph", please visit
+            <see href="https://en.wikipedia.org/wiki/Bipartite_graph">this link</see>.
+            </para>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Concepts.Graphs.CellGraph.VerticesCount">
             <summary>
             Indicates the vertices count, i.e. the number of cells in the graph.
