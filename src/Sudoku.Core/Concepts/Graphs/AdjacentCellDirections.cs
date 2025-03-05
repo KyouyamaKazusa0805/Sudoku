@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Specialized;
+namespace Sudoku.Concepts.Graphs;
 
 /// <summary>
 /// Represents constants of <see cref="AdjacentCellDirection"/>.

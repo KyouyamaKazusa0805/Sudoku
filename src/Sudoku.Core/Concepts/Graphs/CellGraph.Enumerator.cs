@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Coloring;
+namespace Sudoku.Concepts.Graphs;
 
 public partial struct CellGraph
 {

@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Specialized;
+namespace Sudoku.Concepts.Graphs;
 
 /// <summary>
 /// Represents a graph that displays a list of <see cref="Cell"/> instances connected with rows and columns of adjacent positions.

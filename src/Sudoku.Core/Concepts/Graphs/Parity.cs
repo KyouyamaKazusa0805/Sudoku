@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Coloring;
+namespace Sudoku.Concepts.Graphs;
 
 /// <summary>
 /// <para>Represents one state of a candidate in a <see cref="Cluster"/>.</para>

@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Coloring;
+namespace Sudoku.Concepts.Graphs;
 
 /// <summary>
 /// <para>Represents a list of cells that form a undirected graph.</para>
