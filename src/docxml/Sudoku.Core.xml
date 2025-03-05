@@ -6736,6 +6736,7 @@
         <member name="T:Sudoku.Concepts.Specialized.AdjacentCellGraph">
             <summary>
             Represents a graph that displays a list of <see cref="T:System.Int32"/> instances connected with rows and columns of adjacent positions.
+            This graph will be useful to measure border lines.
             </summary>
             <seealso cref="T:System.Int32"/>
         </member>

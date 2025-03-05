@@ -2,6 +2,7 @@ namespace Sudoku.Concepts.Specialized;
 
 /// <summary>
 /// Represents a graph that displays a list of <see cref="Cell"/> instances connected with rows and columns of adjacent positions.
+/// This graph will be useful to measure border lines.
 /// </summary>
 /// <seealso cref="Cell"/>
 [TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable)]
