@@ -46,7 +46,7 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 
 				// Iterate on each component of the graph.
 				var pairMask = (Mask)(1 << d1 | 1 << d2);
-				var graph = new CellGraph(suchCells, CellMap.Empty);
+				var graph = new CellGraph(suchCells);
 				foreach (ref readonly var component in graph.Components)
 				{
 					var parities = Parity.Create(component);

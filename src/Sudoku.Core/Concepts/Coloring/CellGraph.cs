@@ -39,7 +39,16 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 
 
 	/// <summary>
-	/// Initializes an <see cref="CellGraph"/> instance.
+	/// Initializes a <see cref="CellGraph"/> instance with the specified cells.
+	/// </summary>
+	/// <param name="cells">The cells.</param>
+	public CellGraph(in CellMap cells) : this(cells, CellMap.Empty)
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="CellGraph"/> instance with the specified cells,
+	/// and some invalid cells that will be used by confliction checking.
 	/// </summary>
 	/// <param name="cells">Indicates the cells used.</param>
 	/// <param name="invalidCells">
@@ -166,6 +175,41 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 			sb.AppendLine($"{converter.CellConverter(in kvp.Key.AsCellMap())}: {converter.CellConverter(in kvp.ValueRef())}");
 		}
 		return sb.ToString();
+	}
+
+	/// <summary>
+	/// Try to find a path that connects with all possible cells of the graph, by advancing with the next cell in a same house.
+	/// </summary>
+	/// <returns>
+	/// The found path. If multiple paths exist, only the first one will be returned.
+	/// If no such loops found, an empty sequence will be returned.
+	/// </returns>
+	public ReadOnlySpan<ReadOnlyMemory<Cell>> GetHamiltonianPaths()
+	{
+		if (_cells)
+		{
+			var paths = new List<ReadOnlyMemory<Cell>>();
+			dfs(_cells[1..], _cells[0], [_cells[0]], paths);
+			return paths.AsSpan();
+		}
+		return [];
+
+
+		static void dfs(CellMap lastCells, Cell current, List<Cell> path, List<ReadOnlyMemory<Cell>> paths)
+		{
+			if (!lastCells)
+			{
+				paths.Add(path.ToArray());
+				return;
+			}
+
+			foreach (var next in lastCells & PeersMap[current])
+			{
+				path.Add(next);
+				dfs(lastCells - next, next, path, paths);
+				path.Remove(next);
+			}
+		}
 	}
 
 	/// <summary>

@@ -1722,9 +1722,16 @@
             Indicates the directly-connected cells.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.#ctor(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/> instance with the specified cells.
+            </summary>
+            <param name="cells">The cells.</param>
+        </member>
         <member name="M:Sudoku.Concepts.Coloring.CellGraph.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
-            Initializes an <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/> instance.
+            Initializes a <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/> instance with the specified cells,
+            and some invalid cells that will be used by confliction checking.
             </summary>
             <param name="cells">Indicates the cells used.</param>
             <param name="invalidCells">
@@ -1779,6 +1786,15 @@
         </member>
         <member name="M:Sudoku.Concepts.Coloring.CellGraph.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.GetHamiltonianPaths">
+            <summary>
+            Try to find a path that connects with all possible cells of the graph, by advancing with the next cell in a same house.
+            </summary>
+            <returns>
+            The found path. If multiple paths exist, only the first one will be returned.
+            If no such loops found, an empty sequence will be returned.
+            </returns>
         </member>
         <member name="M:Sudoku.Concepts.Coloring.CellGraph.GetConnectedCells(System.Int32)">
             <summary>
