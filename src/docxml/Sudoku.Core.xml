@@ -4190,7 +4190,7 @@
         <member name="M:Sudoku.Concepts.Graphs.CellGraph.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.GetHamiltonianPaths">
+        <member name="M:Sudoku.Concepts.Graphs.CellGraph.GetHamiltonianCycles">
             <summary>
             Try to find a path that connects with all possible cells of the graph, by advancing with the next cell in a same house.
             </summary>
@@ -4446,6 +4446,120 @@
         </member>
         <member name="M:Sudoku.Concepts.Graphs.Cluster.Equals(Sudoku.Concepts.Graphs.Cluster)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Graphs.HamiltonianCycle">
+            <summary>
+            Represents the concept "<see href="https://en.wikipedia.org/wiki/Hamiltonian_path">Hamiltonian Path</see>"
+            that will be applied to a <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance.
+            </summary>
+            <param name="cells">Indicates the cells.</param>
+            <seealso cref="T:Sudoku.Concepts.Graphs.CellGraph"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.#ctor(System.Int32[])">
+            <summary>
+            Represents the concept "<see href="https://en.wikipedia.org/wiki/Hamiltonian_path">Hamiltonian Path</see>"
+            that will be applied to a <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance.
+            </summary>
+            <param name="cells">Indicates the cells.</param>
+            <seealso cref="T:Sudoku.Concepts.Graphs.CellGraph"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.HamiltonianCycle.Length">
+            <summary>
+            Indicates the number of cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.HamiltonianCycle.Cells">
+            <summary>
+            Indicates the sequence of cells in order.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.HamiltonianCycle.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.HamiltonianCycle.Item(System.Int32)">
+            <summary>
+            Returns the cell at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The cell at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.Equals(Sudoku.Concepts.Graphs.HamiltonianCycle)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.Equals(Sudoku.Concepts.Graphs.HamiltonianCycle,Sudoku.Concepts.Graphs.HamiltonianCycleComparison)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Concepts.Graphs.HamiltonianCycle"/> instances are considered as equal under the specified comparison rule.
+            </summary>
+            <param name="other">Indicates the other object to be compared.</param>
+            <param name="comparison">The comparison rule to be used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="comparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.GetHashCode(Sudoku.Concepts.Graphs.HamiltonianCycleComparison)">
+            <summary>
+            Returns the hash code of the current instance, using the specified comparison rule.
+            </summary>
+            <param name="comparison">The comparison rule.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating the result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="comparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <summary>
+            Returns a string that represents the current object, using the specified coordinate converter object to format cells.
+            </summary>
+            <param name="converter">
+            Indicates the converter. If <see langword="null"/> is assigned, RxCy notation will be adopted.
+            </param>
+            <returns>A <see cref="T:System.String"/> that represents the current object.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Concepts.Graphs.HamiltonianCycle._cells">
+            <summary>
+            The generated field declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.op_Equality(Sudoku.Concepts.Graphs.HamiltonianCycle,Sudoku.Concepts.Graphs.HamiltonianCycle)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.op_Inequality(Sudoku.Concepts.Graphs.HamiltonianCycle,Sudoku.Concepts.Graphs.HamiltonianCycle)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Graphs.HamiltonianCycleComparison">
+            <summary>
+            Represents a comparison rule to a <see cref="T:Sudoku.Concepts.Graphs.HamiltonianCycle"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Graphs.HamiltonianCycle"/>
+        </member>
+        <member name="F:Sudoku.Concepts.Graphs.HamiltonianCycleComparison.Default">
+            <summary>
+            Indicates the comparison rule will consider direction.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Graphs.HamiltonianCycleComparison.IgnoreDirection">
+            <summary>
+            Indicates the comparison rule won't consider direction.
+            </summary>
         </member>
         <member name="T:Sudoku.Concepts.Graphs.Parity">
             <summary>

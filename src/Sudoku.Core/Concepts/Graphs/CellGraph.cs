@@ -184,22 +184,27 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 	/// The found path. If multiple paths exist, only the first one will be returned.
 	/// If no such loops found, an empty sequence will be returned.
 	/// </returns>
-	public ReadOnlySpan<ReadOnlyMemory<Cell>> GetHamiltonianPaths()
+	public ReadOnlySpan<HamiltonianCycle> GetHamiltonianCycles()
 	{
 		if (_cells)
 		{
-			var paths = new List<ReadOnlyMemory<Cell>>();
+			var paths = new HashSet<HamiltonianCycle>(
+				EqualityComparer<HamiltonianCycle>.Create(
+					static (left, right) => left.Equals(right, HamiltonianCycleComparison.IgnoreDirection),
+					static obj => obj.GetHashCode(HamiltonianCycleComparison.IgnoreDirection)
+				)
+			);
 			dfs(_cells[1..], _cells[0], [_cells[0]], paths);
-			return paths.AsSpan();
+			return paths.ToArray();
 		}
 		return [];
 
 
-		static void dfs(CellMap lastCells, Cell current, List<Cell> path, List<ReadOnlyMemory<Cell>> paths)
+		static void dfs(CellMap lastCells, Cell current, List<Cell> path, HashSet<HamiltonianCycle> paths)
 		{
 			if (!lastCells)
 			{
-				paths.Add(path.ToArray());
+				paths.Add(new([.. path]));
 				return;
 			}
 
