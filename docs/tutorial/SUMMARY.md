@@ -48,6 +48,10 @@
 
 * [术语索引](appendix/01-terms.md)
 
+## 数学基础 <a href="#basics-of-math" id="basics-of-math"></a>
+
+* [分情况讨论和析取消去规则](basics-of-math/01-proof-of-cases-and-disjunction-elimination.md)
+
 ## 其他 <a href="#miscellaneous" id="miscellaneous"></a>
 
 * [版权声明](miscellaneous/copyright-statement.md)
