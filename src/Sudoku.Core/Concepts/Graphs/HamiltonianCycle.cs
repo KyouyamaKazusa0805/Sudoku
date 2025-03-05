@@ -49,13 +49,51 @@ public readonly partial struct HamiltonianCycle([Field] Cell[] cells) :
 	/// Throws when the argument <paramref name="comparison"/> is not defined.
 	/// </exception>
 	public bool Equals(HamiltonianCycle other, HamiltonianCycleComparison comparison)
-		=> comparison switch
+	{
+		if (!Enum.IsDefined(comparison))
 		{
-			HamiltonianCycleComparison.Default => _cells.SequenceEqual(other._cells),
-			HamiltonianCycleComparison.IgnoreDirection
-				=> _cells.SequenceEqual(other._cells) || _cells.Reverse().SequenceEqual(other._cells),
-			_ => throw new ArgumentOutOfRangeException(nameof(comparison))
-		};
+			throw new ArgumentOutOfRangeException(nameof(comparison));
+		}
+		if (_cells.Length != other.Length)
+		{
+			return false;
+		}
+		if (_cells.Length == 0)
+		{
+			return true;
+		}
+
+		// Find for the same start.
+		var start = _cells[0];
+		var otherStartIndex = Array.IndexOf(other._cells, start);
+		if (otherStartIndex == -1)
+		{
+			return false;
+		}
+
+		// Check for the next position; if the collection only contains one element, it cannot be a loop.
+		// Just throw IndexOutOfRangeException, ignoring such invalid case.
+		var nextCell = _cells[1];
+		var previous = other._cells[(otherStartIndex >= 1 ? otherStartIndex : otherStartIndex + _cells.Length) - 1];
+		var next = other._cells[(otherStartIndex + 1) % _cells.Length];
+		if (nextCell != previous && nextCell != next)
+		{
+			return false;
+		}
+
+		for (
+			var (i, j) = (otherStartIndex, 0);
+			j < _cells.Length;
+			i = nextCell == previous ? (i >= 1 ? i : i + _cells.Length) - 1 : (i + 1) % _cells.Length, j++
+		)
+		{
+			if (_cells[j] != other._cells[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 
 	/// <inheritdoc/>
 	public override int GetHashCode() => GetHashCode(HamiltonianCycleComparison.Default);
@@ -70,26 +108,30 @@ public readonly partial struct HamiltonianCycle([Field] Cell[] cells) :
 	/// </exception>
 	public int GetHashCode(HamiltonianCycleComparison comparison)
 	{
+		var hashCode = new HashCode();
+		var indexedCell = _cells.Index();
+		var min = indexedCell.MinBy(static pair => pair.Value);
 		switch (comparison)
 		{
 			case HamiltonianCycleComparison.IgnoreDirection:
 			{
-				var hashCode = new HashCode();
-				var cellsSorted = _cells[..];
-				Array.Sort(cellsSorted, static (left, right) => string.Compare(left.ToString(), right.ToString()));
-
-				foreach (var cell in cellsSorted)
+				var previous = (min.Index >= 1 ? min.Index : min.Index + _cells.Length) - 1;
+				var next = (min.Index + 1) % _cells.Length;
+				for (
+					var (i, j) = (min.Index, 0);
+					j < _cells.Length;
+					i = _cells[previous] <= _cells[next] ? (i >= 1 ? i : i + _cells.Length) - 1 : (i + 1) % _cells.Length, j++
+				)
 				{
-					hashCode.Add(cell);
+					hashCode.Add(_cells[i]);
 				}
 				return hashCode.ToHashCode();
 			}
 			case HamiltonianCycleComparison.Default:
 			{
-				var hashCode = new HashCode();
-				foreach (var cell in _cells)
+				for (var (i, j) = (min.Index, 0); j < _cells.Length; i = (i + 1) % _cells.Length, j++)
 				{
-					hashCode.Add(cell);
+					hashCode.Add(_cells[i]);
 				}
 				return hashCode.ToHashCode();
 			}
