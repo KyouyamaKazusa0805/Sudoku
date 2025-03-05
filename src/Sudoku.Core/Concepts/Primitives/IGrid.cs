@@ -567,10 +567,10 @@ public interface IGrid<TSelf> :
 	public abstract Digit[] ToDigitsArray();
 
 	/// <inheritdoc/>
-	bool IEquatable<TSelf>.Equals(TSelf other) => Equals(in other);
+	bool IEquatable<TSelf>.Equals(TSelf other) => Equals(other);
 
 	/// <inheritdoc/>
-	int IComparable<TSelf>.CompareTo(TSelf other) => CompareTo(in other);
+	int IComparable<TSelf>.CompareTo(TSelf other) => CompareTo(other);
 
 	/// <inheritdoc/>
 	int IReadOnlyCollection<Digit>.Count => 81;

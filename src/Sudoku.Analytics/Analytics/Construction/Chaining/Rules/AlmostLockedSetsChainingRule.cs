@@ -23,7 +23,7 @@ public sealed class AlmostLockedSetsChainingRule : ChainingRule
 
 		var linkOption = context.GetLinkOption(LinkType.AlmostLockedSets);
 		var maskTempList = (stackalloc Mask[81]);
-		foreach (var als in AlmostLockedSetPattern.Collect(in grid)) // Here might raise an confliction to call nested-level interceptor.
+		foreach (var als in AlmostLockedSetPattern.Collect(grid)) // Here might raise an confliction to call nested-level interceptor.
 		{
 			if (als is not (var digitsMask, var cells) { IsBivalueCell: false, StrongLinks: var links, House: var house })
 			{

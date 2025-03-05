@@ -240,7 +240,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 	bool IReadOnlySet<TElement>.Contains(TElement item) => ((ICollection<TElement>)this).Contains(item);
 
 	/// <inheritdoc/>
-	bool IEquatable<TSelf>.Equals(TSelf other) => Equals(in other);
+	bool IEquatable<TSelf>.Equals(TSelf other) => Equals(other);
 
 	/// <inheritdoc/>
 	void ICollection<TElement>.Add(TElement item) => Add(item);
@@ -381,7 +381,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 	int ICountMethod<TSelf, TElement>.Count() => Count;
 
 	/// <inheritdoc/>
-	int IComparable<TSelf>.CompareTo(TSelf other) => CompareTo(in other);
+	int IComparable<TSelf>.CompareTo(TSelf other) => CompareTo(other);
 
 	/// <inheritdoc/>
 	TElement IElementAtMethod<TSelf, TElement>.ElementAt(int index) => this[index];

@@ -51,7 +51,7 @@ public static class GridPartialMarkingExtensions
 			default:
 			{
 				var gridResetCandidates = @this.ResetCandidatesGrid;
-				foreach (var step in Collector.Collect(in gridResetCandidates))
+				foreach (var step in Collector.Collect(gridResetCandidates))
 				{
 					if (techniques.HasFlag(Enum.Parse<PartialMarkingTechniques>(step.Code.ToString())))
 					{

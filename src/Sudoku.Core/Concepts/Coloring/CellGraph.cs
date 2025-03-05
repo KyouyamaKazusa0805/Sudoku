@@ -172,7 +172,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 		var sb = new StringBuilder();
 		foreach (var kvp in _directlyConnectedCellsDictionary)
 		{
-			sb.AppendLine($"{converter.CellConverter(in kvp.Key.AsCellMap())}: {converter.CellConverter(in kvp.ValueRef())}");
+			sb.AppendLine($"{converter.CellConverter(kvp.Key.AsCellMap())}: {converter.CellConverter(kvp.ValueRef())}");
 		}
 		return sb.ToString();
 	}

@@ -551,7 +551,7 @@ public partial struct CellMap : CellMapBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int CompareTo(in CellMap other)
 	{
-		return Count > other.Count ? 1 : Count < other.Count ? -1 : -Math.Sign($"{b(this)}".CompareTo($"{b(in other)}"));
+		return Count > other.Count ? 1 : Count < other.Count ? -1 : -Math.Sign($"{b(this)}".CompareTo($"{b(other)}"));
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

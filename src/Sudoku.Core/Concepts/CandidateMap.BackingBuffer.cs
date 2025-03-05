@@ -47,7 +47,7 @@ public partial struct CandidateMap
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		readonly bool IEquatable<BackingBuffer>.Equals(BackingBuffer other) => Equals(in other);
+		readonly bool IEquatable<BackingBuffer>.Equals(BackingBuffer other) => Equals(other);
 
 
 		/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
