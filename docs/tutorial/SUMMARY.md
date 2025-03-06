@@ -51,6 +51,7 @@
 ## 数学基础 <a href="#basics-of-math" id="basics-of-math"></a>
 
 * [分情况讨论和析取消去规则](basics-of-math/01-proof-of-cases-and-disjunction-elimination.md)
+* [反证法](basics-of-math/02-proof-by-contradiction.md)
 
 ## 其他 <a href="#miscellaneous" id="miscellaneous"></a>
 
