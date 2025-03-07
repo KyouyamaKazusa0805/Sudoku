@@ -9404,6 +9404,158 @@
             The generated field declaration for parameter <c>seedPattern</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.IO.LibraryFileReader">
+            <summary>
+            Represents a UTF-8 format library file reader.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="bufferSize">The buffer size.</param>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileReader.#ctor(System.String,System.Int32)">
+            <summary>
+            Represents a UTF-8 format library file reader.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="bufferSize">The buffer size.</param>
+        </member>
+        <member name="F:Sudoku.IO.LibraryFileReader._readerStream">
+            <summary>
+            Indicates the reader stream.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileReader.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.IO.LibraryFileReader"/> instance via the specified file path.
+            </summary>
+            <param name="path">The file path.</param>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileReader.ReadLinesRangeAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously read for the specified lines.
+            </summary>
+            <param name="startLine">Indicates the start line index.</param>
+            <param name="endLine">Indicates the end line index.</param>
+            <param name="cancellationToken">Indicates the cancellation token.</param>
+            <returns>An asynchronous enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileReader.ReadLinesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Loads the puzzles line by line, and enumerate them without loading them together.
+            </summary>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>An enumerator object that allows iterating values asynchronously.</returns>
+        </member>
+        <member name="P:Sudoku.IO.LibraryFileReader.FilePath">
+            <summary>
+            The generated property declaration for parameter <c>filePath</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.LibraryFileReader.BufferSize">
+            <summary>
+            The generated property declaration for parameter <c>bufferSize</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.LibraryFileReader._isDisposed">
+            <summary>
+            Indicates whether the object had already been disposed before <see cref="!:Dispose"/> method was called.
+            If this field holds <see langword="false"/> value, <see cref="!:Dispose"/> method will throw an
+            <see cref="T:System.ObjectDisposedException"/> to report the error.
+            </summary>
+            <seealso cref="!:Dispose"/>
+            <seealso cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileReader.DisposeAsync">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
+        </member>
+        <member name="T:Sudoku.IO.LibraryFileWriter">
+            <summary>
+            Represents a UTF-8 format library file writer.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="bufferSize">The buffer size.</param>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileWriter.#ctor(System.String,System.Int32)">
+            <summary>
+            Represents a UTF-8 format library file writer.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="bufferSize">The buffer size.</param>
+        </member>
+        <member name="F:Sudoku.IO.LibraryFileWriter.FlushThreshold">
+            <summary>
+            Indicates the flush threashold. If the maximum number of characters is reached, a flush operation will be triggered.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.LibraryFileWriter._writer">
+            <summary>
+            Indicates the writer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.LibraryFileWriter._semaphore">
+            <summary>
+            Indicates the semaphore.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.LibraryFileWriter._buffer">
+            <summary>
+            Indicates the buffer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileWriter.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.IO.LibraryFileWriter"/> instance via the specified file path.
+            </summary>
+            <param name="filePath">The file path.</param>
+        </member>
+        <member name="P:Sudoku.IO.LibraryFileWriter.AutoFlush">
+            <summary>
+            Indicates whether the flush operation will be automatically triggered.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileWriter.WriteLineAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Write a new line of values into the file.
+            </summary>
+            <param name="line">A line.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that can be used as asynchronous operation.</returns>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileWriter.FlushAsync">
+            <summary>
+            Flushes the buffer and write them into file.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that can be used as asynchronous operation.</returns>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileWriter.FlushInternalAsync">
+            <summary>
+            The backing logic on flushing the buffer, writting the buffer into the file.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that can be used as asynchronous operation.</returns>
+        </member>
+        <member name="P:Sudoku.IO.LibraryFileWriter.FilePath">
+            <summary>
+            The generated property declaration for parameter <c>filePath</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.LibraryFileWriter.BufferSize">
+            <summary>
+            The generated property declaration for parameter <c>bufferSize</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.LibraryFileWriter._isDisposed">
+            <summary>
+            Indicates whether the object had already been disposed before <see cref="!:Dispose"/> method was called.
+            If this field holds <see langword="false"/> value, <see cref="!:Dispose"/> method will throw an
+            <see cref="T:System.ObjectDisposedException"/> to report the error.
+            </summary>
+            <seealso cref="!:Dispose"/>
+            <seealso cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileWriter.DisposeAsync">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
+        </member>
         <member name="T:Sudoku.Linq.CandidateMapEnumerable">
             <summary>
             Represents a list of LINQ methods that can operate with <see cref="T:Sudoku.Concepts.CandidateMap"/> instances.
