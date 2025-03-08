@@ -43,6 +43,7 @@
 * [唯一环（UL）](candidate-technique-basics/07-unique-loop/README.md)
   * [唯一环的基本推理](candidate-technique-basics/07-unique-loop/01-reasoning-of-unique-loop.md)
   * [唯一环的形成条件](candidate-technique-basics/07-unique-loop/02-condition-of-forming-unique-loop.md)
+  * [唯一环的规格推广](candidate-technique-basics/07-unique-loop/03-size-extended-unique-loop.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 
