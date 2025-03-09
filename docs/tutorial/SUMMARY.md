@@ -46,6 +46,7 @@
   * [唯一环的规格推广](candidate-technique-basics/07-unique-loop/03-size-extended-unique-loop.md)
 * [拓展矩形（XR）](candidate-technique-basics/04-extended-rectangle/README.md)
   * [拓展矩形的基本推理](candidate-technique-basics/04-extended-rectangle/01-reasoning-of-extended-rectangle.md)
+  * [拓展矩形的规格推广](candidate-technique-basics/04-extended-rectangle/02-size-extended-extended-rectangle.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 
