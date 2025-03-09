@@ -111,14 +111,14 @@ $$
 * 交换律
   * $$A \land B \equiv B \land A$$
   * $$A \lor B \equiv B \lor A$$
+* 结合律
+  * $$(A \land B) \land C \equiv A \land (B \land C)$$
+  * $$(A \lor B) \lor C \equiv A \lor (B \lor C)$$
 * 排中律和矛盾律
   * $$A \lor \lnot A \equiv \text{True}$$
   * $$A \land \lnot A \equiv \text{False}$$
 * 双重否定律
   * $$\lnot \lnot A \equiv A$$
-* 吸收律
-  * $$A \land (A \lor B) \equiv A$$
-  * $$A \lor (A \land B) \equiv A$$
 * 德摩根律
   * $$\lnot (A \land B) \equiv \lnot A \lor \lnot B$$
   * $$\lnot (A \lor B) \equiv \lnot A \land \lnot B$$
@@ -187,7 +187,7 @@ $$
   &\equiv (P \land Q) \lor (\lnot P \land (Q \lor \lnot Q)) &\text{分配律} \\
   &\equiv (P \land Q) \lor \lnot P &\text{排中律} \\
   &\equiv \lnot P \lor (P \land Q) &\text{交换次序} \\
-  &\equiv (\lnot P \lor P) \lor (\lnot P \lor Q) &\text{德摩根律}\\
+  &\equiv (\lnot P \lor P) \land (\lnot P \lor Q) &\text{分配律}\\
   &\equiv \lnot P \lor Q &\text{排中律}
 \end{align*}
 $$
@@ -196,11 +196,7 @@ $$
 
 所以，因为我们有 $$P \to Q \equiv \lnot P \lor Q$$，所以在逻辑学里，蕴含式可以用于真假性判断（虽然这并不是很常见），这种转化关系将蕴含式以命题拆解的另外一个说法表述了出来，变成了实在的、可以判断真假的命题，这是这个式子的意义。
 
-### 问题 2：吸收律的式子咋那么奇怪？ <a href="#question-2" id="question-2"></a>
-
-吸收律的两个式子看起来似乎有点别扭。从逻辑理解的角度来说，这个可以理解为“集合的完整包含”。比如说 $$A \land (A \lor B)$$，因为 $$A \lor B$$ 包含了完整的 $$A$$ 命题的部分，所以好比是在计算 $$A \land A$$。那自然就等于 $$A$$；同理，$$A \lor (A \land B)$$ 也是一样：即使 $$A \land B$$ 的结果不定，但 $$A$$ 提供了完整的计算部分，所以式子就可以变为 $$A$$。
-
-### 问题 3：为什么互为逆否的命题等价？ <a href="#question-3" id="question-3"></a>
+### 问题 2：为什么互为逆否命题等价？ <a href="#question-2" id="question-2"></a>
 
 这一点我们可以尝试使用前文蕴含转化的方式来证明得到。我们将四种命题从蕴含的箭头改为逻辑或运算：
 
