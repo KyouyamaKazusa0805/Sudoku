@@ -52,10 +52,11 @@
 
 * [术语索引](appendix/01-terms.md)
 
-## 数学基础 <a href="#basics-of-math" id="basics-of-math"></a>
+## 逻辑学基础 <a href="#logic-basics" id="logic-basics"></a>
 
-* [分情况讨论和析取消去规则](basics-of-math/01-proof-of-cases-and-disjunction-elimination.md)
-* [反证法](basics-of-math/02-proof-by-contradiction.md)
+* [逻辑学简要介绍](logic-basics/01-brief-introduction-to-logic.md)
+* [分情况讨论和析取消去](logic-basics/02-proof-of-cases-and-disjunction-elimination.md)
+* [反证法](logic-basics/03-proof-by-contradiction.md)
 
 ## 其他 <a href="#miscellaneous" id="miscellaneous"></a>
 
