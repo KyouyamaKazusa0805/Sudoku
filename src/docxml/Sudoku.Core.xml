@@ -9418,6 +9418,16 @@
             <param name="filePath">The file path.</param>
             <param name="bufferSize">The buffer size.</param>
         </member>
+        <member name="F:Sudoku.IO.LibraryFileReader.Lf">
+            <summary>
+            Represents constant line feed <c>'\n'</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.LibraryFileReader.Cr">
+            <summary>
+            Represents constant carriage return <c>'\r'</c>.
+            </summary>
+        </member>
         <member name="F:Sudoku.IO.LibraryFileReader._readerStream">
             <summary>
             Indicates the reader stream.
@@ -9428,6 +9438,12 @@
             Initializes a <see cref="T:Sudoku.IO.LibraryFileReader"/> instance via the specified file path.
             </summary>
             <param name="path">The file path.</param>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileReader.CountLines">
+            <summary>
+            Count the number of lines of the file.
+            </summary>
+            <returns>The number of lines.</returns>
         </member>
         <member name="M:Sudoku.IO.LibraryFileReader.ReadLinesRangeAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>

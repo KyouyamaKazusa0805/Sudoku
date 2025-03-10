@@ -9,6 +9,17 @@ namespace Sudoku.IO;
 public sealed partial class LibraryFileReader([Property] string filePath, [Property] int bufferSize) : IAsyncDisposable
 {
 	/// <summary>
+	/// Represents constant line feed <c>'\n'</c>.
+	/// </summary>
+	private const byte Lf = (byte)'\n';
+
+	/// <summary>
+	/// Represents constant carriage return <c>'\r'</c>.
+	/// </summary>
+	private const byte Cr = (byte)'\r';
+
+
+	/// <summary>
 	/// Indicates the reader stream.
 	/// </summary>
 	[DisposableMember]
@@ -30,6 +41,125 @@ public sealed partial class LibraryFileReader([Property] string filePath, [Prope
 	{
 	}
 
+
+	/// <summary>
+	/// Count the number of lines of the file.
+	/// </summary>
+	/// <returns>The number of lines.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveOptimization)]
+	public unsafe long CountLines()
+	{
+		const int MegaByte = 1024 * 1024;
+		var lineCount = 0L;
+		var previous = (byte)0;
+
+		using var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read, MegaByte);
+		var buffer = ArrayPool<byte>.Shared.Rent(MegaByte);
+		try
+		{
+			while (true)
+			{
+				var bytesRead = fs.Read(buffer);
+				if (bytesRead == 0)
+				{
+					break;
+				}
+
+				var span = buffer.AsSpan(0, bytesRead);
+				if (Vector.IsHardwareAccelerated)
+				{
+					processVectorized(span, ref lineCount, ref previous);
+				}
+				else
+				{
+					processFallback(span, ref lineCount, ref previous);
+				}
+			}
+
+			// 处理文件末尾
+			if (previous == '\r' || previous == '\n')
+			{
+				lineCount++;
+			}
+		}
+		finally
+		{
+			ArrayPool<byte>.Shared.Return(buffer);
+		}
+		return lineCount;
+
+
+		static void processFallback(ReadOnlySpan<byte> data, ref long lineCount, ref byte prevChar)
+		{
+			foreach (var b in data)
+			{
+				if (b == Lf)
+				{
+					if (prevChar != Cr)
+					{
+						lineCount++;
+					}
+				}
+				else if (prevChar == Cr)
+				{
+					lineCount++;
+				}
+				prevChar = b;
+			}
+		}
+
+		static void processVectorized(ReadOnlySpan<byte> data, ref long lineCount, ref byte prevChar)
+		{
+			// Determine the size of vector on byte values.
+			var vectorSize = Vector<byte>.Count;
+			fixed (byte* ptr = data)
+			{
+				var i = 0;
+				for (; i <= data.Length - vectorSize; i += vectorSize)
+				{
+					var vector = Unsafe.ReadUnaligned<Vector<byte>>(ptr + i);
+					var lfMask = Vector.Equals(vector, new Vector<byte>(Lf));
+					var crMask = Vector.Equals(vector, new Vector<byte>(Cr));
+					for (var j = 0; j < vectorSize; j++)
+					{
+						var current = vector[j];
+						if (lfMask[j] != 0)
+						{
+							if (prevChar != Cr)
+							{
+								Interlocked.Increment(ref lineCount);
+							}
+						}
+						else if (prevChar == Cr)
+						{
+							Interlocked.Increment(ref lineCount);
+						}
+
+						prevChar = current;
+					}
+				}
+
+				// Handle for the last.
+				for (; i < data.Length; i++)
+				{
+					var current = data[i];
+					if (current == Lf)
+					{
+						if (prevChar != Cr)
+						{
+							lineCount++;
+						}
+					}
+					else if (prevChar == Cr)
+					{
+						lineCount++;
+					}
+
+					prevChar = current;
+				}
+			}
+		}
+	}
 
 	/// <summary>
 	/// Asynchronously read for the specified lines.
