@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CommandLine</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CommandLine.ArgumentParser">
+            <summary>
+            Represents an argument parser object.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ArgumentParser.SupportedArgumentsCount">
+            <summary>
+            Indicates the number of arguments supported to be recognized.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ArgumentParser.AliasedCharacter">
+            <summary>
+            Indicates the aliased character. If unsupported, the value can be <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ArgumentParser.Name">
+            <summary>
+            Indicates the supported name.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.ArgumentParserCollection">
+            <summary>
+            Represents a list of argument parsers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ArgumentParserCollection._parsers">
+            <summary>
+            Indicates the parsers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ArgumentParserCollection._positionParsers">
+            <summary>
+            Indicates the dictionary that stores a list of parsers and its required index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ArgumentParserCollection.Count">
+            <summary>
+            Indicates the number of parsers.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ArgumentParserCollection.Item(System.Int32)">
+            <summary>
+            Gets the parser that has set the required position.
+            </summary>
+            <param name="positionIndex">Indicates the position index.</param>
+            <returns>
+            The parser. If the specified position doesn't exist any parser,
+            <see langword="null"/> will be returned without exception thrown.
+            </returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.ArgumentParserCollection.Add(Sudoku.CommandLine.ArgumentParser)">
+            <summary>
+            Adds a new item into the collection.
+            </summary>
+            <param name="parser">The parsers.</param>
+        </member>
+        <member name="M:Sudoku.CommandLine.ArgumentParserCollection.SetPosition(Sudoku.CommandLine.ArgumentParser,System.Int32)">
+            <summary>
+            Sets the parser at the specified position.
+            </summary>
+            <param name="parser">The parser.</param>
+            <param name="position">The position to be parsed.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified position has already been set with another parser.
+            </exception>
+        </member>
+        <member name="M:Sudoku.CommandLine.ArgumentParserCollection.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.ArgumentParserCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.ArgumentParserCollection.System#Collections#Generic#IEnumerable{Sudoku#CommandLine#ArgumentParser}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.ArgumentParser`1">
+            <inheritdoc/>
+            <typeparam name="T">The type of the argument to be recognized as target value.</typeparam>
+        </member>
+        <member name="P:Sudoku.CommandLine.ArgumentParser`1.Result">
+            <summary>
+            Indicates the result to be set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.ArgumentParser`1.AssignResult(System.ReadOnlySpan{System.String},System.Int32)">
+            <summary>
+            Parses the command line with the specified range, and set the value to property <see cref="P:Sudoku.CommandLine.ArgumentParser`1.Result"/>
+            if valid values are created. If failed, you should throw any exceptions to report such invalid case.
+            </summary>
+            <param name="args">The arguments to be parsed.</param>
+            <param name="startIndex">The start index of the argument to be parsed.</param>
+            <seealso cref="P:Sudoku.CommandLine.ArgumentParser`1.Result"/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Parser">
+            <summary>
+            Provides an entry to parse command line raw string, separating them into multiple <see cref="T:System.String"/> values in an easy way.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Parser.CommandLineArgsPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>"((?:[^"\\\\]|\\\\.)*)"|'((?:[^'\\\\]|\\\\.)*)'|([^\\s"']+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match with 3 alternative expressions, atomically.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match '"'.<br/>
+                    ○ 1st capture group.<br/>
+                        ○ Loop greedily any number of times.<br/>
+                            ○ Match with 2 alternative expressions.<br/>
+                                ○ Match a character in the set [^"\\].<br/>
+                                ○ Match a sequence of expressions.<br/>
+                                    ○ Match '\\'.<br/>
+                                    ○ Match any character other than '\n'.<br/>
+                    ○ Match '"'.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match '\''.<br/>
+                    ○ 2nd capture group.<br/>
+                        ○ Loop greedily any number of times.<br/>
+                            ○ Match with 2 alternative expressions.<br/>
+                                ○ Match a character in the set [^'\\].<br/>
+                                ○ Match a sequence of expressions.<br/>
+                                    ○ Match '\\'.<br/>
+                                    ○ Match any character other than '\n'.<br/>
+                    ○ Match '\''.<br/>
+                ○ 3rd capture group.<br/>
+                    ○ Match a character in the set [^"'\s] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.CommandLine.Parser.Parse(System.String)">
+            <summary>
+            Parses the specified command line raw values, and return a list of <see cref="T:System.String"/> values parsed.
+            </summary>
+            <param name="commandLine">The command line.</param>
+            <returns>A list of <see cref="T:System.String"/> values parsed.</returns>
+            <remarks>
+            Example:
+            <code>cmd "hello \"world" 'it\'s me' foo</code>
+            This command line will return an array of 4 values:
+            <list type="bullet">
+            <item><c><![CDATA[cmd]]></c></item>
+            <item><c><![CDATA[hello \"world]]></c></item>
+            <item><c><![CDATA[it\'s me]]></c></item>
+            <item><c><![CDATA[foo]]></c></item>
+            </list>
+            You can use quotes <c>"</c> and <c>'</c> to include spaces as valid characters inside an argument value,
+            and escape sequences <c>\"</c> and <c>\'</c> to include quotes as valid characters.
+            </remarks>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CommandLineArgsPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CommandLineArgsPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.CommandLineArgsPattern_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CommandLineArgsPattern_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CommandLineArgsPattern_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CommandLineArgsPattern_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CommandLineArgsPattern_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CommandLineArgsPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CommandLineArgsPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CommandLineArgsPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPop(System.Int32[],System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Pops 2 values from the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
+            <summary>Pushes 2 values onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32,System.Int32)">
+            <summary>Pushes 3 values onto the backtracking stack.</summary>
+        </member>
+    </members>
+</doc>
