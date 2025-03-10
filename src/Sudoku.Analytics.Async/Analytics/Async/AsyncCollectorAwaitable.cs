@@ -44,7 +44,7 @@ public readonly ref partial struct AsyncCollectorAwaitable : IStepGathererAwaita
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	public AsyncCollectorAwaitable(
 		Collector collector,
-		in Grid grid,
+		ref readonly Grid grid,
 		IProgress<StepGathererProgressPresenter>? progress,
 		bool continueOnCapturedContext,
 		CancellationToken cancellationToken

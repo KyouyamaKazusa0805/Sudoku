@@ -26,7 +26,7 @@ public readonly ref partial struct AdjacentCellGraph :
 	/// <exception cref="ArgumentException">
 	/// Throws when at least one cell is missing connection with all rows and columns of the other cells.
 	/// </exception>
-	public AdjacentCellGraph(in CellMap cells)
+	public AdjacentCellGraph(ref readonly CellMap cells)
 	{
 		if (!verify(cells))
 		{

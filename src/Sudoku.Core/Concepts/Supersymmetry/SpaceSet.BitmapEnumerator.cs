@@ -6,7 +6,7 @@ public partial struct SpaceSet
 	/// Represents an enumerator type that can iterate on each state bit.
 	/// </summary>
 	/// <param name="set">The set.</param>
-	public ref struct BitmapEnumerator(in SpaceSet set) : IEnumerator<bool>, IEnumerable<bool>
+	public ref struct BitmapEnumerator(ref readonly SpaceSet set) : IEnumerator<bool>, IEnumerable<bool>
 	{
 		/// <summary>
 		/// Indicates the backing set.

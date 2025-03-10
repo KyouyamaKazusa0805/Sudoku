@@ -18,7 +18,7 @@ public static class AsyncAnalyzer
 		in Grid grid,
 		IProgress<StepGathererProgressPresenter>? progress = null,
 		CancellationToken cancellationToken = default
-	) => new(analyzer, grid, progress, false, cancellationToken);
+	) => new(analyzer, in grid, progress, false, cancellationToken);
 
 	/// <summary>
 	/// Analyzes the specified grid, to find for all possible steps and iterate them in asynchronous way.
