@@ -75,9 +75,7 @@ public sealed partial class LibraryFileReader([Property] string filePath, [Prope
 					processFallback(span, ref lineCount, ref previous);
 				}
 			}
-
-			// 处理文件末尾
-			if (previous == '\r' || previous == '\n')
+			if (previous == Cr || previous == Lf)
 			{
 				lineCount++;
 			}
