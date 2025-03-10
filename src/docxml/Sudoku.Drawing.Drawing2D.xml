@@ -221,8 +221,8 @@
         </member>
         <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._isDisposed">
             <summary>
-            Indicates whether the object had already been disposed before <see cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/> method was called.
-            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/> method will throw an
+            Indicates whether the object had already been disposed before <see cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/> was called.
+            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/> will throw an
             <see cref="T:System.ObjectDisposedException"/> to report the error.
             </summary>
             <seealso cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/>

@@ -9483,11 +9483,11 @@
         </member>
         <member name="F:Sudoku.IO.LibraryFileReader._isDisposed">
             <summary>
-            Indicates whether the object had already been disposed before <see cref="M:Sudoku.IO.LibraryFileReader.DisposeAsync"/> method was called.
-            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.IO.LibraryFileReader.DisposeAsync"/> method will throw an
+            Indicates whether the object had already been disposed before <see cref="M:Sudoku.IO.LibraryFileReader.DisposeAsync"/> was called.
+            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.IO.LibraryFileReader.DisposeAsync"/> will throw an
             <see cref="T:System.ObjectDisposedException"/> to report the error.
             </summary>
-            <seealso cref="!:Dispose"/>
+            <seealso cref="M:Sudoku.IO.LibraryFileReader.DisposeAsync"/>
             <seealso cref="T:System.ObjectDisposedException"/>
         </member>
         <member name="M:Sudoku.IO.LibraryFileReader.DisposeAsync">
@@ -9571,11 +9571,11 @@
         </member>
         <member name="F:Sudoku.IO.LibraryFileWriter._isDisposed">
             <summary>
-            Indicates whether the object had already been disposed before <see cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/> method was called.
-            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/> method will throw an
+            Indicates whether the object had already been disposed before <see cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/> was called.
+            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/> will throw an
             <see cref="T:System.ObjectDisposedException"/> to report the error.
             </summary>
-            <seealso cref="!:Dispose"/>
+            <seealso cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/>
             <seealso cref="T:System.ObjectDisposedException"/>
         </member>
         <member name="M:Sudoku.IO.LibraryFileWriter.DisposeAsync">
@@ -11481,8 +11481,8 @@
         </member>
         <member name="F:Sudoku.Runtime.LibraryServices.TextPointer._isDisposed">
             <summary>
-            Indicates whether the object had already been disposed before <see cref="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose"/> method was called.
-            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose"/> method will throw an
+            Indicates whether the object had already been disposed before <see cref="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose"/> was called.
+            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose"/> will throw an
             <see cref="T:System.ObjectDisposedException"/> to report the error.
             </summary>
             <seealso cref="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose"/>

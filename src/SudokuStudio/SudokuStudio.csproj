@@ -80,6 +80,9 @@
 		<Content Include="Images\Square44x44Logo.scale-200.png" />
 		<Content Include="Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
 		<Content Include="Images\Wide310x150Logo.scale-200.png" />
+
+		<EditorConfigFiles Remove="C:\Users\admin\source\repos\SunnieShine\Sudoku\src\SudokuStudio\.editorconfig" />
+		<None Include="C:\Users\admin\source\repos\SunnieShine\Sudoku\src\SudokuStudio\.editorconfig" />
 	</ItemGroup>
 
 	<ItemGroup>
