@@ -56,7 +56,7 @@ public sealed class NakedSingleGenerator : SingleGenerator
 			ConclusionCellAlignment.CenterBlock => HousesMap[4][Rng.NextDigit()],
 			_ => 40
 		};
-		var peerCells = PeersMap[targetCell].ToArray()[..];
+		var peerCells = PeersMap[targetCell].ToArray();
 
 		// Generate extra digits.
 		// Different with other techniques, naked single can be failed to be generated - it'll produce a puzzle that has no solution.

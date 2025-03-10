@@ -320,7 +320,7 @@ public partial class UniqueRectangleStepSearcher
 
 				// Group them up, grouped them by block they are in.
 				var cellsGroupedByBlock =
-					from cell in outsideCells.ToArray().AsReadOnlySpan()
+					from cell in outsideCells.ToArrayUnsafe().AsReadOnlySpan()
 					group cell by cell.ToHouse(HouseType.Block) into cellsGroup
 					let block = cellsGroup.Key
 					select (Block: block, Cells: cellsGroup.AsSpan().AsCellMap());

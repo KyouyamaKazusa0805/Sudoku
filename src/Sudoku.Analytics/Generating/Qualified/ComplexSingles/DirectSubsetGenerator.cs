@@ -64,7 +64,7 @@ public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 							if (g.GetDigit(cell) == digit)
 							{
 								// Remove unnecessary excluders.
-								foreach (var c in result.ToArray())
+								foreach (var c in result.ToArrayUnsafe())
 								{
 									if (g.GetDigit(c) == digit)
 									{

@@ -284,8 +284,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 	/// </summary>
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[SuppressMessage("Style", "IDE0305:Simplify collection initialization", Justification = "<Pending>")]
-	public Enumerator GetEnumerator() => new(_cells.ToArray());
+	public Enumerator GetEnumerator() => new(_cells.ToArrayUnsafe());
 
 	/// <summary>
 	/// Try to get a <see cref="CellGraph"/> that contains the specified cell.
@@ -339,10 +338,10 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => _cells.ToArray().GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => _cells.ToArrayUnsafe().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<Cell> IEnumerable<Cell>.GetEnumerator() => _cells.ToArray().AsEnumerable().GetEnumerator();
+	IEnumerator<Cell> IEnumerable<Cell>.GetEnumerator() => _cells.ToArrayUnsafe().AsEnumerable().GetEnumerator();
 
 
 	/// <summary>

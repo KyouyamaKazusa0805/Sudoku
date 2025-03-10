@@ -209,10 +209,6 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 	/// Returns an array of <typeparamref name="TElement"/> offsets having stored in the current collection.
 	/// </summary>
 	/// <returns>An array of offsets.</returns>
-	/// <remarks><b><i>
-	/// Although the return value is an array, you cannot modify them to keep data-safety (read-only array).
-	/// Returning other types of such value will raise extra conversion, which is slower.
-	/// </i></b></remarks>
 	public abstract TElement[] ToArray();
 
 	/// <summary>

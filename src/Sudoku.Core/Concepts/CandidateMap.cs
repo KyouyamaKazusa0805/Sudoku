@@ -375,7 +375,15 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Candidate[] ToArray() => Offsets;
+	public readonly Candidate[] ToArray() => Offsets[..];
+
+	/// <inheritdoc cref="ToArray"/>
+	/// <remarks><b><i>
+	/// Although the return value is an array, you cannot modify them to keep data-safety (read-only array).
+	/// Returning other types of such value will raise extra conversion, which is slower.
+	/// </i></b></remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly Candidate[] ToArrayUnsafe() => Offsets;
 
 	/// <summary>
 	/// Try to get digits that is in the current collection.

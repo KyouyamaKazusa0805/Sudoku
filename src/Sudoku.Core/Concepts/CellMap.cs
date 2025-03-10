@@ -582,7 +582,15 @@ public partial struct CellMap : CellMapBase
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Cell[] ToArray() => Offsets;
+	public readonly Cell[] ToArray() => Offsets[..];
+
+	/// <inheritdoc cref="ToArray"/>
+	/// <remarks><b><i>
+	/// Although the return value is an array, you cannot modify them to keep data-safety (read-only array).
+	/// Returning other types of such value will raise extra conversion, which is slower.
+	/// </i></b></remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly Cell[] ToArrayUnsafe() => Offsets;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
