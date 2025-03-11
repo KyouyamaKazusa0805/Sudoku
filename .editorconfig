@@ -372,9 +372,6 @@ dotnet_diagnostic.CS8826.severity = error
 # CS8846: The switch expression does not handle all possible values of its input type (it is not exhaustive).
 dotnet_diagnostic.CS8846.severity = silent
 
-# CS8848: Operator cannot be used here due to precedence.
-dotnet_diagnostic.CS8848.severity = none
-
 # CS8907: Parameter is unread. Did you forget to use it to initialize the property with that name?
 dotnet_diagnostic.CS8907.severity = error
 

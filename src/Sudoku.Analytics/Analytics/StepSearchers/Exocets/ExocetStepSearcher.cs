@@ -2166,7 +2166,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var baseCellsLastDigitsMask = baseCellsDigitsMask;
 		foreach (var digitCanBeRemoved in targetCellsDigitsMask)
 		{
-			if (baseCells == from conclusion in conclusions where conclusion.Digit == digitCanBeRemoved select conclusion.Cell)
+			if (baseCells == (from conclusion in conclusions where conclusion.Digit == digitCanBeRemoved select conclusion.Cell))
 			{
 				baseCellsLastDigitsMask &= (Mask)~(1 << digitCanBeRemoved);
 			}
