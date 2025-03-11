@@ -7368,18 +7368,16 @@
             Provides a way to determine whether a fish pattern is Sashimi or not.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Hub.Sashimi.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Hub.Sashimi.IsSashimi(Sudoku.Concepts.Grid@,System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check whether the fish is sashimi.
             </summary>
+            <param name="grid">The grid.</param>
             <param name="baseSets">The base sets.</param>
             <param name="fins">All fins.</param>
             <param name="digit">The digit.</param>
             <returns>
             <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
-            <para>
-            <inheritdoc cref="P:Sudoku.Analytics.Steps.Fishes.FishStep.IsSashimi" path="/remarks"/>
-            </para>
             </returns>
         </member>
         <member name="T:Sudoku.Analytics.Hub.Siamese">
@@ -34454,6 +34452,23 @@
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>All true candidates.</returns>
             <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__Sashimi_IsSashimi_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__Sashimi_IsSashimi_Intercepted.IsSashimi(Sudoku.Concepts.Grid@,System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check whether the fish is sashimi.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="fins">All fins.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
+            </returns>
         </member>
         <member name="T:Sudoku.Runtime.InteropServices.Hodoku.HodokuAttribute">
             <summary>

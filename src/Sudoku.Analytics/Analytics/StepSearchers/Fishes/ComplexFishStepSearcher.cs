@@ -124,6 +124,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// <param name="pomElimsOfThisDigit">The possible eliminations to check.</param>
 	/// <param name="digit">The current digit used.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
+	[InterceptorMethodCaller]
 	private void Collect(
 		HashSet<ComplexFishStep> accumulator,
 		in Grid grid,
@@ -460,7 +461,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 										exofins,
 										endofins,
 										!checkMutant,
-										Sashimi.IsSashimi(baseSets, fins, digit),
+										Sashimi.IsSashimi(grid, baseSets, fins, digit),
 										cannibal
 									)
 								);

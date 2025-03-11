@@ -164,6 +164,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// Indicates whether the searcher searches for fishes in the direction of rows.
 	/// </param>
 	/// <returns>The first found step.</returns>
+	[InterceptorMethodCaller]
 	private unsafe void Collect(
 		List<FishStep> accumulator,
 		in Grid grid,
@@ -282,7 +283,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 							HouseMaskOperations.Create(bs),
 							HouseMaskOperations.Create(cs),
 							fins,
-							Sashimi.IsSashimi(bs, fins, digit)
+							Sashimi.IsSashimi(grid, bs, fins, digit)
 						)
 					);
 				}
