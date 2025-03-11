@@ -165,17 +165,12 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 
 	private static TransformResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
-		//if (!System.Diagnostics.Debugger.IsAttached)
-		//{
-		//	System.Diagnostics.Debugger.Launch();
-		//}
 		if (gasc is not
 			{
 				TargetNode: MethodDeclarationSyntax
 				{
 					ExpressionBody: var expressionBody,
 					Identifier: { ValueText: var methodName } identifierToken
-					// ,ConstraintClauses: var constraints
 				} node,
 				TargetSymbol: IMethodSymbol { MethodKind: var methodKind } currentMethodSymbol,
 				SemanticModel: { Compilation: var compilation } semanticModel
