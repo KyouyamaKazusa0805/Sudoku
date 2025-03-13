@@ -63,6 +63,7 @@ global using Sudoku.Analytics.StepSearchers.SymmetricalPlacements;
 global using Sudoku.Analytics.StepSearchers.Uniqueness;
 global using Sudoku.Analytics.StepSearchers.Wings;
 global using Sudoku.Analytics.Traits;
+global using Sudoku.Behaviors.Bottlenecks;
 global using Sudoku.Behaviors.Diff.Results;
 global using Sudoku.Categorization;
 global using Sudoku.Concepts;

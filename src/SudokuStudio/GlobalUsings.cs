@@ -65,6 +65,7 @@ global using Sudoku.Analytics.StepSearchers.SingleDigitPatterns;
 global using Sudoku.Analytics.StepSearchers.Singles;
 global using Sudoku.Analytics.StepSearchers.Uniqueness;
 global using Sudoku.Analytics.StepSearchers.Wings;
+global using Sudoku.Behaviors.Bottlenecks;
 global using Sudoku.Behaviors.Ittoryu;
 global using Sudoku.Categorization;
 global using Sudoku.Concepts;

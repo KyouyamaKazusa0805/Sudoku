@@ -390,21 +390,6 @@
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})">
-            <summary>
-            Try to get bottleneck steps under the specified rules.
-            </summary>
-            <param name="filters">The bottleneck filters.</param>
-            <returns>A list of bottleneck steps.</returns>
-            <exception cref="T:System.NotSupportedException">
-            Throws when the filter contains invalid configuration,
-            like <see cref="F:Sudoku.Analytics.BottleneckType.SingleStepOnly"/> in full-marking mode.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is not fully solved.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when argument <paramref name="filters"/> contains one filter holding an undefined <see cref="T:Sudoku.Analytics.BottleneckType"/> flag.
-            </exception>
-        </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#Any">
             <inheritdoc/>
         </member>
@@ -894,92 +879,6 @@
             </summary>
             <param name="sender">The object which triggers the event.</param>
             <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="T:Sudoku.Analytics.BottleneckFilter">
-            <summary>
-            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>.
-            </summary>
-            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
-            <param name="Type">Indicates the bottleneck type.</param>
-            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>
-        </member>
-        <member name="M:Sudoku.Analytics.BottleneckFilter.#ctor(Sudoku.Analytics.PencilmarkVisibility,Sudoku.Analytics.BottleneckType)">
-            <summary>
-            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>.
-            </summary>
-            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
-            <param name="Type">Indicates the bottleneck type.</param>
-            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>
-        </member>
-        <member name="P:Sudoku.Analytics.BottleneckFilter.Visibility">
-            <summary>Indicates a visibility type of pencilmark.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.BottleneckFilter.Type">
-            <summary>Indicates the bottleneck type.</summary>
-        </member>
-        <member name="T:Sudoku.Analytics.BottleneckType">
-            <summary>
-            Represents a type of bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.EliminationGroup">
-            <summary>
-            Indicates the bottleneck is the last step in a list of steps that only produces eliminations.
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle containing full-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.HardestRating">
-            <summary>
-            Indicates the bottleneck is for a hardest step or a list of steps having a same hardest difficulty found in analyzer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.HardestLevel">
-            <summary>
-            Indicates the bottleneck is for a step or a list of steps that hold the hardest difficulty level.
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.SequentialInversion">
-            <summary>
-            <para>Indicates the bottleneck for a step that makes the next step has a easier difficulty level than it.</para>
-            <para>
-            For example, the first step is a chain (at "Fiendish" level),
-            and the second step is a locked candidates (at "Moderate" level).
-            In this case, the first step makes the second step to be easy, so it will be considered as a bottleneck under this rule.
-            </para>
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.SingleStepOnly">
-            <summary>
-            <para>
-            Indicates the bottleneck step is a step
-            whose corresponding grid pattern only contains one step can makes such conclusion with it.
-            </para>
-            <para>
-            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
-            If you don't apply it to puzzle, solving this puzzle cannot continue.
-            Therefore, the step will be considered as a bottleneck under this rule.
-            </para>
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle only containing direct or partial-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.SingleStepSameLevelOnly">
-            <summary>
-            <para>
-            Indicates the bottleneck step is a step
-            whose corresponding grid pattern only contains one step can makes such conclusion with it;
-            and only checks for same-level techniques.
-            </para>
-            <para>
-            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
-            If you don't apply it to puzzle, solving this puzzle cannot continue.
-            Therefore, the step will be considered as a bottleneck under this rule;
-            if the current grid pattern containing complex singles that can have extra assignemnts,
-            but it will be ignored to be checked in this flag.
-            </para>
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle only containing direct and partial-marking steps.</b></remarks>
         </member>
         <member name="T:Sudoku.Analytics.Caching.ChainingComparers">
             <summary>
@@ -21897,6 +21796,114 @@
         </member>
         <member name="M:Sudoku.Behaviors.BlockFirst.GetDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.Singles.SingleStep,Sudoku.Concepts.Grid}}@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Step,Sudoku.Concepts.Grid}}@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Behaviors.Bottlenecks.AnalysisResultExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.AnalysisResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Bottlenecks.AnalysisResultExtensions.GetBottlenecks(Sudoku.Analytics.AnalysisResult,System.ReadOnlySpan{Sudoku.Behaviors.Bottlenecks.BottleneckFilter})">
+            <summary>
+            Try to get bottleneck steps under the specified rules.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="filters">The bottleneck filters.</param>
+            <returns>A list of bottleneck steps.</returns>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the filter contains invalid configuration,
+            like <see cref="F:Sudoku.Behaviors.Bottlenecks.BottleneckType.SingleStepOnly"/> in full-marking mode.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is not fully solved.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when argument <paramref name="filters"/> contains one filter holding an undefined <see cref="T:Sudoku.Behaviors.Bottlenecks.BottleneckType"/> flag.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Behaviors.Bottlenecks.BottleneckFilter">
+            <summary>
+            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Behaviors.Bottlenecks.AnalysisResultExtensions.GetBottlenecks(Sudoku.Analytics.AnalysisResult,System.ReadOnlySpan{Sudoku.Behaviors.Bottlenecks.BottleneckFilter})"/>.
+            </summary>
+            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
+            <param name="Type">Indicates the bottleneck type.</param>
+            <seealso cref="M:Sudoku.Behaviors.Bottlenecks.AnalysisResultExtensions.GetBottlenecks(Sudoku.Analytics.AnalysisResult,System.ReadOnlySpan{Sudoku.Behaviors.Bottlenecks.BottleneckFilter})"/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Bottlenecks.BottleneckFilter.#ctor(Sudoku.Analytics.PencilmarkVisibility,Sudoku.Behaviors.Bottlenecks.BottleneckType)">
+            <summary>
+            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Behaviors.Bottlenecks.AnalysisResultExtensions.GetBottlenecks(Sudoku.Analytics.AnalysisResult,System.ReadOnlySpan{Sudoku.Behaviors.Bottlenecks.BottleneckFilter})"/>.
+            </summary>
+            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
+            <param name="Type">Indicates the bottleneck type.</param>
+            <seealso cref="M:Sudoku.Behaviors.Bottlenecks.AnalysisResultExtensions.GetBottlenecks(Sudoku.Analytics.AnalysisResult,System.ReadOnlySpan{Sudoku.Behaviors.Bottlenecks.BottleneckFilter})"/>
+        </member>
+        <member name="P:Sudoku.Behaviors.Bottlenecks.BottleneckFilter.Visibility">
+            <summary>Indicates a visibility type of pencilmark.</summary>
+        </member>
+        <member name="P:Sudoku.Behaviors.Bottlenecks.BottleneckFilter.Type">
+            <summary>Indicates the bottleneck type.</summary>
+        </member>
+        <member name="T:Sudoku.Behaviors.Bottlenecks.BottleneckType">
+            <summary>
+            Represents a type of bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Behaviors.Bottlenecks.BottleneckType.EliminationGroup">
+            <summary>
+            Indicates the bottleneck is the last step in a list of steps that only produces eliminations.
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle containing full-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Behaviors.Bottlenecks.BottleneckType.HardestRating">
+            <summary>
+            Indicates the bottleneck is for a hardest step or a list of steps having a same hardest difficulty found in analyzer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Behaviors.Bottlenecks.BottleneckType.HardestLevel">
+            <summary>
+            Indicates the bottleneck is for a step or a list of steps that hold the hardest difficulty level.
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Behaviors.Bottlenecks.BottleneckType.SequentialInversion">
+            <summary>
+            <para>Indicates the bottleneck for a step that makes the next step has a easier difficulty level than it.</para>
+            <para>
+            For example, the first step is a chain (at "Fiendish" level),
+            and the second step is a locked candidates (at "Moderate" level).
+            In this case, the first step makes the second step to be easy, so it will be considered as a bottleneck under this rule.
+            </para>
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Behaviors.Bottlenecks.BottleneckType.SingleStepOnly">
+            <summary>
+            <para>
+            Indicates the bottleneck step is a step
+            whose corresponding grid pattern only contains one step can makes such conclusion with it.
+            </para>
+            <para>
+            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
+            If you don't apply it to puzzle, solving this puzzle cannot continue.
+            Therefore, the step will be considered as a bottleneck under this rule.
+            </para>
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle only containing direct or partial-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Behaviors.Bottlenecks.BottleneckType.SingleStepSameLevelOnly">
+            <summary>
+            <para>
+            Indicates the bottleneck step is a step
+            whose corresponding grid pattern only contains one step can makes such conclusion with it;
+            and only checks for same-level techniques.
+            </para>
+            <para>
+            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
+            If you don't apply it to puzzle, solving this puzzle cannot continue.
+            Therefore, the step will be considered as a bottleneck under this rule;
+            if the current grid pattern containing complex singles that can have extra assignemnts,
+            but it will be ignored to be checked in this flag.
+            </para>
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle only containing direct and partial-marking steps.</b></remarks>
         </member>
         <member name="T:Sudoku.Behaviors.Diff.DiffTechniqueAnalysis">
             <summary>
