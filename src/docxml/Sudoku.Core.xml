@@ -9415,19 +9415,172 @@
             The generated property declaration for parameter <c>missingDigit</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.IO.Library">
+            <summary>
+            Represents a library.
+            </summary>
+            <param name="directoryPath">Indicates the directory path.</param>
+            <param name="identifier">Indicates the library identifier.</param>
+        </member>
+        <member name="M:Sudoku.IO.Library.#ctor(System.String,System.String)">
+            <summary>
+            Represents a library.
+            </summary>
+            <param name="directoryPath">Indicates the directory path.</param>
+            <param name="identifier">Indicates the library identifier.</param>
+        </member>
+        <member name="F:Sudoku.IO.Library.Lock">
+            <summary>
+            Indicates the lock object to keep operation thread-safe.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.Library.DefaultSerializerOptions">
+            <summary>
+            Indicates the JSON options to serialize or deserialize object.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.Library.InfoPath">
+            <summary>
+            Indicates the information path.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.Library.LibraryPath">
+            <summary>
+            Indicates the library path.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.Library.WriteName(System.String)">
+            <summary>
+            Writes the name to the library information file.
+            </summary>
+            <param name="value">The value to be set.</param>
+        </member>
+        <member name="M:Sudoku.IO.Library.WriteDescription(System.String)">
+            <summary>
+            Writes the description to the library information file.
+            </summary>
+            <param name="value">The value to be set.</param>
+        </member>
+        <member name="M:Sudoku.IO.Library.WriteAuthor(System.String)">
+            <summary>
+            Writes the author to the library information file.
+            </summary>
+            <param name="value">The value to be set.</param>
+        </member>
+        <member name="M:Sudoku.IO.Library.WriteTags(System.ReadOnlyMemory{System.String})">
+            <summary>
+            Writes the tags to the library information file.
+            </summary>
+            <param name="value">The value to be set.</param>
+        </member>
+        <member name="M:Sudoku.IO.Library.ReadName">
+            <summary>
+            Reads the name of the library information file.
+            </summary>
+            <returns>The name.</returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.ReadDescription">
+            <summary>
+            Reads the description of the library information file.
+            </summary>
+            <returns>The description.</returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.ReadAuthor">
+            <summary>
+            Reads the author of the library information file.
+            </summary>
+            <returns>The author.</returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.ReadTags">
+            <summary>
+            Reads the tags of the library information file.
+            </summary>
+            <returns>The tags.</returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.WriteLineAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+            <summary>
+            Writes a new grid into the target file; if the file doesn't exist, it will create a new file,
+            and then append the puzzle into the file.
+            </summary>
+            <param name="grid">The grid to be appended.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that handles the asynchronous operation.</returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.TryMergeFromAsync(Sudoku.IO.Library,System.Threading.CancellationToken)">
+            <summary>
+            Loads the other library, and reads for all puzzles and appends to the current library file.
+            If any exceptions thrown or cancelled, no updates will be applied
+            (the current file will keep the original state, rather than successfully written some puzzles before cancelled
+            or exception encountered).
+            </summary>
+            <param name="other">The other library to merge into the current library.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation</param>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task`1"/> object that handles the asynchronous operation;
+            with a <see cref="T:System.Boolean"/> result indicating whether the operation is failed (cancelled, exception encountered, etc.).
+            </returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.GetPuzzlesCountAsync">
+            <summary>
+            Totals the number of puzzles up, and return the result.
+            </summary>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task`1"/> object that handles the asynchronous operation;
+            with a result type <see cref="T:System.Int64"/> indicating the number of lines.
+            </returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.ReadRangeAsync(System.UInt64,System.UInt64,System.Threading.CancellationToken)">
+            <summary>
+            Reads the specified number of puzzles from the library file;
+            if the file doesn't exist, nothing will be returned.
+            </summary>
+            <param name="start">Indicates the start index.</param>
+            <param name="length">Indicates the desired number of puzzles.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>An enumerable object that allows iterating values asynchronously.</returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.WriteProperty``1(System.Action{Sudoku.IO.LibraryInfo,``0},``0)">
+            <summary>
+            Writes the property of type <typeparamref name="T"/> to the file.
+            </summary>
+            <typeparam name="T">The type of value.</typeparam>
+            <param name="valueAssignment">The result value assigning method.</param>
+            <param name="value">The value to be set.</param>
+        </member>
+        <member name="M:Sudoku.IO.Library.Save(Sudoku.IO.LibraryInfo)">
+            <summary>
+            Saves the file.
+            </summary>
+            <param name="info">The information to be saved.</param>
+        </member>
+        <member name="M:Sudoku.IO.Library.ReadProperty``1(System.Func{Sudoku.IO.LibraryInfo,``0})">
+            <summary>
+            Reads the property of value of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of value.</typeparam>
+            <param name="resultValueCreator">The result value creator.</param>
+            <returns>The result value.</returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.LoadOrCreate">
+            <summary>
+            Loads the file, or creates the default instance if the file doesn't exist.
+            </summary>
+            <returns>The file loaded.</returns>
+        </member>
+        <member name="F:Sudoku.IO.Library._directoryPath">
+            <summary>
+            The generated field declaration for parameter <c>directoryPath</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.Library._identifier">
+            <summary>
+            The generated field declaration for parameter <c>identifier</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.IO.LibraryFileReader">
             <summary>
             Represents a UTF-8 format library file reader.
             </summary>
-            <param name="filePath">The file path.</param>
-            <param name="bufferSize">The buffer size.</param>
-        </member>
-        <member name="M:Sudoku.IO.LibraryFileReader.#ctor(System.String,System.Int32)">
-            <summary>
-            Represents a UTF-8 format library file reader.
-            </summary>
-            <param name="filePath">The file path.</param>
-            <param name="bufferSize">The buffer size.</param>
         </member>
         <member name="F:Sudoku.IO.LibraryFileReader.Lf">
             <summary>
@@ -9444,11 +9597,30 @@
             Indicates the reader stream.
             </summary>
         </member>
-        <member name="M:Sudoku.IO.LibraryFileReader.#ctor(System.String)">
+        <member name="M:Sudoku.IO.LibraryFileReader.#ctor(System.String,System.Int32,System.Boolean@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.IO.LibraryFileReader"/> instance.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="bufferSize">The buffer size.</param>
+            <param name="exists">Indicates whether the file exists.</param>
+        </member>
+        <member name="P:Sudoku.IO.LibraryFileReader.FilePath">
+            <summary>
+            Indicates the file path.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.LibraryFileReader.BufferSize">
+            <summary>
+            Indicates the buffer size.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileReader.#ctor(System.String,System.Boolean@)">
             <summary>
             Initializes a <see cref="T:Sudoku.IO.LibraryFileReader"/> instance via the specified file path.
             </summary>
             <param name="path">The file path.</param>
+            <param name="exists">Indicates whether the file exists.</param>
         </member>
         <member name="M:Sudoku.IO.LibraryFileReader.CountLines">
             <summary>
@@ -9456,7 +9628,7 @@
             </summary>
             <returns>The number of lines.</returns>
         </member>
-        <member name="M:Sudoku.IO.LibraryFileReader.ReadLinesRangeAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.IO.LibraryFileReader.ReadLinesRangeAsync(System.UInt64,System.UInt64,System.Threading.CancellationToken)">
             <summary>
             Asynchronously read for the specified lines.
             </summary>
@@ -9464,6 +9636,7 @@
             <param name="endLine">Indicates the end line index.</param>
             <param name="cancellationToken">Indicates the cancellation token.</param>
             <returns>An asynchronous enumerator instance.</returns>
+            <exception cref="T:System.OperationCanceledException">Throws when <paramref name="cancellationToken"/> is requested.</exception>
         </member>
         <member name="M:Sudoku.IO.LibraryFileReader.ReadLinesAsync(System.Threading.CancellationToken)">
             <summary>
@@ -9471,16 +9644,7 @@
             </summary>
             <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
             <returns>An enumerator object that allows iterating values asynchronously.</returns>
-        </member>
-        <member name="P:Sudoku.IO.LibraryFileReader.FilePath">
-            <summary>
-            The generated property declaration for parameter <c>filePath</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.IO.LibraryFileReader.BufferSize">
-            <summary>
-            The generated property declaration for parameter <c>bufferSize</c>.
-            </summary>
+            <exception cref="T:System.OperationCanceledException">Throws when <paramref name="cancellationToken"/> is requested.</exception>
         </member>
         <member name="F:Sudoku.IO.LibraryFileReader._isDisposed">
             <summary>
@@ -9499,15 +9663,6 @@
             <summary>
             Represents a UTF-8 format library file writer.
             </summary>
-            <param name="filePath">The file path.</param>
-            <param name="bufferSize">The buffer size.</param>
-        </member>
-        <member name="M:Sudoku.IO.LibraryFileWriter.#ctor(System.String,System.Int32)">
-            <summary>
-            Represents a UTF-8 format library file writer.
-            </summary>
-            <param name="filePath">The file path.</param>
-            <param name="bufferSize">The buffer size.</param>
         </member>
         <member name="F:Sudoku.IO.LibraryFileWriter.FlushThreshold">
             <summary>
@@ -9529,11 +9684,31 @@
             Indicates the buffer.
             </summary>
         </member>
-        <member name="M:Sudoku.IO.LibraryFileWriter.#ctor(System.String)">
+        <member name="M:Sudoku.IO.LibraryFileWriter.#ctor(System.String,System.Int32,System.Boolean@)">
             <summary>
-            Initializes a <see cref="T:Sudoku.IO.LibraryFileWriter"/> instance via the specified file path.
+            Initializes a <see cref="T:Sudoku.IO.LibraryFileWriter"/> instance.
             </summary>
             <param name="filePath">The file path.</param>
+            <param name="bufferSize">The buffer size.</param>
+            <param name="exists">Indicates whether the file exists.</param>
+        </member>
+        <member name="P:Sudoku.IO.LibraryFileWriter.FilePath">
+            <summary>
+            Indicates the file path.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.LibraryFileWriter.BufferSize">
+            <summary>
+            Indicates the buffer size.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.LibraryFileWriter.#ctor(System.String,System.Boolean@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.IO.LibraryFileWriter"/> instance via the specified file path;
+            if the specified path doesn't exist, a new file will be created.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="exists">Indicates whether the file exists.</param>
         </member>
         <member name="P:Sudoku.IO.LibraryFileWriter.AutoFlush">
             <summary>
@@ -9560,16 +9735,6 @@
             </summary>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that can be used as asynchronous operation.</returns>
         </member>
-        <member name="P:Sudoku.IO.LibraryFileWriter.FilePath">
-            <summary>
-            The generated property declaration for parameter <c>filePath</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.IO.LibraryFileWriter.BufferSize">
-            <summary>
-            The generated property declaration for parameter <c>bufferSize</c>.
-            </summary>
-        </member>
         <member name="F:Sudoku.IO.LibraryFileWriter._isDisposed">
             <summary>
             Indicates whether the object had already been disposed before <see cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/> was called.
@@ -9582,6 +9747,31 @@
         <member name="M:Sudoku.IO.LibraryFileWriter.DisposeAsync">
             <inheritdoc/>
             <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
+        </member>
+        <member name="T:Sudoku.IO.LibraryInfo">
+            <summary>
+            Represents information about a library.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.LibraryInfo.Name">
+            <summary>
+            Indicates the name of the library.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.LibraryInfo.Description">
+            <summary>
+            Indicates the description to the library.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.LibraryInfo.Author">
+            <summary>
+            Indicates the author of the library.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.LibraryInfo.Tags">
+            <summary>
+            Indicates the tags of the library.
+            </summary>
         </member>
         <member name="T:Sudoku.Linq.CandidateMapEnumerable">
             <summary>

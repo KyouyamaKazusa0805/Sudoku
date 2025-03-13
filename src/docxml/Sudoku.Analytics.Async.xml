@@ -90,6 +90,15 @@
         <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.GetAwaiter">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter">
             <summary>
             Represents an awaiter object that analyzes the specified puzzle.
@@ -315,6 +324,15 @@
         </member>
         <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.GetAwaiter">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.Async.AsyncCollectorAwaiter">
             <summary>
@@ -550,6 +568,15 @@
         </member>
         <member name="M:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaitable.GetAwaiter">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaitable.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaitable.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaitable.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaiter">
             <summary>

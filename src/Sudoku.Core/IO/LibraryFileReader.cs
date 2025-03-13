@@ -3,10 +3,8 @@ namespace Sudoku.IO;
 /// <summary>
 /// Represents a UTF-8 format library file reader.
 /// </summary>
-/// <param name="filePath">The file path.</param>
-/// <param name="bufferSize">The buffer size.</param>
 [TypeImpl(TypeImplFlags.AsyncDisposable)]
-public sealed partial class LibraryFileReader([Property] string filePath, [Property] int bufferSize) : IAsyncDisposable
+internal sealed partial class LibraryFileReader : IAsyncDisposable
 {
 	/// <summary>
 	/// Represents constant line feed <c>'\n'</c>.
@@ -23,21 +21,47 @@ public sealed partial class LibraryFileReader([Property] string filePath, [Prope
 	/// Indicates the reader stream.
 	/// </summary>
 	[DisposableMember]
-	private readonly FileStream _readerStream = new(
-		filePath,
-		FileMode.Open,
-		FileAccess.Read,
-		FileShare.Read,
-		bufferSize,
-		FileOptions.Asynchronous | FileOptions.SequentialScan
-	);
+	private readonly FileStream _readerStream;
+
+
+	/// <summary>
+	/// Initializes a <see cref="LibraryFileReader"/> instance.
+	/// </summary>
+	/// <param name="filePath">The file path.</param>
+	/// <param name="bufferSize">The buffer size.</param>
+	/// <param name="exists">Indicates whether the file exists.</param>
+	public LibraryFileReader(string filePath, int bufferSize, out bool exists)
+	{
+		(FilePath, BufferSize) = (filePath, bufferSize);
+		exists = File.Exists(filePath);
+		_readerStream = new(
+			filePath,
+			FileMode.Open,
+			FileAccess.Read,
+			FileShare.Read,
+			bufferSize,
+			FileOptions.Asynchronous | FileOptions.SequentialScan
+		);
+	}
+
+
+	/// <summary>
+	/// Indicates the file path.
+	/// </summary>
+	public string FilePath { get; }
+
+	/// <summary>
+	/// Indicates the buffer size.
+	/// </summary>
+	public int BufferSize { get; }
 
 
 	/// <summary>
 	/// Initializes a <see cref="LibraryFileReader"/> instance via the specified file path.
 	/// </summary>
 	/// <param name="path">The file path.</param>
-	public LibraryFileReader(string path) : this(path, 4096 * 4)
+	/// <param name="exists">Indicates whether the file exists.</param>
+	public LibraryFileReader(string path, out bool exists) : this(path, 4096 * 4, out exists)
 	{
 	}
 
@@ -166,15 +190,16 @@ public sealed partial class LibraryFileReader([Property] string filePath, [Prope
 	/// <param name="endLine">Indicates the end line index.</param>
 	/// <param name="cancellationToken">Indicates the cancellation token.</param>
 	/// <returns>An asynchronous enumerator instance.</returns>
+	/// <exception cref="OperationCanceledException">Throws when <paramref name="cancellationToken"/> is requested.</exception>
 	public async IAsyncEnumerable<string> ReadLinesRangeAsync(
-		int startLine,
-		int endLine,
+		ulong startLine,
+		ulong endLine,
 		[EnumeratorCancellation] CancellationToken cancellationToken = default
 	)
 	{
 		var buffer = new byte[BufferSize];
 		var remainingBytes = new List<byte>(256);
-		var currentLineNumber = 0;
+		var currentLineNumber = 0UL;
 		while (true)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
@@ -255,6 +280,7 @@ public sealed partial class LibraryFileReader([Property] string filePath, [Prope
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	/// <returns>An enumerator object that allows iterating values asynchronously.</returns>
+	/// <exception cref="OperationCanceledException">Throws when <paramref name="cancellationToken"/> is requested.</exception>
 	public IAsyncEnumerable<string> ReadLinesAsync(CancellationToken cancellationToken = default)
-		=> ReadLinesRangeAsync(1, int.MaxValue, cancellationToken: cancellationToken);
+		=> ReadLinesRangeAsync(1, ulong.MaxValue, cancellationToken: cancellationToken);
 }
