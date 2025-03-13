@@ -56,7 +56,7 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		var times = 0;
-		foreach (var step in context.AnalyzerResult)
+		foreach (var step in context.AnalysisResult)
 		{
 			if (Technique == step.Code)
 			{

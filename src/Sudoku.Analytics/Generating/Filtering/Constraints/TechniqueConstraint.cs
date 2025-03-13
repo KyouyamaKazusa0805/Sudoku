@@ -42,7 +42,7 @@ public sealed partial class TechniqueConstraint : Constraint
 			return true;
 		}
 
-		foreach (var step in context.AnalyzerResult)
+		foreach (var step in context.AnalysisResult)
 		{
 			if (Techniques.Contains(step.Code))
 			{

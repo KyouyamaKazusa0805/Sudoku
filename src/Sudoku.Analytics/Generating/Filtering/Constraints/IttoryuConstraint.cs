@@ -55,7 +55,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
-		if (context.AnalyzerResult is not { IsSolved: true, DifficultyLevel: DifficultyLevel.Easy })
+		if (context.AnalysisResult is not { IsSolved: true, DifficultyLevel: DifficultyLevel.Easy })
 		{
 			// Bug fix: We won't check for steps if the grid is hard than 'DifficultyLevel.Easy'.
 			// For example if a moderate puzzle is found, the expression '(SingleStep)steps[i]' will throw an InvalidCastException

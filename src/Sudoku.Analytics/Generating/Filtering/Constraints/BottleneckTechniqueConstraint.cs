@@ -59,5 +59,5 @@ public sealed partial class BottleneckTechniqueConstraint : Constraint
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
-		=> !!(Techniques & [.. from step in context.AnalyzerResult.GetBottlenecks(Filters) select step.Code]);
+		=> !!(Techniques & [.. from step in context.AnalysisResult.GetBottlenecks(Filters) select step.Code]);
 }

@@ -81,5 +81,5 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
-		=> (ValidDifficultyLevels & context.AnalyzerResult.DifficultyLevel) != 0;
+		=> (ValidDifficultyLevels & context.AnalysisResult.DifficultyLevel) != 0;
 }

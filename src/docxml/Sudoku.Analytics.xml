@@ -26699,7 +26699,7 @@
             Represents context that will be called by method <see cref="M:Sudoku.Generating.Filtering.Constraint.Check(Sudoku.Generating.Filtering.ConstraintCheckingContext)"/>.
             </summary>
             <param name="grid">Indicates the reference to the grid to be checked.</param>
-            <param name="analyzerResult">Indicates the analyzer result.</param>
+            <param name="analysisResult">Indicates the analysis result.</param>
             <seealso cref="M:Sudoku.Generating.Filtering.Constraint.Check(Sudoku.Generating.Filtering.ConstraintCheckingContext)"/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisResult)">
@@ -26707,7 +26707,7 @@
             Represents context that will be called by method <see cref="M:Sudoku.Generating.Filtering.Constraint.Check(Sudoku.Generating.Filtering.ConstraintCheckingContext)"/>.
             </summary>
             <param name="grid">Indicates the reference to the grid to be checked.</param>
-            <param name="analyzerResult">Indicates the analyzer result.</param>
+            <param name="analysisResult">Indicates the analysis result.</param>
             <seealso cref="M:Sudoku.Generating.Filtering.Constraint.Check(Sudoku.Generating.Filtering.ConstraintCheckingContext)"/>
         </member>
         <member name="F:Sudoku.Generating.Filtering.ConstraintCheckingContext.Grid">
@@ -26715,9 +26715,9 @@
             The generated field declaration for parameter <c>grid</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Generating.Filtering.ConstraintCheckingContext.AnalyzerResult">
+        <member name="P:Sudoku.Generating.Filtering.ConstraintCheckingContext.AnalysisResult">
             <summary>
-            The generated property declaration for parameter <c>analyzerResult</c>.
+            The generated property declaration for parameter <c>analysisResult</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Generating.Filtering.ConstraintCollection">

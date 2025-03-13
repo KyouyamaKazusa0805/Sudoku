@@ -63,7 +63,7 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 		{
 			// Optimization: If a user sets 'lasting != 0' constraint, it'll degenerate to check existence of such technique.
 			// also, 'lasting == 0' can be handled here.
-			foreach (var step in context.AnalyzerResult)
+			foreach (var step in context.AnalysisResult)
 			{
 				if (step.Code == desiredTechnique)
 				{
@@ -74,7 +74,7 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 			return Operator == ComparisonOperator.Equality;
 		}
 
-		foreach (var step in context.AnalyzerResult)
+		foreach (var step in context.AnalysisResult)
 		{
 			if (step is not (SingleStep { Code: var technique } and ILastingTrait { Lasting: var factLasting })
 				|| desiredTechnique == technique && !Operator.GetOperator<int>()(factLasting, LimitCount))

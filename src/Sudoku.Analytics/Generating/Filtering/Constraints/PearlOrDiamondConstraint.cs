@@ -37,8 +37,8 @@ public abstract partial class PearlOrDiamondConstraint([Property, HashCodeMember
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
-		var isPearl = context.AnalyzerResult.IsPearl;
-		var isDiamond = context.AnalyzerResult.IsDiamond;
+		var isPearl = context.AnalysisResult.IsPearl;
+		var isDiamond = context.AnalysisResult.IsDiamond;
 		return !(ShouldBePearlOrDiamond ^ ((CheckPearl ? isPearl : isDiamond) ?? false));
 	}
 }

@@ -55,7 +55,7 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		var @operator = Operator.GetOperator<int>();
-		foreach (var step in context.AnalyzerResult)
+		foreach (var step in context.AnalysisResult)
 		{
 			if (step.Code == Technique && @operator(LimitCount, step.Conclusions.Length))
 			{

@@ -47,7 +47,7 @@ public sealed partial class ConclusionConstraint : Constraint
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		var appeared = false;
-		foreach (var step in context.AnalyzerResult)
+		foreach (var step in context.AnalysisResult)
 		{
 			foreach (var conclusion in step.Conclusions)
 			{

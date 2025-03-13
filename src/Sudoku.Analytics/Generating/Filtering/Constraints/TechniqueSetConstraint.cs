@@ -47,7 +47,7 @@ public sealed partial class TechniqueSetConstraint : Constraint
 
 		bool b(ConstraintCheckingContext context)
 		{
-			foreach (var step in context.AnalyzerResult)
+			foreach (var step in context.AnalysisResult)
 			{
 				if (!Techniques.Contains(step.Code))
 				{
