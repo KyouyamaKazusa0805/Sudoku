@@ -5,7 +5,7 @@ namespace Sudoku.IO;
 /// </summary>
 /// <param name="directoryPath">Indicates the directory path.</param>
 /// <param name="identifier">Indicates the library identifier.</param>
-public sealed partial class Library([Field] string directoryPath, [Field] string identifier)
+public sealed partial class Library([Field] string directoryPath, [Field] string identifier) : IAsyncEnumerable<Grid>
 {
 	/// <summary>
 	/// Indicates the lock object to keep operation thread-safe.
@@ -223,6 +223,24 @@ public sealed partial class Library([Field] string directoryPath, [Field] string
 		}
 
 		await foreach (var line in reader.ReadLinesRangeAsync(start, start + length, cancellationToken))
+		{
+			if (Grid.TryParse(line, out var grid))
+			{
+				yield return grid;
+			}
+		}
+	}
+
+	/// <inheritdoc/>
+	public async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)
+	{
+		await using var reader = new LibraryFileReader(LibraryPath, out var exists);
+		if (!exists)
+		{
+			yield break;
+		}
+
+		await foreach (var line in reader.ReadLinesAsync(cancellationToken))
 		{
 			if (Grid.TryParse(line, out var grid))
 			{
