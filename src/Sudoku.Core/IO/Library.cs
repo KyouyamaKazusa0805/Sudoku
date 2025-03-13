@@ -149,11 +149,14 @@ public sealed partial class Library([Field] string directoryPath, [Field] string
 			// The core operation to append lines.
 			// Please note that this await foreach operation may throw OperationCanceledException,
 			// so it will be catched and make a rollback instead of skipping the foreach loop.
-			await foreach (var line in otherReader.ReadLinesAsync(cancellationToken))
+			await using (var sw = new StreamWriter(tempFilePath, true))
 			{
-				if (Grid.TryParse(line, out _))
+				await foreach (var line in otherReader.ReadLinesAsync(cancellationToken))
 				{
-					await File.AppendAllTextAsync(tempFilePath, line, cancellationToken);
+					if (Grid.TryParse(line, out _))
+					{
+						await sw.WriteLineAsync(line);
+					}
 				}
 			}
 
