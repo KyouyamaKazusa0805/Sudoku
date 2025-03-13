@@ -7578,6 +7578,40 @@
             Represents naming rules for some techniques.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Hub.TechniqueNaming.Chain">
+            <summary>
+            Represents chain naming rules.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Hub.TechniqueNaming.Chain.SortKeyDictionary">
+            <summary>
+            Indicates the sort key dictionary.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.Chain.GetSortKey(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            Try to get sort key of the pattern.
+            </summary>
+            <param name="chain">The chain to be checked.</param>
+            <param name="conclusions">Indicates conclusions to be used.</param>
+            <returns>The pattern sort key.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.Chain.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
+            </summary>
+            <param name="chain">The chain to be checked.</param>
+            <param name="grid">The grid to calculate on conclusions for the pattern.</param>
+            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TechniqueNaming.Chain.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
+            </summary>
+            <param name="chain">The chain to be checked.</param>
+            <param name="conclusions">The conclusions.</param>
+            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
+        </member>
         <member name="F:Sudoku.Analytics.Hub.TechniqueNaming.ChineseDigitCharacters">
             <summary>
             Indicates the digit characters.
@@ -13701,26 +13735,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.Chains.NormalChainStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.Chains.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.Chains.Extensions.SortKeyDictionary">
-            <summary>
-            Indicates the sort key dictionary.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.Chains.Extensions.GetSortKey(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.ConclusionSet)">
-            <summary>
-            Try to get sort key of the pattern.
-            </summary>
-            <param name="this">The pattern.</param>
-            <param name="conclusions">Indicates conclusions to be used.</param>
-            <returns>The pattern sort key.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Steps.Chains.PatternBasedChainStep">
             <summary>
@@ -22247,27 +22261,6 @@
             <summary>
             Indicates all possible behaviors.
             </summary>
-        </member>
-        <member name="T:Sudoku.Categorization.ChainNaming">
-            <summary>
-            Represents a way to get real name of a chain.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Categorization.ChainNaming.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
-            </summary>
-            <param name="this">The pattern to be checked.</param>
-            <param name="grid">The grid to calculate on conclusions for the pattern.</param>
-            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
-        </member>
-        <member name="M:Sudoku.Categorization.ChainNaming.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.ConclusionSet)">
-            <summary>
-            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
-            </summary>
-            <param name="this">The pattern to be checked.</param>
-            <param name="conclusions">The conclusions.</param>
-            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
         </member>
         <member name="T:Sudoku.Categorization.GridPartialMarkingExtensions">
             <summary>

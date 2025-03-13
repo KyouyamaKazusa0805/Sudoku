@@ -24,7 +24,7 @@ public sealed partial class FinnedChainStep(
 	/// <summary>
 	/// Indicates the base technique used.
 	/// </summary>
-	public Technique BasedOn => Casted.GetTechnique(Conclusions.AsSet());
+	public Technique BasedOn => TechniqueNaming.Chain.GetTechnique(Casted, Conclusions.AsSet());
 
 	/// <inheritdoc/>
 	public override Technique Code

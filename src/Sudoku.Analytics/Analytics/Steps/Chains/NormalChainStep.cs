@@ -18,7 +18,10 @@ public class NormalChainStep(
 	/// Indicates the sort key that can be used as chaining comparison.
 	/// </summary>
 	public int SortKey
-		=> (IsLoop ? 2000 : 0) + (IsCannibalistic ? 1000 : 0) + (IsGrouped ? 500 : 0) + Casted.GetSortKey(Conclusions.AsSet());
+		=> (IsLoop ? 2000 : 0)
+			+ (IsCannibalistic ? 1000 : 0)
+			+ (IsGrouped ? 500 : 0)
+			+ TechniqueNaming.Chain.GetSortKey(Casted, Conclusions.AsSet());
 
 	/// <inheritdoc/>
 	public sealed override bool IsMultiple => false;
@@ -49,7 +52,7 @@ public class NormalChainStep(
 	public sealed override int Complexity => Casted.Length;
 
 	/// <inheritdoc/>
-	public override Technique Code => Casted.GetTechnique(Conclusions.AsSet());
+	public override Technique Code => TechniqueNaming.Chain.GetTechnique(Casted, Conclusions.AsSet());
 
 	/// <inheritdoc/>
 	public override Mask DigitsUsed => Casted.DigitsMask;
@@ -115,74 +118,4 @@ public class NormalChainStep(
 				? result
 				: Casted.CompareTo(comparer.Casted)
 			: -1;
-}
-
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-file static class Extensions
-{
-	/// <summary>
-	/// Indicates the sort key dictionary.
-	/// </summary>
-	private static readonly Dictionary<Technique, int> SortKeyDictionary = new()
-	{
-		// 3-chain
-		{ Technique.Skyscraper, 1 },
-		{ Technique.TwoStringKite, 2 },
-		{ Technique.TurbotFish, 3 },
-		{ Technique.GroupedSkyscraper, 4 },
-		{ Technique.GroupedTwoStringKite, 5 },
-		{ Technique.GroupedTurbotFish, 6 },
-
-		// 5-chain
-		{ Technique.WWing, 101 },
-		{ Technique.MWing, 102 },
-		{ Technique.SWing, 103 },
-		{ Technique.LWing, 104 },
-		{ Technique.HWing, 105 },
-		{ Technique.PurpleCow, 106 },
-		{ Technique.GroupedWWing, 107 },
-		{ Technique.GroupedMWing, 108 },
-		{ Technique.GroupedSWing, 109 },
-		{ Technique.GroupedLWing, 110 },
-		{ Technique.GroupedHWing, 111 },
-		{ Technique.GroupedPurpleCow, 112 },
-
-		// Others
-		{ Technique.FishyCycle, 201 },
-		{ Technique.XyCycle, 202 },
-		{ Technique.ContinuousNiceLoop, 203 },
-		{ Technique.XChain, 204 },
-		{ Technique.XyChain, 205 },
-		{ Technique.XyXChain, 206 },
-		{ Technique.SelfConstraint, 207 },
-		{ Technique.AlternatingInferenceChain, 208 },
-		{ Technique.DiscontinuousNiceLoop, 209 },
-		{ Technique.GroupedFishyCycle, 211 },
-		{ Technique.GroupedXyCycle, 212 },
-		{ Technique.GroupedContinuousNiceLoop, 213 },
-		{ Technique.GroupedXChain, 214 },
-		{ Technique.GroupedXyChain, 215 },
-		{ Technique.GroupedXyXChain, 216 },
-		{ Technique.GroupedSelfConstraint, 217 },
-		{ Technique.NodeCollision, 218 },
-		{ Technique.GroupedAlternatingInferenceChain, 219 },
-		{ Technique.GroupedDiscontinuousNiceLoop, 220 },
-		{ Technique.SinglyLinkedAlmostLockedSetsXzRule, 221 },
-		{ Technique.DoublyLinkedAlmostLockedSetsXzRule, 222 },
-		{ Technique.AlmostLockedSetsXyWing, 223 },
-		{ Technique.AlmostLockedSetsWWing, 224 },
-		{ Technique.GroupedAlmostLockedSetsWWing, 225 },
-		{ Technique.AlmostLockedSetsChain, 226 }
-	};
-
-
-	/// <summary>
-	/// Try to get sort key of the pattern.
-	/// </summary>
-	/// <param name="this">The pattern.</param>
-	/// <param name="conclusions">Indicates conclusions to be used.</param>
-	/// <returns>The pattern sort key.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetSortKey(this NamedChain @this, ConclusionSet conclusions)
-		=> SortKeyDictionary[@this.GetTechnique(conclusions)];
 }
