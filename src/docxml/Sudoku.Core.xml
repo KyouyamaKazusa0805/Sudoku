@@ -9373,6 +9373,11 @@
             <param name="_missingDigit">Indicates the missing digit that can be used.</param>
             <param name="seedPattern">Indicates the predefind pattern used.</param>
         </member>
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._isCancelled">
+            <summary>
+            Indicates whether the generator is cancelled.
+            </summary>
+        </member>
         <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
         </member>
@@ -9387,6 +9392,7 @@
             <param name="count">The number of puzzles generated.</param>
             <param name="progress">The progress instance.</param>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether a puzzle was generated or a user cancelled the operation.</returns>
         </member>
         <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.OrderCellsViaConnectionComplexity">
             <summary>
