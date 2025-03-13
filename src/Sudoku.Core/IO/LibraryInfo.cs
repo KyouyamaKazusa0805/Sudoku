@@ -3,7 +3,7 @@ namespace Sudoku.IO;
 /// <summary>
 /// Represents information about a library.
 /// </summary>
-internal sealed class LibraryInfo
+public sealed class LibraryInfo
 {
 	/// <summary>
 	/// Indicates the name of the library.

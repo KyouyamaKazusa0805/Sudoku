@@ -9417,14 +9417,14 @@
         </member>
         <member name="T:Sudoku.IO.Library">
             <summary>
-            Represents a library.
+            Represents a puzzle library.
             </summary>
             <param name="directoryPath">Indicates the directory path.</param>
             <param name="identifier">Indicates the library identifier.</param>
         </member>
         <member name="M:Sudoku.IO.Library.#ctor(System.String,System.String)">
             <summary>
-            Represents a library.
+            Represents a puzzle library.
             </summary>
             <param name="directoryPath">Indicates the directory path.</param>
             <param name="identifier">Indicates the library identifier.</param>
@@ -9570,6 +9570,15 @@
             </summary>
             <returns>The file loaded.</returns>
         </member>
+        <member name="M:Sudoku.IO.Library.CreateLibrary(System.String,System.String,Sudoku.IO.LibraryInfo)">
+            <summary>
+            Creates a <see cref="T:Sudoku.IO.Library"/> instance (and local files) via the specified information.
+            </summary>
+            <param name="directoryPath">The directory path.</param>
+            <param name="identifier">The identifier.</param>
+            <param name="libraryInfo">The library information.</param>
+            <returns>The library instance.</returns>
+        </member>
         <member name="F:Sudoku.IO.Library._directoryPath">
             <summary>
             The generated field declaration for parameter <c>directoryPath</c>.
@@ -9579,6 +9588,24 @@
             <summary>
             The generated field declaration for parameter <c>identifier</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.IO.Library.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.IO.Library.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.IO.Library.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.IO.Library.op_Equality(Sudoku.IO.Library,Sudoku.IO.Library)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.IO.Library.op_Inequality(Sudoku.IO.Library,Sudoku.IO.Library)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.IO.Library.Equals(Sudoku.IO.Library)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.IO.LibraryFileReader">
             <summary>

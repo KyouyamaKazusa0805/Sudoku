@@ -1,11 +1,15 @@
 namespace Sudoku.IO;
 
 /// <summary>
-/// Represents a library.
+/// Represents a puzzle library.
 /// </summary>
 /// <param name="directoryPath">Indicates the directory path.</param>
 /// <param name="identifier">Indicates the library identifier.</param>
-public sealed partial class Library([Field] string directoryPath, [Field] string identifier) : IAsyncEnumerable<Grid>
+[TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
+public sealed partial class Library([Field] string directoryPath, [Field] string identifier) :
+	IAsyncEnumerable<Grid>,
+	IEquatable<Library>,
+	IEqualityOperators<Library, Library, bool>
 {
 	/// <summary>
 	/// Indicates the lock object to keep operation thread-safe.
@@ -28,11 +32,15 @@ public sealed partial class Library([Field] string directoryPath, [Field] string
 	/// <summary>
 	/// Indicates the information path.
 	/// </summary>
+	[HashCodeMember]
+	[EquatableMember]
+	[StringMember]
 	public string InfoPath => $"{_directoryPath}/{_identifier}.json";
 
 	/// <summary>
 	/// Indicates the library path.
 	/// </summary>
+	[StringMember]
 	public string LibraryPath => $"{_directoryPath}/{_identifier}.txt";
 
 
@@ -305,5 +313,25 @@ public sealed partial class Library([Field] string directoryPath, [Field] string
 			var json = File.ReadAllText(InfoPath);
 			return JsonSerializer.Deserialize<LibraryInfo>(json, DefaultSerializerOptions) ?? new();
 		}
+	}
+
+
+	/// <summary>
+	/// Creates a <see cref="Library"/> instance (and local files) via the specified information.
+	/// </summary>
+	/// <param name="directoryPath">The directory path.</param>
+	/// <param name="identifier">The identifier.</param>
+	/// <param name="libraryInfo">The library information.</param>
+	/// <returns>The library instance.</returns>
+	public static Library CreateLibrary(string directoryPath, string identifier, LibraryInfo libraryInfo)
+	{
+		var result = new Library(directoryPath, identifier);
+		var info = result.LoadOrCreate();
+		info.Name = libraryInfo.Name;
+		info.Author = libraryInfo.Author;
+		info.Description = libraryInfo.Description;
+		info.Tags = libraryInfo.Tags;
+		result.Save(info);
+		return result;
 	}
 }
