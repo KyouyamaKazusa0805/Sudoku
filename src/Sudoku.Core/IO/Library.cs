@@ -18,7 +18,6 @@ public sealed partial class Library([Field] string directoryPath, [Field] string
 	private static readonly JsonSerializerOptions DefaultSerializerOptions = new()
 	{
 		WriteIndented = true,
-		PropertyNameCaseInsensitive = true,
 		IndentCharacter = ' ',
 		IndentSize = 4,
 		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
