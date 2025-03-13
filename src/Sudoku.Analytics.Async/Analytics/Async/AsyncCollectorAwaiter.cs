@@ -16,6 +16,11 @@ public sealed class AsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnlySpan<St
 	private readonly Grid _grid;
 
 	/// <summary>
+	/// Indicates the cancellation token that can cancel the current operation.
+	/// </summary>
+	private readonly CancellationToken _cancellationToken;
+
+	/// <summary>
 	/// Indicates the lock.
 	/// </summary>
 	private readonly Lock _lock = new();
@@ -42,12 +47,6 @@ public sealed class AsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnlySpan<St
 	/// </remarks>
 	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
 	private bool _isCompleted;
-
-	/// <summary>
-	/// Indicates the cancellation token that can cancel the current operation.
-	/// </summary>
-	[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-	private CancellationToken _cancellationToken;
 
 	/// <summary>
 	/// Indicates the result.

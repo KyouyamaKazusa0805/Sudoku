@@ -90,15 +90,6 @@
         <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.GetAwaiter">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Async.AsyncAnalyzerAwaitable.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter">
             <summary>
             Represents an awaiter object that analyzes the specified puzzle.
@@ -112,6 +103,11 @@
         <member name="F:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter._grid">
             <summary>
             Indicates the backing grid to be analyzed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter._cancellationToken">
+            <summary>
+            Indicates the cancellation token that can cancel the current operation.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter._lock">
@@ -144,11 +140,6 @@
             because the writting operation uses <see langword="lock" /> statement.
             </para>
             </remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter._cancellationToken">
-            <summary>
-            Indicates the cancellation token that can cancel the current operation.
-            </summary>
         </member>
         <member name="F:Sudoku.Analytics.Async.AsyncAnalyzerAwaiter._result">
             <summary>
@@ -325,15 +316,6 @@
         <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.GetAwaiter">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Async.AsyncCollectorAwaitable.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Analytics.Async.AsyncCollectorAwaiter">
             <summary>
             Represents an awaiter object that collects steps for the specified puzzle.
@@ -347,6 +329,11 @@
         <member name="F:Sudoku.Analytics.Async.AsyncCollectorAwaiter._grid">
             <summary>
             Indicates the backing grid to be analyzed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Async.AsyncCollectorAwaiter._cancellationToken">
+            <summary>
+            Indicates the cancellation token that can cancel the current operation.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Async.AsyncCollectorAwaiter._lock">
@@ -379,11 +366,6 @@
             because the writting operation uses <see langword="lock" /> statement.
             </para>
             </remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.Async.AsyncCollectorAwaiter._cancellationToken">
-            <summary>
-            Indicates the cancellation token that can cancel the current operation.
-            </summary>
         </member>
         <member name="F:Sudoku.Analytics.Async.AsyncCollectorAwaiter._result">
             <summary>
@@ -569,15 +551,6 @@
         <member name="M:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaitable.GetAwaiter">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaitable.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaitable.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaitable.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaiter">
             <summary>
             Represents an awaiter object that collects steps for the specified puzzle.
@@ -586,6 +559,11 @@
         <member name="F:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaiter._grid">
             <summary>
             Indicates the backing grid to be analyzed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaiter._cancellationToken">
+            <summary>
+            Indicates the cancellation token that can cancel the current operation.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaiter._lock">
@@ -606,11 +584,6 @@
         <member name="F:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaiter._result">
             <summary>
             Indicates the result.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaiter._cancellationToken">
-            <summary>
-            Indicates the cancellation token that can cancel the current operation.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Async.ParallelAsyncCollectorAwaiter._awaitAllTask">
