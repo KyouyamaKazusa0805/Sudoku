@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Primitives;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Defines a reason why the puzzle is failed to be analyzed.

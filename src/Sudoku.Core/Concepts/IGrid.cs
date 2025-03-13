@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Primitives;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a type that supports all basic functions that operates with a sudoku puzzle.

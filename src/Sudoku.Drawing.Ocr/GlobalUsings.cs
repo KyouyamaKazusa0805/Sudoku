@@ -14,6 +14,6 @@ global using Emgu.CV.OCR;
 global using Emgu.CV.Structure;
 global using Emgu.CV.Util;
 global using Sudoku.Concepts;
-global using Sudoku.Concepts.Primitives;
+global using Sudoku.Concepts;
 global using Sudoku.Resources;
 global using Sudoku.Shuffling.Transforming;

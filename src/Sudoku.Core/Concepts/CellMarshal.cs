@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Primitives;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a list of extension methods that operates with cell instances, as <see cref="Cell"/> representation.

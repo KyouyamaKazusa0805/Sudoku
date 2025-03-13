@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Primitives;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Represents a list of difficulty levels.

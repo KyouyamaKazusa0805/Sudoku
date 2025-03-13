@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Primitives;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Represents a bottleneck filter consumed by method <see cref="AnalysisResult.GetBottlenecks(ReadOnlySpan{BottleneckFilter})"/>.

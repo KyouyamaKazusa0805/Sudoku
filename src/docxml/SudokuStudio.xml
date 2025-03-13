@@ -100,7 +100,7 @@
             </summary>
             <param name="pane">The sudoku pane to be set.</param>
         </member>
-        <member name="M:SudokuStudio.App.GetAnalyzerConfigured(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Primitives.DifficultyLevel)">
+        <member name="M:SudokuStudio.App.GetAnalyzerConfigured(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.DifficultyLevel)">
             <summary>
             Try to fetch an <see cref="T:Sudoku.Analytics.Analyzer"/> instance via the specified running <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/>.
             </summary>
@@ -493,7 +493,7 @@
             <param name="countOfSteps">Indicates the number of steps in this group.</param>
             <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
         </member>
-        <member name="M:SudokuStudio.BindableSource.SummaryViewBindableSource.#ctor(System.String,Sudoku.Analytics.Primitives.DifficultyLevel,System.Decimal,System.Decimal,System.Int32)">
+        <member name="M:SudokuStudio.BindableSource.SummaryViewBindableSource.#ctor(System.String,Sudoku.Analytics.DifficultyLevel,System.Decimal,System.Decimal,System.Int32)">
             <summary>
             Represents a type that can be used for binding as source, for the table-like grid controls to display techniques used,
             using technique name to distinct them.
@@ -1806,13 +1806,13 @@
             <param name="Level">
             <para>Indicates the difficulty level value.</para>
             <para>
-            Note: The value cannot be <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.LastResort"/>, <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.Unknown"/>
+            Note: The value cannot be <see cref="F:Sudoku.Analytics.DifficultyLevel.LastResort"/>, <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/>
             or other undefined values. Such fields are reserved values on purpose. In fact, all techniques that hold
             one of the such difficulty levels cannot be modified its difficulty level and rating value.
             </para>
             </param>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueData.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Primitives.DifficultyLevel)">
+        <member name="M:SudokuStudio.Configuration.TechniqueData.#ctor(System.Int32,System.Int32,Sudoku.Analytics.DifficultyLevel)">
             <summary>
             Represents the technique data to be used.
             </summary>
@@ -1821,7 +1821,7 @@
             <param name="Level">
             <para>Indicates the difficulty level value.</para>
             <para>
-            Note: The value cannot be <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.LastResort"/>, <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.Unknown"/>
+            Note: The value cannot be <see cref="F:Sudoku.Analytics.DifficultyLevel.LastResort"/>, <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/>
             or other undefined values. Such fields are reserved values on purpose. In fact, all techniques that hold
             one of the such difficulty levels cannot be modified its difficulty level and rating value.
             </para>
@@ -1837,7 +1837,7 @@
             <summary>
             <para>Indicates the difficulty level value.</para>
             <para>
-            Note: The value cannot be <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.LastResort"/>, <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.Unknown"/>
+            Note: The value cannot be <see cref="F:Sudoku.Analytics.DifficultyLevel.LastResort"/>, <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/>
             or other undefined values. Such fields are reserved values on purpose. In fact, all techniques that hold
             one of the such difficulty levels cannot be modified its difficulty level and rating value.
             </para>
@@ -1873,7 +1873,7 @@
             <param name="technique">The technique.</param>
             <param name="value">The rating value to be set.</param>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateDifficultyLevel(Sudoku.Categorization.Technique,Sudoku.Analytics.Primitives.DifficultyLevel)">
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateDifficultyLevel(Sudoku.Categorization.Technique,Sudoku.Analytics.DifficultyLevel)">
             <summary>
             Add or update difficulty level.
             </summary>
@@ -4576,9 +4576,9 @@
         <member name="F:SudokuStudio.Interaction.LibraryCandidatesVisibility.ShownWhenPuzzleIsGreaterThanModerate">
             <summary>
             Indicates the candidates will be shown when the state of the puzzle is found a solving step
-            with <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.Hard"/> or greater difficulty.
+            with <see cref="F:Sudoku.Analytics.DifficultyLevel.Hard"/> or greater difficulty.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.Hard"/>
+            <seealso cref="F:Sudoku.Analytics.DifficultyLevel.Hard"/>
         </member>
         <member name="F:SudokuStudio.Interaction.LibraryCandidatesVisibility.ShownWhenExtraEliminatedCandidatesFound">
             <summary>
@@ -5589,9 +5589,9 @@
         </member>
         <member name="T:SudokuStudio.Markup.BottleneckTypeExtension">
             <summary>
-            Represents a markup extension to provide a <see cref="T:Sudoku.Analytics.Primitives.BottleneckType"/> value.
+            Represents a markup extension to provide a <see cref="T:Sudoku.Analytics.BottleneckType"/> value.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Primitives.BottleneckType"/>
+            <seealso cref="T:Sudoku.Analytics.BottleneckType"/>
         </member>
         <member name="P:SudokuStudio.Markup.BottleneckTypeExtension.Value">
             <summary>
@@ -11433,7 +11433,7 @@
             stored in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
             </summary>
             <typeparam name="TAnalyzerOrCollector">
-            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.Primitives.IStepGatherer`2"/>.
+            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.IStepGatherer`2"/>.
             </typeparam>
             <typeparam name="TResult">The type of the result.</typeparam>
             <param name="this">The analyzer instance.</param>
@@ -11451,7 +11451,7 @@
             Calls the method <see cref="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetter``2(``0,System.Object,System.String,System.Boolean@)"/> for all properties in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
             </summary>
             <typeparam name="TAnalyzerOrCollector">
-            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.Primitives.IStepGatherer`2"/>.
+            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.IStepGatherer`2"/>.
             </typeparam>
             <typeparam name="TResult">The type of the result.</typeparam>
             <param name="this">The analyzer instance.</param>

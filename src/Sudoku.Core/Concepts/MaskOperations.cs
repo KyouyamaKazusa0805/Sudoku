@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Primitives;
+namespace Sudoku.Concepts;
 
 using GridBase = IGrid<Grid>;
 

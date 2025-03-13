@@ -1,7 +1,6 @@
 global using System;
 global using System.Buffers;
 global using System.Collections;
-global using System.Collections.Concurrent;
 global using System.Collections.Frozen;
 global using System.Collections.Generic;
 global using System.ComponentModel;
@@ -33,7 +32,6 @@ global using Sudoku.Behaviors.Diff.Results;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Coordinates;
 global using Sudoku.Concepts.Coordinates.Formatting;
-global using Sudoku.Concepts.Primitives;
 global using Sudoku.Drawing;
 global using Sudoku.Drawing.Nodes;
 global using Sudoku.Linq;
