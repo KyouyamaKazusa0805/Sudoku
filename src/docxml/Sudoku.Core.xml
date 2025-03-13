@@ -9363,19 +9363,24 @@
             <summary>
             Represents a generator that is based on pattern.
             </summary>
-            <param name="_missingDigit">Indicates the missing digit that can be used.</param>
+            <param name="missingDigit">Indicates the missing digit that can be used.</param>
             <param name="seedPattern">Indicates the predefind pattern used.</param>
         </member>
         <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Represents a generator that is based on pattern.
             </summary>
-            <param name="_missingDigit">Indicates the missing digit that can be used.</param>
+            <param name="missingDigit">Indicates the missing digit that can be used.</param>
             <param name="seedPattern">Indicates the predefind pattern used.</param>
         </member>
         <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._isCancelled">
             <summary>
             Indicates whether the generator is cancelled.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.PatternBasedPuzzleGenerator.SeedPattern">
+            <summary>
+            Indicates the pattern of cells.
             </summary>
         </member>
         <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
@@ -9403,6 +9408,11 @@
         <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._seedPattern">
             <summary>
             The generated field declaration for parameter <c>seedPattern</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.PatternBasedPuzzleGenerator.MissingDigit">
+            <summary>
+            The generated property declaration for parameter <c>missingDigit</c>.
             </summary>
         </member>
         <member name="T:Sudoku.IO.LibraryFileReader">

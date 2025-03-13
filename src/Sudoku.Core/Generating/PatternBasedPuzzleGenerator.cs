@@ -3,15 +3,24 @@ namespace Sudoku.Generating;
 /// <summary>
 /// Represents a generator that is based on pattern.
 /// </summary>
-/// <param name="_missingDigit">Indicates the missing digit that can be used.</param>
+/// <param name="missingDigit">Indicates the missing digit that can be used.</param>
 /// <param name="seedPattern">Indicates the predefind pattern used.</param>
 [StructLayout(LayoutKind.Auto)]
-public ref partial struct PatternBasedPuzzleGenerator([Field] in CellMap seedPattern, Digit _missingDigit = -1) : IGenerator<Grid>
+public ref partial struct PatternBasedPuzzleGenerator(
+	[Field] ref readonly CellMap seedPattern,
+	[Property] Digit missingDigit = -1
+) : IGenerator<Grid>
 {
 	/// <summary>
 	/// Indicates whether the generator is cancelled.
 	/// </summary>
 	private bool? _isCancelled;
+
+
+	/// <summary>
+	/// Indicates the pattern of cells.
+	/// </summary>
+	public readonly ref readonly CellMap SeedPattern => ref _seedPattern;
 
 
 	/// <inheritdoc cref="IGenerator{TResult}.Generate(IProgress{GeneratorProgress}, CancellationToken)"/>
@@ -81,7 +90,7 @@ public ref partial struct PatternBasedPuzzleGenerator([Field] in CellMap seedPat
 
 		var cell = patternCellsSorted[i];
 		var digitsMask = playground.GetCandidates(cell);
-		var digits = ((Mask)(_missingDigit != -1 ? digitsMask & ~(1 << _missingDigit) : digitsMask)).GetAllSets();
+		var digits = ((Mask)(MissingDigit != -1 ? digitsMask & ~(1 << MissingDigit) : digitsMask)).GetAllSets();
 		var indexArray = Digits[..digits.Length];
 		Random.Shared.Shuffle(indexArray);
 		foreach (var randomizedIndex in indexArray)
