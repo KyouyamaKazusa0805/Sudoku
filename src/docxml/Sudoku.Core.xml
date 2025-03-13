@@ -6675,21 +6675,6 @@
         <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#ISubtractionOperators{TSelf,TSelf,Sudoku#Behaviors#Diff#DiffResult}#op_CheckedSubtraction(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Inference">
-            <summary>
-            Defines an inference.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Inference.Strong">
-            <summary>
-            Indicates the inference is strong inference.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Inference.Weak">
-            <summary>
-            Indicates the inference is weak inference.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.MaskAggregator">
             <summary>
             Represents an aggregator of mask merging.

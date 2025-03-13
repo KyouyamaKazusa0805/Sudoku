@@ -26529,6 +26529,21 @@
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FormatCoreUnsafeAccessor(Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo,Sudoku.Analytics.Construction.Components.Chain@)">
             <inheritdoc cref="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FormatCore(Sudoku.Analytics.Construction.Components.Chain@)"/>
         </member>
+        <member name="T:Sudoku.Concepts.Inference">
+            <summary>
+            Defines an inference.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Inference.Strong">
+            <summary>
+            Indicates the inference is strong inference.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Inference.Weak">
+            <summary>
+            Indicates the inference is weak inference.
+            </summary>
+        </member>
         <member name="T:Sudoku.Generating.Filtering.BetweenRule">
             <summary>
             Represents a between rule.
