@@ -85,7 +85,7 @@ description: Reasoning of Normal Fish
 
 这个题仍然是前面那个题，只是四阶鱼的结构它换了个数字。当然，结论肯定也就不一样了。
 
-## 鱼的残缺态
+## 鱼的残缺态 <a href="#incomplete-state-of-fish" id="incomplete-state-of-fish"></a>
 
 前面我们看到了若干个例子，我们不难整理出鱼的通用规则：
 
