@@ -212,7 +212,7 @@ description: Other Types of Bi-value Universal Grave
 
 <figure><img src="../../.gitbook/assets/image (104).png" alt="" width="375"><figcaption><p>有 32 个空格的大型 BUG 类型 1</p></figcaption></figure>
 
-### 问题 2：这个技巧最多可以有多少个真数构成？
+### 问题 2：这个技巧最多可以有多少个真数构成？ <a href="#question-2" id="question-2"></a>
 
 这个也很抱歉。这个我也不清楚。如果你要问的是可以提供删数的，那么目前发现的是 7 个；8 个及以上的暂时没有验证过，它应该理论是存在的，只不过因为极为罕见的缘故很难被我们遇到。我曾使用计算机跑了一周，得到了若干题目里，其中只有三道 BUG + 7 的题目，暂时没有更大的情况。
 
