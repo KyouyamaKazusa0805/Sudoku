@@ -50,6 +50,7 @@
 * [全双值格致死解法（BUG）](candidate-technique-basics/09-bivalue-universal-grave/README.md)
   * [全双值格致死解法的基本推理](candidate-technique-basics/09-bivalue-universal-grave/01-reasoning-of-bivalue-universal-grave.md)
   * [全双值格致死解法的其他类型](candidate-technique-basics/09-bivalue-universal-grave/02-other-types-of-bivalue-universal-grave.md)
+* [欠一数组（ALC）](candidate-technique-basics/10-almost-locked-candidates.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 
