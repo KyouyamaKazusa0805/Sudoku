@@ -12,11 +12,6 @@ public sealed partial class Library([Field] string directoryPath, [Field] string
 	IEqualityOperators<Library, Library, bool>
 {
 	/// <summary>
-	/// Indicates the lock object to keep operation thread-safe.
-	/// </summary>
-	private static readonly Lock Lock = new();
-
-	/// <summary>
 	/// Indicates the JSON options to serialize or deserialize object.
 	/// </summary>
 	private static readonly JsonSerializerOptions DefaultSerializerOptions = new()
@@ -27,6 +22,12 @@ public sealed partial class Library([Field] string directoryPath, [Field] string
 		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase
 	};
+
+
+	/// <summary>
+	/// Indicates the lock object to keep operation thread-safe.
+	/// </summary>
+	private readonly Lock _fileLock = new();
 
 
 	/// <summary>
@@ -308,7 +309,7 @@ public sealed partial class Library([Field] string directoryPath, [Field] string
 	/// <param name="info">The information to be saved.</param>
 	private void Save(LibraryInfo info)
 	{
-		lock (Lock)
+		lock (_fileLock)
 		{
 			var json = JsonSerializer.Serialize(info, DefaultSerializerOptions);
 			File.WriteAllText(InfoPath, json);
@@ -334,7 +335,7 @@ public sealed partial class Library([Field] string directoryPath, [Field] string
 	/// <returns>The file loaded.</returns>
 	private LibraryInfo LoadOrCreate()
 	{
-		lock (Lock)
+		lock (_fileLock)
 		{
 			if (!File.Exists(InfoPath))
 			{
