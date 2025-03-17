@@ -9783,20 +9783,6 @@
             Represents information about a library.
             </summary>
         </member>
-        <member name="M:Sudoku.IO.LibraryInfo.#ctor(System.String,System.String,System.String,System.String[])">
-            <summary>
-            Initializes a <see cref="T:Sudoku.IO.LibraryInfo"/> instance.
-            </summary>
-            <param name="name">The name.</param>
-            <param name="description">The description.</param>
-            <param name="author">The author.</param>
-            <param name="tags">The tags.</param>
-        </member>
-        <member name="M:Sudoku.IO.LibraryInfo.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.IO.LibraryInfo"/> instance.
-            </summary>
-        </member>
         <member name="P:Sudoku.IO.LibraryInfo.Name">
             <summary>
             Indicates the name of the library.
