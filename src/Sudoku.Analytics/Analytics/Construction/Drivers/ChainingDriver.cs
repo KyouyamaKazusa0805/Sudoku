@@ -350,9 +350,9 @@ internal static partial class ChainingDriver
 	/// <param name="supportedRules">All supported rules used.</param>
 	/// <returns>Found conclusions.</returns>
 	[InterceptorMethodCaller]
-	[InterceptorInstanceTypes(
+	[InterceptorPolymorphic(
 		typeof(AlmostLockedSetsChainingRule), typeof(KrakenNormalFishChainingRule), typeof(LockedCandidatesChainingRule),
-		DefaultBehavior = InterceptorInstanceRoutingDefaultBehavior.DoNothingOrReturnDefault)]
+		DefaultBehavior = InterceptorPolymorphicBehavior.DoNothingOrReturnDefault)]
 	private static Conclusion[] CollectChainConclusions(NamedChain pattern, in Grid grid, ChainingRuleCollection supportedRules)
 	{
 		var conclusions = pattern.GetConclusions(grid);

@@ -8,7 +8,7 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 {
 	private const string InterceptorMethodCallerAttributeTypeFullName = "Sudoku.Runtime.InterceptorServices.InterceptorMethodCallerAttribute";
 
-	private const string InterceptorInstanceTypesAttributeTypeFullName = "Sudoku.Runtime.InterceptorServices.InterceptorInstanceTypesAttribute";
+	private const string InterceptorPolymorphicAttributeTypeFullName = "Sudoku.Runtime.InterceptorServices.InterceptorPolymorphicAttribute";
 
 	private const string CachedAttributeTypeFullName = "Sudoku.Runtime.InterceptorServices.CachedAttribute";
 
@@ -179,10 +179,10 @@ public sealed partial class CachedMethodGenerator : IIncrementalGenerator
 			return null;
 		}
 
-		var interceptorInstanceTypesAttributeSymbol = compilation.GetTypeByMetadataName(InterceptorInstanceTypesAttributeTypeFullName);
+		var interceptorInstanceTypesAttributeSymbol = compilation.GetTypeByMetadataName(InterceptorPolymorphicAttributeTypeFullName);
 		if (interceptorInstanceTypesAttributeSymbol is null)
 		{
-			return Diagnostic.Create(IC0100, null, messageArgs: [InterceptorInstanceTypesAttributeTypeFullName]);
+			return Diagnostic.Create(IC0100, null, messageArgs: [InterceptorPolymorphicAttributeTypeFullName]);
 		}
 
 		var cachedAttributeSymbol = compilation.GetTypeByMetadataName(CachedAttributeTypeFullName);

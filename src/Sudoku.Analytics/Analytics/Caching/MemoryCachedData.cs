@@ -169,7 +169,7 @@ internal static class MemoryCachedData
 	/// <param name="options">The options used by step searchers.</param>
 	/// <param name="rules">The <see cref="ChainingRule"/> instance that collects with strong and weak links if worth.</param>
 	[InterceptorMethodCaller]
-	[InterceptorInstanceTypes(
+	[InterceptorPolymorphic(
 		typeof(XChainingRule),
 		typeof(YChainingRule),
 		typeof(LockedCandidatesChainingRule),

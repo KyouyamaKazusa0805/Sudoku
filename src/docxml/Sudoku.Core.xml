@@ -10933,99 +10933,85 @@
             <param name="otherName">The other name to be compared.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Runtime.InterceptorServices.InterceptorInstanceRoutingDefaultBehavior">
+        <member name="T:Sudoku.Runtime.InterceptorServices.InterceptorMethodCallerAttribute">
             <summary>
-            Indicates the default behavior on routing for interceptor instance type checking.
+            Indicates the target method marked this attribute will be replaced with intercepted methods.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.InterceptorServices.InterceptorInstanceRoutingDefaultBehavior.DoNothingOrReturnDefault">
+        <member name="T:Sudoku.Runtime.InterceptorServices.InterceptorPolymorphicAttribute">
             <summary>
-            Indicates the default behavior is to return <see langword="default"/> or do nothing.
+            Represents an attribute type that can be applied to a method, indicating the method uses interceptor,
+            but the target method is an instance method with inheritance. Specified types are the possible derived types of the instance.
             </summary>
+            <param name="types">Indicates all possible types.</param>
+            <remarks>
+            <para>
+            This attribute will be used by source generator to generate an extra entry to consume all possible types,
+            which is useful for <see langword="abstract"/>, <see langword="virtual"/> and <see langword="sealed"/> methods.
+            </para>
+            <para>
+            Usage:
+            <code><![CDATA[
+            [InterceptorMethodCaller]
+            [InterceptorPolymorphic(typeof(A), typeof(B))]
+            public static void Method()
+            {
+                // Implementation may use a method whose bound instance type is the base type of 'A' and 'B',
+                // specified in 'InterceptorPolymorphicAttribute'.
+            }
+            ]]></code>
+            </para>
+            </remarks>
         </member>
-        <member name="F:Sudoku.Runtime.InterceptorServices.InterceptorInstanceRoutingDefaultBehavior.ThrowNotSupportedException">
+        <member name="M:Sudoku.Runtime.InterceptorServices.InterceptorPolymorphicAttribute.#ctor(System.Type[])">
             <summary>
-            Indicates the default behavior is to throw a <see cref="T:System.NotSupportedException"/>.
+            Represents an attribute type that can be applied to a method, indicating the method uses interceptor,
+            but the target method is an instance method with inheritance. Specified types are the possible derived types of the instance.
             </summary>
+            <param name="types">Indicates all possible types.</param>
+            <remarks>
+            <para>
+            This attribute will be used by source generator to generate an extra entry to consume all possible types,
+            which is useful for <see langword="abstract"/>, <see langword="virtual"/> and <see langword="sealed"/> methods.
+            </para>
+            <para>
+            Usage:
+            <code><![CDATA[
+            [InterceptorMethodCaller]
+            [InterceptorPolymorphic(typeof(A), typeof(B))]
+            public static void Method()
+            {
+                // Implementation may use a method whose bound instance type is the base type of 'A' and 'B',
+                // specified in 'InterceptorPolymorphicAttribute'.
+            }
+            ]]></code>
+            </para>
+            </remarks>
         </member>
-        <member name="T:Sudoku.Runtime.InterceptorServices.InterceptorInstanceTypesAttribute">
-             <summary>
-             Represents an attribute type that can be applied to a method, indicating the method uses interceptor,
-             but the target method is an instance method with inheritance. Specified types are the possible derived types of the instance.
-             </summary>
-             <param name="types">Indicates all possible types.</param>
-             <remarks>
-             <para>
-             This attribute will be used by source generator to generate an extra entry to consume all possible types,
-             which is useful for <see langword="abstract"/>, <see langword="virtual"/> and <see langword="sealed"/> methods.
-             </para>
-             <para>
-             Usage:
-             <code><![CDATA[
-             [InterceptorMethodCaller]
-             [InterceptorInstanceTypes(typeof(XChainingRule), typeof(YChainingRule))]
-             public static void InitializeLinks(in Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)
-             {
-                 rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;
-                 if (!StrongLinkTypesCollected.HasFlag(linkTypes) || !WeakLinkTypesCollected.HasFlag(linkTypes))
-                 {
-                     var context = new ChainingRuleLinkContext(in grid, new LinkDictionary(), new LinkDictionary(), options);
-                     foreach (var rule in rules)
-                         rule.GetLinks(ref context);
-                 }
-            
-                 // ...
-             }
-             ]]></code>
-             </para>
-             </remarks>
-        </member>
-        <member name="M:Sudoku.Runtime.InterceptorServices.InterceptorInstanceTypesAttribute.#ctor(System.Type[])">
-             <summary>
-             Represents an attribute type that can be applied to a method, indicating the method uses interceptor,
-             but the target method is an instance method with inheritance. Specified types are the possible derived types of the instance.
-             </summary>
-             <param name="types">Indicates all possible types.</param>
-             <remarks>
-             <para>
-             This attribute will be used by source generator to generate an extra entry to consume all possible types,
-             which is useful for <see langword="abstract"/>, <see langword="virtual"/> and <see langword="sealed"/> methods.
-             </para>
-             <para>
-             Usage:
-             <code><![CDATA[
-             [InterceptorMethodCaller]
-             [InterceptorInstanceTypes(typeof(XChainingRule), typeof(YChainingRule))]
-             public static void InitializeLinks(in Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)
-             {
-                 rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;
-                 if (!StrongLinkTypesCollected.HasFlag(linkTypes) || !WeakLinkTypesCollected.HasFlag(linkTypes))
-                 {
-                     var context = new ChainingRuleLinkContext(in grid, new LinkDictionary(), new LinkDictionary(), options);
-                     foreach (var rule in rules)
-                         rule.GetLinks(ref context);
-                 }
-            
-                 // ...
-             }
-             ]]></code>
-             </para>
-             </remarks>
-        </member>
-        <member name="P:Sudoku.Runtime.InterceptorServices.InterceptorInstanceTypesAttribute.DefaultBehavior">
+        <member name="P:Sudoku.Runtime.InterceptorServices.InterceptorPolymorphicAttribute.DefaultBehavior">
             <summary>
             Indicates the routing default behavior on generated method for <see langword="default"/> label
             or <see langword="_"/> token in <see langword="switch"/> statement or expression respectively.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.InterceptorServices.InterceptorInstanceTypesAttribute.Types">
+        <member name="P:Sudoku.Runtime.InterceptorServices.InterceptorPolymorphicAttribute.Types">
             <summary>
             The generated property declaration for parameter <c>types</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.InterceptorServices.InterceptorMethodCallerAttribute">
+        <member name="T:Sudoku.Runtime.InterceptorServices.InterceptorPolymorphicBehavior">
             <summary>
-            Indicates the target method marked this attribute will be replaced with intercepted methods.
+            Indicates the default behavior on routing for interceptor instance type checking.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InterceptorServices.InterceptorPolymorphicBehavior.DoNothingOrReturnDefault">
+            <summary>
+            Indicates the default behavior is to return <see langword="default"/> or do nothing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InterceptorServices.InterceptorPolymorphicBehavior.ThrowNotSupportedException">
+            <summary>
+            Indicates the default behavior is to throw a <see cref="T:System.NotSupportedException"/>.
             </summary>
         </member>
         <member name="T:Sudoku.Runtime.LibraryServices.LibraryInfo">

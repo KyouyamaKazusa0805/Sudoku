@@ -1,9 +1,9 @@
-﻿namespace Sudoku.Runtime.InterceptorServices;
+namespace Sudoku.Runtime.InterceptorServices;
 
 /// <summary>
 /// Indicates the default behavior on routing for interceptor instance type checking.
 /// </summary>
-public enum InterceptorInstanceRoutingDefaultBehavior
+public enum InterceptorPolymorphicBehavior
 {
 	/// <summary>
 	/// Indicates the default behavior is to return <see langword="default"/> or do nothing.

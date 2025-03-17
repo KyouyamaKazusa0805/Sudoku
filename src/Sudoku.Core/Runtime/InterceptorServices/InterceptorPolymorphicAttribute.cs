@@ -14,28 +14,21 @@ namespace Sudoku.Runtime.InterceptorServices;
 /// Usage:
 /// <code><![CDATA[
 /// [InterceptorMethodCaller]
-/// [InterceptorInstanceTypes(typeof(XChainingRule), typeof(YChainingRule))]
-/// public static void InitializeLinks(in Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)
+/// [InterceptorPolymorphic(typeof(A), typeof(B))]
+/// public static void Method()
 /// {
-///     rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;
-///     if (!StrongLinkTypesCollected.HasFlag(linkTypes) || !WeakLinkTypesCollected.HasFlag(linkTypes))
-///     {
-///         var context = new ChainingRuleLinkContext(in grid, new LinkDictionary(), new LinkDictionary(), options);
-///         foreach (var rule in rules)
-///             rule.GetLinks(ref context);
-///     }
-///
-///     // ...
+///     // Implementation may use a method whose bound instance type is the base type of 'A' and 'B',
+///     // specified in 'InterceptorPolymorphicAttribute'.
 /// }
 /// ]]></code>
 /// </para>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]
-public sealed partial class InterceptorInstanceTypesAttribute([Property] params Type[] types) : Attribute
+public sealed partial class InterceptorPolymorphicAttribute([Property] params Type[] types) : Attribute
 {
 	/// <summary>
 	/// Indicates the routing default behavior on generated method for <see langword="default"/> label
 	/// or <see langword="_"/> token in <see langword="switch"/> statement or expression respectively.
 	/// </summary>
-	public InterceptorInstanceRoutingDefaultBehavior DefaultBehavior { get; init; }
+	public InterceptorPolymorphicBehavior DefaultBehavior { get; init; }
 }
