@@ -213,6 +213,34 @@ public sealed partial class Library([Field] string directoryPath, [Field] string
 	}
 
 	/// <summary>
+	/// Reads the specified number of puzzles from the library file
+	/// without any conversions to <see cref="Grid"/> (only displays the raw text).
+	/// If the file doesn't exist, nothing will be returned.
+	/// </summary>
+	/// <param name="start">Indicates the start index.</param>
+	/// <param name="length">Indicates the desired number of puzzles.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+	/// <returns>An enumerable object that allows iterating values asynchronously.</returns>
+	public async IAsyncEnumerable<string> ReadRawRangeAsync(
+		ulong start,
+		ulong length,
+		[EnumeratorCancellation] CancellationToken cancellationToken = default
+	)
+	{
+		await using var reader = new LibraryFileReader(LibraryPath, out var exists);
+		if (!exists)
+		{
+			// If the file is created just now, nothing will be iterated.
+			yield break;
+		}
+
+		await foreach (var line in reader.ReadLinesRangeAsync(start, start + length, cancellationToken))
+		{
+			yield return line;
+		}
+	}
+
+	/// <summary>
 	/// Reads the specified number of puzzles from the library file;
 	/// if the file doesn't exist, nothing will be returned.
 	/// </summary>

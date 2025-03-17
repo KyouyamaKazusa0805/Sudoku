@@ -9529,6 +9529,17 @@
             with a result type <see cref="T:System.Int64"/> indicating the number of lines.
             </returns>
         </member>
+        <member name="M:Sudoku.IO.Library.ReadRawRangeAsync(System.UInt64,System.UInt64,System.Threading.CancellationToken)">
+            <summary>
+            Reads the specified number of puzzles from the library file
+            without any conversions to <see cref="T:Sudoku.Concepts.Grid"/> (only displays the raw text).
+            If the file doesn't exist, nothing will be returned.
+            </summary>
+            <param name="start">Indicates the start index.</param>
+            <param name="length">Indicates the desired number of puzzles.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>An enumerable object that allows iterating values asynchronously.</returns>
+        </member>
         <member name="M:Sudoku.IO.Library.ReadRangeAsync(System.UInt64,System.UInt64,System.Threading.CancellationToken)">
             <summary>
             Reads the specified number of puzzles from the library file;
