@@ -28,7 +28,7 @@ public sealed class DancingLinksSolver : ISolver, ISolutionEnumerableSolver
 
 
 	/// <inheritdoc/>
-	public static string UriLink => "https://en.wikipedia.org/wiki/Dancing_Links";
+	public string UriLink => "https://en.wikipedia.org/wiki/Dancing_Links";
 
 
 	/// <inheritdoc/>

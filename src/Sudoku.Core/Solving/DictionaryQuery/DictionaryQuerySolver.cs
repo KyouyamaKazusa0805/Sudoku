@@ -78,7 +78,7 @@ public sealed class DictionaryQuerySolver : ISolver
 
 
 	/// <inheritdoc/>
-	public static string? UriLink => "http://aspadvice.com/blogs/rbirkby/attachment/34077.ashx";
+	public string? UriLink => "http://aspadvice.com/blogs/rbirkby/attachment/34077.ashx";
 
 
 	/// <inheritdoc/>

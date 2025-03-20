@@ -12,7 +12,7 @@ public sealed class EnumerableQuerySolver : ISolver
 
 
 	/// <inheritdoc/>
-	public static string? UriLink => null;
+	public string? UriLink => null;
 
 
 	/// <inheritdoc/>

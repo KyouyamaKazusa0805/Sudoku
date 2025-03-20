@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CommandLine</name>
+    </assembly>
+    <members>
+        <member name="T:System.CommandLine.CommandExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.CommandLine.Command"/>.
+            </summary>
+            <seealso cref="T:System.CommandLine.Command"/>
+        </member>
+        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,System.ReadOnlySpan{System.CommandLine.Option})">
+            <summary>
+            Adds a list of <see cref="T:System.CommandLine.Option"/> instances into the command.
+            </summary>
+            <param name="this">The command.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="T:Sudoku.CommandLine.CommandLineParser">
+            <summary>
+            Provides an entry that parses command-line arguments.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.CommandLineParser.ParseAsync(System.String[])">
+            <summary>
+            Try to parse the command-line.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that handles the operation.</returns>
+        </member>
+        <member name="T:Sudoku.CommandLine.Commands.SolveCommand">
+            <summary>
+            Represents a solve command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.SolveCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.SolveCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.SolveCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#ICommand#HandleCore()">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Solving.ISolver)">
+            <inheritdoc cref="M:Sudoku.CommandLine.ICommand.HandleCore()"/>
+        </member>
+        <member name="T:Sudoku.CommandLine.ICommand">
+            <summary>
+            Represents a command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ICommand.OptionsCore">
+            <summary>
+            Indicates the options.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.ICommand.HandleCore()">
+            <summary>
+            <para>The backing handler method.</para>
+            <para>
+            This method only provides a constraint on implementation for multiple arguments with different types.
+            <b>Do not consume this method or expose it outside.</b>
+            </para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.IOption`1">
+            <summary>
+            Represents an option.
+            </summary>
+            <typeparam name="T">The type of the option.</typeparam>
+        </member>
+        <member name="M:Sudoku.CommandLine.IOption`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <summary>
+            <para>
+            To parse the argument via <see cref="T:System.CommandLine.Parsing.ArgumentResult"/> instance;
+            use <see cref="P:System.CommandLine.Parsing.SymbolResult.ErrorMessage"/> to report invalid values.
+            </para>
+            <para>
+            <inheritdoc cref="M:Sudoku.CommandLine.ICommand.HandleCore()" path="/summary/para[2]"/>
+            </para>
+            </summary>
+            <param name="result">The result.</param>
+            <returns>The result instance parsed.</returns>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.GridOption">
+            <summary>
+            Represents a grid option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.GridOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.GridOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.GridOption.Sudoku#CommandLine#IOption{Sudoku#Concepts#Grid}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.GridOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc cref="M:Sudoku.CommandLine.IOption`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.SolvingMethodOption">
+            <summary>
+            Represents a solving method option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.Options.SolvingMethodOption.MethodMap">
+            <summary>
+            Indicates the backing method map.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.SolvingMethodOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.Sudoku#CommandLine#IOption{Sudoku#Solving#ISolver}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc cref="M:Sudoku.CommandLine.IOption`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+        </member>
+    </members>
+</doc>

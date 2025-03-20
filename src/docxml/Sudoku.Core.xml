@@ -9429,14 +9429,14 @@
             <param name="directoryPath">Indicates the directory path.</param>
             <param name="identifier">Indicates the library identifier.</param>
         </member>
-        <member name="F:Sudoku.IO.Library.Lock">
-            <summary>
-            Indicates the lock object to keep operation thread-safe.
-            </summary>
-        </member>
         <member name="F:Sudoku.IO.Library.DefaultSerializerOptions">
             <summary>
             Indicates the JSON options to serialize or deserialize object.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.Library._fileLock">
+            <summary>
+            Indicates the lock object to keep operation thread-safe.
             </summary>
         </member>
         <member name="P:Sudoku.IO.Library.InfoPath">

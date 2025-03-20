@@ -12,7 +12,7 @@ public interface ISolver
 	/// <remarks>
 	/// This property is reserved as information that is offered to the algorithm learners.
 	/// </remarks>
-	public static abstract string? UriLink { get; }
+	public abstract string? UriLink { get; }
 
 
 	/// <summary>

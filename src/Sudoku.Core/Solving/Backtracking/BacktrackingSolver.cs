@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Backtracking;
 public sealed class BacktrackingSolver : ISolver
 {
 	/// <inheritdoc/>
-	public static string UriLink => "https://simple.wikipedia.org/wiki/Backtracking";
+	public string UriLink => "https://simple.wikipedia.org/wiki/Backtracking";
 
 
 	/// <summary>

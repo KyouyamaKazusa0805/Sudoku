@@ -50,7 +50,7 @@ public sealed unsafe partial class BitwiseSolver : ISolver, ISolutionEnumerableS
 
 
 	/// <inheritdoc/>
-	public static string? UriLink => null;
+	public string? UriLink => null;
 
 
 	/// <inheritdoc/>
