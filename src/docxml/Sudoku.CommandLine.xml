@@ -28,6 +28,12 @@
             </summary>
             <param name="args">The arguments.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that handles the operation.</returns>
+            <remarks>
+            In command line project, use the following code to parse command lines:
+            <code>
+            <see langword="await"/> <see cref="T:Sudoku.CommandLine.CommandLineParser"/>.ParseAsync(<see langword="args"/>);
+            </code>
+            </remarks>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.SolveCommand">
             <summary>

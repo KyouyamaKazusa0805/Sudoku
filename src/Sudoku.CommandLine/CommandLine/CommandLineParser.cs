@@ -10,6 +10,12 @@ public static class CommandLineParser
 	/// </summary>
 	/// <param name="args">The arguments.</param>
 	/// <returns>A <see cref="Task"/> object that handles the operation.</returns>
+	/// <remarks>
+	/// In command line project, use the following code to parse command lines:
+	/// <code>
+	/// <see langword="await"/> <see cref="CommandLineParser"/>.ParseAsync(<see langword="args"/>);
+	/// </code>
+	/// </remarks>
 	public static async Task ParseAsync(string[] args)
 	{
 		RootCommand command = [
