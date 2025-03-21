@@ -8,17 +8,7 @@ public sealed class SolvingMethodOption : Option<ISolver>, IOption<ISolver>
 	/// <summary>
 	/// Indicates the backing method map.
 	/// </summary>
-	private static readonly Dictionary<string, Func<ISolver>> MethodMap = new(StringComparer.OrdinalIgnoreCase)
-	{
-		{ "bitwise", static () => new BitwiseSolver() },
-		{ "backtracking-bfs", static () => new BacktrackingSolver { UseBreadthFirstSearch = true } },
-		{ "backtracking-dfs", static () => new BacktrackingSolver() },
-		{ "backtracking", static () => new BacktrackingSolver() },
-		{ "dancing-links", static () => new DancingLinksSolver() },
-		{ "dlx", static () => new DancingLinksSolver() },
-		{ "enumerable-query", static () => new EnumerableQuerySolver() },
-		{ "dictionary-query", static () => new DictionaryQuerySolver() }
-	};
+	internal static FrozenDictionary<string, Func<ISolver>> MethodMap = null!;
 
 
 	/// <summary>
@@ -46,12 +36,12 @@ public sealed class SolvingMethodOption : Option<ISolver>, IOption<ISolver>
 		}
 
 		var names = string.Join(", ", MethodMap.Keys);
-		if (!MethodMap.TryGetValue(token, out var solverCreation))
+		if (!MethodMap.TryGetValue(token, out var solverCreator))
 		{
 			result.ErrorMessage = $"Invalid token. The expected values are {names}.";
 			return null!;
 		}
 
-		return solverCreation();
+		return solverCreator();
 	}
 }

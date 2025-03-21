@@ -12,6 +12,7 @@ namespace Sudoku.Solving.Bitwise;
 /// This type is thread-unsafe. If you want to use this type in multi-threading, please use <see langword="lock"/> statement.
 /// </b></para>
 /// </remarks>
+[RuntimeSolverConfiguration("bitwise")]
 public sealed unsafe partial class BitwiseSolver : ISolver, ISolutionEnumerableSolver
 {
 	/// <summary>

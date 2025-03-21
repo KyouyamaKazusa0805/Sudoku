@@ -13159,6 +13159,28 @@
         <member name="P:Sudoku.Solving.MultipleSolutionException.Message">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.RuntimeSolverConfigurationAttribute">
+            <summary>
+            Indicates the runtime solver names.
+            </summary>
+            <param name="names">Indicates the names.</param>
+        </member>
+        <member name="M:Sudoku.Solving.RuntimeSolverConfigurationAttribute.#ctor(System.String[])">
+            <summary>
+            Indicates the runtime solver names.
+            </summary>
+            <param name="names">Indicates the names.</param>
+        </member>
+        <member name="P:Sudoku.Solving.RuntimeSolverConfigurationAttribute.ConditionalPropertySetterValues">
+            <summary>
+            Indicates the conditional property setter values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.RuntimeSolverConfigurationAttribute.Names">
+            <summary>
+            The generated property declaration for parameter <c>names</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.SolverSolutionFoundEventArgs">
             <summary>
             Provides extra data for event <see cref="E:Sudoku.Solving.ISolutionEnumerableSolver.SolutionFound"/>.
