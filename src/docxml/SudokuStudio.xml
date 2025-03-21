@@ -7108,14 +7108,6 @@
               Looks up a localized string similar to Command line.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.CommandBasedDrawingPage_DrawingCommandTextBoxPlaceholder">
-             <summary>
-               Looks up a localized string similar to load &lt;+/-&gt;c &lt;puzzle&gt;
-            cell !normal r1c1
-            cell !aux1 r9c789
-            ....
-             </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.DifficultyLevel_Easy">
             <summary>
               Looks up a localized string similar to Easy.
@@ -18047,17 +18039,6 @@
         <member name="M:Sudoku.Measuring.FactorMarshal.GetScaleFormatString(System.Decimal)">
             <summary>
             Try to get the scale unit from the scale value.
-            </summary>
-        </member>
-        <member name="T:WinRT.RcwFallbackInitializer">
-            <summary>
-            Roots RCW types for assemblies referencing old projections.
-            It is recommended to update those, to get binary size savings.
-            </summary>
-        </member>
-        <member name="M:WinRT.RcwFallbackInitializer.InitializeRcwFallback">
-            <summary>
-            Roots all dependent RCW types.
             </summary>
         </member>
     </members>

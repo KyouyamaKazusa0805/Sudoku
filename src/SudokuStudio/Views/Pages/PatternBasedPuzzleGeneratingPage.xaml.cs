@@ -374,7 +374,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 
 		(Grid Grid, AnalysisResult Result) taskEntry(Analyzer analyzer, CancellationToken cancellationToken)
 		{
-			var generator = new PatternBasedPuzzleGenerator(pattern, missingDigit);
+			var generator = new PatternBasedPuzzleGenerator(in pattern, missingDigit);
 			var progress = new SelfReportingProgress<GeneratorProgress>(reportCallback);
 			while (true)
 			{

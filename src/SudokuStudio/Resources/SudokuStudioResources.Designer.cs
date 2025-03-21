@@ -2278,18 +2278,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to load &lt;+/-&gt;c &lt;puzzle&gt;
-        ///cell !normal r1c1
-        ///cell !aux1 r9c789
-        ///....
-        /// </summary>
-        internal static string CommandBasedDrawingPage_DrawingCommandTextBoxPlaceholder {
-            get {
-                return ResourceManager.GetString("CommandBasedDrawingPage_DrawingCommandTextBoxPlaceholder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Easy.
         /// </summary>
         internal static string DifficultyLevel_Easy {

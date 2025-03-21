@@ -2906,12 +2906,6 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="CommandBasedDrawingPage_Apply" xml:space="preserve">
     <value>Apply</value>
   </data>
-  <data name="CommandBasedDrawingPage_DrawingCommandTextBoxPlaceholder" xml:space="preserve">
-    <value>load &lt;+/-&gt;c &lt;puzzle&gt;
-cell !normal r1c1
-cell !aux1 r9c789
-...</value>
-  </data>
   <data name="CommandBasedDrawingPage_DrawingCommandTextBoxHeader" xml:space="preserve">
     <value>Command line</value>
   </data>

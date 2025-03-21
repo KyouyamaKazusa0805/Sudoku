@@ -43,14 +43,15 @@
 		<PackageReference Include="CommunityToolkit.WinUI.UI" Version="7.1.2" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" Version="7.1.2" />
-		<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.2.0" />
+		<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.3.2" />
 		<PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.183">
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240829007" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250310001" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
 		<PackageReference Include="QuestPDF" Version="2023.9.0" />
+		<PackageReference Include="TextControlBox.WinUI.JuliusKirsch" Version="1.1.4" />
 		<PackageReference Include="WinUICommunity.Core" Version="6.9.0" />
 		<PackageReference Include="WinUICommunity.Win2D" Version="6.5.0" />
 		<PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
