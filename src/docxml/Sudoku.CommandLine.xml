@@ -4,23 +4,44 @@
         <name>Sudoku.CommandLine</name>
     </assembly>
     <members>
-        <member name="T:System.CommandLine.CommandExtensions">
+        <member name="T:Sudoku.CommandLine.Arguments.TwoGridArgument">
             <summary>
-            Provides with extension methods on <see cref="T:System.CommandLine.Command"/>.
+            Represents two grid argument.
             </summary>
-            <seealso cref="T:System.CommandLine.Command"/>
         </member>
-        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,System.ReadOnlySpan{System.CommandLine.Option})">
+        <member name="M:Sudoku.CommandLine.Arguments.TwoGridArgument.#ctor">
             <summary>
-            Adds a list of <see cref="T:System.CommandLine.Option"/> instances into the command.
+            Initializes a <see cref="T:Sudoku.CommandLine.Arguments.TwoGridArgument"/> instance.
             </summary>
-            <param name="this">The command.</param>
-            <param name="options">The options.</param>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.TwoGridArgument.Sudoku#CommandLine#IOptionOrArgument{System#ValueTuple{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid}}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.TwoGridArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
         <member name="T:Sudoku.CommandLine.CommandLineParser">
             <summary>
             Provides an entry that parses command-line arguments.
             </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.CommandLineParser.RootCommand">
+            <summary>
+            Indicates the root command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.CommandLineParser.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="M:Sudoku.CommandLine.CommandLineParser.ParseAsync(System.String[])">
             <summary>
@@ -35,6 +56,28 @@
             </code>
             </remarks>
         </member>
+        <member name="T:Sudoku.CommandLine.Commands.CompareCommand">
+            <summary>
+            Represents compare command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.CompareCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.CompareCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.CompareCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.CompareCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.CompareCommand.Sudoku#CommandLine#ICommand#HandleCore()">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.CompareCommand.HandleCore(System.ValueTuple{Sudoku.Concepts.Grid,Sudoku.Concepts.Grid},Puzzles.Meta.Transforming.BoardComparison)">
+            <inheritdoc cref="M:Sudoku.CommandLine.ICommand.HandleCore()"/>
+        </member>
         <member name="T:Sudoku.CommandLine.Commands.MinlexCommand">
             <summary>
             Represents a minlex command.
@@ -46,6 +89,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.Sudoku#CommandLine#ICommand#HandleCore()">
@@ -67,6 +113,9 @@
         <member name="P:Sudoku.CommandLine.Commands.SolveCommand.OptionsCore">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.CommandLine.Commands.SolveCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#ICommand#HandleCore()">
             <inheritdoc/>
         </member>
@@ -86,6 +135,12 @@
             <param name="solver">The solver.</param>
             <param name="solution">The solution.</param>
         </member>
+        <member name="T:Sudoku.CommandLine.IArgument`1">
+            <summary>
+            Represents an argument.
+            </summary>
+            <typeparam name="T">The type of the result parsed from the argument.</typeparam>
+        </member>
         <member name="T:Sudoku.CommandLine.ICommand">
             <summary>
             Represents a command.
@@ -94,6 +149,11 @@
         <member name="P:Sudoku.CommandLine.ICommand.OptionsCore">
             <summary>
             Indicates the options.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ICommand.ArgumentsCore">
+            <summary>
+            Indicates the arguments.
             </summary>
         </member>
         <member name="M:Sudoku.CommandLine.ICommand.HandleCore()">
@@ -109,9 +169,15 @@
             <summary>
             Represents an option.
             </summary>
-            <typeparam name="T">The type of the option.</typeparam>
+            <typeparam name="T">The type of the result parsed from the option.</typeparam>
         </member>
-        <member name="M:Sudoku.CommandLine.IOption`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="T:Sudoku.CommandLine.IOptionOrArgument`1">
+            <summary>
+            Represents an argument or option.
+            </summary>
+            <typeparam name="T">The type of the result parsed from the argument or option.</typeparam>
+        </member>
+        <member name="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <summary>
             <para>
             To parse the argument via <see cref="T:System.CommandLine.Parsing.ArgumentResult"/> instance;
@@ -124,6 +190,22 @@
             <param name="result">The result.</param>
             <returns>The result instance parsed.</returns>
         </member>
+        <member name="T:Sudoku.CommandLine.Options.ComparingMethodOption">
+            <summary>
+            Represents a comparing method option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.ComparingMethodOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.Sudoku#CommandLine#IOptionOrArgument{Puzzles#Meta#Transforming#BoardComparison}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+        </member>
         <member name="T:Sudoku.CommandLine.Options.GridOption">
             <summary>
             Represents a grid option.
@@ -134,11 +216,11 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.GridOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.GridOption.Sudoku#CommandLine#IOption{Sudoku#Concepts#Grid}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.GridOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Concepts#Grid}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Options.GridOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IOption`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.SolvingMethodOption">
             <summary>
@@ -155,17 +237,37 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.SolvingMethodOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.Sudoku#CommandLine#IOption{Sudoku#Solving#ISolver}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Solving#ISolver}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IOption`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
         <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.CreateMethodMap">
             <summary>
             To create solver field.
             </summary>
             <returns>The solver field.</returns>
+        </member>
+        <member name="T:System.CommandLine.CommandExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.CommandLine.Command"/>.
+            </summary>
+            <seealso cref="T:System.CommandLine.Command"/>
+        </member>
+        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,System.ReadOnlySpan{System.CommandLine.Option})">
+            <summary>
+            Adds a list of <see cref="T:System.CommandLine.Option"/> instances into the command.
+            </summary>
+            <param name="this">The command.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,System.ReadOnlySpan{System.CommandLine.Argument})">
+            <summary>
+            Adds a list of <see cref="T:System.CommandLine.Argument"/> instances into the command.
+            </summary>
+            <param name="this">The command.</param>
+            <param name="arguments">The arguments.</param>
         </member>
     </members>
 </doc>

@@ -16,9 +16,9 @@ public sealed class GridOption : Option<Grid>, IOption<Grid>
 
 
 	/// <inheritdoc/>
-	static Grid IOption<Grid>.ParseArgument(ArgumentResult result) => ParseArgument(result);
+	static Grid IOptionOrArgument<Grid>.ParseArgument(ArgumentResult result) => ParseArgument(result);
 
-	/// <inheritdoc cref="IOption{T}.ParseArgument"/>
+	/// <inheritdoc cref="IOptionOrArgument{T}.ParseArgument"/>
 	private static Grid ParseArgument(ArgumentResult result)
 	{
 		var token = result.Tokens is [{ Value: var f }] ? f : null;

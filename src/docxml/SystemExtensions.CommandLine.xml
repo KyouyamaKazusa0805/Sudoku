@@ -4,41 +4,24 @@
         <name>SystemExtensions.CommandLine</name>
     </assembly>
     <members>
-        <member name="T:System.CommandLine.InstancePropertyAttribute">
+        <member name="T:System.CommandLine.CommandBoundTypeAttribute">
             <summary>
-            Indicates the runtime solver names.
+            Indicates the command-bound types. The type must contain a parameterless constructor with <see langword="public"/> accessibility.
             </summary>
             <param name="names">Indicates the names.</param>
         </member>
-        <member name="M:System.CommandLine.InstancePropertyAttribute.#ctor(System.String[])">
+        <member name="M:System.CommandLine.CommandBoundTypeAttribute.#ctor(System.String[])">
             <summary>
-            Indicates the runtime solver names.
+            Indicates the command-bound types. The type must contain a parameterless constructor with <see langword="public"/> accessibility.
             </summary>
             <param name="names">Indicates the names.</param>
         </member>
-        <member name="P:System.CommandLine.InstancePropertyAttribute.ConditionalPropertySetterValues">
+        <member name="P:System.CommandLine.CommandBoundTypeAttribute.ConditionalPropertySetterValues">
             <summary>
             Indicates the conditional property setter values.
             </summary>
         </member>
-        <member name="P:System.CommandLine.InstancePropertyAttribute.Names">
-            <summary>
-            The generated property declaration for parameter <c>names</c>.
-            </summary>
-        </member>
-        <member name="T:System.CommandLine.OptionNamesAttribute">
-            <summary>
-            Provides with property name allowed to be assigned.
-            </summary>
-            <param name="names">The names.</param>
-        </member>
-        <member name="M:System.CommandLine.OptionNamesAttribute.#ctor(System.String[])">
-            <summary>
-            Provides with property name allowed to be assigned.
-            </summary>
-            <param name="names">The names.</param>
-        </member>
-        <member name="P:System.CommandLine.OptionNamesAttribute.Names">
+        <member name="P:System.CommandLine.CommandBoundTypeAttribute.Names">
             <summary>
             The generated property declaration for parameter <c>names</c>.
             </summary>

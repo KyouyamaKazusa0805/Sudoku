@@ -23,9 +23,9 @@ public sealed class SolvingMethodOption : Option<ISolver>, IOption<ISolver>
 
 
 	/// <inheritdoc/>
-	static ISolver IOption<ISolver>.ParseArgument(ArgumentResult result) => ParseArgument(result);
+	static ISolver IOptionOrArgument<ISolver>.ParseArgument(ArgumentResult result) => ParseArgument(result);
 
-	/// <inheritdoc cref="IOption{T}.ParseArgument"/>
+	/// <inheritdoc cref="IOptionOrArgument{T}.ParseArgument"/>
 	private static ISolver ParseArgument(ArgumentResult result)
 	{
 		var token = result.Tokens is [{ Value: var f }] ? f : null;
@@ -70,7 +70,7 @@ public sealed class SolvingMethodOption : Option<ISolver>, IOption<ISolver>
 			}
 
 			// Check attribute.
-			foreach (var attribute in type.GetCustomAttributes<InstancePropertyAttribute>())
+			foreach (var attribute in type.GetCustomAttributes<CommandBoundTypeAttribute>())
 			{
 				var validNames = attribute.Names;
 				var conditionalPropertySetterValues = attribute.ConditionalPropertySetterValues ?? [];

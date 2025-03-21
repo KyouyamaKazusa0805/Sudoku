@@ -18,9 +18,9 @@ namespace Sudoku.Solving.Backtracking;
 /// <see href="https://en.wikipedia.org/wiki/Sudoku_solving_algorithms#cite_note-difficult_17_clue-1">this link</see>.
 /// </para>
 /// </remarks>
-[InstanceProperty("backtracking-bfs", ConditionalPropertySetterValues = [nameof(UseBreadthFirstSearch), true])]
-[InstanceProperty("backtracking-dfs", ConditionalPropertySetterValues = [nameof(UseBreadthFirstSearch), false])]
-[InstanceProperty("backtracking", ConditionalPropertySetterValues = [nameof(UseBreadthFirstSearch), false])]
+[CommandBoundType("backtracking-bfs", ConditionalPropertySetterValues = [nameof(UseBreadthFirstSearch), true])]
+[CommandBoundType("backtracking-dfs", ConditionalPropertySetterValues = [nameof(UseBreadthFirstSearch), false])]
+[CommandBoundType("backtracking", ConditionalPropertySetterValues = [nameof(UseBreadthFirstSearch), false])]
 public sealed class BacktrackingSolver : ISolver
 {
 	/// <inheritdoc/>

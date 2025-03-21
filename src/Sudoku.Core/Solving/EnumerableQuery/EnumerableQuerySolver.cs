@@ -3,7 +3,7 @@ namespace Sudoku.Solving.EnumerableQuery;
 /// <summary>
 /// Defines a solver that can solve a sudoku puzzle, using LINQ.
 /// </summary>
-[InstanceProperty("enumerable-query")]
+[CommandBoundType("enumerable-query")]
 public sealed class EnumerableQuerySolver : ISolver
 {
 	/// <summary>

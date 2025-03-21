@@ -18,4 +18,17 @@ public static class CommandExtensions
 			@this.Add(option);
 		}
 	}
+
+	/// <summary>
+	/// Adds a list of <see cref="Argument"/> instances into the command.
+	/// </summary>
+	/// <param name="this">The command.</param>
+	/// <param name="arguments">The arguments.</param>
+	public static void AddRange(this Command @this, params ReadOnlySpan<Argument> arguments)
+	{
+		foreach (var argument in arguments)
+		{
+			@this.Add(argument);
+		}
+	}
 }

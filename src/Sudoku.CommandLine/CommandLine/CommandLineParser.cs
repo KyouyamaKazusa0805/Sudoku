@@ -6,6 +6,24 @@ namespace Sudoku.CommandLine;
 public static class CommandLineParser
 {
 	/// <summary>
+	/// Indicates the root command.
+	/// </summary>
+	private static readonly RootCommand RootCommand;
+
+
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
+	static CommandLineParser()
+	{
+		RootCommand = [
+			new SolveCommand(),
+			new MinlexCommand(),
+			new CompareCommand()
+		];
+		RootCommand.Description = "Sudoku Command Line";
+	}
+
+
+	/// <summary>
 	/// Try to parse the command-line.
 	/// </summary>
 	/// <param name="args">The arguments.</param>
@@ -16,14 +34,5 @@ public static class CommandLineParser
 	/// <see langword="await"/> <see cref="CommandLineParser"/>.ParseAsync(<see langword="args"/>);
 	/// </code>
 	/// </remarks>
-	public static async Task ParseAsync(string[] args)
-	{
-		RootCommand command = [
-			new SolveCommand(),
-			new MinlexCommand()
-		];
-		command.Description = "Sudoku Command Line";
-
-		await command.InvokeAsync(args).ConfigureAwait(true);
-	}
+	public static async Task ParseAsync(string[] args) => await RootCommand.InvokeAsync(args).ConfigureAwait(true);
 }

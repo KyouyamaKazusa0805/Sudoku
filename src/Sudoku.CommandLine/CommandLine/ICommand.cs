@@ -10,6 +10,11 @@ public interface ICommand
 	/// </summary>
 	public static abstract ReadOnlySpan<Option> OptionsCore { get; }
 
+	/// <summary>
+	/// Indicates the arguments.
+	/// </summary>
+	public static abstract ReadOnlySpan<Argument> ArgumentsCore { get; }
+
 
 	/// <summary>
 	/// <para>The backing handler method.</para>

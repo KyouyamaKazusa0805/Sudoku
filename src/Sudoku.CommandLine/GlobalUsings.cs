@@ -6,6 +6,8 @@ global using System.CommandLine.Parsing;
 global using System.Linq;
 global using System.Reflection;
 global using System.Threading.Tasks;
+global using Puzzles.Meta.Transforming;
+global using Sudoku.CommandLine.Arguments;
 global using Sudoku.CommandLine.Commands;
 global using Sudoku.CommandLine.Options;
 global using Sudoku.Concepts;

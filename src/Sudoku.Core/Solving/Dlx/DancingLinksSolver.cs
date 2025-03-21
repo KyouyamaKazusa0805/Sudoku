@@ -3,7 +3,7 @@ namespace Sudoku.Solving.Dlx;
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.
 /// </summary>
-[InstanceProperty("dancing-links", "dlx")]
+[CommandBoundType("dancing-links", "dlx")]
 public sealed class DancingLinksSolver : ISolver, ISolutionEnumerableSolver
 {
 	/// <summary>
