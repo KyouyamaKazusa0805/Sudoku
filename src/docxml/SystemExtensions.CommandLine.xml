@@ -26,5 +26,22 @@
             The generated property declaration for parameter <c>names</c>.
             </summary>
         </member>
+        <member name="T:System.CommandLine.OptionNamesAttribute">
+            <summary>
+            Provides with property name allowed to be assigned.
+            </summary>
+            <param name="names">The names.</param>
+        </member>
+        <member name="M:System.CommandLine.OptionNamesAttribute.#ctor(System.String[])">
+            <summary>
+            Provides with property name allowed to be assigned.
+            </summary>
+            <param name="names">The names.</param>
+        </member>
+        <member name="P:System.CommandLine.OptionNamesAttribute.Names">
+            <summary>
+            The generated property declaration for parameter <c>names</c>.
+            </summary>
+        </member>
     </members>
 </doc>
