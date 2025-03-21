@@ -152,6 +152,28 @@
         <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Solving.ISolver)">
             <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
+        <member name="T:Sudoku.CommandLine.Commands.TransformCommand">
+            <summary>
+            Represents transform command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.TransformCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.TransformCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.TransformCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.TransformCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.TransformCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.TransformCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Shuffling.Transforming.TransformType)">
+            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
+        </member>
         <member name="T:Sudoku.CommandLine.CommonPreprocessors">
             <summary>
             Provides a list of commonly-used preprocessor methods.
@@ -248,6 +270,22 @@
             To create solver field.
             </summary>
             <returns>The solver field.</returns>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.TransformatingMethodOption">
+            <summary>
+            Provides a transforming method option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.TransformatingMethodOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Shuffling#Transforming#TransformType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
         <member name="T:System.CommandLine.CommandExtensions">
             <summary>

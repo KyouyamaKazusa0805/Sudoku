@@ -12,5 +12,6 @@ global using Sudoku.CommandLine.Commands;
 global using Sudoku.CommandLine.Options;
 global using Sudoku.Concepts;
 global using Sudoku.Shuffling.Minlex;
+global using Sudoku.Shuffling.Transforming;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Bitwise;
