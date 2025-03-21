@@ -12,7 +12,7 @@ public sealed class SolveCommand : Command, ICommand
 	{
 		var options = OptionsCore;
 		this.AddRange(options);
-		this.SetHandler(HandleCore, (Option<Grid>)options[0], (Option<ISolver>)options[1]);
+		this.SetHandler(HandleCore, (Option<Grid>)options[0], (Option<SolverType>)options[1]);
 	}
 
 
@@ -28,14 +28,14 @@ public sealed class SolveCommand : Command, ICommand
 	{
 		var iterator = new ArgIterator(__arglist);
 		var grid = __refvalue(iterator.GetNextArg(), Grid);
-		var solver = __refvalue(iterator.GetNextArg(), ISolver);
-		HandleCore(grid, solver);
+		var type = __refvalue(iterator.GetNextArg(), SolverType);
+		HandleCore(grid, type);
 	}
 
 	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private static void HandleCore(Grid grid, ISolver solver)
+	private static void HandleCore(Grid grid, SolverType type)
 	{
-		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, solver, out var solution);
+		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, type.Create(), out var solution);
 		if (!solution.IsUndefined)
 		{
 			Console.WriteLine(solution);

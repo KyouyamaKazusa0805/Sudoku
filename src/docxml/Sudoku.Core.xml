@@ -12439,6 +12439,26 @@
         <member name="M:Sudoku.Solving.Backtracking.BacktrackingSolver.IsValid(System.Int32[],System.Int32,System.Int32)">
             <inheritdoc cref="M:Sudoku.Solving.Backtracking.BacktrackingSolver.IsValid(Sudoku.Concepts.Grid@,System.Int32,System.Int32)"/>
         </member>
+        <member name="T:Sudoku.Solving.Backtracking.BfsBacktrackingSolver">
+            <summary>
+            Represents a backtracking solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Backtracking.BfsBacktrackingSolver.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Backtracking.BfsBacktrackingSolver"/> instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Backtracking.DfsBacktrackingSolver">
+            <summary>
+            Represents a backtracking solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Backtracking.DfsBacktrackingSolver.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Backtracking.DfsBacktrackingSolver"/> instance.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Bitwise.BitwiseSolver">
             <summary>
             Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.
@@ -13184,6 +13204,60 @@
             </summary>
             <param name="sender">The sender which triggers this event.</param>
             <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="T:Sudoku.Solving.SolverType">
+            <summary>
+            Represents a solver type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverType.Backtracking">
+            <summary>
+            Indicates the backtracking solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverType.BfsBacktracking">
+            <summary>
+            Indicates the backtracking solver, with BFS checking rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverType.DfsBacktracking">
+            <summary>
+            Indicates the backtracking solver, with DFS checking rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverType.Bitwise">
+            <summary>
+            Indicates the bitwise solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverType.DancingLinks">
+            <summary>
+            Indicates the dancing links solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverType.DictionaryQuery">
+            <summary>
+            Indicates the dictionary query solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverType.EnumerableQuery">
+            <summary>
+            Indicates the enumerable query solver.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.SolverTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Solving.SolverType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.SolverType"/>
+        </member>
+        <member name="M:Sudoku.Solving.SolverTypeExtensions.Create(Sudoku.Solving.SolverType)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Solving.ISolver"/> instance via the specified type.
+            </summary>
+            <param name="this">The type.</param>
+            <returns>The instance.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
         <member name="T:Sudoku.SudokuType">
             <summary>

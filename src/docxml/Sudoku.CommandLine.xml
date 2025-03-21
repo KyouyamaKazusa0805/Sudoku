@@ -149,7 +149,7 @@
         <member name="M:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Solving.ISolver)">
+        <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Solving.SolverType)">
             <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.TransformCommand">
@@ -254,27 +254,16 @@
             Represents a solving method option.
             </summary>
         </member>
-        <member name="F:Sudoku.CommandLine.Options.SolvingMethodOption.MethodMap">
-            <summary>
-            Indicates the backing method map.
-            </summary>
-        </member>
         <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.CommandLine.Options.SolvingMethodOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Solving#ISolver}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Solving#SolverType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.CreateMethodMap">
-            <summary>
-            To create solver field.
-            </summary>
-            <returns>The solver field.</returns>
         </member>
         <member name="T:Sudoku.CommandLine.Options.TransformatingMethodOption">
             <summary>

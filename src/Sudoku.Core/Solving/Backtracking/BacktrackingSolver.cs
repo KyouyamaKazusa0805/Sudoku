@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Backtracking;
 [CommandBoundType("backtracking-bfs", ConditionalPropertySetterValues = [nameof(UseBreadthFirstSearch), true])]
 [CommandBoundType("backtracking-dfs", ConditionalPropertySetterValues = [nameof(UseBreadthFirstSearch), false])]
 [CommandBoundType("backtracking", ConditionalPropertySetterValues = [nameof(UseBreadthFirstSearch), false])]
-public sealed class BacktrackingSolver : ISolver
+public class BacktrackingSolver : ISolver
 {
 	/// <inheritdoc/>
 	public string UriLink => "https://simple.wikipedia.org/wiki/Backtracking";
@@ -30,7 +30,7 @@ public sealed class BacktrackingSolver : ISolver
 	/// <summary>
 	/// Indicates whether the solver uses breadth-first searching algorithm instead of traditional depth-first searching.
 	/// </summary>
-	public bool UseBreadthFirstSearch { get; set; }
+	public bool UseBreadthFirstSearch { get; internal init; }
 
 
 	/// <inheritdoc/>
