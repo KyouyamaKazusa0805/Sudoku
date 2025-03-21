@@ -1,10 +1,10 @@
-﻿namespace Sudoku.CommandLine;
+namespace Sudoku.CommandLine;
 
 /// <summary>
 /// Represents an argument or option.
 /// </summary>
 /// <typeparam name="T">The type of the result parsed from the argument or option.</typeparam>
-public interface IOptionOrArgument<out T>
+internal interface IOptionOrArgument<out T>
 {
 	/// <summary>
 	/// <para>

@@ -1,9 +1,9 @@
-namespace Sudoku.CommandLine;
+namespace Sudoku.CommandLine.Commands;
 
 /// <summary>
 /// Represents a command.
 /// </summary>
-public interface ICommand
+internal interface ICommand
 {
 	/// <summary>
 	/// Indicates the options.
