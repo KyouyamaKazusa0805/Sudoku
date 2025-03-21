@@ -232,10 +232,15 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.GridOption"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.CommandLine.Options.GridOption.#ctor(System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.GridOption"/> instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.CommandLine.Options.GridOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Concepts#Grid}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.GridOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.GridOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult,System.Boolean)">
             <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.IOption`1">

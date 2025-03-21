@@ -17,7 +17,7 @@ public sealed class MinlexCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Option> OptionsCore => (Option[])[new GridOption()];
+	public static ReadOnlySpan<Option> OptionsCore => (Option[])[new GridOption(true)];
 
 	/// <inheritdoc/>
 	public static ReadOnlySpan<Argument> ArgumentsCore => [];

@@ -17,7 +17,7 @@ public sealed class TransformCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Option> OptionsCore => (Option[])[new GridOption(), new TransformatingMethodOption()];
+	public static ReadOnlySpan<Option> OptionsCore => (Option[])[new GridOption(true), new TransformatingMethodOption()];
 
 	/// <inheritdoc/>
 	public static ReadOnlySpan<Argument> ArgumentsCore => [];
