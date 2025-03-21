@@ -14973,6 +14973,11 @@
             Indicates candidates off syntax.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.CommandBasedDrawingPage.HighlightJson">
+            <summary>
+            Indicates the highlight JSON.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.CommandBasedDrawingPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.CommandBasedDrawingPage"/> instance.

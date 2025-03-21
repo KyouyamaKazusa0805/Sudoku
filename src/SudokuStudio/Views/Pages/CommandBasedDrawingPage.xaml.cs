@@ -20,12 +20,60 @@ public sealed partial class CommandBasedDrawingPage : Page
 	/// </summary>
 	private const string CandidatesOffSyntax = "-c";
 
+	/// <summary>
+	/// Indicates the highlight JSON.
+	/// </summary>
+	[StringSyntax(StringSyntaxAttribute.Json)]
+	private const string HighlightJson = """
+		{
+			"Highlights": [
+				{
+					"Pattern": "load|candidate|cell|house|chute|baba|icon|link",
+					"ColorDark": "#569cd6",
+					"ColorLight": "#0000ff"
+				},
+				{
+					"Pattern": "cell|chain|conjugate|circle|cross|diamond|heart|square|star|triangle",
+					"ColorDark": "#569cd6",
+					"ColorLight": "#0000ff"
+				},
+				{
+					"Pattern": "(?<=load\\s+)[+-]c",
+					"ColorDark": "#c0c0c0",
+					"ColorLight": "#808080"
+				},
+				{
+					"Pattern": "(?<=!)\\w+|(?<=#)[\\dA-Fa-f]{6}|(?<=#)[\\dA-Fa-f]{8}|(?<=&)(\\d{1,2}|[A-Fa-f])",
+					"ColorDark": "#4ec9b0",
+					"ColorLight": "#2f91af"
+				},
+				{
+					"Pattern": "(\\:\\d{4}\\:[x\\d]+\\:)?[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?(\\:(\\d{3}\\s+)*\\d{3})?(\\:{2})?",
+					"ColorDark": "#d69d85",
+					"ColorLight": "#804040"
+				}
+			],
+			"Name": "Command Line Syntax",
+			"Filter": "*.*",
+			"Description": "Command line syntax.",
+			"Author": "Kyouyama Kazusa"
+		}
+		""";
+
 
 	/// <summary>
 	/// Initializes a <see cref="CommandBasedDrawingPage"/> instance.
 	/// </summary>
-	public CommandBasedDrawingPage() => InitializeComponent();
+	public CommandBasedDrawingPage()
+	{
+		InitializeComponent();
 
+		var result = TextControlBoxNS.TextControlBox.GetSyntaxHighlightingFromJson(HighlightJson);
+		if (result.Succeed)
+		{
+			DrawingCommandTextBox.SyntaxHighlighting = result.SyntaxHighlighting;
+		}
+	}
 
 	[GeneratedRegex("""load\s+([+-]c\s+)?.+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
 	private static partial Regex LoadCommandPattern { get; }
