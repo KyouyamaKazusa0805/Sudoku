@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SystemExtensions.CommandLine</name>
+    </assembly>
+    <members>
+        <member name="T:System.CommandLine.InstancePropertyAttribute">
+            <summary>
+            Indicates the runtime solver names.
+            </summary>
+            <param name="names">Indicates the names.</param>
+        </member>
+        <member name="M:System.CommandLine.InstancePropertyAttribute.#ctor(System.String[])">
+            <summary>
+            Indicates the runtime solver names.
+            </summary>
+            <param name="names">Indicates the names.</param>
+        </member>
+        <member name="P:System.CommandLine.InstancePropertyAttribute.ConditionalPropertySetterValues">
+            <summary>
+            Indicates the conditional property setter values.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.InstancePropertyAttribute.Names">
+            <summary>
+            The generated property declaration for parameter <c>names</c>.
+            </summary>
+        </member>
+    </members>
+</doc>

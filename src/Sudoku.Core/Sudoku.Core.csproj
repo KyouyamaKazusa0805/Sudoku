@@ -12,6 +12,7 @@
 		<ProjectReference Include="..\..\PuzzlesMeta\src\Puzzles.Core\Puzzles.Core.csproj" />
 		<ProjectReference Include="..\..\PuzzlesMeta\src\Puzzles.SourceGeneration\Puzzles.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\..\PuzzlesMeta\src\System\SystemExtensions.csproj" />
+		<ProjectReference Include="..\System.CommandLine\SystemExtensions.CommandLine.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -16,7 +16,7 @@ namespace Sudoku.Solving.DictionaryQuery;
 /// </para>
 /// </remarks>
 /// <seealso cref="EnumerableQuerySolver"/>
-[RuntimeSolverConfiguration("dictionary-query")]
+[InstanceProperty("dictionary-query")]
 public sealed class DictionaryQuerySolver : ISolver
 {
 	/// <summary>

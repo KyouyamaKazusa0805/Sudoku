@@ -45,7 +45,7 @@ internal static class ModuleInitializer
 			}
 
 			// Check attribute.
-			foreach (var attribute in type.GetCustomAttributes<RuntimeSolverConfigurationAttribute>())
+			foreach (var attribute in type.GetCustomAttributes<InstancePropertyAttribute>())
 			{
 				var validNames = attribute.Names;
 				var conditionalPropertySetterValues = attribute.ConditionalPropertySetterValues ?? [];
