@@ -19,7 +19,8 @@ public static class CommandLineParser
 	public static async Task ParseAsync(string[] args)
 	{
 		RootCommand command = [
-			new SolveCommand()
+			new SolveCommand(),
+			new MinlexCommand()
 		];
 		command.Description = "Sudoku Command Line";
 

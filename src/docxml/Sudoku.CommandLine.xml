@@ -35,6 +35,25 @@
             </code>
             </remarks>
         </member>
+        <member name="T:Sudoku.CommandLine.Commands.MinlexCommand">
+            <summary>
+            Represents a minlex command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.MinlexCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.Sudoku#CommandLine#ICommand#HandleCore()">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.HandleCore(Sudoku.Concepts.Grid)">
+            <inheritdoc cref="M:Sudoku.CommandLine.ICommand.HandleCore()"/>
+        </member>
         <member name="T:Sudoku.CommandLine.Commands.SolveCommand">
             <summary>
             Represents a solve command.
