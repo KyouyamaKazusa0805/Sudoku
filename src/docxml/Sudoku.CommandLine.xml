@@ -73,6 +73,19 @@
         <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Solving.ISolver)">
             <inheritdoc cref="M:Sudoku.CommandLine.ICommand.HandleCore()"/>
         </member>
+        <member name="T:Sudoku.CommandLine.CommonPreprocessors">
+            <summary>
+            Provides a list of commonly-used preprocessor methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.OutputIfPuzzleNotUnique(Sudoku.Concepts.Grid@,Sudoku.Solving.ISolver,Sudoku.Concepts.Grid@)">
+            <summary>
+            Output invalid puzzle on puzzle after having been checked.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="solver">The solver.</param>
+            <param name="solution">The solution.</param>
+        </member>
         <member name="T:Sudoku.CommandLine.ICommand">
             <summary>
             Represents a command.

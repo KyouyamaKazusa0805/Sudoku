@@ -32,14 +32,10 @@ public sealed class SolveCommand : Command, ICommand
 	/// <inheritdoc cref="ICommand.HandleCore"/>
 	private static void HandleCore(Grid grid, ISolver solver)
 	{
-		var result = solver.Solve(grid, out var solution);
-		if (result is true)
+		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, solver, out var solution);
+		if (!solution.IsUndefined)
 		{
 			Console.WriteLine(solution);
-			return;
 		}
-
-		var text = result is false ? "The puzzle has multiple solutions." : "The puzzle has no valid solutions.";
-		Console.WriteLine($"\e[31m{text}\e[0m");
 	}
 }

@@ -31,16 +31,11 @@ public sealed class MinlexCommand : Command, ICommand
 	/// <inheritdoc cref="ICommand.HandleCore"/>
 	private static void HandleCore(Grid grid)
 	{
-		var solver = new BitwiseSolver();
-		var result = solver.Solve(grid, out _);
-		if (result is not true)
+		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, new BitwiseSolver(), out var solution);
+		if (!solution.IsUndefined)
 		{
-			var text = result is false ? "The puzzle has multiple solutions." : "The puzzle has no valid solutions.";
-			Console.WriteLine($"\e[31m{text}\e[0m");
-			return;
+			var minlexGrid = grid.GetMinLexGrid();
+			Console.WriteLine(minlexGrid.ToString("."));
 		}
-
-		var minlexGrid = grid.GetMinLexGrid();
-		Console.WriteLine(minlexGrid.ToString("."));
 	}
 }
