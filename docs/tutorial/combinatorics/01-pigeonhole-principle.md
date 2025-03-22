@@ -66,6 +66,6 @@ $$
 \Delta x \cdot \Delta p \ge \frac{\hbar}2
 $$
 
-其中的 $$h$$$$\hbar$$（读作“h bar”）是量子力学中的约化普朗克常数。普朗克常数记作 $$h$$，而这个约化普朗克常数 $$\hbar$$ 等于 $$\frac{h}{2\pi}$$。总之就还是一个常量。如果你对量子力学感兴趣，可以看看[这个式子的证明](https://en.wikipedia.org/wiki/Uncertainty_principle#Proof_of_the_Kennard_inequality_using_wave_mechanics)。
+其中的 $$\hbar$$ 是量子力学中的约化普朗克常数，而普朗克常数记作 $$h$$，而这个约化普朗克常数 $$\hbar$$ 等于 $$\frac{h}{2\pi}$$。总之就还是一个常量。如果你对量子力学感兴趣，可以看看[这个式子的证明](https://en.wikipedia.org/wiki/Uncertainty_principle#Proof_of_the_Kennard_inequality_using_wave_mechanics)。
 
 总之，两个数值的乘积不小于一个常数。当你精确测量位置 $$\Delta x$$ 时，由于我们可以看出，这个 $$\Delta x$$ 在书写上是类似数学、物理学里差量的写法，所以这个物理量被精确测量时相当于是说 $$\Delta x \to 0$$（趋近于 0）。那么，由于它是大于等于的关系，所以 $$\Delta p \to \infty$$。这也就是说，当你精确测量其中一个量的时候，另一个量随之就会变为更为不确定（一个差量越小，另外一个只能越大才能满足此不等式）。
