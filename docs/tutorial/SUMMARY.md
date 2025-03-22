@@ -52,6 +52,7 @@
   * [全双值格致死解法的其他类型](candidate-technique-basics/09-bivalue-universal-grave/02-other-types-of-bivalue-universal-grave.md)
 * [欠一数组（ALC）](candidate-technique-basics/10-almost-locked-candidates.md)
 * [融合待定数组（SdC）](candidate-technique-basics/11-sue-de-coq.md)
+* [跨区数组（DDS）](candidate-technique-basics/12-distributed-disjoint-subset.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 
