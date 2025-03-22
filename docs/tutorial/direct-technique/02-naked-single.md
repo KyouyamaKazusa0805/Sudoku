@@ -8,7 +8,7 @@ description: Naked Single
 
 ## 例子 1 <a href="#example-1" id="example-1"></a>
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 1</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>例子 1</p></figcaption></figure>
 
 如图所示。这一次我们思考逻辑从找缺少的数字改成聚焦到单元格本身上。
 

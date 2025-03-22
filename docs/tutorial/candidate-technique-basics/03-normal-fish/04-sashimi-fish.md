@@ -10,11 +10,11 @@ description: Sashimi Fish
 
 ## 二阶孪生鱼（Siamese X-Wing） <a href="#siamese-x-wing" id="siamese-x-wing"></a>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>二阶孪生鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>二阶孪生鱼</p></figcaption></figure>
 
 如图所示。你肯定在之前的文章里发现过，一些题的二阶退化鱼是比较特殊的，就像是图上这样，它其实是两个鱼同时长在了一起：
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>拆开看的两条二阶退化鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>拆开看的两条二阶退化鱼</p></figcaption></figure>
 
 可以看到，左图和右图各是一个二阶退化鱼，只是它们的鱼鳍不同。不同的点是，其中一个鱼的鱼鳍，在另一边变为了鱼的一部分；而一边的鱼的一部分在另一边就改成了鱼鳍：它俩互换了。
 
@@ -28,19 +28,19 @@ description: Sashimi Fish
 
 ## 三阶孪生鱼（Siamese Swordfish） <a href="#siamese-swordfish" id="siamese-swordfish"></a>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>三阶孪生鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>三阶孪生鱼</p></figcaption></figure>
 
 如图所示。它是如下两条鱼的合并。
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>拆开看的两条三阶退化鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>拆开看的两条三阶退化鱼</p></figcaption></figure>
 
 ## 四阶孪生鱼（Siamese Jellyfish） <a href="#siamese-jellyfish" id="siamese-jellyfish"></a>
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>四阶孪生鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>四阶孪生鱼</p></figcaption></figure>
 
 如图所示。它是如下两条鱼的合并。
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption><p>拆开看的两条四阶退化鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>拆开看的两条四阶退化鱼</p></figcaption></figure>
 
 ## 孪生鱼的类型 <a href="#types-of-siamese-fish" id="types-of-siamese-fish"></a>
 
@@ -59,7 +59,7 @@ description: Sashimi Fish
 
 前面的三个例子，前两个是孪生退化鱼，最后一个也是，不过它是鳍鱼和退化鱼的合并。下面我们来看一个孪生鳍鱼的例子。
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1).png" alt="" width="375"><figcaption><p>四阶孪生鳍鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>四阶孪生鳍鱼</p></figcaption></figure>
 
 这个例子我就不展开成两个了。我相信你看过了前面三个例子后，这个例子应该看得懂。
 
@@ -69,4 +69,4 @@ description: Sashimi Fish
 
 最后看一个有四个鱼鳍的四阶孪生退化鱼，也是鳍鱼和退化鱼合并的。
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt="" width="375"><figcaption><p>四阶孪生退化鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>四阶孪生退化鱼</p></figcaption></figure>

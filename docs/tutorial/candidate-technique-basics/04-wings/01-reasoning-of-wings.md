@@ -6,7 +6,7 @@ description: Reasoning of Wings
 
 ## XY-Wing
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt="" width="375"><figcaption><p>XY-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>XY-Wing</p></figcaption></figure>
 
 如图所示。我们把注意力集中到 `r8c5` 之上。这个单元格只有两个候选数：7 和 9。我们不妨根据所填的数字进行讨论：
 
@@ -23,13 +23,13 @@ description: Reasoning of Wings
 
 我们再来看一个例子。
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>另外一个 XY-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>另外一个 XY-Wing</p></figcaption></figure>
 
 这个例子和前面几乎一样，所以希望你自己推理它。
 
 ## XYZ-Wing
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>XYZ-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>XYZ-Wing</p></figcaption></figure>
 
 如图所示。这个技巧其实就比刚才的 XY-Wing 多了一个候选数。
 
@@ -49,7 +49,7 @@ description: Reasoning of Wings
 
 我们再来看一个题。
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>另一个 XYZ-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>另一个 XYZ-Wing</p></figcaption></figure>
 
 这个例子也希望你自己理解。
 
@@ -57,7 +57,7 @@ description: Reasoning of Wings
 
 前面我们看过了 XYZ-Wing，是 XY-Wing 上增加了一个候选数得到的新结构。这次，我们再往上加一个格子。看看四个单元格能不能也能这样用。
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>WXYZ-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>WXYZ-Wing</p></figcaption></figure>
 
 如图所示。这次我们假设的是 `r2c2` 这个单元格。
 
@@ -76,7 +76,7 @@ description: Reasoning of Wings
 
 我们再来看一个例子。
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt="" width="375"><figcaption><p>另一个 WXYZ-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>另一个 WXYZ-Wing</p></figcaption></figure>
 
 如图所示。这个例子希望你能自己推理一下。
 
@@ -86,7 +86,7 @@ description: Reasoning of Wings
 
 既然 WXYZ-Wing 已经过了，下面就再加一个单元格，就成了新的技巧了：**VWXYZ-Wing**。
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt="" width="375"><figcaption><p>VWXYZ-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt="" width="375"><figcaption><p>VWXYZ-Wing</p></figcaption></figure>
 
 如图所示。虽然推理完全和前面的一样，但是我还是解释一下。这次我们要假设的是 `r6c4` 的填数情况：
 
@@ -100,7 +100,7 @@ description: Reasoning of Wings
 
 我们再来看一则例子。
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt="" width="375"><figcaption><p>另一个 VWXYZ-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1).png" alt="" width="375"><figcaption><p>另一个 VWXYZ-Wing</p></figcaption></figure>
 
 也是一样，这个例子就给你自己推理了。
 

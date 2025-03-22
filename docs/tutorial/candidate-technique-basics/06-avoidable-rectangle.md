@@ -6,7 +6,7 @@ description: Avoidable Rectangle
 
 ## 类型 1 <a href="#type-1" id="type-1"></a>
 
-<figure><img src="../.gitbook/assets/image (5).png" alt="" width="375"><figcaption><p>类型 1</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt="" width="375"><figcaption><p>类型 1</p></figcaption></figure>
 
 如图所示。我们仍旧关注于唯一矩形那种摆放形式的四个单元格，不过这次我们不看空格，而是把视角聚焦于填入数里。
 
@@ -26,7 +26,7 @@ description: Avoidable Rectangle
 
 ## 类型 2 <a href="#type-2" id="type-2"></a>
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption><p>类型 2</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt="" width="375"><figcaption><p>类型 2</p></figcaption></figure>
 
 如图所示。这次我们使用的是单元格 `r15c23`，其中有两个单元格已经有填数。
 
@@ -36,13 +36,13 @@ description: Avoidable Rectangle
 
 ## 类型 3 <a href="#type-3" id="type-3"></a>
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt="" width="375"><figcaption><p>类型 3</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt="" width="375"><figcaption><p>类型 3</p></figcaption></figure>
 
 如图所示。如果我们让 `r89c9` 里所有三个橘色的候选数全部从盘面里消失的话，`r89c59` 将会形成矛盾。而由于所在宫里有一个单元格 `r8c8` 只有橘色的 1 和 4 这两种候选数，因此在 `r89c9` 里必须要拿出一个单元格与之配对形成显性数对，于是乎我们就知道，这个宫里其余的单元格就没有机会填入 1 或 4 了。因此这个题的结论就是 `r7c9 <> 4`。
 
 我们把这个用法称为类型 3。我们再来看一个例子。
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt="" width="375"><figcaption><p>类型 3，另外一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，另外一个例子</p></figcaption></figure>
 
 如图所示。这个题就自己推理了吧。
 
@@ -50,7 +50,7 @@ description: Avoidable Rectangle
 
 接下来我们直接跳过类型 4，来看类型 5。原因我一会儿再说。
 
-<figure><img src="../.gitbook/assets/image (4) (1).png" alt="" width="375"><figcaption><p>类型 5</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt="" width="375"><figcaption><p>类型 5</p></figcaption></figure>
 
 如图所示。这个长相怪异的结构是类型 5。
 
@@ -62,7 +62,7 @@ description: Avoidable Rectangle
 
 和前面一样，我们跳过类型 6，直接来看可规避矩形版本的隐性唯一矩形。
 
-<figure><img src="../.gitbook/assets/image (5) (1).png" alt="" width="375"><figcaption><p>隐性可规避矩形</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt="" width="375"><figcaption><p>隐性可规避矩形</p></figcaption></figure>
 
 如图所示。我们可以看到，图中 `r2` 和 `c4` 都存在 4 的共轭对。所以，和隐性唯一矩形一样，我们按摆放分两种情况进行讨论。
 

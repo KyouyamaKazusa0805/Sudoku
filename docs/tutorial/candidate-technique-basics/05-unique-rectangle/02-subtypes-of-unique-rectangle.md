@@ -32,7 +32,7 @@ description: Subtypes of Unique Rectangle
 
 #### 显性数对 <a href="#with-naked-pair" id="with-naked-pair"></a>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带显性数对</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带显性数对</p></figcaption></figure>
 
 如图所示，请仔细观察 `r7`。这次和类型 2 又有不同——多出来的两个候选数甚至都不是同一个数字了。不过也没事，推理肯定是可以继续的。
 
@@ -44,7 +44,7 @@ description: Subtypes of Unique Rectangle
 
 #### 显性三数组 <a href="#with-naked-triple" id="with-naked-triple"></a>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带显性三数组</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带显性三数组</p></figcaption></figure>
 
 如图所示。既然显性数对要用三个单元格的其中两个，那么显性三数组自然就是四个单元格的其中三个。
 
@@ -54,7 +54,7 @@ description: Subtypes of Unique Rectangle
 
 #### 显性四数组 <a href="#with-naked-quadruple" id="with-naked-quadruple"></a>
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带显性四数组</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带显性四数组</p></figcaption></figure>
 
 如图所示。这次继续把规格推广一个单元格。和前面的思路完全一样，因为我们要保证 `r5c12` 里必须有一个 1 或 7 的填入，而 `r5` 里有三个单元格总体只能填 1、2、6、7，于是他们填 1、2、6、7 的其三，就直接和 `r5c12` 里出现的 1 或者 7 配在一起，形成显性四数组。
 
@@ -68,7 +68,7 @@ description: Subtypes of Unique Rectangle
 
 #### 隐性数对 <a href="#with-hidden-pair" id="with-hidden-pair"></a>
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带隐性数对</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带隐性数对</p></figcaption></figure>
 
 如图所示。这回我们把思路倒过来。我们看到，`b2` 里数字 1 和 2 只能填在 `r123c6` 三个单元格之中。由于我们不能同时让 `r12c6` 直接是 1 和 2（唯一矩形的矛盾），所以 `r12c6` 里只能二选一。选出来后，和 `r3c6` 就形成了关于 1 和 2 的隐性数对了。
 
@@ -82,7 +82,7 @@ description: Subtypes of Unique Rectangle
 
 #### 隐性三数组 <a href="#with-hidden-triple" id="with-hidden-triple"></a>
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带隐性三数组</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带隐性三数组</p></figcaption></figure>
 
 如图所示，这个题用到了隐性三数组。
 
@@ -92,7 +92,7 @@ description: Subtypes of Unique Rectangle
 
 #### 隐性四数组 <a href="#with-hidden-quadruple" id="with-hidden-quadruple"></a>
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt="" width="375"><figcaption><p>类型 3，带隐性四数组</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带隐性四数组</p></figcaption></figure>
 
 如图所示。这个题也是一样。因为 6 和 7 在 `r7c89` 里只能出一个，而 4、6、7、8 四个数字整体在 `r7` 里只能出现在 `r7c12389` 里，所以还剩下三个单元格。刚好三个单元格加 `r7c89` 其一就把四个数的填数机会用完了。因此，这四个单元格（`r7c123` 和 `r7c89` 的其一）形成关于 4、6、7、8 的隐性四数组。所以，这个题的结论就是 `r7c1 <> 39, r7c2 <> 1, r7c3 <> 9` 了。
 
@@ -104,7 +104,7 @@ description: Subtypes of Unique Rectangle
 
 因为数组一定是有互补的，所以我们就拿前面的其中一个题来给各位介绍一下类型 3 里的互补就行了。其他的就自己看吧。
 
-<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption><p>类型 3 的显隐性互补示例</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption><p>类型 3 的显隐性互补示例</p></figcaption></figure>
 
 如图所示。这是同一个题目，来自于前面的隐性四数组那个题，只是换了一个删数的位置。
 

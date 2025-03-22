@@ -6,7 +6,7 @@ description: Reasoning of Unique Loop
 
 ## 类型 1 <a href="#type-1" id="type-1"></a>
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt="" width="375"><figcaption><p>类型 1</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt="" width="375"><figcaption><p>类型 1</p></figcaption></figure>
 
 如图所示。我们把唯一矩形的结构从 4 个单元格拓展到 6 个单元格，但是思路没有多大的变化。
 
@@ -18,7 +18,7 @@ description: Reasoning of Unique Loop
 
 这一点很重要，它和唯一矩形除了规格上不同，其他地方则完全一样。得到这一点后我们就可以知道，这个结构它也能形成和唯一矩形一样的两种填法，而不影响盘面任何其他的地方的候选数的变动，所以，这种结构也可以形成那种矛盾。就像这样：
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption><p>产生矛盾的两种填法</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption><p>产生矛盾的两种填法</p></figcaption></figure>
 
 于是，假设就并不成立。我们最初的假设是让 `r1c9(4)` 不存在（换言之就是 `r1c9` 只保留 2 或 9 两个候选数）。既然它不对，那么对的结论就自然是 `r1c9 <> 29` 了。所以，这便是这个技巧可以得到的结论。
 

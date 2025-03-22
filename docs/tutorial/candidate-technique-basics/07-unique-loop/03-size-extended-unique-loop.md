@@ -8,7 +8,7 @@ description: Size-Extended Unique Loop
 
 ## 8 个单元格的唯一环 <a href="#size-8" id="size-8"></a>
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="375"><figcaption><p>8 格唯一环</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7).png" alt="" width="375"><figcaption><p>8 格唯一环</p></figcaption></figure>
 
 如图所示。我们发现，整个结构里只有 `r9c4` 包含额外的候选数 4。如果我们让它从盘面里消失的话，所有图中的 8 个单元格将只剩下 7 和 8。
 
@@ -18,7 +18,7 @@ description: Size-Extended Unique Loop
 
 下面我们来看 10 个单元格的情况。
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="375"><figcaption><p>10 格唯一环</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption><p>10 格唯一环</p></figcaption></figure>
 
 如图所示。这里我们用的是类型 4 的思维。
 
@@ -30,7 +30,7 @@ description: Size-Extended Unique Loop
 
 ## 12 个单元格的唯一环 <a href="#size-12" id="size-12"></a>
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="375"><figcaption><p>12 格唯一环</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt="" width="375"><figcaption><p>12 格唯一环</p></figcaption></figure>
 
 如图所示。这里我们用的是类型 2 的思维。
 
@@ -40,7 +40,7 @@ description: Size-Extended Unique Loop
 
 ## 14 个单元格的唯一环 <a href="#size-14" id="size-14"></a>
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt="" width="375"><figcaption><p>14 格唯一环</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt="" width="375"><figcaption><p>14 格唯一环</p></figcaption></figure>
 
 如图所示。这次我们用类型 3 的思维来看这个题。
 
@@ -64,7 +64,7 @@ description: Size-Extended Unique Loop
 
 如果你凭空想象不出来的话，那么我们来看 `b5` 其中一种能引发上述说法的唯一环的局部摆放：
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt="" width="375"><figcaption><p>一个能引起特殊矛盾的 16 个单元格唯一环</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt="" width="375"><figcaption><p>一个能引起特殊矛盾的 16 个单元格唯一环</p></figcaption></figure>
 
 如图所示。这是一个我随意构造的唯一环，用到 16 个单元格。之所以说是“随意构造的”，主要是为了解释我要说的矛盾的点，唯一环的连线反倒不是特别重要，只是怕你觉得这个大结构看不出来怎么连的，我才标出来的（不过是随意找了其中一个路径罢了）。可以看出，`b5` 的上下左右四个宫都会被唯一环所用，按照涂色不同来区分填数的不同，我们可以看到，绿色在 `b2468` 里有四处，而橙色也有四处。
 
