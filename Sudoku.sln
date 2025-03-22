@@ -68,6 +68,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.CommandLine", "src\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemExtensions.CommandLine", "src\System.CommandLine\SystemExtensions.CommandLine.csproj", "{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{16678585-9674-46DF-8E2B-42387077F6BC}"
+	ProjectSection(SolutionItems) = preProject
+		docs\assets-renamer.ps1 = docs\assets-renamer.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Build|Any CPU = Build|Any CPU
@@ -640,6 +645,7 @@ Global
 		{528070A9-4234-9B01-E17E-9F2DFFF74F9C} = {1B5D364F-3923-4B11-0B17-BDE292349469}
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {C92EF998-DA2A-70E0-4887-9BF7E08C0D73}
 		{07EDD535-D33E-4F95-B809-8FE4D8FA24CD} = {C92EF998-DA2A-70E0-4887-9BF7E08C0D73}
+		{16678585-9674-46DF-8E2B-42387077F6BC} = {C92EF998-DA2A-70E0-4887-9BF7E08C0D73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1BD1DD5-2490-4BF0-B5D4-D07C134BD14D}
