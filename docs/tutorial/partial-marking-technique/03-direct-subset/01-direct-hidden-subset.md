@@ -6,7 +6,7 @@ description: Direct Hidden Subset
 
 ## 隐性数对（Hidden Pair） <a href="#hidden-pair" id="hidden-pair"></a>
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>隐性数对 + 列排除</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>隐性数对 + 列排除</p></figcaption></figure>
 
 如图所示。我们使用排除的逻辑，看 `b1` 的数字 2 和 9，看看有什么说头。
 
@@ -26,7 +26,7 @@ description: Direct Hidden Subset
 
 下面我们再来看一则例子。希望各位这次能自己理解。
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>隐性数对 + 列排除</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>隐性数对 + 列排除</p></figcaption></figure>
 
 ## 隐性三数组（Hidden Triple） <a href="#hidden-triple" id="hidden-triple"></a>
 
