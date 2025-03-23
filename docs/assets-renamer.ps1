@@ -32,7 +32,7 @@ foreach ($key in $tempMapping.Keys) {
 }
 
 # Step 4: Replace file paths referenced to pictures into new file names in all Markdown files.
-Get-ChildItem -Path (Split-Path $tutorialMarkdownDir) -Filter *.md -Recurse | ForEach-Object {
+Get-ChildItem -Path $tutorialMarkdownDir -Filter *.md -Recurse | ForEach-Object {
     $content = Get-Content $_.FullName -Raw -Encoding UTF8
 
     # Traverse all original file names, and update them up.
