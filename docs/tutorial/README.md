@@ -1,4 +1,4 @@
-﻿---
+---
 description: Welcome to Sudoku!
 ---
 
@@ -12,7 +12,7 @@ description: Welcome to Sudoku!
 
 ## 数独规则 <a href="#rules-of-sudoku" id="rules-of-sudoku"></a>
 
-<figure><img src=".gitbook/assets/images_0245.png" alt="" width="375"><figcaption><p>样例</p></figcaption></figure>
+<figure><img src=".gitbook/assets/images_0245.png" alt="" width="375"><figcaption><p>一个样例盘面</p></figcaption></figure>
 
 如图所示。我们可以看到，整个游戏会使用 9 × 9 一共 81 个单元格，我们将整个游戏棋盘称为一个**盘面**（Grid）。
 
