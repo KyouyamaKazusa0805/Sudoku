@@ -12,7 +12,7 @@ description: Welcome to Sudoku!
 
 ## 数独规则 <a href="#rules-of-sudoku" id="rules-of-sudoku"></a>
 
-<figure><img src=".gitbook/assets/my-first-image.png" alt="" width="375"><figcaption><p>样例</p></figcaption></figure>
+<figure><img src=".gitbook/assets/images_0245.png" alt="" width="375"><figcaption><p>样例</p></figcaption></figure>
 
 如图所示。我们可以看到，整个游戏会使用 9 × 9 一共 81 个单元格，我们将整个游戏棋盘称为一个**盘面**（Grid）。
 
@@ -38,7 +38,7 @@ description: Welcome to Sudoku!
 
 在完成一个数独题目的时候，我们会有一些基础的信息作为辅助，并非上手就给玩家完成。
 
-<figure><img src=".gitbook/assets/Snipaste_2025-01-28_16-07-35.png" alt=""><figcaption><p>一个题，和它的答案</p></figcaption></figure>
+<figure><img src=".gitbook/assets/images_0246.png" alt=""><figcaption><p>一个题，和它的答案</p></figcaption></figure>
 
 如图所示，左边的图是这个题目，而右边这个是它的答案。我们也叫它**解**（Solution）。可以看出，一个题是必须拥有一些合适的填数作为初始提示项，才能完成的；如果是空白的盘面的话，是无论如何都没有任何依赖项可提供推演提示的。我们把左边初始状态就给出的数字称为**提示数**或**已知数**（Given）。
 
