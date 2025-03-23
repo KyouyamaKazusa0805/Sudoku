@@ -18,7 +18,7 @@ description: Size-Extended Unique Loop
 
 下面我们来看 10 个单元格的情况。
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt="" width="375"><figcaption><p>10 格唯一环</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>10 格唯一环</p></figcaption></figure>
 
 如图所示。这里我们用的是类型 4 的思维。
 

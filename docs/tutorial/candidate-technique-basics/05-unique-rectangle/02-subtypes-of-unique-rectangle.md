@@ -32,7 +32,7 @@ description: Subtypes of Unique Rectangle
 
 #### 显性数对 <a href="#with-naked-pair" id="with-naked-pair"></a>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带显性数对</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>类型 3，带显性数对</p></figcaption></figure>
 
 如图所示，请仔细观察 `r7`。这次和类型 2 又有不同——多出来的两个候选数甚至都不是同一个数字了。不过也没事，推理肯定是可以继续的。
 

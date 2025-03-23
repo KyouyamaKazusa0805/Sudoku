@@ -28,7 +28,7 @@ description: Incomplete Wings
 
 我们再来看一个例子。
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>另一个残缺 WXYZ-Wing</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>另一个残缺 WXYZ-Wing</p></figcaption></figure>
 
 如图所示。这个题希望你自己推理。
 

@@ -18,7 +18,7 @@ description: Coordinate
 
 RCB 表示是全球通用的一种表示方法，本教程也会使用这个表示方法。盘面会按第 1 行到第 9 行、第 1 列到第 9 列进行顺次编号。编号次序是从左到右、从上到下。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>RCB 表示下的坐标布局</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>RCB 表示下的坐标布局</p></figcaption></figure>
 
 我们使用行、列、宫的英文单词首字母 row、column 和 box 的 r、c、b 来表示一个坐标。比如说，正中间的单元格是提示数 2，我们将这个说法直接记为 `R5C5 = 2` 或 `r5c5 = 2`。其中，等号 `=` 体现的是诸如“填入”、“是”等等的含义。不过，b 这个字母暂时用不到，以后用到了会继续说明。
 

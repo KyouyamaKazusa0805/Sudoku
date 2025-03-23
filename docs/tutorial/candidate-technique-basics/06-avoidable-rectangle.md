@@ -26,7 +26,7 @@ description: Avoidable Rectangle
 
 ## 类型 2 <a href="#type-2" id="type-2"></a>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>类型 2</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>类型 2</p></figcaption></figure>
 
 如图所示。这次我们使用的是单元格 `r15c23`，其中有两个单元格已经有填数。
 

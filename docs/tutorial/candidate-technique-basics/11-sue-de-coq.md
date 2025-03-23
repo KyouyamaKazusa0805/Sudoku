@@ -26,7 +26,7 @@ description: Sue de Coq
 
 下面我们来看看另外一个例子。这是之前欠一四数组的例子，不过我们这次使用这个技巧来解决它。
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption><p>另外一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt="" width="375"><figcaption><p>另外一个例子</p></figcaption></figure>
 
 如图所示。这个例子就自己推理了。推理方式和前面完全一样，只是位置稍微改了一下而已。
 

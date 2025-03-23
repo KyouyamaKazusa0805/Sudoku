@@ -41,7 +41,7 @@ description: Reasoning of Normal Fish
 
 刚才我们学习的是二阶鱼。鱼和数组一样，也有规格一说，所以二阶鱼指的是规格为 2 的鱼。下面我们来看，鱼在规格为 3 的时候，都长啥样。
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>三阶鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>三阶鱼</p></figcaption></figure>
 
 如图所示。我们可以看到，`r368` 三行里填入 4 的位置刚好在三个不同的列里。这一点和前面二阶鱼的效果一致。
 

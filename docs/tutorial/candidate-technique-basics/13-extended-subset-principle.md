@@ -10,7 +10,7 @@ description: Extended Subset Principle
 
 ## 基本推理 <a href="#reasoning" id="reasoning"></a>
 
-<figure><img src="../.gitbook/assets/image.png" alt="" width="375"><figcaption><p>伪数组，第一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt="" width="375"><figcaption><p>伪数组，第一个例子</p></figcaption></figure>
 
 如图所示。可以看到，这个结构一共用了 5 个单元格：`r5c2359` 和 `r6c2`。数一下里面的数字种类，一共也有 5 个：1、4、5、7、8。
 
@@ -28,7 +28,7 @@ description: Extended Subset Principle
 
 下面我们再来看一个例子。这个例子是 4 个单元格。
 
-<figure><img src="../.gitbook/assets/image (1).png" alt="" width="375"><figcaption><p>伪数组，第二个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption><p>伪数组，第二个例子</p></figcaption></figure>
 
 如图所示。这个例子就自己看了，逻辑完全和前面的一样。
 

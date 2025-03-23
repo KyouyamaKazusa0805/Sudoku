@@ -33,7 +33,7 @@ description: Sashimi Fish
 
 哦对，我再给你看一则例子。这个例子可以自己看一下。鱼鳍有两个就意味着我们直接合并讨论就行。其他的逻辑和前面叙述的完全一样。
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>两个鱼鳍的二阶退化鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>两个鱼鳍的二阶退化鱼</p></figcaption></figure>
 
 ## 三阶退化鱼（Sashimi Swordfish） <a href="#sashimi-swordfish" id="sashimi-swordfish"></a>
 

@@ -173,9 +173,27 @@ description: Other Types of Bi-value Universal Grave
 
 在我目前本地的题库里，7 个真数已经算是非常极限的存在了。我没有 8 个及以上数量的真数、还能引发删数的例子了。但是，理论上他们是应该存在的。
 
-## 全双值格致死解法 XZ 逻辑 <a href="#bug-xz" id="bug-xz"></a>
+## 假数逻辑 <a href="#false-candidate" id="false-candidate"></a>
 
-下面我们来看一个前面技巧都不曾提及的一种类型：**全双值格致死解法 XZ 逻辑**（Bi-value Universal Grave XZ Rule，简称 BUG-XZ）。
+既然有真数，自然就会有**假数**（False Candidate）。真数的意义在于，所有真数里至少有一个是正确的填数；那么假数的话，就是至少有一个是错误的填数。
+
+不过，这个说辞对于使用而言还是比较复杂的，所以本文仅只针对于单一假数的情况进行举例。
+
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="375"><figcaption><p>假数例子</p></figcaption></figure>
+
+如图所示。仔细对照盘面，我们发现似乎这个题压根跟全双值格致死解法没有半毛钱的关系，因为这个盘面的候选数压根就不满足使用逻辑，更别谈真数什么了。
+
+但是，请注意 `r5c8(2)`。如果我让 `r5c8` 填上 2 会如何？填上 2 之后，`r5c8` 的所在行和所在列上出现三次 4 因为被 2 占位而少去一次，填入 2 又会同时使得所在的行、列上（尤其是 `r46c8` 和 `r5c1` 这三个单元格）从三值格退为双值格。
+
+在我们移除这些候选数后，剩下的盘面就会变为可使用这个技巧的盘面。严格来说，因为它直接满足了那两点特征，所以盘面直接就形成矛盾了。
+
+所以，假设并不成立。我们最初的假设是 `r5c8 = 2`，它是错的，所以结论就是 `r5c8 <> 2` 了。我们把这种推演逻辑称为全双值格致死解法的**假数逻辑**（Bi-value Universal Grave False Candidate）。
+
+鉴于这个逻辑非常不好理解，所以就一笔带过了。一般在做题的时候由于它需要反向推演，先找假数，然后推出假数填入后才会形成的盘面状态是否矛盾，所以它会稍微复杂一些。
+
+## XZ 逻辑 <a href="#bug-xz" id="bug-xz"></a>
+
+下面我们来看一个前面技巧都不曾提及的一种类型。
 
 <figure><img src="../../.gitbook/assets/image (101).png" alt="" width="375"><figcaption><p>BUG-XZ 例子</p></figcaption></figure>
 
@@ -188,7 +206,11 @@ description: Other Types of Bi-value Universal Grave
 * 如果 `r4c1 = 2`，则删数 `r1c1 <> 2` 直接成立；
 * 如果 `r2c8 = 4`，则由于同列的 `r1c8` 仅存在两个候选数 2 和 4，所以 `r1c8 = 2`，照样可以得到 `r1c1 <> 2` 的结论。
 
-也就是说，它迂回了一个步骤，即延长了 `r2c8(4)` 这个真数填写的逻辑。这个题的结论是 `r1c1 <> 2`。比较容易理解。我们再来看一个例子。
+也就是说，它迂回了一个步骤，即延长了 `r2c8(4)` 这个真数填写的逻辑。这个题的结论是 `r1c1 <> 2`。
+
+我们把这个结构称为全双值格致死解法的 **XZ 逻辑**（Bi-value Universal Grave XZ Rule，简称 BUG-XZ）。这里的 $$X$$ 和 $$Z$$ 其实指的是两个未知数。在这个例子里，$$X=4, Z = 2$$。那为什么非得是 $$X = 4$$ 呢？这是因为老外定技巧名称的时候，习惯把 $$Z$$ 当成删数，而这个题的删数是 2，所以自然 $$Z = 2$$ 了。
+
+这还比较容易理解。我们再来看一个例子。
 
 <figure><img src="../../.gitbook/assets/image (102).png" alt="" width="375"><figcaption><p>另外一个 BUG-XZ 的例子</p></figcaption></figure>
 
@@ -223,7 +245,5 @@ description: Other Types of Bi-value Universal Grave
 下面给各位展示的是一个 BUG + 94 的例子。
 
 <figure><img src="../../.gitbook/assets/image (105).png" alt="" width="375"><figcaption><p>BUG + 94 例子</p></figcaption></figure>
-
-我依稀记得我还有一个 BUG + 106 的例子，但是我怎么找都找不到了。等我找到了我再来替换掉这个例子吧。
 
 至此，这个技巧的内容也就全部结束了。下面我们将进入到新的技巧学习之中去。

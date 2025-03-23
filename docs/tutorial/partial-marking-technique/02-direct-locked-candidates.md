@@ -24,7 +24,7 @@ description: Direct Locked Candidates
 
 可以从结构里发现，它比较容易观察，所以和宫排除一样，我优先讲了宫区块。下面我们来看另外一则宫区块的例子，希望你自己理解它。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>宫区块 + 列排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>宫区块 + 列排除</p></figcaption></figure>
 
 这个例子稍微麻烦一些。
 
