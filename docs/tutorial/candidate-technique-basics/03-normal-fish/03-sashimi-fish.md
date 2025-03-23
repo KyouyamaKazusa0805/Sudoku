@@ -1,4 +1,4 @@
----
+﻿---
 description: Sashimi Fish
 ---
 
@@ -10,7 +10,7 @@ description: Sashimi Fish
 
 ## 二阶退化鱼（Sashimi X-Wing） <a href="#sashimi-x-wing" id="sashimi-x-wing"></a>
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt="" width="375"><figcaption><p>二阶退化鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0231.png" alt="" width="375"><figcaption><p>二阶退化鱼</p></figcaption></figure>
 
 如图所示。我们先看这个鱼，显然这个鱼长相就非常奇特——它就用了三个单元格。
 
@@ -33,11 +33,11 @@ description: Sashimi Fish
 
 哦对，我再给你看一则例子。这个例子可以自己看一下。鱼鳍有两个就意味着我们直接合并讨论就行。其他的逻辑和前面叙述的完全一样。
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>两个鱼鳍的二阶退化鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0006.png" alt="" width="375"><figcaption><p>两个鱼鳍的二阶退化鱼</p></figcaption></figure>
 
 ## 三阶退化鱼（Sashimi Swordfish） <a href="#sashimi-swordfish" id="sashimi-swordfish"></a>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>三阶退化鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0077.png" alt="" width="375"><figcaption><p>三阶退化鱼</p></figcaption></figure>
 
 如图所示，我们仍旧使用鱼鳍的视角讨论它的两种状态：
 
@@ -50,7 +50,7 @@ description: Sashimi Fish
 
 下面我们再来看一则例子。
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>三阶退化鱼，另外一个例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0106.png" alt="" width="375"><figcaption><p>三阶退化鱼，另外一个例子</p></figcaption></figure>
 
 如图所示。这个例子我得说一下，因为有点难理解。
 
@@ -65,7 +65,7 @@ description: Sashimi Fish
 
 ## 四阶退化鱼（Sashimi Jellyfish） <a href="#sashimi-jellyfish" id="sashimi-jellyfish"></a>
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>四阶退化鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0130.png" alt="" width="375"><figcaption><p>四阶退化鱼</p></figcaption></figure>
 
 如图所示，这个例子也是如此讨论。讨论鱼鳍的两种情况，这一点和前面一样，因此这个例子就不解释了，只是规格稍微大一些。
 
@@ -87,7 +87,7 @@ description: Sashimi Fish
 
 ### 问题 2：有些单元格似乎在推理的过程之中就压根没用过 <a href="#question-2" id="question-2"></a>
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt="" width="375"><figcaption><p>还是刚才的二阶退化鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0231.png" alt="" width="375"><figcaption><p>还是刚才的二阶退化鱼</p></figcaption></figure>
 
 这个问题需要解释一下。如图所示，这还是刚才的那个二阶鱼的例子。
 
@@ -99,7 +99,7 @@ description: Sashimi Fish
 
 我们倘使 `r9c2 = 8` 看看到底会出什么效果。我们知道，退化鱼有一个特征：鱼鳍所在的这个行列上，去掉鱼鳍会因为只剩下一个位置而直接造成瓦解（那肯定得是鱼鳍所在的这个行列上，因为不在鱼鳍的行列上只剩下一个位置不就直接成行列排除了么）。而这个退化鱼的特征我们现在要用上去了。因为 `r9c2 = 8`，所以对于可导致瓦解的 `r6` 而言，此时鱼鳍这个位置会被迫填入 8。是的，你没有用到的这个位置，它其实是鱼鳍填入的情况，才会遇到的。而这一点，它并未体现在我们前文的推理过程之中，因为它不重要。
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>还是刚才的三阶退化鱼的例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0077.png" alt="" width="375"><figcaption><p>还是刚才的三阶退化鱼的例子</p></figcaption></figure>
 
 再来看这个例子。这个例子里，要假设填出数字的位置，然后还有鱼鳍，实际上还有两处单元格没用到，即这里的 `r5c3` 和 `r9c4`。
 
@@ -121,7 +121,7 @@ description: Sashimi Fish
 
 现在再给各位看一个例子。这个例子是退化鱼，但是它不能做到结构完整的瓦解：
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>退化鱼，但不是整个鱼完全瓦解</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0154.png" alt="" width="375"><figcaption><p>退化鱼，但不是整个鱼完全瓦解</p></figcaption></figure>
 
 我们可以看到，假设鱼鳍 `r9c3 <> 8` 的时候，我们虽然可以得到 `r9c9 = 8` 的结果，但是得到之后我们通过排除只能得到 `r16c9 <> 8` 的结论。看起来似乎余下的部分并没有瓦解。
 
@@ -131,7 +131,7 @@ description: Sashimi Fish
 
 我还是把前一节的那个题拿过来给大家作对比。
 
-<figure><img src="../../.gitbook/assets/image (14) (1) (1).png" alt="" width="375"><figcaption><p>之前那个鳍鱼的例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0053.png" alt="" width="375"><figcaption><p>之前那个鳍鱼的例子</p></figcaption></figure>
 
 对比了之后我们不难发现，这两个题还是有本质区别的：鳍鱼的这个例子，鱼鳍去掉后，`r4c1 = 5` 的结论是后出的。换言之，鱼鳍去掉后，鱼鳍的所在行（即这里的 `r1`）并没有受到影响，它还是两个候选数的分布。
 

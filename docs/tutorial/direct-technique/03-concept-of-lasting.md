@@ -1,4 +1,4 @@
----
+﻿---
 description: Concept of Lasting
 ---
 
@@ -19,19 +19,19 @@ description: Concept of Lasting
 
 既然说明白了这两个概念，那么剩余数的概念就很清晰了。我们来看一个例子。
 
-<figure><img src="../.gitbook/assets/image (11) (1) (1) (1).png" alt="" width="375"><figcaption><p>行排除，行余 2</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0031.png" alt="" width="375"><figcaption><p>行排除，行余 2</p></figcaption></figure>
 
 这个例子里，我们可得到行排除结论是填入 6 在 `r9`。目标区域就是 `r9`，而里面只有两个空格，因此 `r9` 剩余数为 2，或者直接简单叫它**行余二**。这个说法是不是听起来蛮“古色古香”的？
 
 我们再来看一个例子。
 
-<figure><img src="../.gitbook/assets/image (12) (1) (1) (1).png" alt="" width="375"><figcaption><p>列排除，列余 3</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0044.png" alt="" width="375"><figcaption><p>列排除，列余 3</p></figcaption></figure>
 
 这个的结论在 `c9`，空格数量为 3，所以称为**列余三**。
 
 排除很好定义余数的概念，但是唯一余数似乎不太容易。对于唯一余数而言，我们选取的是，按照前面介绍的观察方式（选取空格剩余少的区域，在数出剩余的可选项后，再在外面找可排除的项），对那个排除项更多、空格数量更少的区域作为目标区域。
 
-<figure><img src="../.gitbook/assets/image (13) (1) (1) (1).png" alt="" width="375"><figcaption><p>唯一余数，宫余 3</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0048.png" alt="" width="375"><figcaption><p>唯一余数，宫余 3</p></figcaption></figure>
 
 比如这个例子里，目标单元格（结论单元格，即 `r9c7`）所在的行上有 3 个空格，列上有 7 个空格，宫内有 3 个空格。而因为宫的观察方式优于行和列，因此我们把这个唯一余数定义为**宫余三**。
 
@@ -66,7 +66,7 @@ description: Concept of Lasting
 
 我举个例子。
 
-<figure><img src="../.gitbook/assets/image (14) (1) (1) (1).png" alt="" width="375"><figcaption><p>一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0052.png" alt="" width="375"><figcaption><p>一个例子</p></figcaption></figure>
 
 这个题要完成它，会用到除了宫排除外的直观技巧。按余数排列出来，会用到这些：
 
@@ -77,7 +77,7 @@ description: Concept of Lasting
 
 显然，余四的行排除空格数量要求最多，所以我们把这个余四的行排除作为这个题目的最大难度的技巧使用步骤。我们也可称它为**卡（kǎ）点**（Bottleneck）。它在这个题的这个位置：
 
-<figure><img src="../.gitbook/assets/image (15) (1) (1) (1).png" alt="" width="375"><figcaption><p>行排除，行余 4</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0056.png" alt="" width="375"><figcaption><p>行排除，行余 4</p></figcaption></figure>
 
 如图所示。这是这个题目的卡点。
 
@@ -95,7 +95,7 @@ description: Concept of Lasting
 
 我们来看一个例子。
 
-<figure><img src="../.gitbook/assets/image (16) (1) (1).png" alt="" width="375"><figcaption><p>同数剩余</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0060.png" alt="" width="375"><figcaption><p>同数剩余</p></figcaption></figure>
 
 显然，在 `b8` 里，只有 8 没有填。直接填入 `r8c5 = 8` 便是这个技巧的结论。
 
@@ -103,7 +103,7 @@ description: Concept of Lasting
 
 和同区剩余的用法相反，**同数剩余**（Last Digit）是同一个数字，在全盘里只剩唯一一处没填的特殊技巧用法。
 
-<figure><img src="../.gitbook/assets/image (17) (1) (1).png" alt="" width="375"><figcaption><p>同数剩余</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0063.png" alt="" width="375"><figcaption><p>同数剩余</p></figcaption></figure>
 
 比如这个题里，7 全盘只有一个没填了。赶紧填进去，就是这个技巧的结论。
 

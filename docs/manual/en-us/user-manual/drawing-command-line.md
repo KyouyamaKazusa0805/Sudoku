@@ -1,10 +1,10 @@
-# Drawing Command Line
+﻿# Drawing Command Line
 
 This page will help you use drawing command line.
 
 ## Looking
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Page looking</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0244.png" alt=""><figcaption><p>Page looking</p></figcaption></figure>
 
 This page will allow you using command line to draw pictures.
 
@@ -45,7 +45,7 @@ candidate !o r5c5(9)
 
 can produce such output:
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0016.png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 ### Load puzzle
 
@@ -137,7 +137,7 @@ By the way, the supported link shapes are:
 
 For the coordinates mentioned above, you should use one of RxCy, K9, Excel notation defined in settings page:
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>Coordinate kind in settings page</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0086.png" alt=""><figcaption><p>Coordinate kind in settings page</p></figcaption></figure>
 
 ## Color identifier syntax
 

@@ -1,4 +1,4 @@
-# Table of contents
+﻿# Table of contents
 
 ## 数独概述 <a href="#basics-of-sudoku" id="basics-of-sudoku"></a>
 

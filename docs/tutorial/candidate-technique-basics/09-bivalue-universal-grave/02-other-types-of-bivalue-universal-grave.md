@@ -1,4 +1,4 @@
----
+﻿---
 description: Other Types of Bi-value Universal Grave
 ---
 
@@ -8,7 +8,7 @@ description: Other Types of Bi-value Universal Grave
 
 ## 类型 2 <a href="#type-2" id="type-2"></a>
 
-<figure><img src="../../.gitbook/assets/image (87).png" alt="" width="375"><figcaption><p>类型 2 例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0226.png" alt="" width="375"><figcaption><p>类型 2 例子</p></figcaption></figure>
 
 如图所示。这次我们把前文一个三值格的规矩给破坏了。这回倒好，直接一连给了仨。
 
@@ -34,7 +34,7 @@ description: Other Types of Bi-value Universal Grave
 
 先来看显性数组的部分。
 
-<figure><img src="../../.gitbook/assets/image (88).png" alt="" width="375"><figcaption><p>类型 3 例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0227.png" alt="" width="375"><figcaption><p>类型 3 例子</p></figcaption></figure>
 
 如图所示。因为是开胃菜，所以这个例子还是很像的。
 
@@ -44,7 +44,7 @@ description: Other Types of Bi-value Universal Grave
 
 这还是很简单的。我们再来看一个例子。
 
-<figure><img src="../../.gitbook/assets/image (89).png" alt="" width="375"><figcaption><p>第二个类型 3 的例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0228.png" alt="" width="375"><figcaption><p>第二个类型 3 的例子</p></figcaption></figure>
 
 如图所示。这次也只是把显性数对变成了显性三数组而已，真数仍旧只有两个，于是配合 `r6c19` 形成关于 1、4、6 的显性三数组。
 
@@ -52,7 +52,7 @@ description: Other Types of Bi-value Universal Grave
 
 最后我们再来看一个我说得比较抽象的例子。
 
-<figure><img src="../../.gitbook/assets/image (90).png" alt="" width="375"><figcaption><p>第三个类型 3 的例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0234.png" alt="" width="375"><figcaption><p>第三个类型 3 的例子</p></figcaption></figure>
 
 如图所示。这个题很明显长得就很抽象。真数有三个：俩 4 和一个 2。比较容易想到的是，三个真数肯定不能同时消失，因此至少有一个数是对的。在我们得到这一点后，2 和 4 具体填什么就显得没那么重要了。虽然看着很奇怪，但是我们注意到，`r6c5` 这个单元格只有候选数 2 和 4，它好像在诉说着什么。
 
@@ -64,7 +64,7 @@ description: Other Types of Bi-value Universal Grave
 
 下面我们来看隐性的版本。
 
-<figure><img src="../../.gitbook/assets/image (91).png" alt="" width="375"><figcaption><p>第四个类型 3 的例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0235.png" alt="" width="375"><figcaption><p>第四个类型 3 的例子</p></figcaption></figure>
 
 如图所示。这回我们倒过来看。
 
@@ -76,7 +76,7 @@ description: Other Types of Bi-value Universal Grave
 
 下面我们再来看一个例子。
 
-<figure><img src="../../.gitbook/assets/image (92).png" alt="" width="375"><figcaption><p>第五个类型 3 的例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0236.png" alt="" width="375"><figcaption><p>第五个类型 3 的例子</p></figcaption></figure>
 
 如图所示。我们也把规格搞成三数组来看看有什么不一样的地方。
 
@@ -92,7 +92,7 @@ description: Other Types of Bi-value Universal Grave
 
 下面我们来看类型 4。
 
-<figure><img src="../../.gitbook/assets/image (93).png" alt="" width="375"><figcaption><p>类型 4 例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0237.png" alt="" width="375"><figcaption><p>类型 4 例子</p></figcaption></figure>
 
 如图所示。类型 4 和类型 3 也一样，因为长相特殊所以极为罕见。这个题有 4 个真数。分布的位置也极为特殊：`r12c7` 两个单元格里分别有俩真数安插在里面；然后还有一个关于数字 9 的共轭对。
 
@@ -106,7 +106,7 @@ description: Other Types of Bi-value Universal Grave
 
 ### 全双值格致死解法 + 2 <a href="#bug-plus-2" id="bug-plus-2"></a>
 
-<figure><img src="../../.gitbook/assets/image (94).png" alt="" width="375"><figcaption><p>BUG + 2</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0238.png" alt="" width="375"><figcaption><p>BUG + 2</p></figcaption></figure>
 
 如图所示。先来看最基础的例子。这个题有两个真数，两个真数位于同一个行（也可以说是同一个宫），但是，一边是 5 一边是 9，数字不相同。
 
@@ -125,7 +125,7 @@ description: Other Types of Bi-value Universal Grave
 
 下面我们再来看一个 BUG + 2 的例子。
 
-<figure><img src="../../.gitbook/assets/image (95).png" alt="" width="375"><figcaption><p>真数全在一个单元格的 BUG + 2</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0239.png" alt="" width="375"><figcaption><p>真数全在一个单元格的 BUG + 2</p></figcaption></figure>
 
 这次我们再特殊一些。真数的数字不同，但在同一个单元格里。
 
@@ -135,7 +135,7 @@ description: Other Types of Bi-value Universal Grave
 
 有 + 2 就肯定有 + 3。甚至更多。既然不缺例子，那么我们干脆就多看点例子。虽然他们的推理完全和前面的一样。
 
-<figure><img src="../../.gitbook/assets/image (96).png" alt="" width="375"><figcaption><p>BUG + 3</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0240.png" alt="" width="375"><figcaption><p>BUG + 3</p></figcaption></figure>
 
 如图所示。我们列举一下三个真数的填数情况：
 
@@ -147,7 +147,7 @@ description: Other Types of Bi-value Universal Grave
 
 ### 全双值格致死解法 + 4 <a href="#bug-plus-4" id="bug-plus-4"></a>
 
-<figure><img src="../../.gitbook/assets/image (97).png" alt="" width="375"><figcaption><p>BUG + 4</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0241.png" alt="" width="375"><figcaption><p>BUG + 4</p></figcaption></figure>
 
 如图所示。这个例子也是一样的，所以就不推理了，自己看下吧。
 
@@ -155,19 +155,19 @@ description: Other Types of Bi-value Universal Grave
 
 对于真数过多的情况，一般的题就很少能遇得到了。所以和前面一样，图个乐。看一下就行。
 
-<figure><img src="../../.gitbook/assets/image (98).png" alt="" width="375"><figcaption><p>BUG + 5</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0242.png" alt="" width="375"><figcaption><p>BUG + 5</p></figcaption></figure>
 
 如图所示。这个题有 5 个真数。
 
 ### 全双值格致死解法 + 6 <a href="#bug-plus-6" id="bug-plus-6"></a>
 
-<figure><img src="../../.gitbook/assets/image (99).png" alt="" width="375"><figcaption><p>BUG + 6</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0243.png" alt="" width="375"><figcaption><p>BUG + 6</p></figcaption></figure>
 
 如图所示。这个题有 6 个真数，其中有两个真数位于同一个单元格里。
 
 ### 全双值格致死解法 + 7 <a href="#bug-plus-7" id="bug-plus-7"></a>
 
-<figure><img src="../../.gitbook/assets/image (100).png" alt="" width="375"><figcaption><p>BUG + 7</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0021.png" alt="" width="375"><figcaption><p>BUG + 7</p></figcaption></figure>
 
 如图所示。这个题有 7 个真数，已经达到了比较极限的地步了。
 
@@ -179,7 +179,7 @@ description: Other Types of Bi-value Universal Grave
 
 不过，这个说辞对于使用而言还是比较复杂的，所以本文仅只针对于单一假数的情况进行举例。
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="375"><figcaption><p>假数例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0244.png" alt="" width="375"><figcaption><p>假数例子</p></figcaption></figure>
 
 如图所示。仔细对照盘面，我们发现似乎这个题压根跟全双值格致死解法没有半毛钱的关系，因为这个盘面的候选数压根就不满足使用逻辑，更别谈真数什么了。
 
@@ -195,7 +195,7 @@ description: Other Types of Bi-value Universal Grave
 
 下面我们来看一个前面技巧都不曾提及的一种类型。
 
-<figure><img src="../../.gitbook/assets/image (101).png" alt="" width="375"><figcaption><p>BUG-XZ 例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0022.png" alt="" width="375"><figcaption><p>BUG-XZ 例子</p></figcaption></figure>
 
 如图所示。这个题相较于前面各种牛鬼蛇神来说，它反而比较纯粹：它就两个真数。只不过比较特殊的是，这两个真数数字不一样，而且也不在同一个行列宫（互相都看不见对方）。
 
@@ -212,7 +212,7 @@ description: Other Types of Bi-value Universal Grave
 
 这还比较容易理解。我们再来看一个例子。
 
-<figure><img src="../../.gitbook/assets/image (102).png" alt="" width="375"><figcaption><p>另外一个 BUG-XZ 的例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0023.png" alt="" width="375"><figcaption><p>另外一个 BUG-XZ 的例子</p></figcaption></figure>
 
 如图所示。和前面的推理是一样的，这里就不解释了。
 
@@ -226,13 +226,13 @@ description: Other Types of Bi-value Universal Grave
 
 下面我们来看一个例子，只有 11 个真数的情况。
 
-<figure><img src="../../.gitbook/assets/image (103).png" alt="" width="375"><figcaption><p>只有 11 个单元格的情况</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0024.png" alt="" width="375"><figcaption><p>只有 11 个单元格的情况</p></figcaption></figure>
 
 如图所示。
 
 另外，如果想问最多需要多少个单元格构成的话，很抱歉的是，这个结果我也不清楚。这个结果可能需要借助一下计算机的计算或复杂的理论证明才能得到。这个问题就交由给读者自己思考了。不过目前来看，似乎这个数会比较大，我甚至遇到过二三十个空格的情况。下面给的这个例子具有 32 个空格，也可以使用这个技巧；不过它需要一些特殊手段删掉一些候选数才能走到这里。
 
-<figure><img src="../../.gitbook/assets/image (104).png" alt="" width="375"><figcaption><p>有 32 个空格的大型 BUG 类型 1</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0025.png" alt="" width="375"><figcaption><p>有 32 个空格的大型 BUG 类型 1</p></figcaption></figure>
 
 ### 问题 2：这个技巧最多可以有多少个真数构成？ <a href="#question-2" id="question-2"></a>
 
@@ -244,6 +244,6 @@ description: Other Types of Bi-value Universal Grave
 
 下面给各位展示的是一个 BUG + 94 的例子。
 
-<figure><img src="../../.gitbook/assets/image (105).png" alt="" width="375"><figcaption><p>BUG + 94 例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0026.png" alt="" width="375"><figcaption><p>BUG + 94 例子</p></figcaption></figure>
 
 至此，这个技巧的内容也就全部结束了。下面我们将进入到新的技巧学习之中去。

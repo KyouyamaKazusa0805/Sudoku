@@ -1,4 +1,4 @@
----
+﻿---
 description: Distributed Disjoint Subset
 ---
 
@@ -12,7 +12,7 @@ description: Distributed Disjoint Subset
 
 先来看一个例子。
 
-<figure><img src="../.gitbook/assets/image (114).png" alt="" width="375"><figcaption><p>跨区数组例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0039.png" alt="" width="375"><figcaption><p>跨区数组例子</p></figcaption></figure>
 
 如图所示。我们选取四个单元格 `r34c34`。我们发现，里面出现的数字有 1、4、6、8 四种，但是他们在四个单元格里的分布和之前融合待定数组完全一样，没有任何一个数字可以填两次，都只能最多填一次。
 
@@ -45,7 +45,7 @@ description: Distributed Disjoint Subset
 
 回到之前数组的篇章中来。既然我们说到了跨区数组和它的删数规则，那么我们就可以将数组的删数逻辑进行严格推广。
 
-<figure><img src="../.gitbook/assets/image (115).png" alt="" width="375"><figcaption><p>区块三数组</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0040.png" alt="" width="375"><figcaption><p>区块三数组</p></figcaption></figure>
 
 如图所示。这是一个很稀松平常的显性三数组。但是删数有些奇怪，数字 4 删了两个区域，一个是 `c4` 里的标准删数，一个是 `b5` 里。
 
@@ -55,7 +55,7 @@ description: Distributed Disjoint Subset
 
 这便是数组内部带有区块的特殊删数模式。我们把这种显性数组称为**区块数组**（Semi-Locked Subset）；这个例子是三数组，所以细致一点也可以叫**区块三数组**（Semi-Locked Triple）。我们再来看一个例子。
 
-<figure><img src="../.gitbook/assets/image (116).png" alt="" width="375"><figcaption><p>区块四数组</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0041.png" alt="" width="375"><figcaption><p>区块四数组</p></figcaption></figure>
 
 这个例子是一个显性四数组，不过数字 1 和 4 都只存在于区块的范畴里，所以它也可以使用区块的逻辑在两头（两个区域同时）进行删数。不过细节就不解释了。
 
@@ -65,11 +65,11 @@ description: Distributed Disjoint Subset
 
 再极端一些。既然数组的其中一个或一些数字卡在区块的范畴里，我们叫区块数组的话，那么所有数字都卡在区块的范畴里呢？
 
-<figure><img src="../.gitbook/assets/image (117).png" alt="" width="375"><figcaption><p>死锁数对</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0042.png" alt="" width="375"><figcaption><p>死锁数对</p></figcaption></figure>
 
 叫**死锁数组**（Locked Subset）。所有的例子我都不用解释了。相信你能看到这里，基本就能说明你是看得懂的。上面这个规格的叫**死锁数对**（Locked Pair）。下面我们来看个**死锁三数组**（Locked Triple）。
 
-<figure><img src="../.gitbook/assets/image (118).png" alt="" width="375"><figcaption><p>死锁三数组</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0043.png" alt="" width="375"><figcaption><p>死锁三数组</p></figcaption></figure>
 
 因为区块最多三个格子，所以死锁数组最大规格也就到 3 结束。
 

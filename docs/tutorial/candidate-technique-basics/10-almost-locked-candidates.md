@@ -1,4 +1,4 @@
----
+﻿---
 description: Almost Locked Candidates
 ---
 
@@ -10,7 +10,7 @@ description: Almost Locked Candidates
 
 ### 欠一数对（Almost Locked Pair） <a href="#almost-locked-pair" id="almost-locked-pair"></a>
 
-<figure><img src="../.gitbook/assets/image (106).png" alt="" width="375"><figcaption><p>欠一数对</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0027.png" alt="" width="375"><figcaption><p>欠一数对</p></figcaption></figure>
 
 如图所示。请注意图中 `r7` 和 `b8` 两个区域。
 
@@ -28,7 +28,7 @@ description: Almost Locked Candidates
 
 下面我们再来看一个欠一数对的例子，用于巩固，以便你能理解它。
 
-<figure><img src="../.gitbook/assets/image (107).png" alt="" width="375"><figcaption><p>欠一数对，另外一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0028.png" alt="" width="375"><figcaption><p>欠一数对，另外一个例子</p></figcaption></figure>
 
 如图所示。这个例子就自己看一下了。
 
@@ -36,7 +36,7 @@ description: Almost Locked Candidates
 
 下面我们来看三数组的情况。
 
-<figure><img src="../.gitbook/assets/image (108).png" alt="" width="375"><figcaption><p>欠一三数组</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0029.png" alt="" width="375"><figcaption><p>欠一三数组</p></figcaption></figure>
 
 如图所示。这次我们把视角切换到 `r6` 和 `b6` 上。
 
@@ -52,7 +52,7 @@ description: Almost Locked Candidates
 
 下面我们还是老规矩，再看一个例子。
 
-<figure><img src="../.gitbook/assets/image (109).png" alt="" width="375"><figcaption><p>欠一三数组，另一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0030.png" alt="" width="375"><figcaption><p>欠一三数组，另一个例子</p></figcaption></figure>
 
 如图所示。这个题也自己看。要注意的是，这个题长得比较简单，但是并不影响推理。
 
@@ -64,7 +64,7 @@ description: Almost Locked Candidates
 
 ### 带有明数的欠一三数组 <a href="#almost-locked-triple-with-value" id="almost-locked-triple-with-value"></a>
 
-<figure><img src="../.gitbook/assets/image (110).png" alt="" width="375"><figcaption><p>明数欠一三数组</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0035.png" alt="" width="375"><figcaption><p>明数欠一三数组</p></figcaption></figure>
 
 如图所示。我们发现，`c4` 里，`r3c4` 只有候选数 7 和 8。如果它填了一个数进去，那么此时 7 或 8 就不能填在 `r78c4` 之中，于是这个数就会落到 `b8` 里的 `r78c6` 之中。
 
@@ -82,7 +82,7 @@ description: Almost Locked Candidates
 
 下面我们再来看一个例子。
 
-<figure><img src="../.gitbook/assets/image (111).png" alt="" width="375"><figcaption><p>明数欠一三数组，另外一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0036.png" alt="" width="375"><figcaption><p>明数欠一三数组，另外一个例子</p></figcaption></figure>
 
 如图所示。这个例子和前面那个完全一样，所以就留给你自己看了。
 
@@ -90,7 +90,7 @@ description: Almost Locked Candidates
 
 由于明数的特殊性，所以欠一数组具有四数组的状态。
 
-<figure><img src="../.gitbook/assets/image (112).png" alt="" width="375"><figcaption><p>明数欠一四数组</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0037.png" alt="" width="375"><figcaption><p>明数欠一四数组</p></figcaption></figure>
 
 如图所示。和前面一样。我们先看成欠一三数组的状态。可以发现，`c7` 里，单元格 `r12c7` 只有候选数 2、3、7。所以，这两个单元格最终只能填入数字 2、3、7 的其中两个。于是，这两个数字都不能出现在 `r89c7` 之中。而由于我们还需要确保 `b9` 里数字 2、3、7 填入正常，而 `r89c7` 此时最多只能填一个 2、3、7 的数字进去（还不能和 `r12c7` 填的一样）。所以，`r7c89` 和 `r8c8` 里必须安插两个位置填上跟 `r12c7` 一样的数字。
 
@@ -100,7 +100,7 @@ description: Almost Locked Candidates
 
 下面我们再来看一个例子。
 
-<figure><img src="../.gitbook/assets/image (113).png" alt="" width="375"><figcaption><p>明数欠一四数组，另一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0038.png" alt="" width="375"><figcaption><p>明数欠一四数组，另一个例子</p></figcaption></figure>
 
 如图所示。这个例子更为特殊。它直接用了两个明数。推理方式也是完全类似的，首先假设 `c4` 里填 3 和 9 的情况，可以得到 `r23c4` 不能填这个数，于是这个数就会落入 `r2c5` 和 `r3c56` 的其中一个单元格里。而我们还发现由于 2 和 5 只能摆在这三个单元格之中，所以一个 2 一个 5 就占用了两个单元格，所以刚好只能再放得下一个位置填和 `r5c4` 一样的填数。
 

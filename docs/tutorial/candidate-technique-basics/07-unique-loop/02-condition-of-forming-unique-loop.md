@@ -1,4 +1,4 @@
----
+﻿---
 description: Condition of Forming Unique Loop
 ---
 
@@ -36,11 +36,11 @@ description: Condition of Forming Unique Loop
 
 这里解释一下这个说法。所谓的“拿掉”，是为了去取消唯一矩形的闭环。拿掉哪一个无所谓，这里是讨论其理论构造，所以四个单元格拿掉哪一个其实都是一样的。如图所示：
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt="" width="375"><figcaption><p>示意图 1</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0034.png" alt="" width="375"><figcaption><p>示意图 1</p></figcaption></figure>
 
 然后，拿掉其中一个位置。比如这个 `r2c7`。
 
-<figure><img src="../../.gitbook/assets/image (12).png" alt="" width="375"><figcaption><p>示意图 2</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0047.png" alt="" width="375"><figcaption><p>示意图 2</p></figcaption></figure>
 
 由于我们拿掉了其中的一个单元格，而它一定会有两个单元格和它成边，如图里画出来的这两条边的连接。
 
@@ -48,13 +48,13 @@ description: Condition of Forming Unique Loop
 
 比如，我们把格子加在 `r7c7` 和 `r2c9` 上。
 
-<figure><img src="../../.gitbook/assets/image (13).png" alt="" width="375"><figcaption><p>示意图 3</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0051.png" alt="" width="375"><figcaption><p>示意图 3</p></figcaption></figure>
 
 如图所示。好了。我们发现，因为补充的两个单元格他们互相虽然没有啥关系，但是他们摆在结构里就立刻规避了裸露出来的 `r1c7` 和 `r2c3`。此时，新添加的这两个单元格便需要闭环回去。
 
 这很好加了。我们只需要找到 `r7c9` 即可。这一个单元格一旦加上去，两边的单元格都能形成闭环。于是，加上 `r7c9`。我们一共加上三个单元格，去掉原有的一个单元格，最终 6 个单元格就能形成新的闭环：
 
-<figure><img src="../../.gitbook/assets/image (14).png" alt="" width="375"><figcaption><p>示意图 4</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0055.png" alt="" width="375"><figcaption><p>示意图 4</p></figcaption></figure>
 
 这样，唯一环就形成了。
 
@@ -74,29 +74,29 @@ description: Condition of Forming Unique Loop
 
 考虑一个 8 个单元格的闭环：
 
-<figure><img src="../../.gitbook/assets/image (15).png" alt="" width="375"><figcaption><p>8 个单元格的闭环</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0059.png" alt="" width="375"><figcaption><p>8 个单元格的闭环</p></figcaption></figure>
 
 如图所示。这只是 8 个单元格形成闭环的其中一种特殊摆放形式。不是说 8 个单元格必须摆成这样。这里要拿这个特殊摆放形式举例。
 
 这个摆放你认为它形成闭环的方式是什么呢？还能只用行和列吗？似乎不行。如果只用行列连线的话，看起来就会有两个闭环了：
 
-<figure><img src="../../.gitbook/assets/image (16).png" alt="" width="375"><figcaption><p>8 个单元格的闭环的连线（错误）</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0062.png" alt="" width="375"><figcaption><p>8 个单元格的闭环的连线（错误）</p></figcaption></figure>
 
 这肯定是不对的。因为两个闭环两两是相邻了，但它没有考虑到宫内连接的关系，因此被拆成了两个闭环。我们要用闭环，本质是为了让两两单元格相邻关联起来。图上这样并不会把所有 8 个单元格都关联起来——它只会一次关联 4 个。
 
 所以正确的连法是什么样的呢？这里要用宫的连接方式了。当然，它也不是唯一的连法，这里画一种：
 
-<figure><img src="../../.gitbook/assets/image (17).png" alt="" width="375"><figcaption><p>8 个单元格的闭环的连线（正确）</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0065.png" alt="" width="375"><figcaption><p>8 个单元格的闭环的连线（正确）</p></figcaption></figure>
 
 这样就可以两两相邻的单元格配对连线成闭环了，而且也满足前面的基础条件限制（8 个单元格，用到 4 个行、4 个列和 4 个宫）。
 
 不过，说这个是干嘛呢？说这个是告诉各位，8 个单元格开始，这种结构会有一个特殊现象。我们尝试把其中一个宫里的两个单元格给扭转一下。例如 `b1`，我们把 `r1c1` 和 `r3c3` 改成 `r1c3` 和 `r3c1`。这样扭转一下。
 
-<figure><img src="../../.gitbook/assets/image (18).png" alt="" width="375"><figcaption><p>扭转后的 8 个单元格</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0068.png" alt="" width="375"><figcaption><p>扭转后的 8 个单元格</p></figcaption></figure>
 
 这样扭转不会改变用的行列宫的数量。因为它横纵并未发生变化；而扭转也不会超出宫的范畴，所以宫的数量也不变。不过，连线会稍微变一下。
 
-<figure><img src="../../.gitbook/assets/image (19).png" alt="" width="375"><figcaption><p>扭转后的 8 个单元格的闭环连线</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0071.png" alt="" width="375"><figcaption><p>扭转后的 8 个单元格的闭环连线</p></figcaption></figure>
 
 看起来甚至都不用宫的连接了。这似乎也没毛病。
 
@@ -108,7 +108,7 @@ description: Condition of Forming Unique Loop
 
 为了不牵扯到复杂的图论知识，这里我尽量不使用图论的说法来给各位解释。先举个例子。前面的两种结构下，按照我们给定的闭环路径进行两种颜色的交替涂色，我们可以看到，这两个结构里，后者确实会存在问题：
 
-<figure><img src="../../.gitbook/assets/image (66).png" alt=""><figcaption><p>两种结构的涂色结果</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0189.png" alt=""><figcaption><p>两种结构的涂色结果</p></figcaption></figure>
 
 如图所示。左图是之前的那个画法。我们发现，它怎么看都没有问题；但是右图却存在问题：虽然连线我们保证了交替涂色，但是在同一个宫里，却有相同的涂色。
 

@@ -1,4 +1,4 @@
----
+﻿---
 description: Crosshatching
 ---
 
@@ -12,7 +12,7 @@ description: Crosshatching
 
 我们把顺序调整一下，先来说说**宫排除**（Crosshatching in Block）。
 
-<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>宫排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0213.png" alt="" width="375"><figcaption><p>宫排除</p></figcaption></figure>
 
 如图所示，我们把目光聚焦到第 7 宫里。
 
@@ -28,7 +28,7 @@ description: Crosshatching
 
 ## 行排除（Crosshatching in Row） <a href="#crosshatching-in-row" id="crosshatching-in-row"></a>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>行排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0001.png" alt="" width="375"><figcaption><p>行排除</p></figcaption></figure>
 
 如图所示，图中除了黑色的提示数外，我们还可以通过才学到的宫排除完整一些蓝色位置的填数。我们把这些蓝色的数字称为**填入数**（Modifiable）。填入数有些时候也可以参与推理过程，并不是说填上之后就放在那里“吃灰”了。当然，填入数最后会因为我们的推理顺畅而变得越来越多，因此部分填入数确实不一定会发挥它的推理的作用，所以这取决于你自己的灵活变通了。
 
@@ -44,7 +44,7 @@ description: Crosshatching
 
 下面我们来说说最后一种类型的排除。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0073.png" alt="" width="375"><figcaption></figcaption></figure>
 
 如图所示，这一次我们把目光聚焦到第 8 列（即 `c8`）。
 
@@ -66,7 +66,7 @@ description: Crosshatching
 
 为了更加详细地解释这个问题，我们使用前面行排除的题目给大家解释一下问题问的是什么。这个问题也是经常有朋友询问我的一个问题。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>还是那个行排除</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0001.png" alt="" width="375"><figcaption><p>还是那个行排除</p></figcaption></figure>
 
 如图所示。这就是刚才的那个行排除的题。有些朋友会问，我们使用了行排除的推演逻辑，用到的是下方 `r9c2` 处的 5。这个 5 虽然可以得到 `r3c8 = 5` 的推演结论，但是凭什么 `r1c8` 就不能是 5 了呢？
 
@@ -100,7 +100,7 @@ description: Crosshatching
 
 这是第一个要说的。第二个要说的是，我们怎么去找切入点。我拿一个例子给大家介绍一下，我是怎么做题目的。
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>一个宫排除的题目</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0102.png" alt="" width="375"><figcaption><p>一个宫排除的题目</p></figcaption></figure>
 
 如图所示。我们要想完成它，就需要找一个切入点。我们刚才学到的排除，不论是宫还是行列排除，全都是只跟单一的数字有关的技巧。那么我们尝试按数字，将提示数分为 9 种不同的阶段来逐一完成；如果发现某一个数无论如何也完整完成不了，也别灰心，可能题就是这么设计的，那么跳到下一个数继续做就行了。
 
@@ -110,14 +110,14 @@ description: Crosshatching
 
 先看 `b3`。我们发现似乎 `b3` 并没有合适的、关于数字 1 的结论，因为似乎 `r1c7` 和 `r1c9` 都可以填 1，那我们就跳过它，来看 `b6`。`b6` 可以填 1 的位置只有 `r4c9`。这很明显。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>b6 填 1 的位置</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0126.png" alt="" width="375"><figcaption><p>b6 填 1 的位置</p></figcaption></figure>
 
 同理，`b7` 也存在可以填 1 的位置，将其填入。
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>b7 填 1 的位置</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0150.png" alt="" width="375"><figcaption><p>b7 填 1 的位置</p></figcaption></figure>
 
 所以我们连续填出两个 1 的位置。由于 `b6` 填了 1，所以整个盘面里还剩下唯一一处 1 的位置，把他填上即可。
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>1 全部填完</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0173.png" alt="" width="375"><figcaption><p>1 全部填完</p></figcaption></figure>
 
 这样一来，所有的数字 1 全部被我们击破。此时，盘面还剩下 8 种数字没有填了，我们继续填 2 即可。后面的数字就不再演示了。这个题的难度也不大，可以自己从头做一下。

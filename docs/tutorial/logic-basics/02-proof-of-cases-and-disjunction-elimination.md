@@ -1,4 +1,4 @@
----
+﻿---
 description: Proof of Cases & Disjunction Elimination
 ---
 

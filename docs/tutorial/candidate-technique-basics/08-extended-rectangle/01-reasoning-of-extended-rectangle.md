@@ -1,4 +1,4 @@
----
+﻿---
 description: Reasoning of Extended Rectangle
 ---
 
@@ -8,7 +8,7 @@ description: Reasoning of Extended Rectangle
 
 ## 类型 1 <a href="#type-1" id="type-1"></a>
 
-<figure><img src="../../.gitbook/assets/image (67).png" alt="" width="375"><figcaption><p>基础示例</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0190.png" alt="" width="375"><figcaption><p>基础示例</p></figcaption></figure>
 
 如图所示。唯一矩形不是用两种数字吗，我们这次用三种数字。
 
@@ -18,13 +18,13 @@ description: Reasoning of Extended Rectangle
 
 现在我们使用一种和唯一矩形不同的假设模式来假设它。如果我们用字母 $$a$$、$$b$$ 和 $$c$$ 来表示三种不同的填数 1、3、5，则我们可以随意往里面塞这三种字母。注意填的时候要规避唯一矩形显而易见的矛盾：
 
-<figure><img src="../../.gitbook/assets/image (68).png" alt="" width="375"><figcaption><p>其中一种字母的假设</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0191.png" alt="" width="375"><figcaption><p>其中一种字母的假设</p></figcaption></figure>
 
 如图所示。当然，这里的字母假设并非唯一的方法。这里只是给你展示一下它可以这么安放三种数字，至于哪个字母对应哪个数字，其实并不重要。
 
 可以看出，图中有箭头标识。看出这个箭头代表什么了吗？是的，我们把字母按照箭头的方向对应位交换一下。
 
-<figure><img src="../../.gitbook/assets/image (69).png" alt="" width="375"><figcaption><p>交换后的结果</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0192.png" alt="" width="375"><figcaption><p>交换后的结果</p></figcaption></figure>
 
 如图所示。在我们左右对换后，字母的位置显然发生了变化。但是这种变换是有效的，因为它并不会改变我们横纵填数的逻辑。比如说，`c1` 里原本就是三个字母 $$abc$$，现在换成了 $$bca$$，也仅仅是把填数次序换了，实际三个数字大体上照样没有变动。同理，其他位置也都如此。
 
@@ -44,7 +44,7 @@ description: Reasoning of Extended Rectangle
 
 ## 类型 2 <a href="#type-2" id="type-2"></a>
 
-<figure><img src="../../.gitbook/assets/image (70).png" alt="" width="375"><figcaption><p>类型 2 例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0202.png" alt="" width="375"><figcaption><p>类型 2 例子</p></figcaption></figure>
 
 如图所示。刚才我们看到的例子是三行两列竖着的，这回我们来看两行三列横着的。
 
@@ -56,7 +56,7 @@ description: Reasoning of Extended Rectangle
 
 ## 类型 3 <a href="#type-3" id="type-3"></a>
 
-<figure><img src="../../.gitbook/assets/image (71).png" alt="" width="375"><figcaption><p>类型 3 例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0203.png" alt="" width="375"><figcaption><p>类型 3 例子</p></figcaption></figure>
 
 如图所示。和前文一样，我们可以立马得到 `r4c78` 里的候选数 8 和 9 是不能同时去掉的。另外，我们又发现 `r4` 上有两个单元格只有候选数 7、8、9，分别是 `r4c1` 和 `r4c6`。那么，我们可以尝试在 `r4c78` 里选择一个单元格填入 7、8、9 的数字，与 `r4c16` 配合形成显性三数组。所以这个题的结论就是 `r4c4 <> 8` 了。
 
@@ -64,7 +64,7 @@ description: Reasoning of Extended Rectangle
 
 ## 类型 4 <a href="#type-4" id="type-4"></a>
 
-<figure><img src="../../.gitbook/assets/image (72).png" alt="" width="375"><figcaption><p>类型 4 例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0204.png" alt="" width="375"><figcaption><p>类型 4 例子</p></figcaption></figure>
 
 如图所示。我们发现 `c3` 里数字 1 形成了共轭对，于是不论这两个单元格哪一个填 7，另外一个单元格都肯定是 1，于是结构用到的 6 个单元格将只有数字 1、2、7，形成矛盾。
 
@@ -84,7 +84,7 @@ description: Reasoning of Extended Rectangle
 
 拓展矩形比我们想象得要复杂一些。下面我们来看下类型 3 的变体形式。
 
-<figure><img src="../../.gitbook/assets/image (78).png" alt="" width="375"><figcaption><p>类型 3 变体，例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0210.png" alt="" width="375"><figcaption><p>类型 3 变体，例子</p></figcaption></figure>
 
 如图所示，我们发现这个类型 3 也太特殊了吧，删数都跑到结构里面去了。
 
@@ -102,7 +102,7 @@ description: Reasoning of Extended Rectangle
 
 除了类型 3，拓展矩形的类型 4 也存在一种变体形式。前面的类型 4 给我们标注的共轭对是沿着配对交换的方向在延伸。这次我们把共轭对的方向改一下，改成沿着并排的宫的方向延伸。
 
-<figure><img src="../../.gitbook/assets/image (76).png" alt="" width="375"><figcaption><p>类型 4 变体例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0208.png" alt="" width="375"><figcaption><p>类型 4 变体例子</p></figcaption></figure>
 
 如图所示。这次我们换了下共轭对的方向，删数就比正常类型要诡异一些了。
 
@@ -112,7 +112,7 @@ description: Reasoning of Extended Rectangle
 
 你肯定有所怀疑，是否这种删数规则也适用在标准的那个类型 4 里。实际上是可以的。下面这个例子就展示了它的删数情况：
 
-<figure><img src="../../.gitbook/assets/image (77).png" alt="" width="375"><figcaption><p>类型 4，删数数字不一定相同的情况</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0209.png" alt="" width="375"><figcaption><p>类型 4，删数数字不一定相同的情况</p></figcaption></figure>
 
 如图所示。不过这个例子就自己看了。
 
@@ -124,7 +124,7 @@ description: Reasoning of Extended Rectangle
 
 根据定义，因为所有前面给出的例子都是顺着并排的宫的横纵方向在延伸单元格，所以前面我们看到的都是瘦拓展矩形。下面我们来看看胖拓展矩形到底长啥样。
 
-<figure><img src="../../.gitbook/assets/image (73).png" alt="" width="375"><figcaption><p>胖拓展矩形</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0205.png" alt="" width="375"><figcaption><p>胖拓展矩形</p></figcaption></figure>
 
 如图所示。可以看出，它是类型 2。不过它的外貌确实有所不同。我们发现，同一个宫里不再是前面那样只有两个单元格，而这个似乎转了一下，每一个宫都有 3 个单元格，也只用了两个宫。
 
@@ -132,12 +132,12 @@ description: Reasoning of Extended Rectangle
 
 我们这次仍旧顺着并排宫的方向对应位进行数字交换，于是我们有下面这样的匹配方式：
 
-<figure><img src="../../.gitbook/assets/image (74).png" alt=""><figcaption><p>胖拓展矩形的交换方式</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0206.png" alt=""><figcaption><p>胖拓展矩形的交换方式</p></figcaption></figure>
 
 如图所示。这样便有了和前文一样的交换模式，于是，矛盾仍然可以形成。既然矛盾能形成，那么删数结论自然也就成立了。
 
 下面我们再来看一个例子。不过就自己推理了。
 
-<figure><img src="../../.gitbook/assets/image (75).png" alt="" width="375"><figcaption><p>胖拓展矩形，另外一个例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0207.png" alt="" width="375"><figcaption><p>胖拓展矩形，另外一个例子</p></figcaption></figure>
 
 如图所示。这里就交给你自己看了。

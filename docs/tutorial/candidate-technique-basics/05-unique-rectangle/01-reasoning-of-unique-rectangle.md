@@ -1,4 +1,4 @@
----
+﻿---
 description: Reasoning of Unique Rectangle
 ---
 
@@ -8,7 +8,7 @@ description: Reasoning of Unique Rectangle
 
 ## 推理过程 <a href="#basic-reasoning" id="basic-reasoning"></a>
 
-<figure><img src="../../.gitbook/assets/image (52).png" alt="" width="375"><figcaption><p>例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0164.png" alt="" width="375"><figcaption><p>例子</p></figcaption></figure>
 
 如图所示，我们可通过一些基本的技巧推理过程来到这里。
 
@@ -25,7 +25,7 @@ description: Reasoning of Unique Rectangle
 
 那么，我们把他填进去，就可以得到这样的盘面：
 
-<figure><img src="../../.gitbook/assets/image (53).png" alt=""><figcaption><p>两种填法对应的盘面</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0165.png" alt=""><figcaption><p>两种填法对应的盘面</p></figcaption></figure>
 
 我们可以从题目里看出，除了刚才我们说的这四个单元格外，其余的单元格都完全一样。不论是提示数，还是填入数，还是候选数，甚至候选数剩余的种类，全部一样。
 
@@ -51,7 +51,7 @@ description: Reasoning of Unique Rectangle
 
 实际上，它可以多出很多候选数出来。我们来看这个例子。
 
-<figure><img src="../../.gitbook/assets/image (55).png" alt="" width="375"><figcaption><p>不止多一个候选数的唯一矩形</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0167.png" alt="" width="375"><figcaption><p>不止多一个候选数的唯一矩形</p></figcaption></figure>
 
 这次的唯一矩形是竖着长的。
 
@@ -85,19 +85,19 @@ description: Reasoning of Unique Rectangle
 
 也就是说有这么几个情况：
 
-<figure><img src="../../.gitbook/assets/image (56).png" alt=""><figcaption><p>一些可能的摆放</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0168.png" alt=""><figcaption><p>一些可能的摆放</p></figcaption></figure>
 
 > 有人问，正方形可不可以。正方形从本质上并没有改变矩形的说法。倒不是说什么正方形是特殊的矩形，主要还是在于，前面的例子，形成矩形的原因还是因为四个单元格有两侧会相隔甚远，距离太大所以导致的。要是什么题四个格子可以摆到一起，不就正方形了么。所以从本质上来说正方形并不会有什么问题。
 
 那么我们就找一个梯形的例子看看就知道了。
 
-<figure><img src="../../.gitbook/assets/image (57).png" alt="" width="375"><figcaption><p>一个梯形</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0169.png" alt="" width="375"><figcaption><p>一个梯形</p></figcaption></figure>
 
 如图所示。可从候选数状态看出，四个单元格都是 6 和 9 了，但似乎确实好像没问题。我们看看唯一解的题是不是允许这种梯形的存在。
 
 首先，我们不妨去假设 6 和 9 的填入，于是我们可以得到两种填法：
 
-<figure><img src="../../.gitbook/assets/image (58).png" alt=""><figcaption><p>梯形结构的两种填法</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0170.png" alt=""><figcaption><p>梯形结构的两种填法</p></figcaption></figure>
 
 可以看出，此时就和前面的例子不同了：我们发现，由于 `c1` 在四个格子里只有 `r5c1` 在 `c1` 的原因，所以它填入 6 和 9 会产生的效果不同。其他的列也都如此。比如说两个填法下，`r2c1` 就是不同的：左图里只有候选数 8，而右图却有 8 和 9。再比如 `r1c2` 里，左图有 1、8、9，而右图只有 1 和 8。
 
@@ -109,13 +109,13 @@ description: Reasoning of Unique Rectangle
 
 实际上，这个摆放也是不行的。下面我们也找出一个例子予以说明。
 
-<figure><img src="../../.gitbook/assets/image (59).png" alt="" width="375"><figcaption><p>跨四个宫的矩形</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0171.png" alt="" width="375"><figcaption><p>跨四个宫的矩形</p></figcaption></figure>
 
 如图所示。可以看到这个例子也是只有 2 和 3 的候选数，根本不存在额外的数字，这就说明它也是不能用唯一矩形的技巧推理的。
 
 推理过程完全一样，直到我们发现本题里这四个单元格的 2 和 3 的排列会对单元格有不同影响时：
 
-<figure><img src="../../.gitbook/assets/image (60).png" alt=""><figcaption><p>跨四个宫的矩形的两种填法</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0183.png" alt=""><figcaption><p>跨四个宫的矩形的两种填法</p></figcaption></figure>
 
 很显然，虽然行列上并不会影响什么，但是在宫里，因为四个单元格每一个格子都占用一个宫的关系，所以填数的不同会影响到宫内的空格，于是便会造成不同的影响。例如 `r1c2` 里左图里是 3 和 7，但在右图里就变为了只有 7。
 
@@ -131,7 +131,7 @@ description: Reasoning of Unique Rectangle
 
 我们之前总是会遇到残缺的逻辑。鱼的残缺、分支匹配的残缺什么的。那么，如果唯一矩形是残缺的，那么它是否会影响推理呢？比如下面的这个例子。
 
-<figure><img src="../../.gitbook/assets/image (61).png" alt="" width="375"><figcaption><p>缺了一个数的唯一矩形</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0184.png" alt="" width="375"><figcaption><p>缺了一个数的唯一矩形</p></figcaption></figure>
 
 如盘面所示。本题的删数是 `r3c4(8)`。那么，这个数能否删掉呢？
 
@@ -139,7 +139,7 @@ description: Reasoning of Unique Rectangle
 
 这是否意味着，这个例子只有一种填法，而不会产生变换呢？并不会。这是初学者最常见的无法理解的问题。
 
-<figure><img src="../../.gitbook/assets/image (62).png" alt=""><figcaption><p>两种填法（？）</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0185.png" alt=""><figcaption><p>两种填法（？）</p></figcaption></figure>
 
 我们对比两个盘面，候选数状态一致，然后产生两种填法，对吧？可是你会问我，这个 `r3c4` 明明已经没有 2 了啊，其中的第一种填法根本就不可能出现了。
 
@@ -168,7 +168,7 @@ description: Reasoning of Unique Rectangle
 
 例如这个题。
 
-<figure><img src="../../.gitbook/assets/image (63).png" alt="" width="375"><figcaption><p>包含有唯一矩形的形态的题</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0186.png" alt="" width="375"><figcaption><p>包含有唯一矩形的形态的题</p></figcaption></figure>
 
 如图所示。可以看到，很明显的 `r12c18` 构成的唯一矩形的那个矛盾的摆放形态。你觉得这个题是否唯一解呢？
 
@@ -188,7 +188,7 @@ description: Reasoning of Unique Rectangle
 
 先来说导致无解的情况。我们随便找一个双解题，即只有两个解的题目。
 
-<figure><img src="../../.gitbook/assets/image (64).png" alt="" width="375"><figcaption><p>一个多解题</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0187.png" alt="" width="375"><figcaption><p>一个多解题</p></figcaption></figure>
 
 如盘面所示。显然我们这里有三处是可以直接得到填数 3 的。得到之后可以发现，1 和 2 是无论如何都不能确定的，因此这个题具有两个答案。
 
@@ -198,7 +198,7 @@ description: Reasoning of Unique Rectangle
 
 下面我们来看一个比较奇怪的情况，多解题使用唯一矩形会导致变为唯一解的情况。
 
-<figure><img src="../../.gitbook/assets/image (65).png" alt="" width="375"><figcaption><p>另一个多解题</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0188.png" alt="" width="375"><figcaption><p>另一个多解题</p></figcaption></figure>
 
 如盘面所示。这其实是一个多解题，虽然看起来不太像是一个多解题，但是它确实一共包含了三个不同的解，你可以试一下。
 

@@ -1,4 +1,4 @@
----
+﻿---
 description: Direct View of Fish & Law of Complement of Fish
 ---
 
@@ -14,7 +14,7 @@ description: Direct View of Fish & Law of Complement of Fish
 
 为了确保下面的内容能更加贴合直观视角，我们暂时在这一讲里把候选数隐去。
 
-<figure><img src="../../.gitbook/assets/image (36).png" alt="" width="375"><figcaption><p>直观例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0121.png" alt="" width="375"><figcaption><p>直观例子</p></figcaption></figure>
 
 例如这个题。我们要找出鱼，我们需要进行如下的操作。我先不解释，然后等我们按照这个逻辑找到之后，再去讲解它的底层原理：
 
@@ -31,7 +31,7 @@ description: Direct View of Fish & Law of Complement of Fish
 
 那么，我们这么找。
 
-<figure><img src="../../.gitbook/assets/image (37).png" alt="" width="375"><figcaption><p>直观视角</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0122.png" alt="" width="375"><figcaption><p>直观视角</p></figcaption></figure>
 
 蓝色的是等于 5 的部分，而绿色的是我们这个找出来的矩形。找出来的矩形一共用到 16 个单元格，且全部都不等于 5。并且，这些格子都不和 `r4c8` 同在一个行和列上。这里强调一遍是为了确保我们严格按照规定来走。
 
@@ -41,7 +41,7 @@ What？这就结束了？是的。我们找出的结构有效，意味着删数�
 
 那么，鱼究竟在哪里呢？如图所示。
 
-<figure><img src="../../.gitbook/assets/image (38).png" alt="" width="375"><figcaption><p>真实的鱼的位置</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0123.png" alt="" width="375"><figcaption><p>真实的鱼的位置</p></figcaption></figure>
 
 这是一个四阶鱼。
 
@@ -49,7 +49,7 @@ What？这就结束了？是的。我们找出的结构有效，意味着删数�
 
 请各位对比这两个视角，不知道你能发现到什么端倪。
 
-<figure><img src="../../.gitbook/assets/image (39).png" alt=""><figcaption><p>两种视角</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0124.png" alt=""><figcaption><p>两种视角</p></figcaption></figure>
 
 左图是这个题的直观视角（我还是把候选数打开了）。右图是鱼的视角。
 
@@ -88,7 +88,7 @@ $$
 
 鉴于删数这一步比较抽象，我们先来看一个例子。
 
-<figure><img src="../../.gitbook/assets/image (40).png" alt="" width="375"><figcaption><p>三阶鳍鱼的直观视角</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0139.png" alt="" width="375"><figcaption><p>三阶鳍鱼的直观视角</p></figcaption></figure>
 
 如图所示。这次我们看数字 2。数字 2 全盘里一共有 3 个，圈出来，并且得到 $$p = 3$$。
 
@@ -105,7 +105,7 @@ $$
 
 那么，这一次这个鱼存在在哪里呢？
 
-<figure><img src="../../.gitbook/assets/image (41).png" alt="" width="375"><figcaption><p>三阶鳍鱼的实际位置</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0140.png" alt="" width="375"><figcaption><p>三阶鳍鱼的实际位置</p></figcaption></figure>
 
 如图所示。和前面完全一样的是，我们直接把所在行当成鱼用到的行，就行了。其他的完全不动。唯一的点是，因为刚才 `r2c4` 这个地方被我们当成鱼鳍了，所以转换成鱼的视角后，这里仍然是鱼鳍。
 
@@ -115,11 +115,11 @@ $$
 
 那么例子呢？下面我们就来看一个不一样的。
 
-<figure><img src="../../.gitbook/assets/image (42).png" alt="" width="375"><figcaption><p>m = 3、n = 4</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0141.png" alt="" width="375"><figcaption><p>m = 3、n = 4</p></figcaption></figure>
 
 如图所示。这个题里的式子是 $$m + n + p = 3 + 4 + 2 = 9$$。它的鱼的长相是这样的：
 
-<figure><img src="../../.gitbook/assets/image (43).png" alt="" width="375"><figcaption><p>实际的位置</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0142.png" alt="" width="375"><figcaption><p>实际的位置</p></figcaption></figure>
 
 可以看出。虽然 $$m \neq n$$，但是鱼的视角似乎也没看出什么特殊之处。看起来它们之间的关系并不是一个特殊的用法。
 
@@ -133,11 +133,11 @@ $$
 
 先来一个普通鱼。
 
-<figure><img src="../../.gitbook/assets/image (44).png" alt="" width="375"><figcaption><p>用三阶鱼讲互补性</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0143.png" alt="" width="375"><figcaption><p>用三阶鱼讲互补性</p></figcaption></figure>
 
 这个是一个很普通的三阶鱼结构，没有鱼鳍，删数也非常容易理解。要找出这个鱼的直观视角，其实只需要我们反推即可，不用我们从头开始看。因为刚才我们说，直观视角的本质是找矩形，矩形刚好是用来排除掉鱼的视角里的使用格的，所以它的直观视角非常容易就可以看出来：
 
-<figure><img src="../../.gitbook/assets/image (45).png" alt="" width="375"><figcaption><p>前面这个三阶鱼的直观视角</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0144.png" alt="" width="375"><figcaption><p>前面这个三阶鱼的直观视角</p></figcaption></figure>
 
 这是刚才那个鱼的直观视角。可以看出还是比较好看到的。因为直接在三个行里找一个矩形就行。而且我们都知道是三阶鱼了，所以只需要保证找出来的矩形的行数是 3 就行。
 
@@ -147,7 +147,7 @@ $$
 
 嘿，还真有一个鱼：
 
-<figure><img src="../../.gitbook/assets/image (46).png" alt="" width="375"><figcaption><p>按列看的三阶鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0145.png" alt="" width="375"><figcaption><p>按列看的三阶鱼</p></figcaption></figure>
 
 这可太神奇了。矩形的用途不仅仅只用来横着看，其实也可以竖着看。这便是直观视角所要表达的一个鱼的特征：鱼的互补性。
 
@@ -155,11 +155,11 @@ $$
 
 我们再看一个有鱼鳍的例子。
 
-<figure><img src="../../.gitbook/assets/image (47).png" alt="" width="375"><figcaption><p>带有鱼鳍的鱼的直观视角</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0146.png" alt="" width="375"><figcaption><p>带有鱼鳍的鱼的直观视角</p></figcaption></figure>
 
 我们横着和竖着分开看，就能得到两个带有鱼鳍的鱼。
 
-<figure><img src="../../.gitbook/assets/image (48).png" alt=""><figcaption><p>两个互补的鳍鱼</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0147.png" alt=""><figcaption><p>两个互补的鳍鱼</p></figcaption></figure>
 
 这次我故意找了个 $$m \neq n$$ 的题展示。因为矩形的长宽不同，所以互补的两个鳍鱼的规格其实并不相同，但是它们的鱼鳍一样，删数也完全一样。本质也都是同一个直观视角派生出来的。
 
@@ -179,14 +179,14 @@ $$
 
 下面给各位展示一些直观鱼的实际例子。请自行找出它里面的实际的鱼的视角。
 
-<figure><img src="../../.gitbook/assets/image (49).png" alt="" width="375"><figcaption><p>题目 1</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0148.png" alt="" width="375"><figcaption><p>题目 1</p></figcaption></figure>
 
 这个题有两个鱼鳍。
 
-<figure><img src="../../.gitbook/assets/image (50).png" alt="" width="375"><figcaption><p>题目 2</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0162.png" alt="" width="375"><figcaption><p>题目 2</p></figcaption></figure>
 
 这个题规格很大。
 
-<figure><img src="../../.gitbook/assets/image (51).png" alt="" width="375"><figcaption><p>题目 3</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0163.png" alt="" width="375"><figcaption><p>题目 3</p></figcaption></figure>
 
 这个题甚至没有等于 4 的提示数或填入数。

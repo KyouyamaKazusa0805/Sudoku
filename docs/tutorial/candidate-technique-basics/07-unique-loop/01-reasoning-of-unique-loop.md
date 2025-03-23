@@ -1,4 +1,4 @@
----
+﻿---
 description: Reasoning of Unique Loop
 ---
 
@@ -6,7 +6,7 @@ description: Reasoning of Unique Loop
 
 ## 类型 1 <a href="#type-1" id="type-1"></a>
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt="" width="375"><figcaption><p>类型 1</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0181.png" alt="" width="375"><figcaption><p>类型 1</p></figcaption></figure>
 
 如图所示。我们把唯一矩形的结构从 4 个单元格拓展到 6 个单元格，但是思路没有多大的变化。
 
@@ -18,7 +18,7 @@ description: Reasoning of Unique Loop
 
 这一点很重要，它和唯一矩形除了规格上不同，其他地方则完全一样。得到这一点后我们就可以知道，这个结构它也能形成和唯一矩形一样的两种填法，而不影响盘面任何其他的地方的候选数的变动，所以，这种结构也可以形成那种矛盾。就像这样：
 
-<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption><p>产生矛盾的两种填法</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0200.png" alt=""><figcaption><p>产生矛盾的两种填法</p></figcaption></figure>
 
 于是，假设就并不成立。我们最初的假设是让 `r1c9(4)` 不存在（换言之就是 `r1c9` 只保留 2 或 9 两个候选数）。既然它不对，那么对的结论就自然是 `r1c9 <> 29` 了。所以，这便是这个技巧可以得到的结论。
 
@@ -28,7 +28,7 @@ description: Reasoning of Unique Loop
 
 ## 类型 2 <a href="#type-2" id="type-2"></a>
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt="" width="375"><figcaption><p>类型 2</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0218.png" alt="" width="375"><figcaption><p>类型 2</p></figcaption></figure>
 
 如图所示。因为本身唯一环结构用的格子就先天比唯一矩形要多，所以唯一环就不分所谓类型 2 还是类型 5 了，统统都归纳在类型 2 里。
 
@@ -40,7 +40,7 @@ description: Reasoning of Unique Loop
 
 ## 类型 3 <a href="#type-3" id="type-3"></a>
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt="" width="375"><figcaption><p>类型 3</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0233.png" alt="" width="375"><figcaption><p>类型 3</p></figcaption></figure>
 
 如图所示。`r1c3(5)` 和 `r2c3(25)` 三个候选数不能同时从盘面里消失，否则会出现矛盾。所以我们只能拿出其中一个数，和 `r8c3` 搭配起来构成显性数对。
 
@@ -50,7 +50,7 @@ description: Reasoning of Unique Loop
 
 ## 类型 4 <a href="#type-4" id="type-4"></a>
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt="" width="375"><figcaption><p>类型 4</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0020.png" alt="" width="375"><figcaption><p>类型 4</p></figcaption></figure>
 
 如图所示。我们发现 `b3` 里存在关于 2 的共轭对，且恰好在结构用到的其中两个单元格上。
 

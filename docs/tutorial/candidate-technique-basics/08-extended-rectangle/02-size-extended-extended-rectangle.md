@@ -1,4 +1,4 @@
----
+﻿---
 description: Size-Extended Extended Rectangle
 ---
 
@@ -8,7 +8,7 @@ description: Size-Extended Extended Rectangle
 
 ## 8 个单元格的拓展矩形 <a href="#size-8" id="size-8"></a>
 
-<figure><img src="../../.gitbook/assets/image (79).png" alt="" width="375"><figcaption><p>8 格拓展矩形</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0211.png" alt="" width="375"><figcaption><p>8 格拓展矩形</p></figcaption></figure>
 
 如图所示。我们关注 `c12` 里图中高亮的 8 个单元格。如果我们让 `r8c1` 只有候选数 6 和 7，则这 8 个单元格将会左右形成互换，造成拓展矩形的矛盾。只不过这次交换逻辑，不再只假设三个字母，而是要用到四个数字，即四个字母 $$abcd$$ 了。
 
@@ -16,7 +16,7 @@ description: Size-Extended Extended Rectangle
 
 ## 10 个单元格的拓展矩形 <a href="#size-10" id="size-10"></a>
 
-<figure><img src="../../.gitbook/assets/image (80).png" alt="" width="375"><figcaption><p>10 格拓展矩形</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0219.png" alt="" width="375"><figcaption><p>10 格拓展矩形</p></figcaption></figure>
 
 如图所示，这个题用到类型 2 的思路。
 
@@ -28,7 +28,7 @@ description: Size-Extended Extended Rectangle
 
 和唯一环不同，因为拓展矩形会在并排的宫里拓展单元格，因此这会造成类型 3、4 更加不常见。我尚没有找到合适的类型 3、4 的用例，所以仍然给各位展示类型 1、2 的情况。
 
-<figure><img src="../../.gitbook/assets/image (81).png" alt="" width="375"><figcaption><p>12 格拓展矩形</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0220.png" alt="" width="375"><figcaption><p>12 格拓展矩形</p></figcaption></figure>
 
 如图所示。这次我们把结构放躺下了。如果我们让 `r6c7` 只剩下数字 1、3、4、8（即不要那个 5），则上下对应位置的填数则可以形成交换，于是造成两种填法的矛盾。
 
@@ -36,7 +36,7 @@ description: Size-Extended Extended Rectangle
 
 ## 14 个单元格的拓展矩形 <a href="#size-14" id="size-14"></a>
 
-<figure><img src="../../.gitbook/assets/image (82).png" alt="" width="375"><figcaption><p>14 格拓展矩形</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0221.png" alt="" width="375"><figcaption><p>14 格拓展矩形</p></figcaption></figure>
 
 如图所示。这个题的结论是 `r8c2 <> 1349`。不过就自己看了。
 

@@ -1,4 +1,4 @@
-# Table of contents
+﻿# Table of contents
 
 * [Index](README.md)
 

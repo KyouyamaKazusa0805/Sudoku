@@ -1,4 +1,4 @@
----
+﻿---
 description: Drawing Command Line
 ---
 
@@ -8,7 +8,7 @@ description: Drawing Command Line
 
 ## 外貌 <a href="#looking" id="looking"></a>
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>外貌</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0244.png" alt=""><figcaption><p>外貌</p></figcaption></figure>
 
 ## 命令行语法 <a href="#command-line-syntax" id="command-line-syntax"></a>
 
@@ -47,7 +47,7 @@ candidate !o r5c5(9)
 
 可以产生如下的输出内容：
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0016.png" alt=""><figcaption></figcaption></figure>
 
 ### 载入题目 <a href="#load-puzzle" id="load-puzzle"></a>
 
@@ -137,7 +137,7 @@ link <color-identifier> <link-shape> <start-candidates> <end-candidates> [<extra
 
 对于上述提及的坐标，你需要使用要么 RxCy 表示、要么 K9 表示，要么 Excel 表示的方式来呈现他们。具体哪一个取决于你在设置页里配置的那个。
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>设置页里配置的坐标类型</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0086.png" alt=""><figcaption><p>设置页里配置的坐标类型</p></figcaption></figure>
 
 ## 颜色标识符语法 <a href="#color-identifier-syntax" id="color-identifier-syntax"></a>
 

@@ -37,16 +37,16 @@ Get-ChildItem -Path (Split-Path $tutorialMarkdownDir) -Filter *.md -Recurse | Fo
 
     # Traverse all original file names, and update them up.
     foreach ($oldName in $oldToNewMap.Keys) {
-        $oldPath = "../.gitbook/assets/$oldName"
-        $newPath = "../.gitbook/assets/$($oldToNewMap[$oldName])"
-        $escapedOldPath = [regex]::Escape($oldPath)
-        $content = $content -replace $escapedOldPath, $newPath
+        [string]$oldPath = "../.gitbook/assets/$oldName"
+        [string]$newPath = "../.gitbook/assets/$($oldToNewMap[$oldName])"
+
+        # Use 'string.Replace' method to replace values.
+        # Do not use '-replace' operator because here the path should be escaped in order to keep regular expression behaving well,
+        # which increases complexity of implementation.
+        $content = $content.Replace($oldPath, $newPath)
     }
 
     # Write them back to Markdown files.
     # Please note that the option "-Encoding UTF8" is required because the default file generated will be UTF-8 with BOM, which is not expected.
     $content | Set-Content $_.FullName -NoNewline -Encoding UTF8
 }
-
-# Output result information.
-Write-Host "Finished."

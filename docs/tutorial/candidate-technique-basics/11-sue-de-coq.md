@@ -1,4 +1,4 @@
----
+﻿---
 description: Sue de Coq
 ---
 
@@ -8,7 +8,7 @@ description: Sue de Coq
 
 ## 标准类型 <a href="#basic-type" id="basic-type"></a>
 
-<figure><img src="../.gitbook/assets/image (5).png" alt="" width="375"><figcaption><p>标准类型</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0161.png" alt="" width="375"><figcaption><p>标准类型</p></figcaption></figure>
 
 如图所示。请着重关注 `b6` 和 `c8` 里的单元格。
 
@@ -26,19 +26,19 @@ description: Sue de Coq
 
 下面我们来看看另外一个例子。这是之前欠一四数组的例子，不过我们这次使用这个技巧来解决它。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt="" width="375"><figcaption><p>另外一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0014.png" alt="" width="375"><figcaption><p>另外一个例子</p></figcaption></figure>
 
 如图所示。这个例子就自己推理了。推理方式和前面完全一样，只是位置稍微改了一下而已。
 
 别急。这种结构还挺有趣的。我们来看一下，这个结构的极端例子。
 
-<figure><img src="../.gitbook/assets/image (6).png" alt="" width="375"><figcaption><p>最大规格的融合待定数组</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0182.png" alt="" width="375"><figcaption><p>最大规格的融合待定数组</p></figcaption></figure>
 
 如图所示。这个例子也是标准版的，不过用的单元格会特别多。实际上它是最大的情况。因为数字需要不跨区不重复地出现，所以很容易就想得到，这种结构最大的规格肯定是 9 个单元格，把从 1 到 9 全部数字都用一遍。
 
 ## 孤立数字类型 <a href="#isolated-digit-type" id="isolated-digit-type"></a>
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt="" width="375"><figcaption><p>孤立数字类型</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0085.png" alt="" width="375"><figcaption><p>孤立数字类型</p></figcaption></figure>
 
 如图所示。这次我们发现配色多用了一种颜色：蓝色的数字 4。
 
@@ -54,13 +54,13 @@ description: Sue de Coq
 
 下面我们再来看一个例子。
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt="" width="375"><figcaption><p>孤立数字，另外一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0113.png" alt="" width="375"><figcaption><p>孤立数字，另外一个例子</p></figcaption></figure>
 
 如图所示。这个例子也希望你自己推理。
 
 ## 自噬类型 <a href="#cannibal-type" id="cannibal-type"></a>
 
-<figure><img src="../.gitbook/assets/image (4) (1).png" alt="" width="375"><figcaption><p>自噬类型</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0137.png" alt="" width="375"><figcaption><p>自噬类型</p></figcaption></figure>
 
 如图所示。这个例子会稍微改动一下前面融合待定数组的推理过程。
 
@@ -81,7 +81,7 @@ description: Sue de Coq
 
 下面我们再来看一个例子。
 
-<figure><img src="../.gitbook/assets/image (5) (1).png" alt="" width="375"><figcaption><p>自噬类型，另外一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0160.png" alt="" width="375"><figcaption><p>自噬类型，另外一个例子</p></figcaption></figure>
 
 如图所示。这个例子就自己推理了。
 

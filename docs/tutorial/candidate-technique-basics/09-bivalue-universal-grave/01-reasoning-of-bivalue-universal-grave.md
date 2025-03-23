@@ -1,4 +1,4 @@
----
+﻿---
 description: Reasoning of Bi-value Universal Grave
 ---
 
@@ -10,7 +10,7 @@ description: Reasoning of Bi-value Universal Grave
 
 ## 推理过程 <a href="#reasoning" id="reasoning"></a>
 
-<figure><img src="../../.gitbook/assets/image (83).png" alt="" width="375"><figcaption><p>类型 1 例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0222.png" alt="" width="375"><figcaption><p>类型 1 例子</p></figcaption></figure>
 
 如图所示。我们时不时在做题的时候会遇到这种匪夷所思的题目状态，导致我们无法进行下去。这样的盘面一般都具有如下的两个特征：
 
@@ -48,7 +48,7 @@ description: Reasoning of Bi-value Universal Grave
 
 当有些时候你无法只凭借理论得到你想要的答案时，你就会提出这种问题。显然你并不相信前面的理论是合理的。那么我们来看看为什么会引发矛盾。
 
-<figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption><p>前面两种填法引发的矛盾</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0223.png" alt=""><figcaption><p>前面两种填法引发的矛盾</p></figcaption></figure>
 
 如图所示。这是前面那个题。我尝试去掉了 `r8c9(1)` 后，填入了 7 和 9 并产生了这样两个盘面。很显然，在假设期间，我并未针对于题目具体哪一个单元格作为起始点假设作限制，所以前面举例用的是 `r2c1` 来说的，不过这里我们还是拿 `r8c9` 来作为起始点假设会稍微好理解一点。
 
@@ -66,7 +66,7 @@ description: Reasoning of Bi-value Universal Grave
 
 是的。我觉得你凭空很难想出这种盘面的长相。下面我带你看看，什么样的盘面不能使用这个技巧。
 
-<figure><img src="../../.gitbook/assets/image (85).png" alt="" width="375"><figcaption><p>第一个不能用这个技巧的例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0224.png" alt="" width="375"><figcaption><p>第一个不能用这个技巧的例子</p></figcaption></figure>
 
 这是第一个例子。可以看出在，这个题确实满足第一点要求。但第二点似乎并不满足：数字 9 在 `r7` 上出现了三次，但出现的位置并没有正常落在**三值格**（Tri-value Cell）上，即 `r7c6`。
 
@@ -76,7 +76,7 @@ description: Reasoning of Bi-value Universal Grave
 
 这是一个例子。我们再来看一个例子。
 
-<figure><img src="../../.gitbook/assets/image (86).png" alt="" width="375"><figcaption><p>第二个不能用这个技巧的例子</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0225.png" alt="" width="375"><figcaption><p>第二个不能用这个技巧的例子</p></figcaption></figure>
 
 如图所示。这个题看起来正常了不少，`r7` 上数字 3 确实出现了三次，而也确实存在三值格 `r7c5`。似乎看起来这个多出来的 3 一定会在 `r7c5` 上。其实不然。可以看到，在 `c5` 上，数字 3 仍然就只出现了两次，并没有出现三次，还是两次。
 

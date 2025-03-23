@@ -1,4 +1,4 @@
----
+﻿---
 description: Looking of Direct & Partial-Marking Techniques in Full-Marking Grids
 ---
 
@@ -12,7 +12,7 @@ description: Looking of Direct & Partial-Marking Techniques in Full-Marking Grid
 
 先说唯一余数。
 
-<figure><img src="../.gitbook/assets/image (24).png" alt="" width="375"><figcaption><p>唯一余数用例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0095.png" alt="" width="375"><figcaption><p>唯一余数用例</p></figcaption></figure>
 
 可以看到，唯一余数的结论是 `r9c1 = 1`。不过如果你忽略掉圆圈的话，其实可以看到的是，这个位置其实就一个候选数。这便是全标状态下最简单的情况。候选数的由来不就是数数么。既然只有一个候选数，那么自然它就是唯一余数了。
 
@@ -20,7 +20,7 @@ description: Looking of Direct & Partial-Marking Techniques in Full-Marking Grid
 
 ## 排除 <a href="#hidden-single" id="hidden-single"></a>
 
-<figure><img src="../.gitbook/assets/image (25).png" alt="" width="375"><figcaption><p>排除用例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0096.png" alt="" width="375"><figcaption><p>排除用例</p></figcaption></figure>
 
 如图所示，排除的话会稍微麻烦点。
 
@@ -28,7 +28,7 @@ description: Looking of Direct & Partial-Marking Techniques in Full-Marking Grid
 
 ## 区块 <a href="#locked-candidates" id="locked-candidates"></a>
 
-<figure><img src="../.gitbook/assets/image (26).png" alt="" width="375"><figcaption><p>宫区块用例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0097.png" alt="" width="375"><figcaption><p>宫区块用例</p></figcaption></figure>
 
 如图所示，直观视角我们可以使用数字 4 来作排除。不过在全标下，我们需要看的是候选数的分布。在 `b1` 里，数字 4 只出现在 `r12c2` 里，这样就有了区块的概念了。
 
@@ -36,27 +36,27 @@ description: Looking of Direct & Partial-Marking Techniques in Full-Marking Grid
 
 这个是宫区块，因为区块下在 `b1` 里。下面给各位看一则行列区块的例子。这个例子给各位自己看了吧。
 
-<figure><img src="../.gitbook/assets/image (27).png" alt="" width="375"><figcaption><p>行列区块用例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0098.png" alt="" width="375"><figcaption><p>行列区块用例</p></figcaption></figure>
 
 ## 显性数组 <a href="#naked-subset" id="naked-subset"></a>
 
 下面我们来看显性数组。
 
-<figure><img src="../.gitbook/assets/image (28).png" alt="" width="375"><figcaption><p>显性数对用例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0099.png" alt="" width="375"><figcaption><p>显性数对用例</p></figcaption></figure>
 
 如图所示，这个题的结论是 `r46c3 <> 69`。当然很明显 `r4c3` 也没有 9，只是这里我们用这个结论把它表达写简单一些。
 
 下面我们来看一下显性三数组和显性四数组。
 
-<figure><img src="../.gitbook/assets/image (30).png" alt="" width="375"><figcaption><p>显性三数组用例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0115.png" alt="" width="375"><figcaption><p>显性三数组用例</p></figcaption></figure>
 
 然后我们来看显性四数组。
 
-<figure><img src="../.gitbook/assets/image (31).png" alt="" width="375"><figcaption><p>显性四数组用例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0116.png" alt="" width="375"><figcaption><p>显性四数组用例</p></figcaption></figure>
 
 ## 隐性数组 <a href="#hidden-subset" id="hidden-subset"></a>
 
-<figure><img src="../.gitbook/assets/image (29).png" alt="" width="375"><figcaption><p>隐性数对用例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0100.png" alt="" width="375"><figcaption><p>隐性数对用例</p></figcaption></figure>
 
 如图所示，这是个隐性数对。从全标下来说，`b6` 填入 5 和 8 的位置只有 `r56c7` 两个单元格。所以，`r56c7` 不能填入其他任何的数字。
 
@@ -66,11 +66,11 @@ description: Looking of Direct & Partial-Marking Techniques in Full-Marking Grid
 
 下面我们来看隐性三数组和隐性四数组。先是隐性三数组。
 
-<figure><img src="../.gitbook/assets/image (32).png" alt="" width="375"><figcaption><p>隐性三数组用例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0117.png" alt="" width="375"><figcaption><p>隐性三数组用例</p></figcaption></figure>
 
 再来看看隐性四数组。
 
-<figure><img src="../.gitbook/assets/image (33).png" alt="" width="375"><figcaption><p>隐性四数组用例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0118.png" alt="" width="375"><figcaption><p>隐性四数组用例</p></figcaption></figure>
 
 ## 数组显隐性互补的性质 <a href="#complementary-property-of-subset" id="complementary-property-of-subset"></a>
 
@@ -82,13 +82,13 @@ description: Looking of Direct & Partial-Marking Techniques in Full-Marking Grid
 
 下面我们来看一则例子，以说明这两个最终是等价的。
 
-<figure><img src="../.gitbook/assets/image (34).png" alt=""><figcaption><p>互补例子 1</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0119.png" alt=""><figcaption><p>互补例子 1</p></figcaption></figure>
 
 请看这个题目。这个题目存在一个隐性数对结构（左图），删除的数字是图中红色的 6 个数字；而这图同样的宫内存在一个显性四数组（右图），删除的也是这 6 个数字。
 
 这冥冥之中告诉我们它很有可能不是巧合，就是故意这么安排的。那么，这是题目的设计如此么？我们再来看一个例子。
 
-<figure><img src="../.gitbook/assets/image (35).png" alt=""><figcaption><p>互补例子 2</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0120.png" alt=""><figcaption><p>互补例子 2</p></figcaption></figure>
 
 如图所示。这是另外一个题目。这个题目左图有一个显性数对，它的结论是这三个删数；右图是在同样的行上存在一个隐性三数组，它的结论仍然是这三个删数。
 
@@ -151,7 +151,7 @@ $$
 
 有些时候，互补过去可能看起来并不是那么正常。下面我们来看一则例子。
 
-<figure><img src="../.gitbook/assets/image (15) (1) (1).png" alt=""><figcaption><p>互补不正常的情况</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0057.png" alt=""><figcaption><p>互补不正常的情况</p></figcaption></figure>
 
 如图所示，左边是一个隐性数对。按道理来说，取出其他空格就可以直接转为显性四数组（因为空格就 6 个，2 + 4 = 6）。
 

@@ -1,4 +1,4 @@
----
+﻿---
 description: Extended Subset Principle
 ---
 
@@ -10,7 +10,7 @@ description: Extended Subset Principle
 
 ## 基本推理 <a href="#reasoning" id="reasoning"></a>
 
-<figure><img src="../.gitbook/assets/image (1).png" alt="" width="375"><figcaption><p>伪数组，第一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0016.png" alt="" width="375"><figcaption><p>伪数组，第一个例子</p></figcaption></figure>
 
 如图所示。可以看到，这个结构一共用了 5 个单元格：`r5c2359` 和 `r6c2`。数一下里面的数字种类，一共也有 5 个：1、4、5、7、8。
 
@@ -28,7 +28,7 @@ description: Extended Subset Principle
 
 下面我们再来看一个例子。这个例子是 4 个单元格。
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption><p>伪数组，第二个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0015.png" alt="" width="375"><figcaption><p>伪数组，第二个例子</p></figcaption></figure>
 
 如图所示。这个例子就自己看了，逻辑完全和前面的一样。
 
@@ -36,7 +36,7 @@ description: Extended Subset Principle
 
 下面我们来看一下，伪数组在行和列上的情况。
 
-<figure><img src="../.gitbook/assets/image (2).png" alt="" width="375"><figcaption><p>伪数组，第三个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0086.png" alt="" width="375"><figcaption><p>伪数组，第三个例子</p></figcaption></figure>
 
 如图所示。数一下数字的种类数：1、2、3、4、6 一共有五种，再数数单元格数量：`r1c156, r67c5` 也是五个。非常 nice，它和之前的例子完全一样，只是把宫给干掉了，改成了行+列的组合。所以它满足跨区数组的第一点。
 
@@ -48,7 +48,7 @@ description: Extended Subset Principle
 
 前面我们介绍的都还算比较简单。下面我们来看分析起来稍微复杂一些的伪数组。
 
-<figure><img src="../.gitbook/assets/image (3).png" alt="" width="375"><figcaption><p>分析稍微复杂一点的伪数组，第一个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0114.png" alt="" width="375"><figcaption><p>分析稍微复杂一点的伪数组，第一个例子</p></figcaption></figure>
 
 如图所示。仔细数一下单元格数和数字种类数就可以发现，这个例子直接就不相等了。数字种类数有 4、5、7、8 共四种，而单元格一共有 `r1c15, r2c179` 共五个单元格。
 
@@ -60,7 +60,7 @@ description: Extended Subset Principle
 
 那是否存在两种数都能删的情况呢？显然这个答案肯定是“是”。下面我们就来看一个这样的例子。
 
-<figure><img src="../.gitbook/assets/image (4).png" alt="" width="375"><figcaption><p>分析稍微复杂一点的伪数组，第二个例子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0138.png" alt="" width="375"><figcaption><p>分析稍微复杂一点的伪数组，第二个例子</p></figcaption></figure>
 
 如图所示。这个例子里一共用了 6 个单元格：`r456c9, r589c8`，数字种类数则是 1、3、4、7、8 共五种数字。显然，3、4、7 是不能跨区的，所以这三个数字最多只能出现一次。
 

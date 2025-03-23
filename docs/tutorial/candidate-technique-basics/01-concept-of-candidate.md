@@ -1,4 +1,4 @@
----
+﻿---
 description: Concept of Candidate
 ---
 
@@ -12,7 +12,7 @@ description: Concept of Candidate
 
 我们拿这个题来举例。
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption><p>候选数举例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0152.png" alt="" width="375"><figcaption><p>候选数举例</p></figcaption></figure>
 
 如图所示。别看着里面密密麻麻的数字就产生了惧怕的感觉。
 
@@ -53,4 +53,4 @@ description: Concept of Candidate
 
 即这个分类：
 
-<figure><img src="../.gitbook/assets/image (23).png" alt=""><figcaption><p>技巧的分类图</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0094.png" alt=""><figcaption><p>技巧的分类图</p></figcaption></figure>
