@@ -125,6 +125,28 @@
         <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.HandleCore(System.Int32,Sudoku.SymmetricType,System.Int32)">
             <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
+        <member name="T:Sudoku.CommandLine.Commands.GenerateHardCommand">
+            <summary>
+            Provides a generate hard puzzles command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.GenerateHardCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateHardCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateHardCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.HandleCore(System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CommandLine.Commands.GeneratePatternCommand">
             <summary>
             Provides generate pattern command.
