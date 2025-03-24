@@ -10,6 +10,7 @@ global using Sudoku.CommandLine.Arguments;
 global using Sudoku.CommandLine.Commands;
 global using Sudoku.CommandLine.Options;
 global using Sudoku.Concepts;
+global using Sudoku.Concepts.Coordinates.Formatting;
 global using Sudoku.Generating;
 global using Sudoku.Shuffling.Minlex;
 global using Sudoku.Shuffling.Transforming;

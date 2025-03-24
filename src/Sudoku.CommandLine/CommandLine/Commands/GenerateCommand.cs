@@ -10,7 +10,8 @@ public sealed class GenerateCommand : Command, ICommand
 	/// </summary>
 	public GenerateCommand() : base("generate", "Generate a puzzle using the specified way")
 		=> this.AddRange(
-			new GenerateDefaultCommand()
+			new GenerateDefaultCommand(),
+			new GeneratePatternCommand()
 		);
 
 
