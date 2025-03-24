@@ -94,13 +94,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Commands.GenerateCommand"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.GenerateCommand.OptionsCore">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.GenerateCommand.ArgumentsCore">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.GenerateCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="P:Sudoku.CommandLine.Commands.GenerateCommand.CommandsCore">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.GenerateDefaultCommand">
@@ -191,6 +185,16 @@
             This method only provides a constraint on implementation for multiple arguments with different types.
             <b>Do not consume this method or expose it outside.</b>
             </para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.Commands.INonLeafCommand">
+            <summary>
+            Provides a command that contains children commands (subcommands).
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.INonLeafCommand.CommandsCore">
+            <summary>
+            Indicates the subcommands to add.
             </summary>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.MinlexCommand">
