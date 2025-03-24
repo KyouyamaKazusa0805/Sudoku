@@ -103,9 +103,6 @@
         <member name="M:Sudoku.CommandLine.Commands.GenerateCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.GenerateCommand.HandleCore">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
-        </member>
         <member name="T:Sudoku.CommandLine.Commands.GenerateDefaultCommand">
             <summary>
             Represents a generate default command.
@@ -195,19 +192,6 @@
         </member>
         <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Solving.SolverType)">
             <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
-        </member>
-        <member name="T:Sudoku.CommandLine.Commands.TimeoutOption">
-            <summary>
-            Provides a timeout option.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.TimeoutOption.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.CommandLine.Commands.TimeoutOption"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.TimeoutOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.TransformCommand">
             <summary>
@@ -346,6 +330,19 @@
             </summary>
         </member>
         <member name="M:Sudoku.CommandLine.Options.SymmetricTypeOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#SymmetricType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.TimeoutOption">
+            <summary>
+            Provides a timeout option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TimeoutOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.TimeoutOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TimeoutOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.TransformatingMethodOption">

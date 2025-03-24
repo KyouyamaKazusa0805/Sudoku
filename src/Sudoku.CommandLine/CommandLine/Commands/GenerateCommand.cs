@@ -22,12 +22,5 @@ public sealed class GenerateCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	static void ICommand.HandleCore(__arglist)
-	{
-	}
-
-	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private static void HandleCore()
-	{
-	}
+	static void ICommand.HandleCore(__arglist) => throw new NotImplementedException();
 }

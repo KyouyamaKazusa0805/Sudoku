@@ -1,4 +1,4 @@
-namespace Sudoku.CommandLine.Commands;
+namespace Sudoku.CommandLine.Options;
 
 /// <summary>
 /// Provides a timeout option.
