@@ -31,4 +31,17 @@ public static class CommandExtensions
 			@this.Add(argument);
 		}
 	}
+
+	/// <summary>
+	/// Adds a list of <see cref="Command"/> instances into the command.
+	/// </summary>
+	/// <param name="this">The command.</param>
+	/// <param name="subcommands">The subcommands.</param>
+	public static void AddRange(this Command @this, params ReadOnlySpan<Command> subcommands)
+	{
+		foreach (var subcommand in subcommands)
+		{
+			@this.Add(subcommand);
+		}
+	}
 }

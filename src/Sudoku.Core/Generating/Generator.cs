@@ -10,6 +10,8 @@
 // 
 // This code is actually a Java port of code posted by Glenn Fowler in the Sudoku Player's Forum (http://www.setbb.com/sudoku).
 // Many thanks for letting me use it!
+//
+// Link: https://sourceforge.net/p/hodoku/code/HEAD/tree/HoDoKu/trunk/src/generator/SudokuGenerator.java
 
 namespace Sudoku.Generating;
 

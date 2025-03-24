@@ -84,6 +84,50 @@
         <member name="M:Sudoku.CommandLine.Commands.CompareCommand.HandleCore(System.ValueTuple{Sudoku.Concepts.Grid,Sudoku.Concepts.Grid},Puzzles.Meta.Transforming.BoardComparison)">
             <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
+        <member name="T:Sudoku.CommandLine.Commands.GenerateCommand">
+            <summary>
+            Represents a generate command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.GenerateCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateCommand.HandleCore">
+            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Commands.GenerateDefaultCommand">
+            <summary>
+            Represents a generate default command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.GenerateDefaultCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateDefaultCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateDefaultCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.HandleCore(System.Int32,Sudoku.SymmetricType,System.Int32)">
+            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
+        </member>
         <member name="T:Sudoku.CommandLine.Commands.ICommand">
             <summary>
             Represents a command.
@@ -152,6 +196,19 @@
         <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Solving.SolverType)">
             <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
+        <member name="T:Sudoku.CommandLine.Commands.TimeoutOption">
+            <summary>
+            Provides a timeout option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.TimeoutOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.TimeoutOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.TimeoutOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CommandLine.Commands.TransformCommand">
             <summary>
             Represents transform command.
@@ -205,6 +262,19 @@
             </summary>
             <param name="result">The result.</param>
             <returns>The result instance parsed.</returns>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.CluesCountOption">
+            <summary>
+            Represents a clues count option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.CluesCountOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.CluesCountOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.CluesCountOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.ComparingMethodOption">
             <summary>
@@ -265,6 +335,19 @@
         <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
+        <member name="T:Sudoku.CommandLine.Options.SymmetricTypeOption">
+            <summary>
+            Represents a symmetric type option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.SymmetricTypeOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.SymmetricTypeOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.SymmetricTypeOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#SymmetricType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CommandLine.Options.TransformatingMethodOption">
             <summary>
             Provides a transforming method option.
@@ -300,6 +383,13 @@
             </summary>
             <param name="this">The command.</param>
             <param name="arguments">The arguments.</param>
+        </member>
+        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,System.ReadOnlySpan{System.CommandLine.Command})">
+            <summary>
+            Adds a list of <see cref="T:System.CommandLine.Command"/> instances into the command.
+            </summary>
+            <param name="this">The command.</param>
+            <param name="subcommands">The subcommands.</param>
         </member>
     </members>
 </doc>

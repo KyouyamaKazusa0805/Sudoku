@@ -18,7 +18,8 @@ public static class CommandLineParser
 			new SolveCommand(),
 			new MinlexCommand(),
 			new CompareCommand(),
-			new TransformCommand()
+			new TransformCommand(),
+			new GenerateCommand()
 		];
 		RootCommand.Description = "Sudoku Command Line";
 	}
