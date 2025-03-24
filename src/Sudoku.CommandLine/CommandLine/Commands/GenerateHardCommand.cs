@@ -35,7 +35,7 @@ public sealed class GenerateHardCommand : Command, ICommand
 	private void HandleCore(int timeout)
 	{
 		var generator = new HardPatternPuzzleGenerator();
-		using var cts = new CancellationTokenSource(timeout);
+		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		var result = generator.Generate(cancellationToken: cts.Token);
 		if (result.IsUndefined)
 		{

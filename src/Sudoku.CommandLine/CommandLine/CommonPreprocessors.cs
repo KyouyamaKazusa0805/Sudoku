@@ -23,4 +23,15 @@ internal static class CommonPreprocessors
 		Console.WriteLine($"\e[31m{text}\e[0m");
 		solution = Grid.Undefined;
 	}
+
+	/// <summary>
+	/// Creates a <see cref="CancellationTokenSource"/> instance with a timeout.
+	/// Set <see cref="Timeout.Infinite"/> (i.e. -1) to set infinity timeout.
+	/// </summary>
+	/// <param name="timeout">The timeout in milliseconds.</param>
+	/// <returns>A <see cref="CancellationTokenSource"/> instance.</returns>
+	/// <seealso cref="Timeout.Infinite"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CancellationTokenSource CreateCancellationTokenSource(int timeout)
+		=> timeout == Timeout.Infinite ? new() : new(timeout);
 }

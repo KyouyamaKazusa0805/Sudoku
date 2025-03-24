@@ -38,7 +38,7 @@ public sealed class GeneratePatternCommand : Command, ICommand
 	private void HandleCore(int timeout, CellMap cells, int missingDigit)
 	{
 		var generator = new PatternBasedPuzzleGenerator(in cells, missingDigit);
-		using var cts = new CancellationTokenSource(timeout);
+		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		var result = generator.Generate(cancellationToken: cts.Token);
 		if (result.IsUndefined)
 		{

@@ -276,6 +276,15 @@
             <param name="solver">The solver.</param>
             <param name="solution">The solution.</param>
         </member>
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.CreateCancellationTokenSource(System.Int32)">
+            <summary>
+            Creates a <see cref="T:System.Threading.CancellationTokenSource"/> instance with a timeout.
+            Set <see cref="F:System.Threading.Timeout.Infinite"/> (i.e. -1) to set infinity timeout.
+            </summary>
+            <param name="timeout">The timeout in milliseconds.</param>
+            <returns>A <see cref="T:System.Threading.CancellationTokenSource"/> instance.</returns>
+            <seealso cref="F:System.Threading.Timeout.Infinite"/>
+        </member>
         <member name="T:Sudoku.CommandLine.IOptionOrArgument`1">
             <summary>
             Represents an argument or option.

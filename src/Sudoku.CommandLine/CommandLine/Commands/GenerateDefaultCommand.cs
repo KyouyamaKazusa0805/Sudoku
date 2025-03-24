@@ -37,7 +37,7 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 	private void HandleCore(int cluesCount, SymmetricType symmetricType, int timeout)
 	{
 		var generator = new Generator();
-		using var cts = new CancellationTokenSource(timeout);
+		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		var result = generator.Generate(cluesCount, symmetricType, cts.Token);
 		if (result.IsUndefined)
 		{
