@@ -86,7 +86,8 @@ public sealed class Collector : ICollector<Collector, ReadOnlySpan<Step>>, meta_
 			{
 				Accumulator = accumulator,
 				OnlyFindOne = false,
-				Options = Options
+				Options = Options,
+				CancellationToken = cancellationToken
 			};
 			var (l, bag, currentSearcherIndex) = (defaultLevel, new List<Step>(), 0);
 			foreach (var searcher in possibleStepSearchers)

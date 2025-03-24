@@ -75,6 +75,11 @@ public ref partial struct StepAnalysisContext(
 	public ReadOnlySpan<Digit?> MappingRelations { get; internal set; }
 
 	/// <summary>
+	/// Indicates the cancellation token that can cancel the current operation.
+	/// </summary>
+	public CancellationToken CancellationToken { get; init; }
+
+	/// <summary>
 	/// Indicates the pre-defined options set by user in type <see cref="Analyzer"/>.
 	/// The value can be <see langword="null"/> if the target step searcher doesn't use this property.
 	/// </summary>
