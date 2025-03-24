@@ -16,7 +16,6 @@ namespace Sudoku.Solving.DictionaryQuery;
 /// </para>
 /// </remarks>
 /// <seealso cref="EnumerableQuerySolver"/>
-[CommandBoundType("dictionary-query")]
 public sealed class DictionaryQuerySolver : ISolver
 {
 	/// <summary>

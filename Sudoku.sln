@@ -66,8 +66,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReadMe Files", "ReadMe File
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.CommandLine", "src\Sudoku.CommandLine\Sudoku.CommandLine.csproj", "{E1AB97D4-BA74-4F37-92C1-0D4D664A3F36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemExtensions.CommandLine", "src\System.CommandLine\SystemExtensions.CommandLine.csproj", "{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{16678585-9674-46DF-8E2B-42387077F6BC}"
 	ProjectSection(SolutionItems) = preProject
 		docs\assets-renamer.ps1 = docs\assets-renamer.ps1
@@ -602,36 +600,6 @@ Global
 		{E1AB97D4-BA74-4F37-92C1-0D4D664A3F36}.Release|x64.Build.0 = Release|Any CPU
 		{E1AB97D4-BA74-4F37-92C1-0D4D664A3F36}.Release|x86.ActiveCfg = Release|Any CPU
 		{E1AB97D4-BA74-4F37-92C1-0D4D664A3F36}.Release|x86.Build.0 = Release|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Build|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Build|Any CPU.Build.0 = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Build|ARM.ActiveCfg = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Build|ARM.Build.0 = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Build|ARM64.ActiveCfg = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Build|ARM64.Build.0 = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Build|x64.ActiveCfg = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Build|x64.Build.0 = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Build|x86.ActiveCfg = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Build|x86.Build.0 = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Debug|ARM.Build.0 = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Debug|x64.Build.0 = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Debug|x86.Build.0 = Debug|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Release|ARM.ActiveCfg = Release|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Release|ARM.Build.0 = Release|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Release|ARM64.Build.0 = Release|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Release|x64.ActiveCfg = Release|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Release|x64.Build.0 = Release|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Release|x86.ActiveCfg = Release|Any CPU
-		{DF780CD5-E6C2-4BF6-8583-84C534E1EE85}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
