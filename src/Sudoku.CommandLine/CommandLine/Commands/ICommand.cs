@@ -8,12 +8,12 @@ internal interface ICommand
 	/// <summary>
 	/// Indicates the options.
 	/// </summary>
-	public static abstract ReadOnlySpan<Option> OptionsCore { get; }
+	public abstract ReadOnlySpan<Option> OptionsCore { get; }
 
 	/// <summary>
 	/// Indicates the arguments.
 	/// </summary>
-	public static abstract ReadOnlySpan<Argument> ArgumentsCore { get; }
+	public abstract ReadOnlySpan<Argument> ArgumentsCore { get; }
 
 
 	/// <summary>
@@ -23,5 +23,5 @@ internal interface ICommand
 	/// <b>Do not consume this method or expose it outside.</b>
 	/// </para>
 	/// </summary>
-	protected static abstract void HandleCore(__arglist);
+	protected abstract void HandleCore(__arglist);
 }

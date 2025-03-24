@@ -17,14 +17,14 @@ public sealed class SolveCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Option> OptionsCore => (Option[])[new GridOption(), new SolvingMethodOption()];
+	public ReadOnlySpan<Option> OptionsCore => (Option[])[new GridOption(), new SolvingMethodOption()];
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Argument> ArgumentsCore => [];
+	public ReadOnlySpan<Argument> ArgumentsCore => [];
 
 
 	/// <inheritdoc/>
-	static void ICommand.HandleCore(__arglist)
+	void ICommand.HandleCore(__arglist)
 	{
 		var iterator = new ArgIterator(__arglist);
 		var grid = __refvalue(iterator.GetNextArg(), Grid);
@@ -33,7 +33,7 @@ public sealed class SolveCommand : Command, ICommand
 	}
 
 	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private static void HandleCore(Grid grid, SolverType type)
+	private void HandleCore(Grid grid, SolverType type)
 	{
 		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, type.Create(), out var solution);
 		if (!solution.IsUndefined)

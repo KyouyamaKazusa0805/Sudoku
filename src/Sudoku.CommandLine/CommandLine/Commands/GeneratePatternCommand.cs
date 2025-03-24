@@ -17,15 +17,15 @@ public sealed class GeneratePatternCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Option> OptionsCore
+	public ReadOnlySpan<Option> OptionsCore
 		=> (Option[])[new TimeoutOption(), new CellMapOption(true), new MissingDigitOption()];
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Argument> ArgumentsCore => [];
+	public ReadOnlySpan<Argument> ArgumentsCore => [];
 
 
 	/// <inheritdoc/>
-	static void ICommand.HandleCore(__arglist)
+	void ICommand.HandleCore(__arglist)
 	{
 		var iterator = new ArgIterator(__arglist);
 		var timeout = __refvalue(iterator.GetNextArg(), int);
@@ -35,7 +35,7 @@ public sealed class GeneratePatternCommand : Command, ICommand
 	}
 
 	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private static void HandleCore(int timeout, CellMap cells, int missingDigit)
+	private void HandleCore(int timeout, CellMap cells, int missingDigit)
 	{
 		var generator = new PatternBasedPuzzleGenerator(in cells, missingDigit);
 		using var cts = new CancellationTokenSource(timeout);

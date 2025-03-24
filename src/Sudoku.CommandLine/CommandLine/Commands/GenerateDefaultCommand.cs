@@ -17,14 +17,14 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Option> OptionsCore => (Option[])[new CluesCountOption(), new SymmetricTypeOption(), new TimeoutOption()];
+	public ReadOnlySpan<Option> OptionsCore => (Option[])[new CluesCountOption(), new SymmetricTypeOption(), new TimeoutOption()];
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Argument> ArgumentsCore => [];
+	public ReadOnlySpan<Argument> ArgumentsCore => [];
 
 
 	/// <inheritdoc/>
-	static void ICommand.HandleCore(__arglist)
+	void ICommand.HandleCore(__arglist)
 	{
 		var iterator = new ArgIterator(__arglist);
 		var cluesCount = __refvalue(iterator.GetNextArg(), int);
@@ -34,7 +34,7 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 	}
 
 	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private static void HandleCore(int cluesCount, SymmetricType symmetricType, int timeout)
+	private void HandleCore(int cluesCount, SymmetricType symmetricType, int timeout)
 	{
 		var generator = new Generator();
 		using var cts = new CancellationTokenSource(timeout);

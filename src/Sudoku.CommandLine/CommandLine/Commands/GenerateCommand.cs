@@ -16,12 +16,12 @@ public sealed class GenerateCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Option> OptionsCore => [];
+	public ReadOnlySpan<Option> OptionsCore => [];
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Argument> ArgumentsCore => [];
+	public ReadOnlySpan<Argument> ArgumentsCore => [];
 
 
 	/// <inheritdoc/>
-	static void ICommand.HandleCore(__arglist) => throw new NotImplementedException();
+	void ICommand.HandleCore(__arglist) => throw new NotImplementedException();
 }

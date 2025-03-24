@@ -19,14 +19,14 @@ public sealed class CompareCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Option> OptionsCore => (Option[])[new ComparingMethodOption()];
+	public ReadOnlySpan<Option> OptionsCore => (Option[])[new ComparingMethodOption()];
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Argument> ArgumentsCore => (Argument[])[new TwoGridArgument()];
+	public ReadOnlySpan<Argument> ArgumentsCore => (Argument[])[new TwoGridArgument()];
 
 
 	/// <inheritdoc/>
-	static void ICommand.HandleCore(__arglist)
+	void ICommand.HandleCore(__arglist)
 	{
 		var iterator = new ArgIterator(__arglist);
 		var grids = __refvalue(iterator.GetNextArg(), (Grid, Grid));
@@ -35,7 +35,7 @@ public sealed class CompareCommand : Command, ICommand
 	}
 
 	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private static void HandleCore((Grid Left, Grid Right) grids, BoardComparison comparison)
+	private void HandleCore((Grid Left, Grid Right) grids, BoardComparison comparison)
 	{
 		var result = grids.Left.Equals(grids.Right, comparison);
 		Console.WriteLine(result);
