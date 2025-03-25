@@ -138,7 +138,7 @@
         <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.HandleCore(System.Int32,Sudoku.SymmetricType,System.Int32)">
+        <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.HandleCore(System.Int32,Sudoku.SymmetricType,System.Int32,System.Int32)">
             <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.GenerateHardCommand">
@@ -160,7 +160,7 @@
         <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.HandleCore(System.Int32)">
+        <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.HandleCore(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.GeneratePatternCommand">
@@ -182,7 +182,7 @@
         <member name="M:Sudoku.CommandLine.Commands.GeneratePatternCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.GeneratePatternCommand.HandleCore(System.Int32,Sudoku.Concepts.CellMap,System.Int32)">
+        <member name="M:Sudoku.CommandLine.Commands.GeneratePatternCommand.HandleCore(System.Int32,Sudoku.Concepts.CellMap,System.Int32,System.Int32)">
             <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.ICommand">
@@ -371,6 +371,19 @@
         </member>
         <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.CountOption">
+            <summary>
+            Provides with a count option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.CountOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.CountOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.CountOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.GridOption">
             <summary>

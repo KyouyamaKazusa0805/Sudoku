@@ -12,13 +12,13 @@ public sealed class GeneratePatternCommand : Command, ICommand
 	{
 		var options = OptionsCore;
 		this.AddRange(options);
-		this.SetHandler(HandleCore, (Option<int>)options[0], (Option<CellMap>)options[1], (Option<int>)options[2]);
+		this.SetHandler(HandleCore, (Option<int>)options[0], (Option<CellMap>)options[1], (Option<int>)options[2], (Option<int>)options[3]);
 	}
 
 
 	/// <inheritdoc/>
 	public ReadOnlySpan<Option> OptionsCore
-		=> (Option[])[new TimeoutOption(), new CellMapOption(true), new MissingDigitOption()];
+		=> (Option[])[new TimeoutOption(), new CellMapOption(true), new MissingDigitOption(), new CountOption()];
 
 	/// <inheritdoc/>
 	public ReadOnlySpan<Argument> ArgumentsCore => [];
@@ -31,20 +31,24 @@ public sealed class GeneratePatternCommand : Command, ICommand
 		var timeout = __refvalue(iterator.GetNextArg(), int);
 		var patternCells = __refvalue(iterator.GetNextArg(), CellMap);
 		var missingDigit = __refvalue(iterator.GetNextArg(), int);
-		HandleCore(timeout, patternCells, missingDigit);
+		var count = __refvalue(iterator.GetNextArg(), int);
+		HandleCore(timeout, patternCells, missingDigit, count);
 	}
 
 	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private void HandleCore(int timeout, CellMap cells, int missingDigit)
+	private void HandleCore(int timeout, CellMap cells, int missingDigit, int count)
 	{
 		var generator = new PatternBasedPuzzleGenerator(in cells, missingDigit);
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
-		var result = generator.Generate(cancellationToken: cts.Token);
-		if (result.IsUndefined)
+		for (var i = 0; i < count; i++)
 		{
-			//Console.WriteLine("Canceled.");
-			return;
+			var result = generator.Generate(cancellationToken: cts.Token);
+			if (result.IsUndefined)
+			{
+				//Console.WriteLine("Canceled.");
+				return;
+			}
+			Console.WriteLine(result.ToString("."));
 		}
-		Console.WriteLine(result.ToString("."));
 	}
 }

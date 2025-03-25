@@ -12,12 +12,13 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 	{
 		var options = OptionsCore;
 		this.AddRange(options);
-		this.SetHandler(HandleCore, (Option<int>)options[0], (Option<SymmetricType>)options[1], (Option<int>)options[2]);
+		this.SetHandler(HandleCore, (Option<int>)options[0], (Option<SymmetricType>)options[1], (Option<int>)options[2], (Option<int>)options[3]);
 	}
 
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Option> OptionsCore => (Option[])[new CluesCountOption(), new SymmetricTypeOption(), new TimeoutOption()];
+	public ReadOnlySpan<Option> OptionsCore
+		=> (Option[])[new CluesCountOption(), new SymmetricTypeOption(), new TimeoutOption(), new CountOption()];
 
 	/// <inheritdoc/>
 	public ReadOnlySpan<Argument> ArgumentsCore => [];
@@ -30,20 +31,24 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 		var cluesCount = __refvalue(iterator.GetNextArg(), int);
 		var symmetricType = __refvalue(iterator.GetNextArg(), SymmetricType);
 		var timeout = __refvalue(iterator.GetNextArg(), int);
-		HandleCore(cluesCount, symmetricType, timeout);
+		var count = __refvalue(iterator.GetNextArg(), int);
+		HandleCore(cluesCount, symmetricType, timeout, count);
 	}
 
 	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private void HandleCore(int cluesCount, SymmetricType symmetricType, int timeout)
+	private void HandleCore(int cluesCount, SymmetricType symmetricType, int timeout, int count)
 	{
 		var generator = new Generator();
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
-		var result = generator.Generate(cluesCount, symmetricType, cts.Token);
-		if (result.IsUndefined)
+		for (var i = 0; i < count; i++)
 		{
-			//Console.WriteLine("Canceled.");
-			return;
+			var result = generator.Generate(cluesCount, symmetricType, cts.Token);
+			if (result.IsUndefined)
+			{
+				//Console.WriteLine("Canceled.");
+				return;
+			}
+			Console.WriteLine(result.ToString("."));
 		}
-		Console.WriteLine(result.ToString("."));
 	}
 }
