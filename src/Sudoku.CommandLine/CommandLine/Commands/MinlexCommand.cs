@@ -10,17 +10,17 @@ public sealed class MinlexCommand : Command, ICommand
 	/// </summary>
 	public MinlexCommand() : base("minlex", "To find a minlex (minimal lexicographical) grid of the specified grid")
 	{
-		var options = OptionsCore;
-		this.AddRange(options);
-		this.SetHandler(HandleCore, (Option<Grid>)options[0]);
+		OptionsCore = [new GridOption(true)];
+		this.AddRange(OptionsCore);
+		this.SetHandler(HandleCore, (Option<Grid>)OptionsCore[0]);
 	}
 
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Option> OptionsCore => (Option[])[new GridOption(true)];
+	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore => [];
 
 
 	/// <inheritdoc/>

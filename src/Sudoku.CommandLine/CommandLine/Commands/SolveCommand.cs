@@ -10,17 +10,17 @@ public sealed class SolveCommand : Command, ICommand
 	/// </summary>
 	public SolveCommand() : base("solve", "To solve a puzzle")
 	{
-		var options = OptionsCore;
-		this.AddRange(options);
-		this.SetHandler(HandleCore, (Option<Grid>)options[0], (Option<SolverType>)options[1]);
+		OptionsCore = [new GridOption(), new SolvingMethodOption()];
+		this.AddRange(OptionsCore);
+		this.SetHandler(HandleCore, (Option<Grid>)OptionsCore[0], (Option<SolverType>)OptionsCore[1]);
 	}
 
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Option> OptionsCore => (Option[])[new GridOption(), new SolvingMethodOption()];
+	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore => [];
 
 
 	/// <inheritdoc/>

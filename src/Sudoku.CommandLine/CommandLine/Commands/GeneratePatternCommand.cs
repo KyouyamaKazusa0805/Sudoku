@@ -10,18 +10,23 @@ public sealed class GeneratePatternCommand : Command, ICommand
 	/// </summary>
 	public GeneratePatternCommand() : base("pattern", "Generate a pattern-based puzzle")
 	{
-		var options = OptionsCore;
-		this.AddRange(options);
-		this.SetHandler(HandleCore, (Option<int>)options[0], (Option<CellMap>)options[1], (Option<int>)options[2], (Option<int>)options[3]);
+		OptionsCore = [new TimeoutOption(), new CellMapOption(true), new MissingDigitOption(), new CountOption()];
+		this.AddRange(OptionsCore);
+		this.SetHandler(
+			HandleCore,
+			(Option<int>)OptionsCore[0],
+			(Option<CellMap>)OptionsCore[1],
+			(Option<int>)OptionsCore[2],
+			(Option<int>)OptionsCore[3]
+		);
 	}
 
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Option> OptionsCore
-		=> (Option[])[new TimeoutOption(), new CellMapOption(true), new MissingDigitOption(), new CountOption()];
+	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore => [];
 
 
 	/// <inheritdoc/>

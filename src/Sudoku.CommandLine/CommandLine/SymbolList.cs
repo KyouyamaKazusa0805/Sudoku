@@ -13,6 +13,5 @@ public static class SymbolList
 	/// <param name="symbols">The symbols.</param>
 	/// <returns>A <see cref="SymbolList{TSymbol}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SymbolList<TSymbol> Create<TSymbol>(params ReadOnlySpan<TSymbol> symbols) where TSymbol : Symbol, new()
-		=> new(symbols);
+	public static SymbolList<TSymbol> Create<TSymbol>(params ReadOnlySpan<TSymbol> symbols) where TSymbol : Symbol => new(symbols);
 }

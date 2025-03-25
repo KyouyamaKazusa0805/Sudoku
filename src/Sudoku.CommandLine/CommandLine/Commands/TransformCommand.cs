@@ -10,17 +10,17 @@ public sealed class TransformCommand : Command, ICommand
 	/// </summary>
 	public TransformCommand() : base("transform", "Transform a grid by the specified way")
 	{
-		var options = OptionsCore;
-		this.AddRange(options);
-		this.SetHandler(HandleCore, (Option<Grid>)options[0], (Option<TransformType>)options[1]);
+		OptionsCore = [new GridOption(true), new TransformatingMethodOption()];
+		this.AddRange(OptionsCore);
+		this.SetHandler(HandleCore, (Option<Grid>)OptionsCore[0], (Option<TransformType>)OptionsCore[1]);
 	}
 
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Option> OptionsCore => (Option[])[new GridOption(true), new TransformatingMethodOption()];
+	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore => [];
 
 
 	/// <inheritdoc/>

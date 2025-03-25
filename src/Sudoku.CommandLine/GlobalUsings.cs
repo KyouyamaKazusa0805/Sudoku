@@ -11,6 +11,7 @@ global using System.Threading;
 global using System.Threading.Tasks;
 global using Puzzles.Meta.Transforming;
 global using Sudoku.Analytics;
+global using Sudoku.CommandLine;
 global using Sudoku.CommandLine.Arguments;
 global using Sudoku.CommandLine.Commands;
 global using Sudoku.CommandLine.Options;

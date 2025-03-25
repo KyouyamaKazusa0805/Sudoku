@@ -12,7 +12,7 @@ public readonly struct SymbolList<TSymbol> :
 	IReadOnlyList<TSymbol>,
 	IReadOnlyCollection<TSymbol>,
 	ISliceMethod<SymbolList<TSymbol>, TSymbol>
-	where TSymbol : Symbol, new()
+	where TSymbol : Symbol
 {
 	/// <summary>
 	/// Indicates the empty instance.

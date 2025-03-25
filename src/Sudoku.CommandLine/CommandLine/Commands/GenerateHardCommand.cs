@@ -10,17 +10,17 @@ public sealed class GenerateHardCommand : Command, ICommand
 	/// </summary>
 	public GenerateHardCommand() : base("hard", "Generates hard puzzles command")
 	{
-		var options = OptionsCore;
-		this.AddRange(options);
-		this.SetHandler(HandleCore, (Option<int>)options[0], (Option<int>)options[1]);
+		OptionsCore = [new TimeoutOption(), new CountOption()];
+		this.AddRange(OptionsCore);
+		this.SetHandler(HandleCore, (Option<int>)OptionsCore[0], (Option<int>)OptionsCore[1]);
 	}
 
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Option> OptionsCore => (Option[])[new TimeoutOption(), new CountOption()];
+	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore => [];
 
 
 	/// <inheritdoc/>

@@ -10,18 +10,23 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 	/// </summary>
 	public GenerateDefaultCommand() : base("default", "Generate a puzzle in default way")
 	{
-		var options = OptionsCore;
-		this.AddRange(options);
-		this.SetHandler(HandleCore, (Option<int>)options[0], (Option<SymmetricType>)options[1], (Option<int>)options[2], (Option<int>)options[3]);
+		OptionsCore = [new CluesCountOption(), new SymmetricTypeOption(), new TimeoutOption(), new CountOption()];
+		this.AddRange(OptionsCore);
+		this.SetHandler(
+			HandleCore,
+			(Option<int>)OptionsCore[0],
+			(Option<SymmetricType>)OptionsCore[1],
+			(Option<int>)OptionsCore[2],
+			(Option<int>)OptionsCore[3]
+		);
 	}
 
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Option> OptionsCore
-		=> (Option[])[new CluesCountOption(), new SymmetricTypeOption(), new TimeoutOption(), new CountOption()];
+	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore => [];
 
 
 	/// <inheritdoc/>

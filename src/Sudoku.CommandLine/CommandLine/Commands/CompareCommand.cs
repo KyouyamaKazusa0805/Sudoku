@@ -10,19 +10,19 @@ public sealed class CompareCommand : Command, ICommand
 	/// </summary>
 	public CompareCommand() : base("compare", "Compare two grids and determine the equality result")
 	{
-		var arguments = ArgumentsCore;
-		var options = OptionsCore;
-		this.AddRange(arguments);
-		this.AddRange(options);
-		this.SetHandler(HandleCore, (Argument<(Grid Left, Grid Right)>)arguments[0], (Option<BoardComparison>)options[0]);
+		OptionsCore = [new ComparingMethodOption()];
+		ArgumentsCore = [new TwoGridArgument()];
+		this.AddRange(OptionsCore);
+		this.AddRange(ArgumentsCore);
+		this.SetHandler(HandleCore, (Argument<(Grid Left, Grid Right)>)ArgumentsCore[0], (Option<BoardComparison>)OptionsCore[0]);
 	}
 
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Option> OptionsCore => (Option[])[new ComparingMethodOption()];
+	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Argument> ArgumentsCore => (Argument[])[new TwoGridArgument()];
+	public SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>

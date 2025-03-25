@@ -11,7 +11,7 @@ public static class CommandExtensions
 	/// </summary>
 	/// <param name="this">The command.</param>
 	/// <param name="options">The options.</param>
-	public static void AddRange(this Command @this, params ReadOnlySpan<Option> options)
+	public static void AddRange(this Command @this, params SymbolList<Option> options)
 	{
 		foreach (var option in options)
 		{
@@ -24,7 +24,7 @@ public static class CommandExtensions
 	/// </summary>
 	/// <param name="this">The command.</param>
 	/// <param name="arguments">The arguments.</param>
-	public static void AddRange(this Command @this, params ReadOnlySpan<Argument> arguments)
+	public static void AddRange(this Command @this, params SymbolList<Argument> arguments)
 	{
 		foreach (var argument in arguments)
 		{

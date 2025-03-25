@@ -630,14 +630,14 @@
             </summary>
             <seealso cref="T:System.CommandLine.Command"/>
         </member>
-        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,System.ReadOnlySpan{System.CommandLine.Option})">
+        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,Sudoku.CommandLine.SymbolList{System.CommandLine.Option})">
             <summary>
             Adds a list of <see cref="T:System.CommandLine.Option"/> instances into the command.
             </summary>
             <param name="this">The command.</param>
             <param name="options">The options.</param>
         </member>
-        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,System.ReadOnlySpan{System.CommandLine.Argument})">
+        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument})">
             <summary>
             Adds a list of <see cref="T:System.CommandLine.Argument"/> instances into the command.
             </summary>

@@ -10,17 +10,17 @@ public sealed class AnalyzeCommand : Command, ICommand
 	/// </summary>
 	public AnalyzeCommand() : base("analyze", "Analyzes the specified puzzle")
 	{
-		var options = OptionsCore;
-		this.AddRange(options);
-		this.SetHandler(HandleCore, (Option<Grid>)options[0]);
+		OptionsCore = [new GridOption()];
+		this.AddRange(OptionsCore);
+		this.SetHandler(HandleCore, (Option<Grid>)OptionsCore[0]);
 	}
 
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Option> OptionsCore => (Option[])[new GridOption()];
+	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public ReadOnlySpan<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore => [];
 
 
 	/// <inheritdoc/>

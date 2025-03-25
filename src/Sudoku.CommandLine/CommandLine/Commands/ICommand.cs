@@ -8,12 +8,12 @@ internal interface ICommand
 	/// <summary>
 	/// Indicates the options.
 	/// </summary>
-	public abstract ReadOnlySpan<Option> OptionsCore { get; }
+	public abstract SymbolList<Option> OptionsCore { get; }
 
 	/// <summary>
 	/// Indicates the arguments.
 	/// </summary>
-	public abstract ReadOnlySpan<Argument> ArgumentsCore { get; }
+	public abstract SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <summary>
