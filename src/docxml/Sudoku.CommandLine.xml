@@ -110,9 +110,6 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Commands.GenerateCommand"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.GenerateCommand.CommandsCore">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.CommandLine.Commands.GenerateDefaultCommand">
             <summary>
             Represents a generate default command.
@@ -197,16 +194,6 @@
             The context. Use property <see cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/> to retrieve the target option result.
             </param>
             <seealso cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/>
-        </member>
-        <member name="T:Sudoku.CommandLine.Commands.INonLeafCommand">
-            <summary>
-            Provides a command that contains children commands (subcommands).
-            </summary>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.INonLeafCommand.CommandsCore">
-            <summary>
-            Indicates the subcommands to add.
-            </summary>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.MinlexCommand">
             <summary>
