@@ -483,6 +483,147 @@
         <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
+        <member name="T:Sudoku.CommandLine.SymbolList">
+            <summary>
+            Provides a way to create a <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.CommandLine.SymbolList`1"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList.Create``1(System.ReadOnlySpan{``0})">
+            <summary>
+            Creates a list of <typeparamref name="TSymbol"/> instances.
+            </summary>
+            <typeparam name="TSymbol">The type of symbols.</typeparam>
+            <param name="symbols">The symbols.</param>
+            <returns>A <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.CommandLine.SymbolList`1">
+            <summary>
+            Represents a symbol list.
+            </summary>
+            <typeparam name="TSymbol">The type of symbol.</typeparam>
+        </member>
+        <member name="F:Sudoku.CommandLine.SymbolList`1.Empty">
+            <summary>
+            Indicates the empty instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.SymbolList`1._symbols">
+            <summary>
+            Indicates the symbols.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.SymbolList`1.Length">
+            <summary>
+            Indicates the length of the list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.SymbolList`1.System#Collections#Generic#IReadOnlyCollection{TSymbol}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.SymbolList`1.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.#ctor(System.ReadOnlySpan{`0})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance.
+            </summary>
+            <param name="symbols">The symbols.</param>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.TrueForAll(System.Predicate{`0})">
+            <summary>
+            Determine whether the speciifed condition is satisfied for all elements in the current collection.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.Exists(System.Predicate{`0})">
+            <summary>
+            Determine whether at least one element in the current collection satisfies the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.FindIndex(System.Predicate{`0})">
+            <summary>
+            Finds for the first element satisfying the specified condition, and return the index of the element.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>The index of the element; or -1 if not found.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.FindLastIndex(System.Predicate{`0})">
+            <summary>
+            Finds for the last element satisfying the specified condition, and return the index of the element.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>The index of the element; or -1 if not found.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.Count(System.Predicate{`0})">
+            <summary>
+            Calculates the number of elements satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slices the current instance.
+            </summary>
+            <param name="start">The start index.</param>
+            <param name="length">The desired length.</param>
+            <returns>The <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.AsSpan">
+            <summary>
+            Casts the current instance as a <see cref="T:System.ReadOnlySpan`1"/> instance.
+            </summary>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.ToArray">
+            <summary>
+            Returns an array of <typeparamref name="TSymbol"/> instances.
+            </summary>
+            <returns>An array of <typeparamref name="TSymbol"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IAnyAllMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Any">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IAnyAllMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Any(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IAnyAllMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#All(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ICountMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ICountMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Count(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ICountMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#LongCount">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ICountMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#LongCount(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Collections#Generic#IEnumerable{TSymbol}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ISliceMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.op_Implicit(Sudoku.CommandLine.SymbolList{`0})~System.CommandLine.Symbol[]">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance into <see cref="T:System.CommandLine.Symbol"/>[].
+            </summary>
+            <param name="symbols">The symbols.</param>
+        </member>
         <member name="T:System.CommandLine.CommandExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.CommandLine.Command"/>.
