@@ -12,13 +12,7 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 	{
 		OptionsCore = [new CluesCountOption(), new SymmetricTypeOption(), new TimeoutOption(), new CountOption()];
 		this.AddRange(OptionsCore);
-		this.SetHandler(
-			HandleCore,
-			(Option<int>)OptionsCore[0],
-			(Option<SymmetricType>)OptionsCore[1],
-			(Option<int>)OptionsCore[2],
-			(Option<int>)OptionsCore[3]
-		);
+		this.SetHandler(HandleCore);
 	}
 
 
@@ -30,30 +24,24 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	void ICommand.HandleCore(__arglist)
+	public void HandleCore(InvocationContext context)
 	{
-		var iterator = new ArgIterator(__arglist);
-		var cluesCount = __refvalue(iterator.GetNextArg(), int);
-		var symmetricType = __refvalue(iterator.GetNextArg(), SymmetricType);
-		var timeout = __refvalue(iterator.GetNextArg(), int);
-		var count = __refvalue(iterator.GetNextArg(), int);
-		HandleCore(cluesCount, symmetricType, timeout, count);
-	}
-
-	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private void HandleCore(int cluesCount, SymmetricType symmetricType, int timeout, int count)
-	{
+		var result = context.ParseResult;
+		var cluesCount = result.GetValueForOption((Option<int>)OptionsCore[0]);
+		var symmetricType = result.GetValueForOption((Option<SymmetricType>)OptionsCore[1]);
+		var timeout = result.GetValueForOption((Option<int>)OptionsCore[2]);
+		var count = result.GetValueForOption((Option<int>)OptionsCore[3]);
 		var generator = new Generator();
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		for (var i = 0; i < count; i++)
 		{
-			var result = generator.Generate(cluesCount, symmetricType, cts.Token);
-			if (result.IsUndefined)
+			var r = generator.Generate(cluesCount, symmetricType, cts.Token);
+			if (r.IsUndefined)
 			{
 				//Console.WriteLine("Canceled.");
 				return;
 			}
-			Console.WriteLine(result.ToString("."));
+			Console.WriteLine(r.ToString("."));
 		}
 	}
 }

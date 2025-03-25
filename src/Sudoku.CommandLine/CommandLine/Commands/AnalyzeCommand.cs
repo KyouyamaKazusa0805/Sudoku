@@ -12,7 +12,7 @@ public sealed class AnalyzeCommand : Command, ICommand
 	{
 		OptionsCore = [new GridOption()];
 		this.AddRange(OptionsCore);
-		this.SetHandler(HandleCore, (Option<Grid>)OptionsCore[0]);
+		this.SetHandler(HandleCore);
 	}
 
 
@@ -24,16 +24,10 @@ public sealed class AnalyzeCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	void ICommand.HandleCore(__arglist)
+	public void HandleCore(InvocationContext context)
 	{
-		var iterator = new ArgIterator(__arglist);
-		var grid = __refvalue(iterator.GetNextArg(), Grid);
-		HandleCore(grid);
-	}
-
-	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private void HandleCore(Grid grid)
-	{
+		var result = context.ParseResult;
+		var grid = result.GetValueForOption((Option<Grid>)OptionsCore[0]);
 		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, new BitwiseSolver(), out var solution);
 		if (solution.IsUndefined)
 		{
@@ -41,7 +35,7 @@ public sealed class AnalyzeCommand : Command, ICommand
 		}
 
 		var analyzer = new Analyzer();
-		var result = analyzer.Analyze(grid);
-		Console.WriteLine(result.ToString());
+		var r = analyzer.Analyze(grid);
+		Console.WriteLine(r.ToString());
 	}
 }

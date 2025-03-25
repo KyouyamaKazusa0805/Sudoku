@@ -23,5 +23,9 @@ internal interface ICommand
 	/// <b>Do not consume this method or expose it outside.</b>
 	/// </para>
 	/// </summary>
-	protected abstract void HandleCore(__arglist);
+	/// <param name="context">
+	/// The context. Use property <see cref="InvocationContext.ParseResult"/> to retrieve the target option result.
+	/// </param>
+	/// <seealso cref="InvocationContext.ParseResult"/>
+	public abstract void HandleCore(InvocationContext context);
 }

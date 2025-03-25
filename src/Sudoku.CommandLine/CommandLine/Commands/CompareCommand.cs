@@ -14,7 +14,7 @@ public sealed class CompareCommand : Command, ICommand
 		ArgumentsCore = [new TwoGridArgument()];
 		this.AddRange(OptionsCore);
 		this.AddRange(ArgumentsCore);
-		this.SetHandler(HandleCore, (Argument<(Grid Left, Grid Right)>)ArgumentsCore[0], (Option<BoardComparison>)OptionsCore[0]);
+		this.SetHandler(HandleCore);
 	}
 
 
@@ -26,18 +26,12 @@ public sealed class CompareCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	void ICommand.HandleCore(__arglist)
+	public void HandleCore(InvocationContext context)
 	{
-		var iterator = new ArgIterator(__arglist);
-		var grids = __refvalue(iterator.GetNextArg(), (Grid, Grid));
-		var comparison = __refvalue(iterator.GetNextArg(), BoardComparison);
-		HandleCore(grids, comparison);
-	}
-
-	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private void HandleCore((Grid Left, Grid Right) grids, BoardComparison comparison)
-	{
-		var result = grids.Left.Equals(grids.Right, comparison);
-		Console.WriteLine(result);
+		var result = context.ParseResult;
+		var (left, right) = result.GetValueForArgument((Argument<(Grid, Grid)>)ArgumentsCore[0]);
+		var comparison = result.GetValueForOption((Option<BoardComparison>)OptionsCore[0]);
+		var comparisonResult = left.Equals(right, comparison);
+		Console.WriteLine(comparisonResult);
 	}
 }

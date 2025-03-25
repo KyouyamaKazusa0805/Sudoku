@@ -78,11 +78,8 @@
         <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.AnalyzeCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="M:Sudoku.CommandLine.Commands.AnalyzeCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.AnalyzeCommand.HandleCore(Sudoku.Concepts.Grid)">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.CompareCommand">
             <summary>
@@ -100,11 +97,8 @@
         <member name="P:Sudoku.CommandLine.Commands.CompareCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.CompareCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="M:Sudoku.CommandLine.Commands.CompareCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.CompareCommand.HandleCore(System.ValueTuple{Sudoku.Concepts.Grid,Sudoku.Concepts.Grid},Puzzles.Meta.Transforming.BoardComparison)">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.GenerateCommand">
             <summary>
@@ -135,11 +129,8 @@
         <member name="P:Sudoku.CommandLine.Commands.GenerateDefaultCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.HandleCore(System.Int32,Sudoku.SymmetricType,System.Int32,System.Int32)">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.GenerateHardCommand">
             <summary>
@@ -157,10 +148,7 @@
         <member name="P:Sudoku.CommandLine.Commands.GenerateHardCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.HandleCore(System.Int32,System.Int32)">
+        <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.GeneratePatternCommand">
@@ -179,11 +167,8 @@
         <member name="P:Sudoku.CommandLine.Commands.GeneratePatternCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.GeneratePatternCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="M:Sudoku.CommandLine.Commands.GeneratePatternCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.GeneratePatternCommand.HandleCore(System.Int32,Sudoku.Concepts.CellMap,System.Int32,System.Int32)">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.ICommand">
             <summary>
@@ -200,7 +185,7 @@
             Indicates the arguments.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()">
+        <member name="M:Sudoku.CommandLine.Commands.ICommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <summary>
             <para>The backing handler method.</para>
             <para>
@@ -208,6 +193,10 @@
             <b>Do not consume this method or expose it outside.</b>
             </para>
             </summary>
+            <param name="context">
+            The context. Use property <see cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/> to retrieve the target option result.
+            </param>
+            <seealso cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.INonLeafCommand">
             <summary>
@@ -235,11 +224,8 @@
         <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.HandleCore(Sudoku.Concepts.Grid)">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.SolveCommand">
             <summary>
@@ -257,11 +243,8 @@
         <member name="P:Sudoku.CommandLine.Commands.SolveCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Solving.SolverType)">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.TransformCommand">
             <summary>
@@ -279,11 +262,8 @@
         <member name="P:Sudoku.CommandLine.Commands.TransformCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.TransformCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="M:Sudoku.CommandLine.Commands.TransformCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.TransformCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Shuffling.Transforming.TransformType)">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
         </member>
         <member name="T:Sudoku.CommandLine.CommonPreprocessors">
             <summary>
@@ -320,7 +300,7 @@
             use <see cref="P:System.CommandLine.Parsing.SymbolResult.ErrorMessage"/> to report invalid values.
             </para>
             <para>
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()" path="/summary/para[2]"/>
+            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore(System.CommandLine.Invocation.InvocationContext)" path="/summary/para[2]"/>
             </para>
             </summary>
             <param name="result">The result.</param>

@@ -12,7 +12,7 @@ public sealed class TransformCommand : Command, ICommand
 	{
 		OptionsCore = [new GridOption(true), new TransformatingMethodOption()];
 		this.AddRange(OptionsCore);
-		this.SetHandler(HandleCore, (Option<Grid>)OptionsCore[0], (Option<TransformType>)OptionsCore[1]);
+		this.SetHandler(HandleCore);
 	}
 
 
@@ -24,17 +24,11 @@ public sealed class TransformCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	void ICommand.HandleCore(__arglist)
+	public void HandleCore(InvocationContext context)
 	{
-		var iterator = new ArgIterator(__arglist);
-		var grid = __refvalue(iterator.GetNextArg(), Grid);
-		var types = __refvalue(iterator.GetNextArg(), TransformType);
-		HandleCore(grid, types);
-	}
-
-	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private void HandleCore(Grid grid, TransformType types)
-	{
+		var result = context.ParseResult;
+		var grid = result.GetValueForOption((Option<Grid>)OptionsCore[0]);
+		var types = result.GetValueForOption((Option<TransformType>)OptionsCore[1]);
 		grid.Transform(types);
 		Console.WriteLine(grid.ToString("."));
 	}

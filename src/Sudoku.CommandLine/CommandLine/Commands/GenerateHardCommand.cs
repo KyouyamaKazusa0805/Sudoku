@@ -12,7 +12,7 @@ public sealed class GenerateHardCommand : Command, ICommand
 	{
 		OptionsCore = [new TimeoutOption(), new CountOption()];
 		this.AddRange(OptionsCore);
-		this.SetHandler(HandleCore, (Option<int>)OptionsCore[0], (Option<int>)OptionsCore[1]);
+		this.SetHandler(HandleCore);
 	}
 
 
@@ -24,28 +24,22 @@ public sealed class GenerateHardCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	void ICommand.HandleCore(__arglist)
+	public void HandleCore(InvocationContext context)
 	{
-		var iterator = new ArgIterator(__arglist);
-		var timeout = __refvalue(iterator.GetNextArg(), int);
-		var count = __refvalue(iterator.GetNextArg(), int);
-		HandleCore(timeout, count);
-	}
-
-	/// <inheritdoc/>
-	private void HandleCore(int timeout, int count)
-	{
+		var result = context.ParseResult;
+		var timeout = result.GetValueForOption((Option<int>)OptionsCore[0]);
+		var count = result.GetValueForOption((Option<int>)OptionsCore[1]);
 		var generator = new HardPatternPuzzleGenerator();
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		for (var i = 0; i < count; i++)
 		{
-			var result = generator.Generate(cancellationToken: cts.Token);
-			if (result.IsUndefined)
+			var r = generator.Generate(cancellationToken: cts.Token);
+			if (r.IsUndefined)
 			{
 				//Console.WriteLine("Canceled.");
 				return;
 			}
-			Console.WriteLine(result.ToString("."));
+			Console.WriteLine(r.ToString("."));
 		}
 	}
 }

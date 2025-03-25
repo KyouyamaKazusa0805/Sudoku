@@ -12,7 +12,7 @@ public sealed class MinlexCommand : Command, ICommand
 	{
 		OptionsCore = [new GridOption(true)];
 		this.AddRange(OptionsCore);
-		this.SetHandler(HandleCore, (Option<Grid>)OptionsCore[0]);
+		this.SetHandler(HandleCore);
 	}
 
 
@@ -24,16 +24,11 @@ public sealed class MinlexCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	void ICommand.HandleCore(__arglist)
+	public void HandleCore(InvocationContext context)
 	{
-		var iterator = new ArgIterator(__arglist);
-		var grid = __refvalue(iterator.GetNextArg(), Grid);
-		HandleCore(grid);
-	}
+		var result = context.ParseResult;
+		var grid = result.GetValueForOption((Option<Grid>)OptionsCore[0]);
 
-	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private void HandleCore(Grid grid)
-	{
 		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, new BitwiseSolver(), out var solution);
 		if (!solution.IsUndefined)
 		{
