@@ -246,6 +246,35 @@
         <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.CommandLine.Commands.PrintCommand">
+            <summary>
+            Represents a print command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.PrintCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.PrintCommand"/> instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.Commands.PrintTechniquesCommand">
+            <summary>
+            Provides print technique command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.PrintTechniquesCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.PrintTechniquesCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.PrintTechniquesCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.PrintTechniquesCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.PrintTechniquesCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CommandLine.Commands.SolveCommand">
             <summary>
             Represents a solve command.
@@ -367,6 +396,19 @@
         <member name="M:Sudoku.CommandLine.Options.CountOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.CommandLine.Options.CultureOption">
+            <summary>
+            Represents a culture option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.CultureOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.CultureOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.CultureOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CommandLine.Options.IOption`1">
             <summary>
             Represents an option.
@@ -413,6 +455,19 @@
             </summary>
         </member>
         <member name="M:Sudoku.CommandLine.Options.SymmetricTypeOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#SymmetricType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.TechniqueCategoryOption">
+            <summary>
+            Provides a technique category option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TechniqueCategoryOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.TechniqueCategoryOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TechniqueCategoryOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.TimeoutOption">
