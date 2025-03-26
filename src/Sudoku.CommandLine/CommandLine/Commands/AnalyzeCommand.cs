@@ -10,24 +10,25 @@ public sealed class AnalyzeCommand : Command, ICommand
 	/// </summary>
 	public AnalyzeCommand() : base("analyze", "Analyzes the specified puzzle")
 	{
-		OptionsCore = [new GridOption()];
-		this.AddRange(OptionsCore);
+		ArgumentsCore = [new GridArgument()];
+		this.AddRange(ArgumentsCore);
+
 		this.SetHandler(HandleCore);
 	}
 
 
 	/// <inheritdoc/>
-	public SymbolList<Option> OptionsCore { get; }
+	public SymbolList<Option> OptionsCore => [];
 
 	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
 		var result = context.ParseResult;
-		var grid = result.GetValueForOption((Option<Grid>)OptionsCore[0]);
+		var grid = result.GetValueForArgument((GridArgument)ArgumentsCore[0]);
 		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, new BitwiseSolver(), out var solution);
 		if (solution.IsUndefined)
 		{

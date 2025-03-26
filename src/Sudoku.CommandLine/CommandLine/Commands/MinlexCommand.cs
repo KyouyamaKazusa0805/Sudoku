@@ -10,24 +10,25 @@ public sealed class MinlexCommand : Command, ICommand
 	/// </summary>
 	public MinlexCommand() : base("minlex", "To find a minlex (minimal lexicographical) grid of the specified grid")
 	{
-		OptionsCore = [new GridOption(true)];
-		this.AddRange(OptionsCore);
+		ArgumentsCore = [new GridArgument()];
+		this.AddRange(ArgumentsCore);
+
 		this.SetHandler(HandleCore);
 	}
 
 
 	/// <inheritdoc/>
-	public SymbolList<Option> OptionsCore { get; }
+	public SymbolList<Option> OptionsCore => [];
 
 	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
 		var result = context.ParseResult;
-		var grid = result.GetValueForOption((Option<Grid>)OptionsCore[0]);
+		var grid = result.GetValueForArgument((GridArgument)ArgumentsCore[0]);
 
 		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, new BitwiseSolver(), out var solution);
 		if (!solution.IsUndefined)

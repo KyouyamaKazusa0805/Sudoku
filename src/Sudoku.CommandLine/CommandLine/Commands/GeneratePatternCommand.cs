@@ -10,8 +10,12 @@ public sealed class GeneratePatternCommand : Command, ICommand
 	/// </summary>
 	public GeneratePatternCommand() : base("pattern", "Generate a pattern-based puzzle")
 	{
-		OptionsCore = [new TimeoutOption(), new CellMapOption(true), new MissingDigitOption(), new CountOption()];
+		OptionsCore = [new TimeoutOption(), new MissingDigitOption(), new CountOption()];
 		this.AddRange(OptionsCore);
+
+		ArgumentsCore = [new CellMapArgument(true)];
+		this.AddRange(ArgumentsCore);
+
 		this.SetHandler(HandleCore);
 	}
 
@@ -20,17 +24,17 @@ public sealed class GeneratePatternCommand : Command, ICommand
 	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
 		var result = context.ParseResult;
-		var timeout = result.GetValueForOption((Option<int>)OptionsCore[0]);
-		var cells = result.GetValueForOption((Option<CellMap>)OptionsCore[1]);
-		var missingDigit = result.GetValueForOption((Option<int>)OptionsCore[2]);
-		var count = result.GetValueForOption((Option<int>)OptionsCore[3]);
+		var timeout = result.GetValueForOption((TimeoutOption)OptionsCore[0]);
+		var missingDigit = result.GetValueForOption((MissingDigitOption)OptionsCore[1]);
+		var count = result.GetValueForOption((CountOption)OptionsCore[2]);
+		var cells = result.GetValueForArgument((CellMapArgument)ArgumentsCore[0]);
 		var generator = new PatternBasedPuzzleGenerator(in cells, missingDigit);
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		for (var i = 0; i < count; i++)

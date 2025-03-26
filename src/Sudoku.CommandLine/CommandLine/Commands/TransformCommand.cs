@@ -10,8 +10,12 @@ public sealed class TransformCommand : Command, ICommand
 	/// </summary>
 	public TransformCommand() : base("transform", "Transform a grid by the specified way")
 	{
-		OptionsCore = [new GridOption(true), new TransformatingMethodOption()];
+		OptionsCore = [new TransformatingMethodOption()];
 		this.AddRange(OptionsCore);
+
+		ArgumentsCore = [new GridArgument()];
+		this.AddRange(ArgumentsCore);
+
 		this.SetHandler(HandleCore);
 	}
 
@@ -20,15 +24,15 @@ public sealed class TransformCommand : Command, ICommand
 	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
 		var result = context.ParseResult;
-		var grid = result.GetValueForOption((Option<Grid>)OptionsCore[0]);
-		var types = result.GetValueForOption((Option<TransformType>)OptionsCore[1]);
+		var grid = result.GetValueForArgument((GridArgument)ArgumentsCore[0]);
+		var types = result.GetValueForOption((TransformatingMethodOption)OptionsCore[0]);
 		grid.Transform(types);
 		Console.WriteLine(grid.ToString("."));
 	}

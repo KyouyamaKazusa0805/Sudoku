@@ -12,6 +12,7 @@ public sealed class GenerateHardCommand : Command, ICommand
 	{
 		OptionsCore = [new TimeoutOption(), new CountOption()];
 		this.AddRange(OptionsCore);
+
 		this.SetHandler(HandleCore);
 	}
 
@@ -27,8 +28,8 @@ public sealed class GenerateHardCommand : Command, ICommand
 	public void HandleCore(InvocationContext context)
 	{
 		var result = context.ParseResult;
-		var timeout = result.GetValueForOption((Option<int>)OptionsCore[0]);
-		var count = result.GetValueForOption((Option<int>)OptionsCore[1]);
+		var timeout = result.GetValueForOption((TimeoutOption)OptionsCore[0]);
+		var count = result.GetValueForOption((CountOption)OptionsCore[1]);
 		var generator = new HardPatternPuzzleGenerator();
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		for (var i = 0; i < count; i++)

@@ -1,30 +1,25 @@
-namespace Sudoku.CommandLine.Options;
+namespace Sudoku.CommandLine.Arguments;
 
 /// <summary>
-/// Provides with <see cref="CellMap"/> option.
+/// Represents a cell map argument.
 /// </summary>
-public sealed class CellMapOption : Option<CellMap>, IOption<CellMap>
+public sealed class CellMapArgument : Argument<CellMap>, IArgument<CellMap>
 {
 	/// <summary>
-	/// Initializes a <see cref="CellMapOption"/> instance.
+	/// Initializes a <see cref="CellMapArgument"/> instance.
 	/// </summary>
-	/// <param name="allowsParsingGrid">Indicates whether the option allows for parsing grid.</param>
-	public CellMapOption(bool allowsParsingGrid) : base(
-		["--cells", "-c"],
+	public CellMapArgument(bool allowsParsingGrid) : base(
+		null,
 		result => ParseArgument(result, allowsParsingGrid),
 		false,
 		"Specifies the cells used, using 1 to describe the cell is used, and 0 as placeholders"
-	)
-	{
-		Arity = ArgumentArity.ExactlyOne;
-		IsRequired = true;
-	}
+	) => Arity = ArgumentArity.ExactlyOne;
 
 
 	/// <inheritdoc/>
-	static CellMap IOptionOrArgument<CellMap>.ParseArgument(ArgumentResult result) => ParseArgument(result, false);
+	static CellMap IOptionOrArgument<CellMap>.ParseArgument(ArgumentResult result) => ParseArgument(result, default);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IOptionOrArgument{T}.ParseArgument"/>
 	private static CellMap ParseArgument(ArgumentResult result, bool allowsParsingGrid)
 	{
 		if (result.Tokens is not [{ Value: var token }])

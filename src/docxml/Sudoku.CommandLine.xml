@@ -4,6 +4,38 @@
         <name>Sudoku.CommandLine</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.CommandLine.Arguments.CellMapArgument">
+            <summary>
+            Represents a cell map argument.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.CellMapArgument.#ctor(System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Arguments.CellMapArgument"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.CellMapArgument.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Concepts#CellMap}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.CellMapArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Arguments.GridArgument">
+            <summary>
+            Represents grid argument.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.GridArgument.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Arguments.GridArgument"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.GridArgument.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Concepts#Grid}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.GridArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+        </member>
         <member name="T:Sudoku.CommandLine.Arguments.IArgument`1">
             <summary>
             Represents an argument.
@@ -293,23 +325,6 @@
             <param name="result">The result.</param>
             <returns>The result instance parsed.</returns>
         </member>
-        <member name="T:Sudoku.CommandLine.Options.CellMapOption">
-            <summary>
-            Provides with <see cref="T:Sudoku.Concepts.CellMap"/> option.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CommandLine.Options.CellMapOption.#ctor(System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.CommandLine.Options.CellMapOption"/> instance.
-            </summary>
-            <param name="allowsParsingGrid">Indicates whether the option allows for parsing grid.</param>
-        </member>
-        <member name="M:Sudoku.CommandLine.Options.CellMapOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Concepts#CellMap}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Options.CellMapOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult,System.Boolean)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.CommandLine.Options.CluesCountOption">
             <summary>
             Represents a clues count option.
@@ -351,27 +366,6 @@
         </member>
         <member name="M:Sudoku.CommandLine.Options.CountOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.CommandLine.Options.GridOption">
-            <summary>
-            Represents a grid option.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CommandLine.Options.GridOption.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.CommandLine.Options.GridOption"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CommandLine.Options.GridOption.#ctor(System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.CommandLine.Options.GridOption"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CommandLine.Options.GridOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Concepts#Grid}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CommandLine.Options.GridOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.IOption`1">
             <summary>

@@ -10,8 +10,12 @@ public sealed class SolveCommand : Command, ICommand
 	/// </summary>
 	public SolveCommand() : base("solve", "To solve a puzzle")
 	{
-		OptionsCore = [new GridOption(), new SolvingMethodOption()];
+		OptionsCore = [new SolvingMethodOption()];
 		this.AddRange(OptionsCore);
+
+		ArgumentsCore = [new GridArgument()];
+		this.AddRange(ArgumentsCore);
+
 		this.SetHandler(HandleCore);
 	}
 
@@ -20,15 +24,15 @@ public sealed class SolveCommand : Command, ICommand
 	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
 		var result = context.ParseResult;
-		var grid = result.GetValueForOption((Option<Grid>)OptionsCore[0]);
-		var type = result.GetValueForOption((Option<SolverType>)OptionsCore[1]);
+		var grid = result.GetValueForArgument((GridArgument)ArgumentsCore[0]);
+		var type = result.GetValueForOption((SolvingMethodOption)OptionsCore[0]);
 
 		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, type.Create(), out var solution);
 		if (!solution.IsUndefined)

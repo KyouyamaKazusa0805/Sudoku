@@ -12,6 +12,7 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 	{
 		OptionsCore = [new CluesCountOption(), new SymmetricTypeOption(), new TimeoutOption(), new CountOption()];
 		this.AddRange(OptionsCore);
+
 		this.SetHandler(HandleCore);
 	}
 
@@ -27,10 +28,10 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 	public void HandleCore(InvocationContext context)
 	{
 		var result = context.ParseResult;
-		var cluesCount = result.GetValueForOption((Option<int>)OptionsCore[0]);
-		var symmetricType = result.GetValueForOption((Option<SymmetricType>)OptionsCore[1]);
-		var timeout = result.GetValueForOption((Option<int>)OptionsCore[2]);
-		var count = result.GetValueForOption((Option<int>)OptionsCore[3]);
+		var cluesCount = result.GetValueForOption((CluesCountOption)OptionsCore[0]);
+		var symmetricType = result.GetValueForOption((SymmetricTypeOption)OptionsCore[1]);
+		var timeout = result.GetValueForOption((TimeoutOption)OptionsCore[2]);
+		var count = result.GetValueForOption((CountOption)OptionsCore[3]);
 		var generator = new Generator();
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		for (var i = 0; i < count; i++)
