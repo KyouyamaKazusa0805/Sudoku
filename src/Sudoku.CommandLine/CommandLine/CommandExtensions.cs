@@ -37,7 +37,7 @@ public static class CommandExtensions
 	/// </summary>
 	/// <param name="this">The command.</param>
 	/// <param name="subcommands">The subcommands.</param>
-	public static void AddRange(this Command @this, params ReadOnlySpan<Command> subcommands)
+	public static void AddRange(this Command @this, params SymbolList<Command> subcommands)
 	{
 		foreach (var subcommand in subcommands)
 		{

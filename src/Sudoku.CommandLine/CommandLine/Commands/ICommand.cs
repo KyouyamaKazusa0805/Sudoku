@@ -15,6 +15,11 @@ internal interface ICommand
 	/// </summary>
 	public abstract SymbolList<Argument> ArgumentsCore { get; }
 
+	/// <summary>
+	/// Indicates the parent command. The value can be <see langword="null"/> if the command has no parent.
+	/// </summary>
+	public abstract Command? Parent { get; init; }
+
 
 	/// <summary>
 	/// <para>The backing handler method.</para>

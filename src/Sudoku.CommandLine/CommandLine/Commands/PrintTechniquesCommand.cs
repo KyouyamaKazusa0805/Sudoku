@@ -23,6 +23,9 @@ public sealed class PrintTechniquesCommand : Command, ICommand
 	/// <inheritdoc/>
 	public SymbolList<Argument> ArgumentsCore => [];
 
+	/// <inheritdoc/>
+	public Command? Parent { get; init; }
+
 
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)

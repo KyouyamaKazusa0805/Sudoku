@@ -9,5 +9,12 @@ public sealed class GenerateCommand : Command
 	/// Initializes a <see cref="GenerateCommand"/> instance.
 	/// </summary>
 	public GenerateCommand() : base("generate", "Generate a puzzle using the specified way")
-		=> this.AddRange(new GenerateDefaultCommand(), new GeneratePatternCommand(), new GenerateHardCommand());
+	{
+		var commands = (SymbolList<Command>)[
+			new GenerateDefaultCommand { Parent = this },
+			new GeneratePatternCommand { Parent = this },
+			new GenerateHardCommand { Parent = this }
+		];
+		this.AddRange(commands);
+	}
 }

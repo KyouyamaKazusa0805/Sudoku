@@ -26,6 +26,9 @@ public sealed class GeneratePatternCommand : Command, ICommand
 	/// <inheritdoc/>
 	public SymbolList<Argument> ArgumentsCore { get; }
 
+	/// <inheritdoc/>
+	public Command? Parent { get; init; }
+
 
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)

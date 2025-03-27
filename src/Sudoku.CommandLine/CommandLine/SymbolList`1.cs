@@ -1,9 +1,11 @@
 namespace Sudoku.CommandLine;
 
 /// <summary>
-/// Represents a symbol list.
+/// Represents a symbol list (elements of type <see cref="Option"/> or <see cref="Argument"/>).
 /// </summary>
 /// <typeparam name="TSymbol">The type of symbol.</typeparam>
+/// <seealso cref="Option"/>
+/// <seealso cref="Argument"/>
 [CollectionBuilder(typeof(SymbolList), nameof(SymbolList.Create))]
 public readonly struct SymbolList<TSymbol> :
 	IAnyAllMethod<SymbolList<TSymbol>, TSymbol>,

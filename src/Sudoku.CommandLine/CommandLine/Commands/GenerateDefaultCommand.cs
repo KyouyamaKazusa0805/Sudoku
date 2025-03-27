@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Sudoku.CommandLine.Commands;
 
 /// <summary>
@@ -22,6 +24,9 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 
 	/// <inheritdoc/>
 	public SymbolList<Argument> ArgumentsCore => [];
+
+	/// <inheritdoc/>
+	public Command? Parent { get; init; }
 
 
 	/// <inheritdoc/>

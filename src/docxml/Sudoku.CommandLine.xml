@@ -110,6 +110,9 @@
         <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.Sudoku#CommandLine#Commands#ICommand#Parent">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.CommandLine.Commands.AnalyzeCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
@@ -127,6 +130,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.CommandLine.Commands.CompareCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.CompareCommand.Sudoku#CommandLine#Commands#ICommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.CompareCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -158,6 +164,9 @@
         <member name="P:Sudoku.CommandLine.Commands.GenerateDefaultCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateDefaultCommand.Parent">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
@@ -175,6 +184,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.CommandLine.Commands.GenerateHardCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateHardCommand.Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -196,6 +208,9 @@
         <member name="P:Sudoku.CommandLine.Commands.GeneratePatternCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.CommandLine.Commands.GeneratePatternCommand.Parent">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.CommandLine.Commands.GeneratePatternCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
@@ -212,6 +227,11 @@
         <member name="P:Sudoku.CommandLine.Commands.ICommand.ArgumentsCore">
             <summary>
             Indicates the arguments.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.ICommand.Parent">
+            <summary>
+            Indicates the parent command. The value can be <see langword="null"/> if the command has no parent.
             </summary>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.ICommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -243,6 +263,9 @@
         <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.Sudoku#CommandLine#Commands#ICommand#Parent">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
@@ -272,6 +295,9 @@
         <member name="P:Sudoku.CommandLine.Commands.PrintTechniquesCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.CommandLine.Commands.PrintTechniquesCommand.Parent">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.CommandLine.Commands.PrintTechniquesCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
@@ -291,6 +317,9 @@
         <member name="P:Sudoku.CommandLine.Commands.SolveCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#Commands#ICommand#Parent">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
@@ -308,6 +337,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.CommandLine.Commands.TransformCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.TransformCommand.Sudoku#CommandLine#Commands#ICommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.TransformCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -515,9 +547,11 @@
         </member>
         <member name="T:Sudoku.CommandLine.SymbolList`1">
             <summary>
-            Represents a symbol list.
+            Represents a symbol list (elements of type <see cref="T:System.CommandLine.Option"/> or <see cref="T:System.CommandLine.Argument"/>).
             </summary>
             <typeparam name="TSymbol">The type of symbol.</typeparam>
+            <seealso cref="T:System.CommandLine.Option"/>
+            <seealso cref="T:System.CommandLine.Argument"/>
         </member>
         <member name="F:Sudoku.CommandLine.SymbolList`1.Empty">
             <summary>
@@ -660,7 +694,7 @@
             <param name="this">The command.</param>
             <param name="arguments">The arguments.</param>
         </member>
-        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,System.ReadOnlySpan{System.CommandLine.Command})">
+        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,Sudoku.CommandLine.SymbolList{System.CommandLine.Command})">
             <summary>
             Adds a list of <see cref="T:System.CommandLine.Command"/> instances into the command.
             </summary>

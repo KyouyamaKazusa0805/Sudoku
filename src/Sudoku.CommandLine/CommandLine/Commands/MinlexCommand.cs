@@ -23,6 +23,9 @@ public sealed class MinlexCommand : Command, ICommand
 	/// <inheritdoc/>
 	public SymbolList<Argument> ArgumentsCore { get; }
 
+	/// <inheritdoc/>
+	Command? ICommand.Parent { get; init; }
+
 
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)

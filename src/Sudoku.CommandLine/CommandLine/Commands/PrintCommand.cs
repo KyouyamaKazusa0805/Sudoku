@@ -9,5 +9,8 @@ public sealed class PrintCommand : Command
 	/// Initializes a <see cref="PrintCommand"/> instance.
 	/// </summary>
 	public PrintCommand() : base("print", "Prints the specified data (especially for some bulit-in data)")
-		=> this.AddRange(new PrintTechniquesCommand());
+	{
+		var commands = (SymbolList<Command>)[new PrintTechniquesCommand { Parent = this }];
+		this.AddRange(commands);
+	}
 }
