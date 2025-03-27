@@ -8,17 +8,11 @@ public sealed class GenerateHardCommand : Command, ICommand
 	/// <summary>
 	/// Initializes a <see cref="GenerateHardCommand"/> instance.
 	/// </summary>
-	public GenerateHardCommand() : base("hard", "Generates hard puzzles command")
-	{
-		OptionsCore = [new TimeoutOption(), new CountOption()];
-		this.AddRange(OptionsCore);
-
-		this.SetHandler(HandleCore);
-	}
+	public GenerateHardCommand() : base("hard", "Generates hard puzzles command") => this.SetHandler(HandleCore);
 
 
 	/// <inheritdoc/>
-	public SymbolList<Option> OptionsCore { get; }
+	public SymbolList<Option> OptionsCore => [];
 
 	/// <inheritdoc/>
 	public SymbolList<Argument> ArgumentsCore => [];
@@ -31,8 +25,8 @@ public sealed class GenerateHardCommand : Command, ICommand
 	public void HandleCore(InvocationContext context)
 	{
 		var result = context.ParseResult;
-		var timeout = result.GetValueForOption((TimeoutOption)OptionsCore[0]);
-		var count = result.GetValueForOption((CountOption)OptionsCore[1]);
+		var count = result.GetValueForOption((CountOption)((INonLeafCommand)Parent!).GlobalOptionsCore[0]);
+		var timeout = result.GetValueForOption((TimeoutOption)((INonLeafCommand)Parent!).GlobalOptionsCore[1]);
 		var generator = new HardPatternPuzzleGenerator();
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		for (var i = 0; i < count; i++)

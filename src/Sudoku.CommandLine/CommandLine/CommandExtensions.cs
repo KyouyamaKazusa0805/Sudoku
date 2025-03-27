@@ -44,4 +44,18 @@ public static class CommandExtensions
 			@this.Add(subcommand);
 		}
 	}
+
+	/// <summary>
+	/// Adds a list of <see cref="Option"/> instances into the command,
+	/// as global ones applying to the current command and its sub-commands.
+	/// </summary>
+	/// <param name="this">The command.</param>
+	/// <param name="options">The options.</param>
+	public static void AddRangeGlobal(this Command @this, params SymbolList<Option> options)
+	{
+		foreach (var option in options)
+		{
+			@this.AddGlobalOption(option);
+		}
+	}
 }

@@ -148,6 +148,9 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Commands.GenerateCommand"/> instance.
             </summary>
         </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateCommand.GlobalOptionsCore">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CommandLine.Commands.GenerateDefaultCommand">
             <summary>
             Represents a generate default command.
@@ -247,6 +250,16 @@
             </param>
             <seealso cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/>
         </member>
+        <member name="T:Sudoku.CommandLine.Commands.INonLeafCommand">
+            <summary>
+            Represents a command that has sub-commands.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.INonLeafCommand.GlobalOptionsCore">
+            <summary>
+            Indicates the global options of the current command, applying to the current command and its sub-commands.
+            </summary>
+        </member>
         <member name="T:Sudoku.CommandLine.Commands.MinlexCommand">
             <summary>
             Represents a minlex command.
@@ -278,6 +291,9 @@
             <summary>
             Initializes a <see cref="T:Sudoku.CommandLine.Commands.PrintCommand"/> instance.
             </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.PrintCommand.GlobalOptionsCore">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.PrintTechniquesCommand">
             <summary>
@@ -700,6 +716,14 @@
             </summary>
             <param name="this">The command.</param>
             <param name="subcommands">The subcommands.</param>
+        </member>
+        <member name="M:System.CommandLine.CommandExtensions.AddRangeGlobal(System.CommandLine.Command,Sudoku.CommandLine.SymbolList{System.CommandLine.Option})">
+            <summary>
+            Adds a list of <see cref="T:System.CommandLine.Option"/> instances into the command,
+            as global ones applying to the current command and its sub-commands.
+            </summary>
+            <param name="this">The command.</param>
+            <param name="options">The options.</param>
         </member>
     </members>
 </doc>

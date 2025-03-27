@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents a print command.
 /// </summary>
-public sealed class PrintCommand : Command
+public sealed class PrintCommand : Command, INonLeafCommand
 {
 	/// <summary>
 	/// Initializes a <see cref="PrintCommand"/> instance.
@@ -13,4 +13,8 @@ public sealed class PrintCommand : Command
 		var commands = (SymbolList<Command>)[new PrintTechniquesCommand { Parent = this }];
 		this.AddRange(commands);
 	}
+
+
+	/// <inheritdoc/>
+	public SymbolList<Option> GlobalOptionsCore => [];
 }

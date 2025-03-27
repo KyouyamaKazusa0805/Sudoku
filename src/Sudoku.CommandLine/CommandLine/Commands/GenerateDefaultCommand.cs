@@ -12,7 +12,7 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 	/// </summary>
 	public GenerateDefaultCommand() : base("default", "Generate a puzzle in default way")
 	{
-		OptionsCore = [new CluesCountOption(), new SymmetricTypeOption(), new TimeoutOption(), new CountOption()];
+		OptionsCore = [new CluesCountOption(), new SymmetricTypeOption()];
 		this.AddRange(OptionsCore);
 
 		this.SetHandler(HandleCore);
@@ -35,8 +35,8 @@ public sealed class GenerateDefaultCommand : Command, ICommand
 		var result = context.ParseResult;
 		var cluesCount = result.GetValueForOption((CluesCountOption)OptionsCore[0]);
 		var symmetricType = result.GetValueForOption((SymmetricTypeOption)OptionsCore[1]);
-		var timeout = result.GetValueForOption((TimeoutOption)OptionsCore[2]);
-		var count = result.GetValueForOption((CountOption)OptionsCore[3]);
+		var count = result.GetValueForOption((CountOption)((INonLeafCommand)Parent!).GlobalOptionsCore[0]);
+		var timeout = result.GetValueForOption((TimeoutOption)((INonLeafCommand)Parent!).GlobalOptionsCore[1]);
 		var generator = new Generator();
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		for (var i = 0; i < count; i++)

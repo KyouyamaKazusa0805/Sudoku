@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents a generate command.
 /// </summary>
-public sealed class GenerateCommand : Command
+public sealed class GenerateCommand : Command, INonLeafCommand
 {
 	/// <summary>
 	/// Initializes a <see cref="GenerateCommand"/> instance.
@@ -16,5 +16,12 @@ public sealed class GenerateCommand : Command
 			new GenerateHardCommand { Parent = this }
 		];
 		this.AddRange(commands);
+
+		GlobalOptionsCore = [new CountOption(), new TimeoutOption()];
+		this.AddRangeGlobal(GlobalOptionsCore);
 	}
+
+
+	/// <inheritdoc/>
+	public SymbolList<Option> GlobalOptionsCore { get; }
 }

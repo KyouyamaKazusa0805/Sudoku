@@ -11,7 +11,7 @@ public sealed class CountOption : Option<int>, IOption<int>
 	public CountOption() : base(["--count", "-C"], "Speciifes the count of the generated puzzle.")
 	{
 		Arity = ArgumentArity.ExactlyOne;
-		IsRequired = true;
+		IsRequired = false;
 		SetDefaultValue(1);
 	}
 

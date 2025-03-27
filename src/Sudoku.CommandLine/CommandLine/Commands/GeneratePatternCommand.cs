@@ -10,7 +10,7 @@ public sealed class GeneratePatternCommand : Command, ICommand
 	/// </summary>
 	public GeneratePatternCommand() : base("pattern", "Generate a pattern-based puzzle")
 	{
-		OptionsCore = [new TimeoutOption(), new MissingDigitOption(), new CountOption()];
+		OptionsCore = [new MissingDigitOption()];
 		this.AddRange(OptionsCore);
 
 		ArgumentsCore = [new CellMapArgument(true)];
@@ -34,9 +34,9 @@ public sealed class GeneratePatternCommand : Command, ICommand
 	public void HandleCore(InvocationContext context)
 	{
 		var result = context.ParseResult;
-		var timeout = result.GetValueForOption((TimeoutOption)OptionsCore[0]);
-		var missingDigit = result.GetValueForOption((MissingDigitOption)OptionsCore[1]);
-		var count = result.GetValueForOption((CountOption)OptionsCore[2]);
+		var missingDigit = result.GetValueForOption((MissingDigitOption)OptionsCore[0]);
+		var count = result.GetValueForOption((CountOption)((INonLeafCommand)Parent!).GlobalOptionsCore[0]);
+		var timeout = result.GetValueForOption((TimeoutOption)((INonLeafCommand)Parent!).GlobalOptionsCore[1]);
 		var cells = result.GetValueForArgument((CellMapArgument)ArgumentsCore[0]);
 		var generator = new PatternBasedPuzzleGenerator(in cells, missingDigit);
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
