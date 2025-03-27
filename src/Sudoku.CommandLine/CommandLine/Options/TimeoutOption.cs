@@ -8,7 +8,7 @@ internal sealed class TimeoutOption : Option<int>, IOption<int>
 	/// <summary>
 	/// Initializes a <see cref="TimeoutOption"/> instance.
 	/// </summary>
-	public TimeoutOption() : base(["--timeout", "-t"], "Specifies the timeout, in milliseconds")
+	public TimeoutOption() : base(["--timeout", "-T"], "Specifies the timeout, in milliseconds")
 	{
 		Arity = ArgumentArity.ExactlyOne;
 		IsRequired = false;

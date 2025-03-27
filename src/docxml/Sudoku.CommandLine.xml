@@ -540,6 +540,19 @@
         <member name="M:Sudoku.CommandLine.Options.TechniqueCategoryOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Categorization#TechniqueGroup}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.CommandLine.Options.TechniqueFilterOption">
+            <summary>
+            Provides a technique filter option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TechniqueFilterOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.TechniqueFilterOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TechniqueFilterOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Categorization#Technique}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CommandLine.Options.TimeoutOption">
             <summary>
             Provides a timeout option.
