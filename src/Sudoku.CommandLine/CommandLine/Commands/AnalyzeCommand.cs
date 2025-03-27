@@ -37,7 +37,7 @@ internal sealed class AnalyzeCommand : Command, ICommand
 
 		var result = context.ParseResult;
 		var grid = result.GetValueForArgument(a1);
-		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, new BitwiseSolver(), out var solution);
+		CommonPreprocessors.PrintInvalidIfWorth(grid, new BitwiseSolver(), out var solution);
 		if (solution.IsUndefined)
 		{
 			return;

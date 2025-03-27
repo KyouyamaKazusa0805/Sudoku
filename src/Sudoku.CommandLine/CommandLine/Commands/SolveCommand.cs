@@ -41,7 +41,7 @@ internal sealed class SolveCommand : Command, ICommand
 		var result = context.ParseResult;
 		var type = result.GetValueForOption(o1);
 		var grid = result.GetValueForArgument(a1);
-		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, type.Create(), out var solution);
+		CommonPreprocessors.PrintInvalidIfWorth(grid, type.Create(), out var solution);
 		if (!solution.IsUndefined)
 		{
 			Console.WriteLine(solution);

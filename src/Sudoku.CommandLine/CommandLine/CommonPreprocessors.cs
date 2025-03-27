@@ -6,12 +6,12 @@ namespace Sudoku.CommandLine;
 internal static class CommonPreprocessors
 {
 	/// <summary>
-	/// Output invalid puzzle on puzzle after having been checked.
+	/// Print invalid information if the puzzle is invalid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="solver">The solver.</param>
 	/// <param name="solution">The solution.</param>
-	public static void OutputIfPuzzleNotUnique(in Grid grid, ISolver solver, out Grid solution)
+	public static void PrintInvalidIfWorth(in Grid grid, ISolver solver, out Grid solution)
 	{
 		var result = solver.Solve(grid, out solution);
 		if (result is true)

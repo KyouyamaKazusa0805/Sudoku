@@ -317,9 +317,9 @@
             Provides a list of commonly-used preprocessor methods.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.CommonPreprocessors.OutputIfPuzzleNotUnique(Sudoku.Concepts.Grid@,Sudoku.Solving.ISolver,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.PrintInvalidIfWorth(Sudoku.Concepts.Grid@,Sudoku.Solving.ISolver,Sudoku.Concepts.Grid@)">
             <summary>
-            Output invalid puzzle on puzzle after having been checked.
+            Print invalid information if the puzzle is invalid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="solver">The solver.</param>
