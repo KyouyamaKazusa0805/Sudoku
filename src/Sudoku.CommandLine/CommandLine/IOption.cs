@@ -1,4 +1,4 @@
-namespace Sudoku.CommandLine.Options;
+namespace Sudoku.CommandLine;
 
 /// <summary>
 /// Represents an option.

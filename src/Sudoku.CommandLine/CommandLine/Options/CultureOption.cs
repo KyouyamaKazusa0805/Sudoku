@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Represents a culture option.
 /// </summary>
-public sealed class CultureOption : Option<string>, IOption<string>
+internal sealed class CultureOption : Option<string>, IOption<string>
 {
 	/// <summary>
 	/// Initializes a <see cref="CultureOption"/> instance.

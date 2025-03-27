@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents compare command.
 /// </summary>
-public sealed class CompareCommand : Command, ICommand
+internal sealed class CompareCommand : Command, ICommand
 {
 	/// <summary>
 	/// Initializes a <see cref="CompareCommand"/> instance.

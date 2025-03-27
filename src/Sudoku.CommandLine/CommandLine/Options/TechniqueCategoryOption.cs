@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Provides a technique category option.
 /// </summary>
-public sealed class TechniqueCategoryOption : Option<TechniqueGroup>, IOption<TechniqueGroup>
+internal sealed class TechniqueCategoryOption : Option<TechniqueGroup>, IOption<TechniqueGroup>
 {
 	/// <summary>
 	/// Initializes a <see cref="TechniqueCategoryOption"/> instance.

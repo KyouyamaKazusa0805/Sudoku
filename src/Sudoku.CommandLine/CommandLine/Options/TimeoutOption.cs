@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Provides a timeout option.
 /// </summary>
-public sealed class TimeoutOption : Option<int>, IOption<int>
+internal sealed class TimeoutOption : Option<int>, IOption<int>
 {
 	/// <summary>
 	/// Initializes a <see cref="TimeoutOption"/> instance.

@@ -1,4 +1,4 @@
-namespace Sudoku.CommandLine.Commands;
+namespace Sudoku.CommandLine;
 
 /// <summary>
 /// Represents a command.

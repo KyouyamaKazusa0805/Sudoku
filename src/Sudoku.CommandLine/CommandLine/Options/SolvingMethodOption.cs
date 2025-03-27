@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Represents a solving method option.
 /// </summary>
-public sealed class SolvingMethodOption : Option<SolverType>, IOption<SolverType>
+internal sealed class SolvingMethodOption : Option<SolverType>, IOption<SolverType>
 {
 	/// <summary>
 	/// Initializes a <see cref="SolvingMethodOption"/> instance.

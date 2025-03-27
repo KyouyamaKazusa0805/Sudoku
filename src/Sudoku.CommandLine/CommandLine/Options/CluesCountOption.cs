@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Represents a clues count option.
 /// </summary>
-public sealed class CluesCountOption : Option<int>, IOption<int>
+internal sealed class CluesCountOption : Option<int>, IOption<int>
 {
 	/// <summary>
 	/// Initializes a <see cref="CluesCountOption"/> instance.

@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Arguments;
 /// <summary>
 /// Represents a cell map argument.
 /// </summary>
-public sealed class CellMapArgument : Argument<CellMap>, IArgument<CellMap>
+internal sealed class CellMapArgument : Argument<CellMap>, IArgument<CellMap>
 {
 	/// <summary>
 	/// Initializes a <see cref="CellMapArgument"/> instance.

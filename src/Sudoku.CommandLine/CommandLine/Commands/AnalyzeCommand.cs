@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents analyze command.
 /// </summary>
-public sealed class AnalyzeCommand : Command, ICommand
+internal sealed class AnalyzeCommand : Command, ICommand
 {
 	/// <summary>
 	/// Initializes an <see cref="AnalyzeCommand"/> instance.

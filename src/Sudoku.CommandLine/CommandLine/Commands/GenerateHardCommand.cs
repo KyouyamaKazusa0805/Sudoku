@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Provides a generate hard puzzles command.
 /// </summary>
-public sealed class GenerateHardCommand : Command, ICommand
+internal sealed class GenerateHardCommand : Command, ICommand
 {
 	/// <summary>
 	/// Initializes a <see cref="GenerateHardCommand"/> instance.

@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Provides a missing digit option.
 /// </summary>
-public sealed class MissingDigitOption : Option<int>, IOption<int>
+internal sealed class MissingDigitOption : Option<int>, IOption<int>
 {
 	/// <summary>
 	/// Initializes a <see cref="MissingDigitOption"/> instance.

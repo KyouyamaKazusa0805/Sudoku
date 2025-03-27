@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Provides print technique command.
 /// </summary>
-public sealed class PrintTechniquesCommand : Command, ICommand
+internal sealed class PrintTechniquesCommand : Command, ICommand
 {
 	/// <summary>
 	/// Initializes a <see cref="PrintTechniquesCommand"/> instance.

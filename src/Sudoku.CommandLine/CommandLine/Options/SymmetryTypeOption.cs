@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Represents a symmetric type option.
 /// </summary>
-public sealed class SymmetricTypeOption : Option<SymmetricType>, IOption<SymmetricType>
+internal sealed class SymmetricTypeOption : Option<SymmetricType>, IOption<SymmetricType>
 {
 	/// <summary>
 	/// Initializes a <see cref="SymmetricTypeOption"/> instance.

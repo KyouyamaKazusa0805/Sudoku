@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Provides generate pattern command.
 /// </summary>
-public sealed class GeneratePatternCommand : Command, ICommand
+internal sealed class GeneratePatternCommand : Command, ICommand
 {
 	/// <summary>
 	/// Initializes a <see cref="GeneratePatternCommand"/> instance.

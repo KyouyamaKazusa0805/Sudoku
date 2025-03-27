@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Arguments;
 /// <summary>
 /// Represents grid argument.
 /// </summary>
-public sealed class GridArgument : Argument<Grid>, IArgument<Grid>
+internal sealed class GridArgument : Argument<Grid>, IArgument<Grid>
 {
 	/// <summary>
 	/// Initializes a <see cref="GridArgument"/> instance.

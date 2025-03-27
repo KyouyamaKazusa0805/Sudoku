@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Represents a comparing method option.
 /// </summary>
-public sealed class ComparingMethodOption : Option<BoardComparison>, IOption<BoardComparison>
+internal sealed class ComparingMethodOption : Option<BoardComparison>, IOption<BoardComparison>
 {
 	/// <summary>
 	/// Initializes a <see cref="ComparingMethodOption"/> instance.

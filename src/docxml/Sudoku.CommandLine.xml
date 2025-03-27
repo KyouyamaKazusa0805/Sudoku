@@ -36,12 +36,6 @@
         <member name="M:Sudoku.CommandLine.Arguments.GridArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
-        <member name="T:Sudoku.CommandLine.Arguments.IArgument`1">
-            <summary>
-            Represents an argument.
-            </summary>
-            <typeparam name="T">The type of the result parsed from the argument.</typeparam>
-        </member>
         <member name="T:Sudoku.CommandLine.Arguments.TwoGridArgument">
             <summary>
             Represents two grid argument.
@@ -110,7 +104,7 @@
         <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.Sudoku#CommandLine#Commands#ICommand#Parent">
+        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.Sudoku#CommandLine#ICommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.AnalyzeCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -132,7 +126,7 @@
         <member name="P:Sudoku.CommandLine.Commands.CompareCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.CompareCommand.Sudoku#CommandLine#Commands#ICommand#Parent">
+        <member name="P:Sudoku.CommandLine.Commands.CompareCommand.Sudoku#CommandLine#ICommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.CompareCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -217,49 +211,6 @@
         <member name="M:Sudoku.CommandLine.Commands.GeneratePatternCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CommandLine.Commands.ICommand">
-            <summary>
-            Represents a command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.ICommand.OptionsCore">
-            <summary>
-            Indicates the options.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.ICommand.ArgumentsCore">
-            <summary>
-            Indicates the arguments.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.ICommand.Parent">
-            <summary>
-            Indicates the parent command. The value can be <see langword="null"/> if the command has no parent.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CommandLine.Commands.ICommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
-            <summary>
-            <para>The backing handler method.</para>
-            <para>
-            This method only provides a constraint on implementation for multiple arguments with different types.
-            <b>Do not consume this method or expose it outside.</b>
-            </para>
-            </summary>
-            <param name="context">
-            The context. Use property <see cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/> to retrieve the target option result.
-            </param>
-            <seealso cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/>
-        </member>
-        <member name="T:Sudoku.CommandLine.Commands.INonLeafCommand">
-            <summary>
-            Represents a command that has sub-commands.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.INonLeafCommand.GlobalOptionsCore">
-            <summary>
-            Indicates the global options of the current command, applying to the current command and its sub-commands.
-            </summary>
-        </member>
         <member name="T:Sudoku.CommandLine.Commands.MinlexCommand">
             <summary>
             Represents a minlex command.
@@ -276,7 +227,7 @@
         <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.Sudoku#CommandLine#Commands#ICommand#Parent">
+        <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.Sudoku#CommandLine#ICommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -333,7 +284,7 @@
         <member name="P:Sudoku.CommandLine.Commands.SolveCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#Commands#ICommand#Parent">
+        <member name="P:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#ICommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -355,7 +306,7 @@
         <member name="P:Sudoku.CommandLine.Commands.TransformCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.TransformCommand.Sudoku#CommandLine#Commands#ICommand#Parent">
+        <member name="P:Sudoku.CommandLine.Commands.TransformCommand.Sudoku#CommandLine#ICommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.TransformCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -383,6 +334,61 @@
             <returns>A <see cref="T:System.Threading.CancellationTokenSource"/> instance.</returns>
             <seealso cref="F:System.Threading.Timeout.Infinite"/>
         </member>
+        <member name="T:Sudoku.CommandLine.IArgument`1">
+            <summary>
+            Represents an argument.
+            </summary>
+            <typeparam name="T">The type of the result parsed from the argument.</typeparam>
+        </member>
+        <member name="T:Sudoku.CommandLine.ICommand">
+            <summary>
+            Represents a command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ICommand.OptionsCore">
+            <summary>
+            Indicates the options.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ICommand.ArgumentsCore">
+            <summary>
+            Indicates the arguments.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ICommand.Parent">
+            <summary>
+            Indicates the parent command. The value can be <see langword="null"/> if the command has no parent.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.ICommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <summary>
+            <para>The backing handler method.</para>
+            <para>
+            This method only provides a constraint on implementation for multiple arguments with different types.
+            <b>Do not consume this method or expose it outside.</b>
+            </para>
+            </summary>
+            <param name="context">
+            The context. Use property <see cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/> to retrieve the target option result.
+            </param>
+            <seealso cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/>
+        </member>
+        <member name="T:Sudoku.CommandLine.INonLeafCommand">
+            <summary>
+            Represents a command that has sub-commands.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.INonLeafCommand.GlobalOptionsCore">
+            <summary>
+            Indicates the global options of the current command, applying to the current command and its sub-commands.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.IOption`1">
+            <summary>
+            Represents an option.
+            </summary>
+            <typeparam name="T">The type of the result parsed from the option.</typeparam>
+        </member>
         <member name="T:Sudoku.CommandLine.IOptionOrArgument`1">
             <summary>
             Represents an argument or option.
@@ -396,7 +402,7 @@
             use <see cref="P:System.CommandLine.Parsing.SymbolResult.ErrorMessage"/> to report invalid values.
             </para>
             <para>
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore(System.CommandLine.Invocation.InvocationContext)" path="/summary/para[2]"/>
+            <inheritdoc cref="M:Sudoku.CommandLine.ICommand.HandleCore(System.CommandLine.Invocation.InvocationContext)" path="/summary/para[2]"/>
             </para>
             </summary>
             <param name="result">The result.</param>
@@ -456,12 +462,6 @@
         </member>
         <member name="M:Sudoku.CommandLine.Options.CultureOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.CommandLine.Options.IOption`1">
-            <summary>
-            Represents an option.
-            </summary>
-            <typeparam name="T">The type of the result parsed from the option.</typeparam>
         </member>
         <member name="T:Sudoku.CommandLine.Options.MissingDigitOption">
             <summary>
