@@ -60,7 +60,11 @@ public static class CommandExtensions
 	}
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	internal static void Deconstruct<TCommand>(this TCommand @this, out SymbolList<Option> options, out SymbolList<Argument> arguments)
+	public static void Deconstruct<TCommand>(
+		this TCommand @this,
+		out SymbolList<Option> options,
+		out SymbolList<Argument> arguments
+	)
 		where TCommand : Command, ICommand
 	{
 		options = @this.OptionsCore;
@@ -68,7 +72,7 @@ public static class CommandExtensions
 	}
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	internal static void Deconstruct<TCommand>(
+	public static void Deconstruct<TCommand>(
 		this TCommand @this,
 		out SymbolList<Option> options,
 		out SymbolList<Argument> arguments,
@@ -78,7 +82,7 @@ public static class CommandExtensions
 		=> ((options, arguments), parent) = (@this, @this.Parent);
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	internal static void Deconstruct<TNonLeafCommand>(this TNonLeafCommand @this, out SymbolList<Option> options)
+	public static void Deconstruct<TNonLeafCommand>(this TNonLeafCommand @this, out SymbolList<Option> options)
 		where TNonLeafCommand : INonLeafCommand
 		=> options = @this.GlobalOptionsCore;
 }

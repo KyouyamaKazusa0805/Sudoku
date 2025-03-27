@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine;
 /// <summary>
 /// Represents a command.
 /// </summary>
-internal interface ICommand
+public interface ICommand
 {
 	/// <summary>
 	/// Indicates the options.
