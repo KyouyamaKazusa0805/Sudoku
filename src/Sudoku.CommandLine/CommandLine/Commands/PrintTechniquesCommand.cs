@@ -30,9 +30,14 @@ internal sealed class PrintTechniquesCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
+		if (this is not { OptionsCore: [TechniqueCategoryOption o1, CultureOption o2] })
+		{
+			return;
+		}
+
 		var result = context.ParseResult;
-		var category = result.GetValueForOption((TechniqueCategoryOption)OptionsCore[0]);
-		var culture = result.GetValueForOption((CultureOption)OptionsCore[1]);
+		var category = result.GetValueForOption(o1);
+		var culture = result.GetValueForOption(o2);
 		scoped ReadOnlySpan<string> cultures;
 		if (culture is null)
 		{

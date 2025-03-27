@@ -33,9 +33,14 @@ internal sealed class CompareCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
+		if (this is not { ArgumentsCore: [TwoGridArgument a1], OptionsCore: [ComparingMethodOption o1] })
+		{
+			return;
+		}
+
 		var result = context.ParseResult;
-		var (left, right) = result.GetValueForArgument((TwoGridArgument)ArgumentsCore[0]);
-		var comparison = result.GetValueForOption((ComparingMethodOption)OptionsCore[0]);
+		var (left, right) = result.GetValueForArgument(a1);
+		var comparison = result.GetValueForOption(o1);
 		var comparisonResult = left.Equals(right, comparison);
 		Console.WriteLine(comparisonResult);
 	}

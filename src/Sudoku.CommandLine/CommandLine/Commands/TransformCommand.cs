@@ -33,9 +33,14 @@ internal sealed class TransformCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
+		if (this is not { OptionsCore: [TransformatingMethodOption o1], ArgumentsCore: [GridArgument a1] })
+		{
+			return;
+		}
+
 		var result = context.ParseResult;
-		var grid = result.GetValueForArgument((GridArgument)ArgumentsCore[0]);
-		var types = result.GetValueForOption((TransformatingMethodOption)OptionsCore[0]);
+		var grid = result.GetValueForArgument(a1);
+		var types = result.GetValueForOption(o1);
 		grid.Transform(types);
 		Console.WriteLine(grid.ToString("."));
 	}

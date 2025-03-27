@@ -30,9 +30,13 @@ internal sealed class MinlexCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
-		var result = context.ParseResult;
-		var grid = result.GetValueForArgument((GridArgument)ArgumentsCore[0]);
+		if (this is not { ArgumentsCore: [GridArgument a1] })
+		{
+			return;
+		}
 
+		var result = context.ParseResult;
+		var grid = result.GetValueForArgument(a1);
 		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, new BitwiseSolver(), out var solution);
 		if (!solution.IsUndefined)
 		{

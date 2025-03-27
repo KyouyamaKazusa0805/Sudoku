@@ -24,10 +24,18 @@ internal sealed class GenerateHardCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
+		if (this is not
+			{
+				Parent: INonLeafCommand { GlobalOptionsCore: [CountOption go1, TimeoutOption go2, OutputFilePathOption go3] }
+			})
+		{
+			return;
+		}
+
 		var result = context.ParseResult;
-		var count = result.GetValueForOption((CountOption)((INonLeafCommand)Parent!).GlobalOptionsCore[0]);
-		var timeout = result.GetValueForOption((TimeoutOption)((INonLeafCommand)Parent!).GlobalOptionsCore[1]);
-		var outputFilePath = result.GetValueForOption((OutputFilePathOption)((INonLeafCommand)Parent!).GlobalOptionsCore[2]);
+		var count = result.GetValueForOption(go1);
+		var timeout = result.GetValueForOption(go2);
+		var outputFilePath = result.GetValueForOption(go3);
 		var generator = new HardPatternPuzzleGenerator();
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		using var outputFileStream = outputFilePath is null ? null : new StreamWriter(outputFilePath);

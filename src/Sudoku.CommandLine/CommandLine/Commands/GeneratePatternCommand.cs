@@ -33,12 +33,22 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
+		if (this is not
+			{
+				OptionsCore: [MissingDigitOption o1],
+				ArgumentsCore: [CellMapArgument a1],
+				Parent: INonLeafCommand { GlobalOptionsCore: [CountOption go1, TimeoutOption go2, OutputFilePathOption go3] }
+			})
+		{
+			return;
+		}
+
 		var result = context.ParseResult;
-		var missingDigit = result.GetValueForOption((MissingDigitOption)OptionsCore[0]);
-		var count = result.GetValueForOption((CountOption)((INonLeafCommand)Parent!).GlobalOptionsCore[0]);
-		var timeout = result.GetValueForOption((TimeoutOption)((INonLeafCommand)Parent!).GlobalOptionsCore[1]);
-		var outputFilePath = result.GetValueForOption((OutputFilePathOption)((INonLeafCommand)Parent!).GlobalOptionsCore[2]);
-		var cells = result.GetValueForArgument((CellMapArgument)ArgumentsCore[0]);
+		var missingDigit = result.GetValueForOption(o1);
+		var cells = result.GetValueForArgument(a1);
+		var count = result.GetValueForOption(go1);
+		var timeout = result.GetValueForOption(go2);
+		var outputFilePath = result.GetValueForOption(go3);
 		var generator = new PatternBasedPuzzleGenerator(in cells, missingDigit);
 		using var outputFileStream = outputFilePath is null ? null : new StreamWriter(outputFilePath);
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);

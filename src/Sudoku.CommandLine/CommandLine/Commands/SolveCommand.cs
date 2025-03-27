@@ -33,10 +33,14 @@ internal sealed class SolveCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
-		var result = context.ParseResult;
-		var grid = result.GetValueForArgument((GridArgument)ArgumentsCore[0]);
-		var type = result.GetValueForOption((SolvingMethodOption)OptionsCore[0]);
+		if (this is not { OptionsCore: [SolvingMethodOption o1], ArgumentsCore: [GridArgument a1] })
+		{
+			return;
+		}
 
+		var result = context.ParseResult;
+		var type = result.GetValueForOption(o1);
+		var grid = result.GetValueForArgument(a1);
 		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, type.Create(), out var solution);
 		if (!solution.IsUndefined)
 		{

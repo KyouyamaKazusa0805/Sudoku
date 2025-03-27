@@ -30,12 +30,21 @@ internal sealed class GenerateDefaultCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
+		if (this is not
+			{
+				OptionsCore: [CluesCountOption o1, SymmetricTypeOption o2],
+				Parent: INonLeafCommand { GlobalOptionsCore: [CountOption go1, TimeoutOption go2, OutputFilePathOption go3] }
+			})
+		{
+			return;
+		}
+
 		var result = context.ParseResult;
-		var cluesCount = result.GetValueForOption((CluesCountOption)OptionsCore[0]);
-		var symmetricType = result.GetValueForOption((SymmetricTypeOption)OptionsCore[1]);
-		var count = result.GetValueForOption((CountOption)((INonLeafCommand)Parent!).GlobalOptionsCore[0]);
-		var timeout = result.GetValueForOption((TimeoutOption)((INonLeafCommand)Parent!).GlobalOptionsCore[1]);
-		var outputFilePath = result.GetValueForOption((OutputFilePathOption)((INonLeafCommand)Parent!).GlobalOptionsCore[2]);
+		var cluesCount = result.GetValueForOption(o1);
+		var symmetricType = result.GetValueForOption(o2);
+		var count = result.GetValueForOption(go1);
+		var timeout = result.GetValueForOption(go2);
+		var outputFilePath = result.GetValueForOption(go3);
 		var generator = new Generator();
 		using var outputFileStream = outputFilePath is null ? null : new StreamWriter(outputFilePath);
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
