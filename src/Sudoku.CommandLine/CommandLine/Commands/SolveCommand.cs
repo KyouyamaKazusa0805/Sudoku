@@ -33,7 +33,7 @@ internal sealed class SolveCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
-		if (this is not { OptionsCore: [SolvingMethodOption o1], ArgumentsCore: [GridArgument a1] })
+		if (this is not ([SolvingMethodOption o1], [GridArgument a1]))
 		{
 			return;
 		}

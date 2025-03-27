@@ -30,14 +30,11 @@ internal sealed class GenerateDefaultCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
-		if (this is not
-			{
-				OptionsCore: [CluesCountOption o1, SymmetricTypeOption o2],
-				Parent: INonLeafCommand
-				{
-					GlobalOptionsCore: [CountOption go1, TimeoutOption go2, OutputFilePathOption go3, TechniqueFilterOption go4]
-				}
-			})
+		if (this is not (
+			[CluesCountOption o1, SymmetricTypeOption o2],
+			_,
+			INonLeafCommand([CountOption go1, TimeoutOption go2, OutputFilePathOption go3, TechniqueFilterOption go4])
+		))
 		{
 			return;
 		}

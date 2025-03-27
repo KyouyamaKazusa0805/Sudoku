@@ -760,5 +760,29 @@
             <param name="this">The command.</param>
             <param name="options">The options.</param>
         </member>
+        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@,System.CommandLine.Command@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
     </members>
 </doc>

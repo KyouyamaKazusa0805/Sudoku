@@ -33,7 +33,7 @@ internal sealed class CompareCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
-		if (this is not { ArgumentsCore: [TwoGridArgument a1], OptionsCore: [ComparingMethodOption o1] })
+		if (this is not ([ComparingMethodOption o1], [TwoGridArgument a1]))
 		{
 			return;
 		}

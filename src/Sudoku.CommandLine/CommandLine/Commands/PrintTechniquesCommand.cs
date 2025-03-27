@@ -30,7 +30,7 @@ internal sealed class PrintTechniquesCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
-		if (this is not { OptionsCore: [TechniqueCategoryOption o1, CultureOption o2] })
+		if (this is not ([TechniqueCategoryOption o1, CultureOption o2], _))
 		{
 			return;
 		}

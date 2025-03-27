@@ -33,7 +33,7 @@ internal sealed class TransformCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
-		if (this is not { OptionsCore: [TransformatingMethodOption o1], ArgumentsCore: [GridArgument a1] })
+		if (this is not ([TransformatingMethodOption o1], [GridArgument a1]))
 		{
 			return;
 		}

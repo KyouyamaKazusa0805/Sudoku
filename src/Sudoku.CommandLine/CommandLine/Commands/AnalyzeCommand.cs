@@ -30,7 +30,7 @@ internal sealed class AnalyzeCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
-		if (this is not { ArgumentsCore: [GridArgument a1] })
+		if (this is not (_, [GridArgument a1]))
 		{
 			return;
 		}

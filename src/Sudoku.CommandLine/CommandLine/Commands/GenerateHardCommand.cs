@@ -24,13 +24,7 @@ internal sealed class GenerateHardCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
-		if (this is not
-			{
-				Parent: INonLeafCommand
-				{
-					GlobalOptionsCore: [CountOption go1, TimeoutOption go2, OutputFilePathOption go3, TechniqueFilterOption go4]
-				}
-			})
+		if (this is not (_, _, INonLeafCommand([CountOption go1, TimeoutOption go2, OutputFilePathOption go3, TechniqueFilterOption go4])))
 		{
 			return;
 		}

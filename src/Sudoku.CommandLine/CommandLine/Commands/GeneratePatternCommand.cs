@@ -33,15 +33,11 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 	/// <inheritdoc/>
 	public void HandleCore(InvocationContext context)
 	{
-		if (this is not
-			{
-				OptionsCore: [MissingDigitOption o1],
-				ArgumentsCore: [CellMapArgument a1],
-				Parent: INonLeafCommand
-				{
-					GlobalOptionsCore: [CountOption go1, TimeoutOption go2, OutputFilePathOption go3, TechniqueFilterOption go4]
-				}
-			})
+		if (this is not (
+			[MissingDigitOption o1],
+			[CellMapArgument a1],
+			INonLeafCommand([CountOption go1, TimeoutOption go2, OutputFilePathOption go3, TechniqueFilterOption go4])
+		))
 		{
 			return;
 		}
