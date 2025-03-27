@@ -17,8 +17,6 @@ internal sealed class ComparingMethodOption : Option<BoardComparison>, IOption<B
 
 
 	/// <inheritdoc/>
-	static BoardComparison IOptionOrArgument<BoardComparison>.ParseArgument(ArgumentResult result) => ParseArgument(result);
-
-	/// <inheritdoc cref="IOptionOrArgument{T}.ParseArgument"/>
-	private static BoardComparison ParseArgument(ArgumentResult result) => throw new NotImplementedException();
+	static BoardComparison IOptionOrArgument<BoardComparison>.ParseArgument(ArgumentResult result)
+		=> throw new NotImplementedException();
 }

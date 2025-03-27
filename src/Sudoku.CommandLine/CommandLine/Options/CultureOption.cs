@@ -17,5 +17,5 @@ internal sealed class CultureOption : Option<string>, IOption<string>
 
 
 	/// <inheritdoc/>
-	public static string ParseArgument(ArgumentResult result) => throw new NotImplementedException();
+	static string IOptionOrArgument<string>.ParseArgument(ArgumentResult result) => throw new NotImplementedException();
 }

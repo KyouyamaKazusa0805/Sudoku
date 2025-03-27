@@ -434,9 +434,6 @@
         <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.Sudoku#CommandLine#IOptionOrArgument{Puzzles#Meta#Transforming#BoardComparison}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
-        </member>
         <member name="T:Sudoku.CommandLine.Options.CountOption">
             <summary>
             Provides with a count option.
@@ -460,7 +457,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.CultureOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.CultureOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.CultureOption.Sudoku#CommandLine#IOptionOrArgument{System#String}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.MissingDigitOption">
@@ -515,7 +512,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.TechniqueCategoryOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.TechniqueCategoryOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.TechniqueCategoryOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Categorization#TechniqueGroup}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.TimeoutOption">
