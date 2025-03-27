@@ -8,7 +8,10 @@ public sealed class TechniqueFilterOption : Option<Technique>, IOption<Technique
 	/// <summary>
 	/// Initializes a <see cref="TechniqueFilterOption"/> instance.
 	/// </summary>
-	public TechniqueFilterOption() : base(["--technique", "-t"], "Specifies the technique")
+	public TechniqueFilterOption() : base(
+		["--technique", "-t"],
+		"Specifies the technique. Use command 'print techniques' to view all techniques implemented in the program"
+	)
 	{
 		Arity = ArgumentArity.ExactlyOne;
 		IsRequired = false;

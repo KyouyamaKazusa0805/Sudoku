@@ -8,7 +8,7 @@ internal sealed class CountOption : Option<int>, IOption<int>
 	/// <summary>
 	/// Initializes a <see cref="CountOption"/> instance.
 	/// </summary>
-	public CountOption() : base(["--count", "-C"], "Speciifes the count of the generated puzzle.")
+	public CountOption() : base(["--count", "-C"], "Specifies the count of the generated puzzle.")
 	{
 		Arity = ArgumentArity.ExactlyOne;
 		IsRequired = false;
