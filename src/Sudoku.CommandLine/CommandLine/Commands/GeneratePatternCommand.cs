@@ -37,18 +37,19 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 		var missingDigit = result.GetValueForOption((MissingDigitOption)OptionsCore[0]);
 		var count = result.GetValueForOption((CountOption)((INonLeafCommand)Parent!).GlobalOptionsCore[0]);
 		var timeout = result.GetValueForOption((TimeoutOption)((INonLeafCommand)Parent!).GlobalOptionsCore[1]);
+		var outputFilePath = result.GetValueForOption((OutputFilePathOption)((INonLeafCommand)Parent!).GlobalOptionsCore[2]);
 		var cells = result.GetValueForArgument((CellMapArgument)ArgumentsCore[0]);
 		var generator = new PatternBasedPuzzleGenerator(in cells, missingDigit);
+		using var outputFileStream = outputFilePath is null ? null : new StreamWriter(outputFilePath);
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		for (var i = 0; i < count; i++)
 		{
 			var r = generator.Generate(cancellationToken: cts.Token);
 			if (r.IsUndefined)
 			{
-				//Console.WriteLine("Canceled.");
 				return;
 			}
-			Console.WriteLine(r.ToString("."));
+			CommonPreprocessors.OutputTextTo(r, outputFileStream ?? Console.Out, static r => r.ToString("."), true);
 		}
 	}
 }

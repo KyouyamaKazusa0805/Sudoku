@@ -35,17 +35,18 @@ internal sealed class GenerateDefaultCommand : Command, ICommand
 		var symmetricType = result.GetValueForOption((SymmetricTypeOption)OptionsCore[1]);
 		var count = result.GetValueForOption((CountOption)((INonLeafCommand)Parent!).GlobalOptionsCore[0]);
 		var timeout = result.GetValueForOption((TimeoutOption)((INonLeafCommand)Parent!).GlobalOptionsCore[1]);
+		var outputFilePath = result.GetValueForOption((OutputFilePathOption)((INonLeafCommand)Parent!).GlobalOptionsCore[2]);
 		var generator = new Generator();
+		using var outputFileStream = outputFilePath is null ? null : new StreamWriter(outputFilePath);
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		for (var i = 0; i < count; i++)
 		{
 			var r = generator.Generate(cluesCount, symmetricType, cts.Token);
 			if (r.IsUndefined)
 			{
-				//Console.WriteLine("Canceled.");
 				return;
 			}
-			Console.WriteLine(r.ToString("."));
+			CommonPreprocessors.OutputTextTo(r, outputFileStream ?? Console.Out, static r => r.ToString("."), true);
 		}
 	}
 }

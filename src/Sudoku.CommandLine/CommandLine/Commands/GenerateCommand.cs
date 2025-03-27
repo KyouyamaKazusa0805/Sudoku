@@ -17,7 +17,7 @@ internal sealed class GenerateCommand : Command, INonLeafCommand
 		];
 		this.AddRange(commands);
 
-		GlobalOptionsCore = [new CountOption(), new TimeoutOption()];
+		GlobalOptionsCore = [new CountOption(), new TimeoutOption(), new OutputFilePathOption()];
 		this.AddRangeGlobal(GlobalOptionsCore);
 	}
 

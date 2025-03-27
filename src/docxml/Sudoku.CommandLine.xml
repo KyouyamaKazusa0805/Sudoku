@@ -325,6 +325,18 @@
             <param name="solver">The solver.</param>
             <param name="solution">The solution.</param>
         </member>
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.OutputTextTo``1(``0@,System.IO.TextWriter,System.Func{``0,System.String},System.Boolean)">
+            <summary>
+            Output the object of type <typeparamref name="T"/> to a certain text writer.
+            </summary>
+            <typeparam name="T">The type of object.</typeparam>
+            <param name="obj">The object.</param>
+            <param name="writer">The stream.</param>
+            <param name="outputTextCreator">
+            The method that converts the object <paramref name="obj"/> to <see cref="T:System.String"/> representation.
+            </param>
+            <param name="appendNewLine">Indicates whether the new line characters will be appended after the output text.</param>
+        </member>
         <member name="M:Sudoku.CommandLine.CommonPreprocessors.CreateCancellationTokenSource(System.Int32)">
             <summary>
             Creates a <see cref="T:System.Threading.CancellationTokenSource"/> instance with a timeout.
@@ -471,6 +483,19 @@
             </summary>
         </member>
         <member name="M:Sudoku.CommandLine.Options.MissingDigitOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.OutputFilePathOption">
+            <summary>
+            Represents a file path option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputFilePathOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.OutputFilePathOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputFilePathOption.Sudoku#CommandLine#IOptionOrArgument{System#String}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.SolvingMethodOption">

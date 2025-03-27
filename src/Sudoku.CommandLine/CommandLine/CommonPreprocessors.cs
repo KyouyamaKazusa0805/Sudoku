@@ -25,6 +25,26 @@ internal static class CommonPreprocessors
 	}
 
 	/// <summary>
+	/// Output the object of type <typeparamref name="T"/> to a certain text writer.
+	/// </summary>
+	/// <typeparam name="T">The type of object.</typeparam>
+	/// <param name="obj">The object.</param>
+	/// <param name="writer">The stream.</param>
+	/// <param name="outputTextCreator">
+	/// The method that converts the object <paramref name="obj"/> to <see cref="string"/> representation.
+	/// </param>
+	/// <param name="appendNewLine">Indicates whether the new line characters will be appended after the output text.</param>
+	public static void OutputTextTo<T>(in T obj, TextWriter writer, Func<T, string> outputTextCreator, bool appendNewLine)
+		where T : allows ref struct
+	{
+		writer.Write(outputTextCreator(obj));
+		if (appendNewLine)
+		{
+			writer.WriteLine();
+		}
+	}
+
+	/// <summary>
 	/// Creates a <see cref="CancellationTokenSource"/> instance with a timeout.
 	/// Set <see cref="Timeout.Infinite"/> (i.e. -1) to set infinity timeout.
 	/// </summary>
