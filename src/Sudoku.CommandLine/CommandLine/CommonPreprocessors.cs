@@ -42,13 +42,21 @@ internal static class CommonPreprocessors
 	/// The technique that the generated puzzle must use.
 	/// The value can be <see cref="Technique.None"/> if you don't want to specify any techniques.
 	/// </param>
+	/// <param name="alsoOutputInfo">
+	/// <para>Indicates whether the output text also contains filter information.</para>
+	/// <para>
+	/// For example, if <paramref name="filteredTechnique"/> is specified with a value not <see cref="Technique.None"/>,
+	/// the output information will display the technique used for the target grid generated.
+	/// </para>
+	/// </param>
 	public static void GeneratePuzzles<TGenerator>(
 		TGenerator generator,
 		Func<TGenerator, CancellationToken, Grid> generatorMethod,
 		string? outputFilePath,
 		int timeout,
 		int count,
-		Technique filteredTechnique
+		Technique filteredTechnique,
+		bool alsoOutputInfo
 	)
 		where TGenerator : IGenerator<Grid>, allows ref struct
 	{
@@ -57,22 +65,49 @@ internal static class CommonPreprocessors
 		using var cts = CreateCancellationTokenSource(timeout);
 		for (var i = 0; count == -1 || i < count;)
 		{
-			var r = generatorMethod(generator, cts.Token);
-			if (r.IsUndefined)
+			var tempGridGenerated = generatorMethod(generator, cts.Token);
+			if (tempGridGenerated.IsUndefined)
 			{
+				// Cancelled.
 				return;
 			}
 
-			if (filteredTechnique != Technique.None
-				&& (
-					analyzer!.Analyze(r) is not { IsSolved: true, StepsSpan: var steps }
-					|| !steps.Any(step => step.Code == filteredTechnique)
-				))
+			var matchedKvp = default(KeyValuePair<Grid, Step>?);
+			if (filteredTechnique != Technique.None)
 			{
+				if (analyzer!.Analyze(tempGridGenerated) is { IsSolved: true, StepsSpan: var steps, GridsSpan: var grids } tempAnalysisResult)
+				{
+					foreach (var kvp in StepMarshal.Combine(grids, steps))
+					{
+						if (kvp.Value.Code == filteredTechnique)
+						{
+							matchedKvp = kvp;
+							break;
+						}
+					}
+					if (matchedKvp is not null)
+					{
+						goto Output;
+					}
+				}
 				continue;
 			}
 
-			OutputTextTo(r, outputFileStream ?? Console.Out, static r => r.ToString("."), true);
+		Output:
+			OutputTextTo(
+				in tempGridGenerated,
+				outputFileStream ?? Console.Out,
+				(ref readonly grid) =>
+				{
+					var basicOutput = grid.ToString(".");
+					return (alsoOutputInfo, matchedKvp) switch
+					{
+						(true, var (_, step)) => $"{basicOutput}\t{step.GetName(null)}",
+						_ => basicOutput
+					};
+				},
+				true
+			);
 			i++;
 		}
 	}
@@ -87,10 +122,10 @@ internal static class CommonPreprocessors
 	/// The method that converts the object <paramref name="obj"/> to <see cref="string"/> representation.
 	/// </param>
 	/// <param name="appendNewLine">Indicates whether the new line characters will be appended after the output text.</param>
-	public static void OutputTextTo<T>(in T obj, TextWriter writer, Func<T, string> outputTextCreator, bool appendNewLine)
+	public static void OutputTextTo<T>(ref readonly T obj, TextWriter writer, FuncRefReadOnly<T, string> outputTextCreator, bool appendNewLine)
 		where T : allows ref struct
 	{
-		writer.Write(outputTextCreator(obj));
+		writer.Write(outputTextCreator(in obj));
 		if (appendNewLine)
 		{
 			writer.WriteLine();

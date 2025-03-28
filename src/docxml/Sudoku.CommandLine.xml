@@ -325,7 +325,7 @@
             <param name="solver">The solver.</param>
             <param name="solution">The solution.</param>
         </member>
-        <member name="M:Sudoku.CommandLine.CommonPreprocessors.GeneratePuzzles``1(``0,System.Func{``0,System.Threading.CancellationToken,Sudoku.Concepts.Grid},System.String,System.Int32,System.Int32,Sudoku.Categorization.Technique)">
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.GeneratePuzzles``1(``0,System.Func{``0,System.Threading.CancellationToken,Sudoku.Concepts.Grid},System.String,System.Int32,System.Int32,Sudoku.Categorization.Technique,System.Boolean)">
             <summary>
             Try to generate puzzles, and write them to the specified text writer (file or console).
             </summary>
@@ -344,8 +344,15 @@
             The technique that the generated puzzle must use.
             The value can be <see cref="F:Sudoku.Categorization.Technique.None"/> if you don't want to specify any techniques.
             </param>
+            <param name="alsoOutputInfo">
+            <para>Indicates whether the output text also contains filter information.</para>
+            <para>
+            For example, if <paramref name="filteredTechnique"/> is specified with a value not <see cref="F:Sudoku.Categorization.Technique.None"/>,
+            the output information will display the technique used for the target grid generated.
+            </para>
+            </param>
         </member>
-        <member name="M:Sudoku.CommandLine.CommonPreprocessors.OutputTextTo``1(``0@,System.IO.TextWriter,System.Func{``0,System.String},System.Boolean)">
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.OutputTextTo``1(``0@,System.IO.TextWriter,System.FuncRefReadOnly{``0,System.String},System.Boolean)">
             <summary>
             Output the object of type <typeparamref name="T"/> to a certain text writer.
             </summary>
@@ -516,6 +523,19 @@
             </summary>
         </member>
         <member name="M:Sudoku.CommandLine.Options.OutputFilePathOption.Sudoku#CommandLine#IOptionOrArgument{System#String}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.OutputInfoOption">
+            <summary>
+            Represents an output information option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputInfoOption.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.CommandLine.Options.OutputInfoOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputInfoOption.Sudoku#CommandLine#IOptionOrArgument{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.SolvingMethodOption">

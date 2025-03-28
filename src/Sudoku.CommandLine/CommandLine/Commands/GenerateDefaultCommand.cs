@@ -33,7 +33,15 @@ internal sealed class GenerateDefaultCommand : Command, ICommand
 		if (this is not (
 			[CluesCountOption o1, SymmetricTypeOption o2],
 			_,
-			INonLeafCommand([CountOption go1, TimeoutOption go2, OutputFilePathOption go3, TechniqueFilterOption go4])
+			INonLeafCommand(
+				[
+					CountOption go1,
+					TimeoutOption go2,
+					OutputFilePathOption go3,
+					TechniqueFilterOption go4,
+					OutputInfoOption go5
+				]
+			)
 		))
 		{
 			return;
@@ -46,13 +54,15 @@ internal sealed class GenerateDefaultCommand : Command, ICommand
 		var timeout = result.GetValueForOption(go2);
 		var outputFilePath = result.GetValueForOption(go3);
 		var filteredTechnique = result.GetValueForOption(go4);
+		var alsoOutputInfo = result.GetValueForOption(go5);
 		CommonPreprocessors.GeneratePuzzles(
 			new Generator(),
 			(generator, cancellationToken) => generator.Generate(cluesCount, symmetricType, cancellationToken),
 			outputFilePath,
 			timeout,
 			count,
-			filteredTechnique
+			filteredTechnique,
+			alsoOutputInfo
 		);
 	}
 }

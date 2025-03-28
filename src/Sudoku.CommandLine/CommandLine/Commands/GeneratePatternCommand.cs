@@ -36,7 +36,15 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 		if (this is not (
 			[MissingDigitOption o1],
 			[CellMapArgument a1],
-			INonLeafCommand([CountOption go1, TimeoutOption go2, OutputFilePathOption go3, TechniqueFilterOption go4])
+			INonLeafCommand(
+				[
+					CountOption go1,
+					TimeoutOption go2,
+					OutputFilePathOption go3,
+					TechniqueFilterOption go4,
+					OutputInfoOption go5
+				]
+			)
 		))
 		{
 			return;
@@ -49,13 +57,15 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 		var timeout = result.GetValueForOption(go2);
 		var outputFilePath = result.GetValueForOption(go3);
 		var filteredTechnique = result.GetValueForOption(go4);
+		var alsoOutputInfo = result.GetValueForOption(go5);
 		CommonPreprocessors.GeneratePuzzles(
 			new PatternBasedPuzzleGenerator(in cells, missingDigit),
 			static (generator, cancellationToken) => generator.Generate(cancellationToken: cancellationToken),
 			outputFilePath,
 			timeout,
 			count,
-			filteredTechnique
+			filteredTechnique,
+			alsoOutputInfo
 		);
 	}
 }

@@ -44,10 +44,7 @@ public static class StepMarshal
 		var result = new List<KeyValuePair<Grid, Step>>(interimGrids.Length);
 		for (var i = 0; i < interimGrids.Length; i++)
 		{
-			var kvp = new KeyValuePair<Grid, Step>();
-			kvp.KeyRef() = interimGrids[i];
-			kvp.ValueRef() = interimSteps[i];
-			result.AddRef(kvp);
+			result.AddRef(KeyValuePair.Create(interimGrids[i], interimSteps[i]));
 		}
 		return result.AsSpan();
 	}
