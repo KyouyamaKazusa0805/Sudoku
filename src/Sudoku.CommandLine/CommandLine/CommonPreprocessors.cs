@@ -25,6 +25,59 @@ internal static class CommonPreprocessors
 	}
 
 	/// <summary>
+	/// Try to generate puzzles, and write them to the specified text writer (file or console).
+	/// </summary>
+	/// <typeparam name="TGenerator">The type of generator.</typeparam>
+	/// <param name="generator">The generator object.</param>
+	/// <param name="generatorMethod">The method to generate a <see cref="Grid"/> instance.</param>
+	/// <param name="outputFilePath">
+	/// The output file path. The value can be <see langword="null"/> if you don't want to write it to the specified file;
+	/// in such case, the puzzle will be output onto console screen.
+	/// </param>
+	/// <param name="timeout">The timeout. The value can be -1 if you want to set infinity timeout.</param>
+	/// <param name="count">
+	/// The number of puzzles to be generated. The value can be -1 if you want to make an infinity loop.
+	/// </param>
+	/// <param name="filteredTechnique">
+	/// The technique that the generated puzzle must use.
+	/// The value can be <see cref="Technique.None"/> if you don't want to specify any techniques.
+	/// </param>
+	public static void GeneratePuzzles<TGenerator>(
+		TGenerator generator,
+		Func<TGenerator, CancellationToken, Grid> generatorMethod,
+		string? outputFilePath,
+		int timeout,
+		int count,
+		Technique filteredTechnique
+	)
+		where TGenerator : IGenerator<Grid>, allows ref struct
+	{
+		var analyzer = filteredTechnique == Technique.None ? null : new Analyzer();
+		using var outputFileStream = outputFilePath is null ? null : new StreamWriter(outputFilePath);
+		using var cts = CreateCancellationTokenSource(timeout);
+		for (var i = 0; count == -1 || i < count;)
+		{
+			var r = generatorMethod(generator, cts.Token);
+			if (r.IsUndefined)
+			{
+				return;
+			}
+
+			if (filteredTechnique != Technique.None
+				&& (
+					analyzer!.Analyze(r) is not { IsSolved: true, StepsSpan: var steps }
+					|| !steps.Any(step => step.Code == filteredTechnique)
+				))
+			{
+				continue;
+			}
+
+			OutputTextTo(r, outputFileStream ?? Console.Out, static r => r.ToString("."), true);
+			i++;
+		}
+	}
+
+	/// <summary>
 	/// Output the object of type <typeparamref name="T"/> to a certain text writer.
 	/// </summary>
 	/// <typeparam name="T">The type of object.</typeparam>

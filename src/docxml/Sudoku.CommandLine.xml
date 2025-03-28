@@ -325,6 +325,26 @@
             <param name="solver">The solver.</param>
             <param name="solution">The solution.</param>
         </member>
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.GeneratePuzzles``1(``0,System.Func{``0,System.Threading.CancellationToken,Sudoku.Concepts.Grid},System.String,System.Int32,System.Int32,Sudoku.Categorization.Technique)">
+            <summary>
+            Try to generate puzzles, and write them to the specified text writer (file or console).
+            </summary>
+            <typeparam name="TGenerator">The type of generator.</typeparam>
+            <param name="generator">The generator object.</param>
+            <param name="generatorMethod">The method to generate a <see cref="T:Sudoku.Concepts.Grid"/> instance.</param>
+            <param name="outputFilePath">
+            The output file path. The value can be <see langword="null"/> if you don't want to write it to the specified file;
+            in such case, the puzzle will be output onto console screen.
+            </param>
+            <param name="timeout">The timeout. The value can be -1 if you want to set infinity timeout.</param>
+            <param name="count">
+            The number of puzzles to be generated. The value can be -1 if you want to make an infinity loop.
+            </param>
+            <param name="filteredTechnique">
+            The technique that the generated puzzle must use.
+            The value can be <see cref="F:Sudoku.Categorization.Technique.None"/> if you don't want to specify any techniques.
+            </param>
+        </member>
         <member name="M:Sudoku.CommandLine.CommonPreprocessors.OutputTextTo``1(``0@,System.IO.TextWriter,System.Func{``0,System.String},System.Boolean)">
             <summary>
             Output the object of type <typeparamref name="T"/> to a certain text writer.

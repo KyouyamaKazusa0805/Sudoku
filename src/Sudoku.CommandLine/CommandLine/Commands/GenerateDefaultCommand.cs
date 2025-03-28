@@ -46,29 +46,13 @@ internal sealed class GenerateDefaultCommand : Command, ICommand
 		var timeout = result.GetValueForOption(go2);
 		var outputFilePath = result.GetValueForOption(go3);
 		var filteredTechnique = result.GetValueForOption(go4);
-		var analyzer = filteredTechnique == Technique.None ? null : new Analyzer();
-		var generator = new Generator();
-		using var outputFileStream = outputFilePath is null ? null : new StreamWriter(outputFilePath);
-		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
-		for (var i = 0; count == -1 || i < count;)
-		{
-			var r = generator.Generate(cluesCount, symmetricType, cts.Token);
-			if (r.IsUndefined)
-			{
-				return;
-			}
-
-			if (filteredTechnique != Technique.None
-				&& (
-					analyzer!.Analyze(r) is not { IsSolved: true, StepsSpan: var steps }
-					|| !steps.Any(step => step.Code == filteredTechnique)
-				))
-			{
-				continue;
-			}
-
-			CommonPreprocessors.OutputTextTo(r, outputFileStream ?? Console.Out, static r => r.ToString("."), true);
-			i++;
-		}
+		CommonPreprocessors.GeneratePuzzles(
+			new Generator(),
+			(generator, cancellationToken) => generator.Generate(cluesCount, symmetricType, cancellationToken),
+			outputFilePath,
+			timeout,
+			count,
+			filteredTechnique
+		);
 	}
 }
