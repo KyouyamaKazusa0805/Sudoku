@@ -657,20 +657,6 @@
         <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
-        <member name="T:Sudoku.CommandLine.ParseResultExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.CommandLine.Parsing.ParseResult"/>.
-            </summary>
-            <seealso cref="T:System.CommandLine.Parsing.ParseResult"/>
-        </member>
-        <member name="M:Sudoku.CommandLine.ParseResultExtensions.GetOptions(System.CommandLine.Parsing.ParseResult,Sudoku.CommandLine.SymbolList{System.CommandLine.Option})">
-            <summary>
-            Returns a list of <see cref="T:System.ReadOnlySpan`1"/> instances representing the results parsed.
-            </summary>
-            <param name="this">The parse result.</param>
-            <param name="options">The options.</param>
-            <returns>The results.</returns>
-        </member>
         <member name="T:Sudoku.CommandLine.SymbolList">
             <summary>
             Provides a way to create a <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance.
