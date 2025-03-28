@@ -3,39 +3,45 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents a solve command.
 /// </summary>
-public sealed class SolveCommand : Command, ICommand
+internal sealed class SolveCommand : Command, ICommand
 {
 	/// <summary>
 	/// Initializes a <see cref="SolveCommand"/> instance.
 	/// </summary>
 	public SolveCommand() : base("solve", "To solve a puzzle")
 	{
-		var options = OptionsCore;
-		this.AddRange(options);
-		this.SetHandler(HandleCore, (Option<Grid>)options[0], (Option<SolverType>)options[1]);
+		OptionsCore = [new SolvingMethodOption()];
+		this.AddRange(OptionsCore);
+
+		ArgumentsCore = [new GridArgument()];
+		this.AddRange(ArgumentsCore);
+
+		this.SetHandler(HandleCore);
 	}
 
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Option> OptionsCore => (Option[])[new GridOption(), new SolvingMethodOption()];
+	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Argument> ArgumentsCore => [];
+	public SymbolList<Argument> ArgumentsCore { get; }
+
+	/// <inheritdoc/>
+	INonLeafCommand? ICommand.Parent { get; init; }
 
 
 	/// <inheritdoc/>
-	static void ICommand.HandleCore(__arglist)
+	public void HandleCore(InvocationContext context)
 	{
-		var iterator = new ArgIterator(__arglist);
-		var grid = __refvalue(iterator.GetNextArg(), Grid);
-		var type = __refvalue(iterator.GetNextArg(), SolverType);
-		HandleCore(grid, type);
-	}
+		if (this is not ([SolvingMethodOption o1], [GridArgument a1]))
+		{
+			return;
+		}
 
-	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private static void HandleCore(Grid grid, SolverType type)
-	{
-		CommonPreprocessors.OutputIfPuzzleNotUnique(grid, type.Create(), out var solution);
+		var result = context.ParseResult;
+		var type = result.GetValueForOption(o1);
+		var grid = result.GetValueForArgument(a1);
+		CommonPreprocessors.PrintInvalidIfWorth(grid, type.Create(), out var solution);
 		if (!solution.IsUndefined)
 		{
 			Console.WriteLine(solution);

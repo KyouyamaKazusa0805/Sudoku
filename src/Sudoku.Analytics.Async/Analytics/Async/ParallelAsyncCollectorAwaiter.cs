@@ -248,7 +248,8 @@ public sealed class ParallelAsyncCollectorAwaiter : IStepGathererAwaiter<ReadOnl
 				{
 					Accumulator = accumulator,
 					OnlyFindOne = false,
-					Options = _collector.Options
+					Options = _collector.Options,
+					CancellationToken = _cancellationToken
 				};
 				switch (searcher)
 				{

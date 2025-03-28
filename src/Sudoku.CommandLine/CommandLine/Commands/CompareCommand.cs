@@ -3,41 +3,45 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents compare command.
 /// </summary>
-public sealed class CompareCommand : Command, ICommand
+internal sealed class CompareCommand : Command, ICommand
 {
 	/// <summary>
 	/// Initializes a <see cref="CompareCommand"/> instance.
 	/// </summary>
 	public CompareCommand() : base("compare", "Compare two grids and determine the equality result")
 	{
-		var arguments = ArgumentsCore;
-		var options = OptionsCore;
-		this.AddRange(arguments);
-		this.AddRange(options);
-		this.SetHandler(HandleCore, (Argument<(Grid Left, Grid Right)>)arguments[0], (Option<BoardComparison>)options[0]);
+		OptionsCore = [new ComparingMethodOption()];
+		this.AddRange(OptionsCore);
+
+		ArgumentsCore = [new TwoGridArgument()];
+		this.AddRange(ArgumentsCore);
+
+		this.SetHandler(HandleCore);
 	}
 
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Option> OptionsCore => (Option[])[new ComparingMethodOption()];
+	public SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public static ReadOnlySpan<Argument> ArgumentsCore => (Argument[])[new TwoGridArgument()];
+	public SymbolList<Argument> ArgumentsCore { get; }
+
+	/// <inheritdoc/>
+	INonLeafCommand? ICommand.Parent { get; init; }
 
 
 	/// <inheritdoc/>
-	static void ICommand.HandleCore(__arglist)
+	public void HandleCore(InvocationContext context)
 	{
-		var iterator = new ArgIterator(__arglist);
-		var grids = __refvalue(iterator.GetNextArg(), (Grid, Grid));
-		var comparison = __refvalue(iterator.GetNextArg(), BoardComparison);
-		HandleCore(grids, comparison);
-	}
+		if (this is not ([ComparingMethodOption o1], [TwoGridArgument a1]))
+		{
+			return;
+		}
 
-	/// <inheritdoc cref="ICommand.HandleCore"/>
-	private static void HandleCore((Grid Left, Grid Right) grids, BoardComparison comparison)
-	{
-		var result = grids.Left.Equals(grids.Right, comparison);
-		Console.WriteLine(result);
+		var result = context.ParseResult;
+		var (left, right) = result.GetValueForArgument(a1);
+		var comparison = result.GetValueForOption(o1);
+		var comparisonResult = left.Equals(right, comparison);
+		Console.WriteLine(comparisonResult);
 	}
 }

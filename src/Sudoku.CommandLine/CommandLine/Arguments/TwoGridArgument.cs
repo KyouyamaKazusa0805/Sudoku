@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Arguments;
 /// <summary>
 /// Represents two grid argument.
 /// </summary>
-public sealed class TwoGridArgument : Argument<(Grid Left, Grid Right)>, IArgument<(Grid Left, Grid Right)>
+internal sealed class TwoGridArgument : Argument<(Grid Left, Grid Right)>, IArgument<(Grid Left, Grid Right)>
 {
 	/// <summary>
 	/// Initializes a <see cref="TwoGridArgument"/> instance.

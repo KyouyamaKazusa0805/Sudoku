@@ -1,4 +1,4 @@
-﻿---
+---
 description: Reasoning of Unique Rectangle
 ---
 
@@ -25,7 +25,7 @@ description: Reasoning of Unique Rectangle
 
 那么，我们把他填进去，就可以得到这样的盘面：
 
-<figure><img src="../../.gitbook/assets/images_0165.png" alt=""><figcaption><p>两种填法对应的盘面</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0165 (1).png" alt=""><figcaption><p>两种填法对应的盘面</p></figcaption></figure>
 
 我们可以从题目里看出，除了刚才我们说的这四个单元格外，其余的单元格都完全一样。不论是提示数，还是填入数，还是候选数，甚至候选数剩余的种类，全部一样。
 

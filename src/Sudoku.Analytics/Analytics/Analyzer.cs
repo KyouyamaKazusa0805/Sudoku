@@ -298,7 +298,8 @@ public sealed class Analyzer :
 			{
 				Accumulator = accumulator,
 				Options = Options,
-				OnlyFindOne = !IsFullApplying && !RandomizedChoosing && Options.PrimarySingle == SingleTechniqueFlag.None
+				OnlyFindOne = !IsFullApplying && !RandomizedChoosing && Options.PrimarySingle == SingleTechniqueFlag.None,
+				CancellationToken = cancellationToken
 			};
 
 			// Determine whether the grid is a GSP pattern. If so, check for eliminations.

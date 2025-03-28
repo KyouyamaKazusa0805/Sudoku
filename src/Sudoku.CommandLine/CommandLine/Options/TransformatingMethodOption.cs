@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Provides a transforming method option.
 /// </summary>
-public sealed class TransformatingMethodOption : Option<TransformType>, IOption<TransformType>
+internal sealed class TransformatingMethodOption : Option<TransformType>, IOption<TransformType>
 {
 	/// <summary>
 	/// Initializes a <see cref="TransformatingMethodOption"/> instance.

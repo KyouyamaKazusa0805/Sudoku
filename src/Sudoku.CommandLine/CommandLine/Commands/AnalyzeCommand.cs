@@ -1,14 +1,14 @@
 namespace Sudoku.CommandLine.Commands;
 
 /// <summary>
-/// Represents a minlex command.
+/// Represents analyze command.
 /// </summary>
-internal sealed class MinlexCommand : Command, ICommand
+internal sealed class AnalyzeCommand : Command, ICommand
 {
 	/// <summary>
-	/// Initializes a <see cref="MinlexCommand"/> instance.
+	/// Initializes an <see cref="AnalyzeCommand"/> instance.
 	/// </summary>
-	public MinlexCommand() : base("minlex", "To find a minlex (minimal lexicographical) grid of the specified grid")
+	public AnalyzeCommand() : base("analyze", "Analyzes the specified puzzle")
 	{
 		ArgumentsCore = [new GridArgument()];
 		this.AddRange(ArgumentsCore);
@@ -38,10 +38,13 @@ internal sealed class MinlexCommand : Command, ICommand
 		var result = context.ParseResult;
 		var grid = result.GetValueForArgument(a1);
 		CommonPreprocessors.PrintInvalidIfWorth(grid, new BitwiseSolver(), out var solution);
-		if (!solution.IsUndefined)
+		if (solution.IsUndefined)
 		{
-			var minlexGrid = grid.GetMinLexGrid();
-			Console.WriteLine(minlexGrid.ToString("."));
+			return;
 		}
+
+		var analyzer = new Analyzer();
+		var r = analyzer.Analyze(grid);
+		Console.WriteLine(r.ToString());
 	}
 }

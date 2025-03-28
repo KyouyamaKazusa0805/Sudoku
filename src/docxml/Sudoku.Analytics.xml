@@ -8483,6 +8483,11 @@
             </b></remarks>
             <seealso cref="P:Sudoku.Analytics.StepAnalysisContext.GspPatternInferred"/>
         </member>
+        <member name="P:Sudoku.Analytics.StepAnalysisContext.CancellationToken">
+            <summary>
+            Indicates the cancellation token that can cancel the current operation.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.StepAnalysisContext.Options">
             <summary>
             Indicates the pre-defined options set by user in type <see cref="T:Sudoku.Analytics.Analyzer"/>.

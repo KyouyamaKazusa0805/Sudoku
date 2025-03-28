@@ -4,11 +4,37 @@
         <name>Sudoku.CommandLine</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.CommandLine.Arguments.IArgument`1">
+        <member name="T:Sudoku.CommandLine.Arguments.CellMapArgument">
             <summary>
-            Represents an argument.
+            Represents a cell map argument.
             </summary>
-            <typeparam name="T">The type of the result parsed from the argument.</typeparam>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.CellMapArgument.#ctor(System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Arguments.CellMapArgument"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.CellMapArgument.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Concepts#CellMap}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.CellMapArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Arguments.GridArgument">
+            <summary>
+            Represents grid argument.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.GridArgument.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Arguments.GridArgument"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.GridArgument.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Concepts#Grid}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Arguments.GridArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
         <member name="T:Sudoku.CommandLine.Arguments.TwoGridArgument">
             <summary>
@@ -62,6 +88,28 @@
             </code>
             </remarks>
         </member>
+        <member name="T:Sudoku.CommandLine.Commands.AnalyzeCommand">
+            <summary>
+            Represents analyze command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.AnalyzeCommand.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.CommandLine.Commands.AnalyzeCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.Sudoku#CommandLine#ICommand#Parent">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.AnalyzeCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CommandLine.Commands.CompareCommand">
             <summary>
             Represents compare command.
@@ -78,35 +126,90 @@
         <member name="P:Sudoku.CommandLine.Commands.CompareCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.CompareCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="P:Sudoku.CommandLine.Commands.CompareCommand.Sudoku#CommandLine#ICommand#Parent">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.CompareCommand.HandleCore(System.ValueTuple{Sudoku.Concepts.Grid,Sudoku.Concepts.Grid},Puzzles.Meta.Transforming.BoardComparison)">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
+        <member name="M:Sudoku.CommandLine.Commands.CompareCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CommandLine.Commands.ICommand">
+        <member name="T:Sudoku.CommandLine.Commands.GenerateCommand">
             <summary>
-            Represents a command.
+            Represents a generate command.
             </summary>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.ICommand.OptionsCore">
+        <member name="M:Sudoku.CommandLine.Commands.GenerateCommand.#ctor">
             <summary>
-            Indicates the options.
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.GenerateCommand"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.ICommand.ArgumentsCore">
+        <member name="P:Sudoku.CommandLine.Commands.GenerateCommand.GlobalOptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Commands.GenerateDefaultCommand">
             <summary>
-            Indicates the arguments.
+            Represents a generate default command.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()">
+        <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.#ctor">
             <summary>
-            <para>The backing handler method.</para>
-            <para>
-            This method only provides a constraint on implementation for multiple arguments with different types.
-            <b>Do not consume this method or expose it outside.</b>
-            </para>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.GenerateDefaultCommand"/> instance.
             </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateDefaultCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateDefaultCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateDefaultCommand.Parent">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Commands.GenerateHardCommand">
+            <summary>
+            Provides a generate hard puzzles command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.GenerateHardCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateHardCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateHardCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateHardCommand.Parent">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Commands.GeneratePatternCommand">
+            <summary>
+            Provides generate pattern command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GeneratePatternCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.GeneratePatternCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GeneratePatternCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GeneratePatternCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GeneratePatternCommand.Parent">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.GeneratePatternCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.MinlexCommand">
             <summary>
@@ -124,11 +227,46 @@
         <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.Sudoku#CommandLine#ICommand#Parent">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.HandleCore(Sudoku.Concepts.Grid)">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
+        <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Commands.PrintCommand">
+            <summary>
+            Represents a print command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.PrintCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.PrintCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.PrintCommand.GlobalOptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Commands.PrintTechniquesCommand">
+            <summary>
+            Provides print technique command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.PrintTechniquesCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.PrintTechniquesCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.PrintTechniquesCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.PrintTechniquesCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.PrintTechniquesCommand.Parent">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.PrintTechniquesCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.SolveCommand">
             <summary>
@@ -146,11 +284,11 @@
         <member name="P:Sudoku.CommandLine.Commands.SolveCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="P:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#ICommand#Parent">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Solving.SolverType)">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
+        <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.TransformCommand">
             <summary>
@@ -168,24 +306,131 @@
         <member name="P:Sudoku.CommandLine.Commands.TransformCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.TransformCommand.Sudoku#CommandLine#Commands#ICommand#HandleCore()">
+        <member name="P:Sudoku.CommandLine.Commands.TransformCommand.Sudoku#CommandLine#ICommand#Parent">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Commands.TransformCommand.HandleCore(Sudoku.Concepts.Grid,Sudoku.Shuffling.Transforming.TransformType)">
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()"/>
+        <member name="M:Sudoku.CommandLine.Commands.TransformCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.CommonPreprocessors">
             <summary>
             Provides a list of commonly-used preprocessor methods.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.CommonPreprocessors.OutputIfPuzzleNotUnique(Sudoku.Concepts.Grid@,Sudoku.Solving.ISolver,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.PrintInvalidIfWorth(Sudoku.Concepts.Grid@,Sudoku.Solving.ISolver,Sudoku.Concepts.Grid@)">
             <summary>
-            Output invalid puzzle on puzzle after having been checked.
+            Print invalid information if the puzzle is invalid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="solver">The solver.</param>
             <param name="solution">The solution.</param>
+        </member>
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.GeneratePuzzles``1(``0,System.Func{``0,System.Threading.CancellationToken,Sudoku.Concepts.Grid},System.String,System.Int32,System.Int32,Sudoku.Categorization.Technique,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Try to generate puzzles, and write them to the specified text writer (file or console).
+            </summary>
+            <typeparam name="TGenerator">The type of generator.</typeparam>
+            <param name="generator">The generator object.</param>
+            <param name="generatorMethod">The method to generate a <see cref="T:Sudoku.Concepts.Grid"/> instance.</param>
+            <param name="outputFilePath">
+            The output file path. The value can be <see langword="null"/> if you don't want to write it to the specified file;
+            in such case, the puzzle will be output onto console screen.
+            </param>
+            <param name="timeout">The timeout. The value can be -1 if you want to set infinity timeout.</param>
+            <param name="count">
+            The number of puzzles to be generated. The value can be -1 if you want to make an infinity loop.
+            </param>
+            <param name="filteredTechnique">
+            The technique that the generated puzzle must use.
+            The value can be <see cref="F:Sudoku.Categorization.Technique.None"/> if you don't want to specify any techniques.
+            </param>
+            <param name="alsoOutputInfo">
+            <para>Indicates whether the output text also contains filter information.</para>
+            <para>
+            For example, if <paramref name="filteredTechnique"/> is specified with a value not <see cref="F:Sudoku.Categorization.Technique.None"/>,
+            the output information will display the technique used for the target grid generated.
+            </para>
+            </param>
+            <param name="outputTargetGridRatherThanOriginalGrid">
+            Indicates whether the output text will replace original grid with the target grid that satisfies the filtered conditions.
+            </param>
+            <param name="separator">The separator that splits the output grid and detailed information (if available).</param>
+        </member>
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.OutputTextTo``1(``0@,System.IO.TextWriter,System.FuncRefReadOnly{``0,System.String},System.Boolean)">
+            <summary>
+            Output the object of type <typeparamref name="T"/> to a certain text writer.
+            </summary>
+            <typeparam name="T">The type of object.</typeparam>
+            <param name="obj">The object.</param>
+            <param name="writer">The stream.</param>
+            <param name="outputTextCreator">
+            The method that converts the object <paramref name="obj"/> to <see cref="T:System.String"/> representation.
+            </param>
+            <param name="appendNewLine">Indicates whether the new line characters will be appended after the output text.</param>
+        </member>
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.CreateCancellationTokenSource(System.Int32)">
+            <summary>
+            Creates a <see cref="T:System.Threading.CancellationTokenSource"/> instance with a timeout.
+            Set <see cref="F:System.Threading.Timeout.Infinite"/> (i.e. -1) to set infinity timeout.
+            </summary>
+            <param name="timeout">The timeout in milliseconds.</param>
+            <returns>A <see cref="T:System.Threading.CancellationTokenSource"/> instance.</returns>
+            <seealso cref="F:System.Threading.Timeout.Infinite"/>
+        </member>
+        <member name="T:Sudoku.CommandLine.IArgument`1">
+            <summary>
+            Represents an argument.
+            </summary>
+            <typeparam name="T">The type of the result parsed from the argument.</typeparam>
+        </member>
+        <member name="T:Sudoku.CommandLine.ICommand">
+            <summary>
+            Represents a command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ICommand.OptionsCore">
+            <summary>
+            Indicates the options.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ICommand.ArgumentsCore">
+            <summary>
+            Indicates the arguments.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ICommand.Parent">
+            <summary>
+            Indicates the parent command. The value can be <see langword="null"/> if the command has no parent.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.ICommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <summary>
+            <para>The backing handler method.</para>
+            <para>
+            This method only provides a constraint on implementation for multiple arguments with different types.
+            <b>Do not consume this method or expose it outside.</b>
+            </para>
+            </summary>
+            <param name="context">
+            The context. Use property <see cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/> to retrieve the target option result.
+            </param>
+            <seealso cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/>
+        </member>
+        <member name="T:Sudoku.CommandLine.INonLeafCommand">
+            <summary>
+            Represents a command that has sub-commands.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.INonLeafCommand.GlobalOptionsCore">
+            <summary>
+            Indicates the global options of the current command, applying to the current command and its sub-commands.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.IOption`1">
+            <summary>
+            Represents an option.
+            </summary>
+            <typeparam name="T">The type of the result parsed from the option.</typeparam>
         </member>
         <member name="T:Sudoku.CommandLine.IOptionOrArgument`1">
             <summary>
@@ -200,11 +445,24 @@
             use <see cref="P:System.CommandLine.Parsing.SymbolResult.ErrorMessage"/> to report invalid values.
             </para>
             <para>
-            <inheritdoc cref="M:Sudoku.CommandLine.Commands.ICommand.HandleCore()" path="/summary/para[2]"/>
+            <inheritdoc cref="M:Sudoku.CommandLine.ICommand.HandleCore(System.CommandLine.Invocation.InvocationContext)" path="/summary/para[2]"/>
             </para>
             </summary>
             <param name="result">The result.</param>
             <returns>The result instance parsed.</returns>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.CluesCountOption">
+            <summary>
+            Represents a clues count option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.CluesCountOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.CluesCountOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.CluesCountOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.ComparingMethodOption">
             <summary>
@@ -219,35 +477,88 @@
         <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.Sudoku#CommandLine#IOptionOrArgument{Puzzles#Meta#Transforming#BoardComparison}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
-        </member>
-        <member name="T:Sudoku.CommandLine.Options.GridOption">
+        <member name="T:Sudoku.CommandLine.Options.CountOption">
             <summary>
-            Represents a grid option.
+            Provides with a count option.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.GridOption.#ctor">
+        <member name="M:Sudoku.CommandLine.Options.CountOption.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.CommandLine.Options.GridOption"/> instance.
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.CountOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.GridOption.#ctor(System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.CommandLine.Options.GridOption"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CommandLine.Options.GridOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Concepts#Grid}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.CountOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.GridOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
-        </member>
-        <member name="T:Sudoku.CommandLine.Options.IOption`1">
+        <member name="T:Sudoku.CommandLine.Options.CultureOption">
             <summary>
-            Represents an option.
+            Represents a culture option.
             </summary>
-            <typeparam name="T">The type of the result parsed from the option.</typeparam>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.CultureOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.CultureOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.CultureOption.Sudoku#CommandLine#IOptionOrArgument{System#String}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.MissingDigitOption">
+            <summary>
+            Provides a missing digit option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.MissingDigitOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.MissingDigitOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.MissingDigitOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.OutputFilePathOption">
+            <summary>
+            Represents a file path option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputFilePathOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.OutputFilePathOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputFilePathOption.Sudoku#CommandLine#IOptionOrArgument{System#String}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.OutputInfoOption">
+            <summary>
+            Represents an output information option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputInfoOption.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.CommandLine.Options.OutputInfoOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputInfoOption.Sudoku#CommandLine#IOptionOrArgument{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.SeparatorOption">
+            <summary>
+            Provides with separator option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.Options.SeparatorOption.SpecialCharacterNames">
+            <summary>
+            Indicates the special characters.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.SeparatorOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.SeparatorOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.SeparatorOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.SolvingMethodOption">
             <summary>
@@ -265,6 +576,71 @@
         <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
+        <member name="T:Sudoku.CommandLine.Options.SymmetricTypeOption">
+            <summary>
+            Represents a symmetric type option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.SymmetricTypeOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.SymmetricTypeOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.SymmetricTypeOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#SymmetricType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.OutputTargetGridOption">
+            <summary>
+            Provides with output target grid option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputTargetGridOption.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.CommandLine.Options.OutputTargetGridOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputTargetGridOption.Sudoku#CommandLine#IOptionOrArgument{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.TechniqueCategoryOption">
+            <summary>
+            Provides a technique category option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TechniqueCategoryOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.TechniqueCategoryOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TechniqueCategoryOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Categorization#TechniqueGroup}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.TechniqueFilterOption">
+            <summary>
+            Provides a technique filter option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TechniqueFilterOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.TechniqueFilterOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TechniqueFilterOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Categorization#Technique}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.TimeoutOption">
+            <summary>
+            Provides a timeout option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TimeoutOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.TimeoutOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.TimeoutOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CommandLine.Options.TransformatingMethodOption">
             <summary>
             Provides a transforming method option.
@@ -281,25 +657,229 @@
         <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
+        <member name="T:Sudoku.CommandLine.SymbolList">
+            <summary>
+            Provides a way to create a <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.CommandLine.SymbolList`1"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList.Create``1(System.ReadOnlySpan{``0})">
+            <summary>
+            Creates a list of <typeparamref name="TSymbol"/> instances.
+            </summary>
+            <typeparam name="TSymbol">The type of symbols.</typeparam>
+            <param name="symbols">The symbols.</param>
+            <returns>A <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.CommandLine.SymbolList`1">
+            <summary>
+            Represents a symbol list (elements of type <see cref="T:System.CommandLine.Option"/> or <see cref="T:System.CommandLine.Argument"/>).
+            </summary>
+            <typeparam name="TSymbol">The type of symbol.</typeparam>
+            <seealso cref="T:System.CommandLine.Option"/>
+            <seealso cref="T:System.CommandLine.Argument"/>
+        </member>
+        <member name="F:Sudoku.CommandLine.SymbolList`1.Empty">
+            <summary>
+            Indicates the empty instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.SymbolList`1._symbols">
+            <summary>
+            Indicates the symbols.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.SymbolList`1.Length">
+            <summary>
+            Indicates the length of the list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.SymbolList`1.System#Collections#Generic#IReadOnlyCollection{TSymbol}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.SymbolList`1.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.#ctor(System.ReadOnlySpan{`0})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance.
+            </summary>
+            <param name="symbols">The symbols.</param>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.TrueForAll(System.Predicate{`0})">
+            <summary>
+            Determine whether the speciifed condition is satisfied for all elements in the current collection.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.Exists(System.Predicate{`0})">
+            <summary>
+            Determine whether at least one element in the current collection satisfies the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.FindIndex(System.Predicate{`0})">
+            <summary>
+            Finds for the first element satisfying the specified condition, and return the index of the element.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>The index of the element; or -1 if not found.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.FindLastIndex(System.Predicate{`0})">
+            <summary>
+            Finds for the last element satisfying the specified condition, and return the index of the element.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>The index of the element; or -1 if not found.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.Count(System.Predicate{`0})">
+            <summary>
+            Calculates the number of elements satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slices the current instance.
+            </summary>
+            <param name="start">The start index.</param>
+            <param name="length">The desired length.</param>
+            <returns>The <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.Select``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.ISelectMethod`2.Select``1(System.Func{`1,``0})"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.Where(System.Predicate{`0})">
+            <inheritdoc cref="M:System.Linq.Providers.IWhereMethod`2.Where(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.AsSpan">
+            <summary>
+            Casts the current instance as a <see cref="T:System.ReadOnlySpan`1"/> instance.
+            </summary>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.ToArray">
+            <summary>
+            Returns an array of <typeparamref name="TSymbol"/> instances.
+            </summary>
+            <returns>An array of <typeparamref name="TSymbol"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IAnyAllMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Any">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IAnyAllMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Any(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IAnyAllMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#All(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ICountMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ICountMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Count(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ICountMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#LongCount">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ICountMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#LongCount(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IElementAtMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#ElementAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IElementAtMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#ElementAt(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IElementAtMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#ElementAtOrDefault(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IElementAtMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#ElementAtOrDefault(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Collections#Generic#IEnumerable{TSymbol}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ISliceMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ISelectMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Select``1(System.Func{`0,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ISelectMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Select``1(System.Func{`0,System.Int32,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IWhereMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Where(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IWhereMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Where(System.Func{`0,System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.op_Implicit(Sudoku.CommandLine.SymbolList{`0})~System.CommandLine.Symbol[]">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance into <see cref="T:System.CommandLine.Symbol"/>[].
+            </summary>
+            <param name="symbols">The symbols.</param>
+        </member>
         <member name="T:System.CommandLine.CommandExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.CommandLine.Command"/>.
             </summary>
             <seealso cref="T:System.CommandLine.Command"/>
         </member>
-        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,System.ReadOnlySpan{System.CommandLine.Option})">
+        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,Sudoku.CommandLine.SymbolList{System.CommandLine.Option})">
             <summary>
             Adds a list of <see cref="T:System.CommandLine.Option"/> instances into the command.
             </summary>
             <param name="this">The command.</param>
             <param name="options">The options.</param>
         </member>
-        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,System.ReadOnlySpan{System.CommandLine.Argument})">
+        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument})">
             <summary>
             Adds a list of <see cref="T:System.CommandLine.Argument"/> instances into the command.
             </summary>
             <param name="this">The command.</param>
             <param name="arguments">The arguments.</param>
+        </member>
+        <member name="M:System.CommandLine.CommandExtensions.AddRange(System.CommandLine.Command,Sudoku.CommandLine.SymbolList{System.CommandLine.Command})">
+            <summary>
+            Adds a list of <see cref="T:System.CommandLine.Command"/> instances into the command.
+            </summary>
+            <param name="this">The command.</param>
+            <param name="subcommands">The subcommands.</param>
+        </member>
+        <member name="M:System.CommandLine.CommandExtensions.AddRangeGlobal(System.CommandLine.Command,Sudoku.CommandLine.SymbolList{System.CommandLine.Option})">
+            <summary>
+            Adds a list of <see cref="T:System.CommandLine.Option"/> instances into the command,
+            as global ones applying to the current command and its sub-commands.
+            </summary>
+            <param name="this">The command.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
     </members>
 </doc>
