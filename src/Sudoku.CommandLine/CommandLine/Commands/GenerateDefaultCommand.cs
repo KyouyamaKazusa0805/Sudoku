@@ -50,7 +50,7 @@ internal sealed class GenerateDefaultCommand : Command, ICommand
 		var generator = new Generator();
 		using var outputFileStream = outputFilePath is null ? null : new StreamWriter(outputFilePath);
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
-		for (var i = 0; i < count;)
+		for (var i = 0; count == -1 || i < count;)
 		{
 			var r = generator.Generate(cluesCount, symmetricType, cts.Token);
 			if (r.IsUndefined)

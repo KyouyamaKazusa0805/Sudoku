@@ -53,7 +53,7 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 		var generator = new PatternBasedPuzzleGenerator(in cells, missingDigit);
 		using var outputFileStream = outputFilePath is null ? null : new StreamWriter(outputFilePath);
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
-		for (var i = 0; i < count;)
+		for (var i = 0; count == -1 || i < count;)
 		{
 			var r = generator.Generate(cancellationToken: cts.Token);
 			if (r.IsUndefined)

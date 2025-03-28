@@ -38,7 +38,7 @@ internal sealed class GenerateHardCommand : Command, ICommand
 		var generator = new HardPatternPuzzleGenerator();
 		using var cts = CommonPreprocessors.CreateCancellationTokenSource(timeout);
 		using var outputFileStream = outputFilePath is null ? null : new StreamWriter(outputFilePath);
-		for (var i = 0; i < count;)
+		for (var i = 0; count == -1 || i < count;)
 		{
 			var r = generator.Generate(cancellationToken: cts.Token);
 			if (r.IsUndefined)
