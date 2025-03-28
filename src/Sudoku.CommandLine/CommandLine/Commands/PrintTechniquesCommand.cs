@@ -24,7 +24,7 @@ internal sealed class PrintTechniquesCommand : Command, ICommand
 	public SymbolList<Argument> ArgumentsCore => [];
 
 	/// <inheritdoc/>
-	public Command? Parent { get; init; }
+	public INonLeafCommand? Parent { get; init; }
 
 
 	/// <inheritdoc/>

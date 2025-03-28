@@ -843,7 +843,7 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@,System.CommandLine.Command@)">
+        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@,Sudoku.CommandLine.INonLeafCommand@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

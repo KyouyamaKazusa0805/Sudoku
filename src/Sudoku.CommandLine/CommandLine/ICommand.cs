@@ -18,7 +18,7 @@ public interface ICommand
 	/// <summary>
 	/// Indicates the parent command. The value can be <see langword="null"/> if the command has no parent.
 	/// </summary>
-	public abstract Command? Parent { get; init; }
+	public abstract INonLeafCommand? Parent { get; init; }
 
 
 	/// <summary>

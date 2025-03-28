@@ -18,7 +18,7 @@ internal sealed class GenerateHardCommand : Command, ICommand
 	public SymbolList<Argument> ArgumentsCore => [];
 
 	/// <inheritdoc/>
-	public Command? Parent { get; init; }
+	public INonLeafCommand? Parent { get; init; }
 
 
 	/// <inheritdoc/>
@@ -27,7 +27,7 @@ internal sealed class GenerateHardCommand : Command, ICommand
 		if (this is not (
 			_,
 			_,
-			INonLeafCommand(
+			(
 				[
 					CountOption go1,
 					TimeoutOption go2,
@@ -37,7 +37,7 @@ internal sealed class GenerateHardCommand : Command, ICommand
 					OutputTargetGridOption go6,
 					SeparatorOption go7
 				]
-			)
+			) _
 		))
 		{
 			return;

@@ -27,7 +27,7 @@ internal sealed class CompareCommand : Command, ICommand
 	public SymbolList<Argument> ArgumentsCore { get; }
 
 	/// <inheritdoc/>
-	Command? ICommand.Parent { get; init; }
+	INonLeafCommand? ICommand.Parent { get; init; }
 
 
 	/// <inheritdoc/>

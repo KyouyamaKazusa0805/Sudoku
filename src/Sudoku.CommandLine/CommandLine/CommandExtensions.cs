@@ -76,7 +76,7 @@ public static class CommandExtensions
 		this TCommand @this,
 		out SymbolList<Option> options,
 		out SymbolList<Argument> arguments,
-		out Command? parent
+		out INonLeafCommand? parent
 	)
 		where TCommand : Command, ICommand
 		=> ((options, arguments), parent) = (@this, @this.Parent);

@@ -27,7 +27,7 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 	public SymbolList<Argument> ArgumentsCore { get; }
 
 	/// <inheritdoc/>
-	public Command? Parent { get; init; }
+	public INonLeafCommand? Parent { get; init; }
 
 
 	/// <inheritdoc/>
@@ -36,7 +36,7 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 		if (this is not (
 			[MissingDigitOption o1],
 			[CellMapArgument a1],
-			INonLeafCommand(
+			(
 				[
 					CountOption go1,
 					TimeoutOption go2,
@@ -46,7 +46,7 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 					OutputTargetGridOption go6,
 					SeparatorOption go7
 				]
-			)
+			) _
 		))
 		{
 			return;
