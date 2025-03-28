@@ -752,6 +752,12 @@
             <param name="length">The desired length.</param>
             <returns>The <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.Select``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.ISelectMethod`2.Select``1(System.Func{`1,``0})"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.Where(System.Predicate{`0})">
+            <inheritdoc cref="M:System.Linq.Providers.IWhereMethod`2.Where(System.Func{`1,System.Boolean})"/>
+        </member>
         <member name="M:Sudoku.CommandLine.SymbolList`1.AsSpan">
             <summary>
             Casts the current instance as a <see cref="T:System.ReadOnlySpan`1"/> instance.
@@ -785,6 +791,18 @@
         <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ICountMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#LongCount(System.Func{`0,System.Boolean})">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IElementAtMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#ElementAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IElementAtMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#ElementAt(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IElementAtMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#ElementAtOrDefault(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IElementAtMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#ElementAtOrDefault(System.Index)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.CommandLine.SymbolList`1.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -792,6 +810,18 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ISliceMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ISelectMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Select``1(System.Func{`0,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#ISelectMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Select``1(System.Func{`0,System.Int32,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IWhereMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Where(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.SymbolList`1.System#Linq#Providers#IWhereMethod{Sudoku#CommandLine#SymbolList{TSymbol},TSymbol}#Where(System.Func{`0,System.Int32,System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.SymbolList`1.op_Implicit(Sudoku.CommandLine.SymbolList{`0})~System.CommandLine.Symbol[]">

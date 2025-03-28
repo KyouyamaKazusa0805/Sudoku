@@ -11,9 +11,12 @@ public readonly struct SymbolList<TSymbol> :
 	IAnyAllMethod<SymbolList<TSymbol>, TSymbol>,
 	ICountMethod<SymbolList<TSymbol>, TSymbol>,
 	IEnumerable<TSymbol>,
+	IElementAtMethod<SymbolList<TSymbol>, TSymbol>,
 	IReadOnlyList<TSymbol>,
 	IReadOnlyCollection<TSymbol>,
-	ISliceMethod<SymbolList<TSymbol>, TSymbol>
+	ISelectMethod<SymbolList<TSymbol>, TSymbol>,
+	ISliceMethod<SymbolList<TSymbol>, TSymbol>,
+	IWhereMethod<SymbolList<TSymbol>, TSymbol>
 	where TSymbol : Symbol
 {
 	/// <summary>
@@ -148,6 +151,31 @@ public readonly struct SymbolList<TSymbol> :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SymbolList<TSymbol> Slice(int start, int length) => new(_symbols.AsSpan().Slice(start, length));
 
+	/// <inheritdoc cref="ISelectMethod{TSelf, TSource}.Select{TResult}(Func{TSource, TResult})"/>
+	public ReadOnlySpan<TResult> Select<TResult>(Func<TSymbol, TResult> selector)
+	{
+		var result = new List<TResult>();
+		foreach (var element in this)
+		{
+			result.Add(selector(element));
+		}
+		return result.AsSpan();
+	}
+
+	/// <inheritdoc cref="IWhereMethod{TSelf, TSource}.Where(Func{TSource, bool})"/>
+	public SymbolList<TSymbol> Where(Predicate<TSymbol> predicate)
+	{
+		var result = new List<TSymbol>();
+		foreach (var element in this)
+		{
+			if (predicate(element))
+			{
+				result.Add(element);
+			}
+		}
+		return [.. result];
+	}
+
 	/// <summary>
 	/// Casts the current instance as a <see cref="ReadOnlySpan{T}"/> instance.
 	/// </summary>
@@ -184,6 +212,20 @@ public readonly struct SymbolList<TSymbol> :
 	long ICountMethod<SymbolList<TSymbol>, TSymbol>.LongCount(Func<TSymbol, bool> predicate) => Count(predicate.Invoke);
 
 	/// <inheritdoc/>
+	TSymbol IElementAtMethod<SymbolList<TSymbol>, TSymbol>.ElementAt(int index) => this[index];
+
+	/// <inheritdoc/>
+	TSymbol IElementAtMethod<SymbolList<TSymbol>, TSymbol>.ElementAt(Index index) => this[index];
+
+	/// <inheritdoc/>
+	TSymbol? IElementAtMethod<SymbolList<TSymbol>, TSymbol>.ElementAtOrDefault(int index)
+		=> index >= 0 && index < Length ? this[index] : default;
+
+	/// <inheritdoc/>
+	TSymbol? IElementAtMethod<SymbolList<TSymbol>, TSymbol>.ElementAtOrDefault(Index index)
+		=> index.GetOffset(Length) is var i && i >= 0 && i < Length ? this[i] : default;
+
+	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => _symbols.GetEnumerator();
 
 	/// <inheritdoc/>
@@ -191,6 +233,51 @@ public readonly struct SymbolList<TSymbol> :
 
 	/// <inheritdoc/>
 	IEnumerable<TSymbol> ISliceMethod<SymbolList<TSymbol>, TSymbol>.Slice(int start, int count) => Slice(start, count);
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<SymbolList<TSymbol>, TSymbol>.Select<TResult>(Func<TSymbol, TResult> selector)
+	{
+		foreach (var element in ToArray())
+		{
+			yield return selector(element);
+		}
+	}
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<SymbolList<TSymbol>, TSymbol>.Select<TResult>(Func<TSymbol, int, TResult> selector)
+	{
+		var array = ToArray();
+		for (var i = 0; i < array.Length; i++)
+		{
+			yield return selector(array[i], i);
+		}
+	}
+
+	/// <inheritdoc/>
+	IEnumerable<TSymbol> IWhereMethod<SymbolList<TSymbol>, TSymbol>.Where(Func<TSymbol, bool> predicate)
+	{
+		foreach (var element in ToArray())
+		{
+			if (predicate(element))
+			{
+				yield return element;
+			}
+		}
+	}
+
+	/// <inheritdoc/>
+	IEnumerable<TSymbol> IWhereMethod<SymbolList<TSymbol>, TSymbol>.Where(Func<TSymbol, int, bool> predicate)
+	{
+		var array = ToArray();
+		for (var i = 0; i < array.Length; i++)
+		{
+			var element = array[i];
+			if (predicate(element, i))
+			{
+				yield return element;
+			}
+		}
+	}
 
 
 	/// <summary>
