@@ -111,7 +111,7 @@ internal static class CommonPreprocessors
 				(ref readonly grid) => (alsoOutputInfo, outputTargetGridRatherThanOriginalGrid, matchedKvp) switch
 				{
 					(true, true, var (targetGrid, step)) => $"{targetGrid:#}{separator}{step.GetName(null)}",
-					(true, _, var (_, step)) => $"{grid:.}{separator}{step.GetName(null)}",
+					(true, _, (_, var step)) => $"{grid:.}{separator}{step.GetName(null)}",
 					_ => $"{grid:.}"
 				},
 				true
