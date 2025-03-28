@@ -8,7 +8,7 @@ internal sealed class OutputFilePathOption : Option<string>, IOption<string>
 	/// <summary>
 	/// Initializes a <see cref="OutputFilePathOption"/> instance.
 	/// </summary>
-	public OutputFilePathOption() : base(["--output", "-o"], "Specifies the output file path")
+	public OutputFilePathOption() : base(["--path", "-p"], "Specifies the output file path")
 	{
 		Arity = ArgumentArity.ExactlyOne;
 		IsRequired = false;
