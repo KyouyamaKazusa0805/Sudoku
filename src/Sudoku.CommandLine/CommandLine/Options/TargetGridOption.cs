@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Provides with output target grid option.
 /// </summary>
-public sealed class OutputTargetGridOption : Option<bool>, IOption<bool>
+internal sealed class OutputTargetGridOption : Option<bool>, IOption<bool>
 {
 	/// <summary>
 	/// Initializes an <see cref="OutputTargetGridOption"/> instance.

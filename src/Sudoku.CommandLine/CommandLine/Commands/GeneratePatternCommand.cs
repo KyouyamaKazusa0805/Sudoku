@@ -43,7 +43,8 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 					OutputFilePathOption go3,
 					TechniqueFilterOption go4,
 					OutputInfoOption go5,
-					OutputTargetGridOption go6
+					OutputTargetGridOption go6,
+					SeparatorOption go7
 				]
 			)
 		))
@@ -60,6 +61,7 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 		var filteredTechnique = result.GetValueForOption(go4);
 		var alsoOutputInfo = result.GetValueForOption(go5);
 		var outputTargetGridRatherThanOriginalGrid = result.GetValueForOption(go6);
+		var separator = result.GetValueForOption(go7)!;
 		CommonPreprocessors.GeneratePuzzles(
 			new PatternBasedPuzzleGenerator(in cells, missingDigit),
 			static (generator, cancellationToken) => generator.Generate(cancellationToken: cancellationToken),
@@ -68,7 +70,8 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 			count,
 			filteredTechnique,
 			alsoOutputInfo,
-			outputTargetGridRatherThanOriginalGrid
+			outputTargetGridRatherThanOriginalGrid,
+			separator
 		);
 	}
 }

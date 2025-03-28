@@ -325,7 +325,7 @@
             <param name="solver">The solver.</param>
             <param name="solution">The solution.</param>
         </member>
-        <member name="M:Sudoku.CommandLine.CommonPreprocessors.GeneratePuzzles``1(``0,System.Func{``0,System.Threading.CancellationToken,Sudoku.Concepts.Grid},System.String,System.Int32,System.Int32,Sudoku.Categorization.Technique,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.GeneratePuzzles``1(``0,System.Func{``0,System.Threading.CancellationToken,Sudoku.Concepts.Grid},System.String,System.Int32,System.Int32,Sudoku.Categorization.Technique,System.Boolean,System.Boolean,System.String)">
             <summary>
             Try to generate puzzles, and write them to the specified text writer (file or console).
             </summary>
@@ -354,6 +354,7 @@
             <param name="outputTargetGridRatherThanOriginalGrid">
             Indicates whether the output text will replace original grid with the target grid that satisfies the filtered conditions.
             </param>
+            <param name="separator">The separator that splits the output grid and detailed information (if available).</param>
         </member>
         <member name="M:Sudoku.CommandLine.CommonPreprocessors.OutputTextTo``1(``0@,System.IO.TextWriter,System.FuncRefReadOnly{``0,System.String},System.Boolean)">
             <summary>
@@ -539,6 +540,24 @@
             </summary>
         </member>
         <member name="M:Sudoku.CommandLine.Options.OutputInfoOption.Sudoku#CommandLine#IOptionOrArgument{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.SeparatorOption">
+            <summary>
+            Provides with separator option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.Options.SeparatorOption.SpecialCharacterNames">
+            <summary>
+            Indicates the special characters.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.SeparatorOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.SeparatorOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.SeparatorOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.SolvingMethodOption">

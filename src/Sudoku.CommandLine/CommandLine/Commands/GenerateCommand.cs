@@ -23,7 +23,8 @@ internal sealed class GenerateCommand : Command, INonLeafCommand
 			new OutputFilePathOption(),
 			new TechniqueFilterOption(),
 			new OutputInfoOption(),
-			new OutputTargetGridOption()
+			new OutputTargetGridOption(),
+			new SeparatorOption()
 		];
 		this.AddRangeGlobal(GlobalOptionsCore);
 	}

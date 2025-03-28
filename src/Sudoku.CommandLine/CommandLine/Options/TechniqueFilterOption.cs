@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Provides a technique filter option.
 /// </summary>
-public sealed class TechniqueFilterOption : Option<Technique>, IOption<Technique>
+internal sealed class TechniqueFilterOption : Option<Technique>, IOption<Technique>
 {
 	/// <summary>
 	/// Initializes a <see cref="TechniqueFilterOption"/> instance.

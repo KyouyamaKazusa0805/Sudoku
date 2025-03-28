@@ -52,6 +52,7 @@ internal static class CommonPreprocessors
 	/// <param name="outputTargetGridRatherThanOriginalGrid">
 	/// Indicates whether the output text will replace original grid with the target grid that satisfies the filtered conditions.
 	/// </param>
+	/// <param name="separator">The separator that splits the output grid and detailed information (if available).</param>
 	public static void GeneratePuzzles<TGenerator>(
 		TGenerator generator,
 		Func<TGenerator, CancellationToken, Grid> generatorMethod,
@@ -60,7 +61,8 @@ internal static class CommonPreprocessors
 		int count,
 		Technique filteredTechnique,
 		bool alsoOutputInfo,
-		bool outputTargetGridRatherThanOriginalGrid
+		bool outputTargetGridRatherThanOriginalGrid,
+		string separator
 	)
 		where TGenerator : IGenerator<Grid>, allows ref struct
 	{
@@ -108,8 +110,8 @@ internal static class CommonPreprocessors
 				outputFileStream ?? Console.Out,
 				(ref readonly grid) => (alsoOutputInfo, outputTargetGridRatherThanOriginalGrid, matchedKvp) switch
 				{
-					(true, true, var (targetGrid, step)) => $"{targetGrid:#}\t{step.GetName(null)}",
-					(true, _, var (_, step)) => $"{grid:.}\t{step.GetName(null)}",
+					(true, true, var (targetGrid, step)) => $"{targetGrid:#}{separator}{step.GetName(null)}",
+					(true, _, var (_, step)) => $"{grid:.}{separator}{step.GetName(null)}",
 					_ => $"{grid:.}"
 				},
 				true

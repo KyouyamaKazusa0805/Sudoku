@@ -34,7 +34,8 @@ internal sealed class GenerateHardCommand : Command, ICommand
 					OutputFilePathOption go3,
 					TechniqueFilterOption go4,
 					OutputInfoOption go5,
-					OutputTargetGridOption go6
+					OutputTargetGridOption go6,
+					SeparatorOption go7
 				]
 			)
 		))
@@ -49,6 +50,7 @@ internal sealed class GenerateHardCommand : Command, ICommand
 		var filteredTechnique = result.GetValueForOption(go4);
 		var alsoOutputInfo = result.GetValueForOption(go5);
 		var outputTargetGridRatherThanOriginalGrid = result.GetValueForOption(go6);
+		var separator = result.GetValueForOption(go7)!;
 		CommonPreprocessors.GeneratePuzzles(
 			new HardPatternPuzzleGenerator(),
 			static (generator, cancellationToken) => generator.Generate(cancellationToken: cancellationToken),
@@ -57,7 +59,8 @@ internal sealed class GenerateHardCommand : Command, ICommand
 			count,
 			filteredTechnique,
 			alsoOutputInfo,
-			outputTargetGridRatherThanOriginalGrid
+			outputTargetGridRatherThanOriginalGrid,
+			separator
 		);
 	}
 }

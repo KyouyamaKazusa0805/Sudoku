@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Options;
 /// <summary>
 /// Represents an output information option.
 /// </summary>
-public sealed class OutputInfoOption : Option<bool>, IOption<bool>
+internal sealed class OutputInfoOption : Option<bool>, IOption<bool>
 {
 	/// <summary>
 	/// Initializes an <see cref="OutputInfoOption"/> instance.
