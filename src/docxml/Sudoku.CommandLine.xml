@@ -657,6 +657,20 @@
         <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
+        <member name="T:Sudoku.CommandLine.ParseResultExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.CommandLine.Parsing.ParseResult"/>.
+            </summary>
+            <seealso cref="T:System.CommandLine.Parsing.ParseResult"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.ParseResultExtensions.GetOptions(System.CommandLine.Parsing.ParseResult,Sudoku.CommandLine.SymbolList{System.CommandLine.Option})">
+            <summary>
+            Returns a list of <see cref="T:System.ReadOnlySpan`1"/> instances representing the results parsed.
+            </summary>
+            <param name="this">The parse result.</param>
+            <param name="options">The options.</param>
+            <returns>The results.</returns>
+        </member>
         <member name="T:Sudoku.CommandLine.SymbolList">
             <summary>
             Provides a way to create a <see cref="T:Sudoku.CommandLine.SymbolList`1"/> instance.
@@ -843,15 +857,7 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@,Sudoku.CommandLine.INonLeafCommand@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
-        </member>
-        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@)">
+        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

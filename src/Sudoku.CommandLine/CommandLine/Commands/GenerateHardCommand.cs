@@ -27,17 +27,15 @@ internal sealed class GenerateHardCommand : Command, ICommand
 		if (this is not (
 			_,
 			_,
-			(
-				[
-					CountOption go1,
-					TimeoutOption go2,
-					OutputFilePathOption go3,
-					TechniqueFilterOption go4,
-					OutputInfoOption go5,
-					OutputTargetGridOption go6,
-					SeparatorOption go7
-				]
-			) _
+			[
+				CountOption go1,
+				TimeoutOption go2,
+				OutputFilePathOption go3,
+				TechniqueFilterOption go4,
+				OutputInfoOption go5,
+				OutputTargetGridOption go6,
+				SeparatorOption go7
+			]
 		))
 		{
 			return;

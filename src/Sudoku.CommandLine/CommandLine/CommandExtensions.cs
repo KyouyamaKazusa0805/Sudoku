@@ -76,13 +76,8 @@ public static class CommandExtensions
 		this TCommand @this,
 		out SymbolList<Option> options,
 		out SymbolList<Argument> arguments,
-		out INonLeafCommand? parent
+		out SymbolList<Option> globalOptions
 	)
 		where TCommand : Command, ICommand
-		=> ((options, arguments), parent) = (@this, @this.Parent);
-
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	public static void Deconstruct<TNonLeafCommand>(this TNonLeafCommand @this, out SymbolList<Option> options)
-		where TNonLeafCommand : INonLeafCommand
-		=> options = @this.GlobalOptionsCore;
+		=> ((options, arguments), globalOptions) = (@this, @this.Parent?.GlobalOptionsCore ?? []);
 }

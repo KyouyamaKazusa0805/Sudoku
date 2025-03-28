@@ -33,17 +33,15 @@ internal sealed class GenerateDefaultCommand : Command, ICommand
 		if (this is not (
 			[CluesCountOption o1, SymmetricTypeOption o2],
 			_,
-			(
-				[
-					CountOption go1,
-					TimeoutOption go2,
-					OutputFilePathOption go3,
-					TechniqueFilterOption go4,
-					OutputInfoOption go5,
-					OutputTargetGridOption go6,
-					SeparatorOption go7
-				]
-			) _
+			[
+				CountOption go1,
+				TimeoutOption go2,
+				OutputFilePathOption go3,
+				TechniqueFilterOption go4,
+				OutputInfoOption go5,
+				OutputTargetGridOption go6,
+				SeparatorOption go7
+			]
 		))
 		{
 			return;

@@ -36,17 +36,15 @@ internal sealed class GeneratePatternCommand : Command, ICommand
 		if (this is not (
 			[MissingDigitOption o1],
 			[CellMapArgument a1],
-			(
-				[
-					CountOption go1,
-					TimeoutOption go2,
-					OutputFilePathOption go3,
-					TechniqueFilterOption go4,
-					OutputInfoOption go5,
-					OutputTargetGridOption go6,
-					SeparatorOption go7
-				]
-			) _
+			[
+				CountOption go1,
+				TimeoutOption go2,
+				OutputFilePathOption go3,
+				TechniqueFilterOption go4,
+				OutputInfoOption go5,
+				OutputTargetGridOption go6,
+				SeparatorOption go7
+			]
 		))
 		{
 			return;
