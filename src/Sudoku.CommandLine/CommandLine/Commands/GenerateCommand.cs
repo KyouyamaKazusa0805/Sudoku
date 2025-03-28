@@ -22,7 +22,8 @@ internal sealed class GenerateCommand : Command, INonLeafCommand
 			new TimeoutOption(),
 			new OutputFilePathOption(),
 			new TechniqueFilterOption(),
-			new OutputInfoOption()
+			new OutputInfoOption(),
+			new OutputTargetGridOption()
 		];
 		this.AddRangeGlobal(GlobalOptionsCore);
 	}

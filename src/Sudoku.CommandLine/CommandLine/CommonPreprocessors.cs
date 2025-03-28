@@ -49,6 +49,9 @@ internal static class CommonPreprocessors
 	/// the output information will display the technique used for the target grid generated.
 	/// </para>
 	/// </param>
+	/// <param name="outputTargetGridRatherThanOriginalGrid">
+	/// Indicates whether the output text will replace original grid with the target grid that satisfies the filtered conditions.
+	/// </param>
 	public static void GeneratePuzzles<TGenerator>(
 		TGenerator generator,
 		Func<TGenerator, CancellationToken, Grid> generatorMethod,
@@ -56,7 +59,8 @@ internal static class CommonPreprocessors
 		int timeout,
 		int count,
 		Technique filteredTechnique,
-		bool alsoOutputInfo
+		bool alsoOutputInfo,
+		bool outputTargetGridRatherThanOriginalGrid
 	)
 		where TGenerator : IGenerator<Grid>, allows ref struct
 	{
@@ -75,7 +79,12 @@ internal static class CommonPreprocessors
 			var matchedKvp = default(KeyValuePair<Grid, Step>?);
 			if (filteredTechnique != Technique.None)
 			{
-				if (analyzer!.Analyze(tempGridGenerated) is { IsSolved: true, StepsSpan: var steps, GridsSpan: var grids } tempAnalysisResult)
+				if (analyzer!.Analyze(tempGridGenerated) is
+					{
+						IsSolved: true,
+						StepsSpan: var steps,
+						GridsSpan: var grids
+					} tempAnalysisResult)
 				{
 					foreach (var kvp in StepMarshal.Combine(grids, steps))
 					{
@@ -97,14 +106,11 @@ internal static class CommonPreprocessors
 			OutputTextTo(
 				in tempGridGenerated,
 				outputFileStream ?? Console.Out,
-				(ref readonly grid) =>
+				(ref readonly grid) => (alsoOutputInfo, outputTargetGridRatherThanOriginalGrid, matchedKvp) switch
 				{
-					var basicOutput = grid.ToString(".");
-					return (alsoOutputInfo, matchedKvp) switch
-					{
-						(true, var (_, step)) => $"{basicOutput}\t{step.GetName(null)}",
-						_ => basicOutput
-					};
+					(true, true, var (targetGrid, step)) => $"{targetGrid:#}\t{step.GetName(null)}",
+					(true, _, var (_, step)) => $"{grid:.}\t{step.GetName(null)}",
+					_ => $"{grid:.}"
 				},
 				true
 			);

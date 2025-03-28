@@ -325,7 +325,7 @@
             <param name="solver">The solver.</param>
             <param name="solution">The solution.</param>
         </member>
-        <member name="M:Sudoku.CommandLine.CommonPreprocessors.GeneratePuzzles``1(``0,System.Func{``0,System.Threading.CancellationToken,Sudoku.Concepts.Grid},System.String,System.Int32,System.Int32,Sudoku.Categorization.Technique,System.Boolean)">
+        <member name="M:Sudoku.CommandLine.CommonPreprocessors.GeneratePuzzles``1(``0,System.Func{``0,System.Threading.CancellationToken,Sudoku.Concepts.Grid},System.String,System.Int32,System.Int32,Sudoku.Categorization.Technique,System.Boolean,System.Boolean)">
             <summary>
             Try to generate puzzles, and write them to the specified text writer (file or console).
             </summary>
@@ -350,6 +350,9 @@
             For example, if <paramref name="filteredTechnique"/> is specified with a value not <see cref="F:Sudoku.Categorization.Technique.None"/>,
             the output information will display the technique used for the target grid generated.
             </para>
+            </param>
+            <param name="outputTargetGridRatherThanOriginalGrid">
+            Indicates whether the output text will replace original grid with the target grid that satisfies the filtered conditions.
             </param>
         </member>
         <member name="M:Sudoku.CommandLine.CommonPreprocessors.OutputTextTo``1(``0@,System.IO.TextWriter,System.FuncRefReadOnly{``0,System.String},System.Boolean)">
@@ -565,6 +568,19 @@
             </summary>
         </member>
         <member name="M:Sudoku.CommandLine.Options.SymmetricTypeOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#SymmetricType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Options.OutputTargetGridOption">
+            <summary>
+            Provides with output target grid option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputTargetGridOption.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.CommandLine.Options.OutputTargetGridOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.OutputTargetGridOption.Sudoku#CommandLine#IOptionOrArgument{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.TechniqueCategoryOption">

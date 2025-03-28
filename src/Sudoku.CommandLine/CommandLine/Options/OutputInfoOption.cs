@@ -13,7 +13,7 @@ public sealed class OutputInfoOption : Option<bool>, IOption<bool>
 		"Specifies whether the output text will also print filtered information"
 	)
 	{
-		Arity = ArgumentArity.Zero;
+		Arity = ArgumentArity.ZeroOrOne;
 		IsRequired = false;
 	}
 
