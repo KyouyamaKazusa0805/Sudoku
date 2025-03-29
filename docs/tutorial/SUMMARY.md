@@ -57,6 +57,7 @@
 * [均衡数组](candidate-technique-basics/14-aligned-exclusion.md)
 * [烟花数组](candidate-technique-basics/15-firework-subset/README.md)
   * [烟花数组的基本推理](candidate-technique-basics/15-firework-subset/01-reasoning-of-firework-subset.md)
+  * [烟花数组的各种用法](candidate-technique-basics/15-firework-subset/02-usages-on-firework-subset.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 
