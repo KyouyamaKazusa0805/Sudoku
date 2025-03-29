@@ -12,7 +12,17 @@ description: Aligned Exclusion
 
 如图所示。请着重假设 `r12c6` 两个单元格。这两个单元格各有三个候选数，所以我们需要对两个单元格的所有可能填写的情况进行排列组合。显然，因为一边三个候选数，所以一共有 9 个情况。我们依次进行列举。
 
-<table><thead><tr><th width="94.3331298828125" align="center">r1c6 填数</th><th width="95.13323974609375" align="center">r2c6 填数</th><th width="115.466552734375" align="center">填数是否合理</th><th>原因</th></tr></thead><tbody><tr><td align="center"><strong>1</strong></td><td align="center"><strong>1</strong></td><td align="center">❌</td><td>重复</td></tr><tr><td align="center">1</td><td align="center">4</td><td align="center">⭕</td><td></td></tr><tr><td align="center"><strong>1</strong></td><td align="center"><strong>8</strong></td><td align="center">❌</td><td>导致 <code>r9c6</code> 无数可填</td></tr><tr><td align="center"><strong>2</strong></td><td align="center"><strong>1</strong></td><td align="center">❌</td><td>导致 <code>r1c4</code> 无数可填</td></tr><tr><td align="center">2</td><td align="center">4</td><td align="center">⭕</td><td></td></tr><tr><td align="center"><strong>2</strong></td><td align="center"><strong>8</strong></td><td align="center">❌</td><td>导致 <code>r7c6</code> 无数可填</td></tr><tr><td align="center">9</td><td align="center">1</td><td align="center">⭕</td><td></td></tr><tr><td align="center">9</td><td align="center">4</td><td align="center">⭕</td><td></td></tr><tr><td align="center"><strong>9</strong></td><td align="center"><strong>8</strong></td><td align="center">❌</td><td>导致 <code>r3c5</code> 无数可填</td></tr></tbody></table>
+| r1c6 填数 | r2c6 填数 | 填数是否合理 | 原因             |
+| :-----: | :-----: | :----: | -------------- |
+|    1    |    1    |    ❌   | 重复             |
+|    1    |    4    |    ⭕   |                |
+|    1    |    8    |    ❌   | 导致 `r9c6` 无数可填 |
+|    2    |    1    |    ❌   | 导致 `r1c4` 无数可填 |
+|    2    |    4    |    ⭕   |                |
+|    2    |    8    |    ❌   | 导致 `r7c6` 无数可填 |
+|    9    |    1    |    ⭕   |                |
+|    9    |    4    |    ⭕   |                |
+|    9    |    8    |    ❌   | 导致 `r3c5` 无数可填 |
 
 在进行了排列操作后，我们发现所有 9 个情况里，组合 (1, 1)、(1, 8)、(2, 1)、(2, 8) 和 (9, 8) 五种组合是错误的填数组合；而很容易地看出，当 `r2c6` 填入 8 时，它能对应的全部组合情况均是错误的。所以，我们可以认为，`r2c6` 不能填 8。所以这个题的结论就是 `r2c6 <> 8`。
 
@@ -28,7 +38,16 @@ description: Aligned Exclusion
 
 如图所示。我们针对于 `r1c6`、`r2c12` 三个单元格进行排列。我们可以很容易地发现，因为三个单元格均为双值格，所以假设起来一共有 8 个情况。假设如下：
 
-<table><thead><tr><th width="89.00006103515625" align="center">r1c6 填数</th><th width="86.13323974609375" align="center">r2c1 填数</th><th width="91.06683349609375" align="center">r2c2 填数</th><th width="114.5999755859375" align="center">填数是否合理</th><th>原因</th></tr></thead><tbody><tr><td align="center"><strong>5</strong></td><td align="center">3</td><td align="center"><strong>4</strong></td><td align="center">❌</td><td>导致 <code>r2c5</code> 无数可填</td></tr><tr><td align="center">5</td><td align="center">3</td><td align="center">6</td><td align="center">⭕</td><td></td></tr><tr><td align="center"><strong>5</strong></td><td align="center"><strong>5</strong></td><td align="center"><strong>4</strong></td><td align="center">❌</td><td>导致 <code>r2c5</code> 无数可填</td></tr><tr><td align="center">5</td><td align="center">5</td><td align="center">6</td><td align="center">⭕</td><td></td></tr><tr><td align="center">8</td><td align="center"><strong>3</strong></td><td align="center"><strong>4</strong></td><td align="center">❌</td><td>导致 <code>r1c3</code> 无数可填</td></tr><tr><td align="center">8</td><td align="center">3</td><td align="center">6</td><td align="center">⭕</td><td></td></tr><tr><td align="center">8</td><td align="center"><strong>5</strong></td><td align="center"><strong>4</strong></td><td align="center">❌</td><td>导致 <code>r2c5</code> 无数可填</td></tr><tr><td align="center">8</td><td align="center">5</td><td align="center">6</td><td align="center">⭕</td><td></td></tr></tbody></table>
+| r1c6 填数 | r2c1 填数 | r2c2 填数 | 填数是否合理 | 原因             |
+| :-----: | :-----: | :-----: | :----: | -------------- |
+|  **5**  |    3    |  **4**  |    ❌   | 导致 `r2c5` 无数可填 |
+|    5    |    3    |    6    |    ⭕   |                |
+|  **5**  |  **5**  |  **4**  |    ❌   | 导致 `r2c5` 无数可填 |
+|    5    |    5    |    6    |    ⭕   |                |
+|    8    |  **3**  |  **4**  |    ❌   | 导致 `r1c3` 无数可填 |
+|    8    |    3    |    6    |    ⭕   |                |
+|    8    |  **5**  |  **4**  |    ❌   | 导致 `r2c5` 无数可填 |
+|    8    |    5    |    6    |    ⭕   |                |
 
 和前文一样，我们作笛卡尔积后可得到 8 个情况里的其中四个是错误的。并且，我们还发现，错误的四个组合下，`r2c2` 单元格填入 4 时所拥有的、`r1c6` 和 `r2c1` 的所有排列情况均会造成矛盾。因此，这个题的结论是 `r2c2 <> 4`。
 
