@@ -5,7 +5,8 @@
 		<RootNamespace>Sudoku</RootNamespace>
 		<Description>Provides all core implementations of sudoku API.</Description>
 		<DocumentationFile>..\docxml\Sudoku.Core.xml</DocumentationFile>
-		<!--<DefineConstants>CACHE_CANDIDATE_MAPS</DefineConstants>-->
+		<!--CACHE_CANDIDATE_MAPS;TRANSFORM_LESS_GIVEN_STANDARD_SUDOKU_PUZZLES_TO_SUKAKU-->
+		<!--<DefineConstants></DefineConstants>-->
 	</PropertyGroup>
 
 	<ItemGroup>

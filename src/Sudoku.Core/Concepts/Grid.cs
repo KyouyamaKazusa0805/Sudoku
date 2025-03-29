@@ -972,6 +972,7 @@ public partial struct Grid : GridBase
 			return Undefined;
 		}
 
+#if TRANSFORM_LESS_GIVEN_STANDARD_SUDOKU_PUZZLES_TO_SUKAKU
 		// Here need an extra check. Sukaku puzzles can be output as a normal pencil-mark grid format.
 		// We should check whether the puzzle is a Sukaku in fact or not.
 		// This is a bug fix for pencilmark grid parser, which cannot determine whether a puzzle is a Sukaku.
@@ -982,9 +983,12 @@ public partial struct Grid : GridBase
 			reduceGivenCells(ref grid);
 			grid.AddSukakuHeader();
 		}
+#endif
+
 		return grid;
 
 
+#if TRANSFORM_LESS_GIVEN_STANDARD_SUDOKU_PUZZLES_TO_SUKAKU
 		static void reduceGivenCells(ref Grid grid)
 		{
 			foreach (ref var mask in grid)
@@ -995,6 +999,7 @@ public partial struct Grid : GridBase
 				}
 			}
 		}
+#endif
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool parseAsSukaku(string str, out Grid result)
