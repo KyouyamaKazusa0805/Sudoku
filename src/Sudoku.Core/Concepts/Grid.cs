@@ -147,6 +147,24 @@ public partial struct Grid : GridBase
 	/// <inheritdoc/>
 	public readonly bool IsMissingCandidates => ResetGrid == ResetCandidatesGrid.ResetGrid && this != ResetCandidatesGrid;
 
+	/// <summary>
+	/// Indicates whether the grid is at invalid state that a certain cell has no candidates.
+	/// </summary>
+	public readonly bool HasCellHavingNoCandidates
+	{
+		get
+		{
+			for (var cell = 0; cell < 81; cell++)
+			{
+				if (GetCandidates(cell) == 0)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
 	/// <inheritdoc/>
 	public readonly SymmetricType Symmetry => GivenCells.Symmetry;
 

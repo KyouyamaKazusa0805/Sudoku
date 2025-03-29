@@ -76,6 +76,12 @@ public static class GridSolvingExtensions
 			return Uniqueness.Unique;
 		}
 
+		if (@this.HasCellHavingNoCandidates)
+		{
+			// Special case: If a puzzle has at least one cell having no candidates, the grid will always invalid.
+			return Uniqueness.Bad;
+		}
+
 		var r = @this.ResetGrid;
 		long count;
 #if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL

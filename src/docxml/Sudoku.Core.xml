@@ -4854,6 +4854,11 @@
         <member name="P:Sudoku.Concepts.Grid.IsMissingCandidates">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.HasCellHavingNoCandidates">
+            <summary>
+            Indicates whether the grid is at invalid state that a certain cell has no candidates.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.Symmetry">
             <inheritdoc/>
         </member>
