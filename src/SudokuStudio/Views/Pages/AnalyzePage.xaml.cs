@@ -907,8 +907,8 @@ public sealed partial class AnalyzePage : Page
 
 			if (isSupportedTaskbarProgressChanging)
 			{
-				TaskbarProgress.SetValue(handle, 0, 100);
 				TaskbarProgress.SetState(handle, TBPFLAG.TBPF_NORMAL);
+				TaskbarProgress.SetValue(handle, 0, 100);
 			}
 		}
 	}
