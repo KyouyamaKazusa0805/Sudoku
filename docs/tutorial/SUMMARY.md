@@ -55,6 +55,8 @@
 * [跨区数组（DDS）](candidate-technique-basics/12-distributed-disjoint-subset.md)
 * [伪数组（ESP）](candidate-technique-basics/13-extended-subset-principle.md)
 * [均衡数组](candidate-technique-basics/14-aligned-exclusion.md)
+* [烟花数组](candidate-technique-basics/15-firework-subset/README.md)
+  * [烟花数组的基本推理](candidate-technique-basics/15-firework-subset/01-reasoning-of-firework-subset.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 
