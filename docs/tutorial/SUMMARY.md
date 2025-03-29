@@ -1,4 +1,4 @@
-﻿# Table of contents
+# Table of contents
 
 ## 数独概述 <a href="#basics-of-sudoku" id="basics-of-sudoku"></a>
 
@@ -54,6 +54,7 @@
 * [融合待定数组（SdC）](candidate-technique-basics/11-sue-de-coq.md)
 * [跨区数组（DDS）](candidate-technique-basics/12-distributed-disjoint-subset.md)
 * [伪数组（ESP）](candidate-technique-basics/13-extended-subset-principle.md)
+* [均衡数组](candidate-technique-basics/14-aligned-exclusion.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 
