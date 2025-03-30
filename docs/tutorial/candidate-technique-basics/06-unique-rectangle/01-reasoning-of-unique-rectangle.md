@@ -129,7 +129,7 @@ description: Reasoning of Unique Rectangle
 
 ### 问题 3：残缺的唯一矩形是否影响推理？ <a href="#question-3" id="question-3"></a>
 
-我们之前总是会遇到残缺的逻辑。鱼的残缺、分支匹配的残缺什么的。那么，如果唯一矩形是残缺的，那么它是否会影响推理呢？比如下面的这个例子。
+我们之前总是会遇到残缺的逻辑。鱼的残缺、各种 Wing 的残缺什么的。那么，如果唯一矩形是残缺的，那么它是否会影响推理呢？比如下面的这个例子。
 
 <figure><img src="../../.gitbook/assets/images_0184.png" alt="" width="375"><figcaption><p>缺了一个数的唯一矩形</p></figcaption></figure>
 
