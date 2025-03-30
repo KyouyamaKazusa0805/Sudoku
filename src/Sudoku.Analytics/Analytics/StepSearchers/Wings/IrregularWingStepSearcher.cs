@@ -272,17 +272,22 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 								{
 									foreach (var digit in grid.GetCandidates(cell))
 									{
-										candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+										candidateOffsets.Add(
+											new(
+												digit == wDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
+												cell * 9 + digit
+											)
+										);
 									}
 								}
 								foreach (var cell in emptyCellsInThisHouse)
 								{
-									candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + xDigit));
+									candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + xDigit));
 								}
 
 								var step = new MultiBranchWWingStep(
 									conclusions.AsMemory(),
-									[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Auxiliary1, house)]],
+									[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 									context.Options,
 									cells,
 									emptyCellsInThisHouse,
