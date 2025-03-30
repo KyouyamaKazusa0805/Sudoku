@@ -1,0 +1,76 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Build" />
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <Platform Name="Any CPU" />
+    <Platform Name="ARM" />
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Global Items/">
+    <File Path=".editorconfig" />
+    <File Path=".filenesting.json" />
+    <File Path="CODE_OF_CONDUCT.md" />
+    <File Path="CONTACTS-zh-cn.md" />
+    <File Path="CONTACTS.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="global-doc-comments.xml" />
+    <File Path="misspelling-exclusion.dic" />
+    <File Path="NuGet.config" />
+  </Folder>
+  <Folder Name="/Global Items/Licenses/">
+    <File Path="LICENSE-CODE.txt" />
+    <File Path="LICENSE-WIKI.txt" />
+    <File Path="src/Sudoku.Drawing.Ocr/LICENSE-OCR.txt" />
+  </Folder>
+  <Folder Name="/Global Items/ReadMe Files/">
+    <File Path="README-zh-cn.md" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Global Items/Scripts/">
+    <File Path="docs/assets-renamer.ps1" />
+  </Folder>
+  <Folder Name="/Global Items/Source Generators/" />
+  <Folder Name="/Source Generators/">
+    <Project Path="PuzzlesMeta/src/Puzzles.SourceGeneration/Puzzles.SourceGeneration.csproj">
+      <BuildType Solution="Build|*" Project="Debug" />
+    </Project>
+    <Project Path="PuzzlesMeta/src/RootLevelSourceGeneration/RootLevelSourceGeneration.csproj">
+      <BuildType Solution="Build|*" Project="Debug" />
+    </Project>
+    <Project Path="PuzzlesMeta/src/System.SourceGeneration/SystemExtensions.SourceGeneration.csproj">
+      <BuildType Solution="Build|*" Project="Debug" />
+    </Project>
+    <Project Path="src/Sudoku.Analytics.SourceGeneration/Sudoku.Analytics.SourceGeneration.csproj" />
+    <Project Path="src/SudokuStudio.SourceGeneration/SudokuStudio.SourceGeneration.csproj" />
+  </Folder>
+  <Project Path="PuzzlesMeta/src/Puzzles.Core/Puzzles.Core.csproj">
+    <BuildType Solution="Build|*" Project="Debug" />
+  </Project>
+  <Project Path="PuzzlesMeta/src/System/SystemExtensions.csproj">
+    <BuildType Solution="Build|*" Project="Debug" />
+  </Project>
+  <Project Path="src/ConsoleTest/MyPrivateWorks.csproj" />
+  <Project Path="src/Sudoku.Analytics.Async/Sudoku.Analytics.Async.csproj">
+    <BuildType Solution="Build|*" Project="Debug" />
+  </Project>
+  <Project Path="src/Sudoku.Analytics/Sudoku.Analytics.csproj" />
+  <Project Path="src/Sudoku.CommandLine/Sudoku.CommandLine.csproj">
+    <BuildType Solution="Build|*" Project="Debug" />
+  </Project>
+  <Project Path="src/Sudoku.Core.Async/Sudoku.Core.Async.csproj">
+    <BuildType Solution="Build|*" Project="Debug" />
+  </Project>
+  <Project Path="src/Sudoku.Core/Sudoku.Core.csproj" />
+  <Project Path="src/Sudoku.Drawing.Drawing2D/Sudoku.Drawing.Drawing2D.csproj" />
+  <Project Path="src/Sudoku.Drawing.Ocr/Sudoku.Drawing.Ocr.csproj" />
+  <Project Path="src/Sudoku.Logging/Sudoku.Logging.csproj" />
+  <Project Path="src/SudokuStudio/SudokuStudio.csproj">
+    <Platform Solution="Debug|Any CPU" Project="x64" />
+    <Platform Solution="Debug|x64" Project="x64" />
+    <Platform Solution="Release|Any CPU" Project="x64" />
+    <Platform Solution="Release|x64" Project="x64" />
+  </Project>
+</Solution>
