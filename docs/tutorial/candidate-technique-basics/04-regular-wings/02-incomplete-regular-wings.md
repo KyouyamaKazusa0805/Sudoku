@@ -1,10 +1,10 @@
-﻿---
-description: Incomplete Wings
+---
+description: Incomplete Regular Wings
 ---
 
-# 残缺的分支匹配
+# XY-Wing 及推广的残缺逻辑
 
-前面的内容里，我们介绍了分支匹配逻辑的基本推理思路，是排列各种填数组合并，得到一个或一组删数结论。
+前面的内容里，我们介绍了这种逻辑的统一推理思路，是排列各种填数组合并，得到一个或一组删数结论。
 
 不过，我们在最开始的两个技巧 XY-Wing 和 XYZ-Wing 里看出，XYZ-Wing 以及后面的 WXYZ-Wing、VWXYZ-Wing 都是在往上追加单元格。但这一点和最开始 XY-Wing 变为 XYZ-Wing 的方式不同。XY-Wing 只加了一个候选数就变为了 XYZ-Wing。
 
@@ -24,7 +24,7 @@ description: Incomplete Wings
 
 显然，由于这个看起来缺了个数的 WXYZ-Wing 仍然具有和 WXYZ-Wing 一致的推理逻辑。倘若我们此时让 `r6c46` 的其中任意一个位置填入 3，只要有一个，它就能同时使得 `r6c13` 以及 `r4c4` 全都填不了 3，这样就产生了矛盾。所以，这个题的结论就是 `r6c46 <> 3`。
 
-我们把分支匹配里初始假设分支的单元格称为**拐点**或**折点**（Pivot）。比如说这个题的拐点是 `r4c2`。然后，我们把这个在拐点上少一个候选数的 WXYZ-Wing 结构称为**残缺 WXYZ-Wing**（Incomplete WXYZ-Wing）。
+我们把初始假设分支的单元格称为**拐点**或**折点**（Pivot）。比如说这个题的拐点是 `r4c2`。然后，我们把这个在拐点上少一个候选数的 WXYZ-Wing 结构称为**残缺 WXYZ-Wing**（Incomplete WXYZ-Wing）。
 
 我们再来看一个例子。
 
@@ -55,4 +55,4 @@ description: Incomplete Wings
 
 这个例子也希望你自己推理。
 
-那么，分支匹配的内容就全部结束了。下一节我们将进入新的技巧的学习。
+那么，这个技巧的内容就全部结束了。下一节我们将进入新的技巧的学习。
