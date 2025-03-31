@@ -5,5 +5,5 @@
 | 平台     | 类型             | 网址                                    |
 | -------- | ---------------- | --------------------------------------- |
 | 哔哩哔哩 | 视频分享平台     | https://space.bilibili.com/23736703     |
-| GitHub   | 同性码农交流窝子 | https://github.com/KyouyamaKazusa0805   |
+| GitHub   | 同性码农交流窝子 | https://github.com/kyoyama-kazusa       |
 | Gitee    | 同性码农交流窝子 | https://gitee.com/KyouyamaKazusa/Sudoku |
