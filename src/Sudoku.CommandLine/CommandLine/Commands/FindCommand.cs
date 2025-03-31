@@ -61,17 +61,19 @@ internal sealed class FindCommand : Command, ICommand
 		{
 			ref readonly var currentGrid = ref pair.KeyRef();
 			var currentStep = pair.Value;
-			if (currentStep.Code == technique)
+			if (currentStep.Code != technique)
 			{
-				Console.WriteLine(currentGrid.ToString("#"));
-				Console.WriteLine(currentStep.ToString());
-				if (!printAll)
-				{
-					return;
-				}
-
-				Console.WriteLine();
+				continue;
 			}
+
+			Console.WriteLine(currentGrid.ToString("#"));
+			Console.WriteLine(currentStep.ToString());
+			if (!printAll)
+			{
+				return;
+			}
+
+			Console.WriteLine();
 		}
 	}
 }
