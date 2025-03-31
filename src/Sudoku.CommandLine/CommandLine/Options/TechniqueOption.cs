@@ -1,21 +1,25 @@
 namespace Sudoku.CommandLine.Options;
 
 /// <summary>
-/// Provides a technique filter option.
+/// Provides a technique option.
 /// </summary>
-internal sealed class TechniqueFilterOption : Option<Technique>, IOption<Technique>
+internal sealed class TechniqueOption : Option<Technique>, IOption<Technique>
 {
 	/// <summary>
-	/// Initializes a <see cref="TechniqueFilterOption"/> instance.
+	/// Initializes a <see cref="TechniqueOption"/> instance.
 	/// </summary>
-	public TechniqueFilterOption() : base(
+	/// <param name="isRequired">Specifies whether the option is required.</param>
+	public TechniqueOption(bool isRequired) : base(
 		["--technique", "-t"],
 		"Specifies the technique. Use command 'print techniques' to view all techniques implemented in the program"
 	)
 	{
 		Arity = ArgumentArity.ExactlyOne;
-		IsRequired = false;
-		SetDefaultValue(Technique.None);
+		IsRequired = isRequired;
+		if (!isRequired)
+		{
+			SetDefaultValue(Technique.None);
+		}
 	}
 
 

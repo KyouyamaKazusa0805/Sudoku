@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents analyze command.
 /// </summary>
-internal sealed class AnalyzeCommand : Command, ICommand
+internal sealed class AnalyzeCommand : Command, ICommand, INonLeafCommand
 {
 	/// <summary>
 	/// Initializes an <see cref="AnalyzeCommand"/> instance.
@@ -14,6 +14,9 @@ internal sealed class AnalyzeCommand : Command, ICommand
 		this.AddRange(ArgumentsCore);
 
 		this.SetHandler(HandleCore);
+
+		var commands = (SymbolList<Command>)[new FindCommand { Parent = this }];
+		this.AddRange(commands);
 	}
 
 
@@ -22,6 +25,9 @@ internal sealed class AnalyzeCommand : Command, ICommand
 
 	/// <inheritdoc/>
 	public SymbolList<Argument> ArgumentsCore { get; }
+
+	/// <inheritdoc/>
+	public SymbolList<Option> GlobalOptionsCore => [];
 
 	/// <inheritdoc/>
 	INonLeafCommand? ICommand.Parent { get; init; }

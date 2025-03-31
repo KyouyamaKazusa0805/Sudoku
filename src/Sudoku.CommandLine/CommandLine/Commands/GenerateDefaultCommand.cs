@@ -37,7 +37,7 @@ internal sealed class GenerateDefaultCommand : Command, ICommand
 				CountOption go1,
 				TimeoutOption go2,
 				OutputFilePathOption go3,
-				TechniqueFilterOption go4,
+				TechniqueOption go4,
 				OutputInfoOption go5,
 				OutputTargetGridOption go6,
 				SeparatorOption go7

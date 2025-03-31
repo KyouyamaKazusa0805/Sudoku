@@ -104,6 +104,9 @@
         <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.GlobalOptionsCore">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.Sudoku#CommandLine#ICommand#Parent">
             <inheritdoc/>
         </member>
@@ -130,6 +133,28 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.CompareCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.Commands.FindCommand">
+            <summary>
+            Provides with find command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.FindCommand.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Commands.FindCommand"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.FindCommand.OptionsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.FindCommand.ArgumentsCore">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.FindCommand.Parent">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Commands.FindCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.GenerateCommand">
@@ -319,7 +344,8 @@
         </member>
         <member name="M:Sudoku.CommandLine.CommonPreprocessors.PrintInvalidIfWorth(Sudoku.Concepts.Grid@,Sudoku.Solving.ISolver,Sudoku.Concepts.Grid@)">
             <summary>
-            Print invalid information if the puzzle is invalid.
+            Print invalid information if the puzzle is invalid;
+            use <paramref name="solution"/> to determine whether the grid is valid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="solver">The solver.</param>
@@ -542,6 +568,19 @@
         <member name="M:Sudoku.CommandLine.Options.OutputInfoOption.Sudoku#CommandLine#IOptionOrArgument{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.CommandLine.Options.PrintAllOption">
+            <summary>
+            Provides with a print-all option.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.PrintAllOption.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.PrintAllOption"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.Options.PrintAllOption.Sudoku#CommandLine#IOptionOrArgument{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CommandLine.Options.SeparatorOption">
             <summary>
             Provides with separator option.
@@ -615,17 +654,18 @@
         <member name="M:Sudoku.CommandLine.Options.TechniqueCategoryOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Categorization#TechniqueGroup}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CommandLine.Options.TechniqueFilterOption">
+        <member name="T:Sudoku.CommandLine.Options.TechniqueOption">
             <summary>
-            Provides a technique filter option.
+            Provides a technique option.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.TechniqueFilterOption.#ctor">
+        <member name="M:Sudoku.CommandLine.Options.TechniqueOption.#ctor(System.Boolean)">
             <summary>
-            Initializes a <see cref="T:Sudoku.CommandLine.Options.TechniqueFilterOption"/> instance.
+            Initializes a <see cref="T:Sudoku.CommandLine.Options.TechniqueOption"/> instance.
             </summary>
+            <param name="isRequired">Specifies whether the option is required.</param>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.TechniqueFilterOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Categorization#Technique}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.TechniqueOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Categorization#Technique}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.TimeoutOption">

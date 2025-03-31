@@ -6,7 +6,8 @@ namespace Sudoku.CommandLine;
 internal static class CommonPreprocessors
 {
 	/// <summary>
-	/// Print invalid information if the puzzle is invalid.
+	/// Print invalid information if the puzzle is invalid;
+	/// use <paramref name="solution"/> to determine whether the grid is valid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="solver">The solver.</param>
