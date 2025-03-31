@@ -66,7 +66,6 @@
   <Project Path="src/Sudoku.Core/Sudoku.Core.csproj" />
   <Project Path="src/Sudoku.Drawing.Drawing2D/Sudoku.Drawing.Drawing2D.csproj" />
   <Project Path="src/Sudoku.Drawing.Ocr/Sudoku.Drawing.Ocr.csproj" />
-  <Project Path="src/Sudoku.Logging/Sudoku.Logging.csproj" />
   <Project Path="src/SudokuStudio/SudokuStudio.csproj">
     <Platform Solution="Debug|Any CPU" Project="x64" />
     <Platform Solution="Debug|x64" Project="x64" />
