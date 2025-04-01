@@ -246,7 +246,7 @@ public sealed class ChainFormatInfo : FormatInfo<Chain>
 	/// <inheritdoc/>
 	protected override string FormatCore(in Chain obj)
 	{
-		var candidateConverter = NodeFormatType.GetConverter() switch
+		var originalConverter = NodeFormatType.GetConverter() switch
 		{
 			RxCyConverter c => c with
 			{
@@ -266,7 +266,8 @@ public sealed class ChainFormatInfo : FormatInfo<Chain>
 			ExcelCoordinateConverter c => c with { MakeLettersUpperCase = MakeLettersUpperCase },
 			{ } tempConverter => tempConverter,
 			_ => throw new InvalidOperationException()
-		} with
+		};
+		var candidateConverter = originalConverter with
 		{
 			DefaultSeparator = DefaultSeparator,
 			NotationBracket = NotationBracket
