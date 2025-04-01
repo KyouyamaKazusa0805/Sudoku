@@ -21,9 +21,9 @@ internal sealed class TransformatingMethodOption : Option<TransformType>, IOptio
 
 
 	/// <inheritdoc/>
-	static TransformType IOptionOrArgument<TransformType>.ParseArgument(ArgumentResult result) => ParseArgument(result);
+	static TransformType IMySymbol<TransformType>.ParseArgument(ArgumentResult result) => ParseArgument(result);
 
-	/// <inheritdoc cref="IOptionOrArgument{T}.ParseArgument"/>
+	/// <inheritdoc cref="IMySymbol{T}.ParseArgument"/>
 	private static TransformType ParseArgument(ArgumentResult result)
 	{
 		var typesResult = TransformType.None;

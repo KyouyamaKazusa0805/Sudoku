@@ -17,5 +17,5 @@ internal sealed class PrintAllOption : Option<bool>, IOption<bool>
 
 
 	/// <inheritdoc/>
-	static bool IOptionOrArgument<bool>.ParseArgument(ArgumentResult result) => throw new NotImplementedException();
+	static bool IMySymbol<bool>.ParseArgument(ArgumentResult result) => throw new NotImplementedException();
 }

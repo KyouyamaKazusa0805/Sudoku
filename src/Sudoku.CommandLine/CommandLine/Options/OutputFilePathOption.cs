@@ -17,5 +17,5 @@ internal sealed class OutputFilePathOption : Option<string>, IOption<string>
 
 
 	/// <inheritdoc/>
-	static string IOptionOrArgument<string>.ParseArgument(ArgumentResult result) => throw new NotImplementedException();
+	static string IMySymbol<string>.ParseArgument(ArgumentResult result) => throw new NotImplementedException();
 }

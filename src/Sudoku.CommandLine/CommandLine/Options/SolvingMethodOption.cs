@@ -17,8 +17,8 @@ internal sealed class SolvingMethodOption : Option<SolverType>, IOption<SolverTy
 
 
 	/// <inheritdoc/>
-	static SolverType IOptionOrArgument<SolverType>.ParseArgument(ArgumentResult result) => ParseArgument(result);
+	static SolverType IMySymbol<SolverType>.ParseArgument(ArgumentResult result) => ParseArgument(result);
 
-	/// <inheritdoc cref="IOptionOrArgument{T}.ParseArgument"/>
+	/// <inheritdoc cref="IMySymbol{T}.ParseArgument"/>
 	private static SolverType ParseArgument(ArgumentResult result) => throw new NotImplementedException();
 }

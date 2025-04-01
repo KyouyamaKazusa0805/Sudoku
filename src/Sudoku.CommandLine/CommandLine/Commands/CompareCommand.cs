@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents compare command.
 /// </summary>
-internal sealed class CompareCommand : Command, ILeafCommand
+internal sealed class CompareCommand : CommandBase
 {
 	/// <summary>
 	/// Initializes a <see cref="CompareCommand"/> instance.
@@ -21,17 +21,14 @@ internal sealed class CompareCommand : Command, ILeafCommand
 
 
 	/// <inheritdoc/>
-	public SymbolList<Option> OptionsCore { get; }
+	public override SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore { get; }
-
-	/// <inheritdoc/>
-	ICommand? ILeafCommand.Parent { get; init; }
+	public override SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>
-	public void HandleCore(InvocationContext context)
+	protected override void HandleCore(InvocationContext context)
 	{
 		if (this is not ([ComparingMethodOption o1], [TwoGridArgument a1]))
 		{

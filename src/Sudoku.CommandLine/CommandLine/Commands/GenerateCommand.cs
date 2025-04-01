@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents a generate command.
 /// </summary>
-internal sealed class GenerateCommand : Command, ICommand
+internal sealed class GenerateCommand : CommandBase
 {
 	/// <summary>
 	/// Initializes a <see cref="GenerateCommand"/> instance.
@@ -31,5 +31,8 @@ internal sealed class GenerateCommand : Command, ICommand
 
 
 	/// <inheritdoc/>
-	public SymbolList<Option> GlobalOptionsCore { get; }
+	public override bool HasSubcommands => true;
+
+	/// <inheritdoc/>
+	public override SymbolList<Option> GlobalOptionsCore { get; }
 }

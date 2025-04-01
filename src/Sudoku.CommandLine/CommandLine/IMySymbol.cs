@@ -4,7 +4,7 @@ namespace Sudoku.CommandLine;
 /// Represents an argument or option.
 /// </summary>
 /// <typeparam name="T">The type of the result parsed from the argument or option.</typeparam>
-public interface IOptionOrArgument<out T>
+public interface IMySymbol<out T>
 {
 	/// <summary>
 	/// <para>
@@ -12,7 +12,8 @@ public interface IOptionOrArgument<out T>
 	/// use <see cref="SymbolResult.ErrorMessage"/> to report invalid values.
 	/// </para>
 	/// <para>
-	/// <inheritdoc cref="ILeafCommand.HandleCore" path="/summary/para[2]"/>
+	/// This method only provides a constraint on implementation for multiple arguments with different types.
+	/// <b>Do not consume this method or expose it outside.</b>
 	/// </para>
 	/// </summary>
 	/// <param name="result">The result.</param>

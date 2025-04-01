@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents transform command.
 /// </summary>
-internal sealed class TransformCommand : Command, ILeafCommand
+internal sealed class TransformCommand : CommandBase
 {
 	/// <summary>
 	/// Initializes a <see cref="TransformCommand"/> instance.
@@ -21,17 +21,14 @@ internal sealed class TransformCommand : Command, ILeafCommand
 
 
 	/// <inheritdoc/>
-	public SymbolList<Option> OptionsCore { get; }
+	public override SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore { get; }
-
-	/// <inheritdoc/>
-	ICommand? ILeafCommand.Parent { get; init; }
+	public override SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>
-	public void HandleCore(InvocationContext context)
+	protected override void HandleCore(InvocationContext context)
 	{
 		if (this is not ([TransformatingMethodOption o1], [GridArgument a1]))
 		{

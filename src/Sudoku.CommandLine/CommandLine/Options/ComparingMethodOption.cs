@@ -17,6 +17,6 @@ internal sealed class ComparingMethodOption : Option<BoardComparison>, IOption<B
 
 
 	/// <inheritdoc/>
-	static BoardComparison IOptionOrArgument<BoardComparison>.ParseArgument(ArgumentResult result)
+	static BoardComparison IMySymbol<BoardComparison>.ParseArgument(ArgumentResult result)
 		=> throw new NotImplementedException();
 }

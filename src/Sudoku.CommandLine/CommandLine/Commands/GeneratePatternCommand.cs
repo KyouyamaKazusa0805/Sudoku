@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Provides generate pattern command.
 /// </summary>
-internal sealed class GeneratePatternCommand : Command, ILeafCommand
+internal sealed class GeneratePatternCommand : CommandBase
 {
 	/// <summary>
 	/// Initializes a <see cref="GeneratePatternCommand"/> instance.
@@ -21,17 +21,14 @@ internal sealed class GeneratePatternCommand : Command, ILeafCommand
 
 
 	/// <inheritdoc/>
-	public SymbolList<Option> OptionsCore { get; }
+	public override SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore { get; }
-
-	/// <inheritdoc/>
-	public ICommand? Parent { get; init; }
+	public override SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>
-	public void HandleCore(InvocationContext context)
+	protected override void HandleCore(InvocationContext context)
 	{
 		if (this is not (
 			[MissingDigitOption o1],

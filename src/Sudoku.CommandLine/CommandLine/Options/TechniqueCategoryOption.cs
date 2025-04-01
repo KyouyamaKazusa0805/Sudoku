@@ -17,6 +17,6 @@ internal sealed class TechniqueCategoryOption : Option<TechniqueGroup>, IOption<
 
 
 	/// <inheritdoc/>
-	static TechniqueGroup IOptionOrArgument<TechniqueGroup>.ParseArgument(ArgumentResult result)
+	static TechniqueGroup IMySymbol<TechniqueGroup>.ParseArgument(ArgumentResult result)
 		=> throw new NotImplementedException();
 }

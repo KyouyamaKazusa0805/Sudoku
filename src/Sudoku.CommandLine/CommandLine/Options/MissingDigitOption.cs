@@ -20,5 +20,5 @@ internal sealed class MissingDigitOption : Option<int>, IOption<int>
 
 
 	/// <inheritdoc/>
-	static int IOptionOrArgument<int>.ParseArgument(ArgumentResult result) => throw new NotImplementedException();
+	static int IMySymbol<int>.ParseArgument(ArgumentResult result) => throw new NotImplementedException();
 }

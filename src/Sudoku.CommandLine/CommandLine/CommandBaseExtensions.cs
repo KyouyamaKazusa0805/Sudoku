@@ -1,14 +1,14 @@
 namespace Sudoku.CommandLine;
 
 /// <summary>
-/// Provides with extension methods on <see cref="ILeafCommand"/>.
+/// Provides with extension methods on <see cref="CommandBase"/>.
 /// </summary>
-/// <seealso cref="ILeafCommand"/>
-public static class LeafCommandExtensions
+/// <seealso cref="CommandBase"/>
+public static class CommandBaseExtensions
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	public static void Deconstruct<TCommand>(this TCommand @this, out SymbolList<Option> options, out SymbolList<Argument> arguments)
-		where TCommand : Command, ILeafCommand
+		where TCommand : CommandBase
 	{
 		options = @this.OptionsCore;
 		arguments = @this.ArgumentsCore;
@@ -21,6 +21,6 @@ public static class LeafCommandExtensions
 		out SymbolList<Argument> arguments,
 		out SymbolList<Option> globalOptions
 	)
-		where TCommand : Command, ILeafCommand
+		where TCommand : CommandBase
 		=> ((options, arguments), globalOptions) = (@this, @this.Parent?.GlobalOptionsCore ?? []);
 }

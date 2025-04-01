@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents analyze command.
 /// </summary>
-internal sealed class AnalyzeCommand : Command, ILeafCommand, ICommand
+internal sealed class AnalyzeCommand : CommandBase
 {
 	/// <summary>
 	/// Initializes an <see cref="AnalyzeCommand"/> instance.
@@ -21,20 +21,14 @@ internal sealed class AnalyzeCommand : Command, ILeafCommand, ICommand
 
 
 	/// <inheritdoc/>
-	public SymbolList<Option> OptionsCore => [];
+	public override bool HasSubcommands => true;
 
 	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore { get; }
-
-	/// <inheritdoc/>
-	public SymbolList<Option> GlobalOptionsCore => [];
-
-	/// <inheritdoc/>
-	ICommand? ILeafCommand.Parent { get; init; }
+	public override SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>
-	public void HandleCore(InvocationContext context)
+	protected override void HandleCore(InvocationContext context)
 	{
 		if (this is not (_, [GridArgument a1]))
 		{

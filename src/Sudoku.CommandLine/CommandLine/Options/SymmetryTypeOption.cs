@@ -17,5 +17,5 @@ internal sealed class SymmetricTypeOption : Option<SymmetricType>, IOption<Symme
 
 
 	/// <inheritdoc/>
-	static SymmetricType IOptionOrArgument<SymmetricType>.ParseArgument(ArgumentResult result) => throw new NotImplementedException();
+	static SymmetricType IMySymbol<SymmetricType>.ParseArgument(ArgumentResult result) => throw new NotImplementedException();
 }

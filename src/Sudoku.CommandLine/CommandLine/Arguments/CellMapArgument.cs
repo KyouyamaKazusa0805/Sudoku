@@ -19,7 +19,7 @@ internal sealed class CellMapArgument : Argument<CellMap>, IArgument<CellMap>
 	/// <inheritdoc/>
 	public static CellMap ParseArgument(ArgumentResult result) => ParseArgument(result, default);
 
-	/// <inheritdoc cref="IOptionOrArgument{T}.ParseArgument"/>
+	/// <inheritdoc cref="IMySymbol{T}.ParseArgument"/>
 	public static CellMap ParseArgument(ArgumentResult result, bool allowsParsingGrid)
 	{
 		if (result.Tokens is not [{ Value: var token }])

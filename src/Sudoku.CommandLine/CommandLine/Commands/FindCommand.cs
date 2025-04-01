@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Provides with find command.
 /// </summary>
-internal sealed class FindCommand : Command, ILeafCommand
+internal sealed class FindCommand : CommandBase
 {
 	/// <summary>
 	/// Initializes a <see cref="FindCommand"/> instance.
@@ -21,17 +21,14 @@ internal sealed class FindCommand : Command, ILeafCommand
 
 
 	/// <inheritdoc/>
-	public SymbolList<Option> OptionsCore { get; }
+	public override SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore { get; }
-
-	/// <inheritdoc/>
-	public ICommand? Parent { get; init; }
+	public override SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>
-	public void HandleCore(InvocationContext context)
+	protected override void HandleCore(InvocationContext context)
 	{
 		if (this is not ([TechniqueOption o1, PrintAllOption o2], [GridArgument a1]))
 		{

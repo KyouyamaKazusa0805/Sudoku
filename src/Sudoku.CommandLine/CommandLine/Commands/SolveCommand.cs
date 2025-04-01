@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents a solve command.
 /// </summary>
-internal sealed class SolveCommand : Command, ILeafCommand
+internal sealed class SolveCommand : CommandBase
 {
 	/// <summary>
 	/// Initializes a <see cref="SolveCommand"/> instance.
@@ -21,17 +21,14 @@ internal sealed class SolveCommand : Command, ILeafCommand
 
 
 	/// <inheritdoc/>
-	public SymbolList<Option> OptionsCore { get; }
+	public override SymbolList<Option> OptionsCore { get; }
 
 	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore { get; }
-
-	/// <inheritdoc/>
-	ICommand? ILeafCommand.Parent { get; init; }
+	public override SymbolList<Argument> ArgumentsCore { get; }
 
 
 	/// <inheritdoc/>
-	public void HandleCore(InvocationContext context)
+	protected override void HandleCore(InvocationContext context)
 	{
 		if (this is not ([SolvingMethodOption o1], [GridArgument a1]))
 		{

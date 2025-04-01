@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Provides print technique command.
 /// </summary>
-internal sealed class PrintTechniquesCommand : Command, ILeafCommand
+internal sealed class PrintTechniquesCommand : CommandBase
 {
 	/// <summary>
 	/// Initializes a <see cref="PrintTechniquesCommand"/> instance.
@@ -18,17 +18,11 @@ internal sealed class PrintTechniquesCommand : Command, ILeafCommand
 
 
 	/// <inheritdoc/>
-	public SymbolList<Option> OptionsCore { get; }
-
-	/// <inheritdoc/>
-	public SymbolList<Argument> ArgumentsCore => [];
-
-	/// <inheritdoc/>
-	public ICommand? Parent { get; init; }
+	public override SymbolList<Option> OptionsCore { get; }
 
 
 	/// <inheritdoc/>
-	public void HandleCore(InvocationContext context)
+	protected override void HandleCore(InvocationContext context)
 	{
 		if (this is not ([TechniqueCategoryOption o1, CultureOption o2], _))
 		{

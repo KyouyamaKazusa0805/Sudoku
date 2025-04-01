@@ -18,7 +18,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Arguments.CellMapArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+            <inheritdoc cref="M:Sudoku.CommandLine.IMySymbol`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
         <member name="T:Sudoku.CommandLine.Arguments.GridArgument">
             <summary>
@@ -45,6 +45,81 @@
         </member>
         <member name="M:Sudoku.CommandLine.Arguments.TwoGridArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.CommandBase">
+            <summary>
+            Represents a command. The type provides the basic operation on implementation of handling and parent commands adding / removing.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="description">The description.</param>
+        </member>
+        <member name="M:Sudoku.CommandLine.CommandBase.#ctor(System.String,System.String)">
+            <summary>
+            Represents a command. The type provides the basic operation on implementation of handling and parent commands adding / removing.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="description">The description.</param>
+        </member>
+        <member name="P:Sudoku.CommandLine.CommandBase.HasSubcommands">
+            <summary>
+            Indicates whether the command has sub-commands.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.CommandBase.OptionsCore">
+            <summary>
+            Indicates the options.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.CommandBase.ArgumentsCore">
+            <summary>
+            Indicates the arguments.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.CommandBase.GlobalOptionsCore">
+            <summary>
+            Indicates the global options of the current command, applying to the current command and its sub-commands.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.CommandBase.Parent">
+            <summary>
+            Indicates the parent command. The value can be <see langword="null"/> if the command has no parent.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.CommandBase.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+            <summary>
+            <para>Provides a way to handle the command.</para>
+            <para>
+            This method should be implemented if the constructor calls method
+            <see cref="M:System.CommandLine.Handler.SetHandler(System.CommandLine.Command,System.Action{System.CommandLine.Invocation.InvocationContext})"/>.
+            </para>
+            </summary>
+            <param name="context">
+            The context. Use property <see cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/> to retrieve the target option result.
+            </param>
+            <seealso cref="M:System.CommandLine.Handler.SetHandler(System.CommandLine.Command,System.Action{System.CommandLine.Invocation.InvocationContext})"/>
+            <seealso cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/>
+        </member>
+        <member name="T:Sudoku.CommandLine.CommandBaseExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.CommandLine.CommandBase"/>.
+            </summary>
+            <seealso cref="T:Sudoku.CommandLine.CommandBase"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.CommandBaseExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.CommandLine.CommandBaseExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
         <member name="T:Sudoku.CommandLine.CommandLineParser">
             <summary>
@@ -92,16 +167,10 @@
             Initializes an <see cref="T:Sudoku.CommandLine.Commands.AnalyzeCommand"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.OptionsCore">
+        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.HasSubcommands">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.ArgumentsCore">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.GlobalOptionsCore">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.Sudoku#CommandLine#ILeafCommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.AnalyzeCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -123,9 +192,6 @@
         <member name="P:Sudoku.CommandLine.Commands.CompareCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.CompareCommand.Sudoku#CommandLine#ILeafCommand#Parent">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.CommandLine.Commands.CompareCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
@@ -145,9 +211,6 @@
         <member name="P:Sudoku.CommandLine.Commands.FindCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.FindCommand.Parent">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.CommandLine.Commands.FindCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
@@ -160,6 +223,9 @@
             <summary>
             Initializes a <see cref="T:Sudoku.CommandLine.Commands.GenerateCommand"/> instance.
             </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Commands.GenerateCommand.HasSubcommands">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.CommandLine.Commands.GenerateCommand.GlobalOptionsCore">
             <inheritdoc/>
@@ -177,12 +243,6 @@
         <member name="P:Sudoku.CommandLine.Commands.GenerateDefaultCommand.OptionsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.GenerateDefaultCommand.ArgumentsCore">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.GenerateDefaultCommand.Parent">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.CommandLine.Commands.GenerateDefaultCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
@@ -195,15 +255,6 @@
             <summary>
             Initializes a <see cref="T:Sudoku.CommandLine.Commands.GenerateHardCommand"/> instance.
             </summary>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.GenerateHardCommand.OptionsCore">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.GenerateHardCommand.ArgumentsCore">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.GenerateHardCommand.Parent">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.GenerateHardCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
@@ -224,9 +275,6 @@
         <member name="P:Sudoku.CommandLine.Commands.GeneratePatternCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.GeneratePatternCommand.Parent">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.CommandLine.Commands.GeneratePatternCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
@@ -240,13 +288,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Commands.MinlexCommand"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.OptionsCore">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.ArgumentsCore">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.Sudoku#CommandLine#ILeafCommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -262,7 +304,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Commands.PrintCommand"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.PrintCommand.GlobalOptionsCore">
+        <member name="P:Sudoku.CommandLine.Commands.PrintCommand.HasSubcommands">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Commands.PrintTechniquesCommand">
@@ -276,12 +318,6 @@
             </summary>
         </member>
         <member name="P:Sudoku.CommandLine.Commands.PrintTechniquesCommand.OptionsCore">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.PrintTechniquesCommand.ArgumentsCore">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.PrintTechniquesCommand.Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.PrintTechniquesCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -303,9 +339,6 @@
         <member name="P:Sudoku.CommandLine.Commands.SolveCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#ILeafCommand#Parent">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <inheritdoc/>
         </member>
@@ -323,9 +356,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.CommandLine.Commands.TransformCommand.ArgumentsCore">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CommandLine.Commands.TransformCommand.Sudoku#CommandLine#ILeafCommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.TransformCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -403,95 +433,31 @@
             </summary>
             <typeparam name="T">The type of the result parsed from the argument.</typeparam>
         </member>
-        <member name="T:Sudoku.CommandLine.ICommand">
-            <summary>
-            Represents a command that has sub-commands.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CommandLine.ICommand.GlobalOptionsCore">
-            <summary>
-            Indicates the global options of the current command, applying to the current command and its sub-commands.
-            </summary>
-        </member>
-        <member name="T:Sudoku.CommandLine.ILeafCommand">
-            <summary>
-            Represents a command that is the leaf node that cannot contain any subcommands.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CommandLine.ILeafCommand.OptionsCore">
-            <summary>
-            Indicates the options.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CommandLine.ILeafCommand.ArgumentsCore">
-            <summary>
-            Indicates the arguments.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CommandLine.ILeafCommand.Parent">
-            <summary>
-            Indicates the parent command. The value can be <see langword="null"/> if the command has no parent.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CommandLine.ILeafCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
-            <summary>
-            <para>The backing handler method.</para>
-            <para>
-            This method only provides a constraint on implementation for multiple arguments with different types.
-            <b>Do not consume this method or expose it outside.</b>
-            </para>
-            </summary>
-            <param name="context">
-            The context. Use property <see cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/> to retrieve the target option result.
-            </param>
-            <seealso cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/>
-        </member>
-        <member name="T:Sudoku.CommandLine.IOption`1">
-            <summary>
-            Represents an option.
-            </summary>
-            <typeparam name="T">The type of the result parsed from the option.</typeparam>
-        </member>
-        <member name="T:Sudoku.CommandLine.IOptionOrArgument`1">
+        <member name="T:Sudoku.CommandLine.IMySymbol`1">
             <summary>
             Represents an argument or option.
             </summary>
             <typeparam name="T">The type of the result parsed from the argument or option.</typeparam>
         </member>
-        <member name="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.IMySymbol`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <summary>
             <para>
             To parse the argument via <see cref="T:System.CommandLine.Parsing.ArgumentResult"/> instance;
             use <see cref="P:System.CommandLine.Parsing.SymbolResult.ErrorMessage"/> to report invalid values.
             </para>
             <para>
-            <inheritdoc cref="M:Sudoku.CommandLine.ILeafCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)" path="/summary/para[2]"/>
+            This method only provides a constraint on implementation for multiple arguments with different types.
+            <b>Do not consume this method or expose it outside.</b>
             </para>
             </summary>
             <param name="result">The result.</param>
             <returns>The result instance parsed.</returns>
         </member>
-        <member name="T:Sudoku.CommandLine.LeafCommandExtensions">
+        <member name="T:Sudoku.CommandLine.IOption`1">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.CommandLine.ILeafCommand"/>.
+            Represents an option.
             </summary>
-            <seealso cref="T:Sudoku.CommandLine.ILeafCommand"/>
-        </member>
-        <member name="M:Sudoku.CommandLine.LeafCommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.CommandLine.LeafCommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
+            <typeparam name="T">The type of the result parsed from the option.</typeparam>
         </member>
         <member name="T:Sudoku.CommandLine.Options.CluesCountOption">
             <summary>
@@ -503,7 +469,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.CluesCountOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.CluesCountOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.CluesCountOption.Sudoku#CommandLine#IMySymbol{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.ComparingMethodOption">
@@ -516,7 +482,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.ComparingMethodOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.Sudoku#CommandLine#IOptionOrArgument{Puzzles#Meta#Transforming#BoardComparison}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.Sudoku#CommandLine#IMySymbol{Puzzles#Meta#Transforming#BoardComparison}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.CountOption">
@@ -529,7 +495,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.CountOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.CountOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.CountOption.Sudoku#CommandLine#IMySymbol{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.CultureOption">
@@ -542,7 +508,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.CultureOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.CultureOption.Sudoku#CommandLine#IOptionOrArgument{System#String}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.CultureOption.Sudoku#CommandLine#IMySymbol{System#String}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.MissingDigitOption">
@@ -555,7 +521,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.MissingDigitOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.MissingDigitOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.MissingDigitOption.Sudoku#CommandLine#IMySymbol{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.OutputFilePathOption">
@@ -568,7 +534,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.OutputFilePathOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.OutputFilePathOption.Sudoku#CommandLine#IOptionOrArgument{System#String}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.OutputFilePathOption.Sudoku#CommandLine#IMySymbol{System#String}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.OutputInfoOption">
@@ -581,7 +547,7 @@
             Initializes an <see cref="T:Sudoku.CommandLine.Options.OutputInfoOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.OutputInfoOption.Sudoku#CommandLine#IOptionOrArgument{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.OutputInfoOption.Sudoku#CommandLine#IMySymbol{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.PrintAllOption">
@@ -594,7 +560,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.PrintAllOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.PrintAllOption.Sudoku#CommandLine#IOptionOrArgument{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.PrintAllOption.Sudoku#CommandLine#IMySymbol{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.SeparatorOption">
@@ -625,11 +591,11 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.SolvingMethodOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Solving#SolverType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.Sudoku#CommandLine#IMySymbol{Sudoku#Solving#SolverType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Options.SolvingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+            <inheritdoc cref="M:Sudoku.CommandLine.IMySymbol`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.SymmetricTypeOption">
             <summary>
@@ -641,7 +607,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.SymmetricTypeOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.SymmetricTypeOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#SymmetricType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.SymmetricTypeOption.Sudoku#CommandLine#IMySymbol{Sudoku#SymmetricType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.OutputTargetGridOption">
@@ -654,7 +620,7 @@
             Initializes an <see cref="T:Sudoku.CommandLine.Options.OutputTargetGridOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.OutputTargetGridOption.Sudoku#CommandLine#IOptionOrArgument{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.OutputTargetGridOption.Sudoku#CommandLine#IMySymbol{System#Boolean}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.TechniqueCategoryOption">
@@ -667,7 +633,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.TechniqueCategoryOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.TechniqueCategoryOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Categorization#TechniqueGroup}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.TechniqueCategoryOption.Sudoku#CommandLine#IMySymbol{Sudoku#Categorization#TechniqueGroup}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.TechniqueOption">
@@ -681,7 +647,7 @@
             </summary>
             <param name="isRequired">Specifies whether the option is required.</param>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.TechniqueOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Categorization#Technique}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.TechniqueOption.Sudoku#CommandLine#IMySymbol{Sudoku#Categorization#Technique}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.TimeoutOption">
@@ -694,7 +660,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.TimeoutOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.TimeoutOption.Sudoku#CommandLine#IOptionOrArgument{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.TimeoutOption.Sudoku#CommandLine#IMySymbol{System#Int32}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.TransformatingMethodOption">
@@ -707,11 +673,11 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.TransformatingMethodOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Shuffling#Transforming#TransformType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.Sudoku#CommandLine#IMySymbol{Sudoku#Shuffling#Transforming#TransformType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+            <inheritdoc cref="M:Sudoku.CommandLine.IMySymbol`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
         </member>
         <member name="T:Sudoku.CommandLine.SymbolList">
             <summary>
