@@ -70,14 +70,14 @@
             Indicates the options.
             </summary>
         </member>
-        <member name="P:Sudoku.CommandLine.CommandBase.ArgumentsCore">
-            <summary>
-            Indicates the arguments.
-            </summary>
-        </member>
         <member name="P:Sudoku.CommandLine.CommandBase.GlobalOptionsCore">
             <summary>
             Indicates the global options of the current command, applying to the current command and its sub-commands.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.CommandBase.ArgumentsCore">
+            <summary>
+            Indicates the arguments.
             </summary>
         </member>
         <member name="P:Sudoku.CommandLine.CommandBase.Parent">

@@ -18,14 +18,14 @@ public abstract class CommandBase(string name, string description) : Command(nam
 	public virtual SymbolList<Option> OptionsCore => [];
 
 	/// <summary>
-	/// Indicates the arguments.
-	/// </summary>
-	public virtual SymbolList<Argument> ArgumentsCore => [];
-
-	/// <summary>
 	/// Indicates the global options of the current command, applying to the current command and its sub-commands.
 	/// </summary>
 	public virtual SymbolList<Option> GlobalOptionsCore => [];
+
+	/// <summary>
+	/// Indicates the arguments.
+	/// </summary>
+	public virtual SymbolList<Argument> ArgumentsCore => [];
 
 	/// <summary>
 	/// Indicates the parent command. The value can be <see langword="null"/> if the command has no parent.
