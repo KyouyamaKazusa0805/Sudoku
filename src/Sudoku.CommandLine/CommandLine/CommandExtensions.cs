@@ -58,26 +58,4 @@ public static class CommandExtensions
 			@this.AddGlobalOption(option);
 		}
 	}
-
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	public static void Deconstruct<TCommand>(
-		this TCommand @this,
-		out SymbolList<Option> options,
-		out SymbolList<Argument> arguments
-	)
-		where TCommand : Command, ICommand
-	{
-		options = @this.OptionsCore;
-		arguments = @this.ArgumentsCore;
-	}
-
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	public static void Deconstruct<TCommand>(
-		this TCommand @this,
-		out SymbolList<Option> options,
-		out SymbolList<Argument> arguments,
-		out SymbolList<Option> globalOptions
-	)
-		where TCommand : Command, ICommand
-		=> ((options, arguments), globalOptions) = (@this, @this.Parent?.GlobalOptionsCore ?? []);
 }

@@ -101,7 +101,7 @@
         <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.GlobalOptionsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.Sudoku#CommandLine#ICommand#Parent">
+        <member name="P:Sudoku.CommandLine.Commands.AnalyzeCommand.Sudoku#CommandLine#ILeafCommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.AnalyzeCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -123,7 +123,7 @@
         <member name="P:Sudoku.CommandLine.Commands.CompareCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.CompareCommand.Sudoku#CommandLine#ICommand#Parent">
+        <member name="P:Sudoku.CommandLine.Commands.CompareCommand.Sudoku#CommandLine#ILeafCommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.CompareCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -246,7 +246,7 @@
         <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.Sudoku#CommandLine#ICommand#Parent">
+        <member name="P:Sudoku.CommandLine.Commands.MinlexCommand.Sudoku#CommandLine#ILeafCommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.MinlexCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -303,7 +303,7 @@
         <member name="P:Sudoku.CommandLine.Commands.SolveCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#ICommand#Parent">
+        <member name="P:Sudoku.CommandLine.Commands.SolveCommand.Sudoku#CommandLine#ILeafCommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.SolveCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -325,7 +325,7 @@
         <member name="P:Sudoku.CommandLine.Commands.TransformCommand.ArgumentsCore">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CommandLine.Commands.TransformCommand.Sudoku#CommandLine#ICommand#Parent">
+        <member name="P:Sudoku.CommandLine.Commands.TransformCommand.Sudoku#CommandLine#ILeafCommand#Parent">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Commands.TransformCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
@@ -405,25 +405,35 @@
         </member>
         <member name="T:Sudoku.CommandLine.ICommand">
             <summary>
-            Represents a command.
+            Represents a command that has sub-commands.
             </summary>
         </member>
-        <member name="P:Sudoku.CommandLine.ICommand.OptionsCore">
+        <member name="P:Sudoku.CommandLine.ICommand.GlobalOptionsCore">
+            <summary>
+            Indicates the global options of the current command, applying to the current command and its sub-commands.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.ILeafCommand">
+            <summary>
+            Represents a command that is the leaf node that cannot contain any subcommands.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.ILeafCommand.OptionsCore">
             <summary>
             Indicates the options.
             </summary>
         </member>
-        <member name="P:Sudoku.CommandLine.ICommand.ArgumentsCore">
+        <member name="P:Sudoku.CommandLine.ILeafCommand.ArgumentsCore">
             <summary>
             Indicates the arguments.
             </summary>
         </member>
-        <member name="P:Sudoku.CommandLine.ICommand.Parent">
+        <member name="P:Sudoku.CommandLine.ILeafCommand.Parent">
             <summary>
             Indicates the parent command. The value can be <see langword="null"/> if the command has no parent.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.ICommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
+        <member name="M:Sudoku.CommandLine.ILeafCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)">
             <summary>
             <para>The backing handler method.</para>
             <para>
@@ -435,16 +445,6 @@
             The context. Use property <see cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/> to retrieve the target option result.
             </param>
             <seealso cref="P:System.CommandLine.Invocation.InvocationContext.ParseResult"/>
-        </member>
-        <member name="T:Sudoku.CommandLine.INonLeafCommand">
-            <summary>
-            Represents a command that has sub-commands.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CommandLine.INonLeafCommand.GlobalOptionsCore">
-            <summary>
-            Indicates the global options of the current command, applying to the current command and its sub-commands.
-            </summary>
         </member>
         <member name="T:Sudoku.CommandLine.IOption`1">
             <summary>
@@ -465,11 +465,33 @@
             use <see cref="P:System.CommandLine.Parsing.SymbolResult.ErrorMessage"/> to report invalid values.
             </para>
             <para>
-            <inheritdoc cref="M:Sudoku.CommandLine.ICommand.HandleCore(System.CommandLine.Invocation.InvocationContext)" path="/summary/para[2]"/>
+            <inheritdoc cref="M:Sudoku.CommandLine.ILeafCommand.HandleCore(System.CommandLine.Invocation.InvocationContext)" path="/summary/para[2]"/>
             </para>
             </summary>
             <param name="result">The result.</param>
             <returns>The result instance parsed.</returns>
+        </member>
+        <member name="T:Sudoku.CommandLine.LeafCommandExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.CommandLine.ILeafCommand"/>.
+            </summary>
+            <seealso cref="T:Sudoku.CommandLine.ILeafCommand"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.LeafCommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.CommandLine.LeafCommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
         <member name="T:Sudoku.CommandLine.Options.CluesCountOption">
             <summary>
@@ -898,22 +920,6 @@
             </summary>
             <param name="this">The command.</param>
             <param name="options">The options.</param>
-        </member>
-        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
-        </member>
-        <member name="M:System.CommandLine.CommandExtensions.Deconstruct``1(``0,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
         </member>
     </members>
 </doc>

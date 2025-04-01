@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents transform command.
 /// </summary>
-internal sealed class TransformCommand : Command, ICommand
+internal sealed class TransformCommand : Command, ILeafCommand
 {
 	/// <summary>
 	/// Initializes a <see cref="TransformCommand"/> instance.
@@ -27,7 +27,7 @@ internal sealed class TransformCommand : Command, ICommand
 	public SymbolList<Argument> ArgumentsCore { get; }
 
 	/// <inheritdoc/>
-	INonLeafCommand? ICommand.Parent { get; init; }
+	ICommand? ILeafCommand.Parent { get; init; }
 
 
 	/// <inheritdoc/>

@@ -12,7 +12,7 @@ public interface IOptionOrArgument<out T>
 	/// use <see cref="SymbolResult.ErrorMessage"/> to report invalid values.
 	/// </para>
 	/// <para>
-	/// <inheritdoc cref="ICommand.HandleCore" path="/summary/para[2]"/>
+	/// <inheritdoc cref="ILeafCommand.HandleCore" path="/summary/para[2]"/>
 	/// </para>
 	/// </summary>
 	/// <param name="result">The result.</param>

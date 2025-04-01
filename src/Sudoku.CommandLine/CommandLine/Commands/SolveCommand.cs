@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents a solve command.
 /// </summary>
-internal sealed class SolveCommand : Command, ICommand
+internal sealed class SolveCommand : Command, ILeafCommand
 {
 	/// <summary>
 	/// Initializes a <see cref="SolveCommand"/> instance.
@@ -27,7 +27,7 @@ internal sealed class SolveCommand : Command, ICommand
 	public SymbolList<Argument> ArgumentsCore { get; }
 
 	/// <inheritdoc/>
-	INonLeafCommand? ICommand.Parent { get; init; }
+	ICommand? ILeafCommand.Parent { get; init; }
 
 
 	/// <inheritdoc/>

@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Provides with find command.
 /// </summary>
-internal sealed class FindCommand : Command, ICommand
+internal sealed class FindCommand : Command, ILeafCommand
 {
 	/// <summary>
 	/// Initializes a <see cref="FindCommand"/> instance.
@@ -27,7 +27,7 @@ internal sealed class FindCommand : Command, ICommand
 	public SymbolList<Argument> ArgumentsCore { get; }
 
 	/// <inheritdoc/>
-	public INonLeafCommand? Parent { get; init; }
+	public ICommand? Parent { get; init; }
 
 
 	/// <inheritdoc/>

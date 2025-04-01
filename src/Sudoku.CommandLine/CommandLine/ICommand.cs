@@ -1,36 +1,12 @@
 namespace Sudoku.CommandLine;
 
 /// <summary>
-/// Represents a command.
+/// Represents a command that has sub-commands.
 /// </summary>
 public interface ICommand
 {
 	/// <summary>
-	/// Indicates the options.
+	/// Indicates the global options of the current command, applying to the current command and its sub-commands.
 	/// </summary>
-	public abstract SymbolList<Option> OptionsCore { get; }
-
-	/// <summary>
-	/// Indicates the arguments.
-	/// </summary>
-	public abstract SymbolList<Argument> ArgumentsCore { get; }
-
-	/// <summary>
-	/// Indicates the parent command. The value can be <see langword="null"/> if the command has no parent.
-	/// </summary>
-	public abstract INonLeafCommand? Parent { get; init; }
-
-
-	/// <summary>
-	/// <para>The backing handler method.</para>
-	/// <para>
-	/// This method only provides a constraint on implementation for multiple arguments with different types.
-	/// <b>Do not consume this method or expose it outside.</b>
-	/// </para>
-	/// </summary>
-	/// <param name="context">
-	/// The context. Use property <see cref="InvocationContext.ParseResult"/> to retrieve the target option result.
-	/// </param>
-	/// <seealso cref="InvocationContext.ParseResult"/>
-	public abstract void HandleCore(InvocationContext context);
+	public abstract SymbolList<Option> GlobalOptionsCore { get; }
 }

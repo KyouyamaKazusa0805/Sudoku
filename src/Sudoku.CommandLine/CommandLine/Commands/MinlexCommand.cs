@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Represents a minlex command.
 /// </summary>
-internal sealed class MinlexCommand : Command, ICommand
+internal sealed class MinlexCommand : Command, ILeafCommand
 {
 	/// <summary>
 	/// Initializes a <see cref="MinlexCommand"/> instance.
@@ -24,7 +24,7 @@ internal sealed class MinlexCommand : Command, ICommand
 	public SymbolList<Argument> ArgumentsCore { get; }
 
 	/// <inheritdoc/>
-	INonLeafCommand? ICommand.Parent { get; init; }
+	ICommand? ILeafCommand.Parent { get; init; }
 
 
 	/// <inheritdoc/>

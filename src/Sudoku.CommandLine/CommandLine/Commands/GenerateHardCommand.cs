@@ -3,7 +3,7 @@ namespace Sudoku.CommandLine.Commands;
 /// <summary>
 /// Provides a generate hard puzzles command.
 /// </summary>
-internal sealed class GenerateHardCommand : Command, ICommand
+internal sealed class GenerateHardCommand : Command, ILeafCommand
 {
 	/// <summary>
 	/// Initializes a <see cref="GenerateHardCommand"/> instance.
@@ -18,7 +18,7 @@ internal sealed class GenerateHardCommand : Command, ICommand
 	public SymbolList<Argument> ArgumentsCore => [];
 
 	/// <inheritdoc/>
-	public INonLeafCommand? Parent { get; init; }
+	public ICommand? Parent { get; init; }
 
 
 	/// <inheritdoc/>
