@@ -52,6 +52,12 @@ public sealed partial record RxCyParser : CoordinateParser
 	[GeneratedRegex("""r[1-9]c[1-9]\s*={2}\s*r[1-9]c[1-9]\([1-9]\)""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
 	private static partial Regex UnitConjugateGroupPattern { get; }
 
+	[GeneratedRegex("""==?|<>|!=""", RegexOptions.Compiled)]
+	private static partial Regex ConclusionOperatorsPattern { get; }
+
+	[GeneratedRegex("""\d""", RegexOptions.Compiled)]
+	private static partial Regex DigitPattern { get; }
+
 
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
@@ -191,7 +197,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			var indexOfEqualityOperatorCharacters = s.Split(["==", "<>", "=", "!="], 2, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 			var cells = CellParser(indexOfEqualityOperatorCharacters[0]);
 			var digits = MaskOperations.Create(from character in indexOfEqualityOperatorCharacters[1] select character - '1');
-			var conclusionType = s.Match("""==?|<>|!=""") is "==" or "=" ? Assignment : Elimination;
+			var conclusionType = ConclusionOperatorsPattern.Match(s) is { Success: true, Value: "==" or "=" } ? Assignment : Elimination;
 			foreach (var cell in cells)
 			{
 				foreach (var digit in digits)
@@ -205,8 +211,8 @@ public sealed partial record RxCyParser : CoordinateParser
 	}
 
 	private static Mask OnDigitParsing(string str)
-		=> str.MatchAll("""\d""") is { Length: <= 9 } matches
-			? MaskOperations.Create(from digitString in matches select digitString[0] - '1')
+		=> DigitPattern.Matches(str) is { Count: <= 9 } matches
+			? MaskOperations.Create(from match in matches select match.Value[0] - '1')
 			: throw new InvalidOperationException(SR.ExceptionMessage("ErrorInfo_DuplicatedValuesMayExistOrInvalid"));
 
 	private static ReadOnlySpan<Chute> OnChuteParsing(string str)

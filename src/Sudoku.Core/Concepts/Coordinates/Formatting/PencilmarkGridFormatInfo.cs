@@ -5,8 +5,11 @@ namespace Sudoku.Concepts.Coordinates.Formatting;
 /// </summary>
 public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 {
-	[GeneratedRegex("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)""", RegexOptions.Compiled, 5000)]
+	[GeneratedRegex("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)""", RegexOptions.Compiled)]
 	public static partial Regex GridPencilmarkPattern { get; }
+
+	[GeneratedRegex("""[1-9\+\-]{1,9}""", RegexOptions.Compiled)]
+	private static partial Regex ValueCellPattern { get; }
 
 
 	/// <inheritdoc/>
@@ -256,7 +259,7 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 					return Grid.Undefined;
 				}
 			}
-			else if (s.SatisfyPattern("""[1-9\+\-]{1,9}"""))
+			else if (ValueCellPattern.Match(s) is { Success: true, Value: var possibleStringMatched } && possibleStringMatched == s)
 			{
 				// Candidates.
 				// Here don't need to check the length of the string, and also all characters are digit characters.
