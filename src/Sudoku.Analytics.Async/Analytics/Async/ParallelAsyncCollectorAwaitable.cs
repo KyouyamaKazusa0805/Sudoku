@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Async;
 /// Represents an awaitable rule on collecting steps from a puzzle.
 /// </summary>
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
-public readonly ref partial struct ParallelAsyncCollectorAwaitable : IStepGathererAwaitable<ParallelAsyncCollectorAwaiter>
+public readonly ref partial struct ParallelAsyncCollectorAwaitable : IStepGathererAwaitable<ParallelAsyncCollectorAwaitable.Awaiter>
 {
 	/// <summary>
 	/// Indicates the reference to the grid.
@@ -37,5 +37,5 @@ public readonly ref partial struct ParallelAsyncCollectorAwaitable : IStepGather
 
 
 	/// <inheritdoc/>
-	public ParallelAsyncCollectorAwaiter GetAwaiter() => new(_collector, _grid, _cancellationToken);
+	public Awaiter GetAwaiter() => new(_collector, _grid, _cancellationToken);
 }

@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Async;
 /// Represents an awaitable rule on analysis for a puzzle.
 /// </summary>
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
-public readonly ref partial struct AsyncAnalyzerAwaitable : IStepGathererAwaitable<AsyncAnalyzerAwaiter>
+public readonly ref partial struct AsyncAnalyzerAwaitable : IStepGathererAwaitable<AsyncAnalyzerAwaitable.Awaiter>
 {
 	/// <summary>
 	/// Indicates whether to continue works on captured context instead of reverting back to previous context.
@@ -79,5 +79,5 @@ public readonly ref partial struct AsyncAnalyzerAwaitable : IStepGathererAwaitab
 	public AsyncAnalyzerAwaitable ConfigureAwait(bool continueOnCapturedContext) => new(this, continueOnCapturedContext);
 
 	/// <inheritdoc/>
-	public AsyncAnalyzerAwaiter GetAwaiter() => new(_analyzer, _grid, _progress, _continueOnCapturedContext, _cancellationToken);
+	public Awaiter GetAwaiter() => new(_analyzer, _grid, _progress, _continueOnCapturedContext, _cancellationToken);
 }
