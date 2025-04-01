@@ -673,11 +673,8 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.TransformatingMethodOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.Sudoku#CommandLine#IMySymbol{Sudoku#Shuffling#Transforming#TransformType}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.CommandLine.Options.TransformatingMethodOption.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IMySymbol`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.SymbolList">
             <summary>
