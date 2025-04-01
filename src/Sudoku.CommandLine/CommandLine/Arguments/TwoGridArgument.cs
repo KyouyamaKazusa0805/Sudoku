@@ -12,11 +12,7 @@ internal sealed class TwoGridArgument : Argument<(Grid Left, Grid Right)>, IArgu
 
 
 	/// <inheritdoc/>
-	static (Grid Left, Grid Right) IOptionOrArgument<(Grid Left, Grid Right)>.ParseArgument(ArgumentResult result)
-		=> ParseArgument(result);
-
-	/// <inheritdoc cref="IOptionOrArgument{T}.ParseArgument"/>
-	private static (Grid Left, Grid Right) ParseArgument(ArgumentResult result)
+	public static (Grid Left, Grid Right) ParseArgument(ArgumentResult result)
 	{
 		if (result.Tokens is not [{ Value: var l }, { Value: var r }])
 		{

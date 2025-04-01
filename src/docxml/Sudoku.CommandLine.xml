@@ -14,7 +14,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Arguments.CellMapArgument"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Arguments.CellMapArgument.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Concepts#CellMap}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Arguments.CellMapArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CommandLine.Arguments.CellMapArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult,System.Boolean)">
@@ -30,11 +30,8 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Arguments.GridArgument"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Arguments.GridArgument.Sudoku#CommandLine#IOptionOrArgument{Sudoku#Concepts#Grid}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.CommandLine.Arguments.GridArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Arguments.TwoGridArgument">
             <summary>
@@ -46,11 +43,8 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Arguments.TwoGridArgument"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Arguments.TwoGridArgument.Sudoku#CommandLine#IOptionOrArgument{System#ValueTuple{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid}}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.CommandLine.Arguments.TwoGridArgument.ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
-            <inheritdoc cref="M:Sudoku.CommandLine.IOptionOrArgument`1.ParseArgument(System.CommandLine.Parsing.ArgumentResult)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.CommandLineParser">
             <summary>

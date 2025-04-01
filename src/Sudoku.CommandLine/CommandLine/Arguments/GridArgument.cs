@@ -12,10 +12,7 @@ internal sealed class GridArgument : Argument<Grid>, IArgument<Grid>
 
 
 	/// <inheritdoc/>
-	static Grid IOptionOrArgument<Grid>.ParseArgument(ArgumentResult result) => ParseArgument(result);
-
-	/// <inheritdoc cref="IOptionOrArgument{T}.ParseArgument"/>
-	private static Grid ParseArgument(ArgumentResult result)
+	public static Grid ParseArgument(ArgumentResult result)
 	{
 		if (result.Tokens is not [{ Value: var gridString }])
 		{

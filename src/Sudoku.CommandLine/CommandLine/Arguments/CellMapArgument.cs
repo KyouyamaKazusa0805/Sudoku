@@ -17,10 +17,10 @@ internal sealed class CellMapArgument : Argument<CellMap>, IArgument<CellMap>
 
 
 	/// <inheritdoc/>
-	static CellMap IOptionOrArgument<CellMap>.ParseArgument(ArgumentResult result) => ParseArgument(result, default);
+	public static CellMap ParseArgument(ArgumentResult result) => ParseArgument(result, default);
 
 	/// <inheritdoc cref="IOptionOrArgument{T}.ParseArgument"/>
-	private static CellMap ParseArgument(ArgumentResult result, bool allowsParsingGrid)
+	public static CellMap ParseArgument(ArgumentResult result, bool allowsParsingGrid)
 	{
 		if (result.Tokens is not [{ Value: var token }])
 		{
