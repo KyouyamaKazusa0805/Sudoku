@@ -7,7 +7,6 @@ global using System.Threading;
 global using System.Threading.Channels;
 global using System.Threading.Tasks;
 global using Sudoku.Analytics.Caching;
-global using Sudoku.Analytics;
 global using Sudoku.Analytics.StepSearchers;
 global using Sudoku.Concepts;
 global using Sudoku.Solving;
