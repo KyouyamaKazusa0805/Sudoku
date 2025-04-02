@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Analytics.Async;
+namespace Sudoku.Analytics.Async;
 
 /// <summary>
 /// Represents an awaiter object that handles the backing logic on asynchronous programming.
 /// </summary>
 /// <typeparam name="TResult">The type of result.</typeparam>
-public interface IStepGathererAwaiter<out TResult> : ICriticalNotifyCompletion, INotifyCompletion
+internal interface IStepGathererAwaiter<out TResult> : ICriticalNotifyCompletion, INotifyCompletion
 	where TResult : allows ref struct
 {
 	/// <summary>
