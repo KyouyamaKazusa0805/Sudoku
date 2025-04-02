@@ -8,10 +8,6 @@ namespace Sudoku.Drawing;
 [method: JsonConstructor]
 public sealed partial class PaletteIdColorIdentifier([Property, HashCodeMember, StringMember] int value) : ColorIdentifier
 {
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out int value) => value = Value;
-
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)
 		=> other is PaletteIdColorIdentifier comparer && Value == comparer.Value;

@@ -8620,14 +8620,6 @@
             </summary>
             <param name="value">The palette color ID value to be assigned. The color palette requires implementation of target projects.</param>
         </member>
-        <member name="M:Sudoku.Drawing.PaletteIdColorIdentifier.Deconstruct(System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
-        </member>
         <member name="M:Sudoku.Drawing.PaletteIdColorIdentifier.Equals(Sudoku.Drawing.ColorIdentifier)">
             <inheritdoc/>
         </member>
@@ -8981,14 +8973,6 @@
             Defines a <see cref="T:Sudoku.Drawing.ColorIdentifier"/> derived type that uses well-known kinds to distinct with colors.
             </summary>
             <param name="kind">The well-known identifier kind to be assigned.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.WellKnownColorIdentifier.Deconstruct(Sudoku.Drawing.WellKnownColorIdentifierKind@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
         </member>
         <member name="M:Sudoku.Drawing.WellKnownColorIdentifier.Equals(Sudoku.Drawing.ColorIdentifier)">
             <inheritdoc/>

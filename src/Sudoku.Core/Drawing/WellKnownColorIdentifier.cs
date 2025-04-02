@@ -9,10 +9,6 @@ namespace Sudoku.Drawing;
 public sealed partial class WellKnownColorIdentifier([Property, HashCodeMember, StringMember] WellKnownColorIdentifierKind kind) :
 	ColorIdentifier
 {
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out WellKnownColorIdentifierKind kind) => kind = Kind;
-
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)
 		=> other is WellKnownColorIdentifier comparer && Kind == comparer.Kind;
