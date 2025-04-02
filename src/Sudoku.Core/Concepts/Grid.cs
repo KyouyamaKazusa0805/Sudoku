@@ -18,7 +18,7 @@ using GridBase = IGrid<Grid>;
 [TypeImpl(
 	TypeImplFlags.Object_Equals | TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.Equatable,
 	IsLargeStructure = true)]
-public partial struct Grid : GridBase
+public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffResult?>
 {
 	/// <inheritdoc cref="GridBase.DefaultMask"/>
 	public const Mask DefaultMask = EmptyMask | MaxCandidatesMask;
@@ -53,7 +53,31 @@ public partial struct Grid : GridBase
 	public static readonly Grid Undefined;
 
 
-	/// <inheritdoc cref="GridBase.FirstMaskRef"/>
+	/// <summary>
+	/// <inheritdoc cref="GridBase.FirstMaskRef" path="/summary"/>
+	/// </summary>
+	/// <remarks>
+	/// <para><inheritdoc cref="GridBase.FirstMaskRef" path="/remarks/para[1]"/></para>
+	/// <para>
+	/// Part (3) is for the reserved bits. Such bits won't be used except for the array element at index 0 -
+	/// The first element in the array will use (3) to represent the sudoku grid type. There are only two kinds of grid type value:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Value</term>
+	/// <description>Description</description>
+	/// </listheader>
+	/// <item>
+	/// <term>0b0000</term>
+	/// <description>Represents standard sudoku type (flag: <see cref="SudokuType.Standard"/>)</description>
+	/// </item>
+	/// <item>
+	/// <term>0b0010</term>
+	/// <description>Represents Sukaku (flag: <see cref="SudokuType.Sukaku"/>)</description>
+	/// </item>
+	/// </list>
+	/// Other values won't be supported for now, even if the flags are defined in type <see cref="SudokuType"/>.
+	/// </para>
+	/// </remarks>
 	private Mask _values;
 
 
@@ -357,7 +381,7 @@ public partial struct Grid : GridBase
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="_values"/>
 	[UnscopedRef]
 	readonly ref readonly Mask GridBase.FirstMaskRef => ref this[0];
 
@@ -599,7 +623,7 @@ public partial struct Grid : GridBase
 		=> GetState(cell) switch
 		{
 			CellState.Empty => -1,
-			CellState.Modifiable or CellState.Given => Mask.TrailingZeroCount(this[cell]),
+			CellState.Modifiable or CellState.Given => Mask.Log2(this[cell]),
 			_ => throw new InvalidOperationException(SR.ExceptionMessage("GridInvalidCellState"))
 		};
 
@@ -831,11 +855,11 @@ public partial struct Grid : GridBase
 	}
 
 	/// <inheritdoc/>
-	readonly IEnumerable<Candidate> IWhereMethod<Grid, Candidate>.Where(Func<Candidate, bool> predicate)
-		=> this.Where(predicate).ToArray();
+	readonly IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ToDigitsArray().AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
-	readonly IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ToDigitsArray().AsEnumerable().GetEnumerator();
+	readonly IEnumerable<Candidate> IWhereMethod<Grid, Candidate>.Where(Func<Candidate, bool> predicate)
+		=> this.Where(predicate).ToArray();
 
 	/// <inheritdoc/>
 	readonly IEnumerable<TResult> ISelectMethod<Grid, Candidate>.Select<TResult>(Func<Candidate, TResult> selector)
@@ -1200,7 +1224,13 @@ public partial struct Grid : GridBase
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Analyzes difference between two grids.
+	/// If two grids are not same from given cells, the return value will be <see langword="null"/>.
+	/// </summary>
+	/// <param name="left">The first grid to be checked.</param>
+	/// <param name="right">The second grid to be checked.</param>
+	/// <returns>The difference between two grids.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DiffResult? operator -(in Grid left, in Grid right)
 	{
@@ -1208,8 +1238,21 @@ public partial struct Grid : GridBase
 		return result;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Analyzes difference between two grids.
+	/// If two grids are not same from given cells, a <see cref="GridDiffTooMuchException"/> instance will be thrown.
+	/// </summary>
+	/// <param name="left">The first grid to be checked.</param>
+	/// <param name="right">The second grid to be checked.</param>
+	/// <returns>The difference between two grids.</returns>
+	/// <exception cref="GridDiffTooMuchException">Throws when two grids are not same from given cells.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DiffResult operator checked -(in Grid left, in Grid right)
 		=> left - right ?? throw new GridDiffTooMuchException();
+
+	/// <inheritdoc/>
+	static DiffResult? ISubtractionOperators<Grid, Grid, DiffResult?>.operator -(Grid left, Grid right) => left - right;
+
+	/// <inheritdoc/>
+	static DiffResult? ISubtractionOperators<Grid, Grid, DiffResult?>.operator checked -(Grid left, Grid right) => checked(left - right);
 }

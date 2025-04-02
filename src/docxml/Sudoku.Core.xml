@@ -4869,7 +4869,31 @@
             <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.Undefined"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid._values">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef"/>
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef" path="/summary"/>
+            </summary>
+            <remarks>
+            <para><inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef" path="/remarks/para[1]"/></para>
+            <para>
+            Part (3) is for the reserved bits. Such bits won't be used except for the array element at index 0 -
+            The first element in the array will use (3) to represent the sudoku grid type. There are only two kinds of grid type value:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>0b0000</term>
+            <description>Represents standard sudoku type (flag: <see cref="F:Sudoku.SudokuType.Standard"/>)</description>
+            </item>
+            <item>
+            <term>0b0010</term>
+            <description>Represents Sukaku (flag: <see cref="F:Sudoku.SudokuType.Sukaku"/>)</description>
+            </item>
+            </list>
+            Other values won't be supported for now, even if the flags are defined in type <see cref="T:Sudoku.SudokuType"/>.
+            </para>
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Grid.#ctor(System.Int32@,Sudoku.Concepts.GridCreatingOption)">
             <summary>
@@ -4972,7 +4996,7 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#FirstMaskRef">
-            <inheritdoc/>
+            <inheritdoc cref="F:Sudoku.Concepts.Grid._values"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#EmptyString">
             <inheritdoc/>
@@ -5156,10 +5180,10 @@
         <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#Shuffle">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#IWhereMethod{Sudoku#Concepts#Grid,System#Int32}#Where(System.Func{System.Int32,System.Boolean})">
+        <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+        <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#IWhereMethod{Sudoku#Concepts#Grid,System#Int32}#Where(System.Func{System.Int32,System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#Grid,System#Int32}#Select``1(System.Func{System.Int32,``0})">
@@ -5272,9 +5296,28 @@
             <inheritdoc cref="M:Sudoku.Concepts.IGrid`1.OnRefreshingCandidates(`0@)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_Subtraction(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
+            <summary>
+            Analyzes difference between two grids.
+            If two grids are not same from given cells, the return value will be <see langword="null"/>.
+            </summary>
+            <param name="left">The first grid to be checked.</param>
+            <param name="right">The second grid to be checked.</param>
+            <returns>The difference between two grids.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_CheckedSubtraction(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Analyzes difference between two grids.
+            If two grids are not same from given cells, a <see cref="T:Sudoku.Behaviors.Diff.GridDiffTooMuchException"/> instance will be thrown.
+            </summary>
+            <param name="left">The first grid to be checked.</param>
+            <param name="right">The second grid to be checked.</param>
+            <returns>The difference between two grids.</returns>
+            <exception cref="T:Sudoku.Behaviors.Diff.GridDiffTooMuchException">Throws when two grids are not same from given cells.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Numerics#ISubtractionOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,Sudoku#Behaviors#Diff#DiffResult}#op_Subtraction(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Numerics#ISubtractionOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,Sudoku#Behaviors#Diff#DiffResult}#op_CheckedSubtraction(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(System.Object)">
@@ -6203,6 +6246,7 @@
             Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
             </summary>
             <remarks>
+            <para>
             The field uses the mask table of length 81 to indicate the state and all possible candidates
             holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
             <code>
@@ -6233,23 +6277,8 @@
             <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
             </item>
             </list>
-            Part (3) is for the reserved bits. Such bits won't be used except for the array element at index 0 -
-            The first element in the array will use (3) to represent the sudoku grid type. There are only two kinds of grid type value:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term>0b0000</term>
-            <description>Represents standard sudoku type (flag: <see cref="F:Sudoku.SudokuType.Standard"/>)</description>
-            </item>
-            <item>
-            <term>0b0010</term>
-            <description>Represents Sukaku (flag: <see cref="F:Sudoku.SudokuType.Sukaku"/>)</description>
-            </item>
-            </list>
-            Other values won't be supported for now, even if the flags are defined in type <see cref="T:Sudoku.SudokuType"/>.
+            </para>
+            <para>Part (3) is for reserved cases. Such bits may not be used.</para>
             </remarks>
             <seealso cref="T:Sudoku.Concepts.CellState"/>
             <seealso cref="T:Sudoku.SudokuType"/>
@@ -6676,25 +6705,6 @@
         <member name="M:Sudoku.Concepts.IGrid`1.op_LessThanOrEqual(`0@,`0@)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.IGrid`1.op_Subtraction(`0@,`0@)">
-            <summary>
-            Analyzes difference between two grids.
-            If two grids are not same from given cells, the return value will be <see langword="null"/>.
-            </summary>
-            <param name="left">The first grid to be checked.</param>
-            <param name="right">The second grid to be checked.</param>
-            <returns>The difference between two grids.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IGrid`1.op_CheckedSubtraction(`0@,`0@)">
-            <summary>
-            Analyzes difference between two grids.
-            If two grids are not same from given cells, a <see cref="T:Sudoku.Behaviors.Diff.GridDiffTooMuchException"/> instance will be thrown.
-            </summary>
-            <param name="left">The first grid to be checked.</param>
-            <param name="right">The second grid to be checked.</param>
-            <returns>The difference between two grids.</returns>
-            <exception cref="T:Sudoku.Behaviors.Diff.GridDiffTooMuchException">Throws when two grids are not same from given cells.</exception>
-        </member>
         <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Equality(`0,`0)">
             <inheritdoc/>
         </member>
@@ -6713,10 +6723,357 @@
         <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#IComparisonOperators{TSelf,TSelf,System#Boolean}#op_LessThanOrEqual(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#ISubtractionOperators{TSelf,TSelf,Sudoku#Behaviors#Diff#DiffResult}#op_Subtraction(`0,`0)">
+        <member name="T:Sudoku.Concepts.MarkerGrid">
+            <summary>
+            Represents a sudoku grid that will be used for candidate marking.
+            Different with <see cref="T:Sudoku.Concepts.Grid"/>, this type will aim to adding candidates, rather than removing candidates
+            at initial state with full candidates.
+            </summary>
+            <remarks>
+            The backing implementation is nearly same as <see cref="T:Sudoku.Concepts.Grid"/>, but the only difference is that <see cref="T:Sudoku.Concepts.Grid"/> instances
+            will contain all candidates at the initial state. Candidates can be removed by using indexers to update candidates,
+            or <see cref="M:Sudoku.Concepts.Grid.SetCandidates(System.Int32,System.Int16)"/> to replace candidate masks with new values;
+            however, <see cref="T:Sudoku.Concepts.MarkerGrid"/> instances won't contain any candidates at initial state.
+            All candicates should be manually appended into grid.
+            </remarks>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.SetCandidates(System.Int32,System.Int16)"/>
+        </member>
+        <member name="F:Sudoku.Concepts.MarkerGrid.Undefined">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.Undefined" path="/summary"/>
+            </summary>
+            <remarks>
+            For <see cref="T:Sudoku.Concepts.MarkerGrid"/>, <see cref="F:Sudoku.Concepts.MarkerGrid.Undefined"/> is equivalent to <see cref="F:Sudoku.Concepts.MarkerGrid.Empty"/>
+            because initial states of such two fields are same.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.MarkerGrid.Empty">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.Empty" path="/summary"/>
+            </summary>
+            <remarks>
+            For <see cref="T:Sudoku.Concepts.MarkerGrid"/>, <see cref="F:Sudoku.Concepts.MarkerGrid.Undefined"/> is equivalent to <see cref="F:Sudoku.Concepts.MarkerGrid.Empty"/>
+            because initial states of such two fields are same.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.MarkerGrid._values">
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.#ctor(System.Int32@,Sudoku.Concepts.GridCreatingOption)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.MarkerGrid"/> instance via the pointer of the first element of the cell digit, and the creating option.
+            </summary>
+            <param name="firstElement">The reference of the first element.</param>
+            <param name="creatingOption">The creating option.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.CandidatesCount">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#ISubtractionOperators{TSelf,TSelf,Sudoku#Behaviors#Diff#DiffResult}#op_CheckedSubtraction(`0,`0)">
+        <member name="P:Sudoku.Concepts.MarkerGrid.Candidates">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.ResetGrid">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.UnfixedGrid">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.FixedGrid">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.GivenCells">
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.GivenCells"/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.ModifiableCells">
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.ModifiableCells"/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.EmptyCells">
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.EmptyCells"/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.BivalueCells">
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.BivalueCells"/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.CandidatesMap">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.DigitsMap">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.ValuesMap">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#IsMissingCandidates">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#IsSolved">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#GivenCells">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#ModifiableCells">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#EmptyCells">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#BivalueCells">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#ConjugatePairs">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#CompletedHouses">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#EmptyHouses">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#FirstMaskRef">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#EmptyString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#DefaultMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#MaxCandidatesMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#EmptyMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#ModifiableMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#GivenMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#Undefined">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#Empty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Item(Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Item(Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.MaskAggregator)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.ConflictWith(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.GetExistence(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Exists(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.ToString(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.GetState(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.GetCandidates(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.ToCandidateMaskArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.ToMaskArray">
+            <summary>
+            Creates an array of <see cref="T:System.Int16"/> values that is a copy for the current inline array data structure.
+            </summary>
+            <returns>An array of <see cref="T:System.Int16"/> values.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.GetDigit(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.ToDigitsArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Fix">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Unfix">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.SetState(System.Int32,Sudoku.Concepts.CellState)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.SetDigit(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.SetCandidates(System.Int32,System.Int16)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.SetMask(System.Int32,System.Int16)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.SetExistence(System.Int32,System.Int32,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.AddCandidate(System.Int32,System.Int32)">
+            <summary>
+            Adds a new candidate into the grid.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.RemoveCandidate(System.Int32,System.Int32)">
+            <summary>
+            Removes a candidate from the grid.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#CompareTo(Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#Linq#Providers#IWhereMethod{Sudoku#Concepts#MarkerGrid,System#Int32}#Where(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#MarkerGrid,System#Int32}#Select``1(System.Func{System.Int32,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#Apply(Sudoku.Concepts.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IBoardTransformable{Sudoku#Concepts#MarkerGrid}#RotateClockwise">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IBoardTransformable{Sudoku#Concepts#MarkerGrid}#MirrorLeftRight">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IBoardTransformable{Sudoku#Concepts#MarkerGrid}#MirrorTopBottom">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IBoardTransformable{Sudoku#Concepts#MarkerGrid}#MirrorDiagonal">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IBoardTransformable{Sudoku#Concepts#MarkerGrid}#MirrorAntidiagonal">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#MarkerGrid,System#Int32}#SwapElement(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#MarkerGrid,System#Int32}#Shuffle">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Preserve(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.
+            </summary>
+            <param name="pattern">The pattern.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.TryParse(System.String,Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Create(System.ReadOnlySpan{System.Int16})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Parse(System.ReadOnlySpan{System.Char})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.op_Explicit(Sudoku.Concepts.MarkerGrid@)~Sudoku.Concepts.Grid">
+            <summary>
+            Casts the current instance into a <see cref="T:Sudoku.Concepts.Grid"/>, only with given and modifiable cells reserved.
+            </summary>
+            <param name="grid">The grid to be cast from.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#Numerics#IComparisonOperators{Sudoku#Concepts#MarkerGrid,Sudoku#Concepts#MarkerGrid,System#Boolean}#op_GreaterThan(Sudoku.Concepts.MarkerGrid,Sudoku.Concepts.MarkerGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#Numerics#IComparisonOperators{Sudoku#Concepts#MarkerGrid,Sudoku#Concepts#MarkerGrid,System#Boolean}#op_GreaterThanOrEqual(Sudoku.Concepts.MarkerGrid,Sudoku.Concepts.MarkerGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#Numerics#IComparisonOperators{Sudoku#Concepts#MarkerGrid,Sudoku#Concepts#MarkerGrid,System#Boolean}#op_LessThan(Sudoku.Concepts.MarkerGrid,Sudoku.Concepts.MarkerGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#Numerics#IComparisonOperators{Sudoku#Concepts#MarkerGrid,Sudoku#Concepts#MarkerGrid,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.MarkerGrid,Sudoku.Concepts.MarkerGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#op_GreaterThan(Sudoku.Concepts.MarkerGrid@,Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#op_GreaterThanOrEqual(Sudoku.Concepts.MarkerGrid@,Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#op_LessThan(Sudoku.Concepts.MarkerGrid@,Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#op_LessThanOrEqual(Sudoku.Concepts.MarkerGrid@,Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.op_Equality(Sudoku.Concepts.MarkerGrid@,Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.op_Inequality(Sudoku.Concepts.MarkerGrid@,Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#Numerics#IEqualityOperators{Sudoku#Concepts#MarkerGrid,Sudoku#Concepts#MarkerGrid,System#Boolean}#op_Equality(Sudoku.Concepts.MarkerGrid,Sudoku.Concepts.MarkerGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#Numerics#IEqualityOperators{Sudoku#Concepts#MarkerGrid,Sudoku#Concepts#MarkerGrid,System#Boolean}#op_Inequality(Sudoku.Concepts.MarkerGrid,Sudoku.Concepts.MarkerGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Equals(Sudoku.Concepts.MarkerGrid@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#IEquatable{Sudoku#Concepts#MarkerGrid}#Equals(Sudoku.Concepts.MarkerGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.MaskAggregator">

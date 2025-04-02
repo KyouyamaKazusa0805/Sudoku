@@ -18,7 +18,6 @@ public interface IGrid<TSelf> :
 	IParsable<TSelf>,
 	IReadOnlyCollection<Digit>,
 	ISelectMethod<TSelf, Candidate>,
-	ISubtractionOperators<TSelf, TSelf, DiffResult?>,
 	ISpanFormattable,
 	ISpanParsable<TSelf>,
 	IToArrayMethod<TSelf, Digit>,
@@ -182,6 +181,7 @@ public interface IGrid<TSelf> :
 	/// Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
 	/// </summary>
 	/// <remarks>
+	/// <para>
 	/// The field uses the mask table of length 81 to indicate the state and all possible candidates
 	/// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 11 of 16 bits.
 	/// <code>
@@ -212,23 +212,8 @@ public interface IGrid<TSelf> :
 	/// <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
 	/// </item>
 	/// </list>
-	/// Part (3) is for the reserved bits. Such bits won't be used except for the array element at index 0 -
-	/// The first element in the array will use (3) to represent the sudoku grid type. There are only two kinds of grid type value:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Value</term>
-	/// <description>Description</description>
-	/// </listheader>
-	/// <item>
-	/// <term>0b0000</term>
-	/// <description>Represents standard sudoku type (flag: <see cref="SudokuType.Standard"/>)</description>
-	/// </item>
-	/// <item>
-	/// <term>0b0010</term>
-	/// <description>Represents Sukaku (flag: <see cref="SudokuType.Sukaku"/>)</description>
-	/// </item>
-	/// </list>
-	/// Other values won't be supported for now, even if the flags are defined in type <see cref="SudokuType"/>.
+	/// </para>
+	/// <para>Part (3) is for reserved cases. Such bits may not be used.</para>
 	/// </remarks>
 	/// <seealso cref="CellState"/>
 	/// <seealso cref="SudokuType"/>
@@ -640,13 +625,17 @@ public interface IGrid<TSelf> :
 	/// Indicates the set value. If to clear the cell, the value will be -1.
 	/// In fact, if the value is -1, this method will do nothing.
 	/// </param>
-	protected static abstract void OnValueChanged(ref TSelf @this, Cell cell, Digit setValue);
+	protected static virtual void OnValueChanged(ref TSelf @this, Cell cell, Digit setValue)
+	{
+	}
 
 	/// <summary>
 	/// Event handler on refreshing candidates.
 	/// </summary>
 	/// <param name="this">The grid itself.</param>
-	protected static abstract void OnRefreshingCandidates(ref TSelf @this);
+	protected static virtual void OnRefreshingCandidates(ref TSelf @this)
+	{
+	}
 
 	/// <summary>
 	/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.
@@ -714,26 +703,6 @@ public interface IGrid<TSelf> :
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
 	public static abstract bool operator <=(in TSelf left, in TSelf right);
 
-	/// <summary>
-	/// Analyzes difference between two grids.
-	/// If two grids are not same from given cells, the return value will be <see langword="null"/>.
-	/// </summary>
-	/// <param name="left">The first grid to be checked.</param>
-	/// <param name="right">The second grid to be checked.</param>
-	/// <returns>The difference between two grids.</returns>
-	public static abstract DiffResult? operator -(in TSelf left, in TSelf right);
-
-	/// <summary>
-	/// Analyzes difference between two grids.
-	/// If two grids are not same from given cells, a <see cref="GridDiffTooMuchException"/> instance will be thrown.
-	/// </summary>
-	/// <param name="left">The first grid to be checked.</param>
-	/// <param name="right">The second grid to be checked.</param>
-	/// <returns>The difference between two grids.</returns>
-	/// <exception cref="GridDiffTooMuchException">Throws when two grids are not same from given cells.</exception>
-	public static virtual DiffResult operator checked -(in TSelf left, in TSelf right)
-		=> left - right ?? throw new GridDiffTooMuchException();
-
 	/// <inheritdoc/>
 	static bool IEqualityOperators<TSelf, TSelf, bool>.operator ==(TSelf left, TSelf right) => left == right;
 
@@ -751,11 +720,4 @@ public interface IGrid<TSelf> :
 
 	/// <inheritdoc/>
 	static bool IComparisonOperators<TSelf, TSelf, bool>.operator <=(TSelf left, TSelf right) => left <= right;
-
-	/// <inheritdoc/>
-	static DiffResult? ISubtractionOperators<TSelf, TSelf, DiffResult?>.operator -(TSelf left, TSelf right) => left - right;
-
-	/// <inheritdoc/>
-	static DiffResult? ISubtractionOperators<TSelf, TSelf, DiffResult?>.operator checked -(TSelf left, TSelf right)
-		=> checked(left - right);
 }
