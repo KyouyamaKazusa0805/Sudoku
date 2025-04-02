@@ -20,19 +20,19 @@
     <File Path="misspelling-exclusion.dic" />
     <File Path="NuGet.config" />
   </Folder>
-  <Folder Name="/Global Items/Licenses/">
+  <Folder Name="/Global Items/Licenses/" Id="5fcad612-b451-dbc2-2f23-b0ea9e155288">
     <File Path="LICENSE-CODE.txt" />
     <File Path="LICENSE-WIKI.txt" />
     <File Path="src/Sudoku.Drawing.Ocr/LICENSE-OCR.txt" />
   </Folder>
-  <Folder Name="/Global Items/ReadMe Files/">
+  <Folder Name="/Global Items/ReadMe Files/" Id="4a80002e-b198-ebd4-0c5a-be1f686e7061">
     <File Path="README-zh-cn.md" />
     <File Path="README.md" />
   </Folder>
-  <Folder Name="/Global Items/Scripts/">
+  <Folder Name="/Global Items/Scripts/" Id="91e951e7-aff5-340a-d718-43b9d8307abd">
     <File Path="docs/assets-renamer.ps1" />
   </Folder>
-  <Folder Name="/Global Items/Source Generators/" />
+  <Folder Name="/Global Items/Source Generators/" Id="7fc47d29-3020-56ec-3809-dea51b6dce3c" />
   <Folder Name="/Source Generators/">
     <Project Path="PuzzlesMeta/src/Puzzles.SourceGeneration/Puzzles.SourceGeneration.csproj">
       <BuildType Solution="Build|*" Project="Debug" />
@@ -53,14 +53,8 @@
     <BuildType Solution="Build|*" Project="Debug" />
   </Project>
   <Project Path="src/ConsoleTest/MyPrivateWorks.csproj" />
-  <Project Path="src/Sudoku.Analytics.Async/Sudoku.Analytics.Async.csproj">
-    <BuildType Solution="Build|*" Project="Debug" />
-  </Project>
   <Project Path="src/Sudoku.Analytics/Sudoku.Analytics.csproj" />
   <Project Path="src/Sudoku.CommandLine/Sudoku.CommandLine.csproj">
-    <BuildType Solution="Build|*" Project="Debug" />
-  </Project>
-  <Project Path="src/Sudoku.Core.Async/Sudoku.Core.Async.csproj">
     <BuildType Solution="Build|*" Project="Debug" />
   </Project>
   <Project Path="src/Sudoku.Core/Sudoku.Core.csproj" />
