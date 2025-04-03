@@ -198,6 +198,28 @@ public partial struct MarkerGrid : GridBase
 	}
 
 	/// <inheritdoc/>
+	public readonly ReadOnlySpan<Conjugate> ConjugatePairs
+	{
+		get
+		{
+			var conjugatePairs = new List<Conjugate>();
+			var candidatesMap = CandidatesMap;
+			for (var digit = 0; digit < 9; digit++)
+			{
+				ref readonly var cellsMap = ref candidatesMap[digit];
+				foreach (var houseMap in HousesMap)
+				{
+					if ((houseMap & cellsMap) is { Count: 2 } temp)
+					{
+						conjugatePairs.Add(new(temp, digit));
+					}
+				}
+			}
+			return conjugatePairs.AsSpan();
+		}
+	}
+
+	/// <inheritdoc/>
 	/// <remarks>
 	/// For <see cref="MarkerGrid"/> instances, this property always returns <see langword="true"/>.
 	/// </remarks>
@@ -212,9 +234,6 @@ public partial struct MarkerGrid : GridBase
 	/// <inheritdoc/>
 	[UnscopedRef]
 	readonly ReadOnlySpan<Mask> IInlineArray<MarkerGrid, Mask>.Elements => this[..];
-
-	/// <inheritdoc/>
-	readonly ReadOnlySpan<Conjugate> GridBase.ConjugatePairs => ((Grid)this).ConjugatePairs;
 
 	/// <inheritdoc/>
 	[UnscopedRef]

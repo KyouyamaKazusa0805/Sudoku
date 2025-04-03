@@ -6939,6 +6939,9 @@
         <member name="P:Sudoku.Concepts.MarkerGrid.Candidates">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.ConjugatePairs">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#IsMissingCandidates">
             <inheritdoc/>
             <remarks>
@@ -6952,9 +6955,6 @@
             </remarks>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.System#IInlineArray{Sudoku#Concepts#MarkerGrid,System#Int16}#Elements">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#ConjugatePairs">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#FirstMaskRef">
