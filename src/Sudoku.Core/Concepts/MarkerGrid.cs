@@ -96,26 +96,6 @@ public partial struct MarkerGrid : GridBase
 	}
 
 	/// <inheritdoc/>
-	public readonly ReadOnlySpan<Candidate> Candidates
-	{
-		get
-		{
-			var candidates = new Candidate[CandidatesCount];
-			for (var (cell, i) = (0, 0); cell < 81; cell++)
-			{
-				if (GetState(cell) == CellState.Empty)
-				{
-					foreach (var digit in GetCandidates(cell))
-					{
-						candidates[i++] = cell * 9 + digit;
-					}
-				}
-			}
-			return candidates;
-		}
-	}
-
-	/// <inheritdoc/>
 	public readonly MarkerGrid ResetGrid => Preserve(GivenCells);
 
 	/// <inheritdoc/>
@@ -142,16 +122,51 @@ public partial struct MarkerGrid : GridBase
 		}
 	}
 
-	/// <inheritdoc cref="GridBase.GivenCells"/>
+	/// <inheritdoc/>
+	public readonly HouseMask EmptyHouses
+	{
+		get
+		{
+			var result = 0;
+			for (var (house, valueCells) = (0, ~EmptyCells); house < 27; house++)
+			{
+				if (valueCells / house == 0)
+				{
+					result |= 1 << house;
+				}
+			}
+			return result;
+		}
+	}
+
+	/// <inheritdoc/>
+	public readonly HouseMask CompletedHouses
+	{
+		get
+		{
+			var emptyCells = EmptyCells;
+			var result = 0;
+			for (var house = 0; house < 27; house++)
+			{
+				if (!(HousesMap[house] & emptyCells))
+				{
+					result |= 1 << house;
+				}
+			}
+			return result;
+		}
+	}
+
+	/// <inheritdoc/>
 	public readonly unsafe CellMap GivenCells => GridBase.GetMap(this, &GridPredicates.GivenCells);
 
-	/// <inheritdoc cref="GridBase.ModifiableCells"/>
+	/// <inheritdoc/>
 	public readonly unsafe CellMap ModifiableCells => GridBase.GetMap(this, &GridPredicates.ModifiableCells);
 
-	/// <inheritdoc cref="GridBase.EmptyCells"/>
+	/// <inheritdoc/>
 	public readonly unsafe CellMap EmptyCells => GridBase.GetMap(this, &GridPredicates.EmptyCells);
 
-	/// <inheritdoc cref="GridBase.BivalueCells"/>
+	/// <inheritdoc/>
 	public readonly unsafe CellMap BivalueCells => GridBase.GetMap(this, &GridPredicates.BivalueCells);
 
 	/// <inheritdoc/>
@@ -162,6 +177,26 @@ public partial struct MarkerGrid : GridBase
 
 	/// <inheritdoc/>
 	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => GridBase.GetMaps(this, &GridPredicates.ValuesMap);
+
+	/// <inheritdoc/>
+	public readonly ReadOnlySpan<Candidate> Candidates
+	{
+		get
+		{
+			var candidates = new Candidate[CandidatesCount];
+			for (var (cell, i) = (0, 0); cell < 81; cell++)
+			{
+				if (GetState(cell) == CellState.Empty)
+				{
+					foreach (var digit in GetCandidates(cell))
+					{
+						candidates[i++] = cell * 9 + digit;
+					}
+				}
+			}
+			return candidates;
+		}
+	}
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -176,29 +211,11 @@ public partial struct MarkerGrid : GridBase
 	readonly bool GridBase.IsSolved => false;
 
 	/// <inheritdoc/>
-	readonly CellMap GridBase.GivenCells => ((Grid)this).GivenCells;
-
-	/// <inheritdoc/>
-	readonly CellMap GridBase.ModifiableCells => ((Grid)this).ModifiableCells;
-
-	/// <inheritdoc/>
-	readonly CellMap GridBase.EmptyCells => ((Grid)this).EmptyCells;
-
-	/// <inheritdoc/>
-	readonly CellMap GridBase.BivalueCells => ((Grid)this).BivalueCells;
-
-	/// <inheritdoc/>
 	[UnscopedRef]
 	readonly ReadOnlySpan<Mask> IInlineArray<MarkerGrid, Mask>.Elements => this[..];
 
 	/// <inheritdoc/>
 	readonly ReadOnlySpan<Conjugate> GridBase.ConjugatePairs => ((Grid)this).ConjugatePairs;
-
-	/// <inheritdoc/>
-	readonly HouseMask GridBase.CompletedHouses => ((Grid)this).CompletedHouses;
-
-	/// <inheritdoc/>
-	readonly HouseMask GridBase.EmptyHouses => ((Grid)this).EmptyHouses;
 
 	/// <inheritdoc/>
 	[UnscopedRef]

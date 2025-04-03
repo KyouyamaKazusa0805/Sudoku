@@ -6814,9 +6814,6 @@
         <member name="P:Sudoku.Concepts.MarkerGrid.CandidatesCount">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Candidates">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.ResetGrid">
             <inheritdoc/>
         </member>
@@ -6826,17 +6823,23 @@
         <member name="P:Sudoku.Concepts.MarkerGrid.FixedGrid">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.EmptyHouses">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.CompletedHouses">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.GivenCells">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.GivenCells"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.ModifiableCells">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.ModifiableCells"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.EmptyCells">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.EmptyCells"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.BivalueCells">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.BivalueCells"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.CandidatesMap">
             <inheritdoc/>
@@ -6845,6 +6848,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.ValuesMap">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Candidates">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#IsMissingCandidates">
@@ -6859,28 +6865,10 @@
             For <see cref="T:Sudoku.Concepts.MarkerGrid"/> instances, this property always returns <see langword="false"/>.
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#GivenCells">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#ModifiableCells">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#EmptyCells">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#BivalueCells">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.System#IInlineArray{Sudoku#Concepts#MarkerGrid,System#Int16}#Elements">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#ConjugatePairs">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#CompletedHouses">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#EmptyHouses">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#FirstMaskRef">
