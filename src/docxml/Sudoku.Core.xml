@@ -580,6 +580,15 @@
             Returns a sequence of <see cref="T:System.Runtime.Intrinsics.Vector256`1"/> of <see cref="T:System.UInt64"/> values that can be used in SIMD scenarios.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.BackingBuffer.System#IInlineArray{Sudoku#Concepts#CandidateMap#BackingBuffer,System#UInt64}#Elements">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.BackingBuffer.System#IInlineArray{Sudoku#Concepts#CandidateMap#BackingBuffer,System#UInt64}#InlineArrayLength">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.BackingBuffer.System#IInlineArray{Sudoku#Concepts#CandidateMap#BackingBuffer,System#UInt64}#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.BackingBuffer.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -590,6 +599,15 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.BackingBuffer.System#IEquatable{Sudoku#Concepts#CandidateMap#BackingBuffer}#Equals(Sudoku.Concepts.CandidateMap.BackingBuffer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.BackingBuffer.System#IInlineArray{Sudoku#Concepts#CandidateMap#BackingBuffer,System#UInt64}#AsReadOnlySpan">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.BackingBuffer.System#IInlineArray{Sudoku#Concepts#CandidateMap#BackingBuffer,System#UInt64}#GetPinnableReference">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.BackingBuffer.System#IInlineArray{Sudoku#Concepts#CandidateMap#BackingBuffer,System#UInt64}#AsSpan">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.BackingBuffer.op_Equality(Sudoku.Concepts.CandidateMap.BackingBuffer@,Sudoku.Concepts.CandidateMap.BackingBuffer@)">

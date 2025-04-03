@@ -6,14 +6,15 @@ public partial struct CandidateMap
 	/// Indicates the internal buffer type.
 	/// </summary>
 	[InlineArray(12)]
-	private struct BackingBuffer : IEquatable<BackingBuffer>, IEqualityOperators<BackingBuffer, BackingBuffer, bool>
+	private struct BackingBuffer :
+		IEquatable<BackingBuffer>,
+		IEqualityOperators<BackingBuffer, BackingBuffer, bool>,
+		IInlineArray<BackingBuffer, ulong>
 	{
-#pragma warning disable IDE0044
 		/// <summary>
 		/// Indicates the first element of the whole buffer.
 		/// </summary>
 		private ulong _firstElement;
-#pragma warning restore IDE0044
 
 
 		/// <summary>
@@ -21,6 +22,19 @@ public partial struct CandidateMap
 		/// </summary>
 		public readonly ReadOnlySpan<Vector256<ulong>> Vectors
 			=> (Vector256<ulong>[])[Vector256.Create(this[..4]), Vector256.Create(this[4..8]), Vector256.Create(this[8..])];
+
+		/// <inheritdoc/>
+		[UnscopedRef]
+		readonly ReadOnlySpan<ulong> IInlineArray<BackingBuffer, ulong>.Elements => this[..];
+
+
+		/// <inheritdoc/>
+		static int IInlineArray<BackingBuffer, ulong>.InlineArrayLength => 12;
+
+
+		/// <inheritdoc/>
+		[UnscopedRef]
+		ref ulong IInlineArray<BackingBuffer, ulong>.this[int index] => ref this[index];
 
 
 		/// <inheritdoc cref="object.ToString"/>
@@ -48,6 +62,18 @@ public partial struct CandidateMap
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		readonly bool IEquatable<BackingBuffer>.Equals(BackingBuffer other) => Equals(other);
+
+		/// <inheritdoc/>
+		[UnscopedRef]
+		readonly ReadOnlySpan<ulong> IInlineArray<BackingBuffer, ulong>.AsReadOnlySpan() => this;
+
+		/// <inheritdoc/>
+		[UnscopedRef]
+		ref ulong IInlineArray<BackingBuffer, ulong>.GetPinnableReference() => ref this[0];
+
+		/// <inheritdoc/>
+		[UnscopedRef]
+		Span<ulong> IInlineArray<BackingBuffer, ulong>.AsSpan() => this;
 
 
 		/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
