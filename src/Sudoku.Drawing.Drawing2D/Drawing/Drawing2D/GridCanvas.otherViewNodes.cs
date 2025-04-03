@@ -29,7 +29,7 @@ public partial class GridCanvas
 				Settings:
 				{
 					CandidateColor: var cColor,
-					CandidateFontName: var cFontName,
+					CandidateFontName: { } cFontName,
 					CandidateScale: var cScale,
 					CandidateFontStyle: var cFontStyle,
 					ShowCandidates: var showCandidates
@@ -370,7 +370,7 @@ public partial class GridCanvas
 				BabaGroupingCharacterColor: var uColor,
 				ValueScale: var vScale,
 				BabaGroupingCharacterFontStyle: var uFontStyle,
-				BabaGroupingFontName: var uFontName
+				BabaGroupingFontName: { } uFontName
 			})
 		{
 			return;

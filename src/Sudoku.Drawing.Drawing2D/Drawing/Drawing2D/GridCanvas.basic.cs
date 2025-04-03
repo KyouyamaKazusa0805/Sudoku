@@ -60,19 +60,20 @@ public partial class GridCanvas
 	}
 
 	/// <summary>
-	/// Draw grid onto the canvas.
+	/// Draw a <see cref="Grid"/> or <see cref="MarkerGrid"/> instance onto the canvas.
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="grid">The grid to be drawn.</param>
-	public partial void DrawGrid(in Grid grid)
+	public partial void DrawGrid<TGrid>(in TGrid grid) where TGrid : unmanaged, IGrid<TGrid>
 	{
 		if (Settings is not
 			{
 				GivenColor: var gColor,
 				ModifiableColor: var mColor,
 				CandidateColor: var cColor,
-				GivenFontName: var gFontName,
-				ModifiableFontName: var mFontName,
-				CandidateFontName: var cFontName,
+				GivenFontName: { } gFontName,
+				ModifiableFontName: { } mFontName,
+				CandidateFontName: { } cFontName,
 				ValueScale: var vScale,
 				CandidateScale: var cScale,
 				GivenFontStyle: var gFontStyle,

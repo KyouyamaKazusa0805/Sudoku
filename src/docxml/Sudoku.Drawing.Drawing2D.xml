@@ -160,10 +160,11 @@
             <param name="footerText">The footer text.</param>
             <exception cref="T:System.InvalidOperationException">Throws when the canvas doesn't support drawing footer text.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawGrid(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawGrid``1(``0@)">
             <summary>
-            Draw grid onto the canvas.
+            Draw a <see cref="T:Sudoku.Concepts.Grid"/> or <see cref="T:Sudoku.Concepts.MarkerGrid"/> instance onto the canvas.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="grid">The grid to be drawn.</param>
         </member>
         <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawCellViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.CellViewNode})">

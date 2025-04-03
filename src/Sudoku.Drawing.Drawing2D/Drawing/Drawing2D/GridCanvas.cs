@@ -148,7 +148,8 @@ public sealed partial class GridCanvas : IDisposable
 		=> id switch
 		{
 			ColorColorIdentifier(var a, var r, var g, var b) => Color.FromArgb(a, r, g, b),
-			PaletteIdColorIdentifier { Value: var value } when TryGetPaletteColorByIndex(value, out var color) => Color.FromArgb(64, color),
+			PaletteIdColorIdentifier { Value: var value } when TryGetPaletteColorByIndex(value, out var color)
+				=> Color.FromArgb(64, color),
 			WellKnownColorIdentifier { Kind: var kind } => kind switch
 			{
 				WellKnownColorIdentifierKind.Normal => Settings.NormalColor,
@@ -212,8 +213,8 @@ public sealed partial class GridCanvas : IDisposable
 	/// <returns>The font.</returns>
 	/// <exception cref="ArgumentNullException">Throws when <paramref name="fontName"/> is <see langword="null"/>.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Font GetFont(string? fontName, float size, decimal scale, FontStyle style)
-		=> new(fontName!, size * (float)scale, style);
+	private static Font GetFont(string fontName, float size, decimal scale, FontStyle style)
+		=> new(fontName, size * (float)scale, style);
 
 	/// <summary>
 	/// Creates a <see cref="Graphics"/> instance via values.
@@ -239,7 +240,7 @@ public sealed partial class GridCanvas : IDisposable
 	public partial void DrawBackground();
 	public partial void DrawBorderLines();
 	public partial void DrawFooterText(string footerText);
-	public partial void DrawGrid(in Grid grid);
+	public partial void DrawGrid<TGrid>(in TGrid grid) where TGrid : unmanaged, IGrid<TGrid>;
 	public partial void DrawCellViewNodes(ReadOnlySpan<CellViewNode> nodes);
 	public partial void DrawCandidateViewNodes(ReadOnlySpan<CandidateViewNode> nodes, ReadOnlySpan<Conclusion> conclusions);
 	public partial void DrawHouseViewNodes(ReadOnlySpan<HouseViewNode> nodes);
