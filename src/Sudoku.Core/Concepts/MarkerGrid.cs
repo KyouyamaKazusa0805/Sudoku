@@ -305,15 +305,13 @@ public partial struct MarkerGrid : GridBase
 	public readonly bool GetExistence(Cell cell, Digit digit) => (this[cell] >> digit & 1) != 0;
 
 	/// <inheritdoc/>
-	public readonly bool? Exists(Cell cell, Digit digit)
-	{
-		throw new NotImplementedException();
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool? Exists(Cell cell, Digit digit) => GetState(cell) == CellState.Empty ? GetExistence(cell, digit) : null;
 
 	/// <inheritdoc/>
 	public override readonly int GetHashCode() => ToString("#").GetHashCode();
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="object.ToString"/>
 	public override readonly string ToString() => ToString(null, null);
 
 	/// <inheritdoc/>
@@ -381,33 +379,54 @@ public partial struct MarkerGrid : GridBase
 	}
 
 	/// <inheritdoc/>
-	public void Reset()
-	{
-		throw new NotImplementedException();
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Reset() => this = Preserve(GivenCells);
 
 	/// <inheritdoc/>
 	public void Fix()
 	{
-		throw new NotImplementedException();
+		for (var i = 0; i < 81; i++)
+		{
+			if (GetState(i) == CellState.Modifiable)
+			{
+				SetState(i, CellState.Given);
+			}
+		}
 	}
 
 	/// <inheritdoc/>
 	public void Unfix()
 	{
-		throw new NotImplementedException();
+		for (var i = 0; i < 81; i++)
+		{
+			if (GetState(i) == CellState.Given)
+			{
+				SetState(i, CellState.Modifiable);
+			}
+		}
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetState(Cell cell, CellState state)
 	{
-		throw new NotImplementedException();
+		ref var mask = ref this[cell];
+		mask = (Mask)((Mask)((int)state << 9) | (Mask)(mask & Grid.MaxCandidatesMask));
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetDigit(Cell cell, Digit digit)
 	{
-		throw new NotImplementedException();
+		if (digit switch
+		{
+			-1 when GetState(cell) == CellState.Modifiable => Grid.DefaultMask,
+			>= 0 and < 9 => (Mask)(Grid.ModifiableMask | 1 << digit),
+			_ => Mask.MinValue
+		} is var validMask and not Mask.MinValue)
+		{
+			this[cell] = validMask;
+		}
 	}
 
 	/// <inheritdoc/>
@@ -423,7 +442,17 @@ public partial struct MarkerGrid : GridBase
 	/// <inheritdoc/>
 	public void SetExistence(Cell cell, Digit digit, bool isOn)
 	{
-		throw new NotImplementedException();
+		if ((cell, digit) is ( >= 0 and < 81, >= 0 and < 9))
+		{
+			if (isOn)
+			{
+				AddCandidate(cell, digit);
+			}
+			else
+			{
+				RemoveCandidate(cell, digit);
+			}
+		}
 	}
 
 	/// <summary>

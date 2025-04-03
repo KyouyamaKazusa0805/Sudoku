@@ -6885,7 +6885,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.ToString(System.String)">
             <inheritdoc/>
