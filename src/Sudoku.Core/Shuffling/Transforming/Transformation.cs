@@ -63,13 +63,14 @@ public static class Transformation
 	/// <summary>
 	/// Mirror left-right the grid.
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result grid.</returns>
 	/// <remarks>
 	/// This method will return the reference that is same as the argument,
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
-	public static ref Grid MirrorLeftRight(this ref Grid @this)
+	public static ref TGrid MirrorLeftRight<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
 	{
 		for (var i = 0; i < 9; i++)
 		{
@@ -84,13 +85,14 @@ public static class Transformation
 	/// <summary>
 	/// Mirror top-bottom the grid.
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result grid.</returns>
 	/// <remarks>
 	/// This method will return the reference that is same as the argument,
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
-	public static ref Grid MirrorTopBottom(this ref Grid @this)
+	public static ref TGrid MirrorTopBottom<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
 	{
 		for (var i = 0; i < 9; i++)
 		{
@@ -105,13 +107,14 @@ public static class Transformation
 	/// <summary>
 	/// Mirror diagonal the grid.
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result grid.</returns>
 	/// <remarks>
 	/// This method will return the reference that is same as the argument,
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
-	public static ref Grid MirrorDiagonal(this ref Grid @this)
+	public static ref TGrid MirrorDiagonal<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
 	{
 		for (var i = 0; i < 9; i++)
 		{
@@ -126,6 +129,7 @@ public static class Transformation
 	/// <summary>
 	/// Transpose the grid.
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result grid.</returns>
 	/// <remarks>
@@ -133,18 +137,20 @@ public static class Transformation
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref Grid Transpose(this ref Grid @this) => ref @this.MirrorDiagonal();
+	public static ref TGrid Transpose<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
+		=> ref @this.MirrorDiagonal<TGrid>();
 
 	/// <summary>
 	/// Mirror anti-diagonal the grid.
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result grid.</returns>
 	/// <remarks>
 	/// This method will return the reference that is same as the argument,
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
-	public static ref Grid MirrorAntidiagonal(this ref Grid @this)
+	public static ref TGrid MirrorAntidiagonal<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
 	{
 		for (var i = 0; i < 9; i++)
 		{
@@ -159,15 +165,16 @@ public static class Transformation
 	/// <summary>
 	/// Rotate the grid clockwise.
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result.</returns>
 	/// <remarks>
 	/// This method will return the reference that is same as the argument,
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
-	public static ref Grid RotateClockwise(this ref Grid @this)
+	public static ref TGrid RotateClockwise<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
 	{
-		var result = Grid.Undefined;
+		var result = TGrid.Undefined;
 		for (var cell = 0; cell < 81; cell++)
 		{
 			result[cell] = @this[ClockwiseTable[cell]];
@@ -180,15 +187,16 @@ public static class Transformation
 	/// <summary>
 	/// Rotate the grid counterclockwise.
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result.</returns>
 	/// <remarks>
 	/// This method will return the reference that is same as the argument,
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
-	public static ref Grid RotateCounterclockwise(this ref Grid @this)
+	public static ref TGrid RotateCounterclockwise<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
 	{
-		var result = Grid.Undefined;
+		var result = TGrid.Undefined;
 		for (var cell = 0; cell < 81; cell++)
 		{
 			result[cell] = @this[CounterclockwiseTable[cell]];
@@ -201,6 +209,7 @@ public static class Transformation
 	/// <summary>
 	/// Rotate the grid <c><see cref="Math.PI"/></c> degrees.
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result.</returns>
 	/// <remarks>
@@ -208,9 +217,9 @@ public static class Transformation
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
 	/// <seealso cref="Math.PI"/>
-	public static ref Grid RotatePi(this ref Grid @this)
+	public static ref TGrid RotatePi<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
 	{
-		var result = Grid.Undefined;
+		var result = TGrid.Undefined;
 		for (var cell = 0; cell < 81; cell++)
 		{
 			result[cell] = @this[PiRotateTable[cell]];
@@ -223,12 +232,13 @@ public static class Transformation
 	/// <summary>
 	/// Swap two digits.
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The grid.</param>
 	/// <param name="digit1">The digit 1 to be swapped.</param>
 	/// <param name="digit2">The digit 2 to be swapped.</param>
 	/// <returns>The result.</returns>
 	/// <exception cref="ArgumentException">Throws when the puzzle is not solved.</exception>
-	public static ref Grid SwapDigit(this ref Grid @this, Digit digit1, Digit digit2)
+	public static ref TGrid SwapDigit<TGrid>(this ref TGrid @this, Digit digit1, Digit digit2) where TGrid : unmanaged, IGrid<TGrid>
 	{
 		if (digit1 == digit2)
 		{
@@ -249,6 +259,7 @@ public static class Transformation
 	/// <summary>
 	/// Swap to houses.
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The grid.</param>
 	/// <param name="houseIndex1">The house 1 to be swapped.</param>
 	/// <param name="houseIndex2">The house 2 to be swapped.</param>
@@ -261,7 +272,8 @@ public static class Transformation
 	/// This method will return the reference that is same as the argument <paramref name="this"/>,
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
-	public static ref Grid SwapHouse(this ref Grid @this, House houseIndex1, House houseIndex2)
+	public static ref TGrid SwapHouse<TGrid>(this ref TGrid @this, House houseIndex1, House houseIndex2)
+		where TGrid : unmanaged, IGrid<TGrid>
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(houseIndex1 is >= 9 and < 27, true);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(houseIndex2 is >= 9 and < 27, true);
@@ -281,12 +293,14 @@ public static class Transformation
 	/// <summary>
 	/// Swap chutes (i.e. mega-rows or mega-columns).
 	/// </summary>
+	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The grid.</param>
 	/// <param name="chuteIndex1">The first chute to be swapped.</param>
 	/// <param name="chuteIndex2">The second chute to be swapped.</param>
 	/// <returns>The result.</returns>
 	/// <exception cref="ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
-	public static ref Grid SwapChute(this ref Grid @this, int chuteIndex1, int chuteIndex2)
+	public static ref TGrid SwapChute<TGrid>(this ref TGrid @this, int chuteIndex1, int chuteIndex2)
+		where TGrid : unmanaged, IGrid<TGrid>
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(chuteIndex1 is >= 0 and < 6, true);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(chuteIndex2 is >= 0 and < 6, true);

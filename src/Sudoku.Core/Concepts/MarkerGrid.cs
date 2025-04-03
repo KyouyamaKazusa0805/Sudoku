@@ -482,6 +482,23 @@ public partial struct MarkerGrid : GridBase
 	}
 
 	/// <inheritdoc/>
+	readonly MarkerGrid IElementSwappingTransformable<MarkerGrid, Digit>.Shuffle()
+	{
+		var rng = Random.Shared;
+		var current = this;
+		for (var d1 = 0; d1 < 9; d1++)
+		{
+			Digit d2;
+			do
+			{
+				d2 = rng.NextDigit();
+			} while (d1 == d2);
+			current = current.SwapDigit(d1, d2);
+		}
+		return current;
+	}
+
+	/// <inheritdoc/>
 	[DoesNotReturn]
 	readonly int GridBase.CompareTo(in MarkerGrid other) => throw new NotSupportedException();
 
@@ -501,26 +518,22 @@ public partial struct MarkerGrid : GridBase
 	void GridBase.Apply(Conclusion conclusion) => throw new NotSupportedException();
 
 	/// <inheritdoc/>
-	readonly MarkerGrid IBoardTransformable<MarkerGrid>.RotateClockwise() => throw new NotImplementedException();
+	MarkerGrid IBoardTransformable<MarkerGrid>.RotateClockwise() => this.RotateClockwise();
 
 	/// <inheritdoc/>
-	readonly MarkerGrid IBoardTransformable<MarkerGrid>.MirrorLeftRight() => throw new NotImplementedException();
+	MarkerGrid IBoardTransformable<MarkerGrid>.MirrorLeftRight() => this.MirrorLeftRight();
 
 	/// <inheritdoc/>
-	readonly MarkerGrid IBoardTransformable<MarkerGrid>.MirrorTopBottom() => throw new NotImplementedException();
+	MarkerGrid IBoardTransformable<MarkerGrid>.MirrorTopBottom() => this.MirrorTopBottom();
 
 	/// <inheritdoc/>
-	readonly MarkerGrid IBoardTransformable<MarkerGrid>.MirrorDiagonal() => throw new NotImplementedException();
+	MarkerGrid IBoardTransformable<MarkerGrid>.MirrorDiagonal() => this.MirrorDiagonal();
 
 	/// <inheritdoc/>
-	readonly MarkerGrid IBoardTransformable<MarkerGrid>.MirrorAntidiagonal() => throw new NotImplementedException();
+	MarkerGrid IBoardTransformable<MarkerGrid>.MirrorAntidiagonal() => this.MirrorAntidiagonal();
 
 	/// <inheritdoc/>
-	readonly MarkerGrid IElementSwappingTransformable<MarkerGrid, Digit>.SwapElement(Digit element1, Digit element2)
-		=> throw new NotImplementedException();
-
-	/// <inheritdoc/>
-	readonly MarkerGrid IElementSwappingTransformable<MarkerGrid, Digit>.Shuffle() => throw new NotImplementedException();
+	MarkerGrid IElementSwappingTransformable<MarkerGrid, Digit>.SwapElement(Digit element1, Digit element2) => this.SwapDigit(element1, element2);
 
 	/// <summary>
 	/// Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.

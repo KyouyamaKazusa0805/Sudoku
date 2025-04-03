@@ -6955,6 +6955,9 @@
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
         </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#MarkerGrid,System#Int32}#Shuffle">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#CompareTo(Sudoku.Concepts.MarkerGrid@)">
             <inheritdoc/>
         </member>
@@ -6986,9 +6989,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#MarkerGrid,System#Int32}#SwapElement(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#MarkerGrid,System#Int32}#Shuffle">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.Preserve(Sudoku.Concepts.CellMap@)">
@@ -12448,10 +12448,11 @@
             Indicates the swappable pairs, which means the swappable houses.
             </summary>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorLeftRight(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorLeftRight``1(``0@)">
             <summary>
             Mirror left-right the grid.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The grid.</param>
             <returns>The result grid.</returns>
             <remarks>
@@ -12459,10 +12460,11 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorTopBottom(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorTopBottom``1(``0@)">
             <summary>
             Mirror top-bottom the grid.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The grid.</param>
             <returns>The result grid.</returns>
             <remarks>
@@ -12470,10 +12472,11 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorDiagonal(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorDiagonal``1(``0@)">
             <summary>
             Mirror diagonal the grid.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The grid.</param>
             <returns>The result grid.</returns>
             <remarks>
@@ -12481,10 +12484,11 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.Transpose(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.Transpose``1(``0@)">
             <summary>
             Transpose the grid.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The grid.</param>
             <returns>The result grid.</returns>
             <remarks>
@@ -12492,10 +12496,11 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorAntidiagonal(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorAntidiagonal``1(``0@)">
             <summary>
             Mirror anti-diagonal the grid.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The grid.</param>
             <returns>The result grid.</returns>
             <remarks>
@@ -12503,10 +12508,11 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotateClockwise(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotateClockwise``1(``0@)">
             <summary>
             Rotate the grid clockwise.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The grid.</param>
             <returns>The result.</returns>
             <remarks>
@@ -12514,10 +12520,11 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotateCounterclockwise(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotateCounterclockwise``1(``0@)">
             <summary>
             Rotate the grid counterclockwise.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The grid.</param>
             <returns>The result.</returns>
             <remarks>
@@ -12525,10 +12532,11 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotatePi(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotatePi``1(``0@)">
             <summary>
             Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The grid.</param>
             <returns>The result.</returns>
             <remarks>
@@ -12537,20 +12545,22 @@
             </remarks>
             <seealso cref="F:System.Math.PI"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapDigit(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapDigit``1(``0@,System.Int32,System.Int32)">
             <summary>
             Swap two digits.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The grid.</param>
             <param name="digit1">The digit 1 to be swapped.</param>
             <param name="digit2">The digit 2 to be swapped.</param>
             <returns>The result.</returns>
             <exception cref="T:System.ArgumentException">Throws when the puzzle is not solved.</exception>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapHouse(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapHouse``1(``0@,System.Int32,System.Int32)">
             <summary>
             Swap to houses.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The grid.</param>
             <param name="houseIndex1">The house 1 to be swapped.</param>
             <param name="houseIndex2">The house 2 to be swapped.</param>
@@ -12564,10 +12574,11 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapChute(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapChute``1(``0@,System.Int32,System.Int32)">
             <summary>
             Swap chutes (i.e. mega-rows or mega-columns).
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The grid.</param>
             <param name="chuteIndex1">The first chute to be swapped.</param>
             <param name="chuteIndex2">The second chute to be swapped.</param>
