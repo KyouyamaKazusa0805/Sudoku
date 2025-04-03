@@ -34,7 +34,11 @@ public sealed partial class GridCanvas : IDisposable
 	/// </summary>
 	/// <seealso cref="Graphics.DrawString(string?, Font, Brush, RectangleF, StringFormat?)"/>
 	[DisposableMember]
-	private readonly StringFormat _stringAligner = new() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+	private readonly StringFormat _stringAligner = new()
+	{
+		Alignment = StringAlignment.Center,
+		LineAlignment = StringAlignment.Center
+	};
 
 	/// <summary>
 	/// Indicates the backing bitmap to be used.
@@ -141,8 +145,7 @@ public sealed partial class GridCanvas : IDisposable
 	/// <exception cref="ArgumentException">Throws when the specified value is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private Color GetColor(ColorIdentifier id)
-	{
-		return id switch
+		=> id switch
 		{
 			ColorColorIdentifier(var a, var r, var g, var b) => Color.FromArgb(a, r, g, b),
 			PaletteIdColorIdentifier { Value: var value } when TryGetPaletteColorByIndex(value, out var color) => Color.FromArgb(64, color),
@@ -167,15 +170,10 @@ public sealed partial class GridCanvas : IDisposable
 				WellKnownColorIdentifierKind.Rectangle1 => Settings.RectangleColorSet[0],
 				WellKnownColorIdentifierKind.Rectangle2 => Settings.RectangleColorSet[1],
 				WellKnownColorIdentifierKind.Rectangle3 => Settings.RectangleColorSet[2],
-				_ => unconditionalThrows(id)
+				_ => throw new ArgumentException("The specified kind is invalid.", nameof(id))
 			},
-			_ => unconditionalThrows(id)
+			_ => throw new ArgumentException("The specified kind is invalid.", nameof(id))
 		};
-
-
-		[DoesNotReturn]
-		static Color unconditionalThrows(ColorIdentifier id) => throw new ArgumentException("The specified kind is invalid.", nameof(id));
-	}
 
 
 	/// <summary>
