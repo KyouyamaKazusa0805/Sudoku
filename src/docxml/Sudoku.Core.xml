@@ -5405,33 +5405,6 @@
         <member name="M:Sudoku.Concepts.Grid.System#IEquatable{Sudoku#Concepts#Grid}#Equals(Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.GridBitOutput">
-            <summary>
-            Provides a way to output an instance of type <see cref="T:Sudoku.Concepts.IGrid`1"/>, for bits.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.IGrid`1"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridBitOutput.GetTextColorized``1(``0@)">
-            <summary>
-            Returns the binary text that represents a <typeparamref name="TGrid"/> instance, with text colorized.
-            </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The instance.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridBitOutput.GetText``1(``0@)">
-            <summary>
-            Returns the binary text that represents a <typeparamref name="TGrid"/> instance, without colorized.
-            </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The instance.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridBitOutput.GetTextCore``1(``0@,System.String,System.String,System.String)">
-            <summary>
-            The core method to output text.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>
             Indicates the grid creating option.
@@ -13875,6 +13848,33 @@
         <member name="F:Sudoku.SymmetricType.All">
             <summary>
             Indicates all symmetry types should be satisfied.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.GridBitOutput">
+            <summary>
+            Provides a way to output an instance of type <see cref="T:Sudoku.Concepts.IGrid`1"/>, for bits.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.IGrid`1"/>
+        </member>
+        <member name="M:Sudoku.Text.GridBitOutput.GetTextColorized``1(``0@)">
+            <summary>
+            Returns the binary text that represents a <typeparamref name="TGrid"/> instance, with text colorized.
+            </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Text.GridBitOutput.GetText``1(``0@)">
+            <summary>
+            Returns the binary text that represents a <typeparamref name="TGrid"/> instance, without colorized.
+            </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Text.GridBitOutput.GetTextCore``1(``0@,System.String,System.String,System.String)">
+            <summary>
+            The core method to output text.
             </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.GridSusserPattern_0">

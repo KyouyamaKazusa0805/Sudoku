@@ -429,15 +429,6 @@
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IOfTypeMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#OfType``1">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ConsoleEnhancer(System.String,Sudoku.Analytics.Step)">
-            <summary>
-            Represents a text enhancer method that can display colors in console when you call <see cref="P:System.Console.Out"/> methods.
-            </summary>
-            <param name="str">The string members.</param>
-            <param name="step">The step to be used.</param>
-            <returns>The output string.</returns>
-            <seealso cref="P:System.Console.Out"/>
-        </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.EvaluateRatingUnsafe(System.ReadOnlySpan{Sudoku.Analytics.Step},,System.Int32)">
             <summary>
             The inner executor to get the difficulty value (total, average).
@@ -35690,6 +35681,20 @@
             <summary>
             Represents brute force.
             </summary>
+        </member>
+        <member name="T:Sudoku.Text.AnalysisResultOutput">
+            <summary>
+            Provides an easy way to output <see cref="T:Sudoku.Analytics.AnalysisResult"/> with console colorization.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.AnalysisResultOutput.GetColorizedText(Sudoku.Analytics.AnalysisResult,Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)">
+            <summary>
+            Gets the output text.
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="options">The options.</param>
+            <param name="formatProvider">The format provider.</param>
+            <returns>The string.</returns>
         </member>
         <member name="T:System.Runtime.CompilerServices.InterceptsLocationAttribute">
             <summary>

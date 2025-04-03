@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Text;
 
 /// <summary>
 /// Provides a way to output an instance of type <see cref="IGrid{TSelf}"/>, for bits.
