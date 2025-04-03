@@ -6940,9 +6940,6 @@
         <member name="M:Sudoku.Concepts.MarkerGrid.SetCandidates(System.Int32,System.Int16)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MarkerGrid.SetMask(System.Int32,System.Int16)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.SetExistence(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -6973,6 +6970,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#MarkerGrid,System#Int32}#Select``1(System.Func{System.Int32,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#SetMask(System.Int32,System.Int16)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#Apply(Sudoku.Concepts.Conclusion)">

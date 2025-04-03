@@ -441,11 +441,6 @@ public partial struct MarkerGrid : GridBase
 		=> this[cell] = (Mask)((Mask)((int)GetState(cell) << 9) | (Mask)(mask & Grid.MaxCandidatesMask));
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete("Use indexer to assign if possible.", false)]
-	public void SetMask(Cell cell, Mask mask) => this[cell] = mask;
-
-	/// <inheritdoc/>
 	public void SetExistence(Cell cell, Digit digit, bool isOn)
 	{
 		if ((cell, digit) is ( >= 0 and < 81, >= 0 and < 9))
@@ -518,6 +513,9 @@ public partial struct MarkerGrid : GridBase
 	/// <inheritdoc/>
 	readonly IEnumerable<TResult> ISelectMethod<MarkerGrid, Candidate>.Select<TResult>(Func<Candidate, TResult> selector)
 		=> this.Select(selector).ToArray();
+
+	/// <inheritdoc/>
+	void GridBase.SetMask(Cell cell, Mask mask) => this[cell] = mask;
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
