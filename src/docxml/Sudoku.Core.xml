@@ -5411,10 +5411,9 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.IGrid`1"/>
         </member>
-        <member name="M:Sudoku.Concepts.GridBitOutput.GetColorizedText``1(``0@)">
+        <member name="M:Sudoku.Concepts.GridBitOutput.GetTextColorized``1(``0@)">
             <summary>
-            Returns the binary text that represents a <typeparamref name="TGrid"/> instance,
-            with console colorized.
+            Returns the binary text that represents a <typeparamref name="TGrid"/> instance, with text colorized.
             </summary>
             <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The instance.</param>
@@ -5422,8 +5421,7 @@
         </member>
         <member name="M:Sudoku.Concepts.GridBitOutput.GetText``1(``0@)">
             <summary>
-            Returns the binary text that represents a <typeparamref name="TGrid"/> instance,
-            without console colorized.
+            Returns the binary text that represents a <typeparamref name="TGrid"/> instance, without colorized.
             </summary>
             <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="this">The instance.</param>

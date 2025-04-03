@@ -7,19 +7,17 @@ namespace Sudoku.Concepts;
 public static class GridBitOutput
 {
 	/// <summary>
-	/// Returns the binary text that represents a <typeparamref name="TGrid"/> instance,
-	/// with console colorized.
+	/// Returns the binary text that represents a <typeparamref name="TGrid"/> instance, with text colorized.
 	/// </summary>
 	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The instance.</param>
 	/// <returns>The string.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetColorizedText<TGrid>(in TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
+	public static string GetTextColorized<TGrid>(in TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
 		=> GetTextCore(@this, "\e[90m", "\e[33m", null);
 
 	/// <summary>
-	/// Returns the binary text that represents a <typeparamref name="TGrid"/> instance,
-	/// without console colorized.
+	/// Returns the binary text that represents a <typeparamref name="TGrid"/> instance, without colorized.
 	/// </summary>
 	/// <typeparam name="TGrid">The type of grid.</typeparam>
 	/// <param name="this">The instance.</param>
