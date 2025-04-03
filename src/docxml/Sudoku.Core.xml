@@ -7004,19 +7004,33 @@
         <member name="M:Sudoku.Concepts.MarkerGrid.SetExistence(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MarkerGrid.AddCandidate(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.MarkerGrid.AddCandidates(System.Int32,System.ReadOnlySpan{System.Int32})">
             <summary>
-            Adds a new candidate into the grid.
+            Adds a list of new candidates into the grid.
             </summary>
             <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
+            <param name="digits">The digits.</param>
         </member>
-        <member name="M:Sudoku.Concepts.MarkerGrid.RemoveCandidate(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.MarkerGrid.AddCandidates(System.Int32,System.Int16)">
             <summary>
-            Removes a candidate from the grid.
+            Adds a list of new candidates into the grid.
             </summary>
             <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
+            <param name="digitsMask">The mask of digits.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.RemoveCandidates(System.Int32,System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Removes a list of candidates from the grid.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digits">The digits.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.RemoveCandidates(System.Int32,System.Int16)">
+            <summary>
+            Removes a list of candidates from the grid.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digitsMask">The mask of digits.</param>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.Apply(Sudoku.Concepts.Conclusion)">
             <inheritdoc/>

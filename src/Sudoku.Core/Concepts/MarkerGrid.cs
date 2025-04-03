@@ -478,44 +478,64 @@ public partial struct MarkerGrid : GridBase
 		=> this[cell] = (Mask)((Mask)((int)GetState(cell) << 9) | (Mask)(mask & Grid.MaxCandidatesMask));
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetExistence(Cell cell, Digit digit, bool isOn)
 	{
 		if ((cell, digit) is ( >= 0 and < 81, >= 0 and < 9))
 		{
 			if (isOn)
 			{
-				AddCandidate(cell, digit);
+				AddCandidates(cell, digit);
 			}
 			else
 			{
-				RemoveCandidate(cell, digit);
+				RemoveCandidates(cell, digit);
 			}
 		}
 	}
 
 	/// <summary>
-	/// Adds a new candidate into the grid.
+	/// Adds a list of new candidates into the grid.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
-	/// <param name="digit">The digit.</param>
-	public void AddCandidate(Cell cell, Digit digit)
+	/// <param name="digits">The digits.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void AddCandidates(Cell cell, params ReadOnlySpan<Digit> digits) => AddCandidates(cell, MaskOperations.Create(digits));
+
+	/// <summary>
+	/// Adds a list of new candidates into the grid.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digitsMask">The mask of digits.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void AddCandidates(Cell cell, Mask digitsMask)
 	{
 		if (GetState(cell) == CellState.Empty)
 		{
-			this[cell] |= (Mask)(1 << digit);
+			this[cell] |= digitsMask;
 		}
 	}
 
 	/// <summary>
-	/// Removes a candidate from the grid.
+	/// Removes a list of candidates from the grid.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
-	/// <param name="digit">The digit.</param>
-	public void RemoveCandidate(Cell cell, Digit digit)
+	/// <param name="digits">The digits.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void RemoveCandidates(Cell cell, params ReadOnlySpan<Digit> digits)
+		=> RemoveCandidates(cell, MaskOperations.Create(digits));
+
+	/// <summary>
+	/// Removes a list of candidates from the grid.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digitsMask">The mask of digits.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void RemoveCandidates(Cell cell, Mask digitsMask)
 	{
 		if (GetState(cell) == CellState.Empty)
 		{
-			this[cell] &= (Mask)~(1 << digit);
+			this[cell] &= (Mask)~digitsMask;
 		}
 	}
 
