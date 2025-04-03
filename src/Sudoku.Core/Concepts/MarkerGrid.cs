@@ -4,8 +4,8 @@ using GridBase = IGrid<MarkerGrid>;
 
 /// <summary>
 /// Represents a sudoku grid that will be used for candidate marking.
-/// Different with <see cref="Grid"/>, this type will aim to adding candidates, rather than removing candidates
-/// at initial state with full candidates.
+/// Different with <see cref="Grid"/>, this type will aim to appending candidates,
+/// rather than removing candidates at initial state with full candidates.
 /// </summary>
 /// <remarks>
 /// The backing implementation is nearly same as <see cref="Grid"/>, but the only difference is that <see cref="Grid"/> instances
