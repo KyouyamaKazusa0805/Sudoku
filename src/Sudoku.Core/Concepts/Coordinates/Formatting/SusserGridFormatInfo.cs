@@ -142,7 +142,9 @@ public sealed partial class SusserGridFormatInfo<TGrid> : GridFormatInfo<TGrid> 
 			}
 
 			var elimsStr = (
-				NegateEliminationsTripletRule ? eliminatedCandidates : negateElims(grid, eliminatedCandidates)
+				grid is MarkerGrid markerGrid
+					? markedCandidates(markerGrid)
+					: NegateEliminationsTripletRule ? eliminatedCandidates : negateElims(grid, eliminatedCandidates)
 			).ToString(new HodokuTripletCandidateMapFormatInfo());
 			var @base = sb.ToString();
 			var final = ShortenSusser
@@ -160,6 +162,22 @@ public sealed partial class SusserGridFormatInfo<TGrid> : GridFormatInfo<TGrid> 
 				if (eliminatedCandidatesCellDistribution.TryGetValue(cell, out var digitsMask))
 				{
 					foreach (var digit in digitsMask)
+					{
+						result.Add(cell * 9 + digit);
+					}
+				}
+			}
+			return result;
+		}
+
+		static CandidateMap markedCandidates(in MarkerGrid grid)
+		{
+			var result = CandidateMap.Empty;
+			for (var cell = 0; cell < 81; cell++)
+			{
+				if (grid.GetState(cell) == CellState.Empty)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
 					{
 						result.Add(cell * 9 + digit);
 					}
@@ -350,6 +368,18 @@ public sealed partial class SusserGridFormatInfo<TGrid> : GridFormatInfo<TGrid> 
 		if (EliminationPattern.Match(match) is { Success: true, Value: var elimMatch })
 		{
 			var candidates = CandidateMap.Parse(elimMatch, new HodokuTripletCandidateMapFormatInfo());
+
+			if (typeof(TGrid) == typeof(MarkerGrid))
+			{
+				// If the grid is 'MarkerGrid', we should adjust the logic to match candidates and append into target instance.
+				ref var instance = ref Unsafe.As<TGrid, MarkerGrid>(ref result);
+				foreach (var candidate in candidates)
+				{
+					instance.AddCandidates(candidate / 9, candidate % 9);
+				}
+				goto ReturnResult;
+			}
+
 			if (!NegateEliminationsTripletRule)
 			{
 				// This applies for normal rule - removing candidates marked.
@@ -377,6 +407,7 @@ public sealed partial class SusserGridFormatInfo<TGrid> : GridFormatInfo<TGrid> 
 			}
 		}
 
+	ReturnResult:
 		return result;
 
 
