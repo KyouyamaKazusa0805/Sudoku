@@ -16,6 +16,8 @@ using GridBase = IGrid<MarkerGrid>;
 /// </remarks>
 /// <seealso cref="Grid"/>
 /// <seealso cref="Grid.SetCandidates(Cell, Mask)"/>
+[CollectionBuilder(typeof(Grid), nameof(Create))]
+[DebuggerStepThrough]
 [InlineArray(81)]
 [TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators, IsLargeStructure = true)]
 public partial struct MarkerGrid : GridBase
