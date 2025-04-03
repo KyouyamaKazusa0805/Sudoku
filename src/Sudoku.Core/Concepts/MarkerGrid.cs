@@ -673,13 +673,10 @@ public partial struct MarkerGrid : GridBase
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static MarkerGrid Parse(string? s) => Parse(s, null);
+	public static MarkerGrid Parse(string? s) => Parse(s ?? string.Empty, null);
 
 	/// <inheritdoc/>
-	public static MarkerGrid Parse(string? s, IFormatProvider? provider)
-	{
-		throw new NotImplementedException();
-	}
+	public static MarkerGrid Parse(string s, IFormatProvider? provider) => (MarkerGrid)Grid.Parse(s, provider);
 
 
 	/// <summary>
