@@ -559,6 +559,81 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 	/// <inheritdoc cref="object.ToString"/>
 	public override readonly string ToString() => PuzzleType == SudokuType.Sukaku ? ToString("~") : ToString(null, null);
 
+	/// <remarks>
+	/// <para>You can use format identifiers to create the format text. All valid format identifiers:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Format identifier</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><c>.</c></term>
+	/// <description>Dots are placeholders</description>
+	/// </item>
+	/// <item>
+	/// <term><c>0</c></term>
+	/// <description>Zero characters are placeholders</description>
+	/// </item>
+	/// <item>
+	/// <term><c>+</c></term>
+	/// <description>Output text will include modifiable digits (Susser format only)</description>
+	/// </item>
+	/// <item>
+	/// <term><c>:</c></term>
+	/// <description>Output text will include eliminations (for both Susser and multiline formats)</description>
+	/// </item>
+	/// <item>
+	/// <term><c>!</c></term>
+	/// <description>Output text will treat modifiable digits as givens</description>
+	/// </item>
+	/// <item>
+	/// <term><c>^</c></term>
+	/// <description>Negates the eliminations in Susser format (if available)</description>
+	/// </item>
+	/// <item>
+	/// <term><c>*</c></term>
+	/// <description>
+	/// The shorten format (Susser format only);
+	/// for multiline format, it means border line characters will use subtle characters instead
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><c>@</c></term>
+	/// <description>Multiline format</description>
+	/// </item>
+	/// <item>
+	/// <term><c>~</c></term>
+	/// <description>Sukaku format</description>
+	/// </item>
+	/// <item>
+	/// <term><c>#</c></term>
+	/// <description>Equivalent to combination <c>".+:"</c></description>
+	/// </item>
+	/// </list>
+	/// </para>
+	/// <para>
+	/// Such symbols can be combinated with other symbols in order to make output text better-looking.
+	/// </para>
+	/// <para>
+	/// Examples:
+	/// <list type="table">
+	/// <item>
+	/// <term><c>"0+"</c></term>
+	/// <description>Susser format (single-line format), with zeros being placeholders, including modifiable digits</description>
+	/// </item>
+	/// <item>
+	/// <term><c>".!"</c></term>
+	/// <description>
+	/// Susser format (single-line format), with treating modifiable digits as givens, and using dots as placeholders
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><c>"@:"</c></term>
+	/// <description>Multiline format, with candidates displaying</description>
+	/// </item>
+	/// </list>
+	/// </para>
+	/// </remarks>
 	/// <inheritdoc cref="ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format) => ToString(format, null);
@@ -574,6 +649,11 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 		};
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// For more information about <paramref name="format"/>, please see documentation comments of method
+	/// <see cref="ToString(string?)"/>.
+	/// </remarks>
+	/// <seealso cref="ToString(string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
 		=> (this, formatProvider) switch
