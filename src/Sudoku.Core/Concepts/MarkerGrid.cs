@@ -162,10 +162,16 @@ public partial struct MarkerGrid : GridBase
 	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => GridBase.GetMaps(this, &GridPredicates.ValuesMap);
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// For <see cref="MarkerGrid"/> instances, this property always returns <see langword="true"/>.
+	/// </remarks>
 	readonly bool GridBase.IsMissingCandidates => true;
 
 	/// <inheritdoc/>
-	readonly bool GridBase.IsSolved => ((Grid)this).IsSolved;
+	/// <remarks>
+	/// For <see cref="MarkerGrid"/> instances, this property always returns <see langword="false"/>.
+	/// </remarks>
+	readonly bool GridBase.IsSolved => false;
 
 	/// <inheritdoc/>
 	readonly CellMap GridBase.GivenCells => ((Grid)this).GivenCells;
@@ -178,6 +184,10 @@ public partial struct MarkerGrid : GridBase
 
 	/// <inheritdoc/>
 	readonly CellMap GridBase.BivalueCells => ((Grid)this).BivalueCells;
+
+	/// <inheritdoc/>
+	[UnscopedRef]
+	readonly ReadOnlySpan<Mask> GridBase.MaskTable => this[..];
 
 	/// <inheritdoc/>
 	readonly ReadOnlySpan<Conjugate> GridBase.ConjugatePairs => ((Grid)this).ConjugatePairs;

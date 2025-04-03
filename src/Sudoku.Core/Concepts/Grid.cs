@@ -381,6 +381,10 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 		}
 	}
 
+	/// <inheritdoc/>
+	[UnscopedRef]
+	readonly ReadOnlySpan<Mask> GridBase.MaskTable => this[..];
+
 	/// <inheritdoc cref="_values"/>
 	[UnscopedRef]
 	readonly ref readonly Mask GridBase.FirstMaskRef => ref this[0];

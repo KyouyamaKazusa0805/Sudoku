@@ -104,6 +104,12 @@ public interface IGrid<TSelf> :
 	public abstract Candidate CandidatesCount { get; }
 
 	/// <summary>
+	/// Indicates the mask table. For inline arrays, the value is equivalent to <c><see langword="this"/>[..]</c>.
+	/// </summary>
+	[UnscopedRef]
+	public abstract ReadOnlySpan<Mask> MaskTable { get; }
+
+	/// <summary>
 	/// Indicates the map of possible positions of the existence of the candidate value for each digit.
 	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
 	/// </summary>

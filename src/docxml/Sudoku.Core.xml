@@ -4995,6 +4995,9 @@
         <member name="P:Sudoku.Concepts.Grid.FixedGrid">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#MaskTable">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#FirstMaskRef">
             <inheritdoc cref="F:Sudoku.Concepts.Grid._values"/>
         </member>
@@ -6167,6 +6170,11 @@
             Indicates the number of total candidates.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.MaskTable">
+            <summary>
+            Indicates the mask table. For inline arrays, the value is equivalent to <c><see langword="this"/>[..]</c>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.IGrid`1.CandidatesMap">
             <summary>
             Indicates the map of possible positions of the existence of the candidate value for each digit.
@@ -6813,9 +6821,15 @@
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#IsMissingCandidates">
             <inheritdoc/>
+            <remarks>
+            For <see cref="T:Sudoku.Concepts.MarkerGrid"/> instances, this property always returns <see langword="true"/>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#IsSolved">
             <inheritdoc/>
+            <remarks>
+            For <see cref="T:Sudoku.Concepts.MarkerGrid"/> instances, this property always returns <see langword="false"/>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#GivenCells">
             <inheritdoc/>
@@ -6827,6 +6841,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#BivalueCells">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#MaskTable">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#ConjugatePairs">
