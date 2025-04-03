@@ -307,6 +307,11 @@ public sealed partial class SusserGridFormatInfo<TGrid> : GridFormatInfo<TGrid> 
 				case '.' or '0':
 				{
 					// A placeholder.
+					if (typeof(TGrid) == typeof(MarkerGrid))
+					{
+						result.SetState(realPos, CellState.Empty);
+					}
+
 					// Do nothing but only move 1 step forward.
 					i++;
 
