@@ -361,7 +361,7 @@ public partial struct MarkerGrid : GridBase
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
 		=> (format, formatProvider) switch
 		{
-			("#", _) => new SusserGridFormatInfo<MarkerGrid>().FormatCore(this),
+			(null or "#", _) => new SusserGridFormatInfo<MarkerGrid>().FormatCore(this),
 			(_, SusserGridFormatInfo<MarkerGrid> instance) => instance.FormatCore(this),
 			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo<MarkerGrid>)) is GridFormatInfo<MarkerGrid> g
 				=> g.FormatCore(this),
@@ -404,7 +404,7 @@ public partial struct MarkerGrid : GridBase
 		=> GetState(cell) switch
 		{
 			CellState.Empty => -1,
-			CellState.Modifiable or CellState.Given => Mask.Log2(this[cell]),
+			CellState.Modifiable or CellState.Given => Mask.TrailingZeroCount(this[cell]),
 			_ => throw new InvalidOperationException(SR.ExceptionMessage("GridInvalidCellState"))
 		};
 
