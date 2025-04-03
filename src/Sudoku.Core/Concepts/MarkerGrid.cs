@@ -357,10 +357,16 @@ public partial struct MarkerGrid : GridBase
 	public readonly string ToString(string? format) => ToString(format, null);
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
-	{
-		throw new NotImplementedException();
-	}
+		=> (format, formatProvider) switch
+		{
+			("#", _) => new SusserGridFormatInfo<MarkerGrid>().FormatCore(this),
+			(_, SusserGridFormatInfo<MarkerGrid> instance) => instance.FormatCore(this),
+			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo<MarkerGrid>)) is GridFormatInfo<MarkerGrid> g
+				=> g.FormatCore(this),
+			_ => throw new FormatException()
+		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
