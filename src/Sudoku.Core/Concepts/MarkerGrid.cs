@@ -644,6 +644,25 @@ public partial struct MarkerGrid : GridBase
 		}
 	}
 
+	/// <summary>
+	/// Creates a <see cref="MarkerGrid"/> instance using grid values.
+	/// </summary>
+	/// <param name="gridValues">The array of grid values.</param>
+	/// <param name="creatingOption">The grid creating option.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static MarkerGrid Create(Digit[] gridValues, GridCreatingOption creatingOption = 0)
+		=> new(in gridValues[0], creatingOption);
+
+	/// <summary>
+	/// Creates a <see cref="MarkerGrid"/> instance via the array of cell digits
+	/// of type <see cref="ReadOnlySpan{T}"/> of <see cref="Digit"/>.
+	/// </summary>
+	/// <param name="gridValues">The list of cell digits.</param>
+	/// <param name="creatingOption">The grid creating option.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static MarkerGrid Create(ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0)
+		=> new(in gridValues[0], creatingOption);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static MarkerGrid Parse(ReadOnlySpan<char> s) => Parse(s, null);

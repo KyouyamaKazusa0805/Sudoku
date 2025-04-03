@@ -7065,6 +7065,21 @@
         <member name="M:Sudoku.Concepts.MarkerGrid.Create(System.ReadOnlySpan{System.Int16})">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Create(System.Int32[],Sudoku.Concepts.GridCreatingOption)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.MarkerGrid"/> instance using grid values.
+            </summary>
+            <param name="gridValues">The array of grid values.</param>
+            <param name="creatingOption">The grid creating option.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.Create(System.ReadOnlySpan{System.Int32},Sudoku.Concepts.GridCreatingOption)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.MarkerGrid"/> instance via the array of cell digits
+            of type <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/>.
+            </summary>
+            <param name="gridValues">The list of cell digits.</param>
+            <param name="creatingOption">The grid creating option.</param>
+        </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.Parse(System.ReadOnlySpan{System.Char})">
             <inheritdoc/>
         </member>
