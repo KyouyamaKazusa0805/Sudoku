@@ -19,15 +19,11 @@ using GridBase = IGrid<MarkerGrid>;
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [DebuggerStepThrough]
 [InlineArray(81)]
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators, IsLargeStructure = true)]
+[TypeImpl(
+	TypeImplFlags.Object_Equals | TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.Equatable,
+	IsLargeStructure = true)]
 public partial struct MarkerGrid : GridBase
 {
-	/// <summary>
-	/// Represents not supported information.
-	/// </summary>
-	private const string ErrorInfo_NotSupported = "This member is not supported.";
-
-
 	/// <summary>
 	/// <inheritdoc cref="GridBase.Undefined" path="/summary"/>
 	/// </summary>
@@ -349,6 +345,9 @@ public partial struct MarkerGrid : GridBase
 	/// <inheritdoc/>
 	public override readonly int GetHashCode() => ToString("#").GetHashCode();
 
+	/// <inheritdoc/>
+	public readonly int CompareTo(in MarkerGrid other) => ToString("#").CompareTo(other.ToString("#"));
+
 	/// <inheritdoc cref="object.ToString"/>
 	public override readonly string ToString() => ToString(null, null);
 
@@ -521,6 +520,26 @@ public partial struct MarkerGrid : GridBase
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Apply(Conclusion conclusion)
+	{
+		_ = conclusion is var (type, cell, digit);
+		switch (type)
+		{
+			case Assignment:
+			{
+				SetDigit(cell, digit);
+				break;
+			}
+			case Elimination:
+			{
+				SetExistence(cell, digit, false);
+				break;
+			}
+		}
+	}
+
+	/// <inheritdoc/>
 	[UnscopedRef]
 	readonly ReadOnlySpan<Mask> IInlineArray<MarkerGrid, Mask>.AsReadOnlySpan() => this;
 
@@ -542,10 +561,6 @@ public partial struct MarkerGrid : GridBase
 	}
 
 	/// <inheritdoc/>
-	[DoesNotReturn]
-	readonly int GridBase.CompareTo(in MarkerGrid other) => throw new NotSupportedException(ErrorInfo_NotSupported);
-
-	/// <inheritdoc/>
 	readonly IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ToDigitsArray().AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
@@ -558,10 +573,6 @@ public partial struct MarkerGrid : GridBase
 
 	/// <inheritdoc/>
 	void GridBase.SetMask(Cell cell, Mask mask) => this[cell] = mask;
-
-	/// <inheritdoc/>
-	[DoesNotReturn]
-	void GridBase.Apply(Conclusion conclusion) => throw new NotSupportedException(ErrorInfo_NotSupported);
 
 	/// <inheritdoc/>
 	MarkerGrid IBoardTransformable<MarkerGrid>.RotateClockwise() => this.RotateClockwise();
@@ -717,45 +728,4 @@ public partial struct MarkerGrid : GridBase
 	/// <param name="grid">The grid to be cast from.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator MarkerGrid(in Grid grid) => Create(grid.ToDigitsArray());
-
-
-	/// <inheritdoc/>
-	[DoesNotReturn]
-	static bool IComparisonOperators<MarkerGrid, MarkerGrid, bool>.operator >(MarkerGrid left, MarkerGrid right)
-		=> throw new NotSupportedException(ErrorInfo_NotSupported);
-
-	/// <inheritdoc/>
-	[DoesNotReturn]
-	static bool IComparisonOperators<MarkerGrid, MarkerGrid, bool>.operator >=(MarkerGrid left, MarkerGrid right)
-		=> throw new NotSupportedException(ErrorInfo_NotSupported);
-
-	/// <inheritdoc/>
-	[DoesNotReturn]
-	static bool IComparisonOperators<MarkerGrid, MarkerGrid, bool>.operator <(MarkerGrid left, MarkerGrid right)
-		=> throw new NotSupportedException(ErrorInfo_NotSupported);
-
-	/// <inheritdoc/>
-	[DoesNotReturn]
-	static bool IComparisonOperators<MarkerGrid, MarkerGrid, bool>.operator <=(MarkerGrid left, MarkerGrid right)
-		=> throw new NotSupportedException(ErrorInfo_NotSupported);
-
-	/// <inheritdoc/>
-	[DoesNotReturn]
-	static bool GridBase.operator >(in MarkerGrid left, in MarkerGrid right)
-		=> throw new NotSupportedException(ErrorInfo_NotSupported);
-
-	/// <inheritdoc/>
-	[DoesNotReturn]
-	static bool GridBase.operator >=(in MarkerGrid left, in MarkerGrid right)
-		=> throw new NotSupportedException(ErrorInfo_NotSupported);
-
-	/// <inheritdoc/>
-	[DoesNotReturn]
-	static bool GridBase.operator <(in MarkerGrid left, in MarkerGrid right)
-		=> throw new NotSupportedException(ErrorInfo_NotSupported);
-
-	/// <inheritdoc/>
-	[DoesNotReturn]
-	static bool GridBase.operator <=(in MarkerGrid left, in MarkerGrid right)
-		=> throw new NotSupportedException(ErrorInfo_NotSupported);
 }
