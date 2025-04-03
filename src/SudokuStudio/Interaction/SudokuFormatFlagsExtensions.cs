@@ -7,22 +7,22 @@ namespace SudokuStudio.Interaction;
 internal static class SudokuFormatFlagsExtensions
 {
 	/// <summary>
-	/// Try to get target <see cref="GridFormatInfo"/> instance of type <see cref="Grid"/>.
+	/// Try to get target <see cref="GridFormatInfo{TGrid}"/> instance of type <see cref="Grid"/>.
 	/// </summary>
 	/// <param name="this">The flag instance.</param>
-	/// <returns>The final <see cref="GridFormatInfo"/> instance.</returns>
+	/// <returns>The final <see cref="GridFormatInfo{TGrid}"/> instance.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
-	public static GridFormatInfo GetConverter(this SudokuFormatFlags @this)
+	public static GridFormatInfo<Grid> GetConverter(this SudokuFormatFlags @this)
 		=> @this switch
 		{
-			SudokuFormatFlags.InitialFormat => new SusserGridFormatInfo(),
-			SudokuFormatFlags.CurrentFormat => new SusserGridFormatInfo { WithCandidates = true, WithModifiables = true },
+			SudokuFormatFlags.InitialFormat => new SusserGridFormatInfo<Grid>(),
+			SudokuFormatFlags.CurrentFormat => new SusserGridFormatInfo<Grid> { WithCandidates = true, WithModifiables = true },
 			SudokuFormatFlags.CurrentFormatIgnoringValueKind
-				=> new SusserGridFormatInfo { WithModifiables = true, WithCandidates = true, TreatValueAsGiven = true },
+				=> new SusserGridFormatInfo<Grid> { WithModifiables = true, WithCandidates = true, TreatValueAsGiven = true },
 #if false
 			// Deprecated. This will be handled as special one.
 			SudokuFormatFlags.HodokuCompatibleFormat
-				=> new SusserGridFormatInfo { WithModifiables = true, WithCandidates = true, IsCompatibleMode = true },
+				=> new SusserGridFormatInfo<Grid> { WithModifiables = true, WithCandidates = true, IsCompatibleMode = true },
 #endif
 			SudokuFormatFlags.MultipleGridFormat => new MultipleLineGridFormatInfo { RemoveGridLines = true },
 			SudokuFormatFlags.PencilMarkFormat => new PencilmarkGridFormatInfo { SubtleGridLines = true },

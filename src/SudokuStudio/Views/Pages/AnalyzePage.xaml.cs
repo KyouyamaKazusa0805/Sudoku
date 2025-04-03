@@ -284,7 +284,7 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	/// <param name="gridFormatters">The grid formatters. The default value is <see langword="null"/>.</param>
 	/// <returns>A task that handles the operation.</returns>
-	internal async Task<bool> SaveFileInternalAsync(GridFormatInfo[]? gridFormatters = null)
+	internal async Task<bool> SaveFileInternalAsync(GridFormatInfo<Grid>[]? gridFormatters = null)
 	{
 		if (!EnsureUnsnapped(true))
 		{
