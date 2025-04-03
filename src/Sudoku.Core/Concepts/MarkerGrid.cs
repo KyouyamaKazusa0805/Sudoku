@@ -8,11 +8,14 @@ using GridBase = IGrid<MarkerGrid>;
 /// rather than removing candidates at initial state with full candidates.
 /// </summary>
 /// <remarks>
+/// <para>
 /// The backing implementation is nearly same as <see cref="Grid"/>, but the only difference is that <see cref="Grid"/> instances
 /// will contain all candidates at the initial state. Candidates can be removed by using indexers to update candidates,
 /// or <see cref="Grid.SetCandidates(Cell, Mask)"/> to replace candidate masks with new values;
 /// however, <see cref="MarkerGrid"/> instances won't contain any candidates at initial state.
 /// All candicates should be manually appended into grid.
+/// </para>
+/// <para><include file="../../global-doc-comments.xml" path="/g/large-structure"/></para>
 /// </remarks>
 /// <seealso cref="Grid"/>
 /// <seealso cref="Grid.SetCandidates(Cell, Mask)"/>

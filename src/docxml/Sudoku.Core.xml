@@ -6762,18 +6762,29 @@
         <member name="T:Sudoku.Concepts.MarkerGrid">
             <summary>
             Represents a sudoku grid that will be used for candidate marking.
-            Different with <see cref="T:Sudoku.Concepts.Grid"/>, this type will aim to appending candidates,
+            Different with <see cref="T:Sudoku.Concepts.Grid" />, this type will aim to appending candidates,
             rather than removing candidates at initial state with full candidates.
             </summary>
             <remarks>
-            The backing implementation is nearly same as <see cref="T:Sudoku.Concepts.Grid"/>, but the only difference is that <see cref="T:Sudoku.Concepts.Grid"/> instances
+            <para>
+            The backing implementation is nearly same as <see cref="T:Sudoku.Concepts.Grid" />, but the only difference is that <see cref="T:Sudoku.Concepts.Grid" /> instances
             will contain all candidates at the initial state. Candidates can be removed by using indexers to update candidates,
-            or <see cref="M:Sudoku.Concepts.Grid.SetCandidates(System.Int32,System.Int16)"/> to replace candidate masks with new values;
-            however, <see cref="T:Sudoku.Concepts.MarkerGrid"/> instances won't contain any candidates at initial state.
+            or <see cref="M:Sudoku.Concepts.Grid.SetCandidates(System.Int32,System.Int16)" /> to replace candidate masks with new values;
+            however, <see cref="T:Sudoku.Concepts.MarkerGrid" /> instances won't contain any candidates at initial state.
             All candicates should be manually appended into grid.
+            </para>
+            <para><large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="ref readonly" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure></para>
             </remarks>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-            <seealso cref="M:Sudoku.Concepts.Grid.SetCandidates(System.Int32,System.Int16)"/>
+            <seealso cref="T:Sudoku.Concepts.Grid" />
+            <seealso cref="M:Sudoku.Concepts.Grid.SetCandidates(System.Int32,System.Int16)" />
         </member>
         <member name="F:Sudoku.Concepts.MarkerGrid.Undefined">
             <summary>
