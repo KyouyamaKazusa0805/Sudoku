@@ -187,7 +187,7 @@ public partial struct MarkerGrid : GridBase
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	readonly ReadOnlySpan<Mask> GridBase.MaskTable => this[..];
+	readonly ReadOnlySpan<Mask> IInlineArray<MarkerGrid, Mask>.Elements => this[..];
 
 	/// <inheritdoc/>
 	readonly ReadOnlySpan<Conjugate> GridBase.ConjugatePairs => ((Grid)this).ConjugatePairs;
@@ -202,6 +202,9 @@ public partial struct MarkerGrid : GridBase
 	[UnscopedRef]
 	readonly ref readonly Mask GridBase.FirstMaskRef => ref this[0];
 
+
+	/// <inheritdoc/>
+	static int IInlineArray<MarkerGrid, Mask>.InlineArrayLength => 81;
 
 	/// <inheritdoc/>
 	static string GridBase.EmptyString => Grid.EmptyString;
@@ -279,7 +282,7 @@ public partial struct MarkerGrid : GridBase
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	ref Mask GridBase.this[Cell cell] => ref this[cell];
+	ref Mask IInlineArray<MarkerGrid, Mask>.this[Cell cell] => ref this[cell];
 
 
 	/// <inheritdoc/>
@@ -493,6 +496,10 @@ public partial struct MarkerGrid : GridBase
 	}
 
 	/// <inheritdoc/>
+	[UnscopedRef]
+	readonly ReadOnlySpan<Mask> IInlineArray<MarkerGrid, Mask>.AsReadOnlySpan() => this;
+
+	/// <inheritdoc/>
 	readonly MarkerGrid IElementSwappingTransformable<MarkerGrid, Digit>.Shuffle()
 	{
 		var rng = Random.Shared;
@@ -547,7 +554,16 @@ public partial struct MarkerGrid : GridBase
 	MarkerGrid IBoardTransformable<MarkerGrid>.MirrorAntidiagonal() => this.MirrorAntidiagonal();
 
 	/// <inheritdoc/>
-	MarkerGrid IElementSwappingTransformable<MarkerGrid, Digit>.SwapElement(Digit element1, Digit element2) => this.SwapDigit(element1, element2);
+	MarkerGrid IElementSwappingTransformable<MarkerGrid, Digit>.SwapElement(Digit element1, Digit element2)
+		=> this.SwapDigit(element1, element2);
+
+	/// <inheritdoc/>
+	[UnscopedRef]
+	Span<Mask> IInlineArray<MarkerGrid, Mask>.AsSpan() => this;
+
+	/// <inheritdoc/>
+	[UnscopedRef]
+	ref Mask IInlineArray<MarkerGrid, Mask>.GetPinnableReference() => ref this[0];
 
 	/// <summary>
 	/// Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.

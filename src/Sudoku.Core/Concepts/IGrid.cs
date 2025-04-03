@@ -14,6 +14,7 @@ public interface IGrid<TSelf> :
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IFormattable,
+	IInlineArray<TSelf, Mask>,
 	IMinMaxValue<TSelf>,
 	IParsable<TSelf>,
 	IReadOnlyCollection<Digit>,
@@ -102,12 +103,6 @@ public interface IGrid<TSelf> :
 	/// Indicates the number of total candidates.
 	/// </summary>
 	public abstract Candidate CandidatesCount { get; }
-
-	/// <summary>
-	/// Indicates the mask table. For inline arrays, the value is equivalent to <c><see langword="this"/>[..]</c>.
-	/// </summary>
-	[UnscopedRef]
-	public abstract ReadOnlySpan<Mask> MaskTable { get; }
 
 	/// <summary>
 	/// Indicates the map of possible positions of the existence of the candidate value for each digit.
@@ -299,14 +294,6 @@ public interface IGrid<TSelf> :
 	/// </remarks>
 	static TSelf IMinMaxValue<TSelf>.MaxValue => TSelf.Parse("987654321654321987321987654896745213745213896213896745579468132468132579132579468");
 
-
-	/// <summary>
-	/// Gets the mask at the specified position.
-	/// </summary>
-	/// <param name="cell">The desired cell index.</param>
-	/// <returns>The reference to the mask.</returns>
-	[UnscopedRef]
-	public abstract ref Mask this[Cell cell] { get; }
 
 	/// <summary>
 	/// Creates a mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9,

@@ -383,12 +383,15 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	readonly ReadOnlySpan<Mask> GridBase.MaskTable => this[..];
+	readonly ReadOnlySpan<Mask> IInlineArray<Grid, Mask>.Elements => this[..];
 
 	/// <inheritdoc cref="_values"/>
 	[UnscopedRef]
 	readonly ref readonly Mask GridBase.FirstMaskRef => ref this[0];
 
+
+	/// <inheritdoc/>
+	static int IInlineArray<Grid, Mask>.InlineArrayLength => 81;
 
 	/// <inheritdoc/>
 	static string GridBase.EmptyString => EmptyString;
@@ -466,7 +469,7 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	ref Mask GridBase.this[Cell cell] => ref this[cell];
+	ref Mask IInlineArray<Grid, Mask>.this[Cell cell] => ref this[cell];
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
@@ -842,6 +845,10 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 	internal void RemoveSukakuHeader() => this[0] &= (1 << GridBase.HeaderShift) - 1;
 
 	/// <inheritdoc/>
+	[UnscopedRef]
+	readonly ReadOnlySpan<Mask> IInlineArray<Grid, Mask>.AsReadOnlySpan() => this;
+
+	/// <inheritdoc/>
 	readonly Grid IElementSwappingTransformable<Grid, Digit>.Shuffle()
 	{
 		var rng = Random.Shared;
@@ -889,6 +896,14 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 
 	/// <inheritdoc/>
 	Grid IElementSwappingTransformable<Grid, Digit>.SwapElement(Digit element1, Digit element2) => this.SwapDigit(element1, element2);
+
+	/// <inheritdoc/>
+	[UnscopedRef]
+	Span<Mask> IInlineArray<Grid, Mask>.AsSpan() => this;
+
+	/// <inheritdoc/>
+	[UnscopedRef]
+	ref Mask IInlineArray<Grid, Mask>.GetPinnableReference() => ref this[0];
 
 	/// <summary>
 	/// Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.

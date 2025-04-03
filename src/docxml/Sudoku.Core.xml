@@ -4995,11 +4995,14 @@
         <member name="P:Sudoku.Concepts.Grid.FixedGrid">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#MaskTable">
+        <member name="P:Sudoku.Concepts.Grid.System#IInlineArray{Sudoku#Concepts#Grid,System#Int16}#Elements">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#FirstMaskRef">
             <inheritdoc cref="F:Sudoku.Concepts.Grid._values"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.System#IInlineArray{Sudoku#Concepts#Grid,System#Int16}#InlineArrayLength">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#EmptyString">
             <inheritdoc/>
@@ -5031,7 +5034,7 @@
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.MaskAggregator)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#Item(System.Int32)">
+        <member name="P:Sudoku.Concepts.Grid.System#IInlineArray{Sudoku#Concepts#Grid,System#Int16}#Item(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Deconstruct(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
@@ -5180,6 +5183,9 @@
             Removes for Sukaku puzzle header.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.System#IInlineArray{Sudoku#Concepts#Grid,System#Int16}#AsReadOnlySpan">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#Shuffle">
             <inheritdoc/>
         </member>
@@ -5211,6 +5217,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#SwapElement(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#IInlineArray{Sudoku#Concepts#Grid,System#Int16}#AsSpan">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#IInlineArray{Sudoku#Concepts#Grid,System#Int16}#GetPinnableReference">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Preserve(Sudoku.Concepts.CellMap@)">
@@ -6170,11 +6182,6 @@
             Indicates the number of total candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.IGrid`1.MaskTable">
-            <summary>
-            Indicates the mask table. For inline arrays, the value is equivalent to <c><see langword="this"/>[..]</c>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.IGrid`1.CandidatesMap">
             <summary>
             Indicates the map of possible positions of the existence of the candidate value for each digit.
@@ -6362,13 +6369,6 @@
             <remarks>
             This value is found out via backtracking algorithm.
             </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.IGrid`1.Item(System.Int32)">
-            <summary>
-            Gets the mask at the specified position.
-            </summary>
-            <param name="cell">The desired cell index.</param>
-            <returns>The reference to the mask.</returns>
         </member>
         <member name="P:Sudoku.Concepts.IGrid`1.Item(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -6843,7 +6843,7 @@
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#BivalueCells">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#MaskTable">
+        <member name="P:Sudoku.Concepts.MarkerGrid.System#IInlineArray{Sudoku#Concepts#MarkerGrid,System#Int16}#Elements">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#ConjugatePairs">
@@ -6856,6 +6856,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#FirstMaskRef">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.MarkerGrid.System#IInlineArray{Sudoku#Concepts#MarkerGrid,System#Int16}#InlineArrayLength">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#EmptyString">
@@ -6888,7 +6891,7 @@
         <member name="P:Sudoku.Concepts.MarkerGrid.Item(Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.MaskAggregator)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#Item(System.Int32)">
+        <member name="P:Sudoku.Concepts.MarkerGrid.System#IInlineArray{Sudoku#Concepts#MarkerGrid,System#Int16}#Item(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.ConflictWith(System.Int32,System.Int32)">
@@ -6974,6 +6977,9 @@
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
         </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#IInlineArray{Sudoku#Concepts#MarkerGrid,System#Int16}#AsReadOnlySpan">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#MarkerGrid,System#Int32}#Shuffle">
             <inheritdoc/>
         </member>
@@ -7011,6 +7017,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.Puzzles#Meta#Transforming#IElementSwappingTransformable{Sudoku#Concepts#MarkerGrid,System#Int32}#SwapElement(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#IInlineArray{Sudoku#Concepts#MarkerGrid,System#Int16}#AsSpan">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.System#IInlineArray{Sudoku#Concepts#MarkerGrid,System#Int16}#GetPinnableReference">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.Preserve(Sudoku.Concepts.CellMap@)">
