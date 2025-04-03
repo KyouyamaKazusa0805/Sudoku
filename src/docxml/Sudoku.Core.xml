@@ -6739,6 +6739,11 @@
             <seealso cref="T:Sudoku.Concepts.Grid"/>
             <seealso cref="M:Sudoku.Concepts.Grid.SetCandidates(System.Int32,System.Int16)"/>
         </member>
+        <member name="F:Sudoku.Concepts.MarkerGrid.ErrorInfo_NotSupported">
+            <summary>
+            Represents not supported information.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.MarkerGrid.Undefined">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.Undefined" path="/summary"/>

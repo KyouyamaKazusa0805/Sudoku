@@ -21,6 +21,12 @@ using GridBase = IGrid<MarkerGrid>;
 public partial struct MarkerGrid : GridBase
 {
 	/// <summary>
+	/// Represents not supported information.
+	/// </summary>
+	private const string ErrorInfo_NotSupported = "This member is not supported.";
+
+
+	/// <summary>
 	/// <inheritdoc cref="GridBase.Undefined" path="/summary"/>
 	/// </summary>
 	/// <remarks>
@@ -500,7 +506,7 @@ public partial struct MarkerGrid : GridBase
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
-	readonly int GridBase.CompareTo(in MarkerGrid other) => throw new NotSupportedException();
+	readonly int GridBase.CompareTo(in MarkerGrid other) => throw new NotSupportedException(ErrorInfo_NotSupported);
 
 	/// <inheritdoc/>
 	readonly IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ToDigitsArray().AsEnumerable().GetEnumerator();
@@ -515,7 +521,7 @@ public partial struct MarkerGrid : GridBase
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
-	void GridBase.Apply(Conclusion conclusion) => throw new NotSupportedException();
+	void GridBase.Apply(Conclusion conclusion) => throw new NotSupportedException(ErrorInfo_NotSupported);
 
 	/// <inheritdoc/>
 	MarkerGrid IBoardTransformable<MarkerGrid>.RotateClockwise() => this.RotateClockwise();
@@ -646,36 +652,40 @@ public partial struct MarkerGrid : GridBase
 	/// <inheritdoc/>
 	[DoesNotReturn]
 	static bool IComparisonOperators<MarkerGrid, MarkerGrid, bool>.operator >(MarkerGrid left, MarkerGrid right)
-		=> throw new NotSupportedException();
+		=> throw new NotSupportedException(ErrorInfo_NotSupported);
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
 	static bool IComparisonOperators<MarkerGrid, MarkerGrid, bool>.operator >=(MarkerGrid left, MarkerGrid right)
-		=> throw new NotSupportedException();
+		=> throw new NotSupportedException(ErrorInfo_NotSupported);
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
 	static bool IComparisonOperators<MarkerGrid, MarkerGrid, bool>.operator <(MarkerGrid left, MarkerGrid right)
-		=> throw new NotSupportedException();
+		=> throw new NotSupportedException(ErrorInfo_NotSupported);
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
 	static bool IComparisonOperators<MarkerGrid, MarkerGrid, bool>.operator <=(MarkerGrid left, MarkerGrid right)
-		=> throw new NotSupportedException();
+		=> throw new NotSupportedException(ErrorInfo_NotSupported);
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
-	static bool GridBase.operator >(in MarkerGrid left, in MarkerGrid right) => throw new NotSupportedException();
+	static bool GridBase.operator >(in MarkerGrid left, in MarkerGrid right)
+		=> throw new NotSupportedException(ErrorInfo_NotSupported);
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
-	static bool GridBase.operator >=(in MarkerGrid left, in MarkerGrid right) => throw new NotSupportedException();
+	static bool GridBase.operator >=(in MarkerGrid left, in MarkerGrid right)
+		=> throw new NotSupportedException(ErrorInfo_NotSupported);
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
-	static bool GridBase.operator <(in MarkerGrid left, in MarkerGrid right) => throw new NotSupportedException();
+	static bool GridBase.operator <(in MarkerGrid left, in MarkerGrid right)
+		=> throw new NotSupportedException(ErrorInfo_NotSupported);
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
-	static bool GridBase.operator <=(in MarkerGrid left, in MarkerGrid right) => throw new NotSupportedException();
+	static bool GridBase.operator <=(in MarkerGrid left, in MarkerGrid right)
+		=> throw new NotSupportedException(ErrorInfo_NotSupported);
 }
