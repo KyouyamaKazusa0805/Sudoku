@@ -105,7 +105,11 @@ public static class MaskOperations
 	/// <returns>The sudoku type configured.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static SudokuType MaskToSudokuType(Mask mask)
-		=> (mask >> GridBase.HeaderShift << GridBase.HeaderShift) switch { 0 => SudokuType.Standard, var resultMask => (SudokuType)resultMask };
+		=> (mask >> GridBase.HeaderShift << GridBase.HeaderShift) switch
+		{
+			var resultMask and not 0 => (SudokuType)resultMask,
+			_ => SudokuType.Standard
+		};
 
 	/// <summary>
 	/// To get the cell state for a mask value. The mask is an inner representation to describe a cell's state.
