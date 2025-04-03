@@ -630,7 +630,7 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 		=> GetState(cell) switch
 		{
 			CellState.Empty => -1,
-			CellState.Modifiable or CellState.Given => Mask.Log2(this[cell]),
+			CellState.Modifiable or CellState.Given => Mask.TrailingZeroCount(this[cell]),
 			_ => throw new InvalidOperationException(SR.ExceptionMessage("GridInvalidCellState"))
 		};
 
