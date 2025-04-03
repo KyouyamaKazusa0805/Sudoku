@@ -7098,6 +7098,12 @@
             </summary>
             <param name="grid">The grid to be cast from.</param>
         </member>
+        <member name="M:Sudoku.Concepts.MarkerGrid.op_Explicit(Sudoku.Concepts.Grid@)~Sudoku.Concepts.MarkerGrid">
+            <summary>
+            Casts the current instance into a <see cref="T:Sudoku.Concepts.MarkerGrid"/>, only with given and modifiable cells reserved.
+            </summary>
+            <param name="grid">The grid to be cast from.</param>
+        </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.System#Numerics#IComparisonOperators{Sudoku#Concepts#MarkerGrid,Sudoku#Concepts#MarkerGrid,System#Boolean}#op_GreaterThan(Sudoku.Concepts.MarkerGrid,Sudoku.Concepts.MarkerGrid)">
             <inheritdoc/>
         </member>

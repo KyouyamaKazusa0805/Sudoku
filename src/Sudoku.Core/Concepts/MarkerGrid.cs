@@ -687,11 +687,14 @@ public partial struct MarkerGrid : GridBase
 	/// </summary>
 	/// <param name="grid">The grid to be cast from.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Grid(in MarkerGrid grid)
-	{
-		var digitsArray = grid.ToDigitsArray();
-		return Grid.Create(digitsArray);
-	}
+	public static explicit operator Grid(in MarkerGrid grid) => Grid.Create(grid.ToDigitsArray());
+
+	/// <summary>
+	/// Casts the current instance into a <see cref="MarkerGrid"/>, only with given and modifiable cells reserved.
+	/// </summary>
+	/// <param name="grid">The grid to be cast from.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator MarkerGrid(in Grid grid) => Create(grid.ToDigitsArray());
 
 
 	/// <inheritdoc/>
