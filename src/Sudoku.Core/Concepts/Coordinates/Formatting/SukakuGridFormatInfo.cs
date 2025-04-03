@@ -1,9 +1,9 @@
 namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
-/// Represents a <see cref="GridFormatInfo"/> type that supports Sukaku formatting.
+/// Represents a <see cref="GridFormatInfo{TGrid}"/> type that supports Sukaku formatting.
 /// </summary>
-public sealed partial class SukakuGridFormatInfo : GridFormatInfo
+public sealed partial class SukakuGridFormatInfo : GridFormatInfo<Grid>
 {
 	[GeneratedRegex("""\d*[\-\+]?\d+""", RegexOptions.Compiled, 5000)]
 	public static partial Regex GridSukakuSegmentPattern { get; }
@@ -11,7 +11,7 @@ public sealed partial class SukakuGridFormatInfo : GridFormatInfo
 
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo<Grid>) ? this : null;
 
 	/// <inheritdoc/>
 	public override SukakuGridFormatInfo Clone() => new() { Placeholder = Placeholder, Multiline = Multiline };

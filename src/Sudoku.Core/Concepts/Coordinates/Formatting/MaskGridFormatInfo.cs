@@ -1,7 +1,7 @@
 namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
-/// Represents a <see cref="GridFormatInfo"/> type that supports mask formatting.
+/// Represents a <see cref="GridFormatInfo{TGrid}"/> type that supports mask formatting.
 /// </summary>
 /// <remarks>
 /// <para>This type is used by diagnostic only.</para>
@@ -13,11 +13,11 @@ namespace Sudoku.Concepts.Coordinates.Formatting;
 /// can be output correctly, and other values will be incorrect: they're always 0.
 /// </para>
 /// </remarks>
-public sealed class MaskGridFormatInfo : GridFormatInfo
+public sealed class MaskGridFormatInfo : GridFormatInfo<Grid>
 {
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo<Grid>) ? this : null;
 
 	/// <inheritdoc/>
 	public override MaskGridFormatInfo Clone() => new();

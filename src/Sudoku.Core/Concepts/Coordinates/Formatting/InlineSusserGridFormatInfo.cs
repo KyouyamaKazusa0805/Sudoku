@@ -1,9 +1,9 @@
 namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
-/// Represents a <see cref="GridFormatInfo"/> type that supports inline Susser grid formatting.
+/// Represents a <see cref="GridFormatInfo{TGrid}"/> type that supports inline Susser grid formatting.
 /// </summary>
-public sealed partial class InlineSusserGridFormatInfo : GridFormatInfo
+public sealed partial class InlineSusserGridFormatInfo : GridFormatInfo<Grid>
 {
 	/// <summary>
 	/// Indicates the plus token that describes for modifiable values.
@@ -22,7 +22,7 @@ public sealed partial class InlineSusserGridFormatInfo : GridFormatInfo
 
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo<Grid>) ? this : null;
 
 	/// <inheritdoc/>
 	public override InlineSusserGridFormatInfo Clone() => new() { NegateEliminationsTripletRule = NegateEliminationsTripletRule };

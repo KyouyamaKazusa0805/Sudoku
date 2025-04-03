@@ -3,33 +3,34 @@ namespace Sudoku.Concepts.Coordinates.Formatting;
 /// <summary>
 /// Represents extra options that formats a <see cref="Grid"/> instance, or parses into a <see cref="Grid"/> instance.
 /// </summary>
+/// <typeparam name="TGrid">The type of grid.</typeparam>
 /// <seealso cref="Grid"/>
 /// <seealso cref="NumberFormatInfo"/>
-public abstract class GridFormatInfo : FormatInfo<Grid>
+public abstract class GridFormatInfo<TGrid> : FormatInfo<TGrid> where TGrid : unmanaged, IGrid<TGrid>
 {
 	/// <summary>
 	/// Indicates the table of format and creator.
 	/// </summary>
 	[EditorBrowsable(EditorBrowsableState.Advanced)]
-	private static readonly (string?[] FormatChecker, Func<GridFormatInfo> Creator)[] ValuesRouter = [
-		([null, "."], static () => new SusserGridFormatInfo()),
-		(["0"], static () => new SusserGridFormatInfo { Placeholder = '0' }),
-		(["0+", "+0"], static () => new SusserGridFormatInfo { Placeholder = '0', WithModifiables = true }),
-		(["+", ".+", "+."], static () => new SusserGridFormatInfo { WithModifiables = true }),
-		(["+:", "+.:", ".+:", "#", "#."], static () => new SusserGridFormatInfo { WithCandidates = true, WithModifiables = true }),
-		(["^+:", "^:+", "^.+:", "^#", "^#."], static () => new SusserGridFormatInfo { WithCandidates = true, WithModifiables = true, NegateEliminationsTripletRule = true }),
-		(["0+:", "+0:", "#0"], static () => new SusserGridFormatInfo { WithCandidates = true, WithModifiables = true, Placeholder = '0' }),
-		(["^0+:", "^+0:", "^#0"], static () => new SusserGridFormatInfo { WithCandidates = true, WithModifiables = true, Placeholder = '0', NegateEliminationsTripletRule = true }),
-		([":", ".:"], static () => new SusserGridFormatInfo { WithCandidates = true, OnlyEliminations = true }),
-		(["0:"], static () => new SusserGridFormatInfo { WithCandidates = true, OnlyEliminations = true, Placeholder = '0' }),
-		(["!", ".!", "!."], static () => new SusserGridFormatInfo { TreatValueAsGiven = true, WithModifiables = true }),
-		(["0!", "!0"], static () => new SusserGridFormatInfo { TreatValueAsGiven = true, WithModifiables = true, Placeholder = '0' }),
-		([".!:", "!.:"], static () => new SusserGridFormatInfo { WithCandidates = true, WithModifiables = true, TreatValueAsGiven = true }),
-		(["^.!:", "^!.:"], static () => new SusserGridFormatInfo { WithCandidates = true, TreatValueAsGiven = true, NegateEliminationsTripletRule = true }),
-		(["0!:", "!0:"], static () => new SusserGridFormatInfo { WithCandidates = true, WithModifiables = true, TreatValueAsGiven = true, Placeholder = '0' }),
-		(["^0!:", "^!0:"], static () => new SusserGridFormatInfo { WithCandidates = true, WithModifiables = true, TreatValueAsGiven = true, NegateEliminationsTripletRule = true, Placeholder = '0' }),
-		([".*", "*."], static () => new SusserGridFormatInfo { ShortenSusser = true }),
-		(["0*", "*0"], static () => new SusserGridFormatInfo { Placeholder = '0', ShortenSusser = true }),
+	private static readonly (string?[] FormatChecker, Func<GridFormatInfo<Grid>> Creator)[] ValuesRouter = [
+		([null, "."], static () => new SusserGridFormatInfo<Grid>()),
+		(["0"], static () => new SusserGridFormatInfo<Grid> { Placeholder = '0' }),
+		(["0+", "+0"], static () => new SusserGridFormatInfo<Grid> { Placeholder = '0', WithModifiables = true }),
+		(["+", ".+", "+."], static () => new SusserGridFormatInfo<Grid> { WithModifiables = true }),
+		(["+:", "+.:", ".+:", "#", "#."], static () => new SusserGridFormatInfo<Grid>{ WithCandidates = true, WithModifiables = true }),
+		(["^+:", "^:+", "^.+:", "^#", "^#."], static () => new SusserGridFormatInfo<Grid> { WithCandidates = true, WithModifiables = true, NegateEliminationsTripletRule = true }),
+		(["0+:", "+0:", "#0"], static () => new SusserGridFormatInfo<Grid> { WithCandidates = true, WithModifiables = true, Placeholder = '0' }),
+		(["^0+:", "^+0:", "^#0"], static () => new SusserGridFormatInfo<Grid> { WithCandidates = true, WithModifiables = true, Placeholder = '0', NegateEliminationsTripletRule = true }),
+		([":", ".:"], static () => new SusserGridFormatInfo<Grid> { WithCandidates = true, OnlyEliminations = true }),
+		(["0:"], static () => new SusserGridFormatInfo<Grid> { WithCandidates = true, OnlyEliminations = true, Placeholder = '0' }),
+		(["!", ".!", "!."], static () => new SusserGridFormatInfo<Grid> { TreatValueAsGiven = true, WithModifiables = true }),
+		(["0!", "!0"], static () => new SusserGridFormatInfo<Grid> { TreatValueAsGiven = true, WithModifiables = true, Placeholder = '0' }),
+		([".!:", "!.:"], static () => new SusserGridFormatInfo<Grid> { WithCandidates = true, WithModifiables = true, TreatValueAsGiven = true }),
+		(["^.!:", "^!.:"], static () => new SusserGridFormatInfo<Grid> { WithCandidates = true, TreatValueAsGiven = true, NegateEliminationsTripletRule = true }),
+		(["0!:", "!0:"], static () => new SusserGridFormatInfo<Grid> { WithCandidates = true, WithModifiables = true, TreatValueAsGiven = true, Placeholder = '0' }),
+		(["^0!:", "^!0:"], static () => new SusserGridFormatInfo<Grid> { WithCandidates = true, WithModifiables = true, TreatValueAsGiven = true, NegateEliminationsTripletRule = true, Placeholder = '0' }),
+		([".*", "*."], static () => new SusserGridFormatInfo<Grid> { ShortenSusser = true }),
+		(["0*", "*0"], static () => new SusserGridFormatInfo<Grid> { Placeholder = '0', ShortenSusser = true }),
 		(["@", "@."], static () => new MultipleLineGridFormatInfo()),
 		(["@*", "@.*", "@*."], static () => new MultipleLineGridFormatInfo { SubtleGridLines = false }),
 		(["@0"], static () => new MultipleLineGridFormatInfo { Placeholder = '0' }),
@@ -186,16 +187,24 @@ public abstract class GridFormatInfo : FormatInfo<Grid>
 	/// <summary>
 	/// Represents standard format tule (Susser rule).
 	/// </summary>
-	public static IFormatProvider SusserFormat => new SusserGridFormatInfo();
+	public static IFormatProvider SusserFormat => new SusserGridFormatInfo<Grid>();
+
+	/// <summary>
+	/// Represents standard format rule (Susser rule), to parse into a <see cref="MarkerGrid"/> instance.
+	/// </summary>
+	public static IFormatProvider SusserFormatMarkerGrid => new SusserGridFormatInfo<MarkerGrid>();
 
 
 	/// <summary>
-	/// Gets the <see cref="GridFormatInfo"/> associated with the specified <see cref="IFormatProvider"/>.
+	/// Gets the <see cref="GridFormatInfo{TGrid}"/> of <see cref="Grid"/>
+	/// associated with the specified <see cref="IFormatProvider"/>.
 	/// </summary>
-	/// <param name="formatProvider">The <see cref="IFormatProvider"/> used to get the <see cref="GridFormatInfo"/>.</param>
-	/// <returns>The <see cref="GridFormatInfo"/> associated with the specified <see cref="IFormatProvider"/>.</returns>
+	/// <param name="formatProvider">The <see cref="IFormatProvider"/> used to get the <see cref="GridFormatInfo{TGrid}"/>.</param>
+	/// <returns>
+	/// The <see cref="GridFormatInfo{TGrid}"/> of <see cref="Grid"/> associated with the specified <see cref="IFormatProvider"/>.
+	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static GridFormatInfo? GetInstance(IFormatProvider? formatProvider)
+	public static GridFormatInfo<Grid>? GetInstance(IFormatProvider? formatProvider)
 		=> GetInstance(
 			formatProvider switch
 			{
@@ -205,12 +214,12 @@ public abstract class GridFormatInfo : FormatInfo<Grid>
 		);
 
 	/// <summary>
-	/// Creates a <see cref="GridFormatInfo"/> instance that holds the specified format.
+	/// Creates a <see cref="GridFormatInfo{TGrid}"/> instance that holds the specified format.
 	/// </summary>
 	/// <param name="format">The format.</param>
-	/// <returns>A valid <see cref="GridFormatInfo"/> instance.</returns>
+	/// <returns>A valid <see cref="GridFormatInfo{TGrid}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static GridFormatInfo? GetInstance(string? format)
+	public static GridFormatInfo<Grid>? GetInstance(string? format)
 	{
 		var p = Array.FindIndex(ValuesRouter, pair => Array.IndexOf(pair.FormatChecker, format) != -1);
 		return p == -1 ? null : ValuesRouter[p].Creator();

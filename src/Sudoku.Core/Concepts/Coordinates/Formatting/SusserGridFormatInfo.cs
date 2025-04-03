@@ -1,9 +1,10 @@
 namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
-/// Represents a <see cref="GridFormatInfo"/> type that supports Susser formatting.
+/// Represents a <see cref="GridFormatInfo{TGrid}"/> type that supports Susser formatting.
 /// </summary>
-public sealed partial class SusserGridFormatInfo : GridFormatInfo
+/// <typeparam name="TGrid">The type of grid.</typeparam>
+public sealed partial class SusserGridFormatInfo<TGrid> : GridFormatInfo<TGrid> where TGrid : unmanaged, IGrid<TGrid>
 {
 	/// <summary>
 	/// Indicates the modifiable prefix character.
@@ -48,10 +49,10 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo<TGrid>) ? this : null;
 
 	/// <inheritdoc/>
-	public override SusserGridFormatInfo Clone()
+	public override SusserGridFormatInfo<TGrid> Clone()
 		=> new()
 		{
 			WithCandidates = WithCandidates,
@@ -64,7 +65,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 		};
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(in Grid grid)
+	protected internal override string FormatCore(in TGrid grid)
 	{
 		return b(grid) is var r && IsCompatibleMode
 			? $":0000:x:{r}{new(':', 3)}"
@@ -73,7 +74,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 				: r;
 
 
-		string b(in Grid grid)
+		string b(in TGrid grid)
 		{
 			var thisCopied = Clone();
 			thisCopied.WithCandidates = false;
@@ -81,8 +82,8 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 			var sb = new StringBuilder(162);
 			var originalGrid = this switch
 			{
-				{ WithCandidates: true, ShortenSusser: false } => Grid.Parse(thisCopied.FormatCore(grid)),
-				_ => Grid.Undefined
+				{ WithCandidates: true, ShortenSusser: false } => TGrid.Parse(thisCopied.FormatCore(grid)),
+				_ => TGrid.Undefined
 			};
 
 			var eliminatedCandidates = CandidateMap.Empty;
@@ -150,7 +151,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 			return TreatValueAsGiven ? final.RemoveAll('+') : final;
 		}
 
-		static CandidateMap negateElims(in Grid grid, in CandidateMap eliminatedCandidates)
+		static CandidateMap negateElims(in TGrid grid, in CandidateMap eliminatedCandidates)
 		{
 			var eliminatedCandidatesCellDistribution = eliminatedCandidates.CellDistribution;
 			var result = CandidateMap.Empty;
@@ -251,24 +252,24 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 	}
 
 	/// <inheritdoc/>
-	protected internal override Grid ParseCore(string str)
+	protected internal override TGrid ParseCore(string str)
 	{
 		if (IsCompatibleMode)
 		{
-			return Grid.Undefined;
+			return TGrid.Undefined;
 		}
 
 		var match = (ShortenSusser ? GridShortenedSusserPattern : GridSusserPattern).Match(str).Value;
 		if (ShortenSusser && (match is not { Length: <= 81 } || !expandCode(match, out match)))
 		{
-			return Grid.Undefined;
+			return TGrid.Undefined;
 		}
 
 		// Step 1: fills all digits.
-		var (result, i) = (Grid.Empty, 0);
+		var (result, i) = (TGrid.Empty, 0);
 		if (match.Length is not (var length and not 0))
 		{
-			return Grid.Undefined;
+			return TGrid.Undefined;
 		}
 
 		for (var realPos = 0; i < length && match[i] != ':'; realPos++)
@@ -293,12 +294,12 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 						else
 						{
 							// Why isn't the character a digit character?
-							return Grid.Undefined;
+							return TGrid.Undefined;
 						}
 					}
 					else
 					{
-						return Grid.Undefined;
+						return TGrid.Undefined;
 					}
 
 					break;
@@ -334,7 +335,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 				{
 					// Other invalid characters. Throws an exception.
 					//throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
-					return Grid.Undefined;
+					return TGrid.Undefined;
 				}
 			}
 		}

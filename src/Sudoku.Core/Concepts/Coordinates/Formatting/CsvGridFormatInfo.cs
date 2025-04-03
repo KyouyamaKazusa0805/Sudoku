@@ -1,13 +1,13 @@
 namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
-/// Represents a <see cref="GridFormatInfo"/> type that supports Comma-separated-values formatting.
+/// Represents a <see cref="GridFormatInfo{TGrid}"/> type that supports Comma-separated-values formatting.
 /// </summary>
-public sealed class CsvGridFormatInfo : GridFormatInfo
+public sealed class CsvGridFormatInfo : GridFormatInfo<Grid>
 {
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo<Grid>) ? this : null;
 
 	/// <inheritdoc/>
 	public override CsvGridFormatInfo Clone() => new();

@@ -2897,7 +2897,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.CsvGridFormatInfo">
             <summary>
-            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> type that supports Comma-separated-values formatting.
+            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> type that supports Comma-separated-values formatting.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.CsvGridFormatInfo.GetFormat(System.Type)">
@@ -2944,25 +2944,26 @@
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.System#IFormatProvider#GetFormat(System.Type)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo">
+        <member name="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1">
             <summary>
             Represents extra options that formats a <see cref="T:Sudoku.Concepts.Grid"/> instance, or parses into a <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
             <seealso cref="T:System.Globalization.NumberFormatInfo"/>
         </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.ValuesRouter">
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.ValuesRouter">
             <summary>
             Indicates the table of format and creator.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.WithCandidates">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.WithCandidates">
             <summary>
             <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.WithModifiables">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.WithModifiables">
             <summary>
             <para>
             Indicates whether the formatter will output and distinct modifiable and given digits.
@@ -2972,7 +2973,7 @@
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.ShortenSusser">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.ShortenSusser">
             <summary>
             <para>
             Indicates whether the parser will use shorten mode to parse a susser format grid.
@@ -2994,7 +2995,7 @@
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.NegateEliminationsTripletRule">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.NegateEliminationsTripletRule">
             <summary>
             <para>
             Indicates whether the parser will negate the rule, treating all digits as candidates existing in the grid
@@ -3003,111 +3004,119 @@
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.TreatValueAsGiven">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.TreatValueAsGiven">
             <summary>
             Indicates whether the formatter will treat all values as givens, regardless of its value state.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.SubtleGridLines">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.SubtleGridLines">
             <summary>
             Indicates whether the formatter will subtle grid lines to make a good-look.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.IsCompatibleMode">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.IsCompatibleMode">
             <summary>
             Indicates whether the formatter will use compatible mode to output grid values.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.Multiline">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.Multiline">
             <summary>
             Indicates whether the formatter will handle the value with multiple-line mode.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.RemoveGridLines">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.RemoveGridLines">
             <summary>
             Indicates whether the parsing operation will use simple way, removing all grid lines for multi-line formatting.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.OnlyEliminations">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.OnlyEliminations">
             <summary>
             Indicates whether the formatting operation will output for eliminations.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.Placeholder">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.Placeholder">
             <summary>
             Indicates the placeholder of the grid text formatter.
             </summary>
             <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
             <returns>The placeholder text.</returns>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.Separator">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.Separator">
             <summary>
             Indicates the separator used. By default, it's comma <c>", "</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.InvariantCulture">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.InvariantCulture">
             <summary>
             Gets a read-only <see cref="T:System.IFormatProvider"/> object that is culture-independent (invariant).
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.CurrentCulture">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.CurrentCulture">
             <summary>
             Gets a <see cref="T:System.IFormatProvider"/> that formats values based on the current culture.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.CsvFormat">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.CsvFormat">
             <summary>
             Represents CSV format rule.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.InlineSusserFormat">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.InlineSusserFormat">
             <summary>
             Represents inline Susser format rule.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.MaskFormat">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.MaskFormat">
             <summary>
             Represents mask format rule.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.MultipleLineFormat">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.MultipleLineFormat">
             <summary>
             Represents multiple line format rule.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.OpenSudokuFormat">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.OpenSudokuFormat">
             <summary>
             Represents open sudoku format rule.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.PencilmarkFormat">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.PencilmarkFormat">
             <summary>
             Represents pencilmark format rule.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.SukakuFormat">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.SukakuFormat">
             <summary>
             Represents Sukaku format rule.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.SusserFormat">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.SusserFormat">
             <summary>
             Represents standard format tule (Susser rule).
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.GetInstance(System.IFormatProvider)">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.SusserFormatMarkerGrid">
             <summary>
-            Gets the <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> associated with the specified <see cref="T:System.IFormatProvider"/>.
+            Represents standard format rule (Susser rule), to parse into a <see cref="T:Sudoku.Concepts.MarkerGrid"/> instance.
             </summary>
-            <param name="formatProvider">The <see cref="T:System.IFormatProvider"/> used to get the <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/>.</param>
-            <returns>The <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> associated with the specified <see cref="T:System.IFormatProvider"/>.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.GetInstance(System.String)">
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.GetInstance(System.IFormatProvider)">
             <summary>
-            Creates a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> instance that holds the specified format.
+            Gets the <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> of <see cref="T:Sudoku.Concepts.Grid"/>
+            associated with the specified <see cref="T:System.IFormatProvider"/>.
+            </summary>
+            <param name="formatProvider">The <see cref="T:System.IFormatProvider"/> used to get the <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/>.</param>
+            <returns>
+            The <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> associated with the specified <see cref="T:System.IFormatProvider"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1.GetInstance(System.String)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> instance that holds the specified format.
             </summary>
             <param name="format">The format.</param>
-            <returns>A valid <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> instance.</returns>
+            <returns>A valid <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.HodokuTripletCandidateMapFormatInfo">
             <summary>
@@ -3128,7 +3137,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.InlineSusserGridFormatInfo">
             <summary>
-            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> type that supports inline Susser grid formatting.
+            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> type that supports inline Susser grid formatting.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Coordinates.Formatting.InlineSusserGridFormatInfo.PlusToken">
@@ -3175,7 +3184,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.MaskGridFormatInfo">
             <summary>
-            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> type that supports mask formatting.
+            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> type that supports mask formatting.
             </summary>
             <remarks>
             <para>This type is used by diagnostic only.</para>
@@ -3202,7 +3211,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.MultipleLineGridFormatInfo">
             <summary>
-            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> type that supports multiple formatting.
+            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> type that supports multiple formatting.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.MultipleLineGridFormatInfo.GridSusserDigitPattern">
@@ -3327,7 +3336,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.OpenSudokuGridFormatInfo">
             <summary>
-            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> type that supports OpenSudoku formatting.
+            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> type that supports OpenSudoku formatting.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.OpenSudokuGridFormatInfo.GridOpenSudokuPattern">
@@ -3360,7 +3369,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.PencilmarkGridFormatInfo">
             <summary>
-            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> type that supports pencilmark grid formatting.
+            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> type that supports pencilmark grid formatting.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.PencilmarkGridFormatInfo.GridPencilmarkPattern">
@@ -3414,7 +3423,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.SukakuGridFormatInfo">
             <summary>
-            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> type that supports Sukaku formatting.
+            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> type that supports Sukaku formatting.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.SukakuGridFormatInfo.GridSukakuSegmentPattern">
@@ -3443,42 +3452,43 @@
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.SukakuGridFormatInfo.ParseCore(System.String)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo">
+        <member name="T:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1">
             <summary>
-            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> type that supports Susser formatting.
+            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> type that supports Susser formatting.
             </summary>
+            <typeparam name="TGrid">The type of grid.</typeparam>
         </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.ModifiablePrefix">
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.ModifiablePrefix">
             <summary>
             Indicates the modifiable prefix character.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.LineLimit">
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.LineLimit">
             <summary>
             Indicates the line separator character used by shortening Susser format.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.Star">
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.Star">
             <summary>
             Indicates the star character used by shortening Susser format.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.Dot">
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.Dot">
             <summary>
             Indicates the dot character.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.Zero">
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.Zero">
             <summary>
             Indicates the zero character.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.PreeliminationPrefix">
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.PreeliminationPrefix">
             <summary>
             Indicates the pre-elimination prefix character.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.GridSusserPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.GridSusserPattern">
             <remarks>
             Pattern:<br/>
             <code>[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?</code><br/>
@@ -3498,7 +3508,7 @@
             </code>
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.GridShortenedSusserPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.GridShortenedSusserPattern">
             <remarks>
             Pattern:<br/>
             <code>[\\d\\.\\*]{1,9}(,[\\d\\.\\*]{1,9}){8}</code><br/>
@@ -3514,7 +3524,7 @@
             </code>
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.EliminationPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.EliminationPattern">
             <remarks>
             Pattern:<br/>
             <code>(?&lt;=\\:)(\\d{3}\\s+)*\\d{3}</code><br/>
@@ -3532,16 +3542,16 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.GetFormat(System.Type)">
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.GetFormat(System.Type)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.Clone">
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.Clone">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.FormatCore(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.FormatCore(`0@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo.ParseCore(System.String)">
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.SusserGridFormatInfo`1.ParseCore(System.String)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.ICoordinateProvider`1">

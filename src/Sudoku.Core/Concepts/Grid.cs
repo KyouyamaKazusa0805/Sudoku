@@ -568,8 +568,8 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 	public readonly string ToString(IFormatProvider? formatProvider)
 		=> formatProvider switch
 		{
-			GridFormatInfo f => f.FormatCore(this),
-			CultureInfo c => (GridFormatInfo.GetInstance(c) ?? new SusserGridFormatInfo()).FormatCore(this),
+			GridFormatInfo<Grid> f => f.FormatCore(this),
+			CultureInfo c => (GridFormatInfo<Grid>.GetInstance(c) ?? new SusserGridFormatInfo<Grid>()).FormatCore(this),
 			_ => throw new FormatException()
 		};
 
@@ -580,10 +580,10 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 		{
 			({ IsEmpty: true }, _) => $"<{nameof(Empty)}>",
 			({ IsUndefined: true }, _) => $"<{nameof(Undefined)}>",
-			(_, GridFormatInfo f) => f.FormatCore(this),
+			(_, GridFormatInfo<Grid> f) => f.FormatCore(this),
 			(_, CultureInfo c) => ToString(c),
-			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatCore(this),
-			_ => GridFormatInfo.GetInstance(format)!.FormatCore(this)
+			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo<Grid>)) is GridFormatInfo<Grid> g => g.FormatCore(this),
+			_ => GridFormatInfo<Grid>.GetInstance(format)!.FormatCore(this)
 		};
 
 	/// <inheritdoc/>
@@ -1007,12 +1007,12 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 			throw new FormatException();
 		}
 
-		var parsers = (GridFormatInfo[])[
+		var parsers = (GridFormatInfo<Grid>[])[
 			new MultipleLineGridFormatInfo(),
 			new MultipleLineGridFormatInfo { RemoveGridLines = true },
 			new PencilmarkGridFormatInfo(),
-			new SusserGridFormatInfo(),
-			new SusserGridFormatInfo { ShortenSusser = true },
+			new SusserGridFormatInfo<Grid>(),
+			new SusserGridFormatInfo<Grid> { ShortenSusser = true },
 			new CsvGridFormatInfo(),
 			new OpenSudokuGridFormatInfo(),
 			new SukakuGridFormatInfo(),
@@ -1124,11 +1124,11 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 	public static Grid Parse(string s, IFormatProvider? provider)
 		=> provider switch
 		{
-			GridFormatInfo g => g.ParseCore(s),
+			GridFormatInfo<Grid> g => g.ParseCore(s),
 			CultureInfo { Name: var n } => n switch
 			{
 				SR.EnglishLanguage => new PencilmarkGridFormatInfo().ParseCore(s),
-				SR.ChineseLanguage => new SusserGridFormatInfo().ParseCore(s),
+				SR.ChineseLanguage => new SusserGridFormatInfo<Grid>().ParseCore(s),
 				_ => Parse(s)
 			},
 			_ => Parse(s)

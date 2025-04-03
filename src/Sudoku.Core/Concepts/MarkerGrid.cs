@@ -676,7 +676,9 @@ public partial struct MarkerGrid : GridBase
 	public static MarkerGrid Parse(string? s) => Parse(s ?? string.Empty, null);
 
 	/// <inheritdoc/>
-	public static MarkerGrid Parse(string s, IFormatProvider? provider) => (MarkerGrid)Grid.Parse(s, provider);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static MarkerGrid Parse(string s, IFormatProvider? provider)
+		=> (provider as SusserGridFormatInfo<MarkerGrid> ?? new()).ParseCore(s);
 
 
 	/// <summary>

@@ -1,9 +1,9 @@
 namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
-/// Represents a <see cref="GridFormatInfo"/> type that supports OpenSudoku formatting.
+/// Represents a <see cref="GridFormatInfo{TGrid}"/> type that supports OpenSudoku formatting.
 /// </summary>
-public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
+public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo<Grid>
 {
 	[GeneratedRegex("""\d(\|\d){242}""", RegexOptions.Compiled, 5000)]
 	public static partial Regex GridOpenSudokuPattern { get; }
@@ -11,7 +11,7 @@ public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
 
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo<Grid>) ? this : null;
 
 	/// <inheritdoc/>
 	public override OpenSudokuGridFormatInfo Clone() => new();

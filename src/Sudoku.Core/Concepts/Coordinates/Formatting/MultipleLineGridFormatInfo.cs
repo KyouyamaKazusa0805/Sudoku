@@ -1,9 +1,9 @@
 namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
-/// Represents a <see cref="GridFormatInfo"/> type that supports multiple formatting.
+/// Represents a <see cref="GridFormatInfo{TGrid}"/> type that supports multiple formatting.
 /// </summary>
-public sealed partial class MultipleLineGridFormatInfo : GridFormatInfo
+public sealed partial class MultipleLineGridFormatInfo : GridFormatInfo<Grid>
 {
 	[GeneratedRegex("""(\+?\d|\.)""", RegexOptions.Compiled, 5000)]
 	private static partial Regex GridSusserDigitPattern { get; }
@@ -14,7 +14,7 @@ public sealed partial class MultipleLineGridFormatInfo : GridFormatInfo
 
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo<Grid>) ? this : null;
 
 	/// <inheritdoc/>
 	public override MultipleLineGridFormatInfo Clone()
@@ -75,7 +75,7 @@ public sealed partial class MultipleLineGridFormatInfo : GridFormatInfo
 		{
 			return GridSimpleMultilinePattern.Match(str) is not { Success: true, Value: var match }
 				? Grid.Undefined
-				: new SusserGridFormatInfo().ParseCore(new(from @char in match where @char is not ('\r' or '\n') select @char));
+				: new SusserGridFormatInfo<Grid>().ParseCore(new(from @char in match where @char is not ('\r' or '\n') select @char));
 		}
 		else
 		{

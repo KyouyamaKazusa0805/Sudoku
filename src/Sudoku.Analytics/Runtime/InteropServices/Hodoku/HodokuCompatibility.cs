@@ -28,7 +28,7 @@ public static class HodokuCompatibility
 		if (step is null)
 		{
 			return grid.ToString(
-				new SusserGridFormatInfo
+				new SusserGridFormatInfo<Grid>
 				{
 					IsCompatibleMode = true,
 					WithModifiables = true,
