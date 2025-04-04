@@ -60,6 +60,10 @@
   * [烟花数组的基本推理](candidate-technique-basics/16-firework-subset/01-reasoning-of-firework-subset.md)
   * [烟花数组的各种用法](candidate-technique-basics/16-firework-subset/02-usages-on-firework-subset.md)
 
+## 链理论 <a href="#chain-theory" id="chain-theory"></a>
+
+* [双强链](chain-theory/01-two-strong-link-chain.md)
+
 ## 附录 <a href="#appendix" id="appendix"></a>
 
 * [术语索引](appendix/01-terms.md)
