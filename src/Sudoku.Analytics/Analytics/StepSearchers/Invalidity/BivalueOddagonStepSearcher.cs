@@ -228,6 +228,9 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		bool onlyFindOne
 	)
 	{
+		// Test examples:
+		// .5.+1+2+6+39+81+6+9+3+5+8+2+74+3+824796+1+5..+8735..+6.3.6+41.8.+6..+9+8+2.+5+38...6...9..6.1.8...23+89.56+1:441 751 773 476 481 781
+
 		var mask = (Mask)(grid[extraCellsMap] & ~comparer);
 		if (!Mask.IsPow2(mask))
 		{
