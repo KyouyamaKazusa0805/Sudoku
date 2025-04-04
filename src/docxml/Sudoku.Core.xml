@@ -4416,11 +4416,12 @@
         </member>
         <member name="M:Sudoku.Concepts.Graphs.CellGraph.GetHamiltonianCycles">
             <summary>
-            Try to find a path that connects with all possible cells of the graph, by advancing with the next cell in a same house.
+            Try to find a path that connects with all cells of the graph, by advancing with the next cell in a same house.
             </summary>
             <returns>
-            The found path. If multiple paths exist, only the first one will be returned.
-            If no such loops found, an empty sequence will be returned.
+            The found path.
+            If multiple paths exist, only the first one will be returned;
+            however if there's no such loops found, an empty sequence will be returned.
             </returns>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.CellGraph.GetConnectedCells(System.Int32)">
@@ -4748,6 +4749,12 @@
         </member>
         <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.EnumerateAdjacentCells">
+            <summary>
+            Enumerate all adjacent cell pairs, including the last and the first cell.
+            </summary>
+            <returns>An enumerator object that can iterate on each adjacent cell pairs, including the last and the first cell.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>

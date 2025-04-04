@@ -169,6 +169,21 @@ public readonly partial struct HamiltonianCycle([Field] Cell[] cells) :
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	public AnonymousSpanEnumerator<Cell> GetEnumerator() => new(_cells);
 
+	/// <summary>
+	/// Enumerate all adjacent cell pairs, including the last and the first cell.
+	/// </summary>
+	/// <returns>An enumerator object that can iterate on each adjacent cell pairs, including the last and the first cell.</returns>
+	public AnonymousSpanEnumerator<(Cell First, Cell Second)> EnumerateAdjacentCells()
+	{
+		var span = new (Cell, Cell)[Length];
+		for (var i = 0; i < Length - 1; i++)
+		{
+			span[i] = (_cells[i], _cells[i + 1]);
+		}
+		span[^1] = (_cells[^1], _cells[0]);
+		return new(span);
+	}
+
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => _cells.GetEnumerator();
 

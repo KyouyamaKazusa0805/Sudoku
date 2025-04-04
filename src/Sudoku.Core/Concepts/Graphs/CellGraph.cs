@@ -232,11 +232,12 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 	}
 
 	/// <summary>
-	/// Try to find a path that connects with all possible cells of the graph, by advancing with the next cell in a same house.
+	/// Try to find a path that connects with all cells of the graph, by advancing with the next cell in a same house.
 	/// </summary>
 	/// <returns>
-	/// The found path. If multiple paths exist, only the first one will be returned.
-	/// If no such loops found, an empty sequence will be returned.
+	/// The found path.
+	/// If multiple paths exist, only the first one will be returned;
+	/// however if there's no such loops found, an empty sequence will be returned.
 	/// </returns>
 	public ReadOnlySpan<HamiltonianCycle> GetHamiltonianCycles()
 	{

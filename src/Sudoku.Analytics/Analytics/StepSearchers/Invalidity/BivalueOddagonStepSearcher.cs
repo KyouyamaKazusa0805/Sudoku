@@ -249,9 +249,16 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			}
 		}
 
+		var hamiltonianLoop = new CellGraph(loop).GetHamiltonianCycles() is [var l, ..] ? l : default;
+		var links = new List<CellLinkViewNode>();
+		foreach (var (first, second) in hamiltonianLoop.EnumerateAdjacentCells())
+		{
+			links.Add(new(ColorIdentifier.Normal, first, second));
+		}
+
 		var step = new BivalueOddagonType2Step(
 			(from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)).ToArray(),
-			[[.. candidateOffsets]],
+			[[.. candidateOffsets, .. links]],
 			context.Options,
 			loop,
 			d1,
@@ -368,9 +375,15 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 						}
 					}
 
+					var hamiltonianLoop = new CellGraph(loop).GetHamiltonianCycles() is [var l, ..] ? l : default;
+					var links = new List<CellLinkViewNode>();
+					foreach (var (first, second) in hamiltonianLoop.EnumerateAdjacentCells())
+					{
+						links.Add(new(ColorIdentifier.Normal, first, second));
+					}
 					var step = new BivalueOddagonType3Step(
 						conclusions.AsMemory(),
-						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
+						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house), .. links]],
 						context.Options,
 						loop,
 						d1,
