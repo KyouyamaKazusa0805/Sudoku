@@ -3298,7 +3298,7 @@ Error grid: '{0:#}'</value>
     <value>Baba Grouping</value>
   </data>
   <data name="TechniqueFormat_RemotePairStep" xml:space="preserve">
-    <value>Assign cells {0} with mark {1} and {2}, to make an confliction</value>
+    <value>Assign cells {0} with mark {1} and {2}, to make an conflict</value>
   </data>
   <data name="ConstraintDescription_BottleneckTechniqueConstraint" xml:space="preserve">
     <value>Catch a puzzle using specified technique in bottleneck</value>

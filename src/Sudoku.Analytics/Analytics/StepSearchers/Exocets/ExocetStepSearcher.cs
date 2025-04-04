@@ -353,7 +353,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	{
 		// Check for maximum times can be appeared in cross-line cells,
 		// and collect all possible digits can be filled in cross-line for (size - 1) times at most.
-		// Here will cause an confliction: Locked Members will make digits appeared in base cells
+		// Here will cause an conflict: Locked Members will make digits appeared in base cells
 		// appear in cross-line cells as values (i.e. non-empty cells).
 		// However, sometimes, we may encounter a case that digits appeared in base cells indeed appears
 		// in cross-line cells as values, but they are non-locked members.

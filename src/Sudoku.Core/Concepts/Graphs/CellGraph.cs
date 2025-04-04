@@ -48,14 +48,14 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 
 	/// <summary>
 	/// Initializes a <see cref="CellGraph"/> instance with the specified cells,
-	/// and some invalid cells that will be used by confliction checking.
+	/// and some invalid cells that will be used by conflict checking.
 	/// </summary>
 	/// <param name="cells">Indicates the cells used.</param>
 	/// <param name="invalidCells">
 	/// <para>Indicates invalid cells. Such cells will interrupt the conjugate pair connection from a cell to a cell.</para>
 	/// <para>
 	/// In general, this argument is an empty collection of <see cref="CellMap"/> (i.e. a <see cref="CellMap.Empty"/> or <c>[]</c>),
-	/// but sometimes it can be useful for calculation of confliction on conjugate pair parity checks.
+	/// but sometimes it can be useful for calculation of conflict on conjugate pair parity checks.
 	/// </para>
 	/// </param>
 	public CellGraph(in CellMap cells, in CellMap invalidCells)

@@ -4342,14 +4342,14 @@
         <member name="M:Sudoku.Concepts.Graphs.CellGraph.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance with the specified cells,
-            and some invalid cells that will be used by confliction checking.
+            and some invalid cells that will be used by conflict checking.
             </summary>
             <param name="cells">Indicates the cells used.</param>
             <param name="invalidCells">
             <para>Indicates invalid cells. Such cells will interrupt the conjugate pair connection from a cell to a cell.</para>
             <para>
             In general, this argument is an empty collection of <see cref="T:Sudoku.Concepts.CellMap"/> (i.e. a <see cref="F:Sudoku.Concepts.CellMap.Empty"/> or <c>[]</c>),
-            but sometimes it can be useful for calculation of confliction on conjugate pair parity checks.
+            but sometimes it can be useful for calculation of conflict on conjugate pair parity checks.
             </para>
             </param>
         </member>
@@ -13027,7 +13027,7 @@
         </member>
         <member name="M:Sudoku.Solving.Backtracking.BacktrackingSolver.IsValid(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>
-            Determine whether the specified grid has confliction with the specified row and column.
+            Determine whether the specified grid has conflict with the specified row and column.
             </summary>
             <param name="grid">The grid to be checked.</param>
             <param name="r">The row index.</param>

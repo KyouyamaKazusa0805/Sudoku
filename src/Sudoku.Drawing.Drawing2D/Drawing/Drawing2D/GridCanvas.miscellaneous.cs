@@ -3,7 +3,7 @@ namespace Sudoku.Drawing.Drawing2D;
 public partial class GridCanvas
 {
 	/// <summary>
-	/// Draw eliminations onto the canvas, with confliction check on nodes.
+	/// Draw eliminations onto the canvas, with conflict check on nodes.
 	/// If a node covers (uses) one candidate, the elimination will be treated as a cannibalism one, drawing with different color.
 	/// </summary>
 	/// <param name="conclusions">The conclusions to be drawn.</param>

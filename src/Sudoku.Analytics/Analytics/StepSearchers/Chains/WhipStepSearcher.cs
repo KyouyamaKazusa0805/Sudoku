@@ -364,7 +364,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// Create a <see cref="WhipStep"/> instance via the current confliction rule.
+	/// Create a <see cref="WhipStep"/> instance via the current conflict rule.
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <param name="contradictionNode">The node that makes such contradiction.</param>

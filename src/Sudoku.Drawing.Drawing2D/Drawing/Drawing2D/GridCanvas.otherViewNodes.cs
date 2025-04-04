@@ -17,7 +17,7 @@ public partial class GridCanvas
 	}
 
 	/// <summary>
-	/// Draw candidate view nodes onto the canvas, with confliction check on conclusions.
+	/// Draw candidate view nodes onto the canvas, with conflict check on conclusions.
 	/// </summary>
 	/// <param name="nodes">The nodes to be drawn.</param>
 	/// <param name="conclusions">The conclusions to be checked.</param>
@@ -139,7 +139,7 @@ public partial class GridCanvas
 	}
 
 	/// <summary>
-	/// Draw link view nodes onto the canvas, with confliction check on conclusions.
+	/// Draw link view nodes onto the canvas, with conflict check on conclusions.
 	/// If any conclusions is lying on the line of the link drawn, the link will be automatically adjusted to a curve.
 	/// </summary>
 	/// <param name="nodes">The nodes to be drawn.</param>

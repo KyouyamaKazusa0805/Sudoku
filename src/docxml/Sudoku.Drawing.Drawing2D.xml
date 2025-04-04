@@ -175,7 +175,7 @@
         </member>
         <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawCandidateViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
             <summary>
-            Draw candidate view nodes onto the canvas, with confliction check on conclusions.
+            Draw candidate view nodes onto the canvas, with conflict check on conclusions.
             </summary>
             <param name="nodes">The nodes to be drawn.</param>
             <param name="conclusions">The conclusions to be checked.</param>
@@ -188,7 +188,7 @@
         </member>
         <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawLinkViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
             <summary>
-            Draw link view nodes onto the canvas, with confliction check on conclusions.
+            Draw link view nodes onto the canvas, with conflict check on conclusions.
             If any conclusions is lying on the line of the link drawn, the link will be automatically adjusted to a curve.
             </summary>
             <param name="nodes">The nodes to be drawn.</param>
@@ -208,7 +208,7 @@
         </member>
         <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawEliminations(System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode})">
             <summary>
-            Draw eliminations onto the canvas, with confliction check on nodes.
+            Draw eliminations onto the canvas, with conflict check on nodes.
             If a node covers (uses) one candidate, the elimination will be treated as a cannibalism one, drawing with different color.
             </summary>
             <param name="conclusions">The conclusions to be drawn.</param>

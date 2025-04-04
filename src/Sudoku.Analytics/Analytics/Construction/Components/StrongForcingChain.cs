@@ -32,7 +32,7 @@ public sealed partial class StrongForcingChain(Node lastNode, bool isDynamicChai
 	/// or -1 when <paramref name="other"/> is longer.
 	/// </item>
 	/// <item>
-	/// Determine whether one of two has "self constraint" (i.e. false -> true confliction).
+	/// Determine whether one of two has "self constraint" (i.e. false -> true conflict).
 	/// <list type="number">
 	/// <item>If so, it will be treated as "less than" the other one.</item>
 	/// <item>

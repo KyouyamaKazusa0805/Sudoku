@@ -31,7 +31,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// from the grid in fact.
 	/// </para>
 	/// <para>
-	/// Just suppose one of them is correct, and this case will lead to a confliction if some ALSes related to that supposed digit
+	/// Just suppose one of them is correct, and this case will lead to a conflict if some ALSes related to that supposed digit
 	/// can lead to a same cell to be null (i.e. no digits can be filled).
 	/// Therefore, we can remove the supposed digit from the containing cell.
 	/// </para>
@@ -79,7 +79,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				continue;
 			}
 
-			// Iterate on each wrong digit, to find any confliction.
+			// Iterate on each wrong digit, to find any conflict.
 			var wrongDigitsMask = (Mask)(playgroundCached[entryElimCell] & ~(1 << Solution.GetDigit(entryElimCell)));
 			foreach (var wrongDigit in wrongDigitsMask)
 			{

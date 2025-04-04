@@ -2889,7 +2889,7 @@
             or -1 when <paramref name="other"/> is longer.
             </item>
             <item>
-            Determine whether one of two has "self constraint" (i.e. false -> true confliction).
+            Determine whether one of two has "self constraint" (i.e. false -> true conflict).
             <list type="number">
             <item>If so, it will be treated as "less than" the other one.</item>
             <item>
@@ -5517,7 +5517,7 @@
             or -1 when <paramref name="other"/> is longer.
             </item>
             <item>
-            Determine whether one of two has "self constraint" (i.e. false -> true confliction).
+            Determine whether one of two has "self constraint" (i.e. false -> true conflict).
             <list type="number">
             <item>If so, it will be treated as "less than" the other one.</item>
             <item>
@@ -5637,7 +5637,7 @@
             or -1 when <paramref name="other"/> is longer.
             </item>
             <item>
-            Determine whether one of two has "self constraint" (i.e. false -> true confliction).
+            Determine whether one of two has "self constraint" (i.e. false -> true conflict).
             <list type="number">
             <item>If so, it will be treated as "less than" the other one.</item>
             <item>
@@ -9476,7 +9476,7 @@
             from the grid in fact.
             </para>
             <para>
-            Just suppose one of them is correct, and this case will lead to a confliction if some ALSes related to that supposed digit
+            Just suppose one of them is correct, and this case will lead to a conflict if some ALSes related to that supposed digit
             can lead to a same cell to be null (i.e. no digits can be filled).
             Therefore, we can remove the supposed digit from the containing cell.
             </para>
@@ -9777,7 +9777,7 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.Chains.WhipStepSearcher.CreateStep(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Components.WhipNode,System.Int32,Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.Space,System.Boolean)">
             <summary>
-            Create a <see cref="T:Sudoku.Analytics.Steps.Chains.WhipStep"/> instance via the current confliction rule.
+            Create a <see cref="T:Sudoku.Analytics.Steps.Chains.WhipStep"/> instance via the current conflict rule.
             </summary>
             <param name="context">The context.</param>
             <param name="contradictionNode">The node that makes such contradiction.</param>
@@ -33896,7 +33896,7 @@
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_RemotePairStep">
             <summary>
-              Looks up a localized string similar to Assign cells {0} with mark {1} and {2}, to make an confliction.
+              Looks up a localized string similar to Assign cells {0} with mark {1} and {2}, to make an conflict.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_ReverseBivalueUniversalGraveType1Step">

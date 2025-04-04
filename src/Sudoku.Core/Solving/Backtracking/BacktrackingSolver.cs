@@ -148,7 +148,7 @@ public class BacktrackingSolver : ISolver
 
 
 	/// <summary>
-	/// Determine whether the specified grid has confliction with the specified row and column.
+	/// Determine whether the specified grid has conflict with the specified row and column.
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="r">The row index.</param>
