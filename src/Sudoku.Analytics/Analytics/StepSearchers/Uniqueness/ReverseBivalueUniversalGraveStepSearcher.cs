@@ -107,7 +107,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 					{
 						continue;
 					}
-					default:
+					case not 0:
 					{
 						var flag = true;
 						foreach (var c in d1Map | d2Map)
@@ -151,19 +151,36 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 							continue;
 						}
 
-						if (CheckType1(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type1Step)
+						if (GetSeparatedHamiltonianCycles(new(completePattern)) is not [var firstSeparatedLoopSolution, ..])
+						{
+							continue;
+						}
+
+						if (CheckType1(
+							accumulator, ref context, d1, d2, comparer, completePattern,
+							cellsChosen, firstSeparatedLoopSolution
+						) is { } type1Step)
 						{
 							return type1Step;
 						}
-						if (CheckType2(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type2Step)
+						if (CheckType2(
+							accumulator, ref context, d1, d2, comparer, completePattern,
+							cellsChosen, firstSeparatedLoopSolution
+						) is { } type2Step)
 						{
 							return type2Step;
 						}
-						if (CheckType3(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type3Step)
+						if (CheckType3(
+							accumulator, ref context, d1, d2, comparer, completePattern,
+							cellsChosen, firstSeparatedLoopSolution
+						) is { } type3Step)
 						{
 							return type3Step;
 						}
-						if (CheckType4(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type4Step)
+						if (CheckType4(
+							accumulator, ref context, d1, d2, comparer, completePattern,
+							cellsChosen, firstSeparatedLoopSolution
+						) is { } type4Step)
 						{
 							return type4Step;
 						}
@@ -189,6 +206,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
+	/// <param name="separatedLoops">The separated hamiltonian cycles to be used to render loop links.</param>
 	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType1Step? CheckType1(
 		HashSet<ReverseBivalueUniversalGraveStep> accumulator,
@@ -197,7 +215,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d2,
 		Mask comparer,
 		in CellMap completePattern,
-		in CellMap cellsChosen
+		in CellMap cellsChosen,
+		ReadOnlySpan<HamiltonianCycle> separatedLoops
 	)
 	{
 		if (cellsChosen is not [var extraCell])
@@ -219,7 +238,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 		var step = new ReverseBivalueUniversalGraveType1Step(
 			new SingletonArray<Conclusion>(new(Elimination, extraCell, Mask.TrailingZeroCount(elimDigitsMask))),
-			[[.. cellOffsets]],
+			[[.. cellOffsets, .. GetLinkViewNodes(separatedLoops)]],
 			context.Options,
 			d1,
 			d2,
@@ -245,6 +264,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
+	/// <param name="separatedLoops">The separated hamiltonian cycles to be used to render loop links.</param>
 	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType2Step? CheckType2(
 		HashSet<ReverseBivalueUniversalGraveStep> accumulator,
@@ -253,7 +273,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d2,
 		Mask comparer,
 		in CellMap completePattern,
-		in CellMap cellsChosen
+		in CellMap cellsChosen,
+		ReadOnlySpan<HamiltonianCycle> separatedLoops
 	)
 	{
 		var lastDigitsMask = (Mask)(context.Grid[cellsChosen] & ~comparer);
@@ -277,7 +298,15 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 		var step = new ReverseBivalueUniversalGraveType2Step(
 			(from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)).ToArray(),
-			[[.. cellOffsets, .. from cell in cellsChosen select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + extraDigit)]],
+			[
+				[
+					.. cellOffsets,
+					..
+					from cell in cellsChosen
+					select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + extraDigit),
+					.. GetLinkViewNodes(separatedLoops)
+				]
+			],
 			context.Options,
 			d1,
 			d2,
@@ -305,6 +334,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
+	/// <param name="separatedLoops">The separated hamiltonian cycles to be used to render loop links.</param>
 	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType3Step? CheckType3(
 		HashSet<ReverseBivalueUniversalGraveStep> accumulator,
@@ -313,7 +343,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d2,
 		Mask comparer,
 		in CellMap completePattern,
-		in CellMap cellsChosen
+		in CellMap cellsChosen,
+		ReadOnlySpan<HamiltonianCycle> separatedLoops
 	)
 	{
 		// Test examples:
@@ -403,7 +434,14 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 				var step = new ReverseBivalueUniversalGraveType3Step(
 					conclusions.AsMemory(),
-					[[.. cellOffsets, .. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
+					[
+						[
+							.. cellOffsets,
+							.. candidateOffsets,
+							new HouseViewNode(ColorIdentifier.Normal, house),
+							.. GetLinkViewNodes(separatedLoops)
+						]
+					],
 					context.Options,
 					d1,
 					d2,
@@ -434,6 +472,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
+	/// <param name="separatedLoops">The separated hamiltonian cycles to be used to render loop links.</param>
 	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType4Step? CheckType4(
 		HashSet<ReverseBivalueUniversalGraveStep> accumulator,
@@ -442,7 +481,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d2,
 		Mask comparer,
 		in CellMap completePattern,
-		in CellMap cellsChosen
+		in CellMap cellsChosen,
+		ReadOnlySpan<HamiltonianCycle> separatedLoops
 	)
 	{
 		if (cellsChosen is not [var cell1, var cell2])
@@ -517,7 +557,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 							[conjugatePairCellOuterPattern * 9 + selectedDigit],
 							[anotherCell * 9 + selectedDigit],
 							false
-						)
+						),
+						.. GetLinkViewNodes(separatedLoops)
 					]
 				],
 				context.Options,
@@ -607,5 +648,86 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		}
 
 		return true;
+	}
+
+	/// <summary>
+	/// Try to find cycles that uses all cells, without checking they are in a same loop.
+	/// </summary>
+	/// <param name="this">The instance.</param>
+	/// <returns>All found loops.</returns>
+	private static ReadOnlySpan<HamiltonianCycle[]> GetSeparatedHamiltonianCycles(in CellGraph @this)
+	{
+		ref readonly var originalCells = ref @this.Map;
+		if (originalCells)
+		{
+			var comparer = EqualityComparer<HamiltonianCycle>.Create(
+				static (left, right) => left.Equals(right, HamiltonianCycleComparison.IgnoreDirection),
+				static obj => obj.GetHashCode(HamiltonianCycleComparison.IgnoreDirection)
+			);
+			var paths = new HashSet<HamiltonianCycle[]>();
+			dfs(originalCells, originalCells[1..], originalCells[0], [originalCells[0]], new(comparer), paths);
+			return paths.ToArray();
+		}
+		return [];
+
+
+		static void dfs(
+			in CellMap originalCells,
+			CellMap lastCells,
+			Cell current,
+			List<Cell> path,
+			HashSet<HamiltonianCycle> internalLoops,
+			HashSet<HamiltonianCycle[]> paths
+		)
+		{
+			if (!lastCells && path is [var f, .., var l] && PeersMap[l].Contains(f))
+			{
+				paths.Add([new([.. path]), .. internalLoops]);
+				internalLoops.Clear();
+				return;
+			}
+
+			if (path is [var pathFirstCell, .. { Count: >= 3 }])
+			{
+				// Check whether we can connect back to the first cell.
+				foreach (var cell in originalCells & PeersMap[current])
+				{
+					if (cell == pathFirstCell
+						&& path.AsSpan().AsCellMap() is var excludedCells
+						&& IsGeneralizedUniqueLoop(excludedCells))
+					{
+						internalLoops.Add(new([.. path]));
+
+						var tempLastCells = lastCells & ~excludedCells;
+						dfs(tempLastCells, tempLastCells[1..], tempLastCells[0], [tempLastCells[0]], internalLoops, paths);
+					}
+				}
+			}
+
+			foreach (var next in lastCells & PeersMap[current])
+			{
+				path.Add(next);
+				dfs(originalCells, lastCells - next, next, path, internalLoops, paths);
+				path.Remove(next);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Construct link view nodes.
+	/// </summary>
+	/// <param name="separatedLoops">The separated loops.</param>
+	/// <returns>A list of <see cref="CellLinkViewNode"/> instances.</returns>
+	private static ReadOnlySpan<CellLinkViewNode> GetLinkViewNodes(ReadOnlySpan<HamiltonianCycle> separatedLoops)
+	{
+		var links = new List<CellLinkViewNode>();
+		foreach (var hamiltonianLoop in separatedLoops)
+		{
+			foreach (var (first, second) in hamiltonianLoop.EnumerateAdjacentCells())
+			{
+				links.Add(new(ColorIdentifier.Normal, first, second));
+			}
+		}
+		return links.AsSpan();
 	}
 }

@@ -12230,7 +12230,7 @@
         <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.CheckType1(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.Uniqueness.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.CheckType1(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.Uniqueness.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.Graphs.HamiltonianCycle})">
             <summary>
             Check for type 1.
             </summary>
@@ -12241,9 +12241,10 @@
             <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
             <param name="completePattern">The complete pattern.</param>
             <param name="cellsChosen">The empty cells chosen.</param>
+            <param name="separatedLoops">The separated hamiltonian cycles to be used to render loop links.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.CheckType2(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.Uniqueness.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.CheckType2(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.Uniqueness.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.Graphs.HamiltonianCycle})">
             <summary>
             Check for type 2.
             </summary>
@@ -12254,9 +12255,10 @@
             <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
             <param name="completePattern">The complete pattern.</param>
             <param name="cellsChosen">The empty cells chosen.</param>
+            <param name="separatedLoops">The separated hamiltonian cycles to be used to render loop links.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.CheckType3(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.Uniqueness.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.CheckType3(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.Uniqueness.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.Graphs.HamiltonianCycle})">
             <summary>
             Check for type 3.
             </summary>
@@ -12267,9 +12269,10 @@
             <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
             <param name="completePattern">The complete pattern.</param>
             <param name="cellsChosen">The empty cells chosen.</param>
+            <param name="separatedLoops">The separated hamiltonian cycles to be used to render loop links.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.CheckType4(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.Uniqueness.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.CheckType4(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.Uniqueness.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.Graphs.HamiltonianCycle})">
             <summary>
             Check for type 4.
             </summary>
@@ -12280,6 +12283,7 @@
             <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
             <param name="completePattern">The complete pattern.</param>
             <param name="cellsChosen">The empty cells chosen.</param>
+            <param name="separatedLoops">The separated hamiltonian cycles to be used to render loop links.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.IsGeneralizedUniqueLoop(Sudoku.Concepts.CellMap@)">
@@ -12325,6 +12329,20 @@
             <para><inheritdoc cref="M:Sudoku.Analytics.Construction.Patterns.UniqueLoopPattern.IsValid``1(``0)" path="//remarks/para[2]"/></para>
             </remarks>
             <seealso cref="M:Sudoku.Analytics.Construction.Patterns.UniqueLoopPattern.IsValid``1(``0)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.GetSeparatedHamiltonianCycles(Sudoku.Concepts.Graphs.CellGraph@)">
+            <summary>
+            Try to find cycles that uses all cells, without checking they are in a same loop.
+            </summary>
+            <param name="this">The instance.</param>
+            <returns>All found loops.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Uniqueness.ReverseBivalueUniversalGraveStepSearcher.GetLinkViewNodes(System.ReadOnlySpan{Sudoku.Concepts.Graphs.HamiltonianCycle})">
+            <summary>
+            Construct link view nodes.
+            </summary>
+            <param name="separatedLoops">The separated loops.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.CellLinkViewNode"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.Uniqueness.UniqueLoopStepSearcher">
             <summary>
