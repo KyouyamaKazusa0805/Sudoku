@@ -65,6 +65,7 @@
 * [双强链](chain-theory/01-two-strong-link-chain.md)
 * [同数链和异数链](chain-theory/02-x-chain-and-multidigit-chain/README.md)
   * [同数链和异数链的定义](chain-theory/02-x-chain-and-multidigit-chain/01-definition-of-x-chain-and-multidigit-chain.md)
+  * [有技巧名的异数链](chain-theory/02-x-chain-and-multidigit-chain/02-named-multidigit-chain.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 
