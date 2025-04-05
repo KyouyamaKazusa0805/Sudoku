@@ -153,7 +153,7 @@ file sealed class AnalysisResultDocumentCreator
 							table.Cell().Element(cellStyle).AlignRight().Text(element.CountOfSteps.ToString());
 							table.Cell().Element(cellStyle).AlignRight().Text(DifficultyLevelConversion.GetName(element.DifficultyLevel));
 							table.Cell().Element(cellStyle).AlignRight().Text($"{element.TotalDifficulty:0.0}");
-							table.Cell().Element(cellStyle).AlignRight().Text($"{element.MaximumDifficulty:0.0}");
+							table.Cell().Element(cellStyle).AlignRight().Text($"{element.MaxDifficulty:0.0}");
 
 
 							static PdfContainer cellStyle(PdfContainer container)

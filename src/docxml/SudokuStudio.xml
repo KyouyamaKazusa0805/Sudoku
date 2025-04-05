@@ -486,24 +486,41 @@
             Represents a type that can be used for binding as source, for the table-like grid controls to display techniques used,
             using technique name to distinct them.
             </summary>
-            <param name="techniqueName">Indicates the name of the technique.</param>
-            <param name="difficultyLevel">Indicates the difficulty level of the technique.</param>
-            <param name="totalDifficulty">Indicates the total difficulty of the group of steps.</param>
-            <param name="maximumDifficulty">Indicates the maximum difficulty of the group of steps.</param>
-            <param name="countOfSteps">Indicates the number of steps in this group.</param>
             <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
         </member>
-        <member name="M:SudokuStudio.BindableSource.SummaryViewBindableSource.#ctor(System.String,Sudoku.Analytics.DifficultyLevel,System.Decimal,System.Decimal,System.Int32)">
+        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.TechniqueName">
             <summary>
-            Represents a type that can be used for binding as source, for the table-like grid controls to display techniques used,
-            using technique name to distinct them.
+            Indicates the name of the technique.
             </summary>
-            <param name="techniqueName">Indicates the name of the technique.</param>
-            <param name="difficultyLevel">Indicates the difficulty level of the technique.</param>
-            <param name="totalDifficulty">Indicates the total difficulty of the group of steps.</param>
-            <param name="maximumDifficulty">Indicates the maximum difficulty of the group of steps.</param>
-            <param name="countOfSteps">Indicates the number of steps in this group.</param>
-            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level of the technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.TotalDifficulty">
+            <summary>
+            Indicates the total difficulty of the group of steps.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.MaxDifficulty">
+            <summary>
+            Indicates the maximum difficulty of the group of steps.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.CountOfSteps">
+            <summary>
+            Indicates the number of steps in this group.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.BindableSource.SummaryViewBindableSource.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.SummaryViewBindableSource.OnPropertyChanged(System.String)">
+            <summary>
+            Triggers event <see cref="E:SudokuStudio.BindableSource.SummaryViewBindableSource.PropertyChanged"/>.
+            </summary>
+            <param name="propertyName">The property name.</param>
         </member>
         <member name="M:SudokuStudio.BindableSource.SummaryViewBindableSource.CreateListFrom(Sudoku.Analytics.AnalysisResult)">
             <summary>
@@ -515,31 +532,6 @@
             </param>
             <returns>The result list of <see cref="T:SudokuStudio.BindableSource.SummaryViewBindableSource"/>-typed elements.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.TechniqueName">
-            <summary>
-            The generated property declaration for parameter <c>techniqueName</c>.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.DifficultyLevel">
-            <summary>
-            The generated property declaration for parameter <c>difficultyLevel</c>.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.TotalDifficulty">
-            <summary>
-            The generated property declaration for parameter <c>totalDifficulty</c>.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.MaximumDifficulty">
-            <summary>
-            The generated property declaration for parameter <c>maximumDifficulty</c>.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.CountOfSteps">
-            <summary>
-            The generated property declaration for parameter <c>countOfSteps</c>.
-            </summary>
         </member>
         <member name="T:SudokuStudio.BindableSource.TechniqueBindableSource">
             <summary>

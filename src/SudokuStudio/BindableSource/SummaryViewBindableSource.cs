@@ -4,21 +4,90 @@ namespace SudokuStudio.BindableSource;
 /// Represents a type that can be used for binding as source, for the table-like grid controls to display techniques used,
 /// using technique name to distinct them.
 /// </summary>
-/// <param name="techniqueName">Indicates the name of the technique.</param>
-/// <param name="difficultyLevel">Indicates the difficulty level of the technique.</param>
-/// <param name="totalDifficulty">Indicates the total difficulty of the group of steps.</param>
-/// <param name="maximumDifficulty">Indicates the maximum difficulty of the group of steps.</param>
-/// <param name="countOfSteps">Indicates the number of steps in this group.</param>
 /// <seealso cref="AnalysisResult"/>
-[method: SetsRequiredMembers]
-internal sealed partial class SummaryViewBindableSource(
-	[Property(Accessibility = "public required", Setter = PropertySetters.Set)] string techniqueName,
-	[Property(Accessibility = "public required", Setter = PropertySetters.Set)] DifficultyLevel difficultyLevel,
-	[Property(Accessibility = "public required", Setter = PropertySetters.Set)] decimal totalDifficulty,
-	[Property(Accessibility = "public required", Setter = PropertySetters.Set)] decimal maximumDifficulty,
-	[Property(Accessibility = "public required", Setter = PropertySetters.Set)] int countOfSteps
-)
+internal sealed class SummaryViewBindableSource : INotifyPropertyChanged
 {
+	/// <summary>
+	/// Indicates the name of the technique.
+	/// </summary>
+	public required string TechniqueName
+	{
+		get;
+
+		set
+		{
+			field = value;
+			OnPropertyChanged();
+		}
+	}
+
+	/// <summary>
+	/// Indicates the difficulty level of the technique.
+	/// </summary>
+	public required DifficultyLevel DifficultyLevel
+	{
+		get;
+
+		set
+		{
+			field = value;
+			OnPropertyChanged();
+		}
+	}
+
+	/// <summary>
+	/// Indicates the total difficulty of the group of steps.
+	/// </summary>
+	public required decimal TotalDifficulty
+	{
+		get;
+
+		set
+		{
+			field = value;
+			OnPropertyChanged();
+		}
+	}
+
+	/// <summary>
+	/// Indicates the maximum difficulty of the group of steps.
+	/// </summary>
+	public required decimal MaxDifficulty
+	{
+		get;
+
+		set
+		{
+			field = value;
+			OnPropertyChanged();
+		}
+	}
+
+	/// <summary>
+	/// Indicates the number of steps in this group.
+	/// </summary>
+	public required int CountOfSteps
+	{
+		get;
+
+		set
+		{
+			field = value;
+			OnPropertyChanged();
+		}
+	}
+
+
+	/// <inheritdoc/>
+	public event PropertyChangedEventHandler? PropertyChanged;
+
+
+	/// <summary>
+	/// Triggers event <see cref="PropertyChanged"/>.
+	/// </summary>
+	/// <param name="propertyName">The property name.</param>
+	private void OnPropertyChanged([CallerMemberName] string propertyName = null!) => PropertyChanged?.Invoke(this, new(propertyName));
+
 	/// <summary>
 	/// Creates the list of <see cref="SummaryViewBindableSource"/> as the result value,
 	/// via the specified <paramref name="analysisResult"/> instance of <see cref="AnalysisResult"/> type.
@@ -68,13 +137,14 @@ internal sealed partial class SummaryViewBindableSource(
 					select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
 					orderby targetDifficultyLevel
 					select targetDifficultyLevel
-				select new SummaryViewBindableSource(
-					stepGroup.Key,
-					difficultyLevels.Aggregate(@delegate.EnumFlagMerger),
-					stepGroupArray.SumUnsafe(&r),
-					stepGroupArray.MaxUnsafe(&r),
-					stepGroupArray.Length
-				)
+				select new SummaryViewBindableSource
+				{
+					TechniqueName = stepGroup.Key,
+					DifficultyLevel = difficultyLevels.Aggregate(@delegate.EnumFlagMerger),
+					TotalDifficulty = stepGroupArray.SumUnsafe(&r),
+					MaxDifficulty = stepGroupArray.MaxUnsafe(&r),
+					CountOfSteps = stepGroupArray.Length
+				}
 			];
 		}
 	}
