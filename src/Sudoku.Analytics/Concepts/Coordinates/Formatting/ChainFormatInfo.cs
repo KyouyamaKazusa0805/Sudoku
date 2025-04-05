@@ -160,7 +160,7 @@ public sealed class ChainFormatInfo : FormatInfo<Chain>
 	/// about Eureka Notation.
 	/// </summary>
 	/// <remarks>
-	/// Example output:<br/><c><![CDATA[(6)r4c4=(6-8)r4c1-(8)r4c9=(8)r9c9-(8)r9c4]]></c>
+	/// Example output:<br/><c><![CDATA[(6)r4c4=(6-8)r4c1=(8)r4c9-(8)r9c9=(8)r9c4]]></c>
 	/// </remarks>
 	public static IFormatProvider Eureka
 		=> new ChainFormatInfo
